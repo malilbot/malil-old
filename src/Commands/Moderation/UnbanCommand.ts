@@ -27,9 +27,7 @@ export default class UnbanCommand extends Command {
                         retry: (msg: Message) => `**${msg.author.tag}** Please provide the user id!`
                     }
                 }
-            ],
-            userPermissions: ["MANAGE_GUILD"],
-            clientPermissions: ["MANAGE_GUILD"]
+            ]
         });
     }
 

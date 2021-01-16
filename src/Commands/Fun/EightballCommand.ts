@@ -8,7 +8,7 @@ export default class EightballCommand extends Command {
     public constructor() {
         super("eightball", {
             aliases: ["eightball", "8ball"],
-            category: "Core",
+            category: "Fun",
             quoted: false,
             args: [
 				{

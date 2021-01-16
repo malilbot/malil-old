@@ -8,7 +8,7 @@ export default class IqCommand extends Command {
     public constructor() {
         super("iq", {
             aliases: ["iq"],
-            category: "Core",
+            category: "Fun",
             description: {
                 content: "Find your iq",
                 usage: "iq",

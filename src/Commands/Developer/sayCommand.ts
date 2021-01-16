@@ -9,9 +9,9 @@ export default class SayCommand extends Command {
             category: "Developer",
             description: {
                 content: "Make force the bot to say stuff",
-                usage: "say GG",
+                usage: "say",
                 example: [
-                    "say GG ez"
+                    "say pog"
                 ]
             },
             ratelimit: 3,

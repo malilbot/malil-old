@@ -8,7 +8,7 @@ export default class ExecCommand extends Command {
             aliases: ["exec"],
             category: "Developer",
             description: {
-                content: "Some super javascript code",
+                content: "Do some bash code",
                 usage: "exec bash",
                 example: [
                     "exec ls"
@@ -38,8 +38,8 @@ export default class ExecCommand extends Command {
         const embed = new MessageEmbed()
             .setTitle(`Exec`)
             .setColor("RED")
-            .addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``)
-            .addField("🫓 Output", `\`\`\`ts\n${output}\`\`\``)
+            .addField("🍞 Input", `\`\`\`bash\n${code}\`\`\``)
+            .addField("🫓 Output", `\`\`\`bash\n${output}\`\`\``)
             .addField("Type", "bash");
         return message.channel.send(embed);
     })

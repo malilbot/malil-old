@@ -40,9 +40,7 @@ export default class BanCommand extends Command {
                     type: "strin",
                     default: "No reason provided..."
                 }
-            ],
-            userPermissions: ["BAN_MEMBERS"],
-            clientPermissions: ["BAN_MEMBERS"]
+            ]
         });
     }
 

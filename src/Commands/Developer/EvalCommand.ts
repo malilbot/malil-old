@@ -1,4 +1,4 @@
- import { Command } from "discord-akairo";
+import { Command } from "discord-akairo";
 import type { Message } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import util from 'util';

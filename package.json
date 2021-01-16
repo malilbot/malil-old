@@ -1,7 +1,7 @@
 {
-  "name": "neo-production",
+  "name": "malil",
   "version": "3.1.0",
-  "description": "Production Of Neo-Akairo",
+  "description": "Malil discord bot",
   "main": "finish/index.js",
   "scripts": {
     "start": "node ./finish/index.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Unwork-ID/Neo-Akairo.git"
+    "url": "https://github.com/SkyBlockDev/malil-akairo"
   },
   "keywords": [
     "neoakairo",
@@ -24,9 +24,9 @@
   "author": "tricked#3777",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Unwork-ID/Neo-Akairo/issues"
+    "url": "https://github.com/SkyBlockDev/malil-akairo/issues"
   },
-  "homepage": "https://github.com/Unwork-ID/Neo-Akairo#readme",
+  "homepage": "https://github.com/SkyBlockDev/malil-akairo#readme",
   "devDependencies": {
     "@hazmi35/eslint-config": "^3.4.0",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
@@ -38,20 +38,12 @@
   "dependencies": {
     "axios": "^0.21.1",
     "common-tags": "^1.8.0",
-    "dblapi.js": "^2.4.1",
     "discord-akairo": "github:1Computer1/discord-akairo",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "moment": "^2.29.1",
     "ms": "^2.1.3",
-    "node-fetch": "^2.6.1",
-    "node-spotify-api": "^1.1.1",
-    "node-superfetch": "^0.1.10",
-    "request": "^2.88.2",
-    "request-promise": "^4.2.6",
     "snekfetch": "^4.0.4",
-    "sqlite": "^4.0.19",
-    "superagent": "^6.1.0",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.0"
   }

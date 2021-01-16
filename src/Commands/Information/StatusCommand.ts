@@ -11,7 +11,7 @@ export default class StatsCommand extends Command {
     public constructor() {
         super("stats", {
             aliases: ["stats", "st"],
-            category: "Core",
+            category: "Info",
             description: {
                 content: "The Statistic of bot",
                 usage: "stats",

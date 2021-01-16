@@ -24,7 +24,7 @@ export default class UserinfoCommand extends Command {
                 }
             ],
             description: {
-                content: "Get some inf oabout a user",
+                content: "Get some inf about a user",
                 usage: "userinfo",
                 example: [
                     "userinfo"

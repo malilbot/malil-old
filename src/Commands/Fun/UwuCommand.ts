@@ -7,7 +7,7 @@ export default class UwuCommand extends Command {
     public constructor() {
         super("uwu", {
             aliases: ["uwu", "owo"],
-            category: "Core",
+            category: "Fun",
             quoted: true,
             args: [
                 {

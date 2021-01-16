@@ -33,8 +33,6 @@ export default class NickCommand extends Command {
             },
             ratelimit: 3,
             channel: "guild",
-            userPermissions: ["MANAGE_NICKNAMES"],
-            clientPermissions: ["MANAGE_NICKNAMES"]
         });
     }
 

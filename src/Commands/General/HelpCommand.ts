@@ -44,10 +44,7 @@ export default class HelpCommand extends Command {
             ${command.description.usage || "No Usage Provided"}
             
             **Example**
-            ${command.description.example ? command.description.example.map(e => `\`${e}\``).join("\n") : "No Example Provided"}
-            
-            **Permission Request**
-            ${command.clientPermissions || "No need permissions"}`));
+            ${command.description.example ? command.description.example.map(e => `\`${e}\``).join("\n") : "No Example Provided"}`));
         }
 
         const embed = new MessageEmbed()

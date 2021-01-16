@@ -32,9 +32,7 @@ export default class KickCommand extends Command {
                     type: "string",
                     default: "No reason provided...."
                 }
-            ],
-            userPermissions: ["KICK_MEMBERS"],
-            clientPermissions: ["KICK_MEMBERS"]
+            ]
         });
     }
 
