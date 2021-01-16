@@ -10,7 +10,7 @@ import { Util } from "../../Utils/Utils";
 export default class StatsCommand extends Command {
     public constructor() {
         super("stats", {
-            aliases: ["stats", "st"],
+            aliases: ["stats", "st", "info"],
             category: "Info",
             description: {
                 content: "The Statistic of bot",
@@ -34,6 +34,8 @@ export default class StatsCommand extends Command {
             new MessageEmbed()
                 .setAuthor(this.client.user.tag, this.client.user.avatarURL())
                 .setThumbnail(this.client.user.displayAvatarURL())
+                .setTimestamp()
+                .setFooter('')
                 .setColor(message.guild.me.displayHexColor || "RED")
                 .addField("General", [
                     `**● Name:** ${this.client.user.tag} (${this.client.user.id})`,
@@ -42,6 +44,7 @@ export default class StatsCommand extends Command {
                     `**● Channels:** ${this.client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0)}`,
                     `**● Creation Date:** ${utc(this.client.user.createdTimestamp).format("Do MMMM YYYY HH:mm:ss")}`,
                     `**● Bot Uptime:** ${ms(process.uptime() * 1000, { long: true })}`,
+                    `**● Owner:** <@!336465356304678913>`,
                     `**● Node.js:** ${process.version}`,
                     `**● Akairo:** ${akairov}`,
                     `**● Discord.js:** ${djsversion}`,
@@ -59,10 +62,6 @@ export default class StatsCommand extends Command {
                     `\u3000 Used: ${ut.formatBytes(process.memoryUsage().heapUsed)}`,
                     "\u200b"
                 ])
-            // Don't delete this embed
-                .addField("\u200B", `| **[Website](https://tokisaki.xyz) | [GitHub](https://github.com/Enterprise-ID/-Akairo) | [Discord](https://tokisaki.xyz/discord) | [Statcord](https://statcord.com/bot/${this.client.user.id}) |**`)
-                .setFooter(`Request for ${message.author.tag}`, message.author.avatarURL())
-                .setTimestamp()
         );
     }
 }

@@ -17,7 +17,7 @@ interface Option {
 
 
 export default class Client extends AkairoClient {
-
+    
     public commandHandler: CommandHandler = new CommandHandler(this, {
         directory: join(__dirname, "..", "Commands"),
         prefix: process.env.PREFIX,

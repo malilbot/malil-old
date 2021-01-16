@@ -15,5 +15,6 @@ export default class CommandStarted extends Listener {
     }
 
     exec(message, command) {
-    }
+    this.client.logger.info('[COMMAND USED]: ' + message.author.tag + " " + command)
+        }
 }

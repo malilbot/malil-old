@@ -7,7 +7,7 @@ import req from "snekfetch";
 export default class EvalCommand extends Command {
     public constructor() {
         super("eval", {
-            aliases: ["eval", "e"],
+            aliases: ["eval", "ev"],
             category: "Developer",
             description: {
                 content: "Some super javascript code",
@@ -42,7 +42,7 @@ export default class EvalCommand extends Command {
 
         try {
 
-            if (code.toLowerCase().includes("token")) return message.channel.send("トークンがありません")
+            if (code.toLowerCase().includes("token")) return message.channel.send("بەلگە يوق")
             var evaled = await eval(code);
 
             var output = util.inspect(evaled, { depth: 0});
@@ -66,6 +66,7 @@ export default class EvalCommand extends Command {
             }
         }
         if(evalcode.includes("--silent")) return message.author.send(embed)
+        if(evalcode.includes("--delete")) return
         message.util.send(embed);
     }
 }

@@ -6,7 +6,7 @@ export default class NickCommand extends Command {
     public constructor() {
         super("nick", {
             aliases: ["nick"],
-            category: "Core",
+            category: "Moderation",
             quoted: true,
             args: [
                  {

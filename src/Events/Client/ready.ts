@@ -13,7 +13,7 @@ export default class Ready extends Listener {
     }
 
     public exec() {
-        console.info(`[ CLIENT READY ] Im ${this.client.user?.tag} Ready To Go`)
+        this.client.logger.info(`[CLIENT READY]: Im ${this.client.user?.tag} Ready To Go`)
 
         // —— requireing the config
         const config = require("../../../config.json") 
