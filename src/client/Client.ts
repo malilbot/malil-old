@@ -1,11 +1,10 @@
-import { AkairoClient, CommandHandler, ListenerHandler } from 'discord-akairo';
+import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from 'discord-akairo';
 import { join } from 'path';
 import { Logger } from 'winston';
 import { logger } from '../Utils/Utils';
 declare module 'discord-akairo' {
     interface AkairoClient {
         logger: Logger
-
     }
 }
 
@@ -17,13 +16,13 @@ interface Option {
 
 
 export default class Client extends AkairoClient {
-    
     public commandHandler: CommandHandler = new CommandHandler(this, {
         directory: join(__dirname, "..", "Commands"),
         prefix: process.env.PREFIX,
         aliasReplacement: /-g/,
         allowMention: true,
         handleEdits: true,
+        blockBots: true,
         commandUtil: true,
         commandUtilLifetime: 3e5,
         defaultCooldown: 3000,
@@ -39,15 +38,22 @@ export default class Client extends AkairoClient {
             },
             otherwise: "",
         }
-    });
+    })
 
-    public listenerHandler: ListenerHandler = new ListenerHandler(this, { directory: join(__dirname, "..", "Events")});
+
+  public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, {
+    directory: join(__dirname, '..', 'Inhibitors')
+  })
+
+
+    public listenerHandler: ListenerHandler = new ListenerHandler(this, { directory: join(__dirname, "..", "Listeners")});
 
     public config: Option;
-    
+
 
 
     public constructor(config: Option) {
+        
         super(
             {   ownerID: config.owners },
             {
@@ -56,18 +62,19 @@ export default class Client extends AkairoClient {
         );
         this.config = config;
         this.logger = logger;
+        
     }
-
+ 
     public _init() {
         this.commandHandler.useListenerHandler(this.listenerHandler);
+        this.commandHandler.useInhibitorHandler(this.inhibitorHandler)
         this.listenerHandler.setEmitters({
             commandHandler: this.commandHandler,
             listenerHandler: this.listenerHandler
         });
-
+        this.inhibitorHandler.loadAll()
         this.commandHandler.loadAll();
-        this.listenerHandler.loadAll();
-
+        
 
     }
 

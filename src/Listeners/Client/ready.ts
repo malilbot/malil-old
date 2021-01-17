@@ -14,7 +14,9 @@ export default class Ready extends Listener {
 
     public exec() {
         this.client.logger.info(`[CLIENT READY]: Im ${this.client.user?.tag} Ready To Go`)
-
+        this.client.logger.info(`[COMMANDS LOADED]: ${this.client.commandHandler.modules.size}`)
+        this.client.logger.info(`[LISTENERS LOADED]: ${this.client.listenerHandler.modules.size}`)
+        this.client.logger.info(`[INHIBITORS LOADED]: ${this.client.inhibitorHandler.modules.size}`)
         // —— requireing the config
         const config = require("../../../config.json") 
         const { status, games, interval } = config.presence;

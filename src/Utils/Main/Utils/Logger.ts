@@ -10,7 +10,7 @@ export const logger = createLogger({
         format.timestamp({ format: "YYYY/MM/DD HH:mm:ss" }),
         format.printf((info: any): string => {
             const { timestamp, label, level, message, ...rest } = info;
-            return `\x1b[34m[${timestamp}][${label}][${level.toUpperCase()}]${message}${
+            return `\x1b[34m[${timestamp}][${label}][${level.toUpperCase()}]\x1b[0m${message}${
                 Object.keys(rest).length ? `\n${JSON.stringify(rest, null, 2)}` : ""
             }`;
         })
