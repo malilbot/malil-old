@@ -15,6 +15,7 @@ export default class CommandStarted extends Listener {
     }
 
     exec(message, command) {
-    this.client.logger.info(`[COMMAND USED]: ${message.author.tag}(${message.author.id}) [GUILD]: ${message.guild.name}(${message.guild.id}) || [COMMAND]: ${command}`)
-        }
-}
+    this.client.logger.info(`\x1b[33m[COMMAND USED]\x1b[0m\x1b[32m: ${message.author.tag} \x1b[33m[GUILD]\x1b[0m\x1b[32m: ${message.guild.name} \x1b[33m[COMMAND]\x1b[0m\x1b[32m: ${command}`)
+    this.client.logger.info(`\x1b[33m[COMMAND USED]\x1b[0m\x1b[32m: author id = '${message.author.id}' msg id =  '${message.id}' channel id = '${message.channel.id} guild id = '${message.guild.id}'`)
+        }                                                                                                                                                                                                                           
+}                                                                                                                                                                                                                                   

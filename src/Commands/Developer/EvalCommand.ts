@@ -31,7 +31,7 @@ export default class EvalCommand extends Command {
     }
 
     public async exec(message: Message, { code }) {
-        let evalcode = code
+        const evalcode = code
          if(code.includes("--silent")) code = code.replace("--silent", "")
          if(code.includes("--delete")) code = code.replace("--delete", "") && message.delete()
         const embed = new MessageEmbed()
@@ -44,7 +44,7 @@ export default class EvalCommand extends Command {
             if (code.toLowerCase().includes("token")) return message.channel.send("بەلگە يوق")
             var evaled = await eval(code);
 
-            var output = util.inspect(evaled, { depth: 0});
+            const output = util.inspect(evaled, { depth: 0});
             if (output.length > 1024) {
                 const { body } = await req.post("http://tk-bin.glitch.me/documents").send(output);
                 embed.addField("🫓 Output", `http://tk-bin.glitch.me/${body.key}.js`);
