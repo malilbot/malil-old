@@ -34,7 +34,6 @@ export default class EvalCommand extends Command {
         let evalcode = code
          if(code.includes("--silent")) code = code.replace("--silent", "")
          if(code.includes("--delete")) code = code.replace("--delete", "") && message.delete()
-         console.log(code)
         const embed = new MessageEmbed()
             .setTitle(`${this.client.user.tag}'s Evaled`)
             .setColor("RED")

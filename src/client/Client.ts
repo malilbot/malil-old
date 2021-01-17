@@ -5,6 +5,7 @@ import { logger } from '../Utils/Utils';
 declare module 'discord-akairo' {
     interface AkairoClient {
         logger: Logger
+
     }
 }
 
@@ -16,13 +17,13 @@ interface Option {
 
 
 export default class Client extends AkairoClient {
+    
     public commandHandler: CommandHandler = new CommandHandler(this, {
         directory: join(__dirname, "..", "Commands"),
         prefix: process.env.PREFIX,
         aliasReplacement: /-g/,
         allowMention: true,
         handleEdits: true,
-        blockBots: true,
         commandUtil: true,
         commandUtilLifetime: 3e5,
         defaultCooldown: 3000,
@@ -38,22 +39,16 @@ export default class Client extends AkairoClient {
             },
             otherwise: "",
         }
-    })
-
-
-  public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, {
-    directory: join(__dirname, '..', 'Inhibitors')
-  })
-
+    });
 
     public listenerHandler: ListenerHandler = new ListenerHandler(this, { directory: join(__dirname, "..", "Listeners")});
 
+    public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, { directory: join(__dirname, '..', 'Inhibitors')});
     public config: Option;
-
+    
 
 
     public constructor(config: Option) {
-        
         super(
             {   ownerID: config.owners },
             {
@@ -62,9 +57,8 @@ export default class Client extends AkairoClient {
         );
         this.config = config;
         this.logger = logger;
-        
     }
- 
+
     public _init() {
         this.commandHandler.useListenerHandler(this.listenerHandler);
         this.commandHandler.useInhibitorHandler(this.inhibitorHandler)
@@ -74,8 +68,7 @@ export default class Client extends AkairoClient {
         });
         this.inhibitorHandler.loadAll()
         this.commandHandler.loadAll();
-        
-
+        this.listenerHandler.loadAll()
     }
 
 

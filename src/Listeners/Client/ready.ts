@@ -17,6 +17,7 @@ export default class Ready extends Listener {
         this.client.logger.info(`[COMMANDS LOADED]: ${this.client.commandHandler.modules.size}`)
         this.client.logger.info(`[LISTENERS LOADED]: ${this.client.listenerHandler.modules.size}`)
         this.client.logger.info(`[INHIBITORS LOADED]: ${this.client.inhibitorHandler.modules.size}`)
+
         // —— requireing the config
         const config = require("../../../config.json") 
         const { status, games, interval } = config.presence;
@@ -30,7 +31,7 @@ export default class Ready extends Listener {
                     type: games[0].type ? games[0].type : null,
                     url : games[0].url  ? games[0].url  : null
                 }
-            });
+            })
 
 		games instanceof Array && games.length > 1 &&
 		
