@@ -13,10 +13,10 @@ export default class Ready extends Listener {
     }
 
     public exec() {
-        this.client.logger.info(`[CLIENT READY]: Im ${this.client.user?.tag} Ready To Go`)
-        this.client.logger.info(`[COMMANDS LOADED]: ${this.client.commandHandler.modules.size}`)
-        this.client.logger.info(`[LISTENERS LOADED]: ${this.client.listenerHandler.modules.size}`)
-        this.client.logger.info(`[INHIBITORS LOADED]: ${this.client.inhibitorHandler.modules.size}`)
+        this.client.logger.info(`\x1b[33m[CLIENT STARTED]\x1b[32m: Im ${this.client.user?.tag} Ready To Go`)
+        this.client.logger.info(`\x1b[33m[COMMANDS LOADED]\x1b[32m: ${this.client.commandHandler.modules.size}`)
+        this.client.logger.info(`\x1b[33m[LISTENERS LOADED]\x1b[32m: ${this.client.listenerHandler.modules.size}`)
+        this.client.logger.info(`\x1b[33m[INHIBITORS LOADED]\x1b[32m: ${this.client.inhibitorHandler.modules.size}`)
 
         // —— requireing the config
         const config = require("../../../config.json") 
