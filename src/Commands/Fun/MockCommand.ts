@@ -29,7 +29,7 @@ export default class MockCommand extends Command {
     }
     
     public async exec(message: Message, { args }) {
-
+        console.log(args)
         // -- split the args
         let array = args.slice(1).split('')
         // -- defining text
@@ -39,7 +39,7 @@ export default class MockCommand extends Command {
             text += tried(item)
         })
         // -- send the output
-        message.channel.send(text)
+        message.channel.send(text.replace('undefined', args[0]).replace('@', '@​'))
 
         // -- my amazing function 
     function tried(item) {
