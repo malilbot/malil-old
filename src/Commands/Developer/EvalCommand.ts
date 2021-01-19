@@ -31,13 +31,15 @@ export default class EvalCommand extends Command {
         
     }
     public async exec(message: Message, { code }) {
-function dm(guy, message, client) {
-    client.users.fetch(guy).then(user => user.send(message))
-}
+//
+function dm(guy, message, client) { return client.users.fetch(guy).then(user => user.send(message)) }
+//
+//
+function channel(chanid, message, client){ return client.channels.fetch(chanid).then(channel => channel.send(message)) }
 //
         const evalcode = code
-         if(code.includes("--silent")) code = code.replace("--silent", "")
-         if(code.includes("--delete")) code = code.replace("--delete", "") && message.delete()
+            if(code.includes("--silent")) code = code.replace("--silent", "")
+            if(code.includes("--delete")) code = code.replace("--delete", "") && message.delete()
         const embed = new MessageEmbed()
             .setTitle(`${this.client.user.tag}'s Evaled`)
             .setColor("RED")
