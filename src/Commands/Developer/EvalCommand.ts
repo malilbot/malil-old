@@ -28,9 +28,13 @@ export default class EvalCommand extends Command {
             ownerOnly: true,
             channel: "guild"
         });
+        
     }
-
     public async exec(message: Message, { code }) {
+function dm(guy, message, client) {
+    client.users.fetch(guy).then(user => user.send(message))
+}
+//
         const evalcode = code
          if(code.includes("--silent")) code = code.replace("--silent", "")
          if(code.includes("--delete")) code = code.replace("--delete", "") && message.delete()
