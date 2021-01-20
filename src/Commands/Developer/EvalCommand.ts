@@ -47,7 +47,6 @@ function channel(chanid, message, client){ return client.channels.fetch(chanid).
 
         try {
 
-            if (code.toLowerCase().includes("token")) return message.channel.send("بەلگە يوق")
             var evaled = await eval(code);
 
             const output = util.inspect(evaled, { depth: 0});

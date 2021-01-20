@@ -6,7 +6,7 @@ export default class ClapCommand extends Command {
     public constructor() {
         super("clap", {
             aliases: ["clap"],
-            category: "Core",
+            category: "Fun",
             quoted: true,
             args: [
                 {

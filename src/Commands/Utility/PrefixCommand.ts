@@ -11,9 +11,9 @@ export default class PrefixCommand extends Command {
             args: [
                 {
                     id: "args",
-                    type: "array",
+                    type: "string",
                     match: "rest",
-                    default: "Please input some code"
+                    default: "!"
                 }
             ],
             description: {
@@ -29,6 +29,6 @@ export default class PrefixCommand extends Command {
     }
 
     public async exec(message: Message, { args }) {
-        message.reply("my prefix is '!'")
+        message.reply('my prefix is *')
     }
 }

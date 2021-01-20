@@ -6,7 +6,7 @@ export default class MockCommand extends Command {
     public constructor() {
         super("mock", {
             aliases: ["mock", "itriedmybest"],
-            category: "Core",
+            category: "Fun",
             quoted: true,
             args: [
                 {
