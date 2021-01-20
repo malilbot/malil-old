@@ -42,7 +42,6 @@
     "discord-akairo": "github:1Computer1/discord-akairo",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
-    "enmap": "^5.8.4",
     "jest": "^26.6.3",
     "moment": "^2.29.1",
     "ms": "^2.1.3",
