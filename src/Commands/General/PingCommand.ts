@@ -18,6 +18,6 @@ export default class PingCommand extends Command {
     }
 
     public exec(message: Message) {
-        message.util?.send(`\`${this.client.ws.ping}\`ms`)
+        message.util.send(`\`${this.client.ws.ping}\`ms`)
     }
 }

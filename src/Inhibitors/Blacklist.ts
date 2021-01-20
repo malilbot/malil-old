@@ -12,6 +12,6 @@ export default class extends Inhibitor {
     }
     
     exec(message: Message) {
-        return config.Blacklist.includes(message.author.id);
+        return config.blacklist.includes(message.author.id);
     }
 }

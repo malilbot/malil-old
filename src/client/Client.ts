@@ -5,13 +5,14 @@ import { logger } from '../Utils/Utils';
 declare module 'discord-akairo' {
     interface AkairoClient {
         logger: Logger
-
     }
 }
 
 interface Option {
     owners? : string | string[];
     token?: string;
+    prefix?: string;
+    blacklist?: string | string[];
 }
 
 
@@ -40,13 +41,11 @@ export default class Client extends AkairoClient {
             otherwise: "",
         }
     });
-
     public listenerHandler: ListenerHandler = new ListenerHandler(this, { directory: join(__dirname, "..", "Listeners")});
 
     public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, { directory: join(__dirname, '..', 'Inhibitors')});
     public config: Option;
-    
-
+    public settings: Option
 
     public constructor(config: Option) {
         super(
@@ -60,6 +59,7 @@ export default class Client extends AkairoClient {
     }
 
     public _init() {
+        
         this.commandHandler.useListenerHandler(this.listenerHandler);
         this.commandHandler.useInhibitorHandler(this.inhibitorHandler)
         this.listenerHandler.setEmitters({

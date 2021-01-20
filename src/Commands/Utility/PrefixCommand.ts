@@ -29,6 +29,6 @@ export default class PrefixCommand extends Command {
     }
 
     public async exec(message: Message, { args }) {
-
+        message.reply("my prefix is '!'")
     }
 }

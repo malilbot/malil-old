@@ -29,18 +29,17 @@ export default class MockCommand extends Command {
     }
     
     public async exec(message: Message, { args }) {
-        console.log(args)
         // -- split the args
         let array = args.slice(1).split('')
         // -- defining text
-        let text;
+        let text: string;
         // -- foreach item
-        array.forEach(item => {
+        array.forEach((item: any) => {
             text += tried(item)
         })
         // -- send the output
         message.channel.send(text.replace('undefined', args[0]).replace('@', '@​'))
-
+ 
         // -- my amazing function 
     function tried(item) {
         let num = Math.floor(Math.random() * 2)

@@ -1,7 +1,15 @@
 {
     "compilerOptions": {
+        "alwaysStrict": false,
+        "noImplicitAny": false,
+        "noImplicitThis": false,
+        "strict": false,
+        "strictBindCallApply": false,
+        "strictFunctionTypes": false,
+        "strictNullChecks": false,
+        "strictPropertyInitialization": false,
         "module": "commonjs",
-        "target": "es2018",
+        "target": "es2020",
         "outDir": "finish",
         "lib": [
             "ESNext",
