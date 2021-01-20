@@ -2,8 +2,6 @@ import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from 
 import { join } from 'path';
 import { Logger } from 'winston';
 import { logger } from '../Utils/Utils';
-
-import enmap from 'enmap';
 declare module 'discord-akairo' {
     interface AkairoClient {
         logger: Logger
@@ -46,11 +44,13 @@ export default class Client extends AkairoClient {
     });
     public listenerHandler: ListenerHandler = new ListenerHandler(this, { directory: join(__dirname, "..", "Listeners")});
 
-    public cprefix?: enmap = new enmap({name: "cprefix"});
+
 
     public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, { directory: join(__dirname, '..', 'Inhibitors')});
+
     public config: Option;
-    public settings: Option
+
+
     public constructor(config: Option) {
         super(
             {   ownerID: config.owners },
