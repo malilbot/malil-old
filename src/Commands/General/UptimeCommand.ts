@@ -5,7 +5,7 @@ import { MessageEmbed } from "discord.js";
 export default class UptimeCommand extends Command {
     public constructor() {
         super("uptime", {
-            aliases: ["uptime"],
+            aliases: ["uptime", "up"],
             category: "General",
             quoted: true,
             args: [

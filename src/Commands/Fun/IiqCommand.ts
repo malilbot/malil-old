@@ -7,7 +7,7 @@ import { MessageEmbed } from "discord.js";
 export default class IqCommand extends Command {
     public constructor() {
         super("iq", {
-            aliases: ["iq"],
+            aliases: ["iq", "smart"],
             category: "Fun",
             description: {
                 content: "Find your iq",

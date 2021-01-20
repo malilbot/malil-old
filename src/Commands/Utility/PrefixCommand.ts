@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-
+import * as db from 'quick.db'
 export default class PrefixCommand extends Command {
     public constructor() {
         super("prefix", {
@@ -13,7 +13,6 @@ export default class PrefixCommand extends Command {
                     id: "args",
                     type: "string",
                     match: "rest",
-                    default: "!"
                 }
             ],
             description: {
@@ -29,6 +28,16 @@ export default class PrefixCommand extends Command {
     }
 
     public async exec(message: Message, { args }) {
-        message.reply('my prefix is *')
+        if(!args || args.length == 0 || args.size == 0) {
+            if(db.get(`${message.guild.id}_pf`)){
+                let item = db.get(`${message.guild.id}_pf`)
+                if(item) return message.channel.send('my prefix is ' + item)
+            }else return message.channel.send('my prefix is *')
+            
+        } else {
+            if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("you need to be a 'ADMINISTRATOR' to use this command")
+            db.set(`${message.guild.id}_pf`, args)
+            message.channel.send("Updated the prefix to " + args)
+        }
     }
 }

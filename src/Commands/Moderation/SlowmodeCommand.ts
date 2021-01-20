@@ -5,7 +5,7 @@ import ms from 'ms';
 export default class SlowmodeCommand extends Command {
     public constructor() {
         super("slowmode", {
-            aliases: ["slowmode"],
+            aliases: ["slowmode", "sm"],
             category: "Moderation",
             quoted: true,
             args: [

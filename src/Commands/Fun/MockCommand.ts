@@ -5,7 +5,7 @@ import { MessageEmbed } from "discord.js";
 export default class MockCommand extends Command {
     public constructor() {
         super("mock", {
-            aliases: ["mock", "itriedmybest"],
+            aliases: ["mock", "itriedmybest", "mok"],
             category: "Fun",
             quoted: true,
             args: [

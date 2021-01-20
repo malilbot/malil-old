@@ -6,7 +6,7 @@ import { MessageEmbed } from "discord.js";
 export default class UserinfoCommand extends Command {
     public constructor() {
         super("userinfo", {
-            aliases: ["userinfo"],
+            aliases: ["userinfo", "u", "user"],
             category: "General",
             quoted: true,
             args: [

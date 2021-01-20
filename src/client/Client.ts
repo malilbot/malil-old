@@ -2,6 +2,8 @@ import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from 
 import { join } from 'path';
 import { Logger } from 'winston';
 import { logger } from '../Utils/Utils';
+const { TextChannel } = require('discord.js');
+import * as db from 'quick.db'
 declare module 'discord-akairo' {
     interface AkairoClient {
         logger: Logger
@@ -22,7 +24,7 @@ export default class Client extends AkairoClient {
 
     public commandHandler: CommandHandler = new CommandHandler(this, {
         directory: join(__dirname, "..", "Commands"),
-        prefix: process.env.PREFIX,
+        prefix: message => {if(db.fetch(`${message.guild.id}_pf`)){ return db.fetch(`${message.guild.id}_pf`) } else { return process.env.PREFIX}},
         aliasReplacement: /-g/,
         allowMention: true,
         handleEdits: true,

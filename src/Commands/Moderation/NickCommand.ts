@@ -5,7 +5,7 @@ import { MessageEmbed } from "discord.js";
 export default class NickCommand extends Command {
     public constructor() {
         super("nick", {
-            aliases: ["nick"],
+            aliases: ["nick", "changenick"],
             category: "Moderation",
             quoted: true,
             args: [
