@@ -7,7 +7,7 @@ export default class PpCommand extends Command {
     public constructor() {
         super("pp", {
             aliases: ["pp"],
-            category: "Core",
+            category: "Fun",
             quoted: true,
             args: [
                 {
