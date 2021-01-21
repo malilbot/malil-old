@@ -51,7 +51,7 @@ export default class HelpCommand extends Command {
             .setAuthor(`Help | ${this.client.user.tag}`, this.client.user.displayAvatarURL())
             .setColor("RANDOM")
             .setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" }))
-            .setFooter(`${this.handler.prefix}help [ command ] for more information on a command.`);
+            .setFooter(`@malil help [ command ] for more information on a command.`);
 
         for (const category of this.handler.categories.values()) {
             if (["default"].includes(category.id)) continue;
