@@ -14,7 +14,6 @@ export default class ServerCommand extends Command {
                     id: "args",
                     type: "array",
                     match: "rest",
-                    default: "Please input some code"
                 }
             ],
             description: {

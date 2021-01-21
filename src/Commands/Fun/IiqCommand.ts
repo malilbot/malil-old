@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-
+import * as db from 'quick.db'
 
 
 export default class IqCommand extends Command {
@@ -9,6 +9,14 @@ export default class IqCommand extends Command {
         super("iq", {
             aliases: ["iq", "smart"],
             category: "Fun",
+            args: [
+                {
+                    id: "member",
+                    type: "member",
+                    match: "rest",
+                    default: (msg: Message) => msg.member
+                }
+            ],
             description: {
                 content: "Find your iq",
                 usage: "iq",
@@ -20,14 +28,18 @@ export default class IqCommand extends Command {
         });
     }
 
-    public async exec(message: Message) {
-    let target = message.mentions.members.first() || message.author
-        
-        const iq = Math.floor(Math.random() * 150) + 1; 
+    public async exec(message: Message, {member}) {
+            let iq;
+    if(db.fetch(`${member.id}_iq`)) {
+        iq = db.fetch(`${member.id}_iq`)
+    } else {
+        iq = Math.floor(Math.random() * 150) + 1; 
+        db.set(`${member.id}_iq`, iq)
+    }
         const iEmbed = new MessageEmbed()
         .setColor('#8E44AD')    
         .setTitle("IQ Test")
-        .setDescription(`${target}'s IQ is: \`${iq}\`!`)
+        .setDescription(`${member}'s IQ is: \`${iq}\`!`)
         message.channel.send(iEmbed)
 }
 }

@@ -14,7 +14,6 @@ export default class UserinfoCommand extends Command {
                     id: "args",
                     type: "array",
                     match: "rest",
-                    default: "Please input some code"
 				},
                 {
                     id: "member",
