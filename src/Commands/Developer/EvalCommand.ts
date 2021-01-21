@@ -3,6 +3,7 @@ import type { Message } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import util from 'util';
 import req from "snekfetch";
+import * as db from 'quick.db'
 
 export default class EvalCommand extends Command {
     public constructor() {

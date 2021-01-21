@@ -1,7 +1,6 @@
- import { Command } from "discord-akairo";
+import { Command } from "discord-akairo";
 import type { Message } from "discord.js";
 import { MessageEmbed } from "discord.js";
-
 export default class ExecCommand extends Command {
     public constructor() {
         super("exec", {

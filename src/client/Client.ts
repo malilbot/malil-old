@@ -52,6 +52,7 @@ export default class Client extends AkairoClient {
 
     public config: Option;
 
+    public db
 
     public constructor(config: Option) {
         super(

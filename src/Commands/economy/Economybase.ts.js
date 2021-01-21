@@ -13,11 +13,10 @@ export default class replacemeCommand extends Command {
                     id: "args",
                     type: "array",
                     match: "rest",
-                    default: "Please input some code"
                 }
             ],
             description: {
-                content: "Find your 8ball",
+                content: "",
                 usage: "replaceme",
                 example: [
                     "replaceme"
