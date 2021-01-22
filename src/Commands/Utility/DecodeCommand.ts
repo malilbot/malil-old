@@ -6,7 +6,7 @@ export default class DecodeCommand extends Command {
     public constructor() {
         super("decode", {
             aliases: ["decode"],
-            category: "Core",
+            category: "Utility",
             quoted: true,
             args: [
                 {
