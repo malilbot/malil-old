@@ -78,10 +78,19 @@ export default class AutoQuoteCommand extends Command {
         let role = message.guild.roles.fetch(args)
 
         if(await role){
+            let msg = message.reply("adding role to the database")
             //console.log(db.all())
             if (!Array.isArray(db.get(`${message.guild.id}.aq`))) db.set(`${message.guild.id}.aq`, [])
             //console.log(args)
-            message.channel.send(`Set ${await role} autoquote`)
+            
+            ;(await msg).edit(
+
+                new MessageEmbed()
+                .setAuthor(`Role will now get autoquoted`, message.author.avatarURL())
+                .setDescription(await role)
+                .setTimestamp()
+
+            );
             db.push(`${message.guild.id}.aq`, args)
             //console.log('------------------')   
             // console.log(await db.get(`${message.guild.id}.aq`))
