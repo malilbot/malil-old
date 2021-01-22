@@ -35,7 +35,7 @@ export default class aq extends Listener {
     
             var item = splito.splice(i, 1)
         }}
-        
+        if(!message.content.includes('discord.com/channels')) return
         let thing = (<string[]>item).join()
         let split = thing.split('/')
         

@@ -34,10 +34,25 @@ export default class AutoQuoteCommand extends Command {
     public async exec(message: Message, { args }) {
         if (!message.member.hasPermission(["ADMINISTRATOR"])) return message.channel.send(`Sorry, you don't have permission to run this command.`);
         if(args == 'list'){
-            message.reply(db.fetch(`${message.guild.id}.aq`))
+            let list = db.fetch(`${message.guild.id}.aq`)
+            let messages = ''
+            let msg = message.channel.send(db.fetch(`${message.guild.id}.aq`))
+            list.forEach(function(entry) {
+                message.guild.roles.fetch(entry).then(entry => messages += `${entry}\n`)
+            });
+            (await msg).edit(
+
+                new MessageEmbed()
+                .setAuthor(`Roles in the AutoQuote`, message.author.avatarURL())
+                .setDescription(messages)
+                .setFooter('These roles will get autoquoted.')
+                .setTimestamp()
+
+            );
+            (await msg).edit("Fetched")
         }
         else if(args == 'off' || args == 'none' || args == 'delete') {
-            message.reply('are you sure you want to delete the AutoQuote list [y/n]')
+            message.channel.send('are you sure you want to delete the AutoQuote list [y/n]')
 
             const filter = m => m.author.id === message.author.id
             const collector = message.channel.createMessageCollector(filter, { time: 15000, max: 1 });
@@ -45,18 +60,18 @@ export default class AutoQuoteCommand extends Command {
             collector.on('collect', m => {
                 if(m.content == 'yes' || m.content == 'y'){
                     db.delete(`${message.guild.id}.aq`)
-                    return message.reply('Ok deleted it.')
+                    return message.channel.send('Ok deleted it.')
                 } else if(m.content == 'no' || m.content == 'n'){
-                    return message.reply("action cancelled.")
+                    return message.channel.send("action cancelled.")
                 } else {
-                    return message.reply("Not sure what you meant with that one just gonna cancel it.")
+                    return message.channel.send("Not sure what you meant with that one just gonna cancel it.")
                 }
             });
 
             collector.on('end', collected => {
                 let ew = (collected.size)
                 if(ew == 0){
-                    return message.reply("Time ran out.")
+                    return message.channel.send("Time ran out.")
                 }
             });
         } else{
@@ -66,13 +81,13 @@ export default class AutoQuoteCommand extends Command {
             //console.log(db.all())
             if (!Array.isArray(db.get(`${message.guild.id}.aq`))) db.set(`${message.guild.id}.aq`, [])
             //console.log(args)
-            message.reply(`Set ${await role} autoquote`)
+            message.channel.send(`Set ${await role} autoquote`)
             db.push(`${message.guild.id}.aq`, args)
             //console.log('------------------')   
             // console.log(await db.get(`${message.guild.id}.aq`))
             //console.log('------------------------')
         } else {
-            message.reply('Role not found.')
+            message.channel.send('Role not found, try help autoquote')
         }
         }
 
