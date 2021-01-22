@@ -22,45 +22,18 @@ export default class updateCommand extends Command {
         });
     }
 
-    public async exec(message: Message, { args }) {
+    public async exec(message: Message) {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
 
-
-        await exec('git pull', async (error, stdout, stderr) => {
+    await exec('git pull && npm run build && pm2 restart 6 && echo "ayyyy done"', async (error, stdout, stderr) => {
             let output = ''
             if (error)   output = error
             if (stderr)  output = stderr
             if (stdout)  output = stdout
         const embed = new MessageEmbed()
-            .setTitle(`Exec`)
+            .setTitle(`Update`)
             .setColor("RED")
-            .addField("🍞 Input", `\`\`\`bash\ngit pull\`\`\``)
-            .addField("🫓 Output", `\`\`\`bash\n${output}\`\`\``)
-            .addField("Type", "bash");
-        await message.channel.send(embed);
-    })
-    await exec('npm run build', async (error, stdout, stderr) => {
-            let output = ''
-            if (error)   output = error
-            if (stderr)  output = stderr
-            if (stdout)  output = stdout
-        const embed = new MessageEmbed()
-            .setTitle(`Exec`)
-            .setColor("GREEN")
-            .addField("🍞 Input", `\`\`\`bash\nnpm run build\`\`\``)
-            .addField("🫓 Output", `\`\`\`bash\n${output}\`\`\``)
-            .addField("Type", "bash");
-        await message.channel.send(embed);
-    })
-    await message.channel.send("restarting")
-    await exec('pm2 restart 6', async (error, stdout, stderr) => {
-            let output = ''
-            if (error)   output = error
-            if (stderr)  output = stderr
-            if (stdout)  output = stdout
-        const embed = new MessageEmbed()
-            .setTitle(`Exec`)
-            .setColor("BLUE")
-            .addField("🍞 Input", `\`\`\`bash\npm2 restart 6\`\`\``)
+            .addField("🍞 Input", `\`\`\`bash\ngit pull && npm run build && pm2 restart 6\`\`\``)
             .addField("🫓 Output", `\`\`\`bash\n${output}\`\`\``)
             .addField("Type", "bash");
         await message.channel.send(embed);
