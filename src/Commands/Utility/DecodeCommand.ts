@@ -13,6 +13,7 @@ export default class DecodeCommand extends Command {
                     id: "args",
                     type: "array",
                     match: "rest",
+                    default: "none"
                 }
             ],
             description: {
@@ -30,13 +31,16 @@ export default class DecodeCommand extends Command {
     public async exec(message: Message, { args }) {
         let embed = new MessageEmbed()
         .setTitle("Decode things")
+        .setDescription('input: ' + args || 'none')
         .addFields(
-            { name: 'ascii', value: Buffer.from(args, 'ascii').toString() || 'none'},
-            { name: 'utf8', value: Buffer.from(args, 'utf8').toString() || 'none'},
-            { name: 'utf16le/ucs2', value: Buffer.from(args, 'ucs2').toString() || 'none'},
-            { name: 'base64', value: Buffer.from(args, 'base64').toString() || 'none' },
-            { name: 'binary', value: Buffer.from(args, 'binary').toString() || 'none' },
-            { name: 'hex', value: Buffer.from(args, 'hex').toString() || 'none'}, 
+            { name: 'ascii', value: Buffer.from(args, 'ascii').toString() || 'none', inline: true},
+            { name: 'utf8', value: Buffer.from(args, 'utf8').toString() || 'none', inline: true},
+            { name: '\u200B', value: '\u200B' },
+            { name: 'utf16le/ucs2', value: Buffer.from(args, 'ucs2').toString() || 'none', inline: true},
+            { name: 'base64', value: Buffer.from(args, 'base64').toString() || 'none', inline: true },
+            { name: '\u200B', value: '\u200B' },
+            { name: 'binary', value: Buffer.from(args, 'binary').toString() || 'none', inline: true },
+            { name: 'hex', value: Buffer.from(args, 'hex').toString() || 'none', inline: true}, 
         )
         message.channel.send(embed)
             //Buffer.from.alloc(args, 'hex').toString()

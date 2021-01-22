@@ -14,6 +14,7 @@ export default class EncodeCommand extends Command {
                     id: "args",
                     type: "array",
                     match: "rest",
+                    default: "none"
                 }
             ],
             description: {
@@ -31,17 +32,20 @@ export default class EncodeCommand extends Command {
     public async exec(message: Message, { args }) {
         let embed = new MessageEmbed()
         .setTitle("Encode things")
+        .setDescription('input: ' + args || 'none')
         .addFields(
-            { name: 'ascii', value: new Buffer(args).toString('ascii') || 'none' },
-            { name: 'utf8', value: new Buffer(args).toString('utf8') || 'none' },
-            { name: 'utf16le/ucs2', value: new Buffer(args).toString('ucs2') || 'none' },
-            { name: 'base64', value: new Buffer(args).toString('base64') || 'none' },
-            { name: 'binary', value: new Buffer(args).toString('binary') || 'none' },
-            { name: 'hex', value: new Buffer(args).toString('hex') || 'none' },
+            { name: 'ascii', value: Buffer.from(args).toString('ascii') || 'none', inline: true },
+            { name: 'utf8', value: Buffer.from(args).toString('utf8') || 'none', inline: true },
+            { name: '\u200B', value: '\u200B' },
+            { name: 'utf16le/ucs2', value: Buffer.from(args).toString('ucs2') || 'none', inline: true },
+            { name: 'base64', value: Buffer.from(args).toString('base64') || 'none', inline: true },
+            { name: '\u200B', value: '\u200B' },
+            { name: 'binary', value: Buffer.from(args).toString('binary') || 'none', inline: true },
+            { name: 'hex', value: Buffer.from(args).toString('hex') || 'none', inline: true },
         )
         message.channel.send(embed)
-       // const encoded = new Buffer(args).toString('hex'); // encoded === 54686973206973206d7920737472696e6720746f20626520656e636f6465642f6465636f646564
-       // const decoded = new Buffer(encoded, 'hex').toString(); // decoded === "This is my string to be encoded/decoded"
+       // const encoded = Buffer.from(args).toString('hex'); // encoded === 54686973206973206d7920737472696e6720746f20626520656e636f6465642f6465636f646564
+       // const decoded = Buffer.from(encoded, 'hex').toString(); // decoded === "This is my string to be encoded/decoded"
        // message.channel.send(encoded)
        // message.channel.send(decoded)
 
