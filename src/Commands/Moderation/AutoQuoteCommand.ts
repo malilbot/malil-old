@@ -32,6 +32,7 @@ export default class AutoQuoteCommand extends Command {
     }
 
     public async exec(message: Message, { args }) {
+        if (!message.member.hasPermission(["ADMINISTRATOR"])) return message.channel.send(`Sorry, you don't have permission to run this command.`);
         if(args == 'list'){
             message.reply(db.fetch(`${message.guild.id}.aq`))
         }

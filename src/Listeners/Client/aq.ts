@@ -22,13 +22,11 @@ export default class aq extends Listener {
     let de;
     // console.log(roles)
 
-        var length = roles.length,
-            element = null;
-        for (var i = 0; i < length; i++) {
-        element = roles[i];
-        if(message.member.roles.cache.has(element)) de = 1
-        // Do something with element
-        }
+        var length = roles.length
+
+        // check roles
+        for (var i = 0; i < length; i++) { if(message.member.roles.cache.has(roles[i])) de = 1 }
+
         if(de == 1){
         let splito = message.content.split(' ')
         for( var i = 0; i < splito.length; i++){ 
@@ -40,10 +38,15 @@ export default class aq extends Listener {
         
         let thing = (<string[]>item).join()
         let split = thing.split('/')
+        
         let channel = split[5]
+
         if(!channel) return
+
         let msgid = split[6]
+
         if(!msgid) return
+
         let chan = await this.client.channels.fetch(channel).catch(e => message.reply('message not found (channel)'))
 
         let msg = await (chan as TextChannel).messages.fetch(msgid).catch(e => message.reply('message not found (message)'))
