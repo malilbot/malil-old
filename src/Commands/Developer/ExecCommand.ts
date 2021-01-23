@@ -28,6 +28,7 @@ export default class ExecCommand extends Command {
     }
 
     public async exec(message: Message, { code }) {
+        return message.reply("owoooos")
         const { exec } = require("child_process");
             exec(code, async (error, stdout, stderr) => {
             let output = ''
