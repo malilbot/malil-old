@@ -1,6 +1,6 @@
 {
   "name": "malil",
-  "version": "3.1.0",
+  "version": "3.6.7",
   "description": "Malil discord bot",
   "main": "finish/index.js",
   "scripts": {

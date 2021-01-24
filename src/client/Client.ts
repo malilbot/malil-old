@@ -46,14 +46,19 @@ export default class Client extends AkairoClient {
     });
     public listenerHandler: ListenerHandler = new ListenerHandler(this, { directory: join(__dirname, "..", "Listeners")});
 
-
-
     public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, { directory: join(__dirname, '..', 'Inhibitors')});
 
     public config: Option;
 
     public db
-
+/*
+    public client.api.applications(client.user.id).guild('755166643927122091').commands.post({
+        data: {
+            name: 'hello',
+            description: "replies with hello world"
+        }
+    })
+*/
     public constructor(config: Option) {
         super(
             {   ownerID: config.owners },
