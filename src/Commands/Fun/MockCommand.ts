@@ -30,7 +30,7 @@ export default class MockCommand extends Command {
     
     public async exec(message: Message, { args }) {
         // -- split the args
-        let array = args.slice(1).split('')
+        let array = args.split('')
         // -- defining text
         let text = ''
         // -- foreach item
