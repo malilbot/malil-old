@@ -32,13 +32,13 @@ export default class MockCommand extends Command {
         // -- split the args
         let array = args.slice(1).split('')
         // -- defining text
-        let text: string;
+        let text = ''
         // -- foreach item
         array.forEach((item: any) => {
             text += tried(item)
         })
         // -- send the output
-        message.channel.send(text.replace('undefined', args[0]).replace('@', '@​'))
+        message.channel.send(text.replace('@', '@​'))
  
         // -- my amazing function 
     function tried(item) {
