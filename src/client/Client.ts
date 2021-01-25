@@ -24,7 +24,7 @@ export default class Client extends AkairoClient {
 
     public commandHandler: CommandHandler = new CommandHandler(this, {
         directory: join(__dirname, "..", "Commands"),
-        prefix: message => {if(message.guild == null){return process.env.PREFIX} else if(db.fetch(`${message.guild.id}.pf`)){ return db.fetch(`${message.guild.id}.pf`) } else { return process.env.PREFIX}},
+        prefix: message => {if(message.guild == null){return process.env.PREFIX} else if(db.fetch(`guild.${message.guild.id}.pf`)){ return db.fetch(`guild.${message.guild.id}.pf`) } else { return process.env.PREFIX}},
         aliasReplacement: /-g/,
         allowMention: true,
         handleEdits: true,
