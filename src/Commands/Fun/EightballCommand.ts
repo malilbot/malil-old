@@ -40,7 +40,7 @@ export default class EightballCommand extends Command {
     let result = Math.floor((Math.random() * replies.length));
     
     let question = args
-    if(question == 'sex penis') message.reply(
+    if(question == 'sex penis') return message.reply(
     new MessageEmbed()
     .setAuthor(message.author.tag)
     .setColor(`RANDOM`)
