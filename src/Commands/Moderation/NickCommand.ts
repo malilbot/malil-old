@@ -12,10 +12,6 @@ export default class NickCommand extends Command {
                  {
                     id: "user",
                     type: "member",
-                    prompt: {
-                        start: (msg: Message) => `**${msg.author.tag}** Please tag some users`,
-                        retry: (msg: Message) => `**${msg.author.tag}** Please tag some users`
-                    },
                     match: "rest"
                 },
                 {
@@ -37,6 +33,7 @@ export default class NickCommand extends Command {
     }
 
     public async exec(message, { user, name }) {
+        if(!name) return message.reply("please mention a user")
         if(!message.member.guild.me.hasPermission(["MANAGE_NICKNAMES"])) return message.channel.send(`Sorry, i don't have permission to change nickanmes of members, make sure you give me \`MANAGE_NICKNAMES\` permission`);
         if(!message.member.hasPermission("MANAGE_NICKNAMES")) return message.reply("You need the permission manage nicknames to execute this command")
         if(message.mentions.members.first().roles.highest.position > message.guild.members.resolve(this.client.user).roles.highest.position) return message.channel.send("Sorry i cant change the nickname of that use cause his highest role is higher than mine");

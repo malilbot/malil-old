@@ -61,7 +61,7 @@ export default class aq extends Listener {
         )
         }
         // magic
-        let webhook = await (chan as TextChannel).createWebhook(msg.author.tag).then(webhook => webhook.edit({avatar: msg.author.displayAvatarURL({ size: 2048, format: "png" })}))
+        let webhook = await (message.channel as TextChannel).createWebhook(msg.author.tag).then(webhook => webhook.edit({avatar: msg.author.displayAvatarURL({ size: 2048, format: "png" })}))
         //
         await webhook.send(msg.content).then(msg => webhook.delete()).catch(e => message.reply('Something went wrong'))
         }
