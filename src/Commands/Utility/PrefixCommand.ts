@@ -29,14 +29,14 @@ export default class PrefixCommand extends Command {
 
     public async exec(message: Message, { args }) {
         if(!args || args.length == 0 || args.size == 0) {
-            if(db.get(`${message.guild.id}_pf`)){
-                let item = db.get(`${message.guild.id}_pf`)
+            if(db.get(`${message.guild.id}.pf`)){
+                let item = db.get(`${message.guild.id}.pf`)
                 if(item) return message.channel.send('my prefix is ' + item)
             }else return message.channel.send('my prefix is *')
             
         } else {
             if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("you need to be a 'ADMINISTRATOR' to use this command")
-            db.set(`${message.guild.id}_pf`, args)
+            db.set(`${message.guild.id}.pf`, args)
             message.channel.send("Updated the prefix to " + args)
         }
     }

@@ -31,8 +31,8 @@ export default class PpCommand extends Command {
 
     public async exec(message: Message, { member }) {
         let pp;
-    if(db.fetch(`${member.id}_pp`)) {
-        pp = db.fetch(`${member.id}_pp`)
+    if(db.fetch(`${member.id}.pp`)) {
+        pp = db.fetch(`${member.id}.pp`)
     } else {
             var phrases = [
             'ur a women',
@@ -50,7 +50,7 @@ export default class PpCommand extends Command {
                 
        ];    
     pp = phrases[Math.floor(Math.random()*phrases.length)]
-    db.set(`${member.id}_pp`, pp)
+    db.set(`${member.id}.pp`, pp)
     }
     const embed = new MessageEmbed()
     .setTitle(`Penis Calculator`)

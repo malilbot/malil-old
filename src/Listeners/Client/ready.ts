@@ -1,8 +1,6 @@
 import { Listener } from 'discord-akairo';
+import * as db from 'quick.db'
 import Client from '../../client/Client';
-import os from "os";
-const { exec } = require("child_process");
-const core = os.cpus()[0];
 const djsversion = require("discord.js").version;
 const akairov = require("discord-akairo").version;
 const version = require("../../../package.json").version
@@ -17,9 +15,9 @@ export default class Ready extends Listener {
         });
         this.client = client
     }
-    public exec() {
+    public async exec() {
+        db.delete("snipe")
         console.log(
-            
 // "..-..-.       .-.   _ .-.                         \n",
 //": `' :       : :  :_;: :                          \n",
 // ": .. : .--.  : :  .-.: :                          \n",

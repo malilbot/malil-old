@@ -12,6 +12,8 @@
         "target": "es2020",
         "outDir": "finish",
         "lib": [
+            "es2016",
+            "ES2017",
             "ESNext",
             "ESNext.Array",
             "ESNext.AsyncIterable",
