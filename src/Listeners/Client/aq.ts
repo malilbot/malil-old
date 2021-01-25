@@ -21,7 +21,8 @@ export default class aq extends Listener {
     let roles = db.get(`${message.guild.id}.aq`)
     let de;
     // console.log(roles)
-
+        if(!roles) return
+        if(!roles.length) return
         var length = roles.length
 
         // check roles
