@@ -17,6 +17,7 @@ export default class Ready extends Listener {
     }
     public async exec() {
         db.delete("snipe")
+        console.clear()
         console.log(
 // "..-..-.       .-.   _ .-.                         \n",
 //": `' :       : :  :_;: :                          \n",
