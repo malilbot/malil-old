@@ -34,9 +34,9 @@ export default class AutoQuoteCommand extends Command {
     public async exec(message: Message, { args }) {
         if (!message.member.hasPermission(["ADMINISTRATOR"])) return message.channel.send(`Sorry, you don't have permission to run this command.`);
         if(args == 'list'){
-            let list = db.fetch(`${message.guild.id}.aq`)
+            let list = db.fetch(`guild.${message.guild.id}.aq`)
             let messages = ''
-            let msg = message.channel.send(db.fetch(`${message.guild.id}.aq`))
+            let msg = message.channel.send(db.fetch(`guild.${message.guild.id}.aq`))
             list.forEach(function(entry) {
                 message.guild.roles.fetch(entry).then(entry => messages += `${entry}\n`)
             });
@@ -59,7 +59,7 @@ export default class AutoQuoteCommand extends Command {
 
             collector.on('collect', m => {
                 if(m.content == 'yes' || m.content == 'y'){
-                    db.delete(`${message.guild.id}.aq`)
+                    db.delete(`guild.${message.guild.id}.aq`)
                     return message.channel.send('Ok deleted it.')
                 } else if(m.content == 'no' || m.content == 'n'){
                     return message.channel.send("action cancelled.")
@@ -80,7 +80,7 @@ export default class AutoQuoteCommand extends Command {
         if(await role){
             let msg = message.reply("adding role to the database")
             //console.log(db.all())
-            if (!Array.isArray(db.get(`guild.${message.guild.id}.aq`))) db.set(`${message.guild.id}.aq`, [])
+            if (!Array.isArray(db.get(`guild.${message.guild.id}.aq`))) db.set(`guild.${message.guild.id}.aq`, [])
             //console.log(args)
             
             ;(await msg).edit(
@@ -91,7 +91,7 @@ export default class AutoQuoteCommand extends Command {
                 .setTimestamp()
 
             );
-            db.push(`${message.guild.id}.aq`, args)
+            db.push(`guild.${message.guild.id}.aq`, args)
             //console.log('------------------')   
             // console.log(await db.get(`${message.guild.id}.aq`))
             //console.log('------------------------')

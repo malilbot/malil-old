@@ -16,8 +16,9 @@ export default class Ready extends Listener {
         this.client = client
     }
     public async exec() {
-        db.delete("snipe")
+        
         console.clear()
+        console.log('\x1b[34mDB-loaded')
         console.log(
 // "..-..-.       .-.   _ .-.                         \n",
 //": `' :       : :  :_;: :                          \n",

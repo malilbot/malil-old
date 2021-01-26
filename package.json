@@ -4,7 +4,7 @@
   "description": "Malil discord bot",
   "main": "finish/index.js",
   "scripts": {
-    "start": "node ./finish/index.js",
+    "start": "yarn run tsc && node ./finish/index.js",
     "build": "tsc",
     "test": "jest",
     "dev": "nodemon -e ts --exec \"npm run build && npm start\"",
