@@ -80,7 +80,7 @@ export default class AutoQuoteCommand extends Command {
         if(await role){
             let msg = message.reply("adding role to the database")
             //console.log(db.all())
-            if (!Array.isArray(db.get(`${message.guild.id}.aq`))) db.set(`${message.guild.id}.aq`, [])
+            if (!Array.isArray(db.get(`guild.${message.guild.id}.aq`))) db.set(`${message.guild.id}.aq`, [])
             //console.log(args)
             
             ;(await msg).edit(

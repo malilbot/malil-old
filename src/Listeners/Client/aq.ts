@@ -18,7 +18,7 @@ export default class aq extends Listener {
     async exec(message: Message) {
     if (message.author.bot) return;
     if (message.guild == null) return;
-    let roles = db.get(`${message.guild.id}.aq`)
+    let roles = db.get(`guild.${message.guild.id}.aq`)
     let de;
     // console.log(roles)
         if(!roles) return
