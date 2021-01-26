@@ -28,8 +28,8 @@ export default class ClearCommand extends Command {
     }
 
     public async exec(message, { args }) {
-        if (!message.member.guild.me.hasPermission(["MANAGE_MESSAGES"])) return message.channel.send(`Sorry i cant set the clear of this channel im missing the \`MANAGE_CHANNELS\` permission`);
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You need the permission manage channels to execute this command")
+        if (!message.member.guild.me.hasPermission(["MANAGE_MESSAGES"])) return message.channel.send(`Sorry i cant clear messages with my current permissions`);
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You dont have the manage messages permission")
 		
 			let num = args;
 		let deleteCount = parseInt(args, 10) + 1;
