@@ -13,11 +13,10 @@ export default class SlowmodeCommand extends Command {
                     id: "args",
                     type: "array",
                     match: "rest",
-                    default: "Whast time do you want"
                 }
             ],
             description: {
-                content: "Find your 8ball",
+                content: "",
                 usage: "slowmode",
                 example: [
                     "slowmode"
