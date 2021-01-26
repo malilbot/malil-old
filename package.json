@@ -4,7 +4,7 @@
   "description": "Malil discord bot",
   "main": "finish/index.js",
   "scripts": {
-    "start": "yarn run tsc && node ./finish/index.js",
+    "start": "tsc && node ./finish/index.js",
     "build": "tsc",
     "test": "jest",
     "dev": "nodemon -e ts --exec \"npm run build && npm start\"",
@@ -20,7 +20,7 @@
   "keywords": [
     "neoakairo",
     "discordbot",
-    "tokisaki13"
+    "tricked"
   ],
   "author": "tricked#3777",
   "license": "MIT",
@@ -30,9 +30,9 @@
   "homepage": "https://github.com/SkyBlockDev/malil-akairo#readme",
   "devDependencies": {
     "@hazmi35/eslint-config": "^3.4.0",
+    "@types/node": "^14.14.16",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
     "@typescript-eslint/parser": "^4.11.1",
-    "@types/node": "^14.14.16",
     "eslint": "^7.16.0",
     "typescript": "^4.1.3"
   },
