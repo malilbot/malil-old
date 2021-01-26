@@ -30,11 +30,11 @@ export default class IqCommand extends Command {
 
     public async exec(message: Message, {member}) {
             let iq;
-    if(db.fetch(`${member.id}.iq`)) {
-        iq = db.fetch(`${member.id}.iq`)
+    if(db.fetch(`member.${member.id}.iq`)) {
+        iq = db.fetch(`member.${member.id}.iq`)
     } else {
         iq = Math.floor(Math.random() * 150) + 1; 
-        db.set(`${member.id}.iq`, iq)
+        db.set(`member.${member.id}.iq`, iq)
     }
         const iEmbed = new MessageEmbed()
         .setColor('#8E44AD')    
