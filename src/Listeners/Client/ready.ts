@@ -18,7 +18,6 @@ export default class Ready extends Listener {
     public async exec() {
         
         console.clear()
-        console.log('\x1b[34mDB-loaded')
         console.log(
 // "..-..-.       .-.   _ .-.                         \n",
 //": `' :       : :  :_;: :                          \n",
