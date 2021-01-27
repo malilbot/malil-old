@@ -18,7 +18,7 @@ export const gist = async function(name: any, content: any){
           .body(body, "json")
           .send()
         ).json();
-        const out = `https://gist.github.com/${gist.id}/raw`
+        const out = `https://gist.github.com/${gist.id}`
         return out
 
       
