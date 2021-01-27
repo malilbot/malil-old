@@ -2,7 +2,7 @@ import { Command } from "discord-akairo";
 import type { Message } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import util from 'util';
-import req from "snekfetch";
+import { gist } from '../../Utils/Utils'
 import * as db from 'quick.db'
 
 export default class EvalCommand extends Command {
@@ -52,8 +52,7 @@ function channel(chanid, message, client){ return client.channels.fetch(chanid).
 
             const output = util.inspect(evaled, { depth: 0});
             if (output.length > 1024) {
-                const { body } = await req.post("http://tk-bin.glitch.me/documents").send(output);
-                embed.addField("🫓 Output", `http://tk-bin.glitch.me/${body.key}.js`);
+                embed.addField("🫓 Output", await gist('eval.ts', output));
                 embed.addField("Type", typeof evaled);
             } else {
                 embed.addField("🫓 Output", `\`\`\`ts\n${output}\`\`\``);
@@ -62,8 +61,7 @@ function channel(chanid, message, client){ return client.channels.fetch(chanid).
         } catch (e) {
             const error = (e);
             if (error.length > 1024) {
-                const { body } = await req.post("http://tk-bin.glitch.me/documents").send(error);
-                embed.addField("🫓 Error", `http://tk-bin.glitch.me/${body.key}.js`);
+                embed.addField("🫓 Error", await gist('eval.ts', e));
                 embed.addField("Type", typeof evaled);
             } else {
                 embed.addField("🫓 Error", `\`\`\`ts\n${error}\`\`\``);

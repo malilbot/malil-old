@@ -1,7 +1,8 @@
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from 'discord-akairo';
 import { join } from 'path';
-import { Logger } from 'winston';
+import { config, Logger } from 'winston';
 import { logger } from '../Utils/Utils';
+
 const { TextChannel } = require('discord.js');
 import * as db from 'quick.db'
 declare module 'discord-akairo' {
@@ -15,12 +16,12 @@ interface Option {
     token?: string;
     prefix?: string;
     blacklist?: string | string[];
+    gist?: string | string[];
 }
 
 
 
 export default class Client extends AkairoClient {
-    
 
     public commandHandler: CommandHandler = new CommandHandler(this, {
         directory: join(__dirname, "..", "Commands"),
@@ -50,7 +51,7 @@ export default class Client extends AkairoClient {
 
     public config: Option;
 
-    public db = "OWOOO"
+    public db: "db";
 /*
     public client.api.applications(client.user.id).guild('755166643927122091').commands.post({
         data: {
