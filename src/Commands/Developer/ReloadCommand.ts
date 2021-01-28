@@ -8,13 +8,6 @@ export default class ReloadCommand extends Command {
             aliases: ["reload"],
             category: "Core",
             quoted: true,
-            args: [
-                {
-                    id: "args",
-                    type: "array",
-                    match: "rest",
-                }
-            ],
             description: {
                 content: "",
                 usage: "reload",
@@ -28,7 +21,7 @@ export default class ReloadCommand extends Command {
         });
     }
 
-    public async exec(message: Message, { args }) {
+    public async exec(message: Message) {
         message.reply("Reloading :robot:")
         const str1 = 'this.client.commandHandler.reloadAll()'
         const str2 = 'this.client.inhibitorHandler.reloadAll()'
