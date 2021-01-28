@@ -23,7 +23,8 @@ export default class ReloadCommand extends Command {
                 ]
             },
             ratelimit: 3,
-            channel: "guild"
+            channel: "guild",
+            ownerOnly: true,
         });
     }
 
