@@ -29,10 +29,6 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true
     },
-    "baseUrl": "./",
-    "paths": {
-            "@util/*": ["src/util/"]
-        },
     "include": [
         "src/**/*"
     ],

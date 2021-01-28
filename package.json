@@ -7,7 +7,7 @@
     "start": "tsc && node ./finish/index.js",
     "build": "tsc",
     "test": "jest",
-    "dev": "nodemon -e ts --exec \"npm run build && npm start\"",
+    "dev": "nodemon -e ts --exec \"yarn start\"",
     "vps": "npm run build && npm start",
     "lint": "eslint . --ext .ts",
     "lintfix": "eslint . --ext .ts --fix",
