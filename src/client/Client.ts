@@ -2,12 +2,12 @@ import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from 
 import { join } from 'path';
 import { config, Logger } from 'winston';
 import { logger } from '../Utils/Utils';
-
-const { TextChannel } = require('discord.js');
+import Enmap from 'enmap'
 import * as db from 'quick.db'
 declare module 'discord-akairo' {
     interface AkairoClient {
         logger: Logger
+        tags: Enmap
     }
 }
 
@@ -51,7 +51,9 @@ export default class Client extends AkairoClient {
 
     public config: Option;
 
-    public db: "db";
+    public tags: Enmap = new Enmap({name: 'tags'});
+
+
 /*
     public client.api.applications(client.user.id).guild('755166643927122091').commands.post({
         data: {
@@ -69,6 +71,7 @@ export default class Client extends AkairoClient {
         );
         this.config = config;
         this.logger = logger;
+        this.tags = new Enmap({name: 'tags'});
     }
 
     public _init() {

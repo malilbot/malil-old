@@ -35,6 +35,7 @@ export default class DmCommand extends Command {
     }
 
     public async exec(message: Message, { args, user }) {
+
         user.send(args)
 
     }

@@ -15,6 +15,7 @@ export default class smajki extends Listener {
         this.client = client
     }
 public async exec(message: Message) {
+    if(!message.guild) return
 if(message.guild.id == '701833606280118282') {
 
 if(message.content.toLowerCase().includes('smajki') || message.content.toLowerCase().includes('smajk')) {
@@ -32,7 +33,6 @@ message.react('786270668023005205')
 message.react('786270667883937852')
 message.react('786270667070636034')
 message.react('786270666726047816')
-    
 }
 
 }else return
