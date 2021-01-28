@@ -379,3 +379,6 @@ FodyWeavers.xsd
 json.sqlite
 package-lock.json
 package-lock.json
+data/enmap.sqlite-shm
+data/enmap.sqlite-shm
+data/enmap.sqlite-wal
