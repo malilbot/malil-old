@@ -25,7 +25,7 @@ message.react('786270602423173131')
 message.react('786270602860167218')
 message.react('786270603061493770')
 }
-if(message.content.toLowerCase().includes('ege') || message.content.toLowerCase().includes('ege')) {
+if(message.content.toLowerCase().includes('ege') || message.content.toLowerCase().includes('egg')) {
 message.react('786270668697501730')
 message.react('786270668668796978')
 message.react('786270668023005205')
