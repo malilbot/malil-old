@@ -382,3 +382,6 @@ package-lock.json
 data/enmap.sqlite-shm
 data/enmap.sqlite-shm
 data/enmap.sqlite-wal
+data/enmap.sqlite-shm
+data/enmap.sqlite-shm
+data/enmap.sqlite-wal

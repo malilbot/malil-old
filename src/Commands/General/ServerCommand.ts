@@ -9,13 +9,6 @@ export default class ServerCommand extends Command {
             aliases: ["server"],
             category: "General",
             quoted: true,
-            args: [
-                {
-                    id: "args",
-                    type: "array",
-                    match: "rest",
-                }
-            ],
             description: {
                 content: "Get some info about the discord server",
                 usage: "server",
@@ -28,8 +21,7 @@ export default class ServerCommand extends Command {
         });
     }
 
-    public async exec(message: Message, { args }) {
-let yes = args[1];
+    public async exec(message: Message) {
 		let embed = new MessageEmbed()
 			.setColor('RANDOM')
 			.setTitle('Server Info')
@@ -53,18 +45,6 @@ let yes = args[1];
 			);
 
         message.channel.send(embed);
-        
-		if (!yes) return;
-		let rolemap = message.guild.roles.cache
-			.sort((a, b) => b.position - a.position)
-			.map((r) => r)
-			.join(',');
-		if (rolemap.length > 1024) rolemap = 'To many roles to display';
-		if (!rolemap) rolemap = 'No roles';
-		const Embed = new MessageEmbed()
-			.setColor('#03fc49')
-			.addField('Role List', rolemap);
-        message.reply(Embed);
 
 
     }

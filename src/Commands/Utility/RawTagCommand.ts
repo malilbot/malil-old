@@ -1,11 +1,13 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
+import { MessageFlags } from "discord.js";
 import { MessageEmbed } from "discord.js";
+import { gist } from '../../Utils/Utils'
 
-export default class DTagCommand extends Command {
+export default class RawTagCommand extends Command {
     public constructor() {
-        super("dtag", {
-            aliases: ["dtag"],
+        super("rawtag", {
+            aliases: ["rawtag", "raw"],
             category: "Utility",
             quoted: true,
             args: [
@@ -16,10 +18,10 @@ export default class DTagCommand extends Command {
                 }
             ],
             description: {
-                content: "Run a tag and delete the original website",
-                usage: "dtag",
+                content: "",
+                usage: "rawtag",
                 example: [
-                    "dtag"
+                    "rawtag"
                 ]
             },
             ratelimit: 3,
@@ -29,12 +31,13 @@ export default class DTagCommand extends Command {
 
     public async exec(message: Message, { args }) {
         await this.client.tags.ensure(message.guild.id, {});
-        message.delete().catch(e => message.channel.send("sorry something went wrong: " + e))
-        if(!this.client.tags.get(message.guild.id, args)) message.channel.send("Sorry couldnt find that tag")
-        const embed = new MessageEmbed()
-        .setColor("GREEN")
-        .setTitle(args)
-        .setDescription(this.client.tags.get(message.guild.id, args))
+        let raw = await this.client.tags.get(message.guild.id, args)
+        if(!raw) return message.channel.send("tag not found")
+        let embed = new MessageEmbed()
+        .setTitle("Raw tag data")
+        .setDescription(await gist(args, raw))
+        message.channel.send(embed)
+        // await message.channel.send(await gist(args, raw))
 
     }
 }

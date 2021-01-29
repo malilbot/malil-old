@@ -21,6 +21,7 @@ export default class TagsCommand extends Command {
     }
 
     public async exec(message: Message ) {
+        await this.client.tags.ensure(message.guild.id, {});
         let tags = this.client.tags.get(message.guild.id)
         
         tags = Object.keys(tags).toString().replace(/(\r\n|\n|\r|,)/gm, ", ");

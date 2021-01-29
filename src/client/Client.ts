@@ -8,6 +8,7 @@ declare module 'discord-akairo' {
     interface AkairoClient {
         logger: Logger
         tags: Enmap
+        prefixes: Enmap
     }
 }
 
@@ -25,7 +26,8 @@ export default class Client extends AkairoClient {
 
     public commandHandler: CommandHandler = new CommandHandler(this, {
         directory: join(__dirname, "..", "Commands"),
-        prefix: message => {if(message.guild == null){return process.env.PREFIX} else if(db.fetch(`guild.${message.guild.id}.pf`)){ return db.fetch(`guild.${message.guild.id}.pf`) } else { return process.env.PREFIX}},
+        prefix: message => {this.prefixes.ensure(message.guild.id, {}); if( message.guild.id == null  || !this.prefixes.get(message.guild.id, 'prefix')) {return process.env.PREFIX} else {return this.prefixes.get(message.guild.id, 'prefix')}},
+        //{if(message.guild == null){return process.env.PREFIX} else if(db.fetch(`guild.${message.guild.id}.pf`)){ return db.fetch(`guild.${message.guild.id}.pf`) } else { return process.env.PREFIX}},
         aliasReplacement: /-g/,
         allowMention: true,
         handleEdits: true,
@@ -53,6 +55,7 @@ export default class Client extends AkairoClient {
 
     public tags: Enmap = new Enmap({name: 'tags'});
 
+    public prefixes: Enmap = new Enmap({name: 'prefixes'});
 
 /*
     public client.api.applications(client.user.id).guild('755166643927122091').commands.post({
@@ -72,6 +75,7 @@ export default class Client extends AkairoClient {
         this.config = config;
         this.logger = logger;
         this.tags = new Enmap({name: 'tags'});
+        this.prefixes = new Enmap({name: 'prefixes'});
     }
 
     public _init() {

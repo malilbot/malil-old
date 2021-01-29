@@ -18,5 +18,5 @@ export const gist = async function(name: any, content: any){
           .send()
         ).json();
         const out = `https://gist.github.com/${gist.id}`
-
+          return out
         }
