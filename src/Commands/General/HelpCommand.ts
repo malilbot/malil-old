@@ -52,14 +52,19 @@ export default class HelpCommand extends Command {
             .setColor("RANDOM")
             .setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" }))
             .setFooter(`@malil help [ command ] for more information on a command.`);
-
+            
         for (const category of this.handler.categories.values()) {
             if (["default"].includes(category.id)) continue;
-
-            embed.addField(category.id, category
+                if(category.id !== 'Developer'){
+                embed.addField(category.id, category
                 .filter(cmd => cmd.aliases.length > 0)
                 .map(cmd => `**\`${cmd}\`**`)
                 .join(" | " || "No Commands in this category."));
+                }
+
+ 
+            
+
         }
         return message.channel.send(embed);
     }
