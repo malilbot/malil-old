@@ -6,7 +6,7 @@ export default class ReloadCommand extends Command {
     public constructor() {
         super("reload", {
             aliases: ["reload"],
-            category: "Core",
+            category: "Developer",
             quoted: true,
             description: {
                 content: "",

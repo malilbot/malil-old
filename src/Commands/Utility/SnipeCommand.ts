@@ -8,7 +8,7 @@ export default class SnipeCommand extends Command {
     public constructor() {
         super("snipe", {
             aliases: ["snipe"],
-            category: "Core",
+            category: "Utility",
             quoted: true,
             args: [
                 {
