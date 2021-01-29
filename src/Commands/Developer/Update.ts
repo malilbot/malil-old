@@ -33,7 +33,7 @@ export default class updateCommand extends Command {
         const embed = new MessageEmbed()
             .setTitle(`Update`)
             .setColor("RED")
-            .addField("🍞 Input", `\`\`\`bash\ngit pull && npm run build && pm2 restart 6\`\`\``)
+            .addField("🍞 Input", `\`\`\`bash\ngit pull && npm run build && pm2 restart 10\`\`\``)
             .addField("🫓 Output", `\`\`\`bash\n${output}\`\`\``)
             .addField("Type", "bash");
         await message.channel.send(embed);
