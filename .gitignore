@@ -3,7 +3,7 @@ node_modules
 
 #ENV FILE
 .env
-
+data
 #FINISH FILE
 finish
 
@@ -387,3 +387,5 @@ data/enmap.sqlite-wal
 data/enmap.sqlite-shm
 data/enmap.sqlite-shm
 data/enmap.sqlite-wal
+data/enmap.sqlite-shm
+*.sqlite-shm
