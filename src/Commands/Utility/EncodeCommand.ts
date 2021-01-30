@@ -3,6 +3,7 @@ import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discor
 import { MessageManager } from "discord.js";
 import { MessageEmbed } from "discord.js";
 
+
 export default class EncodeCommand extends Command {
     public constructor() {
         super("encode", {

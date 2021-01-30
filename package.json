@@ -42,6 +42,7 @@
     "axios": "^0.21.1",
     "centra": "^2.4.2",
     "common-tags": "^1.8.0",
+    "crypto-js": "^4.0.0",
     "discord-akairo": "github:1Computer1/discord-akairo",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
