@@ -4,10 +4,11 @@ import { MessageEmbed } from "discord.js";
 import moment from 'moment'
 import centra from 'centra'
 import fetch from 'node-fetch'
-export default class testCommand extends Command {
+import { timingSafeEqual } from "crypto";
+export default class GithubCommand extends Command {
     public constructor() {
-        super("test", {
-            aliases: ["test"],
+        super("github", {
+            aliases: ["github"],
             category: "Developer",
             quoted: true,
             args: [
@@ -19,9 +20,9 @@ export default class testCommand extends Command {
             ],
             description: {
                 content: "",
-                usage: "test",
+                usage: "github",
                 example: [
-                    "test"
+                    "github"
                 ]
             },
             ratelimit: 3,
@@ -40,6 +41,7 @@ export default class testCommand extends Command {
             let o = ''
             let chnnale = await this.client.channels.fetch(channel).then(channel => message.reply("Succesfully set the channel to: " + channel + '\n make sure that i have permission to that channel')).catch(e => o = e)
             if(o) return message.reply("channel not found")
+            this.client.releases.set(message.guild.id, arg2[1], 'channel')
            
         }
         args = args.split('/')

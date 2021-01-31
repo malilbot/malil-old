@@ -17,7 +17,7 @@ export default class Ready extends Listener {
     }
     public async exec() {
         
-        console.clear()
+        // console.clear()
         console.log(
 // "..-..-.       .-.   _ .-.                         \n",
 //": `' :       : :  :_;: :                          \n",

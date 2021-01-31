@@ -10,6 +10,7 @@ declare module 'discord-akairo' {
         tags: Enmap
         prefixes: Enmap
         blacklist: Enmap
+        releases: Enmap
     }
 }
 
@@ -60,6 +61,8 @@ export default class Client extends AkairoClient {
 
     public blacklist: Enmap = new Enmap({name: 'blacklist'});
 
+    public releases: Enmap = new Enmap({name: 'releases'});
+
 /*
     public client.api.applications(client.user.id).guild('755166643927122091').commands.post({
         data: {
@@ -80,6 +83,7 @@ export default class Client extends AkairoClient {
         this.tags = new Enmap({name: 'tags'});
         this.prefixes = new Enmap({name: 'prefixes'});
         this.blacklist = new Enmap({name: 'blacklist'})
+        this.releases = new Enmap({name: 'releases'})
     }
 
     public _init() {
