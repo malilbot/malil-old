@@ -9,7 +9,7 @@ export default class GithubCommand extends Command {
     public constructor() {
         super("github", {
             aliases: ["github"],
-            category: "Developer",
+            category: "General",
             quoted: true,
             args: [
                 {
