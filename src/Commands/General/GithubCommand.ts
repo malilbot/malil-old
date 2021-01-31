@@ -33,7 +33,7 @@ export default class GithubCommand extends Command {
     }
 
     public async exec(message: Message, { args }) {
-        if(!args) return message .reply("use  *github set <channel id> to get started use *help github for more info")
+        if(!args) return message .reply("use  *github set <channel id> to get started use *help github for more info");
         this.client.releases.ensure(message.guild.id, {channel: '', repos: ''})
         if(!this.client.releases.get(message.guild.id, 'channel')) return message.reply("no channel set please set one with: `github set <chanid> `")
         let arg2 = args.split(' ')
