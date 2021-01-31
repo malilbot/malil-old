@@ -35,7 +35,7 @@ export default class QuoteCommand extends Command {
     
             var item = splito.splice(i, 1)
         }}
-        
+        if(!item) return message.reply("message not found")
         let thing = (<string[]>item).join()
         let split = thing.split('/')
         if(!split[5] || !split[6]) return message.reply("message not found")
