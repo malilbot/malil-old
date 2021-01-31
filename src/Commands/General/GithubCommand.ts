@@ -36,7 +36,7 @@ export default class GithubCommand extends Command {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You dont have the manage messages permission to execute this command")
         if(!args) return message .reply("use  *github set <channel id> to get started use *help github for more info");
         this.client.releases.ensure(message.guild.id, {channel: '', repos: ''})
-        if(!this.client.releases.get(message.guild.id, 'channel')) return message.reply("no channel set please set one with: `github set <chanid> `")
+        
         let arg2 = args.split(' ')
         if(arg2[0] == 'set'){
             let channel = arg2[1]
@@ -47,6 +47,7 @@ export default class GithubCommand extends Command {
             this.client.releases.set(message.guild.id, arg2[1], 'channel')
            
         }
+        if(!this.client.releases.get(message.guild.id, 'channel')) return message.reply("no channel set please set one with: `github set <chanid> `")
         args = args.split('/')
         console.log(args)
         const name = args[3] + '/' + args[4]
