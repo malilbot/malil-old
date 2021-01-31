@@ -35,8 +35,8 @@ export default class GithubCommand extends Command {
     public async exec(message: Message, { args }) {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You dont have the manage messages permission to execute this command")
         if(!args) return message .reply("use  *github set <channel id> to get started use *help github for more info");
-        this.client.releases.ensure(message.guild.id, {channel: '', repos: ''})
-        
+        this.client.releases.ensure(message.guild.id, {channel: '', repos: []})
+        this.client.releases.ensure('all', [])
         let arg2 = args.split(' ')
         if(arg2[0] == 'set'){
             let channel = arg2[1]
@@ -65,8 +65,8 @@ export default class GithubCommand extends Command {
         url = url[3] + '/' + url[4]
         let output = url + "|" + version
         message.reply("ADDED it to the watch list")
-        this.client.releases.push('all', name)
-        this.client.releases.push(message.guild.id, output, 'repos')
+        console.log(this.client.releases.push('all', name))
+        console.log(this.client.releases.push(message.guild.id, output, 'repos'))
 
 
 
