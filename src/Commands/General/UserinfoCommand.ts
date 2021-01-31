@@ -65,8 +65,8 @@ const flags = {
 				`**❯ Flags:** ${userFlags.length ? userFlags.map(flag => flags[flag]).join(', ') : 'None'}`,
 				`**❯ Avatar:** [Link to avatar](${member.user.displayAvatarURL({ dynamic: true })})`,
 				`**❯ Time Created:** ${moment(member.user.createdTimestamp).format('LT')} ${moment(member.user.createdTimestamp).format('LL')} ${moment(member.user.createdTimestamp).fromNow()}`,
-				// `**❯ Status:** ${member.user.presence.status}`,
-				`**❯ Game:** ${member.user.presence || 'Not playing a game.'}`,
+				 `**❯ Status:** ${member.user.presence.status}`,
+				//`**❯ Game:** ${member.user.presence || 'Not playing a game.'}`,
 				`\u200b`
 			])
 			.addField('Member', [
