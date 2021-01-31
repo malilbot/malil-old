@@ -58,6 +58,7 @@ export default class aq extends Listener {
                     .setAuthor(msg.author.tag, msg.author.avatarURL())
                     .setDescription(msg.content)
                     .setFooter("didnt have WebhookPermissions so send a embed instead")
+                    
         )
         }
         // magic
