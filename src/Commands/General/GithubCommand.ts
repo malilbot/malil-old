@@ -46,6 +46,9 @@ export default class GithubCommand extends Command {
             if(o) return message.reply("channel not found")
             this.client.releases.set(message.guild.id, arg2[1], 'channel')
            
+        } else if(arg2[0] == 'delete'){
+            this.client.releases.delete(message.guild.id, 'repos')
+            return message.reply("oke deleted the github list")
         }
         if(!this.client.releases.get(message.guild.id, 'channel')) return message.reply("no channel set please set one with: `github set <chanid> `")
         args = args.split('/')

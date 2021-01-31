@@ -32,14 +32,12 @@ async function refreshData(client)
         let split = repos[i].split('|')
         const data = await fetch(`https://api.github.com/repos/${split[0]}/releases`).then(response => response.json())
 
-        if(data.documentation_url) return
-        console.log('ee')
-        if(data[0].tag_name) return
-        console.log("pass3")
-        if(split[1] == data[0].tag_name) return
+        if(data.documentation_url) {
             
+        } else {
+        if(await compare(split, data) == true) {
 
-        /*
+        } else {
         for( var l = 0; l < repos.length; l++){ 
     
         if ( repos[l] == repos[i]) { 
@@ -48,32 +46,44 @@ async function refreshData(client)
         }
     
         }
-        
-        // repos =  repos.toString().split(',')
+
         console.log(repos)
-        /*
-        console.log(split[0] + '|' + data[0].tag_name)
-        let newarr = repos.push(split[0] + '|' + data[0].tag_name )
-        console.log(newarr)
-        */
-       /*
+
         client.releases.set('all', repos)
         client.releases.push('all', split[0] + '|' + data[0].tag_name )
         console.log(client.releases.get('all'))
-        */
+        
 
         let url = (data[0].html_url).split('/')
 
         let servers = client.releases.keyArray()
 
 
-        /* ---------- LOOOOOOOOOOOOOP------------- */
-        for( var i = 0; i < servers.length; i++){ 
+        SendMessage(servers, split, client, url, data)
+        }
+        console.log('ee')
+        if(!data[0].tag_name) {
+
+        }
+        console.log("pass3")
+
+        }
+            
+
+
+        }
+    setTimeout(refreshData, x*1000);
+};
+
+async function SendMessage(servers, split, client, url, data){
+    for( var i = 0; i < servers.length; i++){ 
             console.log("pass4")
         /* ----------------------- */
         if(servers[i] == 'all') return
         console.log("pass5")
-        if(!client.releases.get(servers[i], 'repos').includes(split[0])) return
+        if(!client.releases.get(servers[i], 'repos').includes(split[0])) {
+            console.log('e')
+        }
         let id = client.releases.get(servers[i], 'channel')
         let channel = await client.channels.fetch(id)
         console.log("pass6")
@@ -82,17 +92,14 @@ async function refreshData(client)
         .addField(url[4] + ' ' + data[0].tag_name, data[0].html_url);
         await (channel as TextChannel).send(embed)
         }
-        /* ----------------------- */
-        }
-
-    // Do your thing here
-
-    setTimeout(refreshData, x*1000);
 }
 
+async function compare(split, data){
+if(split[1] == data[0].tag_name) return true
+else return false
+}
+refreshData(this.client);
 
-refreshData(this.client)
-      
         
 
 
