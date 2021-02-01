@@ -89,7 +89,7 @@ export default class github extends Listener {
 		}
 
 		async function compare(split, data) {
-			if (split[1] == data[0].tag_name) return false;
+			if (split[1] == data[0].tag_name) return true;
 			else return false;
 		}
 		refreshData(this.client);
