@@ -18,7 +18,7 @@ export default class github extends Listener {
 
 	async exec(message: Message) {
 		async function refreshData(client) {
-			let x = 600; // 5 Seconds
+			let x = 3200; // 5 Seconds
 
 			let repos = client.releases.get("all");
 			for (var i = 0; i < repos.length; i++) {
@@ -44,8 +44,9 @@ export default class github extends Listener {
 						let url = data[0].html_url.split("/");
 
 						let servers = client.releases.keyArray();
+						const fetchs = await fetch(data[0].url).then((response) => response.json());
 
-						SendMessage(servers, split, client, url, data);
+						SendMessage(servers, split, client, url, data, fetchs);
 					}
 					if (!data[0].tag_name) {
 					}
@@ -54,24 +55,41 @@ export default class github extends Listener {
 			setTimeout(refreshData, x * 1000);
 		}
 
-		async function SendMessage(servers, split, client, url, data) {
+		async function SendMessage(servers, split, client, url, data, fetchs) {
 			for (var i = 0; i < servers.length; i++) {
 				/* ----------------------- */
+				let body = fetchs.body;
 				if (servers[i] == "all") return;
-
+				let bodylength = body.length;
+				console.log(bodylength);
+				if (bodylength > 1024) {
+					function cutString(s, n) {
+						var cut = s.indexOf(" ", n);
+						if (cut == -1) return s;
+						return s.substring(0, cut);
+					}
+					body = cutString(body, 400);
+					console.log(body);
+					body += "....";
+				}
+				console.log(body);
 				if (!client.releases.get(servers[i], "repos").includes(split[0])) {
 				}
+				const downloadurl = fetchs.assets[0].browser_download_url
+					? fetchs.assets[0].browser_download_url
+					: "none";
 				let id = client.releases.get(servers[i], "channel");
 				let channel = await client.channels.fetch(id);
 				const embed = new MessageEmbed()
+					.setDescription(data[0].html_url + "Download url: " + downloadurl)
 					.setTitle("new release from:  " + data[0].author.login)
-					.addField(url[4] + " " + data[0].tag_name, data[0].html_url);
+					.addField(url[4] + " " + data[0].tag_name, body);
 				await (channel as TextChannel).send(embed);
 			}
 		}
 
 		async function compare(split, data) {
-			if (split[1] == data[0].tag_name) return true;
+			if (split[1] == data[0].tag_name) return false;
 			else return false;
 		}
 		refreshData(this.client);

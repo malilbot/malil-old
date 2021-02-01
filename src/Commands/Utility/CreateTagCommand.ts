@@ -33,7 +33,7 @@ export default class CreatetagCommand extends Command {
 	}
 
 	public async exec(message: Message, { args }) {
-		if (!message.member.hasPermission("ADMINISTRATOR") || message.member.hasPermission("MANAGE_MESSAGES"))
+		if (!message.member.hasPermission("ADMINISTRATOR") || !message.member.hasPermission("MANAGE_MESSAGES"))
 			return message.channel.send("Sorry you dont hae the required permissions to use this command");
 
 		args = args.split(" ");
