@@ -22,7 +22,8 @@ export default class GithubCommand extends Command {
 				example: [
 					"github add < github repo >",
 					"github set < channel id >",
-					"github delete"
+					"github delete",
+					"github list"
 				]
 			},
 			ratelimit: 3,
