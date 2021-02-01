@@ -17,10 +17,10 @@ export default class TagCommand extends Command {
 				}
 			],
 			description: {
-				content: "",
+				content: "Shows a tag",
 				usage: "tag",
 				example: [
-					"tag"
+					"tag <name>"
 				]
 			},
 			ratelimit: 3,
