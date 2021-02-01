@@ -33,19 +33,18 @@ export default class CreatetagCommand extends Command {
 	}
 
 	public async exec(message: Message, { args }) {
-		if (!message.member.hasPermission("ADMINISTRATOR") || !message.member.hasPermission("MANAGE_MESSAGES"))
-			return message.channel.send("Sorry you dont hae the required permissions to use this command");
+		if (message.member.hasPermission("ADMINISTRATOR") || message.member.hasPermission("MANAGE_MESSAGES")) {
+			args = args.split(" ");
 
-		args = args.split(" ");
-
-		let input = args.slice(1).join(" ");
-		if (!input) message.channel.send("There has to be something to put in the tag.");
-		await this.client.tags.ensure(message.guild.id, {});
-		await this.client.tags.set(message.guild.id, input, args[0]);
-		const embed = new MessageEmbed()
-			.setColor("RED")
-			.setTitle("Tag created.")
-			.addFields({ name: args[0], value: input });
-		message.reply(embed);
+			let input = args.slice(1).join(" ");
+			if (!input) message.channel.send("There has to be something to put in the tag.");
+			await this.client.tags.ensure(message.guild.id, {});
+			await this.client.tags.set(message.guild.id, input, args[0]);
+			const embed = new MessageEmbed()
+				.setColor("RED")
+				.setTitle("Tag created.")
+				.addFields({ name: args[0], value: input });
+			message.reply(embed);
+		} else return message.channel.send("Sorry you dont hae the required permissions to use this command");
 	}
 }
