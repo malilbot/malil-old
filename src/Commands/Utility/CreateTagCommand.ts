@@ -45,6 +45,6 @@ export default class CreatetagCommand extends Command {
 				.setTitle("Tag created.")
 				.addFields({ name: args[0], value: input });
 			message.reply(embed);
-		} else return message.channel.send("Sorry you dont hae the required permissions to use this command");
+		} else return message.channel.send("Sorry you dont have the required permissions to use this command");
 	}
 }
