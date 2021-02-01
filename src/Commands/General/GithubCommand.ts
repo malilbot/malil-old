@@ -78,7 +78,7 @@ export default class GithubCommand extends Command {
 
 			url = url[3] + "/" + url[4];
 			let output = url + "|" + version;
-			message.reply("Added: " + data[0].html_url + " to watch list.");
+			message.reply("Added: <" + data[0].html_url + "> to watch list.");
 			this.client.releases.push("all", output);
 			this.client.releases.push(message.guild.id, name, "repos");
 			//

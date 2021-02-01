@@ -32,11 +32,13 @@ export default class github extends Listener {
 				} else {
 					if ((await compare(split, data)) == true) {
 					} else {
+						/* ----------------------- */
 						for (var l = 0; l < repos.length; l++) {
 							if (repos[l] == repos[i]) {
 								repos.splice(l, 1);
 							}
 						}
+						/* ----------------------- */
 
 						client.releases.set("all", repos);
 						client.releases.push("all", split[0] + "|" + data[0].tag_name);
@@ -45,8 +47,9 @@ export default class github extends Listener {
 
 						let servers = client.releases.keyArray();
 						const fetchs = await fetch(data[0].url).then((response) => response.json());
-
+						/* ----------------------- */
 						SendMessage(servers, split, client, url, data, fetchs);
+						/* ----------------------- */
 					}
 					if (!data[0].tag_name) {
 					}
@@ -61,13 +64,16 @@ export default class github extends Listener {
 				let body = fetchs.body;
 				if (servers[i] == "all") return;
 				let bodylength = body.length;
-				console.log(bodylength);
+
+				if (!body) body = "no description";
 				if (bodylength > 1024) {
 					function cutString(s, n) {
+						/* ----------------------- */
 						var cut = s.indexOf(" ", n);
 						if (cut == -1) return s;
 						return s.substring(0, cut);
 					}
+					/* ----------------------- */
 					body = cutString(body, 400);
 					console.log(body);
 					body += "....";
@@ -81,16 +87,19 @@ export default class github extends Listener {
 				let id = client.releases.get(servers[i], "channel");
 				let channel = await client.channels.fetch(id);
 				const embed = new MessageEmbed()
-					.setDescription(data[0].html_url + "Download url: " + downloadurl)
+					.setDescription(data[0].html_url + "\nDownload url: " + downloadurl)
 					.setTitle("new release from:  " + data[0].author.login)
 					.addField(url[4] + " " + data[0].tag_name, body);
 				await (channel as TextChannel).send(embed);
+				/* ----------------------- */
 			}
 		}
 
 		async function compare(split, data) {
+			/* ----------------------- */
 			if (split[1] == data[0].tag_name) return true;
 			else return false;
+			/* ----------------------- */
 		}
 		refreshData(this.client);
 
