@@ -34,10 +34,10 @@ export default class smajki extends Listener {
 				message.react("786270666726047816");
 			}
 			if (message.content.toLowerCase().includes("quaktism") || message.content.toLowerCase().includes("quak")) {
-				message.react(":regional_indicator_g:");
-				message.react(":regional_indicator_o:");
-				message.react(":o2:");
-				message.react(":regional_indicator_d:");
+				message.react("805835617849835540");
+				message.react("805835957802762261");
+				message.react("805835970817556520");
+				message.react("805835906766077985");
 			}
 		} else return;
 	}
