@@ -40,7 +40,6 @@ export default class UnBlacklistCommand extends Command {
 		let list = this.client.blacklist.get("blacklisted", "list");
 
 		for (var i = 0; i < list.length; i++) {
-			console.log(list[i]);
 			if (list[i] == id) {
 				list.splice(i, 1);
 			}

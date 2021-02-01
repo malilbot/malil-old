@@ -1,110 +1,82 @@
-import { Listener } from 'discord-akairo';
-import { Message } from 'discord.js'
-import Client from '../../client/Client';
-import { MessageEmbed, TextChannel } from 'discord.js'
-import * as db from 'quick.db'
-import fetch from 'node-fetch'
+import { Listener } from "discord-akairo";
+import { Message } from "discord.js";
+import Client from "../../client/Client";
+import { MessageEmbed, TextChannel } from "discord.js";
+import * as db from "quick.db";
+import fetch from "node-fetch";
 
 export default class github extends Listener {
-    client: Client
-    public constructor(client: Client) {
-        super("github", {
-            emitter: "client",
-            event: "ready",
-            category: "client"
-        });
-        this.client = client
-    }
+	client: Client;
+	public constructor(client: Client) {
+		super("github", {
+			emitter: "client",
+			event: "ready",
+			category: "client"
+		});
+		this.client = client;
+	}
 
-    async exec(message: Message) {
+	async exec(message: Message) {
+		async function refreshData(client) {
+			let x = 600; // 5 Seconds
 
-async function refreshData(client)
-{
-    let x = 600;  // 5 Seconds
+			let repos = client.releases.get("all");
+			for (var i = 0; i < repos.length; i++) {
+				/* ----------------------- */
+				let split = repos[i].split("|");
+				const data = await fetch(`https://api.github.com/repos/${split[0]}/releases`).then((response) =>
+					response.json()
+				);
 
-    let repos = client.releases.get('all')
-        console.log("pass1")
-        for( var i = 0; i < repos.length; i++){ 
-        console.log("pass2")
-        
-        
-        /* ----------------------- */
-        let split = repos[i].split('|')
-        const data = await fetch(`https://api.github.com/repos/${split[0]}/releases`).then(response => response.json())
+				if (data.documentation_url) {
+				} else {
+					if ((await compare(split, data)) == true) {
+					} else {
+						for (var l = 0; l < repos.length; l++) {
+							if (repos[l] == repos[i]) {
+								repos.splice(l, 1);
+							}
+						}
 
-        if(data.documentation_url) {
-            
-        } else {
-        if(await compare(split, data) == true) {
+						client.releases.set("all", repos);
+						client.releases.push("all", split[0] + "|" + data[0].tag_name);
 
-        } else {
-        for( var l = 0; l < repos.length; l++){ 
-    
-        if ( repos[l] == repos[i]) { 
-    
-            repos.splice(l, 1); 
-        }
-    
-        }
+						let url = data[0].html_url.split("/");
 
-        console.log(repos)
+						let servers = client.releases.keyArray();
 
-        client.releases.set('all', repos)
-        client.releases.push('all', split[0] + '|' + data[0].tag_name )
-        console.log(client.releases.get('all'))
-        
+						SendMessage(servers, split, client, url, data);
+					}
+					if (!data[0].tag_name) {
+					}
+				}
+			}
+			setTimeout(refreshData, x * 1000);
+		}
 
-        let url = (data[0].html_url).split('/')
+		async function SendMessage(servers, split, client, url, data) {
+			for (var i = 0; i < servers.length; i++) {
+				/* ----------------------- */
+				if (servers[i] == "all") return;
 
-        let servers = client.releases.keyArray()
+				if (!client.releases.get(servers[i], "repos").includes(split[0])) {
+				}
+				let id = client.releases.get(servers[i], "channel");
+				let channel = await client.channels.fetch(id);
+				const embed = new MessageEmbed()
+					.setTitle("new release from:  " + data[0].author.login)
+					.addField(url[4] + " " + data[0].tag_name, data[0].html_url);
+				await (channel as TextChannel).send(embed);
+			}
+		}
 
+		async function compare(split, data) {
+			if (split[1] == data[0].tag_name) return true;
+			else return false;
+		}
+		refreshData(this.client);
 
-        SendMessage(servers, split, client, url, data)
-        }
-        console.log('ee')
-        if(!data[0].tag_name) {
-
-        }
-        console.log("pass3")
-
-        }
-            
-
-
-        }
-    setTimeout(refreshData, x*1000);
-};
-
-async function SendMessage(servers, split, client, url, data){
-    for( var i = 0; i < servers.length; i++){ 
-            console.log("pass4")
-        /* ----------------------- */
-        if(servers[i] == 'all') return
-        console.log("pass5")
-        if(!client.releases.get(servers[i], 'repos').includes(split[0])) {
-            console.log('e')
-        }
-        let id = client.releases.get(servers[i], 'channel')
-        let channel = await client.channels.fetch(id)
-        console.log("pass6")
-        const embed = new MessageEmbed()
-        .setTitle("new release from:  " + data[0].author.login)
-        .addField(url[4] + ' ' + data[0].tag_name, data[0].html_url);
-        await (channel as TextChannel).send(embed)
-        }
-}
-
-async function compare(split, data){
-if(split[1] == data[0].tag_name) return true
-else return false
-}
-refreshData(this.client);
-
-        
-
-
-
-    /*
+		/*
 
         [
   {
@@ -138,8 +110,5 @@ refreshData(this.client);
     target_commitish: 'master',
 
         */
-    }
+	}
 }
-        
-        
-        

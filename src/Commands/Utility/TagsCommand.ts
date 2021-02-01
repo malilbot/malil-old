@@ -25,7 +25,7 @@ export default class TagsCommand extends Command {
         let tags = this.client.tags.get(message.guild.id)
         
         tags = Object.keys(tags).toString().replace(/(\r\n|\n|\r|,)/gm, ", ");
-        console.log(tags)   
+        // console.log(tags)   
     
     const Embed = new MessageEmbed() 
     .setTitle(`tags in ${message.guild}`)

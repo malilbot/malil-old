@@ -41,7 +41,6 @@ export default class GithubCommand extends Command {
 		let arg2 = args.split(" ");
 		if (arg2[0] == "set") {
 			let channel = arg2[1];
-			console.log(channel);
 			let o = "";
 			let chnnale = await this.client.channels
 				.fetch(channel)
@@ -62,7 +61,6 @@ export default class GithubCommand extends Command {
 			if (!this.client.releases.get(message.guild.id, "channel"))
 				return message.reply("no channel set please set one with: `github set <chanid> `");
 			args = args.split("/");
-			console.log(args);
 			const name = args[3] + "/" + args[4];
 			const data = await fetch(`https://api.github.com/repos/${name}/releases`).then((response) =>
 				response.json()
@@ -82,9 +80,7 @@ export default class GithubCommand extends Command {
 			let output = url + "|" + version;
 			message.reply("Added: " + data[0].html_url + " to watch list.");
 			this.client.releases.push("all", output);
-			console.log(this.client.releases.get("all"));
 			this.client.releases.push(message.guild.id, name, "repos");
-			console.log(this.client.releases.get(message.guild.id, "repos"));
 			//
 		} else if (arg2[0] == "list") {
 			message.reply("currently watching: " + this.client.releases.get(message.guild.id, "repos").toString());
