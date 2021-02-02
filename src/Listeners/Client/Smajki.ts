@@ -23,7 +23,7 @@ export default class smajki extends Listener {
 					message.react("805835957802762261");
 					message.react("805835970817556520");
 					message.react("805835906766077985");
-				}, 2000);
+				}, 2200);
 				setTimeout(() => {
 					message.reactions.removeAll();
 				}, 1000);
