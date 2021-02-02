@@ -17,6 +17,17 @@ export default class smajki extends Listener {
 	public async exec(message: Message) {
 		if (!message.guild) return;
 		if (message.guild.id == "701833606280118282") {
+			if (message.content.toLowerCase().includes("quaktism") || message.content.toLowerCase().includes("quak")) {
+				setTimeout(() => {
+					message.react("805835617849835540");
+					message.react("805835957802762261");
+					message.react("805835970817556520");
+					message.react("805835906766077985");
+				}, 2000);
+				setTimeout(() => {
+					message.reactions.removeAll();
+				}, 1000);
+			}
 			if (message.content.toLowerCase().includes("smajki") || message.content.toLowerCase().includes("smajk")) {
 				message.react("786270601857728583");
 				message.react("786270602151067698");
@@ -32,12 +43,6 @@ export default class smajki extends Listener {
 				message.react("786270667883937852");
 				message.react("786270667070636034");
 				message.react("786270666726047816");
-			}
-			if (message.content.toLowerCase().includes("quaktism") || message.content.toLowerCase().includes("quak")) {
-				message.react("805835617849835540");
-				message.react("805835957802762261");
-				message.react("805835970817556520");
-				message.react("805835906766077985");
 			}
 		} else return;
 	}
