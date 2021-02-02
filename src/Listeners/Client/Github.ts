@@ -1,8 +1,6 @@
 import { Listener } from "discord-akairo";
-import { Message } from "discord.js";
 import Client from "../../client/Client";
 import { MessageEmbed, TextChannel } from "discord.js";
-import * as db from "quick.db";
 import fetch from "node-fetch";
 
 export default class github extends Listener {
@@ -16,7 +14,7 @@ export default class github extends Listener {
 		this.client = client;
 	}
 
-	async exec(message: Message) {
+	async exec() {
 		async function refreshData(client) {
 			let x = 3200; // 5 Seconds
 

@@ -19,6 +19,7 @@ export default class smajki extends Listener {
 		if (message.guild.id == "701833606280118282") {
 			if (message.content.toLowerCase().includes("quaktism") || message.content.toLowerCase().includes("quak")) {
 				message.delete();
+				message.author.send("You have been warned for using the blacklisted word quak");
 				setTimeout(() => {
 					message.react("805835617849835540");
 					message.react("805835957802762261");

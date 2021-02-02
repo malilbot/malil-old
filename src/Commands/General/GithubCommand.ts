@@ -27,8 +27,7 @@ export default class GithubCommand extends Command {
 				]
 			},
 			ratelimit: 3,
-			channel: "guild",
-			ownerOnly: true
+			channel: "guild"
 		});
 	}
 
