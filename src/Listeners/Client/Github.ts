@@ -79,13 +79,11 @@ export default class github extends Listener {
 				console.log(body);
 				if (!client.releases.get(servers[i], "repos").includes(split[0])) {
 				}
-				const downloadurl = fetchs.assets[0].browser_download_url
-					? fetchs.assets[0].browser_download_url
-					: "none";
+
 				let id = client.releases.get(servers[i], "channel");
 				let channel = await client.channels.fetch(id);
 				const embed = new MessageEmbed()
-					.setDescription(data[0].html_url + "\nDownload url: " + downloadurl)
+					.setDescription(data[0].html_url)
 					.setTitle("new release from:  " + data[0].author.login)
 					.addField(url[4] + " " + data[0].tag_name, body);
 				await (channel as TextChannel).send(embed);
