@@ -52,6 +52,7 @@ export default class Ready extends Listener {
 		// this.client.logger.info(`\x1b[33m[LISTENERS LOADED]\x1b[32m: ${this.client.listenerHandler.modules.size}`)
 		// this.client.logger.info(`\x1b[33m[INHIBITORS LOADED]\x1b[32m: ${this.client.inhibitorHandler.modules.size}`)
 		// —— requireing the config
+		/*
 		const config = require("../../../config.json");
 		const { status, games, interval } = config.presence;
 
@@ -77,5 +78,13 @@ export default class Ready extends Listener {
 					url: games[index].url || "https://www.twitch.tv/"
 				});
 			}, ((typeof interval === "number" && interval) || 30) * 1000);
+			*/
+		this.client.user.setPresence({
+			activity: {
+				name: "Prefix * or @ me",
+				type: "PLAYING",
+				url: null
+			}
+		});
 	}
 }
