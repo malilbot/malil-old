@@ -17,14 +17,16 @@ export default class github extends Listener {
 	async exec() {
 		async function refreshData(client) {
 			let x = 3200; // 5 Seconds
-
+			const headers = {
+				"Content-Authorization": `token ${process.env.gist}`
+			};
 			let repos = client.releases.get("all");
 			for (var i = 0; i < repos.length; i++) {
 				/* ----------------------- */
 				let split = repos[i].split("|");
-				const data = await fetch(`https://api.github.com/repos/${split[0]}/releases`).then((response) =>
-					response.json()
-				);
+				const data = await fetch(`https://api.github.com/repos/${split[0]}/releases`, {
+					headers: headers
+				}).then((response) => response.json());
 
 				if (data.documentation_url) {
 				} else {

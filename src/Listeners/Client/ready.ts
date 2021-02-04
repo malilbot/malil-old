@@ -86,5 +86,26 @@ export default class Ready extends Listener {
 				url: null
 			}
 		});
+		/*
+		var readline = require("readline");
+
+		var rl = readline.createInterface({
+			input: process.stdin,
+			output: process.stdout,
+			terminal: false
+		});
+
+		rl.on("line", function(line) {
+			const bot = this.client;
+			try {
+				const input = line;
+				const output = eval(input);
+				console.log(input);
+				console.log(output);
+			} catch (e) {
+				console.error(e);
+			}
+		});
+		*/
 	}
 }

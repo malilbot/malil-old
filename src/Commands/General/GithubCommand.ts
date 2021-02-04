@@ -38,6 +38,7 @@ export default class GithubCommand extends Command {
 		this.client.releases.ensure(message.guild.id, { channel: "", repos: [] });
 		this.client.releases.ensure("all", []);
 		let arg2 = args.split(" ");
+
 		if (arg2[0] == "set") {
 			let channel = arg2[1];
 			let o = "";
@@ -60,34 +61,45 @@ export default class GithubCommand extends Command {
 			if (!this.client.releases.get(message.guild.id, "channel"))
 				return message.reply("no channel set please set one with: `github set <chanid> `");
 			args = args.split("/");
+			const headers = {
+				"Content-Authorization": `token ${process.env.gist}`
+			};
 			const name = args[3] + "/" + args[4];
-			const data = await fetch(`https://api.github.com/repos/${name}/releases`).then((response) =>
+			const data = await fetch(`https://api.github.com/repos/${name}/releases`, {
+				headers: headers
+			}).then((response) => response.json());
+			const urls = await fetch(`https://api.github.com/repos/${name}`, { headers: headers }).then((response) =>
 				response.json()
 			);
+			console.log(urls);
+			if (urls.documentation_url) return message.reply("I have been api limited");
+			const version = data.tag_name ? data.tag_name : "none";
+			console.log("------------------------");
+			console.log("------------------------");
+			console.log(urls);
+			console.log("------------------------");
+			console.log("------------------------");
+			console.log(data);
+			console.log("------------------------");
+			console.log("------------------------");
+			let url = data.html_url ? data.html_url : urls.html_url;
+			console.log(url);
 
-			if (data.documentation_url) return;
-			let version = "";
-			if (data[0].tag_name) {
-				version = data[0].tag_name;
-			} else {
-				version = "none";
-			}
-
-			let url = data[0].html_url.split("/");
-
-			url = url[3] + "/" + url[4];
+			// url = url[3] + "/" + url[4];
 			let output = url + "|" + version;
-			message.reply("Added: <" + data[0].html_url + "> to watch list.");
+			message.reply("Added: <" + url + "> to watch list.");
 			this.client.releases.push("all", output);
 			this.client.releases.push(message.guild.id, name, "repos");
+
 			//
 		} else if (arg2[0] == "list") {
-			message.reply("currently watching: " + this.client.releases.get(message.guild.id, "repos").toString());
+			let thing = this.client.releases.get(message.guild.id, "repos").toString().replace(/,/g, "\n");
+			message.channel.send("**currently watching:** \n" + thing);
 		} else message.reply("Check `*help github` for info about this command");
 
 		/*
   {
-    url: 'https://api.github.com/repos/SkyBlockDev/The-~~~trickster/releases/35188037',
+    url: 'https://api.github.com/repos/SkyBlockDev/The-trickster/releases/35188037',
     assets_url: 'https://api.github.com/repos/SkyBlockDev/The-trickster/releases/35188037/assets',
     upload_url: 'https://uploads.github.com/repos/SkyBlockDev/The-trickster/releases/35188037/assets{?name,label}',
     html_url: 'https://github.com/SkyBlockDev/The-trickster/releases/tag/2.31.1',
