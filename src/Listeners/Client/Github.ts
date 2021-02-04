@@ -27,8 +27,9 @@ export default class github extends Listener {
 				const data = await fetch(`https://api.github.com/repos/${split[0]}/releases`, {
 					headers: headers
 				}).then((response) => response.json());
-
 				if (data.documentation_url) {
+					console.log("api rate limited");
+					console.log(split);
 				} else {
 					if ((await compare(split, data)) == true) {
 					} else {
@@ -38,6 +39,7 @@ export default class github extends Listener {
 								repos.splice(l, 1);
 							}
 						}
+
 						/* ----------------------- */
 
 						client.releases.set("all", repos);
@@ -49,9 +51,11 @@ export default class github extends Listener {
 						const fetchs = await fetch(data[0].url).then((response) => response.json());
 						/* ----------------------- */
 						SendMessage(servers, split, client, url, data, fetchs);
+
 						/* ----------------------- */
 					}
 					if (!data[0].tag_name) {
+					} else {
 					}
 				}
 			}
@@ -87,7 +91,8 @@ export default class github extends Listener {
 				const embed = new MessageEmbed()
 					.setDescription(data[0].html_url)
 					.setTitle("new release from:  " + data[0].author.login)
-					.addField(url[4] + " " + data[0].tag_name, body);
+					.addField(url[4] + " " + data[0].tag_name, body)
+					.setThumbnail(data.author.avatar_url);
 				await (channel as TextChannel).send(embed);
 				/* ----------------------- */
 			}
@@ -95,7 +100,7 @@ export default class github extends Listener {
 
 		async function compare(split, data) {
 			/* ----------------------- */
-			if (split[1] == data[0].tag_name) return true;
+			if (!data[0].tag_name || data[0].tag_name == null || split[1] == data[0].tag_name) return true;
 			else return false;
 			/* ----------------------- */
 		}

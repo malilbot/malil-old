@@ -74,19 +74,12 @@ export default class GithubCommand extends Command {
 			console.log(urls);
 			if (urls.documentation_url) return message.reply("I have been api limited");
 			const version = data.tag_name ? data.tag_name : "none";
-			console.log("------------------------");
-			console.log("------------------------");
-			console.log(urls);
-			console.log("------------------------");
-			console.log("------------------------");
-			console.log(data);
-			console.log("------------------------");
-			console.log("------------------------");
+
 			let url = data.html_url ? data.html_url : urls.html_url;
-			console.log(url);
 
 			// url = url[3] + "/" + url[4];
-			let output = url + "|" + version;
+			let input = url.split("/");
+			let output = input[3] + "/" + input[4] + "|" + version;
 			message.reply("Added: <" + url + "> to watch list.");
 			this.client.releases.push("all", output);
 			this.client.releases.push(message.guild.id, name, "repos");
