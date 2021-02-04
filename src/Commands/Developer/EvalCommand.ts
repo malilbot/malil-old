@@ -35,7 +35,7 @@ export default class EvalCommand extends Command {
 	}
 	public async exec(message: Message, { code }) {
 		//https://gist.github.com/
-		let gists = "";
+
 		let field: any = function dm(guy, message, client) {
 			return client.users.fetch(guy).then((user) => user.send(message));
 		};
@@ -46,63 +46,75 @@ export default class EvalCommand extends Command {
 		}
 		//
 		const evalcode = code;
-		if (code.includes("--silent")) code = code.replace("--silent", "");
-		if (code.includes("--delete")) code = code.replace("--delete", "") && message.delete();
-		const embed = new MessageEmbed()
-			.setTitle(`${this.client.user.tag}'s Evaled`)
-			.setColor("RED")
-			.addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``);
+		async function ev(client) {
+			let gists = "";
+			if (code.includes("--silent")) code = code.replace("--silent", "");
+			if (code.includes("--delete")) code = code.replace("--delete", "") && message.delete();
+			const embed = new MessageEmbed()
+				.setTitle(`${client.user.tag}'s Evaled`)
+				.setColor("RED")
+				.addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``);
 
-		try {
-			var evaled = await eval(code);
+			try {
+				var evaled = await eval(code);
 
-			const output = util.inspect(evaled, { depth: 0 });
-			if (output.length > 1024) {
-				gists = await gist("eval.ts", output);
-				embed.addField("🫓 Output", "https://gist.github.com/" + gists);
-				embed.addField("Type", typeof evaled);
-			} else {
-				embed.addField("🫓 Output", `\`\`\`ts\n${output}\`\`\``);
-				embed.addField("Type", typeof evaled);
-			}
-		} catch (e) {
-			const error = e;
-			if (error.length > 1024) {
-				gists = await gist("eval.ts", e);
-				embed.addField("🫓 Error", "https://gist.github.com/" + gists);
-				embed.addField("Type", typeof evaled);
-			} else {
-				embed.addField("🫓 Error", `\`\`\`ts\n${error}\`\`\``);
-				embed.addField("Type", typeof evaled);
-			}
-		}
-		if (evalcode.includes("--silent")) return message.author.send(embed);
-		if (evalcode.includes("--delete")) return;
-		let msg = await message.util.send(embed);
-
-		msg.react("🗑️");
-		msg
-			.awaitReactions((reaction, user) => user.id == message.author.id && reaction.emoji.name == "🗑️", {
-				max: 1,
-				time: 60000
-			})
-			.then((collected) => {
-				if (!collected.first()) return;
-				if (collected.first().emoji.name == "🗑️") {
-					msg.edit(
-						new MessageEmbed()
-							.setTitle(`${this.client.user.tag}'s Evaled`)
-							.setColor("RED")
-							.addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``)
-							.addField("🫓 Output", `\`\`\`ts\nDeleted :kekw:\`\`\``)
-					);
-					if (gists) {
-						centra(`https://api.github.com/gists/${gists}`, "DELETE")
-							.header("User-Agent", "Malil")
-							.header("Authorization", `token ${process.env.gist}`)
-							.send();
-					}
+				const output = util.inspect(evaled, { depth: 0 });
+				if (output.length > 1024) {
+					gists = await gist("eval.ts", output);
+					embed.addField("🫓 Output", "https://gist.github.com/" + gists);
+					embed.addField("Type", typeof evaled);
+				} else {
+					embed.addField("🫓 Output", `\`\`\`ts\n${output}\`\`\``);
+					embed.addField("Type", typeof evaled);
 				}
-			});
+			} catch (e) {
+				const error = e;
+				if (error.length > 1024) {
+					gists = await gist("eval.ts", e);
+					embed.addField("🫓 Error", "https://gist.github.com/" + gists);
+					embed.addField("Type", typeof evaled);
+				} else {
+					embed.addField("🫓 Error", `\`\`\`ts\n${error}\`\`\``);
+					embed.addField("Type", typeof evaled);
+				}
+			}
+			if (evalcode.includes("--silent")) return message.author.send(embed);
+			if (evalcode.includes("--delete")) return;
+			let msg = await message.util.send(embed);
+
+			msg.react("🗑️");
+			msg.react("🔁");
+			msg
+				.awaitReactions(
+					(reaction, user) =>
+						user.id == message.author.id && (reaction.emoji.name == "🗑️" || reaction.emoji.name == "🔁"),
+					{
+						max: 1,
+						time: 60000
+					}
+				)
+				.then((collected) => {
+					if (!collected.first()) return;
+					if (collected.first().emoji.name == "🗑️") {
+						msg.edit(
+							new MessageEmbed()
+								.setTitle(`${client.user.tag}'s Evaled`)
+								.setColor("RED")
+								.addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``)
+								.addField("🫓 Output", `\`\`\`ts\nDeleted :kekw:\`\`\``)
+						);
+						if (gists) {
+							centra(`https://api.github.com/gists/${gists}`, "DELETE")
+								.header("User-Agent", "Malil")
+								.header("Authorization", `token ${process.env.gist}`)
+								.send();
+						}
+					} else if (collected.first().emoji.name == "🔁") {
+						msg.delete();
+						ev(client);
+					}
+				});
+		}
+		ev(this.client);
 	}
 }
