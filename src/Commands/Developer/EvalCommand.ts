@@ -87,6 +87,7 @@ export default class EvalCommand extends Command {
 				time: 60000
 			})
 			.then((collected) => {
+				if (!collected.first()) return;
 				if (collected.first().emoji.name == "🗑️") {
 					msg.edit(
 						new MessageEmbed()
