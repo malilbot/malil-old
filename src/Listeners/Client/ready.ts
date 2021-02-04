@@ -24,20 +24,19 @@ export default class Ready extends Listener {
 			// ": :; :' .; ; : :_ : :: :                          \n",
 			// ": :; :' .; ; : :_ : :: :_                         \n",
 			// ":_;:_;`.__,_;`.__;:_;`.__;                        \n",
-			`\x1b[33m ${version} [ ${this.client.user
-				.username} ]\x1b[0m                                                                                         \n`,
+			`\x1b[33m ${version} [ ${this.client.user.username} ]\x1b[0m\n`,
 			`         \x1b[31m├ - Loaded  \x1b[33m- \x1b[34m${this.client.commandHandler.modules
-				.size}\x1b[33m - Commands\x1b[0m                                 \n`,
+				.size}\x1b[33m  - Commands\x1b[0m\n`,
 			`         \x1b[31m├ - Loaded  \x1b[33m- \x1b[34m${this.client.listenerHandler.modules
-				.size}\x1b[33m  - Listeners\x1b[0m                              \n`,
+				.size}\x1b[33m   - Listeners\x1b[0m                              \n`,
 			`         \x1b[31m├ - Loaded  \x1b[33m- \x1b[34m${this.client.inhibitorHandler.modules
-				.size}\x1b[33m  - Inhibitors\x1b[0m                            \n`,
+				.size}\x1b[33m   - Inhibitors\x1b[0m                            \n`,
 			`         \x1b[31m├ - Loaded  \x1b[33m- \x1b[34m${this.client.guilds.cache
-				.size}\x1b[33m  - Servers\x1b[0m                                           \n`,
+				.size}\x1b[33m   - Servers\x1b[0m                                           \n`,
 			`         \x1b[31m├ - Loaded  \x1b[33m- \x1b[34m${this.client.guilds.cache.reduce(
 				(a, b) => a + b.memberCount,
 				0
-			)}\x1b[33m - People\x1b[0m           \n`,
+			)}\x1b[33m  - People\x1b[0m           \n`,
 			`         \x1b[31m├ - Loaded  \x1b[33m- \x1b[34m${this.client.guilds.cache.reduce(
 				(a, b) => a + b.channels.cache.size,
 				0
