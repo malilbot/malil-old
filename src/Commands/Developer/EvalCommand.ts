@@ -111,7 +111,7 @@ export default class EvalCommand extends Command {
 					}
 				} else if (collected.first().emoji.name == "🔁") {
 					let evaled = eval(code);
-					const output = util.inspect(evaled, { depth: 5 });
+					const output = util.inspect(evaled, { depth: 0 });
 					msg.edit(
 						new MessageEmbed()
 							.setTitle(`${this.client.user.tag}'s Evaled`)

@@ -56,6 +56,7 @@ export default class GithubCommand extends Command {
 			this.client.releases.set(message.guild.id, arg2[1], "channel");
 		} else if (arg2[0] == "delete") {
 			this.client.releases.delete(message.guild.id, "repos");
+			this.client.releases.set(message.guild.id, {}, "repos");
 			return message.reply("oke deleted the github list");
 		} else if (arg2[0] == "add") {
 			if (!this.client.releases.get(message.guild.id, "channel"))

@@ -26,7 +26,9 @@ export default class github extends Listener {
 				let split = repos[i].split("|");
 				const data = await fetch(`https://api.github.com/repos/${split[0]}/releases`, {
 					headers: headers
-				}).then((response) => response.json());
+				})
+					.then((response) => response.json())
+					.catch((e) => {});
 				if (data.documentation_url) {
 					console.log("api rate limited");
 					console.log(split);
@@ -48,7 +50,11 @@ export default class github extends Listener {
 						let url = data[0].html_url.split("/");
 
 						let servers = client.releases.keyArray();
-						const fetchs = await fetch(data[0].url).then((response) => response.json());
+						const fetchs = await fetch(data[0].url, {
+							headers: headers
+						})
+							.then((response) => response.json())
+							.catch((e) => {});
 						/* ----------------------- */
 						SendMessage(servers, split, client, url, data, fetchs);
 
@@ -87,20 +93,31 @@ export default class github extends Listener {
 				}
 
 				let id = client.releases.get(servers[i], "channel");
-				let channel = await client.channels.fetch(id);
-				const embed = new MessageEmbed()
-					.setDescription(data[0].html_url)
-					.setTitle("new release from:  " + data[0].author.login)
-					.addField(url[4] + " " + data[0].tag_name, body)
-					.setThumbnail(data.author.avatar_url);
-				await (channel as TextChannel).send(embed);
+				let channel = await client.channels.fetch(id).catch((e) => {});
+				if (!channel) {
+				} else {
+					const embed = new MessageEmbed()
+						.setDescription(data[0].html_url)
+						.setTitle("new release from:  " + data[0].author.login)
+						.addField(url[4] + " " + data[0].tag_name, body)
+						.setThumbnail(data.author.avatar_url);
+
+					await (channel as TextChannel).send(embed).catch((e) => {});
+				}
+
 				/* ----------------------- */
 			}
 		}
 
 		async function compare(split, data) {
 			/* ----------------------- */
-			if (!data[0].tag_name || data[0].tag_name == null || split[1] == data[0].tag_name) return true;
+			if (
+				data[0].tag_name == undefined ||
+				!data[0].tag_name ||
+				data[0].tag_name == null ||
+				split[1] == data[0].tag_name
+			)
+				return true;
 			else return false;
 			/* ----------------------- */
 		}
