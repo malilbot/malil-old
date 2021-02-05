@@ -15,6 +15,7 @@ export default class github extends Listener {
 	}
 
 	async exec() {
+		return;
 		async function refreshData(client) {
 			let x = 3200; // 5 Seconds
 			const headers = {
