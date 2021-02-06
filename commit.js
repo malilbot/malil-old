@@ -24,15 +24,21 @@ rl.question(green("What is the commit message?:  "), function (answer) {
             console.log(dist1)
             console.log(dist2)
             console.log(dist3)
+            rl.close();
+
 
         } else if (answer == 'no' || answer == 'n') {
             console.log(blue("Done"))
             console.log(dist1)
             console.log(dist2)
+            rl.close();
+
         } else {
             console.log(yellow("I assume you dont want to push")) && process.exit(69)
             console.log(dist1)
             console.log(dist2)
+            rl.close();
+
         }
     })
 
