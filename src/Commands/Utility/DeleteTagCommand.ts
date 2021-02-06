@@ -8,7 +8,7 @@ export default class DeleteTagCommand extends Command {
 				"deletetag",
 				"-tag"
 			],
-			category: "Utility",
+			category: "Developer",
 			quoted: true,
 			args: [
 				{

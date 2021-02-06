@@ -7,7 +7,7 @@ export default class TagCommand extends Command {
 			aliases: [
 				"tag"
 			],
-			category: "Utility",
+			category: "Developer",
 			quoted: true,
 			args: [
 				{

@@ -8,7 +8,7 @@ export default class RawTagCommand extends Command {
     public constructor() {
         super("rawtag", {
             aliases: ["rawtag", "raw"],
-            category: "Utility",
+            category: "Developer",
             quoted: true,
             args: [
                 {

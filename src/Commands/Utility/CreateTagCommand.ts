@@ -11,7 +11,7 @@ export default class CreatetagCommand extends Command {
 				"edittag",
 				"editag"
 			],
-			category: "Utility",
+			category: "Developer",
 			quoted: true,
 			args: [
 				{

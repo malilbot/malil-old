@@ -1,3 +1,4 @@
+#!/bin/zsh
 echo "\e[4;32mEnter the commit message:\e[0m "
 read a
 git add --all

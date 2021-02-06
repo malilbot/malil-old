@@ -6,7 +6,7 @@ export default class DTagCommand extends Command {
     public constructor() {
         super("dtag", {
             aliases: ["dtag"],
-            category: "Utility",
+            category: "Developer",
             quoted: true,
             args: [
                 {
