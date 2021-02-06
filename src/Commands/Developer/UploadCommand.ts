@@ -46,13 +46,13 @@ export default class UploadCommand extends Command {
 				.catch((e) => {});
 			return data.key;
 		}
-		const first = code.split(" ").slice(1).toString();
+		const first = code.split(" ").slice(1).toString().replace(/,/g, " ");
 		const term = code.split(" ");
 		if (term[0] == "hst" || term[0] == "haste" || term[0] == "bin") {
 			message.reply(
 				new MessageEmbed()
 					.setColor("green")
-					.addField("Upload", "https://hst.skyblockdev.repl.co" + (await post(first)))
+					.addField("Upload", "https://hst.skyblockdev.repl.co/" + (await post(first)))
 			);
 		} else if (term[0] == "gist" || term[0] == "github") {
 			message.reply(
