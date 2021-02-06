@@ -34,7 +34,7 @@ rl.question(green("What is the commit message?:  "), function (answer) {
             rl.close();
 
         } else {
-            console.log(yellow("I assume you dont want to push")) && process.exit(69)
+            console.log(yellow("I assume you dont want to push"))
             console.log(dist1)
             console.log(dist2)
             rl.close();
