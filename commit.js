@@ -12,7 +12,7 @@ rl.question(green("What is the commit message?:  "), function (answer) {
     exec(`git add --all`, async (error, stdout, stderr) => {
         dist1 = error || stderr || stdout
     })
-    exec(`git commit -m "${answer}"`, async (error, stdout, stderr) => {
+    exec(`git commit`, async (error, stdout, stderr) => {
         dist2 = error || stderr || stdout
     })
     rl.question(green(out + "\nDO you want to push?:  "), function (answer) {
