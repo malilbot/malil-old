@@ -10,11 +10,10 @@ rl.question(green("What is the commit message?:  "), function (answer) {
         out = error || stderr || stdout
     })
     console.log(out)
-    exec(`git commit -m "${answer}"`, async (error, stdout, stderr) => {
+    eval(exec(`git commit -m "${answer}"`, async (error, stdout, stderr) => {
 
         out = error || stderr || stdout
-
-    })
+    }))
     rl.question(green(out + "\nDO you want to push?:  "), function (answer) {
         if (answer == 'yes' || answer == 'y') {
             exec(`git push`, async (error, stdout, stderr) => {
