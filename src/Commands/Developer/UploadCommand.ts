@@ -52,7 +52,7 @@ export default class UploadCommand extends Command {
 			message.reply(
 				new MessageEmbed()
 					.setColor("green")
-					.addField("Upload", "https://hst.skyblockdev.repl.co" + (await post(first)))
+					.addField("Upload", "https://hst.skyblockdev.repl.co/" + (await post(first)))
 			);
 		} else if (term[0] == "gist" || term[0] == "github") {
 			message.reply(
