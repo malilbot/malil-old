@@ -46,7 +46,7 @@ export default class UploadCommand extends Command {
 				.catch((e) => {});
 			return data.key;
 		}
-		const first = code.split(" ").slice(1).toString();
+		const first = code.split(" ").slice(1).toString().replace(/,/g, " ");
 		const term = code.split(" ");
 		if (term[0] == "hst" || term[0] == "haste" || term[0] == "bin") {
 			message.reply(
