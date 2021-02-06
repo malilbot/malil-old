@@ -8,11 +8,9 @@ rl.question(green("What is the commit message?:  "), function (answer) {
 
     exec(`git add --all`, async (error, stdout, stderr) => {
         out = error || stderr || stdout
-        console.log(out)
     })
     exec(`git commit -m "${answer}"`, async (error, stdout, stderr) => {
         out = error || stderr || stdout
-        console.log(out)
     })
     rl.question(green(out + "\nDO you want to push?:  "), function (answer) {
         if (answer == 'yes' || answer == 'y') {
@@ -26,11 +24,7 @@ rl.question(green("What is the commit message?:  "), function (answer) {
 
          else 
             return console.log(yellow("I assume you dont want to push")) && process.exit(69)
-
-
         
-
-
     })
 
 })
