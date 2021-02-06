@@ -25,8 +25,17 @@ export default class smajki extends Listener {
 					message.react("805835906766077985");
 				}, 5200);
 				setTimeout(() => {
+					message.react("805835617849835540");
+					message.react("805835957802762261");
+					message.react("805835970817556520");
+					message.react("805835906766077985");
+				}, 20200);
+				setTimeout(() => {
 					message.reactions.removeAll();
 				}, 5000);
+				setTimeout(() => {
+					message.reactions.removeAll();
+				}, 20000);
 			}
 			if (message.content.toLowerCase().includes("smajki") || message.content.toLowerCase().includes("smajk")) {
 				message.react("786270601857728583");

@@ -31,7 +31,7 @@ export default class TagCommand extends Command {
 	public async exec(message: Message, { args }) {
 		if (!args) return message.reply("Try again but this time actually mention a tag");
 		await this.client.tags.ensure(message.guild.id, {});
-		if (!this.client.tags.get(message.guild.id, args)) message.channel.send("Sorry couldnt find that tag");
+		if (!this.client.tags.get(message.guild.id, args)) return message.channel.send("Sorry couldnt find that tag");
 		const embed = new MessageEmbed()
 			.setColor("GREEN")
 			.setTitle(args)

@@ -78,9 +78,9 @@ If there are loopholes in our rules, the staff team may moderate based on what t
 					`**Rules of the server**\n
 If you violate any of these rules you may be punished\n
 **General rules**
-no dm advertising
-be respectfull
-no bot spamming`
+No dm advertising
+Be respectful
+No bot spamming`
 				)
 				.setTimestamp()
 				.setColor("RED");
@@ -101,7 +101,7 @@ Rules
 
 :three: No bigotry (racism, sexism etc.).
 
-:four: Bot commands can only be used sparingly (no spamming them) outside #command-tests, #support and #voice.
+:four: Bot commands can only be used sparingly (no spamming them) outside #commands, #support and #voice.
 
 :five: If you break any of these rules you will get warned, upon getting 3 strikes you will either be kicked or banned depending on the reason of your warnings.
 

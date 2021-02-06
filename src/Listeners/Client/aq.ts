@@ -1,5 +1,5 @@
 import { Listener } from "discord-akairo";
-import { MessageEmbed, Message, TextChannel } from "discord.js";
+import { MessageEmbed, Message, TextChannel, MessageAttachment } from "discord.js";
 import Client from "../../client/Client";
 import * as db from "quick.db";
 
@@ -55,6 +55,15 @@ export default class aq extends Listener {
 			let msg = await (chan as TextChannel).messages
 				.fetch(msgid)
 				.catch((e) => message.reply("message not found (message)"));
+			let url = "";
+			if (msg.attachments) {
+				msg.attachments.forEach((attachment) => {
+					url = attachment.url;
+				});
+			}
+
+			let attachment: any;
+			if (url) attachment = await new MessageAttachment(url);
 
 			if (
 				!message.member.guild.me.hasPermission([
@@ -76,7 +85,7 @@ export default class aq extends Listener {
 				);
 			//
 			await webhook
-				.send(msg.content)
+				.send(msg.content, attachment)
 				.then((msg) => webhook.delete())
 				.catch((e) => message.reply("Something went wrong"));
 		}
