@@ -1,6 +1,7 @@
 import { Listener } from "discord-akairo";
 import * as db from "quick.db";
 import Client from "../../client/Client";
+import { red, blue, yellow, green, whiteBright, white, cyan, bold } from "chalk";
 const djsversion = require("discord.js").version;
 const akairov = require("discord-akairo").version;
 const version = require("../../../package.json").version;
@@ -16,40 +17,60 @@ export default class Ready extends Listener {
 		this.client = client;
 	}
 	public async exec() {
+		// prettier-ignore
+		console.log(cyan.bold`
+
+⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green("[+]") + white(" Malil")}
+⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green("[+]") + whiteBright(" api")}
+⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${blue(`${version} [ ${this.client.user.username} ]`)}
+⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.commandHandler.modules.size}  ${yellow('-')} Commands`)}
+⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.listenerHandler.modules.size}   ${yellow('-')} Listeners`)}     
+⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.inhibitorHandler.modules.size}   ${yellow('-')} Inhibitors`)}   
+⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.guilds.cache.size}   ${yellow('-')} Servers`)}
+⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.guilds.cache.size}   ${yellow('-')} Servers`)}
+⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)}  ${yellow('-')} People`)}
+⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0)} ${yellow('-')} Channels`)}
+⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Version')} ${yellow('-')} ${green(`${akairov}    ${yellow('-')} Akairo`)}
+⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Version')} ${yellow('-')} ${green(`${djsversion}   ${yellow('-')} Discord.js`)}
+⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green('╰')} ${yellow('-')} ${red('Version')} ${yellow('-')} ${green(`${process.version} ${yellow('-')} Node.js`)}
+⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍
+`);
+
+		/*
 		// console.clear()
 		console.log(
-			// "..-..-.       .-.   _ .-.                         \n",
+			// "..${yellow('-')}..${yellow('-')}.       .${yellow('-')}.   _ .${yellow('-')}.                         \n",
 			//": `' :       : :  :_;: :                          \n",
-			// ": .. : .--.  : :  .-.: :                          \n",
+			// ": .. : .${yellow('-')}${yellow('-')}.  : :  .${yellow('-')}.: :                          \n",
 			// ": :; :' .; ; : :_ : :: :                          \n",
 			// ": :; :' .; ; : :_ : :: :_                         \n",
 			// ":_;:_;`.__,_;`.__;:_;`.__;                        \n",
 			`\x1b[33m ${version} [ ${this.client.user.username} ]\x1b[0m\n`,
-			`         \x1b[31m├ - Loaded  \x1b[33m- \x1b[34m${this.client.commandHandler.modules
-				.size}\x1b[33m  - Commands\x1b[0m\n`,
-			`         \x1b[31m├ - Loaded  \x1b[33m- \x1b[34m${this.client.listenerHandler.modules
-				.size}\x1b[33m   - Listeners\x1b[0m                              \n`,
-			`         \x1b[31m├ - Loaded  \x1b[33m- \x1b[34m${this.client.inhibitorHandler.modules
-				.size}\x1b[33m   - Inhibitors\x1b[0m                            \n`,
-			`         \x1b[31m├ - Loaded  \x1b[33m- \x1b[34m${this.client.guilds.cache
-				.size}\x1b[33m   - Servers\x1b[0m                                           \n`,
-			`         \x1b[31m├ - Loaded  \x1b[33m- \x1b[34m${this.client.guilds.cache.reduce(
+			`         \x1b[31m${green('├')} ${yellow('-')} ${red('Loaded')}  \x1b[33m${yellow('-')} \x1b[34m${this.client.commandHandler.modules
+				.size}\x1b[33m  ${yellow('-')} Commands\x1b[0m\n`,
+			`         \x1b[31m${green('├')} ${yellow('-')} ${red('Loaded')}  \x1b[33m${yellow('-')} \x1b[34m${this.client.listenerHandler.modules
+				.size}\x1b[33m   ${yellow('-')} Listeners\x1b[0m                              \n`,
+			`         \x1b[31m${green('├')} ${yellow('-')} ${red('Loaded')}  \x1b[33m${yellow('-')} \x1b[34m${this.client.inhibitorHandler.modules
+				.size}\x1b[33m   ${yellow('-')} Inhibitors\x1b[0m                            \n`,
+			`         \x1b[31m${green('├')} ${yellow('-')} ${red('Loaded')}  \x1b[33m${yellow('-')} \x1b[34m${this.client.guilds.cache
+				.size}\x1b[33m   ${yellow('-')} Servers\x1b[0m                                           \n`,
+			`         \x1b[31m${green('├')} ${yellow('-')} ${red('Loaded')}  \x1b[33m${yellow('-')} \x1b[34m${this.client.guilds.cache.reduce(
 				(a, b) => a + b.memberCount,
 				0
-			)}\x1b[33m  - People\x1b[0m           \n`,
-			`         \x1b[31m├ - Loaded  \x1b[33m- \x1b[34m${this.client.guilds.cache.reduce(
+			)}\x1b[33m  ${yellow('-')} People\x1b[0m           \n`,
+			`         \x1b[31m${green('├')} ${yellow('-')} ${red('Loaded')}  \x1b[33m${yellow('-')} \x1b[34m${this.client.guilds.cache.reduce(
 				(a, b) => a + b.channels.cache.size,
 				0
-			)}\x1b[33m - Channels\x1b[0m \n`,
-			`         \x1b[31m├ - Version \x1b[33m- \x1b[34m${akairov}\x1b[33m    - Akairo\x1b[0m                                                                \n`,
-			`         \x1b[31m├ - Version \x1b[33m- \x1b[34m${djsversion}\x1b[33m   - Discord.js\x1b[0m                                                          \n`,
-			`         \x1b[31m╰ - Version \x1b[33m- \x1b[34m${process.version}\x1b[33m - Node.js\x1b[0m                                                            `
-			// ' \x1b[31m---------------------------------------------------------\x1b[0m'
+			)}\x1b[33m ${yellow('-')} Channels\x1b[0m \n`,
+			`         \x1b[31m${green('├')} ${yellow('-')} Version \x1b[33m${yellow('-')} \x1b[34m${akairov}\x1b[33m    ${yellow('-')} Akairo\x1b[0m                                                                \n`,
+			`         \x1b[31m${green('├')} ${yellow('-')} Version \x1b[33m${yellow('-')} \x1b[34m${djsversion}\x1b[33m   ${yellow('-')} Discord.js\x1b[0m                                                          \n`,
+			`         \x1b[31m${green('╰')} ${yellow('-')} Version \x1b[33m${yellow('-')} \x1b[34m${process.version}\x1b[33m ${yellow('-')} Node.js\x1b[0m                                                            `
+			// ' \x1b[31m${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}${yellow('-')}\x1b[0m'
 		);
 		// this.client.logger.info(`\x1b[33m[CLIENT STARTED]\x1b[32m: Im ${this.client.user.tag} Ready To Go`)
-		// this.client.logger.info(`\x1b[33m[COMMANDS LOADED]\x1b[32m: ${this.client.commandHandler.modules.size}`)
-		// this.client.logger.info(`\x1b[33m[LISTENERS LOADED]\x1b[32m: ${this.client.listenerHandler.modules.size}`)
-		// this.client.logger.info(`\x1b[33m[INHIBITORS LOADED]\x1b[32m: ${this.client.inhibitorHandler.modules.size}`)
+		// this.client.logger.info(`\x1b[33m[COMMANDS ${red('Loaded')}]\x1b[32m: ${this.client.commandHandler.modules.size}`)
+		// this.client.logger.info(`\x1b[33m[LISTENERS ${red('Loaded')}]\x1b[32m: ${this.client.listenerHandler.modules.size}`)
+		// this.client.logger.info(`\x1b[33m[INHIBITORS ${red('Loaded')}]\x1b[32m: ${this.client.inhibitorHandler.modules.size}`)
 		// —— requireing the config
 		/*
 		const config = require("../../../config.json");
