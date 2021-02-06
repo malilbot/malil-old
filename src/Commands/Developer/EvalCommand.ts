@@ -3,6 +3,7 @@ import { MessageEmbed, Message } from "discord.js";
 import util from "util";
 import { gist } from "../../Utils/Utils";
 import centra from "centra";
+import fetch from "node-fetch";
 import * as db from "quick.db";
 
 export default class EvalCommand extends Command {
@@ -41,6 +42,15 @@ export default class EvalCommand extends Command {
 		};
 		//
 		//
+		async function post(input) {
+			const data = await fetch("https://hst.skyblockdev.repl.co/documents", {
+				method: "post",
+				body: input
+			})
+				.then((response) => response.json())
+				.catch((e) => {});
+			return data.key;
+		}
 		function channel(chanid, message, client) {
 			return client.channels.fetch(chanid).then((channel) => channel.send(message));
 		}
@@ -60,8 +70,7 @@ export default class EvalCommand extends Command {
 
 			const output = util.inspect(evaled, { depth: 0 });
 			if (output.length > 1024) {
-				gists = await gist("eval.ts", output);
-				embed.addField("🫓 Output", "https://gist.github.com/" + gists);
+				embed.addField("🫓 Output", "https://hst.skyblockdev.repl.co/" + (await post(output)));
 				embed.addField("Type", typeof evaled);
 			} else {
 				embed.addField("🫓 Output", `\`\`\`ts\n${output}\`\`\``);
@@ -70,8 +79,7 @@ export default class EvalCommand extends Command {
 		} catch (e) {
 			const error = e;
 			if (error.length > 1024) {
-				gists = await gist("eval.ts", e);
-				embed.addField("🫓 Error", "https://gist.github.com/" + gists);
+				embed.addField("🫓 Error", "https://hst.skyblockdev.repl.co/" + (await post(error)));
 				embed.addField("Type", typeof evaled);
 			} else {
 				embed.addField("🫓 Error", `\`\`\`ts\n${error}\`\`\``);
