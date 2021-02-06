@@ -75,8 +75,6 @@ export default class QuoteCommand extends Command {
 			.createWebhook(msg.author.tag)
 			.then((webhook) => webhook.edit({ avatar: msg.author.displayAvatarURL({ size: 2048, format: "png" }) }));
 		//
-		console.log(attachment);
-		console.log(url);
 		await webhook
 			.send(msg.content, attachment)
 			.then((msg) => webhook.delete())
