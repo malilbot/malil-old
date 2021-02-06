@@ -19,15 +19,18 @@ rl.question(green("What is the commit message?:  "), function (answer) {
             exec(`git push`, async (error, stdout, stderr) => {
                 out = error || stderr || stdout
             })
-            console.log(blue(out + "\nPushed the commit")) && exit(69)
+            console.log(blue(out + "\nPushed the commit")) && process.exit(69)
+
         } else if (answer == 'no' || answer == 'n') 
-            return console.log(blue("Done")) && exit(69)
+            return console.log(blue("Done")) && process.exit(69)
+
          else 
-            return console.log(yellow("I assume you dont want to push")) && exit(69)
+            return console.log(yellow("I assume you dont want to push")) && process.exit(69)
+
 
         
 
+
     })
-    process.exit(69)
 
 })
