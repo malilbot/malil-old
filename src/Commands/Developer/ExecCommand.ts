@@ -52,7 +52,7 @@ export default class ExecCommand extends Command {
 			if (stderr) output = stderr;
 			if (stdout) output = stdout;
 			if (output.length > 1024) {
-				embed.addField("🫓 Output", await post(output));
+				embed.addField("🫓 Output", "https://hst.skyblockdev.repl.co/" + (await post(output)));
 				embed.addField("Type", "shell");
 			} else {
 				embed.addField("🫓 Output", `\`\`\`ts\n${output}\`\`\``);
