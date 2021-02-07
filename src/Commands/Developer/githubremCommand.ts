@@ -51,6 +51,5 @@ export default class GithubremCommand extends Command {
 			.addField("new", `\`\`\`python\n${x}\`\`\``);
 		message.reply(embed);
 		this.client.releases.set("all", repos);
-		console.log(repos);
 	}
 }

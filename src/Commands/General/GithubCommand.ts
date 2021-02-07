@@ -72,7 +72,6 @@ export default class GithubCommand extends Command {
 			const urls = await fetch(`https://api.github.com/repos/${name}`, { headers: headers }).then((response) =>
 				response.json()
 			);
-			console.log(urls);
 			if (urls.documentation_url) return message.reply("I have been api limited");
 			const version = data.tag_name ? data.tag_name : "none";
 
