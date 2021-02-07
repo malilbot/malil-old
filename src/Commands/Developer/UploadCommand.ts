@@ -28,7 +28,6 @@ export default class UploadCommand extends Command {
 					match: "rest"
 				}
 			],
-			ownerOnly: true,
 			channel: "guild"
 		});
 	}
@@ -55,6 +54,7 @@ export default class UploadCommand extends Command {
 					.addField("Upload", "https://hst.skyblockdev.repl.co/" + (await post(first)))
 			);
 		} else if (term[0] == "gist" || term[0] == "github") {
+			if (message.author.id !== "336465356304678913") return;
 			message.reply(
 				new MessageEmbed()
 					.setColor("white")
