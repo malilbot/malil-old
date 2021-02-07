@@ -4,10 +4,10 @@ import { MessageEmbed, TextChannel } from "discord.js";
 import fetch from "node-fetch";
 import * as Topgg from "@top-gg/sdk";
 
-export default class github extends Listener {
+export default class topgg extends Listener {
 	client: Client;
 	public constructor(client: Client) {
-		super("github", {
+		super("topgg", {
 			emitter: "client",
 			event: "ready",
 			category: "client"
