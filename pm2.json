@@ -1,0 +1,18 @@
+{
+    "apps": [
+        {
+            "name": "Malil",
+            "script": "start.ts",
+            "watch": true,
+            "ignore_watch": [
+                "uploads",
+                "downloads"
+            ],
+            "instances": "1",
+            "exec_mode": "cluster",
+            "env": {
+                "production": true
+            }
+        }
+    ]
+}
