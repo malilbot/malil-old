@@ -18,7 +18,7 @@ export default class github extends Listener {
 	async exec() {
 		if (this.client.user.id == "800389986042118175") return;
 
-		const api = new Topgg.Api("Your top.gg token");
+		const api = new Topgg.Api(process.env.TOPGG);
 
 		setInterval(() => {
 			api.postStats({
