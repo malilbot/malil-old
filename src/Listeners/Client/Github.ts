@@ -33,8 +33,10 @@ export default class github extends Listener {
 					console.log("api rate limited");
 					console.log(split);
 				} else {
-					if ((await compare(split, data)) == true) {
+					if (!data[0].tag_name) {
+					} else if ((await compare(split, data).catch((e) => console.log(e))) == true) {
 					} else {
+						console.log("good compare");
 						/* ----------------------- */
 						for (var l = 0; l < repos.length; l++) {
 							if (repos[l] == repos[i]) {
@@ -59,9 +61,6 @@ export default class github extends Listener {
 						SendMessage(servers, split, client, url, data, fetchs);
 
 						/* ----------------------- */
-					}
-					if (!data[0].tag_name) {
-					} else {
 					}
 				}
 			}
@@ -99,8 +98,7 @@ export default class github extends Listener {
 					const embed = new MessageEmbed()
 						.setDescription(data[0].html_url)
 						.setTitle("new release from:  " + data[0].author.login)
-						.addField(url[4] + " " + data[0].tag_name, body)
-						.setThumbnail(data.author.avatar_url);
+						.addField(url[4] + " " + data[0].tag_name, body);
 
 					await (channel as TextChannel).send(embed).catch((e) => {});
 				}
@@ -112,8 +110,8 @@ export default class github extends Listener {
 		async function compare(split, data) {
 			/* ----------------------- */
 			if (
-				data[0].tag_name == undefined ||
 				!data[0].tag_name ||
+				data[0].tag_name == undefined ||
 				data[0].tag_name == null ||
 				split[1] == data[0].tag_name
 			)

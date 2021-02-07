@@ -26,8 +26,8 @@ export default class Client extends AkairoClient {
 	public commandHandler: CommandHandler = new CommandHandler(this, {
 		directory: join(__dirname, "..", "Commands"),
 		prefix: (message) => {
-			this.prefixes.ensure(message.guild.id, {});
-			if (message.guild.id == null || !this.prefixes.get(message.guild.id, "prefix")) {
+			if (message.guild !== null) this.prefixes.ensure(message.guild.id, {});
+			if (message.guild == null || !this.prefixes.get(message.guild.id, "prefix")) {
 				return process.env.PREFIX;
 			} else {
 				return this.prefixes.get(message.guild.id, "prefix");
