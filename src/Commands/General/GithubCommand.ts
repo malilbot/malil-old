@@ -87,7 +87,7 @@ export default class GithubCommand extends Command {
 			//
 		} else if (arg2[0] == "list") {
 			let thing = this.client.releases.get(message.guild.id, "repos").toString().replace(/,/g, "\n");
-			message.channel.send("**currently watching:** \n" + thing);
+			message.channel.send("**currently watching:** \n" + thing || "Nothing");
 		} else message.reply("Check `*help github` for info about this command");
 
 		/*

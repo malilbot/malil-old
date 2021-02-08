@@ -84,10 +84,8 @@ export default class github extends Listener {
 					}
 					/* ----------------------- */
 					body = cutString(body, 400);
-					console.log(body);
 					body += "....";
 				}
-				console.log(body);
 				if (!client.releases.get(servers[i], "repos").includes(split[0])) {
 				}
 
