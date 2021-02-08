@@ -15,12 +15,11 @@ export default class github extends Listener {
 	}
 
 	async exec() {
-		async function refreshData(client) {
-			let x = 3200; // 5 Seconds
+		setInterval(async () => {
 			const headers = {
 				"Content-Authorization": `token ${process.env.gist}`
 			};
-			let repos = client.releases.get("all");
+			let repos = this.client.releases.get("all");
 			for (var i = 0; i < repos.length; i++) {
 				/* ----------------------- */
 				let split = repos[i].split("|");
@@ -46,26 +45,25 @@ export default class github extends Listener {
 
 						/* ----------------------- */
 
-						client.releases.set("all", repos);
-						client.releases.push("all", split[0] + "|" + data[0].tag_name);
+						this.client.releases.set("all", repos);
+						this.client.releases.push("all", split[0] + "|" + data[0].tag_name);
 
 						let url = data[0].html_url.split("/");
 
-						let servers = client.releases.keyArray();
+						let servers = this.client.releases.keyArray();
 						const fetchs = await fetch(data[0].url, {
 							headers: headers
 						})
 							.then((response) => response.json())
 							.catch((e) => {});
 						/* ----------------------- */
-						SendMessage(servers, split, client, url, data, fetchs);
+						SendMessage(servers, split, this.client, url, data, fetchs);
 
 						/* ----------------------- */
 					}
 				}
 			}
-			setTimeout(refreshData, x * 1000);
-		}
+		}, 1800000);
 
 		async function SendMessage(servers, split, client, url, data, fetchs) {
 			for (var i = 0; i < servers.length; i++) {
@@ -117,10 +115,8 @@ export default class github extends Listener {
 			else return false;
 			/* ----------------------- */
 		}
-		refreshData(this.client);
 
 		/*
-
         [
   {
     url: 'https://api.github.com/repos/SkyBlockDev/The-trickster/releases/35188037',
