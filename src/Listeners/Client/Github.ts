@@ -85,18 +85,18 @@ export default class github extends Listener {
 					body += "....";
 				}
 				if (!client.releases.get(servers[i], "repos").includes(split[0])) {
-				}
-
-				let id = client.releases.get(servers[i], "channel");
-				let channel = await client.channels.fetch(id).catch((e) => {});
-				if (!channel) {
 				} else {
-					const embed = new MessageEmbed()
-						.setDescription(data[0].html_url)
-						.setTitle("new release from:  " + data[0].author.login)
-						.addField(url[4] + " " + data[0].tag_name, body);
+					let id = client.releases.get(servers[i], "channel");
+					let channel = await client.channels.fetch(id).catch((e) => {});
+					if (!channel) {
+					} else {
+						const embed = new MessageEmbed()
+							.setDescription(data[0].html_url)
+							.setTitle("new release from:  " + data[0].author.login)
+							.addField(url[4] + " " + data[0].tag_name, body);
 
-					await (channel as TextChannel).send(embed).catch((e) => {});
+						await (channel as TextChannel).send(embed).catch((e) => {});
+					}
 				}
 
 				/* ----------------------- */
