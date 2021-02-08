@@ -22,7 +22,7 @@ export default class topgg extends Listener {
 
 		setInterval(() => {
 			api.postStats({
-				serverCount: this.client.guilds.cache.size,
+				serverCount: this.client.guilds.cache.size + 5,
 				shardCount: this.client.options.shardCount
 			});
 		}, 1800000);
