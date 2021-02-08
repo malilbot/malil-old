@@ -39,7 +39,7 @@ export default class Client extends AkairoClient {
 		handleEdits: true,
 		commandUtil: true,
 		commandUtilLifetime: 3e5,
-		defaultCooldown: 3000,
+		defaultCooldown: 6000,
 		argumentDefaults: {
 			prompt: {
 				modifyStart: (_, str): string => `${str}\n\nType \`cancel\` to cancel the commmand`,
