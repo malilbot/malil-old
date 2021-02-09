@@ -45,14 +45,14 @@ export default class GithubCommand extends Command {
 			let chnnale = await this.client.channels
 				.fetch(channel)
 				.then((channel) =>
-					message.reply(
+					message.util.send(
 						"Succesfully set the channel to: " +
 							channel +
 							"\n make sure that i have permission to that channel"
 					)
 				)
 				.catch((e) => (o = e));
-			if (o) return message.reply("channel not found");
+			if (o) return message.util.send("channel not found");
 			this.client.releases.set(message.guild.id, arg2[1], "channel");
 		} else if (arg2[0] == "delete") {
 			this.client.releases.delete(message.guild.id, "repos");
@@ -60,19 +60,21 @@ export default class GithubCommand extends Command {
 			return message.reply("oke deleted the github list");
 		} else if (arg2[0] == "add") {
 			if (!this.client.releases.get(message.guild.id, "channel"))
-				return message.reply("no channel set please set one with: `github set <chanid> `");
+				return message.util.send("no channel set please set one with: `github set <chanid> `");
 			args = args.split("/");
+
 			const headers = {
 				"Content-Authorization": `token ${process.env.gist}`
 			};
 			const name = args[3] + "/" + args[4];
+			if (!args[4]) return message.util.send("Please try the command again but this time send a repo link");
 			const data = await fetch(`https://api.github.com/repos/${name}/releases`, {
 				headers: headers
 			}).then((response) => response.json());
 			const urls = await fetch(`https://api.github.com/repos/${name}`, { headers: headers }).then((response) =>
 				response.json()
 			);
-			if (urls.documentation_url) return message.reply("I have been api limited");
+			if (urls.documentation_url) return message.util.send("I have been api limited");
 			const version = data.tag_name ? data.tag_name : "none";
 
 			let url = data.html_url ? data.html_url : urls.html_url;
@@ -80,14 +82,15 @@ export default class GithubCommand extends Command {
 			// url = url[3] + "/" + url[4];
 			let input = url.split("/");
 			let output = input[3] + "/" + input[4] + "|" + version;
-			message.reply("Added: <" + url + "> to watch list.");
+			message.util.send("Added: <" + url + "> to watch list.");
 			this.client.releases.push("all", output);
 			this.client.releases.push(message.guild.id, name, "repos");
 
 			//
 		} else if (arg2[0] == "list") {
 			let thing = this.client.releases.get(message.guild.id, "repos").toString().replace(/,/g, "\n");
-			message.channel.send("**currently watching:** \n" + thing || "Nothing");
+			if (!thing) return message.util.send("Currently not watching anything");
+			message.util.send("**currently watching:** \n" + thing || "Nothing");
 		} else message.reply("Check `*help github` for info about this command");
 
 		/*
