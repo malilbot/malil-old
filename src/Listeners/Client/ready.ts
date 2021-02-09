@@ -23,11 +23,11 @@ export default class Ready extends Listener {
 ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green("[+]") + white(" Malil")}
 ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green("[+]") + whiteBright(" api")}
 ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${blue(`${version} [ ${this.client.user.username} ]`)}
-⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.commandHandler.modules.size}    ${yellow('-')} Commands`)}
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.listenerHandler.modules.size}    ${yellow('-')} Listeners`)}     
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.inhibitorHandler.modules.size}     ${yellow('-')} Inhibitors`)}   
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.guilds.cache.size}    ${yellow('-')} Servers`)}
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.guilds.cache.size}    ${yellow('-')} Servers`)}
+⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.commandHandler.modules.size}     ${yellow('-')} Commands`)}
+⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.listenerHandler.modules.size}     ${yellow('-')} Listeners`)}     
+⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.inhibitorHandler.modules.size}      ${yellow('-')} Inhibitors`)}   
+⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.guilds.cache.size}     ${yellow('-')} Servers`)}
+⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.guilds.cache.size}     ${yellow('-')} Servers`)}
 ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)}  ${yellow('-')} People`)}
 ⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0)}    ${yellow('-')} Channels`)}
 ⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Version')} ${yellow('-')} ${green(`${akairov}    ${yellow('-')} Akairo`)}
