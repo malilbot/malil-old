@@ -32,7 +32,8 @@ export default class github extends Listener {
 					console.log("api rate limited");
 					console.log(split);
 				} else {
-					if (!data[0].tag_name) {
+					const thing = data[0].tag_name;
+					if (!thing) {
 					} else if ((await compare(split, data).catch((e) => console.log(e))) == true) {
 					} else {
 						console.log("good compare");
@@ -105,7 +106,10 @@ export default class github extends Listener {
 
 		async function compare(split, data) {
 			/* ----------------------- */
+			const thing = data[0].tag_name;
 			if (
+				!thing ||
+				!data[0] ||
 				!data[0].tag_name ||
 				data[0].tag_name == undefined ||
 				data[0].tag_name == null ||
