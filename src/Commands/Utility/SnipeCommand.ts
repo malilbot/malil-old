@@ -32,10 +32,6 @@ export default class SnipeCommand extends Command {
 	}
 
 	public async exec(message: Message, { args }) {
-		message.guild.channels.cache.forEach(async (element) => {
-			let ids = await (element as TextChannel).messages.fetch({ limit: 10 });
-			ids.forEach((element) => {});
-		});
 		let content = db.get(`snipe.${message.guild.id}.${message.channel.id}.content`);
 		if (!content) return message.reply("No Snipes found in this channel");
 		let author = db.get(`snipe.${message.guild.id}.${message.channel.id}.author`);

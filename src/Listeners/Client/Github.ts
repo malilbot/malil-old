@@ -34,7 +34,9 @@ export default class github extends Listener {
 				} else {
 					const thing = data[0].tag_name;
 					if (!thing) {
-					} else if ((await compare(split, data).catch((e) => console.log(e))) == true) {
+						console.log("eeee");
+					} else if (split[1] == data[0].tag_name) {
+						console.log("eeeee");
 					} else {
 						console.log("good compare");
 						/* ----------------------- */
