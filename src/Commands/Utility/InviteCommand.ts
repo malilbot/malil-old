@@ -32,7 +32,9 @@ export default class InviteCommand extends Command {
 		message.reply(
 			new MessageEmbed()
 				.setTitle("click here to invtite malil to your server")
-				.setURL("https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=49152")
+				.setURL(
+					"https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824"
+				)
 		);
 	}
 }
