@@ -54,7 +54,7 @@ export default class QuoteCommand extends Command {
 				url = attachment.url;
 			});
 		}
-
+		if ((chan as TextChannel).nsfw) return message.channel.send("nsfw");
 		let attachment: any;
 		if (url) attachment = await new MessageAttachment(url);
 		if (
@@ -70,6 +70,7 @@ export default class QuoteCommand extends Command {
 					.setFooter("didnt have WebhookPermissions so send a embed instead")
 			);
 		}
+
 		// magic
 		let webhook = await (message.channel as TextChannel)
 			.createWebhook(msg.author.tag)

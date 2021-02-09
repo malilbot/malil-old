@@ -61,7 +61,7 @@ export default class aq extends Listener {
 					url = attachment.url;
 				});
 			}
-
+			if ((chan as TextChannel).nsfw) return message.channel.send("nsfw");
 			let attachment: any;
 			if (url) attachment = await new MessageAttachment(url);
 
