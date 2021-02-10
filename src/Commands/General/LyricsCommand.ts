@@ -41,11 +41,7 @@ export default class lyricsCommand extends Command {
 		getSong(options).then((song) => {
 			if (!song) return message.reply("song not found F");
 			let lyrics = song.lyrics;
-			lyrics = lyrics
-				.replace(/nigger/g, "n-")
-				.replace(/nigga/g, "n-")
-				.replace(/\[.*?\]/g, "")
-				.replace(/\n\n/g, "\n");
+
 			if (song.lyrics.length > 1024) {
 				function cutString(s, n) {
 					/* ----------------------- */
@@ -57,6 +53,11 @@ export default class lyricsCommand extends Command {
 				lyrics = cutString(lyrics, 1000);
 				lyrics += "....";
 			}
+			lyrics = lyrics
+				.replace(/nigger/g, "n-")
+				.replace(/nigga/g, "n-")
+				.replace(/\[.*?\]/g, "")
+				.replace(/\n\n/g, "\n");
 			// prettier-ignore
 
 			message.reply(new MessageEmbed().setTitle(args).setURL(song.url).addField("lyrics", lyrics));
