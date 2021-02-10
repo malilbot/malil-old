@@ -25,7 +25,7 @@ export default class lyricsCommand extends Command {
 					"lyrics"
 				]
 			},
-			ratelimit: 3,
+			ratelimit: 1,
 			channel: "guild"
 		});
 	}
@@ -39,6 +39,7 @@ export default class lyricsCommand extends Command {
 		};
 
 		getSong(options).then((song) => {
+			if (!song) return message.reply("song not found F");
 			let lyrics = song.lyrics;
 			if (song.lyrics.length > 1024) {
 				function cutString(s, n) {
