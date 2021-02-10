@@ -39,8 +39,12 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
+    
+    "lwip": "https://github.com/randytarampi/lwip",
     "@top-gg/sdk": "^3.0.7",
+    "ascii-art": "^2.5.0",
     "axios": "^0.21.1",
+    "canvas": "^2.6.1",
     "centra": "^2.4.2",
     "chalk": "^4.1.0",
     "common-tags": "^1.8.0",
@@ -54,7 +58,9 @@
     "moment": "^2.29.1",
     "ms": "^2.1.3",
     "nodemon": "^2.0.7",
+    "one-by-one": "^3.2.8",
     "quick.db": "^7.1.3",
+    "ul": "^5.2.15",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.0"
   }
