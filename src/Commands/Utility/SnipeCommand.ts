@@ -36,7 +36,7 @@ export default class SnipeCommand extends Command {
 		if (!content) return message.reply("No Snipes found in this channel");
 		let author = db.get(`snipe.${message.guild.id}.${message.channel.id}.author`);
 		if (!author) return message.reply("No Snipes found in this channel");
-		const Embed = new MessageEmbed().setColor("#8E44AD").setTitle(`Snipe: ${author}`).setDescription(`${content}`);
+		const Embed = new MessageEmbed().setColor("#8E44AD").setTitle(`Snipe`).addField(author, content);
 		message.channel.send(Embed);
 	}
 }

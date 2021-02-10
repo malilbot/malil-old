@@ -32,6 +32,8 @@ export default class github extends Listener {
 					console.log("api rate limited");
 					console.log(split);
 				} else {
+					console.log(data[0] || "FFFFFFFFFFFFFSSSSSSSSSSSSSSSSSSSSSSS STOP WITH ERRORS THANKS DADDY");
+					console.log(data);
 					if (!data[0].tag_name) {
 						console.log("eeee");
 					} else if (split[1] == data[0].tag_name) {
