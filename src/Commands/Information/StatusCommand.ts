@@ -38,7 +38,7 @@ export default class StatsCommand extends Command {
 				.setAuthor(this.client.user.tag, this.client.user.avatarURL())
 				.setThumbnail(this.client.user.displayAvatarURL())
 				.setTimestamp()
-				.setFooter("")
+				.setFooter("Credits to: Shakespaw#1906 for idea's")
 				.setColor(message.guild.me.displayHexColor || "RED")
 				.addField("General", [
 					`**● Name:** ${this.client.user.tag} (${this.client.user.id})`,
