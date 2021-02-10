@@ -10,7 +10,8 @@ export default class AsciifyCommand extends Command {
 				"ascii",
 				"assci",
 				"asccii",
-				"asci"
+				"asci",
+				"aci"
 			],
 			args: [
 				{
@@ -23,10 +24,10 @@ export default class AsciifyCommand extends Command {
 			category: "General",
 			quoted: true,
 			description: {
-				content: "",
+				content: "Turn a image into a ascii",
 				usage: "asciify",
 				example: [
-					"asciify"
+					"asciify then a attachment"
 				]
 			},
 			ratelimit: 3,
@@ -43,8 +44,8 @@ export default class AsciifyCommand extends Command {
 		};
 		const bigoptions = {
 			fit: "box",
-			width: 256,
-			height: 256,
+			width: 128,
+			height: 128,
 			color: false
 		};
 		let url;
