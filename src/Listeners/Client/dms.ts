@@ -14,6 +14,8 @@ export default class message extends Listener {
     }
 
     async exec(message: Message) {
-    console.log(message.author.id)
+    if (message.author.bot) return;
+    if (message.guild !== null) return;
+    this.client.logger.info(`\x1b[35m[DM]\x1b[32m[AUTHOR]\x1b[34m ${message.author.tag} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`)
     }
 }
