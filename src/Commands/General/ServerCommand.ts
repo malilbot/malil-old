@@ -23,7 +23,7 @@ export default class ServerCommand extends Command {
 
     public async exec(message: Message) {
 		let embed = new MessageEmbed()
-			.setColor('RANDOM')
+			.setColor(this.client.setting.colors.orange)
 			.setTitle('Server Info')
 			.setDescription(`${message.guild}'s information`)
 			.addField('Owner', `The owner of this server is ${message.guild.owner}`)

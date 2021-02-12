@@ -33,7 +33,6 @@ export default class EvalCommand extends Command {
 		});
 	}
 	public async exec(message: Message, { code }) {
-		console.log(this.client.setting)
 		//https://gist.github.com/
 
 		//
@@ -56,7 +55,7 @@ export default class EvalCommand extends Command {
 		if (code.includes("--delete")) code = code.replace("--delete", "") && message.delete();
 		const embed = new MessageEmbed()
 			.setTitle(`${this.client.user.tag}'s Evaled`)
-			.setColor("RED")
+			.setColor(this.client.setting.colors.red)
 			.addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``);
 
 		try {
@@ -101,7 +100,7 @@ export default class EvalCommand extends Command {
 					msg.edit(
 						new MessageEmbed()
 							.setTitle(`${this.client.user.tag}'s Evaled`)
-							.setColor("RED")
+							.setColor(this.client.setting.colors.red)
 							.addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``)
 							.addField("🫓 Output", `\`\`\`ts\nDeleted :kekw:\`\`\``)
 					);
@@ -117,7 +116,7 @@ export default class EvalCommand extends Command {
 					msg.edit(
 						new MessageEmbed()
 							.setTitle(`${this.client.user.tag}'s Evaled`)
-							.setColor("RED")
+							.setColor(this.client.setting.colors.red)
 							.addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``)
 							.addField("🫓 Output", `\`\`\`ts\n${output}\`\`\``)
 							.addField("Type", typeof evaled)

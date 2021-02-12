@@ -32,7 +32,7 @@ export default class updateCommand extends Command {
             if (stdout)  output = stdout
         const embed = new MessageEmbed()
             .setTitle(`Update`)
-            .setColor("RED")
+            .setColor(this.client.setting.colors.blue)
             .addField("🍞 Input", `\`\`\`bash\ngit pull && npm run build && pm2 restart 10\`\`\``)
             .addField("🫓 Output", `\`\`\`bash\n${output}\`\`\``)
             .addField("Type", "bash");

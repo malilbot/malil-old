@@ -41,7 +41,7 @@ export default class CreatetagCommand extends Command {
 			await this.client.tags.ensure(message.guild.id, {});
 			await this.client.tags.set(message.guild.id, input, args[0]);
 			const embed = new MessageEmbed()
-				.setColor("RED")
+				.setColor(this.client.setting.colors.red)
 				.setTitle("Tag created.")
 				.addFields({ name: args[0], value: input });
 			message.reply(embed);

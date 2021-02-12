@@ -33,7 +33,7 @@ export default class TagCommand extends Command {
 		await this.client.tags.ensure(message.guild.id, {});
 		if (!this.client.tags.get(message.guild.id, args)) return message.channel.send("Sorry couldnt find that tag");
 		const embed = new MessageEmbed()
-			.setColor("GREEN")
+			.setColor(this.client.setting.colors.green)
 			.setTitle(args)
 			.setDescription(this.client.tags.get(message.guild.id, args));
 		message.reply(embed);

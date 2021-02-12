@@ -44,7 +44,7 @@ export default class ExecCommand extends Command {
 		exec(code, async (error, stdout, stderr) => {
 			const embed = new MessageEmbed()
 				.setTitle(`Exec`)
-				.setColor("RED")
+				.setColor(this.client.setting.colors.default)
 				.addField("🍞 Input", `\`\`\`bash\n${code}\`\`\``)
 				.addField("Type", "bash");
 			let output = "";

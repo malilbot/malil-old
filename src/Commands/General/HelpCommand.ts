@@ -34,7 +34,7 @@ export default class HelpCommand extends Command {
 			return message.channel.send(
 				new MessageEmbed()
 					.setAuthor(`Help | ${this.client.user.tag}`, this.client.user.displayAvatarURL())
-					.setColor("RANDOM")
+					.setColor(this.client.setting.colors.orange)
 					.setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" }))
 					.setDescription(stripIndents`
             **Aliases**
@@ -55,7 +55,7 @@ export default class HelpCommand extends Command {
 
 		const embed = new MessageEmbed()
 			.setAuthor(`Help | ${this.client.user.tag}`, this.client.user.displayAvatarURL())
-			.setColor("RANDOM")
+			.setColor(this.client.setting.colors.orange)
 			.setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" }))
 			.setFooter(`@malil help [ command ] for more information on a command.`);
 

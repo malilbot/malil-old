@@ -37,7 +37,7 @@ export default class IqCommand extends Command {
         db.set(`member.${member.id}.iq`, iq)
     }
         const iEmbed = new MessageEmbed()
-        .setColor('#8E44AD')    
+        .setColor(this.client.setting.colors.default)
         .setTitle("IQ Test")
         .setDescription(`${member}'s IQ is: \`${iq}\`!`)
         message.channel.send(iEmbed)

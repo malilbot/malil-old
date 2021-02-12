@@ -50,14 +50,14 @@ export default class UploadCommand extends Command {
 		if (term[0] == "hst" || term[0] == "haste" || term[0] == "bin") {
 			message.reply(
 				new MessageEmbed()
-					.setColor("green")
+					.setColor(this.client.setting.colors.green)
 					.addField("Upload", "https://hst.skyblockdev.repl.co/" + (await post(first)))
 			);
 		} else if (term[0] == "gist" || term[0] == "github") {
 			if (message.author.id !== "336465356304678913") return;
 			message.reply(
 				new MessageEmbed()
-					.setColor("white")
+					.setColor(this.client.setting.colors.green)
 					.addField("Upload", "https://gist.github.com/" + (await gist("upload", first, this.client)))
 			);
 		} else message.reply("Please mention a platform");

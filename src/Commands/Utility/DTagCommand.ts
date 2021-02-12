@@ -32,7 +32,7 @@ export default class DTagCommand extends Command {
         message.delete().catch(e => message.channel.send("sorry something went wrong: " + e))
         if(!this.client.tags.get(message.guild.id, args)) message.channel.send("Sorry couldnt find that tag")
         const embed = new MessageEmbed()
-        .setColor("GREEN")
+        .setColor(this.client.setting.colors.default)
         .setTitle(args)
         .setDescription(this.client.tags.get(message.guild.id, args))
 

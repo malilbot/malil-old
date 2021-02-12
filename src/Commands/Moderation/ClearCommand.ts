@@ -45,7 +45,7 @@ export default class ClearCommand extends Command {
 		
         
             const embeds = new MessageEmbed()
-			.setColor('#ff00d9')
+			.setColor(this.client.setting.colors.red)
 			.setDescription(`deleted ${num} messages`);
 		message.channel
 			.send(embeds)

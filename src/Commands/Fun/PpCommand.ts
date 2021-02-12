@@ -55,7 +55,7 @@ export default class PpCommand extends Command {
 		const embed = new MessageEmbed()
 			.setTitle(`Penis Calculator`)
 			.setDescription(`${pp}\n\n${member}'s Penis Size.`)
-			.setColor(`RANDOM`);
+			.setColor(this.client.setting.colors.default)
 		message.channel.send(embed);
 	}
 }

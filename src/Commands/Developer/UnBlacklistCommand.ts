@@ -45,8 +45,8 @@ export default class UnBlacklistCommand extends Command {
 			}
 		}
 
-		// console.log(this.client.blacklist.set('blacklisted', newlist, 'list'))
-		console.log(list);
-		console.log(this.client.blacklist.get("blacklisted", "list"));
+		// // console.log(this.client.blacklist.set('blacklisted', newlist, 'list'))
+		// console.log(list);
+		// console.log(this.client.blacklist.get("blacklisted", "list"));
 	}
 }

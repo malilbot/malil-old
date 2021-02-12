@@ -53,7 +53,7 @@ export default class AvatarCommand extends Command {
         return message.util.send(new MessageEmbed()
             .setTitle(`${member.user.username}'s Avatar`)
             .setURL(member.user.displayAvatarURL({ format: format as AllowedImageFormat, size: size as ImageSize, dynamic: true }))
-            .setColor("RANDOM")
+            .setColor(this.client.setting.colors.blue)
             .setImage(member.user.displayAvatarURL({ format: format as AllowedImageFormat, size: size as ImageSize, dynamic: true })));
     }
 }
