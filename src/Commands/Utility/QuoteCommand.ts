@@ -1,5 +1,4 @@
 import { Command } from "discord-akairo";
-import * as db from "quick.db";
 import { MessageEmbed, TextChannel, Message, MessageAttachment } from "discord.js";
 
 export default class QuoteCommand extends Command {
@@ -31,22 +30,24 @@ export default class QuoteCommand extends Command {
 	}
 
 	public async exec(message: Message, { args }) {
-		let splito = args.split(" ");
-		for (var i = 0; i < splito.length; i++) {
+		const splito = args.split(" ");
+		for (let i = 0; i < splito.length; i++) {
 			if (splito[i].includes("discord.com/channels")) {
-				var item = splito.splice(i, 1);
+				splito.splice(i, 1);
 			}
 		}
+		console.log(splito)
+		if (!splito) { message.reply("message not found"); console.log("eeee")}
+		const thing = (splito).join();
+		const split = thing.split("/");
+		console.log(split)
+			if (!split[5] || !split[6]) { message.reply("message not found"); console.log("eee")}
+		const channel = split[5];
+		const msgid = split[6];
+		console.log(msgid + "  " + channel)
+		const chan = await this.client.channels.fetch(channel).catch(() => { message.reply("message not found"); console.log('here')});
 
-		if (!item) return message.reply("message not found");
-		let thing = (<string[]>item).join();
-		let split = thing.split("/");
-		if (!split[5] || !split[6]) return message.reply("message not found");
-		let channel = split[5];
-		let msgid = split[6];
-		let chan = await this.client.channels.fetch(channel).catch((e) => message.reply("message not found"));
-
-		let msg = await (chan as TextChannel).messages.fetch(msgid).catch((e) => message.reply("message not found"));
+		const msg = await (chan as TextChannel).messages.fetch(msgid).catch(() => {return message.reply("message not found")})
 
 		let url = "";
 		if (msg.attachments) {
@@ -55,7 +56,7 @@ export default class QuoteCommand extends Command {
 			});
 		}
 		if ((chan as TextChannel).nsfw) return message.channel.send("nsfw");
-		let attachment: any;
+		let attachment: unknown;
 		if (url) attachment = await new MessageAttachment(url);
 		if (
 			!message.member.guild.me.hasPermission([
@@ -72,13 +73,13 @@ export default class QuoteCommand extends Command {
 		}
 
 		// magic
-		let webhook = await (message.channel as TextChannel)
+		const webhook = await (message.channel as TextChannel)
 			.createWebhook(msg.author.tag)
 			.then((webhook) => webhook.edit({ avatar: msg.author.displayAvatarURL({ size: 2048, format: "png" }) }));
 		//
 		await webhook
 			.send(msg.content, attachment)
-			.then((msg) => webhook.delete())
-			.catch((e) => message.reply("Something went wrong"));
+			.then(() => webhook.delete())
+			.catch(() => message.reply("Something went wrong"));
 	}
 }
