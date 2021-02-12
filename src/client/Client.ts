@@ -27,9 +27,9 @@ export default class Client extends AkairoClient {
 		prefix: (message) => {
 			if (message.guild !== null) this.prefixes.ensure(message.guild.id, {});
 			if (message.guild == null || !this.prefixes.get(message.guild.id, "prefix")) {
-				return settings.prefix;
+				return [ settings.prefix, "malil" ]
 			} else {
-				return this.prefixes.get(message.guild.id, "prefix");
+				return [ this.prefixes.get(message.guild.id, "prefix"), 'malil' ]
 			}
 		},
 		//{if(message.guild == null){return process.env.PREFIX} else if(db.fetch(`guild.${message.guild.id}.pf`)){ return db.fetch(`guild.${message.guild.id}.pf`) } else { return process.env.PREFIX}},
@@ -61,16 +61,6 @@ export default class Client extends AkairoClient {
 	});
 
 	public config: Option
-
-/*
-	public tags: Enmap = new Enmap({ name: "tags" });
-
-	public prefixes: Enmap = new Enmap({ name: "prefixes" });
-
-	public blacklist: Enmap = new Enmap({ name: "blacklist" });
-
-	public releases: Enmap = new Enmap({ name: "releases" });
-*/
 
 	public constructor(config: Option) {
 		super(
