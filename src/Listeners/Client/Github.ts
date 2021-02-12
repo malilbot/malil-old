@@ -17,7 +17,7 @@ export default class github extends Listener {
 	async exec() {
 		setInterval(async () => {
 			const headers = {
-				"Content-Authorization": `token ${process.env.gist}`
+				"Content-Authorization": `token ${this.client.setting.gist}`
 			};
 			let repos = this.client.releases.get("all");
 			for (var i = 0; i < repos.length; i++) {

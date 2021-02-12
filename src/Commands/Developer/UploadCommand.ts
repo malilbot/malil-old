@@ -58,7 +58,7 @@ export default class UploadCommand extends Command {
 			message.reply(
 				new MessageEmbed()
 					.setColor("white")
-					.addField("Upload", "https://gist.github.com/" + (await gist("upload", first)))
+					.addField("Upload", "https://gist.github.com/" + (await gist("upload", first, this.client)))
 			);
 		} else message.reply("Please mention a platform");
 	}

@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
 import { join } from "path";
-import {  Logger } from "winston";
+import { Logger } from "winston";
 import { logger } from "../Utils/Utils";
+import settings from '../../settings.js'
 import Enmap from "enmap";
 declare module "discord-akairo" {
 	interface AkairoClient {
+		setting: settings
 		logger: Logger;
 		tags: Enmap;
 		prefixes: Enmap;
@@ -17,9 +19,6 @@ declare module "discord-akairo" {
 interface Option {
 	owners?: string | string[];
 	token?: string;
-	prefix?: string;
-	blacklist?: string | string[];
-	gist?: string | string[];
 }
 
 export default class Client extends AkairoClient {
@@ -28,7 +27,7 @@ export default class Client extends AkairoClient {
 		prefix: (message) => {
 			if (message.guild !== null) this.prefixes.ensure(message.guild.id, {});
 			if (message.guild == null || !this.prefixes.get(message.guild.id, "prefix")) {
-				return process.env.PREFIX;
+				return settings.prefix;
 			} else {
 				return this.prefixes.get(message.guild.id, "prefix");
 			}
@@ -61,8 +60,9 @@ export default class Client extends AkairoClient {
 		directory: join(__dirname, "..", "Inhibitors")
 	});
 
-	public config: Option;
+	public config: Option
 
+/*
 	public tags: Enmap = new Enmap({ name: "tags" });
 
 	public prefixes: Enmap = new Enmap({ name: "prefixes" });
@@ -70,6 +70,7 @@ export default class Client extends AkairoClient {
 	public blacklist: Enmap = new Enmap({ name: "blacklist" });
 
 	public releases: Enmap = new Enmap({ name: "releases" });
+*/
 
 	public constructor(config: Option) {
 		super(
@@ -78,6 +79,7 @@ export default class Client extends AkairoClient {
 				disableMentions: "everyone"
 			}
 		);
+		this.setting = settings
 		this.config = config;
 		this.logger = logger;
 		this.tags = new Enmap({ name: "tags" });

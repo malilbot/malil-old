@@ -31,8 +31,14 @@ export default class lyricsCommand extends Command {
 	}
 
 	public async exec(message: Message, { args }) {
+		function cutString(s, n) {
+					/* ----------------------- */
+					const cut = s.indexOf(" ", n);
+					if (cut == -1) return s;
+					return s.substring(0, cut);
+				}
 		const options = {
-			apiKey: process.env.genius,
+			apiKey: this.client.setting.genius,
 			title: args,
 			artist: "",
 			optimizeQuery: true
@@ -43,12 +49,7 @@ export default class lyricsCommand extends Command {
 			let lyrics = song.lyrics;
 
 			if (song.lyrics.length > 1024) {
-				function cutString(s, n) {
-					/* ----------------------- */
-					var cut = s.indexOf(" ", n);
-					if (cut == -1) return s;
-					return s.substring(0, cut);
-				}
+				
 				/* ----------------------- */
 				lyrics = cutString(lyrics, 1000);
 				lyrics += "....";

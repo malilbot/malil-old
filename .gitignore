@@ -390,3 +390,5 @@ data/enmap.sqlite-wal
 data/enmap.sqlite-shm
 *.sqlite-shm
 config.js
+settings.js
+yarn.lock

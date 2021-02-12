@@ -64,7 +64,7 @@ export default class GithubCommand extends Command {
 			args = args.split("/");
 
 			const headers = {
-				"Content-Authorization": `token ${process.env.gist}`
+				"Content-Authorization": `token ${this.client.setting.gist}`
 			};
 			const name = args[3] + "/" + args[4];
 			if (!args[4]) return message.util.send("Please try the command again but this time send a repo link");

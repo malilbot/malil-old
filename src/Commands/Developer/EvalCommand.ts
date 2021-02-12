@@ -1,10 +1,8 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
 import util from "util";
-import { gist } from "../../Utils/Utils";
 import centra from "centra";
 import fetch from "node-fetch";
-import * as db from "quick.db";
 
 export default class EvalCommand extends Command {
 	public constructor() {
@@ -35,12 +33,11 @@ export default class EvalCommand extends Command {
 		});
 	}
 	public async exec(message: Message, { code }) {
+		console.log(this.client.setting)
 		//https://gist.github.com/
 
-		let field: any = function dm(guy, message, client) {
-			return client.users.fetch(guy).then((user) => user.send(message));
-		};
 		//
+		let evaled = ''
 		//
 		async function post(input) {
 			const data = await fetch("https://hst.skyblockdev.repl.co/documents", {
@@ -48,16 +45,13 @@ export default class EvalCommand extends Command {
 				body: input
 			})
 				.then((response) => response.json())
-				.catch((e) => {});
+				.catch((e) => {message.reply(e)});
 			return data.key;
-		}
-		function channel(chanid, message, client) {
-			return client.channels.fetch(chanid).then((channel) => channel.send(message));
 		}
 		//
 		const evalcode = code;
 
-		let gists = "";
+		const gists = "";
 		if (code.includes("--silent")) code = code.replace("--silent", "");
 		if (code.includes("--delete")) code = code.replace("--delete", "") && message.delete();
 		const embed = new MessageEmbed()
@@ -66,9 +60,9 @@ export default class EvalCommand extends Command {
 			.addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``);
 
 		try {
-			var evaled = await eval(code);
+			evaled = await eval(code);
 
-			const output = util.inspect(evaled, { depth: 0 });
+			const output = util.inspect(evaled, { depth: 3 });
 			if (output.length > 1024) {
 				embed.addField("🫓 Output", "https://hst.skyblockdev.repl.co/" + (await post(output)));
 				embed.addField("Type", typeof evaled);
@@ -88,7 +82,7 @@ export default class EvalCommand extends Command {
 		}
 		if (evalcode.includes("--silent")) return message.author.send(embed);
 		if (evalcode.includes("--delete")) return;
-		var msg = await message.util.send(embed);
+		const msg = await message.util.send(embed);
 
 		msg.react("🗑️");
 		msg.react("🔁");
@@ -114,11 +108,11 @@ export default class EvalCommand extends Command {
 					if (gists) {
 						centra(`https://api.github.com/gists/${gists}`, "DELETE")
 							.header("User-Agent", "Malil")
-							.header("Authorization", `token ${process.env.gist}`)
+							.header("Authorization", `token ${this.client.setting.gist}`)
 							.send();
 					}
 				} else if (collected.first().emoji.name == "🔁") {
-					let evaled = eval(code);
+					const evaled = eval(code);
 					const output = util.inspect(evaled, { depth: 0 });
 					msg.edit(
 						new MessageEmbed()
@@ -130,6 +124,5 @@ export default class EvalCommand extends Command {
 					);
 				}
 			});
-		// end iof
 	}
 }

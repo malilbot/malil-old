@@ -18,7 +18,7 @@ export default class topgg extends Listener {
 	async exec() {
 		if (this.client.user.id == "800389986042118175") return;
 
-		const api = new Topgg.Api(process.env.TOPGG);
+		const api = new Topgg.Api(this.client.setting.topgg);
 
 		setInterval(() => {
 			api.postStats({

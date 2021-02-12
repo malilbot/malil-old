@@ -35,7 +35,7 @@ export default class RawTagCommand extends Command {
         if(!raw) return message.channel.send("tag not found")
         let embed = new MessageEmbed()
         .setTitle("Raw tag data")
-        .setDescription(await gist(args, raw))
+        .setDescription(await gist(args, raw, this.client))
         message.channel.send(embed)
         // await message.channel.send(await gist(args, raw))
 

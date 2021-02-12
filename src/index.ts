@@ -1,7 +1,7 @@
 import Client from './client/Client';
-import { owners, prefix } from './config';
+import { owners, token } from './config';
 
-const client = new Client({ owners: owners, token: process.env.token, prefix: prefix});
+const client = new Client({ owners: owners, token: token });
 
 client
     .on('error', err => console.log(`[ CLIENT ERROR ] ${err.message}`, err.stack))
