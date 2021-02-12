@@ -1,6 +1,5 @@
 import { Inhibitor } from 'discord-akairo';
 import { Message } from 'discord.js';
-const config = require("../../config.json") 
 export default class extends Inhibitor {
     constructor() {
         super('blacklist', {
@@ -14,7 +13,6 @@ export default class extends Inhibitor {
        return (this.client.blacklist.get('blacklisted', 'list').includes(message.author.id) && message.author.id !== '336465356304678913') 
     }
 }
-
 
     
     /*

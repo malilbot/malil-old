@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
 import { join } from "path";
-import { config, Logger } from "winston";
+import {  Logger } from "winston";
 import { logger } from "../Utils/Utils";
 import Enmap from "enmap";
-import * as db from "quick.db";
 declare module "discord-akairo" {
 	interface AkairoClient {
 		logger: Logger;

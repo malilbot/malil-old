@@ -389,3 +389,4 @@ data/enmap.sqlite-shm
 data/enmap.sqlite-wal
 data/enmap.sqlite-shm
 *.sqlite-shm
+config.js
