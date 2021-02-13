@@ -3,6 +3,7 @@ import { Collection } from "discord.js";
 import Client from "../../client/Client";
 import { join } from 'path';
 import { ms } from "ms"
+import { server } from '../../Utils/Utils'
 
 
 export default class request extends Listener {
@@ -17,6 +18,7 @@ export default class request extends Listener {
     }
 
     async exec() {
+        server()
         // someday ill fix this stuff cba atm LOL
 
         /*
