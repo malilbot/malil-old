@@ -1,6 +1,7 @@
 import { Listener } from "discord-akairo";
-import * as db from "quick.db";
 import Client from "../../client/Client";
+import * as readline from 'readline'
+import util from 'util'
 import { red, blue, yellow, green, whiteBright, white, cyan, bold } from "chalk";
 const djsversion = require("discord.js").version;
 const akairov = require("discord-akairo").version;
@@ -106,6 +107,28 @@ export default class Ready extends Listener {
 				url: null
 			}
 		});
+
+		const client = this.client
+
+		const rl = readline.createInterface({
+		input: process.stdin,
+		output: process.stdout,
+		terminal: true
+		});
+		let thing = ''
+		rl.on('line', async function(line){
+			if(line == "clean") return thing = ''
+
+			try {
+			const evaled = await eval(thing + line.replace(/this.client/g, 'client'))
+			thing += line + ';'
+			const output = util.inspect(evaled, { depth: 3 });
+			console.log(output)
+		} catch (e) {
+			
+			console.log(e)
+			
+		}})
 		/*
 		var readline = require("readline");
 
