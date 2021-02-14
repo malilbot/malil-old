@@ -2,6 +2,9 @@
 require('dotenv').config();
 import settings from '../settings.js'
 
-export const token: string = settings.token
+let login = settings.token
+if (settings.dev == true) login = settings.devtoken
+
+export const token: string = login
 export const owners: string[] = settings.owners;
 
