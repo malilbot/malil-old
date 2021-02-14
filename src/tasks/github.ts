@@ -1,6 +1,3 @@
-// might be at some point
-import { Listener } from "discord-akairo";
-import Client from "../client/Client";
 import { MessageEmbed, TextChannel } from "discord.js";
 import fetch from "node-fetch";
 
@@ -8,8 +5,6 @@ module.exports = {
     name: 'github',
     delay: "30m",
     async execute(client) {
-        console.log("pog github worked")
-
         const headers = {
             "Content-Authorization": `token ${client.setting.gist}`
         };

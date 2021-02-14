@@ -3,8 +3,6 @@ import { Collection } from "discord.js";
 import Client from "../../client/Client";
 import { join } from 'path';
 import ms from "ms"
-// import { server } from '../../Utils/Utils'
-
 
 export default class request extends Listener {
     client: Client;
