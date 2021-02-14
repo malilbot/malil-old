@@ -25,7 +25,7 @@ export default class request extends Listener {
         for (const file of taskfiles) {
             const task = require(join(__dirname, "..", "..", "tasks/" + file));
             setInterval(() => {
-                task.execute();
+                task.execute(this.client);
             }, (ms(task.delay)));
 
 

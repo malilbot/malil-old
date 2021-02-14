@@ -7,13 +7,13 @@ import fetch from "node-fetch";
 module.exports = {
     name: 'github',
     delay: "30m",
-    async execute() {
+    async execute(client) {
         console.log("pog github worked")
 
         const headers = {
-            "Content-Authorization": `token ${this.client.setting.gist}`
+            "Content-Authorization": `token ${client.setting.gist}`
         };
-        let repos = this.client.releases.get("all");
+        let repos = client.releases.get("all");
         for (var i = 0; i < repos.length; i++) {
             /* ----------------------- */
             let split = repos[i].split("|");
@@ -41,19 +41,19 @@ module.exports = {
 
                     /* ----------------------- */
 
-                    this.client.releases.set("all", repos);
-                    this.client.releases.push("all", split[0] + "|" + data[0].tag_name);
+                    client.releases.set("all", repos);
+                    client.releases.push("all", split[0] + "|" + data[0].tag_name);
 
                     let url = data[0].html_url.split("/");
 
-                    let servers = this.client.releases.keyArray();
+                    let servers = client.releases.keyArray();
                     const fetchs = await fetch(data[0].url, {
                         headers: headers
                     })
                         .then((response) => response.json())
                         .catch((e) => { });
                     /* ----------------------- */
-                    SendMessage(servers, split, this.client, url, data, fetchs);
+                    SendMessage(servers, split, client, url, data, fetchs);
 
                     /* ----------------------- */
                 }

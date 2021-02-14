@@ -5,16 +5,16 @@ import fetch from "node-fetch";
 import * as Topgg from "@top-gg/sdk";
 module.exports = {
     name: 'topgg',
-    delay: "30m",
-    execute() {
+    delay: "1m",
+    execute(client) {
         console.log("pog topgg worked")
-        if (this.client.user.id == "800389986042118175") return;
+        if (client.user.id == "800389986042118175") return;
 
-        const api = new Topgg.Api(this.client.setting.topgg);
+        const api = new Topgg.Api(client.setting.topgg);
 
         api.postStats({
-            serverCount: this.client.guilds.cache.size + 5,
-            shardCount: this.client.options.shardCount
+            serverCount: client.guilds.cache.size + 5,
+            shardCount: client.options.shardCount
         });
 
     },
