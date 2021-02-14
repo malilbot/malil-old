@@ -27,12 +27,11 @@ export default class Client extends AkairoClient {
 		prefix: (message) => {
 			if (message.guild !== null) this.prefixes.ensure(message.guild.id, {});
 			if (message.guild == null || !this.prefixes.get(message.guild.id, "prefix")) {
-				return [ settings.prefix, "malil" ]
+				return [settings.prefix, "malil"]
 			} else {
-				return [ this.prefixes.get(message.guild.id, "prefix"), 'malil' ]
+				return [this.prefixes.get(message.guild.id, "prefix"), 'malil']
 			}
 		},
-		//{if(message.guild == null){return process.env.PREFIX} else if(db.fetch(`guild.${message.guild.id}.pf`)){ return db.fetch(`guild.${message.guild.id}.pf`) } else { return process.env.PREFIX}},
 		aliasReplacement: /-g/,
 		allowMention: true,
 		handleEdits: true,

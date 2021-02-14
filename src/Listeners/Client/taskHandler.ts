@@ -3,6 +3,7 @@ import { Collection } from "discord.js";
 import Client from "../../client/Client";
 import { join } from 'path';
 import ms from "ms"
+import { readdirSync } from "fs"
 
 export default class request extends Listener {
     client: Client;
@@ -16,20 +17,12 @@ export default class request extends Listener {
     }
 
     async exec() {
-        const fs = require('fs');
-        const tasks = new Collection()
-
-        const taskfiles = fs.readdirSync(join(__dirname, "..", "..", "tasks")).filter(file => file.endsWith('.js'));
+        const taskfiles = readdirSync(join(__dirname, "..", "..", "tasks")).filter(file => file.endsWith('.js'));
         for (const file of taskfiles) {
             const task = require(join(__dirname, "..", "..", "tasks/" + file));
             setInterval(() => {
                 task.execute(this.client);
             }, (ms(task.delay)));
-
-
         }
-
-
-
     }
 }

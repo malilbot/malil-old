@@ -27,7 +27,16 @@
         "incremental": true,
         "esModuleInterop": true,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true,
+        "baseUrl": "./",
+        "paths": {
+            "@Utils/*": [
+                "src/Utils/*"
+            ],
+            "@root/*": [
+                "src/*"
+            ]
+        },
     },
     "include": [
         "src/**/*"
