@@ -392,3 +392,4 @@ data/enmap.sqlite-shm
 config.js
 settings.js
 yarn.lock
+.metals/metals.h2.db

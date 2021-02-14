@@ -18,7 +18,7 @@ export default class request extends Listener {
     }
 
     async exec() {
-        server()
+        // server(this.client)
         // someday ill fix this stuff cba atm LOL
 
         /*
