@@ -55,6 +55,19 @@ export default class KickCommand extends Command {
                     .setTimestamp()
             );
         });
+
+        const usID = (user as GuildMember).id
+        //* ------------------------------------ infraction code */
+        this.client.infractions.ensure(message.guild.id, { [usID]: {} })
+        const infraction = this.client.infractions.get(message.guild.id, usID)
+        const riw = {
+            "who": message.author.tag,
+            "reason": reason,
+            "type": "warn"
+        }
+        infraction[Date.now()] = riw
+        this.client.infractions.set(message.guild.id, infraction, usID)
+
         if (this.client.logchannel.get(message.guild.id)) {
             if ((await this.client.channels.fetch(this.client.logchannel.get(message.guild.id)) as GuildChannel).deleted == false) {
                 const embed = new MessageEmbed()

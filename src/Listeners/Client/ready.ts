@@ -68,11 +68,11 @@ export default class Ready extends Listener {
 							large_image: "malil-pfp",
 							large_text: "Coding bot"
 						},
-						buttons: [{ label: ":top:.gg", url: "https://top.gg/bot/749020331187896410" }, { label: "invite", url: "https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824" }]
+						buttons: [{ label: "top.gg", url: "https://top.gg/bot/749020331187896410" }, { label: "invite", url: "https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824" }]
 					}
 				})
 			})
-			await client.login({ clientId: "795717859170844673" }).catch(console.error);
+			client.login({ clientId: "795717859170844673" }).catch(console.error);
 		}
 		this.client.user.setPresence({
 			activity: {

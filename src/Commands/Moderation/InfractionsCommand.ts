@@ -40,13 +40,12 @@ export default class InfractionsCommand extends Command {
         let mesg = ''
         Object.keys(infractions).forEach(key => {
             mesg += "**Reason:** " + infractions[key].reason + "\n**Type:** "
-            mesg += infractions[key].type + "\n**Mod:**"
+            mesg += infractions[key].type + "\n**Mod:** "
             mesg += infractions[key].who + "\n"
             mesg += "----------------------------\n"
         });
         const embed = new MessageEmbed()
-            .setColor(this.client.setting.color.default)
-        // await console.log(infractions)
+            .setColor(this.client.setting.colors.default)
         if (mesg.length > 1024) {
             const data = await fetch("https://hst.skyblockdev.repl.co/documents", {
                 method: "post",
