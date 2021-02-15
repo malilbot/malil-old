@@ -2,7 +2,6 @@ import { Listener } from "discord-akairo";
 import Client from "../../client/Client";
 import * as readline from 'readline'
 import util from 'util'
-import rpc from "discord-rpc";
 import settings from '../../../settings.js'
 import { red, blue, yellow, green, whiteBright, white, cyan, bold, hex } from "chalk";
 const djsversion = require("discord.js").version;
@@ -58,6 +57,7 @@ export default class Ready extends Listener {
 `);
 		}
 		if (this.client.setting.rpc == true) {
+			const rpc = require("discord-rpc")
 			const client = new rpc.Client({ transport: 'ipc' })
 			client.on('ready', () => {
 				client.request('SET_ACTIVITY', {
