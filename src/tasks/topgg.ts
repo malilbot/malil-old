@@ -3,7 +3,7 @@ module.exports = {
     name: 'topgg',
     delay: "30m",
     execute(client) {
-        if (client.user.id == "800389986042118175") return;
+        if (client.user.id !== "749020331187896410") return;
 
         const api = new Topgg.Api(client.setting.topgg);
 

@@ -15,11 +15,6 @@ export default class WarnCommand extends Command {
                     type: "string",
                     default: "No reason provided...",
                     match: "rest",
-                },
-                {
-                    id: "user",
-                    type: "member",
-                    match: "rest",
                 }
             ],
             description: {
@@ -40,10 +35,12 @@ export default class WarnCommand extends Command {
 
         const split = reason.split(" ")
         reason = split.slice(1).join(" ");
-        const user = message.mentions.members.last() || await message.guild.members.fetch(split[0]) || await message.guild.members.fetch({ query: split[0], limit: 1 })
+        let user
+        if (message.mentions.members.last()) user = message.mentions.members.last()
+        else user = message.guild.members.fetch(split[0]).catch(err => message.reply("user not found " + err))
         if (!user) return message.util.send("please mention a user")
 
-        await (user as GuildMember).user.send(`You has been Warned in **${message.guild.name}** for reason: \`${reason}\``).catch(e => message.reply("Couldnt send a message to this usser but he has been warned"))
+        await (user as GuildMember).user.send(`You has been Warned in **${message.guild.name}** for : \`${reason}\``).catch(e => message.reply("Couldnt send a message to this usser but he has been warned"))
         const usID = (user as GuildMember).id
         //* ------------------------------------ infraction code */
         this.client.infractions.ensure(message.guild.id, { [usID]: {} })
