@@ -9,7 +9,7 @@
         "strictNullChecks": false,
         "strictPropertyInitialization": false,
         "module": "commonjs",
-        "target": "es2020",
+        "target": "ESNext",
         "outDir": "finish",
         "lib": [
             "es2016",

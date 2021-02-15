@@ -7,17 +7,8 @@ export default class extends Inhibitor {
             type: 'all',
         });
     }
-    
-    exec(message: Message) {
-    this.client.blacklist.ensure('blacklisted', {list: []})
-       return (this.client.blacklist.get('blacklisted', 'list').includes(message.author.id) && message.author.id !== '336465356304678913') 
-    }
-}
 
-    
-    /*
     exec(message: Message) {
-        
+        return (this.client.blacklist.get('blacklisted', 'list').includes(message.author.id) && message.author.id !== '336465356304678913')
     }
 }
-*/

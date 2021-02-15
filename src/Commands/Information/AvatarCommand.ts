@@ -6,7 +6,7 @@ export default class AvatarCommand extends Command {
     public constructor() {
         super("avatar", {
             aliases: ["avatar", "av"],
-            category: "General",
+            category: "Info",
             description: {
                 content: "Display your discord avatar otr other user.",
                 usage: "avatar [ member ]",
@@ -49,7 +49,7 @@ export default class AvatarCommand extends Command {
         });
     }
 
-    public exec(message: Message, { member, size, format }: { member: GuildMember; size: number; format: string}): Promise<Message> {
+    public exec(message: Message, { member, size, format }: { member: GuildMember; size: number; format: string }): Promise<Message> {
         return message.util.send(new MessageEmbed()
             .setTitle(`${member.user.username}'s Avatar`)
             .setURL(member.user.displayAvatarURL({ format: format as AllowedImageFormat, size: size as ImageSize, dynamic: true }))

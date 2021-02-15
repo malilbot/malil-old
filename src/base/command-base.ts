@@ -1,12 +1,25 @@
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
 import { Command } from "discord-akairo";
-import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
-import { MessageEmbed } from "discord.js";
+import { MessageEmbed, Message } from "discord.js";
 
 export default class replacemeCommand extends Command {
     public constructor() {
         super("replaceme", {
             aliases: ["replaceme"],
-            category: "Core",
+            category: "Utility",
             quoted: true,
             args: [
                 {
@@ -26,10 +39,24 @@ export default class replacemeCommand extends Command {
             channel: "guild"
         });
     }
-
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     public async exec(message: Message, { args }) {
 
 
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/

@@ -1,6 +1,5 @@
 import { Command } from "discord-akairo";
-import type { Message, GuildMember } from "discord.js";
-import { MessageEmbed } from "discord.js";
+import { MessageEmbed, GuildChannel, TextChannel, GuildMember, Message } from "discord.js";
 import { utc } from "moment";
 
 export default class KickCommand extends Command {
@@ -36,7 +35,7 @@ export default class KickCommand extends Command {
         });
     }
 
-    public async exec(message: Message, { user, reason }: {user: GuildMember; reason: string}) {
+    public async exec(message: Message, { user, reason }: { user: GuildMember; reason: string }) {
         if (!message.member.hasPermission(["KICK_MEMBERS"])) return message.channel.send(`Sorry, you don't have permission to run this command.`);
 
         if (!user.kickable) return message.channel.send(`Sorry, i can't kick this user`);
@@ -56,5 +55,15 @@ export default class KickCommand extends Command {
                     .setTimestamp()
             );
         });
+        if (this.client.logchannel.get(message.guild.id)) {
+            if ((await this.client.channels.fetch(this.client.logchannel.get(message.guild.id)) as GuildChannel).deleted == false) {
+                const embed = new MessageEmbed()
+                    .setAuthor(`User kicked by ${message.author.tag}`, message.author.avatarURL())
+                    .setDescription(`Member: ${user.user.tag}\nReason ${reason}`)
+                    .setColor(this.client.setting.colors.red)
+                    .setTimestamp();
+                (await this.client.channels.fetch(this.client.logchannel.get(message.guild.id)) as TextChannel).send(embed)
+            }
+        }
     }
 }

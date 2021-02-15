@@ -1,5 +1,4 @@
 import { Listener } from "discord-akairo";
-import { Collection } from "discord.js";
 import Client from "../../client/Client";
 import { join } from 'path';
 import ms from "ms"

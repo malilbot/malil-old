@@ -4,25 +4,25 @@ import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discor
 import { MessageEmbed } from "discord.js";
 
 export default class ServerCommand extends Command {
-    public constructor() {
-        super("server", {
-            aliases: ["server"],
-            category: "General",
-            quoted: true,
-            description: {
-                content: "Get some info about the discord server",
-                usage: "server",
-                example: [
-                    "server"
-                ]
-            },
-            ratelimit: 3,
-            channel: "guild"
-        });
-    }
+	public constructor() {
+		super("server", {
+			aliases: ["server"],
+			category: "Info",
+			quoted: true,
+			description: {
+				content: "Get some info about the discord server",
+				usage: "server",
+				example: [
+					"server"
+				]
+			},
+			ratelimit: 3,
+			channel: "guild"
+		});
+	}
 
-    public async exec(message: Message) {
-		let embed = new MessageEmbed()
+	public async exec(message: Message) {
+		const embed = new MessageEmbed()
 			.setColor(this.client.setting.colors.orange)
 			.setTitle('Server Info')
 			.setDescription(`${message.guild}'s information`)
@@ -44,8 +44,8 @@ export default class ServerCommand extends Command {
 				`This server has ${message.guild.channels.cache.size} channels`
 			);
 
-        message.channel.send(embed);
+		message.channel.send(embed);
 
 
-    }
+	}
 }

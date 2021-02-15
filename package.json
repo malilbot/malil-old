@@ -8,6 +8,7 @@
     "build": "tsc",
     "test": "jest",
     "dev": "nodemon -e ts --exec \"yarn start\"",
+    "deb": "nodemon -e ts --exec \"yarn start\"",
     "vps": "npm run build && npm start",
     "lint": "eslint . --ext .ts",
     "lintfix": "eslint . --ext .ts --fix",
@@ -23,7 +24,7 @@
     "tricked"
   ],
   "author": "tricked#3777",
-  "license": "MIT",
+  "license": "see github page",
   "bugs": {
     "url": "https://github.com/SkyBlockDev/malil-akairo/issues"
   },
