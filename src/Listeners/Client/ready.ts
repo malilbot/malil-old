@@ -56,19 +56,19 @@ export default class Ready extends Listener {
 ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍
 `);
 		}
-		if (this.client.setting.rpc == true) {
+		if (this.client.setting.rpc.on == true) {
 			const rpc = require("discord-rpc")
 			const client = new rpc.Client({ transport: 'ipc' })
 			client.on('ready', () => {
 				client.request('SET_ACTIVITY', {
 					pid: process.pid,
 					activity: {
-						details: "Add malil bot or bad",
+						details: this.client.setting.rpc.activity.details,
 						assets: {
-							large_image: "malil-pfp",
-							large_text: "Coding bot"
+							large_image: this.client.setting.rpc.activity.assets.large_image,
+							large_text: this.client.setting.rpc.activity.assets.large_text
 						},
-						buttons: [{ label: "top.gg", url: "https://top.gg/bot/749020331187896410" }, { label: "invite", url: "https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824" }]
+						buttons: this.client.setting.rpc.activity.buttons
 					}
 				})
 			})
