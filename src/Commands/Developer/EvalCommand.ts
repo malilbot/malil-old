@@ -61,7 +61,7 @@ export default class EvalCommand extends Command {
 		try {
 			evaled = await eval(code);
 
-			const output = util.inspect(evaled, { depth: 3 });
+			const output = util.inspect(evaled, { depth: 1 });
 			if (output.length > 1024) {
 				embed.addField("🫓 Output", "https://hst.skyblockdev.repl.co/" + (await post(output)));
 				embed.addField("Type", typeof evaled);
