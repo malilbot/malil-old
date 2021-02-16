@@ -8,7 +8,7 @@ module.exports = {
         const api = new Topgg.Api(client.setting.topgg);
 
         api.postStats({
-            serverCount: client.guilds.cache.size + 4,
+            serverCount: client.guilds.cache.size + 3,
             shardCount: client.options.shardCount
         });
 
