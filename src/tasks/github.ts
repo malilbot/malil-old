@@ -8,10 +8,10 @@ module.exports = {
         const headers = {
             "Content-Authorization": `token ${client.setting.gist}`
         };
-        let repos = client.releases.get("all");
-        for (var i = 0; i < repos.length; i++) {
+        const repos = client.releases.get("all");
+        for (let i = 0; i < repos.length; i++) {
             /* ----------------------- */
-            let split = repos[i].split("|");
+            const split = repos[i].split("|");
             const data = await fetch(`https://api.github.com/repos/${split[0]}/releases`, {
                 headers: headers
             })
@@ -28,7 +28,7 @@ module.exports = {
                 } else {
                     console.log("good compare");
                     /* ----------------------- */
-                    for (var l = 0; l < repos.length; l++) {
+                    for (let l = 0; l < repos.length; l++) {
                         if (repos[l] == repos[i]) {
                             repos.splice(l, 1);
                         }
@@ -39,9 +39,9 @@ module.exports = {
                     client.releases.set("all", repos);
                     client.releases.push("all", split[0] + "|" + data[0].tag_name);
 
-                    let url = data[0].html_url.split("/");
+                    const url = data[0].html_url.split("/");
 
-                    let servers = client.releases.keyArray();
+                    const servers = client.releases.keyArray();
                     const fetchs = await fetch(data[0].url, {
                         headers: headers
                     })
@@ -56,17 +56,17 @@ module.exports = {
         }
 
         async function SendMessage(servers, split, client, url, data, fetchs) {
-            for (var i = 0; i < servers.length; i++) {
+            for (let i = 0; i < servers.length; i++) {
                 /* ----------------------- */
                 let body = fetchs.body;
                 if (servers[i] == "all") return;
-                let bodylength = body.length;
+                const bodylength = body.length;
 
                 if (!body) body = "no description";
                 if (bodylength > 1024) {
                     function cutString(s, n) {
                         /* ----------------------- */
-                        var cut = s.indexOf(" ", n);
+                        const cut = s.indexOf(" ", n);
                         if (cut == -1) return s;
                         return s.substring(0, cut);
                     }
@@ -76,8 +76,8 @@ module.exports = {
                 }
                 if (!client.releases.get(servers[i], "repos").includes(split[0])) {
                 } else {
-                    let id = client.releases.get(servers[i], "channel");
-                    let channel = await client.channels.fetch(id).catch((e) => { });
+                    const id = client.releases.get(servers[i], "channel");
+                    const channel = await client.channels.fetch(id).catch((e) => { });
                     if (!channel) {
                     } else {
                         const embed = new MessageEmbed()

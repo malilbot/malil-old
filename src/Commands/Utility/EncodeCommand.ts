@@ -31,7 +31,7 @@ export default class EncodeCommand extends Command {
 	}
 
 	public async exec(message: Message, { args }) {
-		let embed = new MessageEmbed()
+		const embed = new MessageEmbed()
 			.setTitle("Encode things")
 			.setDescription("input: " + args || "none")
 			.addFields(
