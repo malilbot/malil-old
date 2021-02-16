@@ -42,7 +42,7 @@ export default class UploadCommand extends Command {
 				body: input
 			})
 				.then((response) => response.json())
-				.catch((e) => {});
+				.catch((e) => { });
 			return data.key;
 		}
 		const first = code.split(" ").slice(1).toString().replace(/,/g, " ");

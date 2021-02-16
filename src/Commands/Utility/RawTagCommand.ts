@@ -32,10 +32,10 @@ export default class RawTagCommand extends Command {
     public async exec(message: Message, { args }) {
         await this.client.tags.ensure(message.guild.id, {});
         let raw = await this.client.tags.get(message.guild.id, args)
-        if(!raw) return message.channel.send("tag not found")
+        if (!raw) return message.channel.send("tag not found")
         let embed = new MessageEmbed()
-        .setTitle("Raw tag data")
-        .setDescription(await gist(args, raw, this.client))
+            .setTitle("Raw tag data")
+            .setDescription(await gist(args, raw, this.client))
         message.channel.send(embed)
         // await message.channel.send(await gist(args, raw))
 

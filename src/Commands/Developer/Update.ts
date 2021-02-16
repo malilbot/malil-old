@@ -23,21 +23,21 @@ export default class updateCommand extends Command {
     }
 
     public async exec(message: Message) {
-    const delay = ms => new Promise(res => setTimeout(res, ms));
-    await message.reply("Updating")
-    await exec('git pull && pm2 restart 10', async (error, stdout, stderr) => {
+        const delay = ms => new Promise(res => setTimeout(res, ms));
+        await message.reply("Updating")
+        await exec('git pull && pm2 restart 10', async (error, stdout, stderr) => {
             let output = ''
-            if (error)   output = error
-            if (stderr)  output = stderr
-            if (stdout)  output = stdout
-        const embed = new MessageEmbed()
-            .setTitle(`Update`)
-            .setColor(this.client.setting.colors.blue)
-            .addField("🍞 Input", `\`\`\`bash\ngit pull && npm run build && pm2 restart 10\`\`\``)
-            .addField("🫓 Output", `\`\`\`bash\n${output}\`\`\``)
-            .addField("Type", "bash");
-        await message.channel.send(embed);
-    })
+            if (error) output = error
+            if (stderr) output = stderr
+            if (stdout) output = stdout
+            const embed = new MessageEmbed()
+                .setTitle(`Update`)
+                .setColor(this.client.setting.colors.blue)
+                .addField("🍞 Input", `\`\`\`bash\ngit pull && npm run build && pm2 restart 10\`\`\``)
+                .addField("🫓 Output", `\`\`\`bash\n${output}\`\`\``)
+                .addField("Type", "bash");
+            await message.channel.send(embed);
+        })
 
     }
 }

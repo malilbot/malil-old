@@ -48,8 +48,8 @@ export default class HelpCommand extends Command {
             
             **Example**
             ${command.description.example
-				? command.description.example.map((e) => `\`${e}\``).join("\n")
-				: "No Example Provided"}`)
+							? command.description.example.map((e) => `\`${e}\``).join("\n")
+							: "No Example Provided"}`)
 			);
 		}
 

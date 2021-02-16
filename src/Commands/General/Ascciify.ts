@@ -63,11 +63,11 @@ export default class AsciifyCommand extends Command {
 				body: input
 			})
 				.then((response) => response.json())
-				.catch((e) => {});
+				.catch((e) => { });
 			return data.key;
 		}
 
-		asciify(url, option, async function(err, asciified) {
+		asciify(url, option, async function (err, asciified) {
 			if (err) message.reply("a error occured");
 
 			// Print to console

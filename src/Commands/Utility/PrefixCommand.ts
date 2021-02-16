@@ -27,15 +27,15 @@ export default class PrefixCommand extends Command {
         });
     }
 
-    public async exec(message: Message, { args }) { 
-        if(!args || args.length == 0 || args.size == 0) {
-            if(this.client.prefixes.get(message.guild.id, 'prefix')){
+    public async exec(message: Message, { args }) {
+        if (!args || args.length == 0 || args.size == 0) {
+            if (this.client.prefixes.get(message.guild.id, 'prefix')) {
                 let item = this.client.prefixes.get(message.guild.id, 'prefix')
-                if(item) return message.channel.send('my prefix is ' + item)
-            }else return message.channel.send('my prefix is *')
-            
+                if (item) return message.channel.send('my prefix is ' + item)
+            } else return message.channel.send('my prefix is *')
+
         } else {
-            if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("you need to be a 'ADMINISTRATOR' to use this command")
+            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("you need to be a 'ADMINISTRATOR' to use this command")
             this.client.prefixes.set(message.guild.id, args, 'prefix')
             message.channel.send("Updated the prefix to " + args)
         }

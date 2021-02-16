@@ -31,23 +31,17 @@ export default class QuoteCommand extends Command {
 
 	public async exec(message: Message, { args }) {
 		const splito = args.split(" ");
-		for (let i = 0; i < splito.length; i++) {
-			if (splito[i].includes("discord.com/channels")) {
-				splito.splice(i, 1);
-			}
-		}
-		console.log(splito)
-		if (!splito) { message.reply("message not found"); console.log("eeee")}
+
+
+		if (!splito) { message.reply("message not found") }
 		const thing = (splito).join();
 		const split = thing.split("/");
-		console.log(split)
-			if (!split[5] || !split[6]) { message.reply("message not found"); console.log("eee")}
+		if (!split[5] || !split[6]) { message.reply("message not found") }
 		const channel = split[5];
 		const msgid = split[6];
-		console.log(msgid + "  " + channel)
-		const chan = await this.client.channels.fetch(channel).catch(() => { message.reply("message not found"); console.log('here')});
+		const chan = await this.client.channels.fetch(channel).catch(() => { message.reply("message not found") });
 
-		const msg = await (chan as TextChannel).messages.fetch(msgid).catch(() => {return message.reply("message not found")})
+		const msg = await (chan as TextChannel).messages.fetch(msgid).catch(() => { return message.reply("message not found") });
 
 		let url = "";
 		if (msg.attachments) {

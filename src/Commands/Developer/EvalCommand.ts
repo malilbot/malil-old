@@ -44,7 +44,7 @@ export default class EvalCommand extends Command {
 				body: input
 			})
 				.then((response) => response.json())
-				.catch((e) => {message.reply(e)});
+				.catch((e) => { message.reply(e) });
 			return data.key;
 		}
 		//

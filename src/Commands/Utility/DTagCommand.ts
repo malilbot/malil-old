@@ -30,11 +30,11 @@ export default class DTagCommand extends Command {
     public async exec(message: Message, { args }) {
         await this.client.tags.ensure(message.guild.id, {});
         message.delete().catch(e => message.channel.send("sorry something went wrong: " + e))
-        if(!this.client.tags.get(message.guild.id, args)) message.channel.send("Sorry couldnt find that tag")
+        if (!this.client.tags.get(message.guild.id, args)) message.channel.send("Sorry couldnt find that tag")
         const embed = new MessageEmbed()
-        .setColor(this.client.setting.colors.default)
-        .setTitle(args)
-        .setDescription(this.client.tags.get(message.guild.id, args))
+            .setColor(this.client.setting.colors.default)
+            .setTitle(args)
+            .setDescription(this.client.tags.get(message.guild.id, args))
 
     }
 }

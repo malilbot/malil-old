@@ -30,30 +30,30 @@ export default class PollCommand extends Command {
     }
 
     public async exec(message: Message, { args }) {
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You need the permission manage messages to execute this command")
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You need the permission manage messages to execute this command")
         message.delete()
         const input = args
-        if(!input) return message.reply('pelase ask a question')
+        if (!input) return message.reply('pelase ask a question')
 
         const dataEmbed = {
-    title : input,
-    description :`Vote with 👍 or 👎`,
-    color : `GREEN`,
-    footer: {
-		text: `requested by ${message.author.tag}`,
-		icon_url: '',
-	},
-    }
+            title: input,
+            description: `Vote with 👍 or 👎`,
+            color: `GREEN`,
+            footer: {
+                text: `requested by ${message.author.tag}`,
+                icon_url: '',
+            },
+        }
 
-    try{
-       message.channel.send({embed: dataEmbed})
-            .then(function (message) {
-              message.react("👍")
-              message.react("👎")
-            }).catch(function() {
-              //Something
-             });
-    } catch (error) {error;}
+        try {
+            message.channel.send({ embed: dataEmbed })
+                .then(function (message) {
+                    message.react("👍")
+                    message.react("👎")
+                }).catch(function () {
+                    //Something
+                });
+        } catch (error) { error; }
 
     }
 }

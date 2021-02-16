@@ -38,7 +38,7 @@ export default class ExecCommand extends Command {
 				body: input
 			})
 				.then((response) => response.json())
-				.catch((e) => {});
+				.catch((e) => { });
 			return data.key;
 		}
 		exec(code, async (error, stdout, stderr) => {

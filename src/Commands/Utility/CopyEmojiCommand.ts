@@ -28,9 +28,8 @@ export default class EmojiCommands extends Command {
     public exec(message: Message, { emo }) {
         const customEmo = Util.parseEmoji(emo);
 
-        const link = `https://cdn.discordapp.com/emojis/${customEmo.id}.${
-            customEmo.animated ? "gif" : "png"
-        }`;
+        const link = `https://cdn.discordapp.com/emojis/${customEmo.id}.${customEmo.animated ? "gif" : "png"
+            }`;
 
         const emoname = customEmo.name;
 

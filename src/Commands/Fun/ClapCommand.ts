@@ -29,7 +29,7 @@ export default class ClapCommand extends Command {
     }
 
     public async exec(message: Message, { args }) {
-        message.channel.send('👏' + (args.replace('/\s+/g', '👏').replace('@', '@​').split(' ').join('👏')) + '👏') 
+        message.channel.send('👏' + (args.replace('/\s+/g', '👏').replace('@', '@​').split(' ').join('👏')) + '👏')
 
 
     }

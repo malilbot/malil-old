@@ -47,8 +47,8 @@ export default class GithubCommand extends Command {
 				.then((channel) =>
 					message.util.send(
 						"Succesfully set the channel to: " +
-							channel +
-							"\n make sure that i have permission to that channel"
+						channel +
+						"\n make sure that i have permission to that channel"
 					)
 				)
 				.catch((e) => (o = e));
@@ -95,35 +95,35 @@ export default class GithubCommand extends Command {
 
 		/*
   {
-    url: 'https://api.github.com/repos/SkyBlockDev/The-trickster/releases/35188037',
-    assets_url: 'https://api.github.com/repos/SkyBlockDev/The-trickster/releases/35188037/assets',
-    upload_url: 'https://uploads.github.com/repos/SkyBlockDev/The-trickster/releases/35188037/assets{?name,label}',
-    html_url: 'https://github.com/SkyBlockDev/The-trickster/releases/tag/2.31.1',
-    id: 35188037,
-    author: {
-      login: 'SkyBlockDev',
-      id: 72335827,
-      node_id: 'MDQ6VXNlcjcyMzM1ODI3',
-      avatar_url: 'https://avatars.githubusercontent.com/u/72335827?v=4',
-      gravatar_id: '',
-      url: 'https://api.github.com/users/SkyBlockDev',
-      html_url: 'https://github.com/SkyBlockDev',
-      followers_url: 'https://api.github.com/users/SkyBlockDev/followers',
-      following_url: 'https://api.github.com/users/SkyBlockDev/following{/other_user}',
-      gists_url: 'https://api.github.com/users/SkyBlockDev/gists{/gist_id}',
-      starred_url: 'https://api.github.com/users/SkyBlockDev/starred{/owner}{/repo}',
-      subscriptions_url: 'https://api.github.com/users/SkyBlockDev/subscriptions',
-      organizations_url: 'https://api.github.com/users/SkyBlockDev/orgs',
-      repos_url: 'https://api.github.com/users/SkyBlockDev/repos',
-      events_url: 'https://api.github.com/users/SkyBlockDev/events{/privacy}',
-      received_events_url: 'https://api.github.com/users/SkyBlockDev/received_events',
-      type: 'User',
-      site_admin: false
-    },
-    node_id: 'MDc6UmVsZWFzZTM1MTg4MDM3',
-    tag_name: '2.31.1',
-    target_commitish: 'master',
+	url: 'https://api.github.com/repos/SkyBlockDev/The-trickster/releases/35188037',
+	assets_url: 'https://api.github.com/repos/SkyBlockDev/The-trickster/releases/35188037/assets',
+	upload_url: 'https://uploads.github.com/repos/SkyBlockDev/The-trickster/releases/35188037/assets{?name,label}',
+	html_url: 'https://github.com/SkyBlockDev/The-trickster/releases/tag/2.31.1',
+	id: 35188037,
+	author: {
+	  login: 'SkyBlockDev',
+	  id: 72335827,
+	  node_id: 'MDQ6VXNlcjcyMzM1ODI3',
+	  avatar_url: 'https://avatars.githubusercontent.com/u/72335827?v=4',
+	  gravatar_id: '',
+	  url: 'https://api.github.com/users/SkyBlockDev',
+	  html_url: 'https://github.com/SkyBlockDev',
+	  followers_url: 'https://api.github.com/users/SkyBlockDev/followers',
+	  following_url: 'https://api.github.com/users/SkyBlockDev/following{/other_user}',
+	  gists_url: 'https://api.github.com/users/SkyBlockDev/gists{/gist_id}',
+	  starred_url: 'https://api.github.com/users/SkyBlockDev/starred{/owner}{/repo}',
+	  subscriptions_url: 'https://api.github.com/users/SkyBlockDev/subscriptions',
+	  organizations_url: 'https://api.github.com/users/SkyBlockDev/orgs',
+	  repos_url: 'https://api.github.com/users/SkyBlockDev/repos',
+	  events_url: 'https://api.github.com/users/SkyBlockDev/events{/privacy}',
+	  received_events_url: 'https://api.github.com/users/SkyBlockDev/received_events',
+	  type: 'User',
+	  site_admin: false
+	},
+	node_id: 'MDc6UmVsZWFzZTM1MTg4MDM3',
+	tag_name: '2.31.1',
+	target_commitish: 'master',
 
-        */
+		*/
 	}
 }

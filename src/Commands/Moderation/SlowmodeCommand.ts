@@ -31,7 +31,7 @@ export default class SlowmodeCommand extends Command {
         if (!message.member.guild.me.hasPermission(["MANAGE_CHANNELS"])) return message.channel.send(`Sorry i cant set the slowmode of this channel im missing the \`MANAGE_CHANNELS\` permission`);
         if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.reply("You need the permission manage channels to execute this command")
         const Embed = new MessageEmbed()
-           .setColor(this.client.setting.colors.purple)
+            .setColor(this.client.setting.colors.purple)
             .setTimestamp()
 
         if (args == 'none' || args == 'off') {

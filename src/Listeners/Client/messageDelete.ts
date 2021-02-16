@@ -17,6 +17,6 @@ export default class messageDelete extends Listener {
     async exec(message: Message) {
         db.set(`snipe.${message.guild.id}.${message.channel.id}.content`, message.content)
         db.set(`snipe.${message.guild.id}.${message.channel.id}.author`, message.author.tag)
-        
+
     }
 }
