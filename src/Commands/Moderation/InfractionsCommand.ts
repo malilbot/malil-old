@@ -44,6 +44,9 @@ export default class InfractionsCommand extends Command {
             mesg += infractions[key].who + "\n"
             mesg += "----------------------------\n"
         });
+        if (mesg.length < 6) {
+            return message.util.send("user doesnt have any infractions")
+        }
         const embed = new MessageEmbed()
             .setColor(this.client.setting.colors.default)
         if (mesg.length > 1024) {
