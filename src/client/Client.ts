@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
+import TaskHandler from "../lib/taskhandler"
 import { join } from "path";
 import { Logger } from "winston";
 import { logger } from "../Utils/Utils";
@@ -61,6 +62,10 @@ export default class Client extends AkairoClient {
 		directory: join(__dirname, "..", "Inhibitors")
 	});
 
+	public taskHandler: TaskHandler = new TaskHandler(this, {
+		directory: join()
+	})
+
 	public config: Option
 
 	public constructor(config: Option) {
@@ -89,6 +94,7 @@ export default class Client extends AkairoClient {
 			listenerHandler: this.listenerHandler
 		});
 		this.inhibitorHandler.loadAll();
+		this.taskHandler.loadall();
 		this.commandHandler.loadAll();
 		this.listenerHandler.loadAll();
 	}

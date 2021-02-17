@@ -16,7 +16,7 @@ module.exports = {
                 headers: headers
             })
                 .then((response) => response.json())
-                .catch((e) => { });
+                .catch(() => { console.error });
             if (data.documentation_url) {
                 console.log("api rate limited");
                 console.log(split);
