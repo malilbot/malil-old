@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
 import util from "util";
-import { gist } from "../../Utils/Utils";
+import { CreateGist } from "../../Utils/Utils";
 import centra from "centra";
 import fetch from "node-fetch";
 import * as db from "quick.db";
@@ -58,7 +58,7 @@ export default class UploadCommand extends Command {
 			message.reply(
 				new MessageEmbed()
 					.setColor(this.client.setting.colors.green)
-					.addField("Upload", "https://gist.github.com/" + (await gist("upload", first, this.client)))
+					.addField("Upload", "https://gist.github.com/" + (await CreateGist("upload", first, this.client)))
 			);
 		} else message.reply("Please mention a platform");
 	}

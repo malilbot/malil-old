@@ -16,6 +16,7 @@ declare module "discord-akairo" {
 		releases: Enmap;
 		logchannel: Enmap;
 		infractions: Enmap;
+		ColorNames: Enmap;
 	}
 }
 
@@ -84,6 +85,7 @@ export default class Client extends AkairoClient {
 		this.blacklist = new Enmap({ name: "blacklist" });
 		this.releases = new Enmap({ name: "releases" });
 		this.infractions = new Enmap({ name: "infractions" });
+		this.ColorNames = new Enmap({ name: "colorNames" });
 	}
 
 	public _init() {

@@ -66,7 +66,7 @@ export default class HelpCommand extends Command {
 				].includes(category.id)
 			)
 				continue;
-			if (category.id !== "Developer") {
+			if (category.id !== "Developer" && category.id !== "Custom") {
 				embed.addField(
 					category.id,
 					category

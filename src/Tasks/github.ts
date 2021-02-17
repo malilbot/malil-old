@@ -64,12 +64,7 @@ module.exports = {
 
                 if (!body) body = "no description";
                 if (bodylength > 1024) {
-                    function cutString(s, n) {
-                        /* ----------------------- */
-                        const cut = s.indexOf(" ", n);
-                        if (cut == -1) return s;
-                        return s.substring(0, cut);
-                    }
+
                     /* ----------------------- */
                     body = cutString(body, 400);
                     body += "....";
@@ -93,20 +88,12 @@ module.exports = {
             }
         }
 
-        async function compare(split, data) {
-            /* ----------------------- */
-            const thing = data[0].tag_name;
-            if (
-                !thing ||
-                !data[0] ||
-                !data[0].tag_name ||
-                data[0].tag_name == undefined ||
-                data[0].tag_name == null ||
-                split[1] == data[0].tag_name
-            )
-                return true;
-            else return false;
-            /* ----------------------- */
-        }
+
     },
 };
+function cutString(s, n) {
+    /* ----------------------- */
+    const cut = s.indexOf(" ", n);
+    if (cut == -1) return s;
+    return s.substring(0, cut);
+}

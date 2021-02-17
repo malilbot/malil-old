@@ -2,7 +2,7 @@ import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageFlags } from "discord.js";
 import { MessageEmbed } from "discord.js";
-import { gist } from '../../Utils/Utils'
+import { CreateGist } from '../../Utils/Utils'
 
 export default class RawTagCommand extends Command {
     public constructor() {
@@ -35,7 +35,7 @@ export default class RawTagCommand extends Command {
         if (!raw) return message.channel.send("tag not found")
         let embed = new MessageEmbed()
             .setTitle("Raw tag data")
-            .setDescription(await gist(args, raw, this.client))
+            .setDescription(await CreateGist(args, raw, this.client))
         message.channel.send(embed)
         // await message.channel.send(await gist(args, raw))
 

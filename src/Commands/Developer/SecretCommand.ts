@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
-import { gist } from "../../Utils/Utils";
+import { CreateGist } from "../../Utils/Utils";
 import fetch from "node-fetch";
 
 export default class SecretCommand extends Command {
