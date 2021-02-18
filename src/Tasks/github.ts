@@ -5,8 +5,8 @@ import centra from "centra";
 module.exports = {
     name: 'github',
     delay: "30m",
-    runOnStart: false,
-    awaitReady: false,
+    runOnStart: true,
+    awaitReady: true,
     async execute(client) {
         const repos = client.releases.get("all");
         for (let i = 0; i < repos.length; i++) {
@@ -17,8 +17,8 @@ module.exports = {
                 .send()).json();
             await sleep(2000)
             if (!data.documentation_url) {
-                if (data[0].tag_name || data[0].tag_name) {
-                    if (split[1] !== data.tag_name || split[1] !== data[0].tag_name) {
+                if (data[0].tag_name) {
+                    if (split[1] !== data[0].tag_name) {
                         for (let l = 0; l < repos.length; l++) {
                             if (repos[l] == repos[i]) {
                                 repos.splice(l, 1);
@@ -26,7 +26,10 @@ module.exports = {
                         }
 
                         client.releases.set("all", repos);
+                        console.log(repos)
+                        console.log("/** ---------------------------------- */")
                         client.releases.push("all", split[0] + "|" + data[0].tag_name);
+                        console.log(client.releases.get("all"))
 
                         const url = data[0].html_url.split("/");
 
@@ -56,7 +59,7 @@ module.exports = {
                     if (client.releases.get(servers[i], "repos").includes(split[0])) {
                         const id = client.releases.get(servers[i], "channel");
                         const channel = await client.channels.fetch(id).catch(() => console.error);
-                        if (channel) {
+                        if (channel && channel.deleted == false) {
                             const embed = new MessageEmbed()
                                 .setDescription(data[0].html_url)
                                 .setTitle("new release from:  " + data[0].author.login)

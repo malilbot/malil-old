@@ -37,6 +37,7 @@ export default class Ready extends Listener {
 ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ 
 ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍
 `)
+
 		} else {
 			// prettier-ignore
 			console.log(cyan.bold`
@@ -56,8 +57,5 @@ export default class Ready extends Listener {
 ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍
 `);
 		}
-
-
-
 	}
 }
