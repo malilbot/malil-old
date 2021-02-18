@@ -56,30 +56,8 @@ export default class Ready extends Listener {
 ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍
 `);
 		}
-		if (this.client.setting.rpc.on == true) {
-			const rpc = require("discord-rpc")
-			const client = new rpc.Client({ transport: 'ipc' })
-			client.on('ready', () => {
-				client.request('SET_ACTIVITY', {
-					pid: process.pid,
-					activity: {
-						details: this.client.setting.rpc.activity.details,
-						assets: {
-							large_image: this.client.setting.rpc.activity.assets.large_image,
-							large_text: this.client.setting.rpc.activity.assets.large_text
-						},
-						buttons: this.client.setting.rpc.activity.buttons
-					}
-				})
-			})
-			client.login({ clientId: "795717859170844673" }).catch(console.error);
-		}
-		this.client.user.setPresence({
-			activity: {
-				name: "Prefix * or @ me",
-				type: "PLAYING",
-				url: null
-			}
-		});
+
+
+
 	}
 }
