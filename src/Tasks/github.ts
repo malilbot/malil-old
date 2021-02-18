@@ -52,7 +52,7 @@ module.exports = {
                         body = cutString(body, 400);
                         body += "....";
                     }
-                    this.client.logger.info(url[4] + " " + data[0].tag_name, body)
+                    client.logger.info(url[4] + " " + data[0].tag_name, body)
                     if (client.releases.get(servers[i], "repos").includes(split[0])) {
                         const id = client.releases.get(servers[i], "channel");
                         const channel = await client.channels.fetch(id).catch(() => console.error);
