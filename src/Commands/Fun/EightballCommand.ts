@@ -3,7 +3,6 @@ import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discor
 import { MessageEmbed } from "discord.js";
 
 
-
 export default class EightballCommand extends Command {
     public constructor() {
         super("eightball", {

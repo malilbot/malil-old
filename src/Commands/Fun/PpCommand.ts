@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
 import * as db from "quick.db";
-
+import { GetUser, GetSelf } from "../../lib/Utils"
 export default class PpCommand extends Command {
 	public constructor() {
 		super("pp", {
@@ -30,7 +30,8 @@ export default class PpCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { member }) {
+	public async exec(message: Message, { }) {
+		const member = await GetSelf(message, this.client) || message.member
 		let pp;
 		if (db.fetch(`member.${member.id}.pp`)) {
 			pp = db.fetch(`member.${member.id}.pp`);

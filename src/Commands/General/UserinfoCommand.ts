@@ -2,7 +2,7 @@ import moment from 'moment';
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-
+import { GetUser, GetSelf } from "../../lib/Utils"
 export default class UserinfoCommand extends Command {
 	public constructor() {
 		super("userinfo", {
@@ -36,7 +36,7 @@ export default class UserinfoCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args, member }) {
+	public async exec(message: Message, { args }) {
 
 		const flags = {
 			DISCORD_EMPLOYEE: 'Discord Employee',
@@ -54,6 +54,8 @@ export default class UserinfoCommand extends Command {
 			VERIFIED_DEVELOPER: 'Verified Bot Developer'
 		};
 		// member = member ? member.id : message.guild.members.fetch(args)
+		let member = await GetSelf(message, this.client)
+		member = (member as GuildMember)
 		const userFlags = member.user.flags.toArray();
 		const embed = new MessageEmbed()
 			.setThumbnail(member.user.displayAvatarURL({ dynamic: true, size: 512 }))

@@ -29,13 +29,14 @@ export default class KickCommand extends Command {
     }
 
     public async exec(message: Message, { reason }: { user: GuildMember; reason: string }) {
+
         if (!message.member.hasPermission(["KICK_MEMBERS"])) return message.channel.send(`Sorry, you don't have permission to run this command.`);
         let user = await GetUser(message, this.client)
         user = (user as GuildMember)
         if (!user.kickable) return message.channel.send(`Sorry, i can't kick this user`);
 
         if (!message.member.guild.me.hasPermission(["KICK_MEMBERS"])) return message.channel.send(`Sorry, i don't have permission to kick members, make sure you give me \`KICK_MEMBERS\` permission`);
-
+        reason = reason.replace(user.id, "").replace(/<.*?>/g, "")
         user.kick().then(x => {
             x.send(`You has been kicked from **${message.guild.name}** for reason \`${reason}\``);
             message.util.send(

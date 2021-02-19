@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
-
+import { GetUser, GetSelf } from "../../lib/Utils"
 export default class ClearWarnsCommand extends Command {
     public constructor() {
         super("clearwarns", {
@@ -23,10 +23,8 @@ export default class ClearWarnsCommand extends Command {
         if (!message.member.hasPermission(["MANAGE_MESSAGES"])) return message.channel.send(`Sorry, you don't have permission to run this command.`);
 
 
-        let user
-        if (message.mentions.members.last()) user = message.mentions.members.last()
-        else return message.reply("user not found")
-
+        let user = await GetUser(message, this.client)
+        if (!user) message.reply("user not found")
         this.client.infractions.delete(message.guild.id, user.id)
         message.reply("infractions cleared")
 

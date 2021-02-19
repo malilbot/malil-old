@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import { Message, GuildMember, MessageEmbed, GuildChannel, TextChannel } from "discord.js";
 import { utc } from "moment";
-
+import { GetUser, GetSelf } from "../../lib/Utils"
 export default class BanCommand extends Command {
     public constructor() {
         super("ban", {
@@ -44,9 +44,12 @@ export default class BanCommand extends Command {
         });
     }
 
-    public async exec(message: Message, { user, day, reason }: { user: GuildMember; day: number; reason: string }) {
+    public async exec(message: Message, { day, reason }: { user: GuildMember; day: number; reason: string }) {
         if (!message.member.hasPermission(["BAN_MEMBERS"])) return message.channel.send(`Sorry, you don't have permission to run this command.`);
+        let user = await GetUser(message, this.client)
+        user = (user as GuildMember)
 
+        reason = reason.replace(user.id, "").replace(/<.*?>/g, "")
         if (!user.bannable) return message.channel.send(`Sorry, i can't ban this user`);
 
         if (!message.member.guild.me.hasPermission(["BAN_MEMBERS"])) return message.channel.send(`Sorry, i don't have permission to ban user, make sure you give me \`BAN_MEMBERS\` permission`);

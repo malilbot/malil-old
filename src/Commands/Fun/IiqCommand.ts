@@ -2,7 +2,7 @@ import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import * as db from 'quick.db'
-
+import { GetUser, GetSelf } from "../../lib/Utils"
 
 export default class IqCommand extends Command {
     public constructor() {
@@ -28,7 +28,8 @@ export default class IqCommand extends Command {
         });
     }
 
-    public async exec(message: Message, { member }) {
+    public async exec(message: Message, { }) {
+        const member = await GetSelf(message, this.client) || message.member
         let iq;
         if (db.fetch(`member.${member.id}.iq`)) {
             iq = db.fetch(`member.${member.id}.iq`)

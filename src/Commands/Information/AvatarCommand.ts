@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-
+import { GetUser, GetSelf } from "../../lib/Utils"
 export default class AvatarCommand extends Command {
     public constructor() {
         super("avatar", {
@@ -49,7 +49,8 @@ export default class AvatarCommand extends Command {
         });
     }
 
-    public exec(message: Message, { member, size, format }: { member: GuildMember; size: number; format: string }): Promise<Message> {
+    public async exec(message: Message, { size, format }: { member: GuildMember; size: number; format: string }): Promise<Message> {
+        let member = await GetSelf(message, this.client)
         return message.util.send(new MessageEmbed()
             .setTitle(`${member.user.username}'s Avatar`)
             .setURL(member.user.displayAvatarURL({ format: format as AllowedImageFormat, size: size as ImageSize, dynamic: true }))

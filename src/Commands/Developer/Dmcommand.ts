@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-
+import { GetUser, GetSelf } from "../../lib/Utils"
 export default class DmCommand extends Command {
     public constructor() {
         super("dm", {
@@ -9,11 +9,6 @@ export default class DmCommand extends Command {
             category: "Developer",
             quoted: true,
             args: [
-                {
-                    id: "user",
-                    type: "member",
-                    match: "restContent"
-                },
                 {
                     id: "args",
                     type: "content",
@@ -34,9 +29,10 @@ export default class DmCommand extends Command {
         });
     }
 
-    public async exec(message: Message, { args, user }) {
-
-        user.send(args)
+    public async exec(message: Message, { args }) {
+        const user = await GetSelf(message, this.client) || message.member
+        user.send(args || "e").catch(e => message.reply(e))
+        message.reply("message recieved")
 
     }
 }

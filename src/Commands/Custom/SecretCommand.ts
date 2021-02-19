@@ -7,7 +7,7 @@ export default class SecretCommand extends Command {
 	public constructor() {
 		super("secret", {
 			aliases: [
-				"secret"
+				"Custom"
 			],
 			category: "Developer",
 			description: {
@@ -18,8 +18,7 @@ export default class SecretCommand extends Command {
 				]
 			},
 			ratelimit: 3,
-			prefix: "[]",
-			ownerOnly: true,
+			ownerOnly: false,
 			channel: "guild"
 		});
 	}
