@@ -17,6 +17,8 @@ export default class BanCommand extends Command {
             },
             channel: "guild",
             ratelimit: 3,
+            clientPermissions: ['BAN_MEMBERS'],
+            userPermissions: ['BAN_MEMBERS'],
             args: [
                 {
                     id: "user",
@@ -45,14 +47,11 @@ export default class BanCommand extends Command {
     }
 
     public async exec(message: Message, { day, reason }: { user: GuildMember; day: number; reason: string }) {
-        if (!message.member.hasPermission(["BAN_MEMBERS"])) return message.channel.send(`Sorry, you don't have permission to run this command.`);
         let user = await GetUser(message, this.client)
         user = (user as GuildMember)
 
         reason = reason.replace(user.id, "").replace(/<.*?>/g, "")
         if (!user.bannable) return message.channel.send(`Sorry, i can't ban this user`);
-
-        if (!message.member.guild.me.hasPermission(["BAN_MEMBERS"])) return message.channel.send(`Sorry, i don't have permission to ban user, make sure you give me \`BAN_MEMBERS\` permission`);
 
         await user.send(`You has been banned from **${message.guild.name} for reason: \`${reason}\``);
         await message.guild.members.ban(user, { days: day, reason });

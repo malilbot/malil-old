@@ -15,15 +15,15 @@ export default class ClearWarnsCommand extends Command {
                 ]
             },
             ratelimit: 3,
+            userPermissions: ['MANAGE_MESSAGES'],
             channel: "guild"
         });
     }
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     public async exec(message: Message, { args }) {
-        if (!message.member.hasPermission(["MANAGE_MESSAGES"])) return message.channel.send(`Sorry, you don't have permission to run this command.`);
 
 
-        let user = await GetUser(message, this.client)
+        const user = await GetUser(message, this.client)
         if (!user) message.reply("user not found")
         this.client.infractions.delete(message.guild.id, user.id)
         message.reply("infractions cleared")

@@ -23,15 +23,14 @@ export default class ClearCommand extends Command {
             },
             ratelimit: 3,
             channel: "guild",
+            clientPermissions: ['MANAGE_MESSAGES'],
+            userPermissions: ['MANAGE_MESSAGES']
         });
     }
 
     public async exec(message, { args }) {
-        if (!message.member.guild.me.hasPermission(["MANAGE_MESSAGES"])) return message.channel.send(`Sorry i cant clear messages with my current permissions`);
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You dont have the manage messages permission")
-
-        let num = args;
-        let deleteCount = parseInt(args, 10) + 1;
+        const num = args;
+        const deleteCount = parseInt(args, 10) + 1;
         if (!deleteCount || deleteCount < 1 || deleteCount > 100)
             return message.reply(
                 'Please provide a number between 1 and 99 for the number of messages to delete'

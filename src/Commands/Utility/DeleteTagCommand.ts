@@ -35,7 +35,7 @@ export default class DeleteTagCommand extends Command {
 		await this.client.tags.ensure(message.guild.id, {});
 		args = args.split(" ");
 
-		let input = args.slice(1).join(" ");
+		const input = args.slice(1).join(" ");
 		if (!input) message.channel.send("Please mention a tag to delete");
 		await this.client.tags.ensure(message.guild.id, {});
 		if (!await this.client.tags.get(message.guild.id, args[0])) message.channel.send("Tag not found");

@@ -33,7 +33,7 @@ export default class MockCommand extends Command {
 
 	public async exec(message: Message, { args }) {
 		// -- split the args
-		let array = args.split("");
+		const array = args.split("");
 		// -- defining text
 		let text = "";
 		// -- foreach item
@@ -45,7 +45,7 @@ export default class MockCommand extends Command {
 
 		// -- my amazing function
 		function tried(item) {
-			let num = Math.floor(Math.random() * 2);
+			const num = Math.floor(Math.random() * 2);
 			// -- if its a space return
 			if (item == " ") return item;
 			// -- advanced rng

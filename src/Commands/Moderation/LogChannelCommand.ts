@@ -25,6 +25,7 @@ export default class LogChannelCommand extends Command {
                 ]
             },
             ratelimit: 3,
+            userPermissions: ['MANAGE_CHANNELS'],
             channel: "guild"
         });
     }

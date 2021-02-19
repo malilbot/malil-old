@@ -37,15 +37,15 @@ export default class GithubremCommand extends Command {
 
 	public async exec(message: Message, { args, user }) {
 		const id = user ? user.id : args;
-		let repos = this.client.releases.get("all");
+		const repos = this.client.releases.get("all");
 
-		for (var l = 0; l < repos.length; l++) {
+		for (let l = 0; l < repos.length; l++) {
 			if (repos[l] == args) {
 				repos.splice(l, 1);
 			}
 		}
-		let z = this.client.releases.get("all").toString().replace(/,/g, "\n");
-		let x = repos.toString().replace(/,/g, "\n");
+		const z = this.client.releases.get("all").toString().replace(/,/g, "\n");
+		const x = repos.toString().replace(/,/g, "\n");
 		const embed = new MessageEmbed()
 			.addField("old", `\`\`\`bash\n${z}\`\`\``)
 			.addField("new", `\`\`\`bash\n${x}\`\`\``);

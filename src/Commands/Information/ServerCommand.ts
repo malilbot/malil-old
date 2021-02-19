@@ -16,7 +16,7 @@ export default class ServerCommand extends Command {
 					"server"
 				]
 			},
-			ratelimit: 3,
+			ratelimit: 1,
 			channel: "guild"
 		});
 	}

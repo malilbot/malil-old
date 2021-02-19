@@ -50,7 +50,7 @@ export default class AvatarCommand extends Command {
     }
 
     public async exec(message: Message, { size, format }: { member: GuildMember; size: number; format: string }): Promise<Message> {
-        let member = await GetSelf(message, this.client)
+        const member = await GetSelf(message, this.client)
         return message.util.send(new MessageEmbed()
             .setTitle(`${member.user.username}'s Avatar`)
             .setURL(member.user.displayAvatarURL({ format: format as AllowedImageFormat, size: size as ImageSize, dynamic: true }))

@@ -36,7 +36,7 @@ export default class CreatetagCommand extends Command {
 		if (message.member.hasPermission("ADMINISTRATOR") || message.member.hasPermission("MANAGE_MESSAGES")) {
 			args = args.split(" ");
 
-			let input = args.slice(1).join(" ");
+			const input = args.slice(1).join(" ");
 			if (!input) message.channel.send("There has to be something to put in the tag.");
 			await this.client.tags.ensure(message.guild.id, {});
 			await this.client.tags.set(message.guild.id, input, args[0]);

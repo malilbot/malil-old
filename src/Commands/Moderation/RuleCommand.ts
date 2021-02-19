@@ -26,17 +26,12 @@ export default class RulesCommand extends Command {
 				]
 			},
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
+			userPermissions: ['ADMINISTRATOR']
 		});
 	}
 
 	public async exec(message: Message, { args }) {
-		if (
-			!message.member.hasPermission([
-				"ADMINISTRATOR"
-			])
-		)
-			return message.channel.send(`You need to be a admin to use this command.`);
 		if (args == "1") {
 			const embed = new MessageEmbed()
 				.setDescription(

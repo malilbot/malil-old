@@ -25,19 +25,17 @@ export default class WarnCommand extends Command {
                     "warn"
                 ]
             },
+            userPermissions: ['MANAGE_MESSAGES'],
             ratelimit: 3,
             channel: "guild"
         });
     }
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     public async exec(message: Message, { reason }) {
-
-        if (!message.member.hasPermission(["MANAGE_MESSAGES"])) return message.channel.send(`Sorry, you don't have permission to run this command.`);
-
         const split = reason.split(" ")
         reason = split.slice(1).join(" ");
 
-        let user = await GetUser(message, this.client)
+        const user = await GetUser(message, this.client)
         if (!user) return message.util.send("please mention a user")
 
         await (user as GuildMember).user.send(`You has been Warned in **${message.guild.name}** for : \`${reason}\``).catch(e => message.reply("Couldnt send a message to this usser but he has been warned"))

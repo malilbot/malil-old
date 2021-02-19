@@ -30,7 +30,7 @@ export default class PrefixCommand extends Command {
     public async exec(message: Message, { args }) {
         if (!args || args.length == 0 || args.size == 0) {
             if (this.client.prefixes.get(message.guild.id, 'prefix')) {
-                let item = this.client.prefixes.get(message.guild.id, 'prefix')
+                const item = this.client.prefixes.get(message.guild.id, 'prefix')
                 if (item) return message.channel.send('my prefix is ' + item)
             } else return message.channel.send('my prefix is *')
 

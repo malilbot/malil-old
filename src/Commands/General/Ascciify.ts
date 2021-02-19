@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import { Message } from "discord.js";
 import fetch from "node-fetch";
-var asciify = require("asciify-image");
+const asciify = require("asciify-image");
 export default class AsciifyCommand extends Command {
 	public constructor() {
 		super("asciify", {
@@ -30,7 +30,7 @@ export default class AsciifyCommand extends Command {
 					"asciify then a attachment"
 				]
 			},
-			ratelimit: 3,
+			ratelimit: 1,
 			channel: "guild"
 		});
 	}

@@ -36,7 +36,7 @@ export default class PpCommand extends Command {
 		if (db.fetch(`member.${member.id}.pp`)) {
 			pp = db.fetch(`member.${member.id}.pp`);
 		} else {
-			var phrases = [
+			const phrases = [
 				"ur a women",
 				"8D Smoll",
 				"8=D",

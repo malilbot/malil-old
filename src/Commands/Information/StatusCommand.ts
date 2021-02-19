@@ -22,7 +22,7 @@ export default class StatsCommand extends Command {
 					"stats"
 				]
 			},
-			ratelimit: 3,
+			ratelimit: 1,
 			channel: "guild"
 		});
 	}

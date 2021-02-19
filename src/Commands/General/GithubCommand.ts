@@ -37,12 +37,12 @@ export default class GithubCommand extends Command {
 		if (!args) return message.reply("use  *github set <channel id> to get started use *help github for more info");
 		this.client.releases.ensure(message.guild.id, { channel: "", repos: [] });
 		this.client.releases.ensure("all", []);
-		let arg2 = args.split(" ");
+		const arg2 = args.split(" ");
 
 		if (arg2[0] == "set") {
-			let channel = arg2[1];
+			const channel = arg2[1];
 			let o = "";
-			let chnnale = await this.client.channels
+			const chnnale = await this.client.channels
 				.fetch(channel)
 				.then((channel) =>
 					message.util.send(
@@ -77,18 +77,18 @@ export default class GithubCommand extends Command {
 			if (urls.documentation_url) return message.util.send("I have been api limited");
 			const version = data.tag_name ? data.tag_name : "none";
 
-			let url = data.html_url ? data.html_url : urls.html_url;
+			const url = data.html_url ? data.html_url : urls.html_url;
 
 			// url = url[3] + "/" + url[4];
-			let input = url.split("/");
-			let output = input[3] + "/" + input[4] + "|" + version;
+			const input = url.split("/");
+			const output = input[3] + "/" + input[4] + "|" + version;
 			message.util.send("Added: <" + url + "> to watch list.");
 			this.client.releases.push("all", output);
 			this.client.releases.push(message.guild.id, name, "repos");
 
 			//
 		} else if (arg2[0] == "list") {
-			let thing = this.client.releases.get(message.guild.id, "repos").toString().replace(/,/g, "\n");
+			const thing = this.client.releases.get(message.guild.id, "repos").toString().replace(/,/g, "\n");
 			if (!thing) return message.util.send("Currently not watching anything");
 			message.util.send("**currently watching:** \n" + thing || "Nothing");
 		} else message.reply("Check `*help github` for info about this command");

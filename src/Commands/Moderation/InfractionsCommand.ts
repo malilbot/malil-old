@@ -15,6 +15,7 @@ export default class InfractionsCommand extends Command {
                     "infractions"
                 ]
             },
+            userPermissions: ['MANAGE_MESSAGES'],
             ratelimit: 3,
             channel: "guild"
         });
@@ -23,7 +24,7 @@ export default class InfractionsCommand extends Command {
     public async exec(message: Message) {
 
 
-        let user = await GetUser(message, this.client)
+        const user = await GetUser(message, this.client)
         if (!user) return message.reply("user not found")
         const usID = user.id
         this.client.infractions.ensure(message.guild.id, { [usID]: {} })

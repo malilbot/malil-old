@@ -37,9 +37,9 @@ export default class UnBlacklistCommand extends Command {
 
 	public async exec(message: Message, { args, user }) {
 		const id = user ? user.id : args;
-		let list = this.client.blacklist.get("blacklisted", "list");
+		const list = this.client.blacklist.get("blacklisted", "list");
 
-		for (var i = 0; i < list.length; i++) {
+		for (let i = 0; i < list.length; i++) {
 			if (list[i] == id) {
 				list.splice(i, 1);
 			}

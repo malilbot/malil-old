@@ -36,11 +36,11 @@ export default class testCommand extends Command {
 		this.client.releases.ensure(message.guild.id, { channel: "", repos: "" });
 		if (!this.client.releases.get(message.guild.id, "channel"))
 			return message.reply("no channel set please set one with: `github set <chanid> `");
-		let arg2 = args.split(" ");
+		const arg2 = args.split(" ");
 		if (arg2[0] == "set") {
-			let channel = arg2[1];
+			const channel = arg2[1];
 			let o = "";
-			let chnnale = await this.client.channels
+			const chnnale = await this.client.channels
 				.fetch(channel)
 				.then((channel) =>
 					message.reply(
@@ -67,7 +67,7 @@ export default class testCommand extends Command {
 
 		let url = data[0].html_url.split("/");
 		url = url[3] + "/" + url[4];
-		let output = url + "|" + version;
+		const output = url + "|" + version;
 		message.reply("ADDED it to the watch list");
 		this.client.releases.push("all", name);
 		this.client.releases.push(message.guild.id, output, "repos");
