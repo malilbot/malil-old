@@ -1,5 +1,5 @@
 import { MessageEmbed, TextChannel } from "discord.js";
-import { sleep } from "../Utils/Utils"
+import { sleep } from "../lib/Utils"
 import centra from "centra";
 
 module.exports = {

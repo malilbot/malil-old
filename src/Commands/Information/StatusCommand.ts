@@ -4,7 +4,7 @@ import { utc } from "moment";
 import ms from "ms";
 import os from "os";
 
-import { Util } from "../../Utils/Utils";
+import { Util } from "../../lib/Utils";
 
 export default class StatsCommand extends Command {
 	public constructor() {

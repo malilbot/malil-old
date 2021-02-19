@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
 import util from "util";
-import { CreateGist } from "../../Utils/Utils";
+import { CreateGist } from "../../lib/Utils";
 import centra from "centra";
 import fetch from "node-fetch";
 import * as db from "quick.db";

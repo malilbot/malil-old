@@ -4,13 +4,15 @@ module.exports = {
     delay: "30m",
     execute(client) {
         if (client.user.id !== "749020331187896410") return;
+        try {
+            const api = new Topgg.Api(client.setting.topgg);
 
-        const api = new Topgg.Api(client.setting.topgg);
+            api.postStats({
+                serverCount: client.guilds.cache.size + 2,
+                shardCount: client.options.shardCount
+            });
+        } catch (e) { return }
 
-        api.postStats({
-            serverCount: client.guilds.cache.size + 2,
-            shardCount: client.options.shardCount
-        });
 
     },
 };

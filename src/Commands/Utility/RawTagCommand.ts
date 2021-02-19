@@ -2,7 +2,7 @@ import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageFlags } from "discord.js";
 import { MessageEmbed } from "discord.js";
-import { CreateGist } from '../../Utils/Utils'
+import { CreateGist } from '../../lib/Utils'
 
 export default class RawTagCommand extends Command {
     public constructor() {

@@ -3,7 +3,7 @@ import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from 
 import TaskHandler from "../lib/taskhandler"
 import { join } from "path";
 import { Logger } from "winston";
-import { logger } from "../Utils/Utils";
+import { logger } from "../lib/Utils";
 import settings from '../../settings.js'
 import Enmap from "enmap";
 declare module "discord-akairo" {

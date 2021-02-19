@@ -1,4 +1,5 @@
 import { Command } from "discord-akairo";
+import { GetUser } from "../../lib/Utils"
 import { MessageEmbed, Message, GuildChannel, TextChannel, GuildMember } from "discord.js";
 import fetch from "node-fetch";
 export default class InfractionsCommand extends Command {
@@ -7,14 +8,6 @@ export default class InfractionsCommand extends Command {
             aliases: ["infractions", "warns", "warnings"],
             category: "Moderation",
             quoted: true,
-            args: [
-                {
-                    id: "args",
-                    type: "array",
-                    match: "rest",
-                    default: "no reason provided"
-                }
-            ],
             description: {
                 content: "",
                 usage: "infractions",
@@ -27,14 +20,12 @@ export default class InfractionsCommand extends Command {
         });
     }
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    public async exec(message: Message, { args }) {
+    public async exec(message: Message) {
 
-        const split = args.split(" ")
-        let user;
-        if (message.mentions.members.last()) user = message.mentions.members.last()
-        else user = message.guild.members.fetch(split[0]).catch(err => message.reply("user not found " + err))
-        if (!user) return message.util.send("please mention a user")
-        const usID = (user as GuildMember).id
+
+        let user = await GetUser(message, this.client)
+        if (!user) return message.reply("user not found")
+        const usID = user.id
         this.client.infractions.ensure(message.guild.id, { [usID]: {} })
         const infractions = this.client.infractions.get(message.guild.id, usID)
         let mesg = ''
