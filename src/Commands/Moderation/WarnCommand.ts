@@ -1,5 +1,6 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message, GuildChannel, TextChannel, GuildMember } from "discord.js";
+import { GetUser, GetSelf } from "../../lib/Utils"
 import moment from "moment";
 import { utc } from "moment";
 
@@ -35,9 +36,8 @@ export default class WarnCommand extends Command {
 
         const split = reason.split(" ")
         reason = split.slice(1).join(" ");
-        let user
-        if (message.mentions.members.last()) user = message.mentions.members.last()
-        else user = message.guild.members.fetch(split[0]).catch(err => message.reply("user not found " + err))
+
+        let user = await GetUser(message, this.client)
         if (!user) return message.util.send("please mention a user")
 
         await (user as GuildMember).user.send(`You has been Warned in **${message.guild.name}** for : \`${reason}\``).catch(e => message.reply("Couldnt send a message to this usser but he has been warned"))

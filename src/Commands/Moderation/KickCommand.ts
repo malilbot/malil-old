@@ -1,6 +1,7 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, GuildChannel, TextChannel, GuildMember, Message } from "discord.js";
 import { utc } from "moment";
+import { GetUser, GetSelf } from "../../lib/Utils"
 
 export default class KickCommand extends Command {
     public constructor() {
@@ -17,15 +18,7 @@ export default class KickCommand extends Command {
             ratelimit: 3,
             channel: "guild",
             args: [
-                {
-                    id: "user",
-                    type: "member",
-                    prompt: {
-                        start: (msg: Message) => `**${msg.author.tag}** Please tag some users`,
-                        retry: (msg: Message) => `**${msg.author.tag}** Please tag some users`
-                    },
-                    match: "rest"
-                },
+
                 {
                     id: "reason",
                     type: "string",
@@ -35,9 +28,9 @@ export default class KickCommand extends Command {
         });
     }
 
-    public async exec(message: Message, { user, reason }: { user: GuildMember; reason: string }) {
+    public async exec(message: Message, { reason }: { user: GuildMember; reason: string }) {
         if (!message.member.hasPermission(["KICK_MEMBERS"])) return message.channel.send(`Sorry, you don't have permission to run this command.`);
-
+        user = GetUser(Message, this.client)
         if (!user.kickable) return message.channel.send(`Sorry, i can't kick this user`);
 
         if (!message.member.guild.me.hasPermission(["KICK_MEMBERS"])) return message.channel.send(`Sorry, i don't have permission to kick members, make sure you give me \`KICK_MEMBERS\` permission`);
