@@ -7,7 +7,7 @@ import { MessageEmbed } from "discord.js";
 export default class EightballCommand extends Command {
     public constructor() {
         super("eightball", {
-            aliases: ["eightball", "8ball"],
+            aliases: ["eightball", "8ball", "ask"],
             category: "Fun",
             quoted: false,
             args: [

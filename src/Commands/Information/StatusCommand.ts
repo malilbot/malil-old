@@ -47,7 +47,7 @@ export default class StatsCommand extends Command {
 					`**● Creation Date:** ${utc(this.client.user.createdTimestamp).format("Do MMMM YYYY HH:mm:ss")}`,
 					`**● Bot Uptime:** ${ms(process.uptime() * 1000, { long: true })}`,
 					`**● Owner:** <@!336465356304678913>`,
-					`**● Support:** [Support server](https://discord.gg/TAp9Kt2)`,
+					`**● Support:** [Support server](https://discord.gg/mY8zTARu4g)`,
 					`**● Commands ran:** ${this.client.gp.get("commands")}`,
 					`**● Node.js:** ${process.version}`,
 					`**● Akairo:** ${akairov}`,
