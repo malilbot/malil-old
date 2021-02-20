@@ -5,8 +5,8 @@ import centra from "centra";
 module.exports = {
     name: 'github',
     delay: "30m",
-    runOnStart: true,
-    awaitReady: true,
+    runOnStart: false,
+    awaitReady: false,
     async execute(client) {
         const repos = client.releases.get("all");
         for (let i = 0; i < repos.length; i++) {
