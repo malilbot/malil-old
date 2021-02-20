@@ -1,0 +1,35 @@
+import { Command } from "discord-akairo";
+import { MessageEmbed, Message } from "discord.js";
+
+export default class LeaveAddCommand extends Command {
+    public constructor() {
+        super("leaveAdd", {
+            aliases: ["leaveAdd"],
+            category: "Utility",
+            quoted: true,
+            args: [
+                {
+                    id: "args",
+                    type: "array",
+                    match: "rest",
+                }
+            ],
+            description: {
+                content: "",
+                usage: "leaveAdd",
+                example: [
+                    "leaveAdd"
+                ]
+            },
+            ratelimit: 3,
+            channel: "guild"
+        });
+    }
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    public async exec(message: Message, { args }) {
+        this.client.blacklist.ensure("blacklist", [], "leavelist")
+        this.client.blacklist.push("blacklist", args, "leavelist")
+        message.reply("Guild added to leave list " + args)
+
+    }
+}

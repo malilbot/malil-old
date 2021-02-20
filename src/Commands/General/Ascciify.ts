@@ -71,7 +71,7 @@ export default class AsciifyCommand extends Command {
 			if (err) message.reply("a error occured");
 
 			// Print to console
-			message.reply("Success! " + "https://hst.skyblockdev.repl.co/" + (await post(asciified)));
+			message.reply("Success! " + "https://hst.skyblockdev.repl.co/" + (await post(asciified)) + ".txt");
 		});
 	}
 }
