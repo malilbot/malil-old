@@ -19,22 +19,40 @@ export default class EvalCommand extends Command {
 					"eval message.guild.id"
 				]
 			},
-			ratelimit: 3,
+			ratelimit: 1,
 			args: [
 				{
 					id: "code",
 					type: "string",
 					match: "rest",
 					default: "Please input some code"
+				},
+				{
+					id: 'noreturn',
+					type: 'boolean',
+					match: 'flag',
+					flag: ['--noreturn', '-nr', "--silent", "-s"],
+				},
+				{
+					id: 'deph',
+					type: 'number',
+					match: 'option',
+					flag: ['--depth', '-i'],
+				},
+				{
+					id: 'del',
+					type: 'boolean',
+					match: 'flag',
+					flag: ['--delete', '-d'],
 				}
 			],
 			ownerOnly: true,
 			channel: "guild"
 		});
 	}
-	public async exec(message: Message, { code }) {
+	public async exec(message: Message, { code, noreturn, del, deph }: { code: string, noreturn: boolean, del: boolean, deph: number }) {
 		//https://gist.github.com/
-
+		console.log(code, noreturn, del, deph)
 		//
 		let evaled = ''
 		//
@@ -51,8 +69,7 @@ export default class EvalCommand extends Command {
 		const evalcode = code;
 
 		const gists = "";
-		if (code.includes("--silent")) code = code.replace("--silent", "");
-		if (code.includes("--delete")) code = code.replace("--delete", "") && message.delete();
+		if (del == true) message.delete()
 		const embed = new MessageEmbed()
 			.setTitle(`${this.client.user.tag}'s Evaled`)
 			.setColor(this.client.setting.colors.red)
@@ -61,7 +78,7 @@ export default class EvalCommand extends Command {
 		try {
 			evaled = await eval(code);
 
-			const output = util.inspect(evaled, { depth: 1 });
+			const output = util.inspect(evaled, { depth: deph || 0 });
 			if (output.length > 1024) {
 				embed.addField("🫓 Output", "https://hst.skyblockdev.repl.co/" + (await post(output)));
 				embed.addField("Type", typeof evaled);
@@ -79,9 +96,9 @@ export default class EvalCommand extends Command {
 				embed.addField("Type", typeof evaled);
 			}
 		}
-		if (evalcode.includes("--silent")) return message.author.send(embed);
-		if (evalcode.includes("--delete")) return;
-		const msg = await message.util.send(embed);
+		let msg
+		if (noreturn == true) msg = await message.author.send(embed);
+		else msg = await message.util.send(embed);
 
 		msg.react("🗑️");
 		msg.react("🔁");
