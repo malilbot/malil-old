@@ -33,9 +33,9 @@ export default class ColorCommand extends Command {
         if (!message.member.roles.cache.some((role) => role.name === 'Server Booster')) return
 
         /** possible colors ig */
-        const colors = ["red", "green", "blue", "yellow", "purple", "orange", "white", "black"]
+        const colors = ["dark_red", "red", "gold", "yellow", "dark_green", "green", "aqua", "dark_aqua", "dark_blue", "blue", "light_purple", "dark_purple"]
 
-        const list = colors.toString().replace(/,/g, ", ")
+        const list = colors.toString().replace(/,/g, ", ").replace(/_/g, " ")
 
         args = args.toLowerCase()
         args = args.split(" ")
