@@ -5,7 +5,7 @@ export default class ClearWarnsCommand extends Command {
     public constructor() {
         super("clearwarns", {
             aliases: ["clearwarns"],
-            category: "Utility",
+            category: "Moderation",
             quoted: true,
             description: {
                 content: "",

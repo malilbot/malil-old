@@ -5,7 +5,7 @@ export default class LogChannelCommand extends Command {
     public constructor() {
         super("logchannel", {
             aliases: ["logchannel", "modlogs"],
-            category: "Utility",
+            category: "Moderation",
             quoted: true,
             args: [
                 {

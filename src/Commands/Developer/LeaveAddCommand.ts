@@ -5,8 +5,9 @@ export default class LeaveAddCommand extends Command {
     public constructor() {
         super("leaveAdd", {
             aliases: ["leaveAdd"],
-            category: "Utility",
+            category: "Developer",
             quoted: true,
+            ownerOnly: true,
             args: [
                 {
                     id: "args",
