@@ -30,9 +30,8 @@ module.exports = {
                         console.log("/** ---------------------------------- */")
                         client.releases.push("all", split[0] + "|" + data[0].tag_name);
                         console.log(client.releases.get("all"))
-
+                        console.log("/** ---------------------------------- */")
                         const url = data[0].html_url.split("/");
-
                         const servers = client.releases.keyArray();
                         const fetchs = await (await centra(data[0].url, "GET")
                             .header("User-Agent", "Malil")
@@ -41,21 +40,34 @@ module.exports = {
                         SendMessage(servers, split, client, url, data, fetchs);
                     }
                 }
-            }
+            } else
+                if (data.message == "Not Found") {
+                    for (let l = 0; l < repos.length; l++) {
+                        if (repos[l] == repos[i]) {
+                            repos.splice(l, 1);
+                        }
+                    }
+                    client.releases.set("all", repos);
+                    console.log("/** ---------------------------------- */")
+                    console.log(repos)
+                    console.log("/** ---------------------------------- */")
+                    console.log(client.releases.get("all"))
+                    console.log("/** ---------------------------------- */")
+                    this.client.logger.info("Deleted " + repos[i])
+                }
         }
 
         async function SendMessage(servers, split, client, url, data, fetchs) {
+            let body = fetchs.body;
             for (let i = 0; i < servers.length; i++) {
-                let body = fetchs.body;
                 if (servers[i] !== "all") {
                     const bodylength = body.length;
-
                     if (!body) body = "no description";
                     if (bodylength > 1024) {
                         body = cutString(body, 400);
                         body += "....";
                     }
-                    client.logger.info(url[4] + " " + data[0].tag_name, body)
+                    client.logger.info(url[4] + " " + data[0].tag_name)
                     if (client.releases.get(servers[i], "repos").includes(split[0])) {
                         const id = client.releases.get(servers[i], "channel");
                         const channel = await client.channels.fetch(id).catch(() => console.error);
@@ -64,7 +76,6 @@ module.exports = {
                                 .setDescription(data[0].html_url)
                                 .setTitle("new release from:  " + data[0].author.login)
                                 .addField(url[4] + " " + data[0].tag_name, body);
-
                             await (channel as TextChannel).send(embed).catch(() => console.error);
                         }
                     }
