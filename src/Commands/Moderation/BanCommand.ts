@@ -24,10 +24,6 @@ export default class BanCommand extends Command {
                     id: "user",
                     type: "member",
                     match: "rest",
-                    prompt: {
-                        start: (msg: Message) => `**${msg.author.tag}** Please mention member who want to ban`,
-                        retry: (msg: Message) => `**${msg.author.tag}** Please mention member who want to ban`
-                    }
                 },
                 {
                     id: "day",
@@ -49,7 +45,7 @@ export default class BanCommand extends Command {
     public async exec(message: Message, { day, reason }: { user: GuildMember; day: number; reason: string }) {
         let user = await GetUser(message, this.client)
         user = (user as GuildMember)
-
+        if (!user) return message.reply("user not found")
         reason = reason.replace(user.id, "").replace(/<.*?>/g, "")
         if (!user.bannable) return message.channel.send(`Sorry, i can't ban this user`);
 

@@ -35,6 +35,7 @@ export default class KickCommand extends Command {
 
         let user = await GetUser(message, this.client)
         user = (user as GuildMember)
+        if (!user) return message.reply("user not found")
         if (!user.kickable) return message.channel.send(`Sorry, i can't kick this user`);
 
         if (!message.member.guild.me.hasPermission(["KICK_MEMBERS"])) return message.channel.send(`Sorry, i don't have permission to kick members, make sure you give me \`KICK_MEMBERS\` permission`);

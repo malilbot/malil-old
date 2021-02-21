@@ -55,7 +55,7 @@ export default class UserinfoCommand extends Command {
 		};
 		// member = member ? member.id : message.guild.members.fetch(args)
 		let member = await GetSelf(message, this.client)
-		member = (member as GuildMember)
+		member = (member as GuildMember) || message.member
 		const userFlags = member.user.flags.toArray();
 		const embed = new MessageEmbed()
 			.setThumbnail(member.user.displayAvatarURL({ dynamic: true, size: 512 }))
