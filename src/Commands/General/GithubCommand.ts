@@ -26,7 +26,7 @@ export default class GithubCommand extends Command {
 					"github list"
 				]
 			},
-			ratelimit: 3,
+			ratelimit: 1,
 			channel: "guild",
 			userPermissions: ['MANAGE_MESSAGES']
 		});
