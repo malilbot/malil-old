@@ -25,13 +25,12 @@ export default class PollCommand extends Command {
             },
             ratelimit: 3,
             channel: "guild",
-            userPermissions: ["MANAGE_MESSAGES"]
+            userPermissions: ["MANAGE_MESSAGES"],
+            clientPermissions: ['MANAGE_MESSAGES']
         });
     }
 
     public async exec(message: Message, { args }) {
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You need the permission manage messages to execute this command")
-        message.delete()
         const input = args
         if (!input) return message.reply('pelase ask a question')
 

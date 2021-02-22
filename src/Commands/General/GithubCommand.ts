@@ -27,13 +27,12 @@ export default class GithubCommand extends Command {
 				]
 			},
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
+			userPermissions: ['MANAGE_MESSAGES']
 		});
 	}
 
 	public async exec(message: Message, { args }) {
-		if (!message.member.hasPermission("MANAGE_MESSAGES"))
-			return message.reply("You dont have the manage messages permission to execute this command");
 		if (!args) return message.reply("use  *github set <channel id> to get started use *help github for more info");
 		this.client.releases.ensure(message.guild.id, { channel: "", repos: [] });
 		this.client.releases.ensure("all", []);
@@ -42,7 +41,7 @@ export default class GithubCommand extends Command {
 		if (arg2[0] == "set") {
 			const channel = arg2[1];
 			let o = "";
-			const chnnale = await this.client.channels
+			await this.client.channels
 				.fetch(channel)
 				.then((channel) =>
 					message.util.send(
@@ -75,7 +74,7 @@ export default class GithubCommand extends Command {
 				response.json()
 			);
 			if (urls.documentation_url) return message.util.send("I have been api limited");
-			const version = data.tag_name ? data.tag_name : "none";
+			const version = data[0].tag_name ? data[0].tag_name : "none";
 
 			const url = data.html_url ? data.html_url : urls.html_url;
 
