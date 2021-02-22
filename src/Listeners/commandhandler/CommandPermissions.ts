@@ -13,7 +13,7 @@ export default class missingPermissions extends Listener {
     }
 
     exec(message, command, type) {
-        console.log(type)
+        // console.log(type)
         if (type == "user") {
             const perm = command.userPermissions[0].toLowerCase().replace(/_/g, " ")
             message.util.send(`You dont have the **${perm}** permission to execute this command`)
@@ -21,7 +21,7 @@ export default class missingPermissions extends Listener {
             const perm = command.clientPermissions[0].toLowerCase().replace(/_/g, " ")
             message.util.send(`i dont have the **${perm}** permission to execute this command`)
         }
-        console.log(type)
+        // console.log(type)
 
     }
 

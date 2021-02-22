@@ -28,6 +28,7 @@ export default class UploadCommand extends Command {
 					match: "rest"
 				}
 			],
+			superUserOnly: true,
 			channel: "guild"
 		});
 	}

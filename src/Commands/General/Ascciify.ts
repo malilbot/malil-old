@@ -56,7 +56,7 @@ export default class AsciifyCommand extends Command {
 		}
 		if (!url) message.reply("please add a image attachment");
 		const option = big ? bigoptions : options;
-		console.log(option);
+		// console.log(option);
 		async function post(input) {
 			const data = await fetch("https://hst.skyblockdev.repl.co/documents", {
 				method: "post",

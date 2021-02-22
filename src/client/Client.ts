@@ -6,6 +6,7 @@ import { Logger } from "winston";
 import { logger } from "../lib/Utils";
 import settings from '../../settings.js'
 import Enmap from "enmap";
+
 declare module "discord-akairo" {
 	interface AkairoClient {
 		setting: settings
@@ -23,6 +24,7 @@ declare module "discord-akairo" {
 
 interface Option {
 	owners?: string | string[];
+	superUsers?: string | string[];
 	token?: string;
 }
 
@@ -72,10 +74,8 @@ export default class Client extends AkairoClient {
 
 	public constructor(config: Option) {
 		super(
-			{ ownerID: config.owners },
-			{
-				disableMentions: "everyone"
-			}
+			{ ownerID: config.owners, superUserID: config.superUsers },
+			{ disableMentions: "everyone" }
 		);
 		this.setting = settings
 		this.config = config;
@@ -87,7 +87,7 @@ export default class Client extends AkairoClient {
 		this.releases = new Enmap({ name: "releases" });
 		this.infractions = new Enmap({ name: "infractions" });
 		this.ColorNames = new Enmap({ name: "colorNames" });
-		this.gp = new Enmap({ name: "gp" });
+		this.gp = new Enmap({ name: "gp" })
 	}
 
 	public _init() {

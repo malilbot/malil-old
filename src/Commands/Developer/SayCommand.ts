@@ -7,7 +7,7 @@ export default class SayCommand extends Command {
 		super("say", {
 			aliases: [
 				"say",
-				"sudo",
+
 				"tell"
 			],
 			category: "Developer",
@@ -27,7 +27,7 @@ export default class SayCommand extends Command {
 					default: "Please input some code"
 				}
 			],
-			ownerOnly: true,
+			superUserOnly: true,
 			channel: "guild"
 		});
 	}

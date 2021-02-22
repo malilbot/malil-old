@@ -25,7 +25,7 @@ export default class DmCommand extends Command {
             },
             ratelimit: 3,
             channel: "guild",
-            ownerOnly: true
+            superUserOnly: true
         });
     }
 

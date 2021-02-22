@@ -1,0 +1,66 @@
+import { superUsers } from "@root/config";
+import { Command } from "discord-akairo";
+import { MessageEmbed, Message } from "discord.js";
+import { GetUser, GetSelf } from "../../lib/Utils"
+export default class SuperUserCommand extends Command {
+    public constructor() {
+        super("superUser", {
+            aliases: [
+                "sudo",
+                "su",
+                "superUsers"
+            ],
+            category: "Developer",
+            quoted: true,
+            args: [
+                {
+                    id: 'add',
+                    type: 'boolean',
+                    match: 'flag',
+                    flag: ["-a", "--add"],
+                },
+                {
+                    id: 'remove',
+                    type: 'boolean',
+                    match: 'flag',
+                    flag: ["-r", "--remove"],
+                }
+            ],
+            description: {
+                content: "Superuser's a user",
+                usage: "su",
+                example: [
+                    "su"
+                ]
+            },
+            ratelimit: 3,
+            channel: "guild",
+            ownerOnly: true
+        });
+    }
+
+    public async exec(message: Message, { remove, add }) {
+
+        this.client.gp.ensure("superUsers", []);
+        const list = this.client.gp.get("superUsers");
+        let id = await GetUser(message, this.client)
+        if (add == true) {
+            this.client.gp.push("superUsers", id.id);
+        } else if (remove == true) {
+            let sulist = this.client.gp.get("superUsers");
+            for (let i = 0; i < sulist.length; i++) {
+                if (sulist[i] == id) {
+                    sulist.splice(i, 1);
+                }
+                this.client.gp.set("superUsers", sulist)
+            }
+
+        }
+        const embed = new MessageEmbed()
+            .addField("old", list || "Empty")
+            .addField("new", this.client.gp.get("superUsers") || "Empty")
+        message.reply(embed)
+
+
+    }
+}

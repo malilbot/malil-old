@@ -16,6 +16,9 @@ export default class commandBlocked extends Listener {
         if (reason == "owner") {
             message.react("812398880515817472")
         }
+        if (reason !== "owner") {
+            message.reply("EEEEE")
+        }
     }
 
 }

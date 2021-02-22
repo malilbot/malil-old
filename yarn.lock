@@ -1245,9 +1245,9 @@ dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
-"discord-akairo@github:1Computer1/discord-akairo":
+"discord-akairo@https://github.com/SkyBlockDev/discord-akairo":
   version "8.1.0"
-  resolved "https://codeload.github.com/1Computer1/discord-akairo/tar.gz/29810b9e5d5cd804c649948ad60e5f2ac3897141"
+  resolved "https://github.com/SkyBlockDev/discord-akairo#bfeaf8aad144d7deed19f0eb9863ce122bb414c1"
 
 discord-rpc@^3.2.0:
   version "3.2.0"

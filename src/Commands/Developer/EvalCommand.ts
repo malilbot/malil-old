@@ -52,7 +52,7 @@ export default class EvalCommand extends Command {
 	}
 	public async exec(message: Message, { code, noreturn, del, deph }: { code: string, noreturn: boolean, del: boolean, deph: number }) {
 		//https://gist.github.com/
-		console.log(code, noreturn, del, deph)
+		// console.log(code, noreturn, del, deph)
 		//
 		let evaled = ''
 		//
