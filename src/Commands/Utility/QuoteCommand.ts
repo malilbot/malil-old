@@ -15,6 +15,12 @@ export default class QuoteCommand extends Command {
 					id: "args",
 					type: "array",
 					match: "rest"
+				},
+				{
+					id: 'force',
+					type: 'boolean',
+					match: 'flag',
+					flag: ['--force', '-f'],
 				}
 			],
 			description: {
@@ -29,7 +35,7 @@ export default class QuoteCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args, force }) {
 		const splito = args.split(" ");
 
 
@@ -49,7 +55,10 @@ export default class QuoteCommand extends Command {
 				url = attachment.url;
 			});
 		}
-		if ((chan as TextChannel).nsfw) return message.channel.send("nsfw");
+		if (this.client.gp.get("superUsers").includes(message.author.id) || this.client.setting.owners.includes(message.author.id) && force) {
+
+		} else if ((chan as TextChannel).nsfw) return message.channel.send("nsfw");
+
 		let attachment: unknown;
 		if (url) attachment = await new MessageAttachment(url);
 		if (
