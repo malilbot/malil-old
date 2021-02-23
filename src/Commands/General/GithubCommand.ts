@@ -74,7 +74,7 @@ export default class GithubCommand extends Command {
 				response.json()
 			);
 			if (urls.documentation_url) return message.util.send("I have been api limited");
-			const version = data[0].tag_name ? data[0].tag_name : "none";
+			const version = data.tag_name ? data.tag_name : "none";
 
 			const url = data.html_url ? data.html_url : urls.html_url;
 

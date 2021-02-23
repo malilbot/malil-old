@@ -6,7 +6,7 @@ node_modules
 data
 #FINISH FILE
 finish
-
+dist
 #LOGS FILE
 Logs
  ## Ignore Visual Studio temporary files, build results, and
