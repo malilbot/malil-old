@@ -47,7 +47,7 @@
     "common-tags": "^1.8.0",
     "discord-akairo": "https://github.com/SkyBlockDev/discord-akairo",
     "discord-rpc": "^3.2.0",
-    "discord.js": "^12.5.1",
+    "discord.js": "https://github.com/discordjs/discord.js",
     "dotenv": "^8.2.0",
     "enmap": "^5.8.4",
     "genius-lyrics-api": "^3.0.6",

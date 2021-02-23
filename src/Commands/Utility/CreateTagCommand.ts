@@ -33,7 +33,7 @@ export default class CreatetagCommand extends Command {
 	}
 
 	public async exec(message: Message, { args }) {
-		if (message.member.hasPermission("ADMINISTRATOR") || message.member.hasPermission("MANAGE_MESSAGES")) {
+		if (message.member.permissions.has("ADMINISTRATOR") || message.member.permissions.has("MANAGE_MESSAGES")) {
 			args = args.split(" ");
 
 			const input = args.slice(1).join(" ");
