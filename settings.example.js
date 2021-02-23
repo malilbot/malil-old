@@ -1,18 +1,13 @@
 // eslint-disable-next-line no-undef
 module.exports =
 {
-    "token": "token here",
+    "devtoken": "",
+
+    "token": "",
 
     "prefix": "*",
 
-    "genius": "genius token required for lyrics",
-    "owners": "your id",
-
-    "TestServer": "server id",
-
-    "topgg": "top gg token",
-
-    "gist": "gist token",
+    "dev": true,
 
     "rpc": {
         "on": true,
@@ -24,11 +19,22 @@ module.exports =
             },
             "buttons": [{ label: "top.gg", url: "https://top.gg/bot/749020331187896410" }, { label: "invite", url: "https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824" }]
         },
-        "clientId": "795717859170844673"
+        "clientId": ""
     },
 
+    "Monkey-speak": "I dont need a src folder",
 
-    "mongoPath": "mongo uri",
+    "genius": "",
+
+    "owners": "336465356304678913",
+
+    "TestServer": "755166643927122091",
+
+    "topgg": "",
+
+    "gist": "gist authorization token",
+
+    "mongoPath": "",
     "presence": {
         "status": "online",
         "games": [
@@ -41,7 +47,8 @@ module.exports =
         "interval": 6000
     },
     "language": "English",
-    "color": {
+    "colors": {
+        "default": "#6df902",
         "red": "#ff0000",
         "green": "#00ff27",
         "purple": "#f000ff",

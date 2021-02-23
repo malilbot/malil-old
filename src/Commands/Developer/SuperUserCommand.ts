@@ -57,6 +57,7 @@ export default class SuperUserCommand extends Command {
 
         }
         const embed = new MessageEmbed()
+            .setDescription(id.tag + " is now a super user")
             .addField("old", list || "Empty")
             .addField("new", this.client.gp.get("superUsers") || "Empty")
         message.reply(embed)
