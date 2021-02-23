@@ -35,7 +35,6 @@ export default class GithubCommand extends Command {
 	public async exec(message: Message, { args }) {
 		if (!args) return message.reply("use  *github set <channel id> to get started use *help github for more info");
 		this.client.releases.ensure(message.guild.id, { channel: "", repos: [] });
-		this.client.releases.ensure("all", []);
 		const arg2 = args.split(" ");
 
 		if (arg2[0] == "set") {

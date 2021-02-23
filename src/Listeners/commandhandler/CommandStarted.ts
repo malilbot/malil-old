@@ -15,7 +15,6 @@ export default class CommandStarted extends Listener {
     }
 
     exec(message, command) {
-        this.client.gp.ensure("commands", 0)
         this.client.gp.math("commands", "+", 1)
         this.client.logger.info(`\x1b[32mCommand Used \x1b[33m- \x1b[32m${message.author.tag} (${message.author.id}) \x1b[33m- \x1b[32m${message.guild} (${message.guild.id}) \x1b[33m- \x1b[32m${command} \x1b[33m- \x1b[32m${message.id}`)
         // this.client.logger.info(`\x1b[33m Command Used -\x1b[0m\x1b[32m: ${message.author.tag} \x1b[33m[GUILD]\x1b[0m\x1b[32m: ${message.guild.name} \x1b[33m[COMMAND]\x1b[0m\x1b[32m: ${command}`)
