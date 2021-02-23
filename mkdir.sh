@@ -8,3 +8,11 @@ mkdir data/prefixes
 mkdir data/releases
 mkdir data/tags
 mkdir data/userdata
+mkdir data/logchannel
+mkdir data/tags
+mkdir data/prefixes
+mkdir data/blacklist
+mkdir data/releases
+mkdir data/infractions
+mkdir data/gp
+mkdir data/userData
