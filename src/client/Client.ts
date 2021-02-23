@@ -6,7 +6,6 @@ import { Logger } from "winston";
 import { logger } from "../lib/Utils";
 import settings from '../../settings.js'
 import Enmap from "enmap";
-
 declare module "discord-akairo" {
 	interface AkairoClient {
 		setting: settings
@@ -19,6 +18,7 @@ declare module "discord-akairo" {
 		infractions: Enmap;
 		ColorNames: Enmap;
 		gp: Enmap;
+		UserData: Enmap;
 	}
 }
 
@@ -74,20 +74,20 @@ export default class Client extends AkairoClient {
 
 	public constructor(config: Option) {
 		super(
-			{ ownerID: config.owners, superUserID: config.superUsers },
-			{ disableMentions: "everyone" }
+			{ ownerID: config.owners, superUserID: config.superUsers, intents: ['GUILDS', 'GUILD_MESSAGES'] },
+			{ intents: ['GUILDS', 'GUILD_MESSAGES'] }
 		);
 		this.setting = settings
 		this.config = config;
 		this.logger = logger;
-		this.logchannel = new Enmap({ name: "logchannel" });
-		this.tags = new Enmap({ name: "tags" });
-		this.prefixes = new Enmap({ name: "prefixes" });
-		this.blacklist = new Enmap({ name: "blacklist" });
-		this.releases = new Enmap({ name: "releases" });
-		this.infractions = new Enmap({ name: "infractions" });
-		this.ColorNames = new Enmap({ name: "colorNames" });
-		this.gp = new Enmap({ name: "gp" })
+		this.logchannel = new Enmap({ name: "logchannel", dataDir: join(__dirname, "..", "..", "data/logchannel"), polling: true });
+		this.tags = new Enmap({ name: "tags", dataDir: join(__dirname, "..", "..", "data/tags"), polling: true });
+		this.prefixes = new Enmap({ name: "prefixes", dataDir: join(__dirname, "..", "..", "data/prefixes"), polling: true });
+		this.blacklist = new Enmap({ name: "blacklist", dataDir: join(__dirname, "..", "..", "data/blacklist"), polling: true });
+		this.releases = new Enmap({ name: "releases", dataDir: join(__dirname, "..", "..", "data/releases"), polling: true });
+		this.infractions = new Enmap({ name: "infractions", dataDir: join(__dirname, "..", "..", "data/infractions"), polling: true });
+		this.gp = new Enmap({ name: "gp", dataDir: join(__dirname, "..", "..", "data/gp"), polling: true })
+		this.UserData = new Enmap({ name: "users", dataDir: join(__dirname, "..", "..", "data/userData"), polling: true });
 	}
 
 	public _init() {

@@ -30,7 +30,7 @@ export default class DeleteTagCommand extends Command {
 	}
 
 	public async exec(message: Message, { args }) {
-		if (!message.member.hasPermission("ADMINISTRATOR") || message.member.hasPermission("MANAGE_MESSAGES"))
+		if (!message.member.permissions.has("ADMINISTRATOR") || message.member.permissions.has("MANAGE_MESSAGES"))
 			return message.channel.send("Sorry you dont hae the required permissions to use this command");
 		await this.client.tags.ensure(message.guild.id, {});
 		args = args.split(" ");

@@ -62,7 +62,7 @@ export default class QuoteCommand extends Command {
 		let attachment: unknown;
 		if (url) attachment = await new MessageAttachment(url);
 		if (
-			!message.member.guild.me.hasPermission([
+			!message.member.guild.me.permissions.has([
 				"MANAGE_WEBHOOKS"
 			])
 		) {

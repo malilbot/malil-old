@@ -35,7 +35,7 @@ export default class PrefixCommand extends Command {
             } else return message.channel.send('my prefix is *')
 
         } else {
-            if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("you need to be a 'ADMINISTRATOR' to use this command")
+            if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("you need to be a 'ADMINISTRATOR' to use this command")
             this.client.prefixes.set(message.guild.id, args, 'prefix')
             message.channel.send("Updated the prefix to " + args)
         }
