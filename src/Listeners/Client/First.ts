@@ -24,22 +24,20 @@ export default class First extends Listener {
             !this.client.releases.get("all")
             //!this.client.gp.get("commands")
         ) {
-            await this.client.logger.info("[ LOADING DB FIRST TIME ]")
+
             await this.client.blacklist.ensure('blacklisted', [], 'guilds')
-            await this.client.logger.info("[ 1 ]")
             await this.client.blacklist.ensure('blacklisted', [], 'list')
-            await this.client.logger.info("[ 2 ]")
             await this.client.gp.ensure("superUsers", [])
-            await this.client.logger.info("[ 3 ]")
+            await this.client.logger.info("[ LOADING DB FIRST TIME ]")
             await this.client.blacklist.ensure("blacklist", [], "leavelist")
-            await this.client.logger.info("[ 5 ]")
             await this.client.releases.ensure("all", []);
-            await this.client.logger.info("[ 6 ]")
             await this.client.gp.ensure("commands", 0)
-            await this.client.logger.info("[ 6 ]")
             await this.client.logger.info("[ DATABASE LOADED ]")
             await this.client.logger.info("[ PLEASE RESTART THE BOT ]")
             await this.client.logger.info("[ TO MAKE SURE EVERYTHING WENT THROUGH ]")
+            this.client.logger.info("[ REPO: https://github.com/SkyBlockDev/malil-akairo ]")
+            this.client.logger.info("[ DISCORD: https://discord.gg/mY8zTARu4g ]")
+            this.client.logger.info("[ WEBSITE:  https://tricked-dev.gitbook.io/malil/ ]")
         }
     }
 }
