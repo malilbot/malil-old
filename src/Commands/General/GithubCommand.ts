@@ -1,6 +1,7 @@
 import { Command } from "discord-akairo";
 import { Message } from "discord.js";
 import fetch from "node-fetch";
+import centra from "centra"
 export default class GithubCommand extends Command {
 	public constructor() {
 		super("github", {
