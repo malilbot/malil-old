@@ -2,8 +2,9 @@
 require('dotenv').config();
 import settings from '../settings.js'
 import Enmap from "enmap"
+import { join } from "path";
 
-const generalpurpose = new Enmap({ name: "gp" })
+const generalpurpose = new Enmap({ name: "gp", dataDir: join(__dirname, "..", "data/gp"), polling: true })
 if (!generalpurpose.get("superUsers")) generalpurpose.ensure("superUsers", [])
 let login = settings.token
 if (settings.dev == true) login = settings.devtoken
