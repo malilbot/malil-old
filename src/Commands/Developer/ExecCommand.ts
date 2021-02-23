@@ -1,7 +1,6 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
-import { CreateGist } from "../../lib/Utils";
-import fetch from "node-fetch";
+import { hst } from "../../lib/Utils";
 export default class ExecCommand extends Command {
 	public constructor() {
 		super("exec", {
@@ -32,15 +31,6 @@ export default class ExecCommand extends Command {
 
 	public async exec(message: Message, { code }) {
 		const { exec } = require("child_process");
-		async function post(input) {
-			const data = await fetch("https://hst.skyblockdev.repl.co/documents", {
-				method: "post",
-				body: input
-			})
-				.then((response) => response.json())
-				.catch((e) => { });
-			return data.key;
-		}
 		exec(code, async (error, stdout, stderr) => {
 			const embed = new MessageEmbed()
 				.setTitle(`Exec`)
@@ -53,7 +43,7 @@ export default class ExecCommand extends Command {
 			if (stderr) output = stderr;
 			if (stdout) output = stdout;
 			if (output.length > 1024) {
-				embed.addField("🫓 Output", "https://hst.skyblockdev.repl.co/" + (await post(output)));
+				embed.addField("🫓 Output", await hst(output));
 				embed.addField("Type", "shell");
 			} else {
 				embed.addField("🫓 Output", `\`\`\`ts\n${output}\`\`\``);

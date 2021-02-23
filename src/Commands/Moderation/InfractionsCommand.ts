@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import { GetUser } from "../../lib/Utils"
 import { MessageEmbed, Message, GuildChannel, TextChannel, GuildMember } from "discord.js";
-import fetch from "node-fetch";
+import { hst } from "../../lib/Utils"
 export default class InfractionsCommand extends Command {
     public constructor() {
         super("infractions", {
@@ -42,13 +42,7 @@ export default class InfractionsCommand extends Command {
         const embed = new MessageEmbed()
             .setColor(this.client.setting.colors.default)
         if (mesg.length > 1024) {
-            const data = await fetch("https://hst.skyblockdev.repl.co/documents", {
-                method: "post",
-                body: mesg
-            })
-                .then((response) => response.json())
-                .catch((e) => { message.reply(e) })
-            embed.addField("warns of " + user, "https://hst.skyblockdev.repl.co/" + data.key)
+            embed.addField("warns of " + user, await hst(mesg))
         } else embed.addField("warns of " + user, mesg)
 
 

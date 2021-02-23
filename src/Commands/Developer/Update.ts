@@ -17,7 +17,7 @@ export default class updateCommand extends Command {
                 ]
             },
             ratelimit: 3,
-            superUserOnly: true,
+            ownerOnly: true,
             channel: "guild"
         });
     }

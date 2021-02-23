@@ -2,7 +2,7 @@ import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
 import util from "util";
 import centra from "centra";
-import fetch from "node-fetch";
+import { hst } from "../../lib/Utils"
 
 export default class EvalCommand extends Command {
 	public constructor() {
@@ -51,21 +51,9 @@ export default class EvalCommand extends Command {
 		});
 	}
 	public async exec(message: Message, { code, noreturn, del, deph }: { code: string, noreturn: boolean, del: boolean, deph: number }) {
-		//https://gist.github.com/
-		// console.log(code, noreturn, del, deph)
-		//
+
 		let evaled = ''
-		//
-		async function post(input) {
-			const data = await fetch("https://hst.skyblockdev.repl.co/documents", {
-				method: "post",
-				body: input
-			})
-				.then((response) => response.json())
-				.catch((e) => { message.reply(e) });
-			return data.key;
-		}
-		//
+
 		const evalcode = code;
 
 		const gists = "";
@@ -80,7 +68,7 @@ export default class EvalCommand extends Command {
 
 			const output = util.inspect(evaled, { depth: deph || 0 });
 			if (output.length > 1024) {
-				embed.addField("🫓 Output", "https://hst.skyblockdev.repl.co/" + (await post(output)));
+				embed.addField("🫓 Output", await hst(output));
 				embed.addField("Type", typeof evaled);
 			} else {
 				embed.addField("🫓 Output", `\`\`\`ts\n${output}\`\`\``);
@@ -89,7 +77,7 @@ export default class EvalCommand extends Command {
 		} catch (e) {
 			const error = e;
 			if (error.length > 1024) {
-				embed.addField("🫓 Error", "https://hst.skyblockdev.repl.co/" + (await post(error)));
+				embed.addField("🫓 Error", "https://hst.skyblockdev.repl.co/" + await hst(error));
 				embed.addField("Type", typeof evaled);
 			} else {
 				embed.addField("🫓 Error", `\`\`\`ts\n${error}\`\`\``);

@@ -1,9 +1,5 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
-import moment from "moment";
-import centra from "centra";
-import fetch from "node-fetch";
-import { timingSafeEqual } from "crypto";
 export default class testCommand extends Command {
 	public constructor() {
 		super("test", {
@@ -33,44 +29,6 @@ export default class testCommand extends Command {
 	}
 
 	public async exec(message: Message, { args }) {
-		this.client.releases.ensure(message.guild.id, { channel: "", repos: "" });
-		if (!this.client.releases.get(message.guild.id, "channel"))
-			return message.reply("no channel set please set one with: `github set <chanid> `");
-		const arg2 = args.split(" ");
-		if (arg2[0] == "set") {
-			const channel = arg2[1];
-			let o = "";
-			const chnnale = await this.client.channels
-				.fetch(channel)
-				.then((channel) =>
-					message.reply(
-						"Succesfully set the channel to: " +
-						channel +
-						"\n make sure that i have permission to that channel"
-					)
-				)
-				.catch((e) => (o = e));
-			if (o) return message.reply("channel not found");
-			this.client.releases.set(message.guild.id, arg2[1], "channel");
-		}
-		args = args.split("/");
-		const name = args[3] + "/" + args[4];
-		const data = await fetch(`https://api.github.com/repos/${name}/releases`).then((response) => response.json());
-
-		if (data.documentation_url) return;
-		let version = "";
-		if (data[0].tag_name) {
-			version = data[0].tag_name;
-		} else {
-			version = "none";
-		}
-
-		let url = data[0].html_url.split("/");
-		url = url[3] + "/" + url[4];
-		const output = url + "|" + version;
-		message.reply("ADDED it to the watch list");
-		this.client.releases.push("all", name);
-		this.client.releases.push(message.guild.id, output, "repos");
 
 		/*
 		const data = await fetch("https://api.github.com/repos/SkyBlockDev/The-Trickster/releases").then(response => response.json())

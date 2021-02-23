@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import { Message } from "discord.js";
-import fetch from "node-fetch";
-const asciify = require("asciify-image");
+import asciify from "asciify-image"
+import { hst } from "../../lib/Utils"
 export default class AsciifyCommand extends Command {
 	public constructor() {
 		super("asciify", {
@@ -56,22 +56,12 @@ export default class AsciifyCommand extends Command {
 		}
 		if (!url) message.reply("please add a image attachment");
 		const option = big ? bigoptions : options;
-		// console.log(option);
-		async function post(input) {
-			const data = await fetch("https://hst.skyblockdev.repl.co/documents", {
-				method: "post",
-				body: input
-			})
-				.then((response) => response.json())
-				.catch((e) => { });
-			return data.key;
-		}
 
 		asciify(url, option, async function (err, asciified) {
 			if (err) message.reply("a error occured");
 
 			// Print to console
-			message.reply("Success! " + "https://hst.skyblockdev.repl.co/" + (await post(asciified)) + ".txt");
+			message.reply("Success! " + await hst(asciified) + ".txt");
 		});
 	}
 }

@@ -54,9 +54,7 @@ export default class ColorCommand extends Command {
             message.channel.send("Whats your ign?")
             const filter = m => m.author.id === message.author.id
             /** 
-             *
              * collector stuff starts here 
-             * 
              * */
             const collector = new MessageCollector((channel as TextChannel), filter, {
                 max: 1,
@@ -127,9 +125,7 @@ export default class ColorCommand extends Command {
                     input[uuid] = args
                     const txt = JSON.stringify(input)
                     /** 
-                     * 
                      * editing the gist with my epic function 
-                     * 
                      * */
                     await EditGist("NameColors.json", txt, "6993d1f641ddcdb6ab2761a6ff8eb317", this.client)
                 })

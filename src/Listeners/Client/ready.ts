@@ -19,43 +19,31 @@ export default class Ready extends Listener {
 		this.client = client;
 	}
 	public async exec() {
-		if (settings.dev == true) {
-			// prettier-ignore
-			console.log(green.bold`
-⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green("[+]") + white(" Malil")}
-⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green("[+]") + whiteBright(" api")}
-⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${hex("#D900FF")(`${version} [ ${this.client.user.username} ]`)}
-⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${blue('-')} ${green(`${this.client.commandHandler.modules.size}     ${red('-')} Commands`)}
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${blue('-')} ${green(`${this.client.listenerHandler.modules.size}     ${red('-')} Listeners`)}     
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${blue('-')} ${green(`${this.client.inhibitorHandler.modules.size}      ${red('-')} Inhibitors`)}   
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${blue('-')} ${green(`${this.client.guilds.cache.size}     ${red('-')} Servers`)}
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${blue('-')} ${green(`${this.client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0)}    ${red('-')} Channels`)}
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${blue('-')} ${green(`${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)}  ${red('-')} People`)}
-⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Version')} ${blue('-')} ${green(`${process.version} ${red('-')} Node.js`)}
-⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Version')} ${blue('-')} ${green(`${akairov}    ${red('-')} Akairo`)}
-⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green('╰')} ${yellow('-')} ${red('Version')} ${blue('-')} ${green(`${djsversion}   ${red('-')} Discord.js`)}
-⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ 
-⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍
-`)
+		const
+			l1 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
+			l2 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
+			l3 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
+			l4 = "⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
+			l5 = "⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍",
+			l6 = "⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍",
+			l7 = "⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍",
+			l8 = "⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍",
+			l9 = "⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍",
+			l10 = "⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤ⁍⁍⁍⁍⁍⁍⁍",
+			l11 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
+			l12 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
+			l13 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
+			l14 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍"
+		const
+			q1 = hex("#D900FF")(`${version} [ ${this.client.user.username} ]`),
+			a1 = this.client.commandHandler.modules.size,
+			a2 = this.client.listenerHandler.modules.size,
+			a3 = this.client.inhibitorHandler.modules.size,
+			a4 = this.client.guilds.cache.size,
+			a5 = this.client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0),
+			a6 = this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)
 
-		} else {
-			// prettier-ignore
-			console.log(cyan.bold`
-⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green("[+]") + white(" Malil")}
-⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green("[+]") + whiteBright(" api")}
-⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${blue(`${version} [ ${this.client.user.username} ]`)}
-⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.commandHandler.modules.size}     ${yellow('-')} Commands`)}
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.listenerHandler.modules.size}     ${yellow('-')} Listeners`)}     
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.inhibitorHandler.modules.size}      ${yellow('-')} Inhibitors`)}   
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.guilds.cache.size}     ${yellow('-')} Servers`)}
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0)}    ${yellow('-')} Channels`)}
-⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Loaded')}  ${yellow('-')} ${green(`${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)}  ${yellow('-')} People`)}
-⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍ℤℤℤ⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Version')} ${yellow('-')} ${green(`${process.version} ${yellow('-')} Node.js`)}
-⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green('├')} ${yellow('-')} ${red('Version')} ${yellow('-')} ${green(`${akairov}    ${yellow('-')} Akairo`)}
-⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ${green('╰')} ${yellow('-')} ${red('Version')} ${yellow('-')} ${green(`${djsversion}   ${yellow('-')} Discord.js`)}
-⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ 
-⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍
-`);
+		if (settings.dev == true) {
 		}
 	}
 }
