@@ -10,7 +10,7 @@
         "strictPropertyInitialization": false,
         "module": "commonjs",
         "target": "ESNext",
-        "outDir": "finish",
+        "outDir": "dist",
         "lib": [
             "es2016",
             "ES2017",

@@ -2,9 +2,9 @@
   "name": "malil",
   "version": "1.0.0",
   "description": "Malil discord bot",
-  "main": "finish/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "tsc && node ./finish/index.js",
+    "start": "tsc && node ./dist/index.js",
     "build": "tsc",
     "test": "jest",
     "dev": "nodemon -e ts --exec \"yarn start\"",
@@ -12,7 +12,7 @@
     "vps": "npm run build && npm start",
     "lint": "eslint . --ext .ts",
     "lintfix": "eslint . --ext .ts --fix",
-    "rm": "rm -rf finish/"
+    "rm": "rm -rf dist/"
   },
   "repository": {
     "type": "git",
