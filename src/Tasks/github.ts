@@ -5,8 +5,8 @@ import centra from "centra";
 module.exports = {
     name: 'github',
     delay: "30m",
-    runOnStart: false,
-    awaitReady: false,
+    runOnStart: true,
+    awaitReady: true,
     async execute(client) {
         const repos = client.releases.get("all");
         for (let i = 0; i < repos.length; i++) {
@@ -17,7 +17,7 @@ module.exports = {
                 .send()).json();
             await sleep(2000)
             if (!data.documentation_url) {
-                if (data[0].tag_name) {
+                if (data[0]?.tag_name) {
                     if (split[1] !== data[0].tag_name) {
                         for (let l = 0; l < repos.length; l++) {
                             if (repos[l] == repos[i]) {
@@ -76,6 +76,7 @@ module.exports = {
                                 .setDescription(data[0].html_url)
                                 .setTitle("new release from:  " + data[0].author.login)
                                 .addField(url[4] + " " + data[0].tag_name, body);
+                            await sleep(1000)
                             await (channel as TextChannel).send(embed).catch(() => console.error);
                         }
                     }
