@@ -24,14 +24,14 @@ export default class FloppaCommand extends Command {
 			},
 			ratelimit: 3,
 			channel: "guild",
-			ownerOnly: true
+			ownerOnly: false
 		});
 	}
 
 	public async exec(message: Message, { args }) {
 		const { floor } = Math
 		const Random = (total: number) => {
-			let a1: number = 0, b1: number = 0, c1: number = 0
+			let a1 = 0, b1 = 0, c1 = 0
 			for (let i = 0; i < total; i++) {
 				const num = Math.floor(Math.random() * 3) + 1
 				if (num == 1) a1++
@@ -41,7 +41,7 @@ export default class FloppaCommand extends Command {
 			return [a1, b1, c1]
 		};
 		class Floppa {
-			static makemore() { }
+			static makemore() { 2 + 2 }
 			floppas: number
 			constructor(floppas: number) {
 				this.floppas = floppas;

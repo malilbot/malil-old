@@ -37,15 +37,6 @@ export default class updateCommand extends Command {
                 .addField("🫓 Output", `\`\`\`bash\n${output}\`\`\``)
                 .addField("Type", "bash");
             msg = await message.channel.send(embed)
-
-        }).then(() => {
-            const str1 = "this.client.commandHandler.reloadAll()";
-            const str2 = "this.client.inhibitorHandler.reloadAll()";
-            const str3 = "this.client.listenerHandler.reloadAll()";
-            eval(str1);
-            eval(str2);
-            eval(str3);
-        }).then(() => msg.edit("RELOADED COMMANDS"))
-
+        })
     }
 }
