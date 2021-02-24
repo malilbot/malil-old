@@ -6,7 +6,9 @@ export default class HelpCommand extends Command {
 		super("help", {
 			aliases: [
 				"help",
-				"h"
+				"h",
+				"ls",
+				"commands"
 			],
 			category: "General",
 			description: {
@@ -57,7 +59,8 @@ export default class HelpCommand extends Command {
 			.setAuthor(`Help | ${this.client.user.tag}`, this.client.user.displayAvatarURL())
 			.setColor(this.client.setting.colors.orange)
 			.setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" }))
-			.setFooter(`@malil help [ command ] for more information on a command.`);
+			.setDescription("For help and bugs visit the [support server](https://discord.gg/mY8zTARu4g).")
+			.setFooter(`@malil help [ command ] for more information on a command. for help visit the`);
 
 		for (const category of this.handler.categories.values()) {
 			if (
