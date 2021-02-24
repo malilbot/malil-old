@@ -39,12 +39,16 @@ export const GetSelf = async function (msg: Message, client: Client) {
     let user;
 
     const stuff = msg.content.split(" ")
-
+    let o: number
     stuff.forEach((element) => {
+
+
         user = msg.guild.members.cache.find(member => {
             return member.displayName.toLowerCase().includes(element) ||
                 member.user.tag.toLowerCase().includes(element)
         })
+
+
     })
     stuff.forEach((element) => {
         const person = msg.guild.members.cache.get(element)

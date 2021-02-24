@@ -29,12 +29,16 @@ export default class NickCommand extends Command {
     }
 
     public async exec(message, { name }) {
-        if (message.mentions.members.first().roles.highest.position > message.guild.members.resolve(this.client.user).roles.highest.position) return message.channel.send("Sorry i cant change the nickname of that use cause his highest role is higher than mine");
 
         const user = await GetUser(message, this.client)
         if (!user) return message.reply("user not found")
-        message.reply("NickName Changed")
-        user.setNickname(name)
+        try {
+            await user.setNickname(name)
+            message.reply("NickName Changed")
+        } catch (err) { message.reply("Sorry cant do") }
+
+
+
 
 
     }
