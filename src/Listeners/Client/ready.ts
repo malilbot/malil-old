@@ -103,5 +103,6 @@ export default class Ready extends Listener {
 		log(main(l12), split, third(a5), split, third("Channels"))
 		log(main(l13), split, third(a6), split, third("Users"))
 		log(main(l14), split, third(a7), split, third("Shards"))
+
 	}
 }

@@ -1,15 +1,11 @@
+import Client from '../client/Client'
 module.exports = {
-    name: 'github',
+    name: 'status',
     delay: "30m",
     runOnStart: true,
     awaitReady: true,
-    async execute(client) {
-        client.user.setPresence({
-            activity: {
-                name: "Prefix * or @ me",
-                type: "PLAYING",
-                url: null
-            }
-        });
+    async execute(client: Client) {
+        const strin = `Prefix ${client.setting.prefix} or mention me`
+        client.user.setActivity(strin, { type: 'PLAYING' })
     }
 }
