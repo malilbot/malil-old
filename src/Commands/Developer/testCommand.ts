@@ -1,25 +1,25 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
-export default class testCommand extends Command {
+export default class FloppaCommand extends Command {
 	public constructor() {
-		super("test", {
+		super("floppa", {
 			aliases: [
-				"test"
+				"floppa"
 			],
 			category: "Developer",
 			quoted: true,
 			args: [
 				{
 					id: "args",
-					type: "array",
+					type: "number",
 					match: "rest"
 				}
 			],
 			description: {
-				content: "",
-				usage: "test",
+				content: "floppa",
+				usage: "floppa",
 				example: [
-					"test"
+					"floppa"
 				]
 			},
 			ratelimit: 3,
@@ -29,60 +29,45 @@ export default class testCommand extends Command {
 	}
 
 	public async exec(message: Message, { args }) {
-
-		/*
-		const data = await fetch("https://api.github.com/repos/SkyBlockDev/The-Trickster/releases").then(response => response.json())
-		let url = (data[0].html_url).split('/')
-		let uu = data[4] + '-' + data[3]
-		this.client.releases.ensure(`${message.guild.id}-repo`, {})
-		if(this.client.releases.get(`${message.guild.id}-repo`, uu) return
-		// const data = await response.json();
+		const { floor } = Math
+		const Random = (total: number) => {
+			let a1: number = 0, b1: number = 0, c1: number = 0
+			for (let i = 0; i < total; i++) {
+				const num = Math.floor(Math.random() * 3) + 1
+				if (num == 1) a1++
+				if (num == 2) b1++
+				if (num == 3) c1++
+			}
+			return [a1, b1, c1]
+		};
+		class Floppa {
+			static makemore() { }
+			floppas: number
+			constructor(floppas: number) {
+				this.floppas = floppas;
+			}
+			public makemore() {
+				const floppa = Random(this.floppas)
+				const floppaObject = {
+					young: floppa[0],
+					good: floppa[1],
+					old: floppa[2],
+					born: null
+				}
+				const babys = floppaObject.good / 2
+				floppaObject["born"] = babys
+				return floppaObject
+			}
+		}
+		if (typeof args !== "number") return message.reply("not a number")
+		if (args > 5000) return message.reply("cant handle too many floppas srry")
+		const floppa = await new Floppa(args)
+		const floppas = await floppa.makemore()
+		console.log(floppas)
 		const embed = new MessageEmbed()
-		.setTitle("new release from:  " + data[0].author.login)
-		.addField(url[4] + ' ' + data[0].tag_name, data[0].html_url);
+			.setAuthor("tricked floppa's machine")
+			.addField("stats", `${floppas.young} young floppas were made\n${floppas.good} adult floppas were made\n${floppas.old} old floppas were made \n${floor(floppas.born)} baby floppas were born`)
 		message.reply(embed)
-		console.log(await data[0].html_url)
-		/*
 
-		[
-  {
-	url: 'https://api.github.com/repos/SkyBlockDev/The-trickster/releases/35188037',
-	assets_url: 'https://api.github.com/repos/SkyBlockDev/The-trickster/releases/35188037/assets',
-	upload_url: 'https://uploads.github.com/repos/SkyBlockDev/The-trickster/releases/35188037/assets{?name,label}',
-	html_url: 'https://github.com/SkyBlockDev/The-trickster/releases/tag/2.31.1',
-	id: 35188037,
-	author: {
-	  login: 'SkyBlockDev',
-	  id: 72335827,
-	  node_id: 'MDQ6VXNlcjcyMzM1ODI3',
-	  avatar_url: 'https://avatars.githubusercontent.com/u/72335827?v=4',
-	  gravatar_id: '',
-	  url: 'https://api.github.com/users/SkyBlockDev',
-	  html_url: 'https://github.com/SkyBlockDev',
-	  followers_url: 'https://api.github.com/users/SkyBlockDev/followers',
-	  following_url: 'https://api.github.com/users/SkyBlockDev/following{/other_user}',
-	  gists_url: 'https://api.github.com/users/SkyBlockDev/gists{/gist_id}',
-	  starred_url: 'https://api.github.com/users/SkyBlockDev/starred{/owner}{/repo}',
-	  subscriptions_url: 'https://api.github.com/users/SkyBlockDev/subscriptions',
-	  organizations_url: 'https://api.github.com/users/SkyBlockDev/orgs',
-	  repos_url: 'https://api.github.com/users/SkyBlockDev/repos',
-	  events_url: 'https://api.github.com/users/SkyBlockDev/events{/privacy}',
-	  received_events_url: 'https://api.github.com/users/SkyBlockDev/received_events',
-	  type: 'User',
-	  site_admin: false
-	},
-	node_id: 'MDc6UmVsZWFzZTM1MTg4MDM3',
-	tag_name: '2.31.1',
-	target_commitish: 'master',
-
-		*/
-
-		// await message.guild.members.fetch()
-		/*
-		let yes = ''
-		let members = await Promise.all(message.guild.members.cache.map((member) => member.fetch()));
-		members.forEach(member => yes += moment(member.joinedAt).format('LL LTS') + ' - ' + member.user.tag + '\n')
-		message.channel.send(yes)
-*/
 	}
 }
