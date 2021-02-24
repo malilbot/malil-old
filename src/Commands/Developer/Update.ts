@@ -25,7 +25,13 @@ export default class updateCommand extends Command {
     public async exec(message: Message) {
         const delay = ms => new Promise(res => setTimeout(res, ms));
         await message.reply("Updating")
-        await exec('git pull && pm2 restart 10', async (error, stdout, stderr) => {
+        const str1 = "this.client.commandHandler.reloadAll()";
+        const str2 = "this.client.inhibitorHandler.reloadAll()";
+        const str3 = "this.client.listenerHandler.reloadAll()";
+        eval(str1);
+        eval(str2);
+        eval(str3);
+        await exec('git pull && yarn run build', async (error, stdout, stderr) => {
             let output = ''
             if (error) output = error
             if (stderr) output = stderr
