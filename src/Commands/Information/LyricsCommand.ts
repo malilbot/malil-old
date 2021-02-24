@@ -61,7 +61,7 @@ export default class lyricsCommand extends Command {
 				.replace(/\n\n/g, "\n");
 			// prettier-ignore
 
-			message.reply(new MessageEmbed().setTitle(args).setURL(song.url).addField("lyrics", lyrics));
+			message.util.reply(new MessageEmbed().setTitle(args).setURL(song.url).addField("lyrics", lyrics), { allowedMentions: { repliedUser: false } });
 		});
 	}
 }

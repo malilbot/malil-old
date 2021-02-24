@@ -60,7 +60,7 @@ export default class SuperUserCommand extends Command {
             .setDescription(id.tag + " is now a super user")
             .addField("old", list || "Empty")
             .addField("new", this.client.gp.get("superUsers") || "Empty")
-        message.reply(embed)
+        message.util.send(embed)
 
 
     }

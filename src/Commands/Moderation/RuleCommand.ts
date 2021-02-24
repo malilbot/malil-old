@@ -66,7 +66,7 @@ If there are loopholes in our rules, the staff team may moderate based on what t
 				)
 				.setColor(this.client.setting.colors.red)
 				.setTimestamp();
-			message.reply(embed);
+			message.util.send(embed);
 		} else if (args == "2") {
 			const embed = new MessageEmbed()
 				.setDescription(
@@ -107,6 +107,6 @@ And lastly, abide by all rules set out in the Discord ToS and Discord Guidelines
 				.setColor(this.client.setting.colors.red)
 				.setTimestamp();
 			message.channel.send(embed);
-		} else message.reply("choose from 1 to 3");
+		} else message.util.reply("choose from 1 to 3", { allowedMentions: { repliedUser: false } });
 	}
 }

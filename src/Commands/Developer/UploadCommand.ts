@@ -35,14 +35,14 @@ export default class UploadCommand extends Command {
 			message.reply(
 				new MessageEmbed()
 					.setColor(this.client.setting.colors.green)
-					.addField("Upload", await hst(first))
+					.addField("Upload", await hst(first)), { allowedMentions: { repliedUser: false } }
 			);
 		} else if (term[0] == "gist" || term[0] == "github") {
 			if (message.author.id !== "336465356304678913") return;
 			message.reply(
 				new MessageEmbed()
 					.setColor(this.client.setting.colors.green)
-					.addField("Upload", "https://gist.github.com/" + (await CreateGist("upload", first, this.client)))
+					.addField("Upload", "https://gist.github.com/" + (await CreateGist("upload", first, this.client))), { allowedMentions: { repliedUser: false } }
 			);
 		} else message.reply("Please mention a platform");
 	}

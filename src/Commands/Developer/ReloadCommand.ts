@@ -23,7 +23,7 @@ export default class ReloadCommand extends Command {
 	}
 
 	public async exec(message: Message) {
-		message.reply("Reloading :robot:");
+		message.reply("Reloading :robot:", { allowedMentions: { repliedUser: false } });
 		const str1 = "this.client.commandHandler.reloadAll()";
 		const str2 = "this.client.inhibitorHandler.reloadAll()";
 		const str3 = "this.client.listenerHandler.reloadAll()";

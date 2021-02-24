@@ -45,10 +45,10 @@ export default class UwuCommand extends Command {
 
         // Get question to answer
         const text = message.content.split(' ').slice(1).join(' ')
-        if (!text) { return message.reply(`**You need to specify a message..**`) }
+        if (!text) { return message.util.reply(`**You need to specify a message..**`), { allowedMentions: { repliedUser: false } } }
 
         // Send message
-        message.channel.send(`${Owoify(text)}`)
+        message.util.send(`${Owoify(text)}`)
 
 
     }
