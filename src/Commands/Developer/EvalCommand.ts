@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
-import util from "util";
+import { inspect } from "util";
 import centra from "centra";
 import { hst } from "../../lib/Utils"
 
@@ -52,9 +52,7 @@ export default class EvalCommand extends Command {
 	}
 	public async exec(message: Message, { code, noreturn, del, deph }: { code: string, noreturn: boolean, del: boolean, deph: number }) {
 
-		let evaled = ''
-
-		const evalcode = code;
+		let output = ''
 
 		const gists = "";
 		if (del == true) message.delete()
@@ -64,24 +62,33 @@ export default class EvalCommand extends Command {
 			.addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``);
 
 		try {
-			evaled = await eval(code);
-
-			const output = util.inspect(evaled, { depth: deph || 0 });
+			output = await eval(code);
+			if (typeof output !== 'string') output = inspect(output, { depth: deph || 0 });
+			output = output.replace(new RegExp(this.client.setting.token, 'g'), '[HIDDEN]');
+			output = output.replace(new RegExp([...this.client.setting.token].reverse().join(''), 'g'), '[HIDDEN]');
+			output = output.replace(new RegExp(this.client.setting.mongoPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), '[HIDDEN]');
+			output = output.replace(new RegExp(this.client.setting.devtoken, 'g'), '[HIDDEN]')
+			output = output.replace(new RegExp(this.client.setting.owners, 'g'), '[HIDDEN]')
+			output = output.replace(new RegExp(this.client.setting.TestServer, 'g'), '[HIDDEN]')
+			output = output.replace(new RegExp("\\" + this.client.setting.prefix, 'g'), '[HIDDEN]')
+			output = output.replace(new RegExp(this.client.setting.gist, 'g'), '[HIDDEN]')
+			output = output.replace(new RegExp(this.client.setting.genius.toString(), 'g'), '[HIDDEN]');
+			output = output.replace(new RegExp(this.client.setting.topgg.toString(), 'g'), '[HIDDEN]');
 			if (output.length > 1024) {
 				embed.addField("🫓 Output", await hst(output));
-				embed.addField("Type", typeof evaled);
+				embed.addField("Type", typeof output);
 			} else {
 				embed.addField("🫓 Output", `\`\`\`ts\n${output}\`\`\``);
-				embed.addField("Type", typeof evaled);
+				embed.addField("Type", typeof output);
 			}
 		} catch (e) {
 			const error = e;
 			if (error.length > 1024) {
-				embed.addField("🫓 Error", "https://hst.skyblockdev.repl.co/" + await hst(error));
-				embed.addField("Type", typeof evaled);
+				embed.addField("🫓 Error", await hst(error));
+				embed.addField("Type", typeof output);
 			} else {
 				embed.addField("🫓 Error", `\`\`\`ts\n${error}\`\`\``);
-				embed.addField("Type", typeof evaled);
+				embed.addField("Type", typeof output);
 			}
 		}
 		let msg
@@ -117,7 +124,7 @@ export default class EvalCommand extends Command {
 					}
 				} else if (collected.first().emoji.name == "🔁") {
 					const evaled = eval(code);
-					const output = util.inspect(evaled, { depth: 0 });
+					const output = inspect(evaled, { depth: 0 });
 					msg.edit(
 						new MessageEmbed()
 							.setTitle(`${this.client.user.tag}'s Evaled`)

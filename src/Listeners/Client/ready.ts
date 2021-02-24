@@ -55,7 +55,7 @@ export default class Ready extends Listener {
 			l14 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍"
 		const
 			q1 = (`${version} [ ${this.client.user.username} ]`),
-			q2 = 3,
+			q2 = 5,
 			a1 = await fixspace(this.client.commandHandler.modules.size, q2),
 			a2 = await fixspace(this.client.listenerHandler.modules.size, q2),
 			a3 = await fixspace(this.client.inhibitorHandler.modules.size, q2),
@@ -102,6 +102,6 @@ export default class Ready extends Listener {
 		log(main(l11), split, third(a4), split, third("Guilds"))
 		log(main(l12), split, third(a5), split, third("Channels"))
 		log(main(l13), split, third(a6), split, third("Users"))
-		log(main(l14), split, third(a7), split, third("ShardCount"))
+		log(main(l14), split, third(a7), split, third("Shards"))
 	}
 }

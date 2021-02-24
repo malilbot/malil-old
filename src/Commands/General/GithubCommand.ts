@@ -1,6 +1,5 @@
 import { Command } from "discord-akairo";
 import { Message } from "discord.js";
-import fetch from "node-fetch";
 import centra from "centra"
 export default class GithubCommand extends Command {
 	public constructor() {
@@ -67,12 +66,14 @@ export default class GithubCommand extends Command {
 			};
 			const name = args[3] + "/" + args[4];
 			if (!args[4]) return message.util.send("Please try the command again but this time send a repo link");
-			const data = await fetch(`https://api.github.com/repos/${name}/releases`, {
-				headers: headers
-			}).then((response) => response.json());
-			const urls = await fetch(`https://api.github.com/repos/${name}`, { headers: headers }).then((response) =>
-				response.json()
-			);
+			const data = await (await centra(`https://api.github.com/repos/${name}/releases`, "GET")
+				.header("User-Agent", "Malil")
+				.header("Authorization", `token ${this.client.setting.gist}`)
+				.send()).json();
+			const urls = await (await centra(`https://api.github.com/repos/${name}`, "GET")
+				.header("User-Agent", "Malil")
+				.header("Authorization", `token ${this.client.setting.gist}`)
+				.send()).json();
 			if (urls.documentation_url) return message.util.send("I have been api limited");
 			const version = data.tag_name ? data.tag_name : "none";
 
