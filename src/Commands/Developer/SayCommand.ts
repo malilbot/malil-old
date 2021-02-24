@@ -34,7 +34,7 @@ export default class SayCommand extends Command {
 
 	public async exec(message: Message, { code }) {
 		try {
-			message.delete();
+			message.delete().catch(e => { })
 		} catch (e) { return }
 
 		message.channel.send(code.replace("@", "@​"));
