@@ -1,7 +1,14 @@
 import { Listener } from 'discord-akairo';
 import { Message } from 'discord.js'
 import Client from '../../client/Client';
-
+import {
+    main,
+    sec,
+    third,
+    fourth,
+    a1,
+    split
+} from "../../lib/Utils"
 export default class message extends Listener {
     client: Client
     public constructor(client: Client) {
@@ -16,6 +23,6 @@ export default class message extends Listener {
     async exec(message: Message) {
         if (message.author.bot) return;
         if (message.guild !== null) return;
-        this.client.logger.info(`\x1b[35m[DM]\x1b[32m[AUTHOR]\x1b[34m ${message.author.tag} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`)
+        this.client.logger.info(`${main("[DM]")}${third("[AUTHOR]")} ${message.author.tag} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`)
     }
 }

@@ -1,5 +1,5 @@
 import { Listener } from "discord-akairo";
-
+import { main, sec, third, fourth, a1, split, sleep } from "../../lib/Utils"
 import Client from "../../client/Client";
 const talkedRecently = new Set();
 const Talk = new Set();
@@ -28,7 +28,7 @@ export default class CoolDown extends Listener {
 				talkedRecently.delete(message.author.id);
 			}, 60000);
 		}
-		this.client.logger.info(`\x1b[32mRate limit \x1b[33m- \x1b[32m${message.author.tag} (${message.author.id})`);
+		this.client.logger.info(`${main("[ RATE LIMIT ]")} (${sec(message.author.tag)}) ${sec(message.author.id)}`);
 	}
 
 }

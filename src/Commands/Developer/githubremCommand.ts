@@ -36,7 +36,6 @@ export default class GithubremCommand extends Command {
 	}
 
 	public async exec(message: Message, { args, user }) {
-		const id = user ? user.id : args;
 		const repos = this.client.releases.get("all");
 
 		for (let l = 0; l < repos.length; l++) {

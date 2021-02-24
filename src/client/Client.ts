@@ -2,8 +2,8 @@
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
 import TaskHandler from "../lib/taskhandler"
 import { join } from "path";
-import { Logger } from "winston";
-import { logger } from "../lib/Utils";
+import { Logger } from "winston"
+import { logger } from "../lib/exports/Logger";
 import settings from '../../settings.js'
 import Enmap from "enmap";
 declare module "discord-akairo" {
@@ -74,8 +74,8 @@ export default class Client extends AkairoClient {
 
 	public constructor(config: Option) {
 		super(
-			{ ownerID: config.owners, superUserID: config.superUsers, intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS', 'GUILD_PRESENCES'] },
-			{ intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS', 'GUILD_PRESENCES'] }
+			{ ownerID: config.owners, superUserID: config.superUsers, intents: ['GUILDS', 'DIRECT_MESSAGES', 'GUILD_MESSAGES', 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS', 'GUILD_PRESENCES'] },
+			{ intents: ['GUILDS', 'DIRECT_MESSAGES', 'GUILD_MESSAGES', 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS', 'GUILD_PRESENCES'] }
 		);
 		this.setting = settings
 		this.config = config;

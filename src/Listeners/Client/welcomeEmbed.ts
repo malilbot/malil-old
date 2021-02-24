@@ -3,7 +3,7 @@ import { Listener } from 'discord-akairo';
 import { MessageEmbed } from 'discord.js';
 import { GuildMember, TextChannel } from 'discord.js'
 import Client from '../../client/Client';
-
+import { main, sec, third, fourth, a1, split, sleep } from "../../lib/Utils"
 export default class WelcomeEmbed extends Listener {
     client: Client
     public constructor(client: Client) {
@@ -38,7 +38,7 @@ export default class WelcomeEmbed extends Listener {
                 await webhook
                     .send(welcomeEmbed)
                     .then(() => webhook.delete())
-                    .catch(() => this.client.logger.info("Webhook messed up :("));
+                    .catch(() => this.client.logger.info(fourth("Webhook messed up :(")));
             }
         }
     }
