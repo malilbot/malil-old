@@ -23,13 +23,8 @@ export default class updateCommand extends Command {
     }
 
     public async exec(message: Message) {
+        let msg: Message
         await message.util.reply("Updating", { allowedMentions: { repliedUser: false } })
-        const str1 = "this.client.commandHandler.reloadAll()";
-        const str2 = "this.client.inhibitorHandler.reloadAll()";
-        const str3 = "this.client.listenerHandler.reloadAll()";
-        eval(str1);
-        eval(str2);
-        eval(str3);
         await exec('git pull && yarn run build', async (error, stdout, stderr) => {
             let output = ''
             if (error) output = error
@@ -41,8 +36,16 @@ export default class updateCommand extends Command {
                 .addField("🍞 Input", `\`\`\`bash\ngit pull && npm run build && pm2 restart 10\`\`\``)
                 .addField("🫓 Output", `\`\`\`bash\n${output}\`\`\``)
                 .addField("Type", "bash");
-            await message.channel.send(embed);
-        })
+            msg = await message.channel.send(embed)
+
+        }).then(() => {
+            const str1 = "this.client.commandHandler.reloadAll()";
+            const str2 = "this.client.inhibitorHandler.reloadAll()";
+            const str3 = "this.client.listenerHandler.reloadAll()";
+            eval(str1);
+            eval(str2);
+            eval(str3);
+        }).then(() => msg.edit("RELOADED COMMANDS"))
 
     }
 }
