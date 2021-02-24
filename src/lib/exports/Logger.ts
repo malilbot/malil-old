@@ -1,10 +1,10 @@
 import { createLogger, transports, format } from "winston";
 import DailyRotateFile from "winston-daily-rotate-file";
-import { red, blue, yellow, green, magenta, whiteBright, bgWhite, bgBlack, greenBright, cyanBright, white, cyan, bold, black, hex, reset } from "chalk";
+import { third, sec } from "./colors"
 function replace(msg: string) {
 	return msg
-		.replace("[ SHARD ]", magenta("[ STARTING SHARD ]"))
-		.replace("[ MAXSHARDS ]", blue("[ SHARDING DONE ]"))
+		.replace("[ SHARD ]", sec("[ STARTING SHARD ]"))
+		.replace("[ MAXSHARDS ]", third("[ SHARDING DONE ]"))
 }
 export const logger = createLogger({
 	format: format.combine(

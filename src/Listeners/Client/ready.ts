@@ -3,7 +3,7 @@ import Client from "../../client/Client";
 import { fixspace } from "../../lib/Utils"
 import { log } from "console"
 import settings from '../../../settings.js'
-import { red, blue, yellow, green, magenta, whiteBright, bgWhite, bgBlack, greenBright, cyanBright, white, cyan, bold, black, hex, reset } from "chalk";
+import { main, sec, third, fourth, a1, split } from "../../lib/Utils"
 const djsversion = require("discord.js").version;
 const akairov = require("discord-akairo").version;
 const version = require("../../../package.json").version;
@@ -112,26 +112,7 @@ export default class Ready extends Listener {
 			b4 = " ██║╚██╔╝██║██╔══██║██║     ██║██║",
 			b5 = " ██║ ╚═╝ ██║██║  ██║███████╗██║███████╗",
 			b6 = " ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚══════╝"
-		let
-			main,
-			sec,
-			third,
-			fourth,
-			split
-		if (settings.dev == true) {
-			main = red
-			sec = yellow
-			third = cyan
-			fourth = bgWhite.black
-			split = greenBright(" - ")
-		} else {
-			main = blue
-			sec = green
-			third = magenta
-			fourth = bgBlack.white
-			split = cyanBright(" - ")
-		}
-		log(main(ll1) + reset(fourth(q1)))
+		log(main(ll1) + fourth(q1))
 		log(main(ll2) + sec(b1))
 		log(main(ll3) + sec(b2))
 		log(main(ll4) + sec(b3))

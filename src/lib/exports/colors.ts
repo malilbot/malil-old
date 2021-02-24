@@ -14,15 +14,15 @@ if (dev == true) {
     main = red
     sec = yellow
     third = cyan
-    fourth = bgWhite.black
-    split = greenBright(" - ")
+    fourth = green
+    split = gray(" - ")
 } else {
     a1 = yellow
     main = blue
     sec = green
     third = magenta
-    fourth = bgBlack.white
-    split = cyanBright(" - ")
+    fourth = cyan
+    split = yellow(" - ")
 }
 export {
     main,

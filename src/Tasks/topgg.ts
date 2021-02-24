@@ -9,6 +9,7 @@ module.exports = {
 
             api.postStats({
                 serverCount: client.guilds.cache.size + 1,
+                shardId: client.shard.ids[0],
                 shardCount: client.options.shardCount
             });
         } catch (e) { return }
