@@ -2,25 +2,41 @@ module.exports = {
     name: 'rpc',
     delay: "30m",
     runOnStart: true,
+    awaitReady: true,
     execute(client) {
         if (client.setting.rpc.on == true) {
-            const rpc = require("discord-rpc")
-            const rpcClient = new rpc.Client({ transport: 'ipc' })
-            rpcClient.on('ready', () => {
-                rpcClient.request('SET_ACTIVITY', {
-                    pid: process.pid,
-                    activity: {
+            const clientId = "795717859170844673"
+            const DiscordRPC = require("discord-rpc")
+            DiscordRPC.register(clientId);
 
-                        details: client.setting.rpc.activity.details,
-                        assets: {
-                            large_image: client.setting.rpc.activity.assets.large_image,
-                            large_text: client.setting.rpc.activity.assets.large_text
-                        },
-                        buttons: client.setting.rpc.activity.buttons
-                    }
-                })
+            const rpc = new DiscordRPC.Client({ transport: 'ipc' });
+            rpc.login({
+                clientId
             })
-            rpcClient.login({ clientId: "795717859170844673" }).catch(console.error);
+            const startTimestamp = new Date();
+            // eslint-disable-next-line no-inner-declarations
+            async function setActivity() {
+                rpc.setActivity({
+                    startTimestamp,
+                    buttons: client.setting.rpc.activity.buttons,
+                    largeImageKey: client.setting.rpc.activity.assets.large_image,
+                    largeImageText: client.setting.rpc.activity.assets.large_text,
+                    smallImageKey: "robot",
+                    smallImageText: "why are you looking here invite it already",
+                    state: 'Invite for cookies',
+                    instance: false,
+                })
+            }
+
+
+            rpc.on('ready', () => {
+                setActivity();
+                setInterval(() => {
+                    setActivity();
+                }, 15e3);
+            });
+
+            rpc.login({ clientId }).catch(console.error);
         }
     }
 }
