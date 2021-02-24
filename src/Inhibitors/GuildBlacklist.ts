@@ -9,7 +9,7 @@ export default class extends Inhibitor {
     }
 
     exec(message: Message) {
-        if (message.guild.id) return (this.client.blacklist.get('blacklisted', 'guilds').includes(message.guild.id))
+        if (message?.guild?.id) return (this.client.blacklist.get('blacklisted', 'guilds').includes(message.guild.id))
 
     }
 }

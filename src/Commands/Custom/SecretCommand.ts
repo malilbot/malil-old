@@ -22,6 +22,6 @@ export default class SecretCommand extends Command {
 	}
 
 	public async secret(message: Message, { code }) {
-		message.reply("woah you found my  secret command");
+		message.util.reply("woah you found my  secret command", { allowedMentions: { repliedUser: false } });
 	}
 }

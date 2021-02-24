@@ -31,8 +31,8 @@ export default class DmCommand extends Command {
 
     public async exec(message: Message, { args }) {
         const user = await GetSelf(message, this.client) || message.member
-        user.send(args || "e").catch(e => message.reply(e))
-        message.reply("message recieved")
+        user.send(args || "e").catch(e => message.reply(e, { allowedMentions: { repliedUser: false } }))
+        message.util.reply("message recieved", { allowedMentions: { repliedUser: false } })
 
     }
 }

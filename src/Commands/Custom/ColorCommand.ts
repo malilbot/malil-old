@@ -41,7 +41,7 @@ export default class ColorCommand extends Command {
             args = args.split(" ")
 
             /** Checking if the args are a valid color */
-            if (!colors.includes(args[0])) return message.reply("you can only choose one of the following colors: " + list)
+            if (!colors.includes(args[0])) return message.util.reply("you can only choose one of the following colors: " + list, { allowedMentions: { repliedUser: false } })
 
 
             /** getting the gist with my epic function */
