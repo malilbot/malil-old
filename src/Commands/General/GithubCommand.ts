@@ -59,6 +59,8 @@ export default class GithubCommand extends Command {
 		} else if (arg2[0] == "add") {
 			if (!this.client.releases.get(message.guild.id, "channel"))
 				return message.util.send("no channel set please set one with: `github set <chanid> `");
+			if (this.client.releases.get(message.guild.id, "repos").length > 5)
+				return message.reply("Sorry you can only have a maximum of 5 repos")
 			args = args.split("/");
 			const name = args[3] + "/" + args[4];
 			if (!args[4]) return message.util.send("Please try the command again but this time send a repo link");
