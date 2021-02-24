@@ -23,8 +23,7 @@ export default class updateCommand extends Command {
     }
 
     public async exec(message: Message) {
-        const delay = ms => new Promise(res => setTimeout(res, ms));
-        await message.reply("Updating")
+        await message.util.reply("Updating", { allowedMentions: { repliedUser: false } })
         const str1 = "this.client.commandHandler.reloadAll()";
         const str2 = "this.client.inhibitorHandler.reloadAll()";
         const str3 = "this.client.listenerHandler.reloadAll()";
