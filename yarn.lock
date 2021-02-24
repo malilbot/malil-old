@@ -1241,7 +1241,7 @@ dir-glob@^3.0.1:
 
 "discord-akairo@https://github.com/SkyBlockDev/discord-akairo":
   version "8.1.1"
-  resolved "https://github.com/SkyBlockDev/discord-akairo#1c2766add400342ada3f28dd74f317254e727dd8"
+  resolved "https://github.com/SkyBlockDev/discord-akairo#fa73cd2f3d5cacf4d047319f8ecd3a5febeb9662"
 
 discord-rpc@^3.2.0:
   version "3.2.0"
