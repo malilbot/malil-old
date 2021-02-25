@@ -7,11 +7,13 @@ function replace(msg: string) {
 		.replace("[ SHARD ]", sec("[ STARTING SHARD ]"))
 		.replace("[ MAXSHARDS ]", third("[ SHARDING DONE ]"))
 }
+const { combine, timestamp, printf, json } = format
 export const logger = createLogger({
-	format: format.combine(
-		format.timestamp({ format: "YYYY/MM/DD HH:mm:ss" }),
-		format.printf((info: any): string => {
-			const { timestamp, message, ...rest } = info;
+	level: "info",
+	format: combine(
+		timestamp({ format: "YYYY/MM/DD HH:mm:ss" }),
+		printf((info): string => {
+			const { message } = info;
 			return a1(replace(message))
 		})
 	),
@@ -21,13 +23,14 @@ export const logger = createLogger({
 			level: "info"
 		}),
 		//replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, "")
+		//format.combine(format.timestamp(), format.json())
 		new DailyRotateFile({
-			format: format.combine(format.timestamp(), format.json()),
+			format: combine(timestamp(), json()),
 			level: "debug",
 			zippedArchive: true,
-			extension: ".json",
-			filename: "./Logs/listen-%DATE%.log",
-			maxFiles: "10d"
+			extension: ".log",
+			filename: "./Logs/malil-%DATE%",
+			maxFiles: "14d"
 		})
 	]
 });
