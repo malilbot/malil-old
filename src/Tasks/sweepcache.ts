@@ -5,9 +5,8 @@ module.exports = {
     runOnStart: false,
     awaitReady: false,
     execute(client) {
-
+        client.logger.info("[ SWEEPING CACHE ]")
         client.guilds.cache.forEach((guild) => {
-            client.logger.info("[ GOING OVER GUILDS ]")
             guild.members.cache.sweep(
                 (member: GuildMember) =>
                     member.id != client.user?.id
