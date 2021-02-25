@@ -35,7 +35,7 @@ export default class InviteCommand extends Command {
 				.setURL(
 					"https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824"
 				)
-				.setColor(this.client.setting.colors.default), { allowedMentions: { repliedUser: false } }
+				.setColor(this.client.setting.colors.default)
 		);
 	}
 }
