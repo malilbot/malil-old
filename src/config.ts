@@ -1,5 +1,4 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require('dotenv').config();
 import settings from '../settings.js'
 import Enmap from "enmap"
 import { join } from "path";
