@@ -1,7 +1,6 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
-import * as db from "quick.db";
-import { GetUser, GetSelf } from "../../lib/Utils"
+import { GetSelf } from "../../lib/Utils"
 export default class PpCommand extends Command {
 	public constructor() {
 		super("pp", {

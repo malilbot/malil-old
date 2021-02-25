@@ -1,8 +1,7 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-import * as db from 'quick.db'
-import { GetUser, GetSelf } from "../../lib/Utils"
+import { GetSelf } from "../../lib/Utils"
 
 export default class IqCommand extends Command {
     public constructor() {

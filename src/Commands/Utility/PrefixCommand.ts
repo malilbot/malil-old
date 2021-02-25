@@ -1,7 +1,5 @@
 import { Command } from "discord-akairo";
-import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
-import { MessageEmbed } from "discord.js";
-import * as db from 'quick.db'
+import type { Message } from "discord.js";
 export default class PrefixCommand extends Command {
     public constructor() {
         super("prefix", {
