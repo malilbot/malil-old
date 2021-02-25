@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
-import { GuildMember } from "discord.js"
-import TaskHandler from "../lib/taskhandler"
-import { join } from "path";
-import { Logger } from "winston"
 import { logger } from "../lib/exports/Logger";
+import TaskHandler from "../lib/taskhandler"
 import settings from '../../settings.js'
+import { Logger } from "winston"
+import { join } from "path";
 import Enmap from "enmap";
 declare module "discord-akairo" {
 	interface AkairoClient {
