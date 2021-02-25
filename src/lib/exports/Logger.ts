@@ -18,12 +18,14 @@ export const logger = createLogger({
 
 	transports: [
 		new transports.Console({
-			format: format.colorize({ level: true }),
 			level: "info"
 		}),
+		//replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, "")
 		new DailyRotateFile({
 			format: format.combine(format.timestamp(), format.json()),
 			level: "debug",
+			zippedArchive: true,
+			extension: ".json",
 			filename: "./Logs/listen-%DATE%.log",
 			maxFiles: "10d"
 		})

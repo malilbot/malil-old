@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import { MessageEmbed, Message } from "discord.js";
+import { MessageEmbed, Message, GuildMember } from "discord.js";
 import { GetSelf } from "../../lib/Utils"
 export default class PpCommand extends Command {
 	public constructor() {
@@ -30,14 +30,16 @@ export default class PpCommand extends Command {
 	}
 
 	public async exec(message: Message, { }) {
-		const member = await GetSelf(message, this.client) || message.member
+		const member: GuildMember = await GetSelf(message, this.client) || message.member
 		let pp;
-		this.client.UserData.ensure(message.author.id, {
+		let id = member.id
+		this.client.UserData.ensure(member.id, {
 			pp: '',
 			iq: 0,
 		})
-		if (this.client.UserData.get(message.author.id, "pp")) {
-			pp = this.client.UserData.get(message.author.id, "pp")
+
+		if (this.client.UserData.get(id, "pp")) {
+			pp = this.client.UserData.get(id, "pp")
 		} else {
 			const phrases = [
 				"ur a women",
@@ -54,7 +56,7 @@ export default class PpCommand extends Command {
 				"8==========D BBC Right Here"
 			];
 			pp = phrases[Math.floor(Math.random() * phrases.length)];
-			this.client.UserData.set(message.author.id, pp, "pp")
+			this.client.UserData.set(id, pp, "pp")
 		}
 		const embed = new MessageEmbed()
 			.setTitle(`Penis Calculator`)

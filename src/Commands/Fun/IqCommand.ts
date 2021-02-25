@@ -27,17 +27,17 @@ export default class IqCommand extends Command {
     }
 
     public async exec(message: Message, { }) {
-        const member = await GetSelf(message, this.client) || message.member
+        const member: GuildMember = await GetSelf(message, this.client) || message.member
         let iq;
-        this.client.UserData.ensure(message.author.id, {
+        this.client.UserData.ensure(member.id, {
             pp: '',
             iq: 0,
         })
-        if (this.client.UserData.get(message.author.id, "iq")) {
-            iq = this.client.UserData.get(message.author.id, "iq")
+        if (this.client.UserData.get(member.id, "iq")) {
+            iq = this.client.UserData.get(member.id, "iq")
         } else {
             iq = Math.floor(Math.random() * 150) + 1;
-            this.client.UserData.set(message.author.id, iq, "iq")
+            this.client.UserData.set(member.id, iq, "iq")
         }
         const iEmbed = new MessageEmbed()
             .setColor(this.client.setting.colors.default)

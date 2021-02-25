@@ -3,7 +3,7 @@ import { MessageEmbed, Message } from "discord.js";
 import { inspect } from "util";
 import centra from "centra";
 import { hst } from "../../lib/Utils"
-
+import { red } from "chalk"
 export default class EvalCommand extends Command {
 	public constructor() {
 		super("eval", {
@@ -53,7 +53,6 @@ export default class EvalCommand extends Command {
 	public async exec(message: Message, { code, noreturn, del, deph }: { code: string, noreturn: boolean, del: boolean, deph: number }) {
 
 		let output = ''
-
 		const gists = "";
 		if (del == true) message.delete()
 		const embed = new MessageEmbed()
