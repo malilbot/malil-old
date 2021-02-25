@@ -31,9 +31,6 @@ module.exports = {
 
             rpc.on('ready', () => {
                 setActivity();
-                setInterval(() => {
-                    setActivity();
-                }, 15e3);
             });
 
             rpc.login({ clientId }).catch(console.error);
