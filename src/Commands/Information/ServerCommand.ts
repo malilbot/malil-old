@@ -44,7 +44,7 @@ export default class ServerCommand extends Command {
 				`This server has ${message.guild.channels.cache.size} channels`
 			);
 
-		message.channel.send(embed);
+		message.util.send(embed);
 
 
 	}

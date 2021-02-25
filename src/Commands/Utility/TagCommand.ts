@@ -36,6 +36,6 @@ export default class TagCommand extends Command {
 			.setColor(this.client.setting.colors.green)
 			.setTitle(args)
 			.setDescription(this.client.tags.get(message.guild.id, args));
-		message.reply(embed);
+		message.reply({ embed: embed, allowedMentions: { repliedUser: false } });
 	}
 }

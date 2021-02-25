@@ -88,7 +88,7 @@ export default class GithubCommand extends Command {
 			const thing = this.client.releases.get(message.guild.id, "repos").toString().replace(/,/g, "\n");
 			if (!thing) return message.util.send("Currently not watching anything");
 			message.util.send("**currently watching:** \n" + thing || "Nothing");
-		} else message.reply("Check `*help github` for info about this command");
+		} else message.util.reply("Check `*help github` for info about this command");
 
 		/*
   {

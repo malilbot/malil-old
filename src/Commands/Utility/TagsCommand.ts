@@ -29,6 +29,6 @@ export default class TagsCommand extends Command {
 		// // console.log(tags)
 
 		const Embed = new MessageEmbed().setTitle(`tags in ${message.guild}`).setDescription(tags).setColor(this.client.setting.colors.green);
-		message.reply(Embed);
+		message.reply({ embed: Embed, allowedMentions: { repliedUser: false } });
 	}
 }

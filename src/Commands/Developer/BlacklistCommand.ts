@@ -37,5 +37,6 @@ export default class BlacklistCommand extends Command {
 	public async exec(message: Message, { args, user }) {
 		const id = user ? user.id : args;
 		this.client.blacklist.push("blacklisted", id, "list");
+		message.reply("Users blacklisted: " + id, { allowedMentions: { repliedUser: false } })
 	}
 }

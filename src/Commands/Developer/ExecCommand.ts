@@ -50,7 +50,7 @@ export default class ExecCommand extends Command {
 				embed.addField("Type", "shell");
 			}
 
-			return message.channel.send(embed);
+			return message.util.reply({ embed: embed, allowedMentions: { repliedUser: false } });
 		});
 	}
 }

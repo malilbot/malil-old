@@ -35,7 +35,7 @@ export default class NickCommand extends Command {
         try {
             await user.setNickname(name)
             message.reply("NickName Changed")
-        } catch (err) { message.reply("Sorry cant do") }
+        } catch (err) { message.reply("Sorry cant do", { allowedMentions: { repliedUser: false } }) }
 
 
 

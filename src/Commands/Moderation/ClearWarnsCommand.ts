@@ -26,7 +26,7 @@ export default class ClearWarnsCommand extends Command {
         const user = await GetUser(message, this.client)
         if (!user) message.reply("user not found")
         this.client.infractions.delete(message.guild.id, user.id)
-        message.reply("infractions cleared")
+        message.reply("infractions cleared", { allowedMentions: { repliedUser: false } })
 
 
     }

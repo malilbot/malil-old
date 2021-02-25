@@ -93,7 +93,7 @@ export default class EvalCommand extends Command {
 		}
 		let msg
 		if (noreturn == true) msg = await message.author.send(embed);
-		else msg = await message.util.send(embed);
+		else msg = await message.util.reply({ embed: embed, allowedMentions: { repliedUser: false } });
 
 		msg.react("🗑️");
 		msg.react("🔁");

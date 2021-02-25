@@ -61,7 +61,7 @@ export default class AsciifyCommand extends Command {
 			if (err) message.reply("a error occured");
 
 			// Print to console
-			message.reply("Success! " + await hst(asciified) + ".txt");
+			message.reply("Success! " + await hst(asciified) + ".txt", { allowedMentions: { repliedUser: false } });
 		});
 	}
 }

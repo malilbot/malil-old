@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
-import TaskHandler from "../lib/taskhandler"
-import { join } from "path";
-import { Logger } from "winston"
 import { logger } from "../lib/exports/Logger";
+import TaskHandler from "../lib/taskhandler"
 import settings from '../../settings.js'
+import { Logger } from "winston"
+import { join } from "path";
 import Enmap from "enmap";
 declare module "discord-akairo" {
 	interface AkairoClient {
@@ -29,6 +29,9 @@ interface Option {
 }
 
 export default class Client extends AkairoClient {
+	cacheSweep: () => void;
+	cacheSweepTask: NodeJS.Timeout;
+
 	public commandHandler: CommandHandler = new CommandHandler(this, {
 		directory: join(__dirname, "..", "Commands"),
 		prefix: (message) => {

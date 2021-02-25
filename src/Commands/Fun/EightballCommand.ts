@@ -46,6 +46,6 @@ export default class EightballCommand extends Command {
             .addField("Question", args)
             .addField("Answer", replies[result])
             .setFooter(`8ball`);
-        message.channel.send(wisdom)
+        message.util.send(wisdom)
     }
 }

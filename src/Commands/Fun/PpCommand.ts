@@ -33,8 +33,12 @@ export default class PpCommand extends Command {
 	public async exec(message: Message, { }) {
 		const member = await GetSelf(message, this.client) || message.member
 		let pp;
-		if (db.fetch(`member.${member.id}.pp`)) {
-			pp = db.fetch(`member.${member.id}.pp`);
+		this.client.UserData.ensure(message.author.id, {
+			pp: '',
+			iq: 0,
+		})
+		if (this.client.UserData.get(message.author.id, "pp")) {
+			pp = this.client.UserData.get(message.author.id, "pp")
 		} else {
 			const phrases = [
 				"ur a women",
@@ -51,12 +55,12 @@ export default class PpCommand extends Command {
 				"8==========D BBC Right Here"
 			];
 			pp = phrases[Math.floor(Math.random() * phrases.length)];
-			db.set(`member.${member.id}.pp`, pp);
+			this.client.UserData.set(message.author.id, pp, "pp")
 		}
 		const embed = new MessageEmbed()
 			.setTitle(`Penis Calculator`)
 			.setDescription(`${pp}\n\n${member}'s Penis Size.`)
 			.setColor(this.client.setting.colors.default)
-		message.channel.send(embed);
+		message.util.send(embed);
 	}
 }

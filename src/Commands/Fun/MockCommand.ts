@@ -41,7 +41,7 @@ export default class MockCommand extends Command {
 			text += tried(item);
 		});
 		// -- send the output
-		message.channel.send(text.replace(/@/g, "@​"));
+		message.util.send(text.replace(/@/g, "@​"));
 
 		// -- my amazing function
 		function tried(item) {

@@ -48,7 +48,7 @@ export default class GithubremCommand extends Command {
 		const embed = new MessageEmbed()
 			.addField("old", `\`\`\`bash\n${z}\`\`\``)
 			.addField("new", `\`\`\`bash\n${x}\`\`\``);
-		message.util.reply(embed);
+		message.util.reply({ embed: embed, allowedMentions: { repliedUser: false } });
 		this.client.releases.set("all", repos);
 	}
 }
