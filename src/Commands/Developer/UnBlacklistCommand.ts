@@ -44,7 +44,7 @@ export default class UnBlacklistCommand extends Command {
 				list.splice(i, 1);
 			}
 		}
-
+		message.reply("list " + list)
 		// // console.log(this.client.blacklist.set('blacklisted', newlist, 'list'))
 		// console.log(list);
 		// console.log(this.client.blacklist.get("blacklisted", "list"));

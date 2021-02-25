@@ -66,7 +66,7 @@ export default class LogChannelCommand extends Command {
                 this.client.logchannel.set(message.guild.id, split[1])
             }
         } else {
-            message.util.send("Use `@malil help logchannel` for more info")
+            message.util.send("Use `@malil help logchannel` for more info", { allowedMentions: { repliedUser: false } })
         }
     }
 }

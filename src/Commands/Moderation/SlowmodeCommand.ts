@@ -55,7 +55,7 @@ export default class SlowmodeCommand extends Command {
 
         }
 
-        return message.reply(Embed)
+        return message.reply({ embed: Embed, allowedMentions: { repliedUser: false } })
 
     }
 }

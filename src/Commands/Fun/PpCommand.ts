@@ -61,6 +61,6 @@ export default class PpCommand extends Command {
 			.setTitle(`Penis Calculator`)
 			.setDescription(`${pp}\n\n${member}'s Penis Size.`)
 			.setColor(this.client.setting.colors.default)
-		message.channel.send(embed);
+		message.util.send(embed);
 	}
 }

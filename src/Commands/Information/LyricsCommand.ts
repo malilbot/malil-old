@@ -60,8 +60,8 @@ export default class lyricsCommand extends Command {
 				.replace(/\[.*?\]/g, "")
 				.replace(/\n\n/g, "\n");
 			// prettier-ignore
-
-			message.util.reply(new MessageEmbed().setTitle(args).setURL(song.url).addField("lyrics", lyrics), { allowedMentions: { repliedUser: false } });
+			//{ allowedMentions: { repliedUser: false } }
+			message.util.reply({ embed: new MessageEmbed().setTitle(args).setURL(song.url).addField("lyrics", lyrics), allowedMentions: { repliedUser: false } });
 		});
 	}
 }

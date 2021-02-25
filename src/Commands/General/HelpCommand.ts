@@ -33,7 +33,7 @@ export default class HelpCommand extends Command {
 
 	public exec(message: Message, { command }: { command: Command }) {
 		if (command) {
-			return message.channel.send(
+			return message.util.send(
 				new MessageEmbed()
 					.setAuthor(`Help | ${this.client.user.tag}`, this.client.user.displayAvatarURL())
 					.setColor(this.client.setting.colors.orange)
@@ -79,6 +79,6 @@ export default class HelpCommand extends Command {
 				);
 			}
 		}
-		return message.channel.send(embed);
+		return message.util.reply({ embed: embed, allowedMentions: { repliedUser: false } });
 	}
 }

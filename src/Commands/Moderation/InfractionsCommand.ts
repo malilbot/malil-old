@@ -46,7 +46,7 @@ export default class InfractionsCommand extends Command {
         } else embed.addField("warns of " + user, mesg)
 
 
-        message.reply(embed)
+        message.reply({ embed: embed, allowedMentions: { repliedUser: false } })
 
     }
 }

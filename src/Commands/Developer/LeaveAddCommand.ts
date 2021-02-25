@@ -29,7 +29,7 @@ export default class LeaveAddCommand extends Command {
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     public async exec(message: Message, { args }) {
         this.client.blacklist.push("blacklist", args, "leavelist")
-        message.reply("Guild added to leave list " + args)
+        message.reply("Guild added to leave list " + args, { allowedMentions: { repliedUser: false } })
 
     }
 }

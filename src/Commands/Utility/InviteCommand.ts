@@ -36,6 +36,6 @@ export default class InviteCommand extends Command {
 			)
 			.setColor(this.client.setting.colors.default);
 
-		message.util.reply(embed);
+		message.util.reply({ embed: embed, allowedMentions: { repliedUser: false } });
 	}
 }

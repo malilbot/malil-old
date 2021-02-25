@@ -44,6 +44,6 @@ export default class IqCommand extends Command {
             .setColor(this.client.setting.colors.default)
             .setTitle("IQ Test")
             .setDescription(`${member}'s IQ is: \`${iq}\`!`)
-        message.channel.send(iEmbed)
+        message.util.send(iEmbed)
     }
 }
