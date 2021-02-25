@@ -3,6 +3,7 @@ import DailyRotateFile from "winston-daily-rotate-file";
 import { third, sec } from "./colors"
 function replace(msg: string) {
 	return msg
+		.replace("[ GOING OVER GUILDS ]", sec("[ GOING OVER GUILDS ]"))
 		.replace("[ SHARD ]", sec("[ STARTING SHARD ]"))
 		.replace("[ MAXSHARDS ]", third("[ SHARDING DONE ]"))
 }
