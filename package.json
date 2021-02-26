@@ -12,7 +12,7 @@
     "vps": "npm run build && npm start",
     "lint": "eslint . --ext .ts",
     "lintfix": "eslint . --ext .ts --fix",
-    "rm": "rm -rf dist/"
+    "rm": "rm -r dist/"
   },
   "repository": {
     "type": "git",
