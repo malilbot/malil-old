@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-
+import { fixword } from "../../lib/Utils";
 
 export default class EightballCommand extends Command {
     public constructor() {
@@ -43,7 +43,7 @@ export default class EightballCommand extends Command {
         const wisdom = new MessageEmbed()
             .setAuthor(message.author.tag)
             .setColor(this.client.setting.colors.purple)
-            .addField("Question", args)
+            .addField("Question", await fixword(args) || "haha censor go brrr")
             .addField("Answer", replies[result])
             .setFooter(`8ball`);
         message.util.send(wisdom)

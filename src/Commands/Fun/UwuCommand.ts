@@ -2,7 +2,7 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-
+import { fixword } from "../../lib/Utils";
 export default class UwuCommand extends Command {
     public constructor() {
         super("uwu", {
@@ -44,7 +44,7 @@ export default class UwuCommand extends Command {
 
 
         // Get question to answer
-        const text = message.content.split(' ').slice(1).join(' ')
+        const text = await fixword(args || "haha censor go brrrr")
         if (!text) { return message.util.reply(`**You need to specify a message..**`), { allowedMentions: { repliedUser: false } } }
 
         // Send message

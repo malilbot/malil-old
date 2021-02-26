@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-
+import { fixword } from "../../lib/Utils";
 export default class PollCommand extends Command {
     public constructor() {
         super("poll", {
@@ -31,7 +31,7 @@ export default class PollCommand extends Command {
     }
 
     public async exec(message: Message, { args }) {
-        const input = args
+        const input = await fixword(args)
         if (!input) return message.reply('pelase ask a question')
 
         const dataEmbed = {

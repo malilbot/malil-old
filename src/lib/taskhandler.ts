@@ -13,7 +13,7 @@ export default class TaskHandler {
         this.client = client
         this.directory = directory;
     }
-    loadall() {
+    async loadall() {
         const taskfiles = readdirSync(join(__dirname, "..", "Tasks")).filter(file => file.endsWith('.js'));
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         for (const file of taskfiles) {

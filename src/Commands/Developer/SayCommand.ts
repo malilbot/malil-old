@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 
 import { Message } from "discord.js";
-
+import { fixword } from "../../lib/Utils";
 export default class SayCommand extends Command {
 	public constructor() {
 		super("say", {
@@ -37,6 +37,6 @@ export default class SayCommand extends Command {
 			message.delete().catch(e => { })
 		} catch (e) { return }
 
-		message.channel.send(code.replace("@", "@​"));
+		message.channel.send(await fixword(code.replace(/@/, "@​")) || "Sorry i just prevented weird stuff");
 	}
 }

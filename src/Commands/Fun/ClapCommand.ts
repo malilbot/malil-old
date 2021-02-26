@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-
+import { fixword } from "../../lib/Utils";
 export default class ClapCommand extends Command {
     public constructor() {
         super("clap", {
@@ -29,7 +29,7 @@ export default class ClapCommand extends Command {
     }
 
     public async exec(message: Message, { args }) {
-        message.channel.send('👏' + (args.replace('/\s+/g', '👏').replace('@', '@​').split(' ').join('👏')) + '👏')
+        message.channel.send('👏' + (await fixword(args.replace('/\s+/g', '👏').replace('@', '@​').split(' ').join('👏'))) + '👏')
 
 
     }
