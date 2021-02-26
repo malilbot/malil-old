@@ -5,7 +5,7 @@ module.exports = {
     execute(client) {
         if (client.user.id !== "749020331187896410") return;
         try {
-            const api = new Topgg.Api(client.setting.topgg);
+            const api = new Topgg.Api(client.setting.bottokens.topgg);
 
             api.postStats({
                 serverCount: client.guilds.cache.size + 1,

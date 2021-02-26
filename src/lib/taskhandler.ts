@@ -19,16 +19,16 @@ export default class TaskHandler {
         for (const file of taskfiles) {
             // eslint-disable-next-line @typescript-eslint/no-var-requires
             const task = require(join(__dirname, "..", "Tasks/" + file));
-            if (task.awaitReady == true) {
+            if (task?.awaitReady == true) {
                 this.client.on("ready", ready => {
-                    if (task.runOnStart == true) task.execute(this.client)
+                    if (task?.runOnStart == true) task.execute(this.client)
                 })
-            } else if (task.runOnStart == true) task.execute(this.client)
+            } else if (task?.runOnStart == true) task.execute(this.client)
 
 
             setInterval(() => {
-                task.execute(this.client);
-            }, (ms(task.delay)));
+                task?.execute(this.client);
+            }, (ms(task?.delay)));
         }
 
     }
