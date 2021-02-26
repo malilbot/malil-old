@@ -25,12 +25,12 @@ module.exports = {
                             }
                         }
                         console.log("/** ---------------------------------- */")
-                        client.releases.set("all", repos);
                         console.log(repos)
                         console.log("/** ---------------------------------- */")
-                        client.releases.push("all", split[0] + "|" + data[0].tag_name);
                         console.log(client.releases.get("all"))
                         console.log("/** ---------------------------------- */")
+                        client.releases.set("all", repos);
+                        client.releases.push("all", split[0] + "|" + data[0].tag_name);
                         const url = data[0].html_url.split("/");
                         const servers = client.releases.keyArray();
                         const fetchs = await (await centra(data[0].url, "GET")
