@@ -10,11 +10,8 @@ module.exports = {
             DiscordRPC.register(clientId);
 
             const rpc = new DiscordRPC.Client({ transport: 'ipc' });
-            rpc.login({
-                clientId
-            })
-            // eslint-disable-next-line no-inner-declarations
-            async function setActivity() {
+            rpc.login({ clientId })
+            rpc.on('ready', () => {
                 rpc.setActivity({
                     buttons: client.setting.rpc.activity.buttons,
                     largeImageKey: client.setting.rpc.activity.assets.large_image,
@@ -24,11 +21,6 @@ module.exports = {
                     state: 'Invite MALIL for cookies',
                     instance: false,
                 })
-            }
-
-
-            rpc.on('ready', () => {
-                setActivity();
             });
 
             rpc.login({ clientId }).catch(console.error);

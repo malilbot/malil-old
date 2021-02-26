@@ -74,8 +74,8 @@ export default class Client extends AkairoClient {
 
 	public constructor(config: Option) {
 		super(
-			{ ownerID: config.owners, superUserID: config.superUsers, intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS'] },
-			{ intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS'] }
+			{ ownerID: config.owners, superUserID: config.superUsers, intents: ['GUILDS', 'GUILD_MESSAGES', "GUILD_MEMBERS", 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS'] },
+			{ intents: ['GUILDS', 'GUILD_MESSAGES', "GUILD_MEMBERS", 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS'] }
 		);
 		this.setting = settings
 		this.config = config;

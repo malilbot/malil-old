@@ -4,9 +4,6 @@ import { fixspace } from "../../lib/Utils"
 import { log } from "console"
 import settings from '../../../settings.js'
 import { main, sec, third, fourth, a1, split } from "../../lib/Utils"
-const djsversion = require("discord.js").version;
-const akairov = require("discord-akairo").version;
-const version = require("../../../package.json").version;
 
 export default class Ready extends Listener {
 	client: Client;
@@ -59,8 +56,8 @@ export default class Ready extends Listener {
 		██║╚██╔╝██║██╔══██║██║     ██║██║
 		██║ ╚═╝ ██║██║  ██║███████╗██║███████╗
 		╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚══════╝
-		█▀▄▀█ ▄▀█ █░░ █ █░░
-		█░▀░█ █▀█ █▄▄ █ █▄▄
+		█▀▄▀█ ▄▀█ █░░ █ █░░
+		█░▀░█ █▀█ █▄▄ █ █▄▄
 		███╗   ███╗ █████╗ ██╗     ██╗██╗
 		████╗ ████║██╔══██╗██║     ██║██║
 		██╔████╔██║███████║██║     ██║██║
@@ -96,7 +93,7 @@ export default class Ready extends Listener {
 			l13 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ℤℤ⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
 			l14 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍"
 		const
-			q1 = (`${version} [ ${this.client.user.username} ]`),
+			q1 = (`1.0.0 [ ${this.client.user.username} ]`),
 			q2 = 5,
 			a1 = await fixspace(this.client.commandHandler.modules.size, q2),
 			a2 = await fixspace(this.client.listenerHandler.modules.size, q2),
