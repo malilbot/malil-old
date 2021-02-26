@@ -54,7 +54,7 @@ export default class AsciifyCommand extends Command {
 				url = attachment;
 			});
 		}
-		if (!url) message.reply("please add a image attachment");
+		if (!url) return message.reply("please add a image attachment");
 		if (url?.name.split(".").pop() !== ("png" || "jpg" || "jpeg")) return message.reply("please use either a png or a jpg")
 		const option = big ? bigoptions : options;
 
