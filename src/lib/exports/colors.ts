@@ -13,14 +13,14 @@ let
 if (dev == true) {
     if (num == 1) {
         a1 = gray
-        main = hex("#2a1ac9")
+        main = red
         sec = yellow
         third = cyan
         fourth = green
         split = gray(" - ")
     } else {
         a1 = red
-        main = yellow
+        main = hex("#2a1ac9")
         sec = magenta
         third = blue
         fourth = gray

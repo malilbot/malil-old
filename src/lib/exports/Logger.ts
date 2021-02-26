@@ -25,7 +25,7 @@ export const logger = createLogger({
 		//replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, "")
 		//format.combine(format.timestamp(), format.json())
 		new DailyRotateFile({
-			format: combine(timestamp(), json()),
+			format: combine(timestamp()),
 			level: "debug",
 			zippedArchive: true,
 			extension: ".log",
