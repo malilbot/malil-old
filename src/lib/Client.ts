@@ -29,9 +29,6 @@ interface Option {
 }
 
 export default class Client extends AkairoClient {
-	cacheSweep: () => void;
-	cacheSweepTask: NodeJS.Timeout;
-
 	public commandHandler: CommandHandler = new CommandHandler(this, {
 		directory: join(__dirname, "..", "Commands"),
 		prefix: (message) => {
