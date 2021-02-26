@@ -1,6 +1,7 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
 import { hst } from "../../lib/Utils";
+import { exec } from "child_process"
 export default class ExecCommand extends Command {
 	public constructor() {
 		super("exec", {
@@ -21,7 +22,6 @@ export default class ExecCommand extends Command {
 					id: "code",
 					type: "string",
 					match: "rest",
-					default: "Please input some code"
 				}
 			],
 			ownerOnly: true,
@@ -30,7 +30,6 @@ export default class ExecCommand extends Command {
 	}
 
 	public async exec(message: Message, { code }) {
-		const { exec } = require("child_process");
 		exec(code, async (error, stdout, stderr) => {
 			const embed = new MessageEmbed()
 				.setTitle(`Exec`)
@@ -39,7 +38,6 @@ export default class ExecCommand extends Command {
 				.addField("Type", "bash");
 			let output = "";
 
-			if (error) output = error;
 			if (stderr) output = stderr;
 			if (stdout) output = stdout;
 			if (output.length > 1024) {

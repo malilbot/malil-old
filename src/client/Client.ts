@@ -98,7 +98,7 @@ export default class Client extends AkairoClient {
 		this.commandHandler.useInhibitorHandler(this.inhibitorHandler);
 		this.listenerHandler.setEmitters({
 			commandHandler: this.commandHandler,
-			listenerHandler: this.listenerHandler
+			listenerHandler: this.listenerHandler,
 		});
 		this.inhibitorHandler.loadAll();
 		this.taskHandler.loadall();

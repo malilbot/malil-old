@@ -21,6 +21,9 @@ export default class message extends Listener {
     }
 
     async exec(message: Message) {
+        if (message.content.includes("malil")) {
+            this.client.logger.info(`${main("[MALIL MENTIONED]")}${third("[AUTHOR]")} ${message.author.tag} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`)
+        }
         if (message.author.bot) return;
         if (message.guild !== null) return;
         this.client.logger.info(`${main("[DM]")}${third("[AUTHOR]")} ${message.author.tag} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`)

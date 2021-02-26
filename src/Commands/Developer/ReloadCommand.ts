@@ -1,11 +1,12 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
-
+//import { manager } from "../../index"
+import { exec } from "child_process"
 export default class ReloadCommand extends Command {
 	public constructor() {
 		super("reload", {
 			aliases: [
-				"reload"
+				"reload", "update", "refresh", "pull", "updat"
 			],
 			category: "Developer",
 			quoted: true,
@@ -23,12 +24,23 @@ export default class ReloadCommand extends Command {
 	}
 
 	public async exec(message: Message) {
-		message.reply("Reloading :robot:", { allowedMentions: { repliedUser: false } });
-		const str1 = "this.client.commandHandler.reloadAll()";
-		const str2 = "this.client.inhibitorHandler.reloadAll()";
-		const str3 = "this.client.listenerHandler.reloadAll()";
-		eval(str1);
-		eval(str2);
-		eval(str3);
+		const msg = await message.reply("Reloading :robot:", { allowedMentions: { repliedUser: false } });
+		exec("git pull", async (error, stdout) => {
+
+			msg.edit(stdout);
+
+			exec("yarn rm", async (error, stdout) => {
+
+				msg.edit(stdout);
+
+				exec("npx tsc", async (error, stdout) => {
+					if (stdout) {
+						msg.edit(stdout);
+					}
+					msg.edit("restarting now").then(() => this.client.shard.respawnAll())
+
+				})
+			})
+		})
 	}
 }
