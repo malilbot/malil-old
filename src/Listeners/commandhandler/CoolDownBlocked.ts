@@ -1,6 +1,6 @@
 import { Listener } from "discord-akairo";
 import { main, sec, third, fourth, a1, split, sleep } from "../../lib/Utils"
-import Client from "../../client/Client";
+import Client from "../../lib/Client";
 const talkedRecently = new Set();
 const Talk = new Set();
 export default class CoolDown extends Listener {

@@ -1,6 +1,6 @@
 import { Listener } from "discord-akairo";
 
-import Client from "../../client/Client";
+import Client from "../../lib/Client";
 export default class commandBlocked extends Listener {
     client: Client;
     public constructor(client: Client) {

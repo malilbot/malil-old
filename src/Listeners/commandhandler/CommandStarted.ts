@@ -1,6 +1,6 @@
 import { Listener } from 'discord-akairo';
 import { main, sec, third, fourth, a1, split, sleep, fixspace } from "../../lib/Utils"
-import Client from '../../client/Client';
+import Client from '../../lib/Client';
 
 
 export default class CommandStarted extends Listener {

@@ -1,5 +1,5 @@
 import { Listener } from "discord-akairo";
-import Client from "../../client/Client";
+import Client from "../../lib/Client";
 import { fixspace } from "../../lib/Utils"
 import { log } from "console"
 import settings from '../../../settings.js'

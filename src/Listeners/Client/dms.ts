@@ -1,6 +1,6 @@
 import { Listener } from 'discord-akairo';
 import { Message } from 'discord.js'
-import Client from '../../client/Client';
+import Client from '../../lib/Client';
 import {
     main,
     sec,

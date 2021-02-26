@@ -1,6 +1,6 @@
 import { Listener } from "discord-akairo";
 
-import type Client from "../../client/Client";
+import type Client from "../../lib/Client";
 
 export default class Raw extends Listener {
     client: Client;

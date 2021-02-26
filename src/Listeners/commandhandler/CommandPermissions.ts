@@ -1,6 +1,6 @@
 import { Listener } from "discord-akairo";
 import { MessageEmbed } from "discord.js"
-import Client from "../../client/Client";
+import Client from "../../lib/Client";
 export default class missingPermissions extends Listener {
     client: Client;
     public constructor(client: Client) {

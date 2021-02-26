@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
-import { logger } from "../lib/exports/Logger";
-import TaskHandler from "../lib/taskhandler"
+import { logger } from "./exports/Logger";
+import TaskHandler from "./taskhandler"
 import settings from '../../settings.js'
 import { Logger } from "winston"
 import { join } from "path";
