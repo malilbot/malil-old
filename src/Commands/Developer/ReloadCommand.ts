@@ -27,15 +27,15 @@ export default class ReloadCommand extends Command {
 		const msg = await message.reply("Reloading :robot:", { allowedMentions: { repliedUser: false } });
 		exec("git pull", async (error, stdout) => {
 
-			msg.edit(stdout);
+			msg.edit("```" + stdout + "```");
 
 			exec("yarn rm", async (error, stdout) => {
 
-				msg.edit(stdout);
+				msg.edit("```" + stdout + "```");
 
 				exec("npx tsc", async (error, stdout) => {
 					if (stdout) {
-						await msg.edit(stdout);
+						await msg.edit("```" + stdout + "```");
 					}
 					await msg.edit("restarting now").then(() => this.client.shard.respawnAll())
 
