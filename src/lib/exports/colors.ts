@@ -1,7 +1,8 @@
-import { red, blue, gray, yellow, green, magenta, whiteBright, bgWhite, bgBlack, greenBright, cyanBright, white, cyan, bold, black, hex, reset } from "chalk";
+import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
 
 
 import { dev } from '../../../settings.js'
+const num = Math.floor((Math.random() * 3) + 1);
 let
     main,
     sec,
@@ -10,19 +11,39 @@ let
     a1,
     split
 if (dev == true) {
-    a1 = gray
-    main = red
-    sec = yellow
-    third = cyan
-    fourth = green
-    split = gray(" - ")
+    if (num == 1) {
+        a1 = gray
+        main = hex("#2a1ac9")
+        sec = yellow
+        third = cyan
+        fourth = green
+        split = gray(" - ")
+    } else {
+        a1 = red
+        main = yellow
+        sec = magenta
+        third = blue
+        fourth = gray
+        split = green(" - ")
+    }
+
 } else {
-    a1 = yellow
-    main = blue
-    sec = green
-    third = magenta
-    fourth = cyan
-    split = yellow(" - ")
+    if (num == 1) {
+        a1 = yellow
+        main = blue
+        sec = green
+        third = magenta
+        fourth = cyan
+        split = yellow(" - ")
+    } else {
+        a1 = green
+        main = cyan
+        sec = magenta
+        third = red
+        fourth = gray
+        split = blue(" - ")
+    }
+
 }
 export {
     main,

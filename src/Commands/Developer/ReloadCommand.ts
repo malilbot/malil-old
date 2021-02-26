@@ -35,9 +35,9 @@ export default class ReloadCommand extends Command {
 
 				exec("npx tsc", async (error, stdout) => {
 					if (stdout) {
-						msg.edit(stdout);
+						await msg.edit(stdout);
 					}
-					msg.edit("restarting now").then(() => this.client.shard.respawnAll())
+					await msg.edit("restarting now").then(() => this.client.shard.respawnAll())
 
 				})
 			})
