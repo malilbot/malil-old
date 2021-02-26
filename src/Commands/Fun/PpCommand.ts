@@ -32,7 +32,7 @@ export default class PpCommand extends Command {
 	public async exec(message: Message, { }) {
 		const member: GuildMember = await GetSelf(message, this.client) || message.member
 		let pp;
-		let id = member.id
+		const id = member.id
 		this.client.UserData.ensure(member.id, {
 			pp: '',
 			iq: 0,

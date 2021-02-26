@@ -43,11 +43,11 @@ export default class SuperUserCommand extends Command {
 
         this.client.gp.ensure("superUsers", []);
         const list = this.client.gp.get("superUsers");
-        let id = await GetUser(message, this.client)
+        const id = await GetUser(message, this.client)
         if (add == true) {
             this.client.gp.push("superUsers", id.id);
         } else if (remove == true) {
-            let sulist = this.client.gp.get("superUsers");
+            const sulist = this.client.gp.get("superUsers");
             for (let i = 0; i < sulist.length; i++) {
                 if (sulist[i] == id) {
                     sulist.splice(i, 1);

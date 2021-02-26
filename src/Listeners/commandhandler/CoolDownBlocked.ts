@@ -1,5 +1,5 @@
 import { Listener } from "discord-akairo";
-import { main, sec, third, fourth, a1, split, sleep } from "../../lib/Utils"
+import { main, sec } from "../../lib/Utils"
 import Client from "../../lib/Client";
 const talkedRecently = new Set();
 const Talk = new Set();
@@ -14,7 +14,7 @@ export default class CoolDown extends Listener {
 		this.client = client;
 	}
 
-	exec(message, command, reason) {
+	exec(message) {
 		if (!talkedRecently.has(message.author.id)) {
 			if (!Talk.has(message.author.id)) {
 				message.channel.send(`You are using commands too fast please slow down`);
