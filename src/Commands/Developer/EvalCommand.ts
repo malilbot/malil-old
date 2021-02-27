@@ -72,7 +72,11 @@ export default class EvalCommand extends Command {
 			output = output.replace(new RegExp("\\" + this.client.setting.prefix, 'g'), '[HIDDEN]')
 			output = output.replace(new RegExp(this.client.setting.gist, 'g'), '[HIDDEN]')
 			output = output.replace(new RegExp(this.client.setting.genius.toString(), 'g'), '[HIDDEN]');
+			output = output.replace(new RegExp(this.client.setting.bottokens.discordbotlist.toString(), 'g'), '[HIDDEN]');
+			output = output.replace(new RegExp(this.client.setting.bottokens.Bladebnots.toString(), 'g'), '[HIDDEN]');
 			output = output.replace(new RegExp(this.client.setting.bottokens.topgg.toString(), 'g'), '[HIDDEN]');
+			output = output.replace(new RegExp(this.client.setting.bottokens.discordextreme.toString(), 'g'), '[HIDDEN]');
+			output = output.replace(new RegExp(this.client.setting.bottokens.botsgg.toString(), 'g'), '[HIDDEN]');
 			if (output.length > 1024) {
 				embed.addField("🫓 Output", await hst(output));
 				embed.addField("Type", typeof output);

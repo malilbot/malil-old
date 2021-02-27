@@ -1,5 +1,4 @@
 import { Command } from "discord-akairo";
-import { MessageReaction } from "discord.js";
 import { MessageEmbed, Message } from "discord.js";
 
 export default class GithubremCommand extends Command {
