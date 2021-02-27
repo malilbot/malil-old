@@ -1,6 +1,6 @@
 import centra from "centra"
 module.exports = {
-    name: 'randomlists',
+    name: 'botlists',
     delay: "4h",
     async execute(client) {
         if (client.user.id !== "749020331187896410") return;
@@ -68,8 +68,5 @@ module.exports = {
                 .body(botsgg)
                 .send()).json();
         } catch (err) { client.logger.info("[ COULD NOT POST TO discord.bots.gg ]") }
-
-
-
     },
 };
