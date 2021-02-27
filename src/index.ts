@@ -1,6 +1,6 @@
-import { token } from './config'
+import { token } from './lib/config'
 import { ShardingManager } from 'discord.js';
-const manager = new ShardingManager('./dist/bot.js', { token: token, totalShards: 'auto' });
+const manager = new ShardingManager('./dist/lib/bot.js', { token: token, totalShards: 'auto' });
 import { logger, third, sec, main } from './lib/Utils'
 
 manager.on('shardCreate', shard => {

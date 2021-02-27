@@ -1,4 +1,3 @@
-import { superUsers } from "@root/config";
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
 import { GetUser, GetSelf } from "../../lib/Utils"
