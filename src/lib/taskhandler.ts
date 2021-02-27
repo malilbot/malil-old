@@ -25,10 +25,12 @@ export default class TaskHandler {
                 })
             } else if (task?.runOnStart == true) task.execute(this.client)
 
+            if (task?.delay) {
+                setInterval(() => {
+                    task?.execute(this.client);
+                }, (ms(task?.delay)));
+            }
 
-            setInterval(() => {
-                task?.execute(this.client);
-            }, (ms(task?.delay)));
         }
 
     }
