@@ -35,7 +35,7 @@
     "@types/node-fetch": "^2.5.8",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
-    "eslint": "^7.19.0",
+    "eslint": "^7.20.0",
     "nodemon": "^2.0.7",
     "typescript": "^4.2.2",
     "discord-rpc": "^3.2.0"
