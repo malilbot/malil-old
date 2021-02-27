@@ -6,11 +6,10 @@ module.exports = {
     runOnStart: false,
     awaitReady: false,
     async execute(client) {
-        log(client.shard.ids[0])
         const clientGuilds = client.guilds.cache.size
         const clientChannels = client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0)
         const clientMembers = client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)
-        if (client.shard.ids.length == 0) {
+        if (client.shard.ids.length == 1) {
             log(main(`[ CHANNELS ] ${sec(clientChannels)}`))
             log(main(`[ MEMBERS  ] ${sec(clientMembers)}`))
             log(main(`[ GUILDS   ] ${sec(clientGuilds)}`))
