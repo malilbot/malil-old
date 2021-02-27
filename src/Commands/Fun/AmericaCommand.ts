@@ -2,10 +2,10 @@ import { Command } from "discord-akairo";
 import { Message } from "discord.js";
 import { GetSelf } from "../../lib/Utils"
 import centra from "centra"
-export default class FedoraCommand extends Command {
+export default class AmeticaCommand extends Command {
     public constructor() {
-        super("fedora", {
-            aliases: ["fedora"],
+        super("america", {
+            aliases: ["america", "ame"],
             category: "Fun",
             quoted: true,
             args: [
@@ -16,10 +16,10 @@ export default class FedoraCommand extends Command {
                 }
             ],
             description: {
-                content: "Fedora something or yourself doesnt work on attachment links only real attachments sorry",
-                usage: "fedora",
+                content: "america something or yourself doesnt work on attachment links only real attachments sorry",
+                usage: "america",
                 example: [
-                    "fedora"
+                    "america @user"
                 ]
             },
             ratelimit: 3,
@@ -29,6 +29,7 @@ export default class FedoraCommand extends Command {
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     public async exec(message: Message) {
+        const msg = await message.channel.send("fetching")
         let url = "";
         if (message.attachments) {
             message.attachments.forEach((attachment) => {
@@ -40,14 +41,15 @@ export default class FedoraCommand extends Command {
             url = user.user.displayAvatarURL({ format: "png", size: 2048, dynamic: true })
         }
 
-        const res = await centra(`https://api.dagpi.xyz/image/fedora/?url=${url}`, "get")
+        const res = await centra(`https://api.dagpi.xyz/image/america/?url=${url}`, "get")
             .header("Authorization", this.client.setting.dagpi)
             .send()
         const meme = res.body;
-        return await message.channel
-            .send("", {
-                files: [{ attachment: meme, name: `fedoraed.png` }],
-            })
+
+        await message.channel.send("", {
+            files: [{ attachment: meme, name: `America.png` }],
+        })
+        msg.delete
 
     }
 }
