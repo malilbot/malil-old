@@ -1,3 +1,4 @@
+import { Listener } from "discord-akairo";
 import { Command } from "discord-akairo";
 import { Message, GuildMember, MessageEmbed, GuildChannel, TextChannel } from "discord.js";
 import { utc } from "moment";
@@ -49,7 +50,10 @@ export default class BanCommand extends Command {
         reason = reason.replace(user.id, "").replace(/<.*?>/g, "")
         if (!user.bannable) return message.channel.send(`Sorry, i can't ban this user`);
 
-        await user.send(`You has been banned from **${message.guild.name} for reason: \`${reason}\``);
+        try {
+            await user.send(`You has been banned from **${message.guild.name} for reason: \`${reason}\``)
+        } catch (err) { }
+
         await message.guild.members.ban(user, { days: day, reason });
 
         message.util.send(
