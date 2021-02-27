@@ -2,7 +2,7 @@ import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
 
 
 import { dev } from '../../../settings.js'
-const num = Math.floor((Math.random() * 3) + 1);
+const num = Math.floor((Math.random() * 2) + 1);
 let
     main,
     sec,
