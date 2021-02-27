@@ -1,0 +1,10 @@
+mkdir ../data
+mkdir ../data/colornames
+mkdir ../data/logchannel
+mkdir ../data/tags
+mkdir ../data/prefixes
+mkdir ../data/blacklist
+mkdir ../data/releases
+mkdir ../data/infractions
+mkdir ../data/gp
+mkdir ../data/userData
