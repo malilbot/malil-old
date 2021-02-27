@@ -17,7 +17,7 @@ export default class CoolDown extends Listener {
 	exec(message) {
 		if (!talkedRecently.has(message.author.id)) {
 			if (!Talk.has(message.author.id)) {
-				message.channel.send(`You are using commands too fast please slow down`);
+				message.reply(`You are using commands too fast please slow down`);
 				talkedRecently.add(message.author.id);
 				setTimeout(() => {
 					talkedRecently.delete(message.author.id);
