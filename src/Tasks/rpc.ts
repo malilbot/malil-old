@@ -6,6 +6,7 @@ module.exports = {
     execute(client) {
         if (client.setting.rpc.on == true) {
             const clientId = "795717859170844673"
+
             const DiscordRPC = require("discord-rpc")
             DiscordRPC.register(clientId);
 
@@ -13,9 +14,9 @@ module.exports = {
             rpc.login({ clientId })
             rpc.on('ready', () => {
                 rpc.setActivity({
-                    buttons: client.setting.rpc.activity.buttons,
-                    largeImageKey: client.setting.rpc.activity.assets.large_image,
-                    largeImageText: client.setting.rpc.activity.assets.large_text,
+                    buttons: [{ label: "Support", url: "https://discord.gg/mY8zTARu4g" }, { label: "invite", url: "https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824" }],
+                    largeImageKey: "Coding bot",
+                    largeImageText: 'malil-pfp',
                     smallImageKey: "robot",
                     smallImageText: "why are you looking here invite it already",
                     state: 'Invite MALIL for cookies',

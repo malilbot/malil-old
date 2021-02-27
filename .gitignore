@@ -1,6 +1,6 @@
 #NODE MODULES FILES
 node_modules
-
+rpc.ts
 #ENV FILE
 .env
 data
@@ -23,7 +23,7 @@ Logs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
+src/tasks/rpc.ts
 data/*
 # Mono auto generated files
 mono_crash.*
@@ -393,3 +393,5 @@ config.js
 settings.js
 yarn.lock
 .metals/metals.h2.db
+src/Tasks/rpc.ts
+src/Tasks/rpc.ts
