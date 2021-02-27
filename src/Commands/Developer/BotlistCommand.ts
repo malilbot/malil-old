@@ -28,7 +28,7 @@ export default class BotListCommand extends Command {
     }
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     public async exec(message: Message, { args }) {
-
+        if (this.client.user.id !== "749020331187896410") return message.reply("Not sure if you want todo this chief")
         this.client.logger.info("[ POSTING TO BOT SITES ]")
         const topgg = {
             "server_count": this.client.guilds.cache.size,
@@ -36,11 +36,10 @@ export default class BotListCommand extends Command {
             "shard_id": this.client.shard.ids[0]
         }
         try {
-            let res = await centra("https://top.gg/api/bots/749020331187896410/stats", "post")
+            await centra("https://top.gg/api/bots/749020331187896410/stats", "post")
                 .header("Authorization", this.client.setting.bottokens.topgg)
                 .body(topgg)
                 .send()
-            console.log(res)
         } catch (err) { this.client.logger.info("[ COULD NOT POST TO TOPGG ]") }
 
 
@@ -50,11 +49,11 @@ export default class BotListCommand extends Command {
             "shard_id": this.client.shard.ids[0]
         }
         try {
-            let res = await centra("https://discordbotlist.com/api/v1/bots/749020331187896410/stats", "post")
+            await centra("https://discordbotlist.com/api/v1/bots/749020331187896410/stats", "post")
                 .header("Authorization", this.client.setting.bottokens.discordbotlist)
                 .body(discordbotlist)
                 .send()
-            console.log(res)
+
         } catch (err) { this.client.logger.info("[ COULD NOT POST TO discordbotlist ]") }
 
 
@@ -63,11 +62,10 @@ export default class BotListCommand extends Command {
             "shardcount": this.client.shard.ids.length
         }
         try {
-            let res = await centra("https://bladebotlist.xyz/api/bots/749020331187896410/stats", "post")
+            await centra("https://bladebotlist.xyz/api/bots/749020331187896410/stats", "post")
                 .header("Authorization", this.client.setting.bottokens.Bladebnots)
                 .body(bladebotlist)
                 .send()
-            console.log(res)
         } catch (err) { this.client.logger.info("[ COULD NOT POST TO bladebotlist ]") }
 
 
@@ -77,11 +75,10 @@ export default class BotListCommand extends Command {
             "shardcount": this.client.shard.ids.length
         }
         try {
-            let res = await centra("https://api.discordextremelist.xyz/v2/bot/749020331187896410/stats", "post")
+            await centra("https://api.discordextremelist.xyz/v2/bot/749020331187896410/stats", "post")
                 .header("Authorization", this.client.setting.bottokens.discordextreme)
                 .body(discordextremelist)
                 .send()
-            console.log(res)
         } catch (err) { this.client.logger.info("[ COULD NOT POST TO discordextremelist ]") }
 
         const botsgg = {
@@ -91,12 +88,10 @@ export default class BotListCommand extends Command {
         }
 
         try {
-
-            let res = await centra("https://discord.bots.gg/api/v1/bots/749020331187896410/stats", "post")
+            await centra("https://discord.bots.gg/api/v1/bots/749020331187896410/stats", "post")
                 .header("Authorization", this.client.setting.bottokens.botsgg)
                 .body(botsgg)
                 .send()
-            console.log(res)
         } catch (err) { this.client.logger.info("[ COULD NOT POST TO discord.bots.gg ]") }
 
     }

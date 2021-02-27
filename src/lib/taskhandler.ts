@@ -30,9 +30,6 @@ export default class TaskHandler {
                     task?.execute(this.client);
                 }, (ms(task?.delay)));
             }
-
         }
-
     }
-
 }
