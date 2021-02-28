@@ -3,6 +3,7 @@ import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from 
 import { logger } from "./exports/Logger";
 import TaskHandler from "./taskhandler"
 import settings from '../../settings.js'
+import BotLists from "./BotLists"
 import { Logger } from "winston"
 import { join } from "path";
 import Enmap from "enmap";
@@ -69,6 +70,14 @@ export default class Client extends AkairoClient {
 	public taskHandler: TaskHandler = new TaskHandler(this, {
 		directory: join()
 	})
+
+	public botLists: BotLists = new BotLists(this, {
+		topgg: settings.bottokens.topgg,
+		discordbotlist: settings.bottokens.discordbotlist,
+		bladebotlist: settings.bottokens.Bladebnots,
+		discordextremelist: settings.bottokens.discordextreme,
+		botsgg: settings.bottokens.botsgg
+	});
 
 	public config: Option
 
