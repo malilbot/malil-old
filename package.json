@@ -7,8 +7,8 @@
     "start": "tsc && node ./dist/index.js",
     "build": "tsc",
     "test": "jest",
-    "fixenmap": "sh ./resources/fixEnmap.sh",
-    "dir": "sh ./resources/mkdir.sh",
+    "enmap": "sh ./resources/fixEnmap.sh",
+    "dir": "sh resources/mkdir.sh",
     "dev": "nodemon -e ts --exec \"yarn start\"",
     "deb": "nodemon -e ts --exec \"yarn start\"",
     "vps": "npm run build && npm start",
@@ -37,23 +37,27 @@
     "@types/node-fetch": "^2.5.8",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
+    "discord-rpc": "^3.2.0",
     "eslint": "^7.20.0",
     "nodemon": "^2.0.7",
-    "typescript": "^4.2.2",
-    "discord-rpc": "^3.2.0"
+    "typescript": "^4.2.2"
   },
   "dependencies": {
     "asciify-image": "^0.1.6",
+    "bufferutil": "^4.0.3",
     "centra": "^2.4.2",
     "chalk": "^4.1.0",
     "common-tags": "^1.8.0",
     "discord-akairo": "https://github.com/SkyBlockDev/discord-akairo",
     "discord.js": "https://github.com/discordjs/discord.js",
     "enmap": "^5.8.4",
+    "erlpack": "discord/erlpack",
     "genius-lyrics-api": "^3.0.6",
     "moment": "^2.29.1",
     "ms": "^2.1.3",
+    "utf-8-validate": "^5.0.4",
     "winston": "^3.3.3",
-    "winston-daily-rotate-file": "^4.5.0"
+    "winston-daily-rotate-file": "^4.5.0",
+    "zlib-sync": "^0.1.7"
   }
 }

@@ -15,8 +15,8 @@ module.exports = {
             rpc.on('ready', () => {
                 rpc.setActivity({
                     buttons: [{ label: "Support", url: "https://discord.gg/mY8zTARu4g" }, { label: "invite", url: "https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824" }],
-                    largeImageKey: "Coding bot",
-                    largeImageText: 'malil-pfp',
+                    largeImageKey: "malil-pfp",
+                    largeImageText: 'CODING BOT',
                     smallImageKey: "robot",
                     smallImageText: "why are you looking here invite it already",
                     state: 'Invite MALIL for cookies',
