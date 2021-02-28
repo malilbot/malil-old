@@ -20,7 +20,7 @@ if (dev == true) {
         split = gray(" - ")
     } else {
         a1 = red
-        main = hex("#2a1ac9")
+        main = hex("#205d77")
         sec = magenta
         third = blue
         fourth = gray

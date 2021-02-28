@@ -21,7 +21,7 @@ export default class Ready extends Listener {
 		const num = floor((random() * 2) + 1);
 
 		const
-			mm1 = (String.raw`          /          `),
+			mm1 = (String.raw`          /           `),
 			mm2 = (String.raw`       ${sec('/╬')}▓           `),
 			mm3 = (String.raw`     ${sec('/▓▓')}╢            `),
 			mm4 = (String.raw`   [${sec('▓▓')}▓╣/            `),

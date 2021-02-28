@@ -36,18 +36,21 @@ export default class QuoteCommand extends Command {
 	}
 
 	public async exec(message: Message, { args, force }) {
-		const splito = args.split(" ");
+		if (!args) return message.reply("please add a message link")
+		if (!message.content.includes("/")) return message.reply("Please add a message link")
+
+		const split = args.split(/\/| /);
 
 
-		if (!splito) { message.reply("message not found") }
-		const thing = (splito).join();
-		const split = thing.split("/");
-		if (!split[5] || !split[6]) { message.reply("message not found") }
-		const channel = split[5];
-		const msgid = split[6];
-		const chan = await this.client.channels.fetch(channel).catch(() => { message.reply("message not found") });
+		if (!split[5] || !split[6]) { return message.reply("message not found") }
+		let chan
+		let msg: Message
 
-		const msg = await (chan as TextChannel).messages.fetch(msgid).catch(() => { return message.reply("message not found") });
+		try {
+			chan = await this.client.channels.fetch(split[5])
+			msg = await (chan as TextChannel).messages.fetch(split[6])
+		} catch (error) { return message.reply("message not found") }
+
 
 		let url = "";
 		if (msg.attachments) {
@@ -55,9 +58,15 @@ export default class QuoteCommand extends Command {
 				url = attachment.url;
 			});
 		}
-		if (this.client.gp.get("superUsers").includes(message.author.id) || this.client.setting.owners.includes(message.author.id) && force) {
+		if ((chan as TextChannel).nsfw == true) {
+			if (!force) {
+				return message.reply("nsfw")
+			} else if (!this.client.gp.get("superUsers").includes(message.author.id) && !this.client.setting.owners.includes(message.author.id)) {
+				return message.reply("nsfw")
+			}
 
-		} else if ((chan as TextChannel).nsfw) return message.channel.send("nsfw");
+		}
+
 
 		let attachment: unknown;
 		if (url) attachment = await new MessageAttachment(url);
@@ -75,11 +84,11 @@ export default class QuoteCommand extends Command {
 			);
 		}
 
-		// magic
+
 		const webhook = await (message.channel as TextChannel)
 			.createWebhook(msg.author.tag)
 			.then((webhook) => webhook.edit({ avatar: msg.author.displayAvatarURL({ size: 2048, format: "png" }) }));
-		//
+
 		await webhook
 			.send(msg.content || msg.embeds, attachment)
 			.then(() => webhook.delete())

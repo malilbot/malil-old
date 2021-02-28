@@ -14,6 +14,7 @@ export default class CommandErrorListener extends Listener {
 
     public async exec(error: Error, message: Message, command: Command | null | undefined): Promise<void> {
         const errorNo = Math.floor(Math.random() * 6969696969) + 69; // hehe funy number
+        console.log(error)
         const errorEmbed: MessageEmbed = new MessageEmbed()
             .setTitle(`Error # \`${errorNo}\`: An error occurred`)
             .setDescription(
@@ -25,7 +26,7 @@ export default class CommandErrorListener extends Listener {
             .addField('Error', `${await hst(error.stack)}`)
             .setTimestamp();
         const errorUserEmbed: MessageEmbed = new MessageEmbed()
-            .setTitle('An error occurred')
+            .setTitle('An error occurred and has been reported to the devs')
             .setTimestamp();
         const channel = await this.client.channels.fetch("815328569051971595");
         await (channel as TextChannel).send(errorEmbed)
