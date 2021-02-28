@@ -35,6 +35,7 @@ export default class replacemeCommand extends Command {
                     "replaceme"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             ratelimit: 3,
             channel: "guild"
         });

@@ -22,13 +22,16 @@ export default class process extends Listener {
     */
     public async exec(error: Error, promise: Promise<unknown>) {
         console.log(error.stack)
-        const channel = await this.client.channels.fetch("815328569051971595");
-        await (channel as TextChannel).send(new MessageEmbed({
-            title: 'Unhandled promise rejection',
-            description: `
+        try {
+            const channel = await this.client.channels.fetch("815328569051971595");
+            await (channel as TextChannel).send(new MessageEmbed({
+                title: 'Unhandled promise rejection',
+                description: `
 			 Promise \`${promise}\` threw an error, unhandled.
 			 Stack: ${await hst(error.stack)}
 			`
-        }))
+            }))
+        } catch (e) { }
+
     }
 }
