@@ -31,7 +31,7 @@ export default class ColorCommand extends Command {
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     public async exec(message: Message, { args }) {
         /** some checks */
-        if (message.guild.id !== "807302538558308352") return
+        if (message.guild.id !== "807302538558308352" && message.guild.id !== "755166643927122091") return
         if (message.member.roles.cache.some((role) => role.name === 'Server Booster')) {
             /** possible colors ig */
             const colors = ["dark_red", "red", "gold", "yellow", "dark_green", "green", "aqua", "dark_aqua", "dark_blue", "blue", "light_purple", "dark_purple"]
@@ -77,15 +77,13 @@ export default class ColorCommand extends Command {
                     input[uuid] = args[0]
                     const txt = JSON.stringify(input)
                     /** 
-                     * 
                      * editing the gist with my epic function 
-                     * 
                      * */
                     await EditGist("NameColors.json", txt, "6993d1f641ddcdb6ab2761a6ff8eb317", this.client)
                 })
             })
         } else if (message.member.roles.cache.some((role) => role.name === 'DEV') || message.member.roles.cache.some((role) => role.name === 'MOD')) {
-            message.util.send("please note that you ar eusing this command as staff and no checks apply")
+            message.util.send("please note that you ar using this command as staff and no checks apply")
             if (!args) return message.util.send("not args provided")
             try {
                 args = args.toLowerCase()
@@ -122,7 +120,7 @@ export default class ColorCommand extends Command {
                     const name = response.name
                     uuid = response.id
                     /** comparing the user's discord tag */
-                    message.channel.send("Aight got it gave " + name + " color/name " + args)
+                    message.channel.send("Aight got it gave " + name + " color " + args)
                     input[uuid] = args
                     const txt = JSON.stringify(input)
                     /** 
