@@ -27,6 +27,7 @@ export default class RulesCommand extends Command {
 			},
 			ratelimit: 3,
 			channel: "guild",
+			clientPermissions: ['SEND_MESSAGES'],
 			userPermissions: ['ADMINISTRATOR']
 		});
 	}

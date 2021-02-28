@@ -27,6 +27,7 @@ export default class CreatetagCommand extends Command {
 					"createtag <name> <input>"
 				]
 			},
+			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 3,
 			channel: "guild"
 		});

@@ -22,7 +22,7 @@ export default class SlowmodeCommand extends Command {
                     "slowmode"
                 ]
             },
-            clientPermissions: ['MANAGE_CHANNELS'],
+            clientPermissions: ['MANAGE_CHANNELS', "SEND_MESSAGES"],
             userPermissions: ['MANAGE_CHANNELS'],
             ratelimit: 3,
             channel: "guild",

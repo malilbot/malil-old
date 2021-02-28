@@ -15,6 +15,7 @@ export default class InfractionsCommand extends Command {
                     "infractions"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             userPermissions: ['MANAGE_MESSAGES'],
             ratelimit: 3,
             channel: "guild"

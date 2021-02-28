@@ -23,7 +23,7 @@ export default class ClearCommand extends Command {
             },
             ratelimit: 3,
             channel: "guild",
-            clientPermissions: ['MANAGE_MESSAGES'],
+            clientPermissions: ['MANAGE_MESSAGES', 'SEND_MESSAGES'],
             userPermissions: ['MANAGE_MESSAGES']
         });
     }

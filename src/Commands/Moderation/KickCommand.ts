@@ -16,7 +16,8 @@ export default class KickCommand extends Command {
                 ]
             },
             ratelimit: 3,
-            clientPermissions: ['KICK_MEMBERS'],
+
+            clientPermissions: ['KICK_MEMBERS', 'SEND_MESSAGES'],
             userPermissions: ['KICK_MEMBERS'],
             channel: "guild",
             args: [

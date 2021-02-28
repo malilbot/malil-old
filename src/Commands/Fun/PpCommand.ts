@@ -24,6 +24,7 @@ export default class PpCommand extends Command {
 					"pp @someone"
 				]
 			},
+			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 3,
 			channel: "guild"
 		});

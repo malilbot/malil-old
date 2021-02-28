@@ -16,6 +16,7 @@ export default class ServerCommand extends Command {
 					"server"
 				]
 			},
+			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 1,
 			channel: "guild"
 		});

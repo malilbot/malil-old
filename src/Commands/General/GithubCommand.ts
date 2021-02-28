@@ -28,6 +28,7 @@ export default class GithubCommand extends Command {
 			},
 			ratelimit: 1,
 			channel: "guild",
+			clientPermissions: ['SEND_MESSAGES'],
 			userPermissions: ['MANAGE_MESSAGES']
 		});
 	}

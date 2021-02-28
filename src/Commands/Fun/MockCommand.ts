@@ -26,6 +26,7 @@ export default class MockCommand extends Command {
 					"mock"
 				]
 			},
+			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 3,
 			channel: "guild"
 		});

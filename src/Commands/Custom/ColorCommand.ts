@@ -23,6 +23,7 @@ export default class ColorCommand extends Command {
                     "color"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             ratelimit: 3,
             channel: "guild"
         });

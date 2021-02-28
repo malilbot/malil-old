@@ -27,6 +27,7 @@ export default class HelpCommand extends Command {
 					default: null
 				}
 			],
+			clientPermissions: ['SEND_MESSAGES'],
 			channel: "guild"
 		});
 	}

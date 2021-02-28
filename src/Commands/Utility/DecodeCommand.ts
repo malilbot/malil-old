@@ -24,6 +24,7 @@ export default class DecodeCommand extends Command {
 					"decode"
 				]
 			},
+			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 3,
 			channel: "guild"
 		});

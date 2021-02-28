@@ -16,6 +16,7 @@ export default class SecretCommand extends Command {
 				]
 			},
 			ratelimit: 3,
+			clientPermissions: ['SEND_MESSAGES'],
 			ownerOnly: false,
 			channel: "guild"
 		});

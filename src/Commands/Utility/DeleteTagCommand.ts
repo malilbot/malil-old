@@ -24,6 +24,7 @@ export default class DeleteTagCommand extends Command {
 					"deletetag <name>"
 				]
 			},
+			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 3,
 			channel: "guild"
 		});

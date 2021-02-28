@@ -25,6 +25,7 @@ export default class WarnCommand extends Command {
                     "warn"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             userPermissions: ['MANAGE_MESSAGES'],
             ratelimit: 3,
             channel: "guild"

@@ -22,6 +22,7 @@ export default class FactCommand extends Command {
                     "fact"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             ratelimit: 2,
             channel: "guild"
         });

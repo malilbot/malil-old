@@ -22,6 +22,7 @@ export default class DTagCommand extends Command {
                     "dtag"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             ratelimit: 3,
             channel: "guild"
         });

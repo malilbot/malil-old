@@ -22,6 +22,7 @@ export default class AmeticaCommand extends Command {
                     "america @user"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             ratelimit: 3,
             channel: "guild"
         });

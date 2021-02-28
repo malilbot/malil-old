@@ -22,6 +22,7 @@ export default class IqCommand extends Command {
                     "iq"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             ratelimit: 3,
         });
     }

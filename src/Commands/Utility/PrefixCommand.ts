@@ -20,6 +20,7 @@ export default class PrefixCommand extends Command {
                     "prefix"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             ratelimit: 3,
             channel: "guild"
         });

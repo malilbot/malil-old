@@ -26,7 +26,7 @@ export default class PollCommand extends Command {
             ratelimit: 3,
             channel: "guild",
             userPermissions: ["MANAGE_MESSAGES"],
-            clientPermissions: ['MANAGE_MESSAGES']
+            clientPermissions: ['MANAGE_MESSAGES', 'SEND_MESSAGES']
         });
     }
 

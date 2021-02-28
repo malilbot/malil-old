@@ -45,6 +45,7 @@ export default class AvatarCommand extends Command {
                     flag: "format="
                 }
             ],
+            clientPermissions: ['SEND_MESSAGES'],
             channel: "guild"
         });
     }

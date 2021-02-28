@@ -29,6 +29,7 @@ export default class UnBlacklistCommand extends Command {
 					"unblacklist"
 				]
 			},
+			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 3,
 			channel: "guild",
 			ownerOnly: true

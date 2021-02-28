@@ -22,6 +22,7 @@ export default class StatsCommand extends Command {
 					"stats"
 				]
 			},
+			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 1,
 			channel: "guild"
 		});

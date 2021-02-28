@@ -24,6 +24,7 @@ export default class UwuCommand extends Command {
                     "Uwu"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             ratelimit: 3,
             channel: "guild"
         });

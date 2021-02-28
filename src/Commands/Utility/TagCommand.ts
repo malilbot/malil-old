@@ -23,6 +23,7 @@ export default class TagCommand extends Command {
 					"tag <name>"
 				]
 			},
+			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 3,
 			channel: "guild"
 		});

@@ -22,6 +22,7 @@ export default class FedoraCommand extends Command {
                     "fedora"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             ratelimit: 3,
             channel: "guild"
         });

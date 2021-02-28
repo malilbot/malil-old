@@ -15,6 +15,7 @@ export default class ClearWarnsCommand extends Command {
                 ]
             },
             ratelimit: 3,
+            clientPermissions: ['SEND_MESSAGES'],
             userPermissions: ['MANAGE_MESSAGES'],
             channel: "guild"
         });

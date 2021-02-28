@@ -18,7 +18,7 @@ export default class BanCommand extends Command {
             },
             channel: "guild",
             ratelimit: 3,
-            clientPermissions: ['BAN_MEMBERS'],
+            clientPermissions: ['BAN_MEMBERS', 'SEND_MESSAGES'],
             userPermissions: ['BAN_MEMBERS'],
             args: [
                 {

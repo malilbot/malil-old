@@ -24,6 +24,7 @@ export default class RawTagCommand extends Command {
                     "rawtag"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             ratelimit: 3,
             channel: "guild"
         });

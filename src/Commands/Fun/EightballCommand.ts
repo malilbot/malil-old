@@ -22,6 +22,7 @@ export default class EightballCommand extends Command {
                     "eightball"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             ratelimit: 3,
             channel: "guild"
         });

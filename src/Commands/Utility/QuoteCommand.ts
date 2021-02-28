@@ -30,6 +30,7 @@ export default class QuoteCommand extends Command {
 					"!quote https://canary.discord.com/channels/748956745409232945/777886689300709406/777889131829264384"
 				]
 			},
+			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 3,
 			channel: "guild"
 		});

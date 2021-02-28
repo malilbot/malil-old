@@ -21,7 +21,7 @@ export default class NickCommand extends Command {
                     "nick"
                 ]
             },
-            clientPermissions: ['MANAGE_NICKNAMES'],
+            clientPermissions: ['MANAGE_NICKNAMES', 'SEND_MESSAGES'],
             userPermissions: ['MANAGE_NICKNAMES'],
             ratelimit: 3,
             channel: "guild",

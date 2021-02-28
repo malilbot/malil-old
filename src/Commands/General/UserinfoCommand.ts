@@ -31,6 +31,7 @@ export default class UserinfoCommand extends Command {
 					"userinfo"
 				]
 			},
+			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 3,
 			channel: "guild"
 		});

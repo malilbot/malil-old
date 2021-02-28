@@ -23,6 +23,7 @@ export default class ClapCommand extends Command {
                     "clap"
                 ]
             },
+            clientPermissions: ['SEND_MESSAGES'],
             ratelimit: 3,
             channel: "guild"
         });

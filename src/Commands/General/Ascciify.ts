@@ -30,6 +30,7 @@ export default class AsciifyCommand extends Command {
 					"asciify then a attachment"
 				]
 			},
+			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 1,
 			channel: "guild"
 		});

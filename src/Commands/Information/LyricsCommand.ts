@@ -25,6 +25,7 @@ export default class lyricsCommand extends Command {
 					"lyrics"
 				]
 			},
+			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 1,
 			channel: "guild"
 		});
