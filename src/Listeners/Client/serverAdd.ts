@@ -16,6 +16,6 @@ export default class guildCreate extends Listener {
 
     async exec(guild: Guild) {
         if (this.client.blacklist.get("blacklist", "leavelist").includes(guild.id)) return guild.leave()
-        this.client.logger.info(`${sec("[SERVER ADD]")} ${main(guild.name)}`)
+        this.client.logger.info(`${sec("[ SERVER ADD ]")} ${main(guild.name)}`)
     }
 }

@@ -16,7 +16,7 @@ export default class guildDelete extends Listener {
 
     async exec(guild: Guild) {
         if (guild?.name) {
-            this.client.logger.info(`${sec("[SERVER KICK]")} ${main(guild.name)} Fuck this guy removing me from his server`)
+            this.client.logger.info(`${sec("[ SERVER KICK ]")} ${main(guild.name)} Fuck this guy removing me from his server`)
         }
     }
 }
