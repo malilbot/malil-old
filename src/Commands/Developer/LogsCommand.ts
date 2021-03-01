@@ -2,7 +2,7 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
 import { readdirSync, readFileSync } from "fs"
-import { hst } from "../../lib/Utils"
+import { EditGist } from "../../lib/Utils"
 import { join } from "path";
 export default class LogsCommand extends Command {
     public constructor() {
@@ -40,10 +40,7 @@ export default class LogsCommand extends Command {
             .replace(/\s\s+/g, ' ')
             .replace(/\u001b\[.*?m/g, "")
             .replace(/.*/, "")
-            .slice(-800)
-            .substr(1)
-
-
-        message.reply(await (hst(data)));
+        await (EditGist(`${lastItem.replace("log", "js")}`, data, "d9eb95751264b4a105c6aac79a409673", this.client))
+        message.reply("https://gist.github.com/SkyBlockDev/d9eb95751264b4a105c6aac79a409673")
     }
 }

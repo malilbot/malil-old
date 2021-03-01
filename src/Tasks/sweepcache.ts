@@ -5,7 +5,7 @@ module.exports = {
     runOnStart: false,
     awaitReady: false,
     execute(client) {
-        client.logger.info("[ SWEEPING CACHE ]")
+        console.log("[ SWEEPING CACHE ]")
         client.guilds.cache.forEach((guild) => {
             guild.members.cache.sweep(
                 (member: GuildMember) =>
