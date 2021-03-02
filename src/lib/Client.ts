@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
 import { logger } from "./exports/Logger";
-import TaskHandler from "./taskhandler"
 import settings from '../../settings.js'
+import TaskHandler from "./taskhandler"
 import BotLists from "./BotLists"
 import { Logger } from "winston"
 import { join } from "path";
@@ -71,12 +71,29 @@ export default class Client extends AkairoClient {
 		directory: join()
 	})
 
+	public botLists: BotLists = new BotLists(this, {
+		topgg: settings.bottokens.topgg,
+		discordbotlist: settings.bottokens.discordbotlist,
+		bladebotlist: settings.bottokens.bladebotlist,
+		discordextremelist: settings.bottokens.discordextremelist,
+		botsgg: settings.bottokens.botsgg,
+		verbose: true
+	})
+
 	public config: Option
 
 	public constructor(config: Option) {
 		super(
-			{ ownerID: config.owners, superUserID: config.superUsers, intents: ['GUILDS', 'GUILD_MESSAGES', "GUILD_MEMBERS", 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS', 'GUILD_MESSAGE_REACTIONS'], partials: ["CHANNEL", "REACTION"] },
-			{ intents: ['GUILDS', 'GUILD_MESSAGES', "GUILD_MEMBERS", 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS', "GUILD_MESSAGE_REACTIONS"], partials: ["CHANNEL", "REACTION"] }
+			{
+				ownerID: config.owners,
+				superUserID: config.superUsers,
+				intents: ['GUILDS', 'GUILD_MESSAGES', "GUILD_MEMBERS", 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS', 'GUILD_MESSAGE_REACTIONS'],
+				partials: ["CHANNEL", "REACTION"]
+			},
+			{
+				intents: ['GUILDS', 'GUILD_MESSAGES', "GUILD_MEMBERS", 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS', "GUILD_MESSAGE_REACTIONS"],
+				partials: ["CHANNEL", "REACTION"]
+			}
 		);
 		this.setting = settings
 		this.config = config;
