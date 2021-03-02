@@ -7,7 +7,6 @@ import BotLists from "./BotLists"
 import { Logger } from "winston"
 import { join } from "path";
 import Enmap from "enmap";
-import ReactionRoleManager from "discord-reaction-role"
 declare module "discord-akairo" {
 	interface AkairoClient {
 		setting: settings
@@ -71,16 +70,6 @@ export default class Client extends AkairoClient {
 	public taskHandler: TaskHandler = new TaskHandler(this, {
 		directory: join()
 	})
-	public manager: ReactionRoleManager = new ReactionRoleManager(this, {
-		storage: join(__dirname, "..", "..", "..", "..", "reaction-roles.json")
-	});
-	public botLists: BotLists = new BotLists(this, {
-		topgg: settings.bottokens.topgg,
-		discordbotlist: settings.bottokens.discordbotlist,
-		bladebotlist: settings.bottokens.Bladebnots,
-		discordextremelist: settings.bottokens.discordextreme,
-		botsgg: settings.bottokens.botsgg
-	});
 
 	public config: Option
 
