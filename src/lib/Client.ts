@@ -7,6 +7,7 @@ import BotLists from "./BotLists"
 import { Logger } from "winston"
 import { join } from "path";
 import Enmap from "enmap";
+import ReactionRoleManager from "discord-reaction-role"
 declare module "discord-akairo" {
 	interface AkairoClient {
 		setting: settings
@@ -70,7 +71,9 @@ export default class Client extends AkairoClient {
 	public taskHandler: TaskHandler = new TaskHandler(this, {
 		directory: join()
 	})
-
+	public manager: ReactionRoleManager = new ReactionRoleManager(this, {
+		storage: join(__dirname, "..", "..", "..", "..", "reaction-roles.json")
+	});
 	public botLists: BotLists = new BotLists(this, {
 		topgg: settings.bottokens.topgg,
 		discordbotlist: settings.bottokens.discordbotlist,
@@ -83,8 +86,8 @@ export default class Client extends AkairoClient {
 
 	public constructor(config: Option) {
 		super(
-			{ ownerID: config.owners, superUserID: config.superUsers, intents: ['GUILDS', 'GUILD_MESSAGES', "GUILD_MEMBERS", 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS'] },
-			{ intents: ['GUILDS', 'GUILD_MESSAGES', "GUILD_MEMBERS", 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS'] }
+			{ ownerID: config.owners, superUserID: config.superUsers, intents: ['GUILDS', 'GUILD_MESSAGES', "GUILD_MEMBERS", 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS', 'GUILD_MESSAGE_REACTIONS'], partials: ["CHANNEL", "REACTION"] },
+			{ intents: ['GUILDS', 'GUILD_MESSAGES', "GUILD_MEMBERS", 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS', "GUILD_MESSAGE_REACTIONS"], partials: ["CHANNEL", "REACTION"] }
 		);
 		this.setting = settings
 		this.config = config;

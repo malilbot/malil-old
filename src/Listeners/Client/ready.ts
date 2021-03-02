@@ -2,6 +2,7 @@ import { Listener } from "discord-akairo";
 import Client from "../../lib/Client";
 import { fixspace } from "../../lib/Utils"
 import { log } from "console"
+import { TextChannel, Message } from "discord.js"
 import settings from '../../../settings.js'
 import { main, sec, third, fourth, a1, split } from "../../lib/Utils"
 const { floor, random } = Math
@@ -16,6 +17,10 @@ export default class Ready extends Listener {
 		this.client = client;
 	}
 	public async exec() {
+		try {
+			await this.client.channels.fetch("816069520292708372").then(cnk => (cnk as TextChannel).messages.fetch("816074611199574027"))
+		} catch (e) { }
+
 		if (this.client.shard.ids[0] == this.client.options.shardCount - 1 && this.client.shard.ids[0] !== 0) return this.client.logger.info("[ MAXSHARDS ]")
 		if (this.client.shard.ids[0] !== 0) return;
 		const num = floor((random() * 2) + 1);
@@ -102,4 +107,10 @@ export default class Ready extends Listener {
 		}
 
 	}
+}
+function cleanEmojiDiscriminator(emojiDiscriminator) {
+	var regEx = /[A-Za-z0-9_]+:[0-9]+/
+	var cleaned = regEx.exec(emojiDiscriminator)
+	if (cleaned) return cleaned[0]
+	return emojiDiscriminator
 }
