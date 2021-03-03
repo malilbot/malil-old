@@ -43,6 +43,7 @@
     "typescript": "^4.2.2"
   },
   "dependencies": {
+    "alexa-bot-api": "^0.2.1",
     "asciify-image": "^0.1.6",
     "bufferutil": "^4.0.3",
     "centra": "^2.4.2",

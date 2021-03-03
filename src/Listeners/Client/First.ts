@@ -21,7 +21,8 @@ export default class First extends Listener {
             !this.client.blacklist.get('blacklisted', 'list') ||
             !this.client.gp.get("superUsers") ||
             !this.client.blacklist.get("blacklist", "leavelist") ||
-            !this.client.releases.get("all")
+            !this.client.releases.get("all") ||
+            !this.client.gp.get("shitpost")
             //!this.client.gp.get("commands")
         ) {
 
@@ -31,6 +32,7 @@ export default class First extends Listener {
             await this.client.blacklist.ensure("blacklist", [], "leavelist")
             await this.client.releases.ensure("all", []);
             await this.client.gp.ensure("commands", 0)
+            await this.client.gp.ensure("shitpost", [])
             await sleep("2000")
             await this.client.logger.info(main("[ LOADING DB FIRST TIME ]"))
             await this.client.logger.info(sec("[ DATABASE LOADED ]"))
