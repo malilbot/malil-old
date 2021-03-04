@@ -36,7 +36,7 @@ export default class message extends Listener {
                     if (message.content[0] !== "#") {
                         console.log(`[ MSG ${message.author.tag} ] ${message.content}`)
                         const reply = await ai.getReply(message.content);
-                        console.log(`[ REPLY ] ${reply}`)
+                        console.log(`[ ${message.guild.name} ][ REPLY ] ${reply}`)
                         message.reply(reply, { allowedMentions: { repliedUser: false } })
                     }
                     talkedRecently.add(message.author.id);
