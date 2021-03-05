@@ -3,6 +3,7 @@ import Client from '../../lib/Client';
 import { fixspace } from '../../lib/Utils';
 import { log } from 'console';
 import { TextChannel } from 'discord.js';
+import { exec } from 'child_process';
 import { main, sec, third, fourth, split } from '../../lib/Utils';
 const { floor, random } = Math;
 export default class Ready extends Listener {
