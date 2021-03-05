@@ -1,15 +1,21 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
-import { logger } from "./exports/Logger";
-import settings from '../../settings.js'
-import TaskHandler from "./taskhandler"
-import BotLists from "./BotLists"
-import { Logger } from "winston"
-import { join } from "path";
-import Enmap from "enmap";
-declare module "discord-akairo" {
+import {
+	AkairoClient,
+	CommandHandler,
+	ListenerHandler,
+	InhibitorHandler,
+} from 'discord-akairo';
+import { logger } from './exports/Logger';
+import settings from '../../settings.js';
+import TaskHandler from './taskhandler';
+import BotLists from './BotLists';
+import { Logger } from 'winston';
+import { join } from 'path';
+import Enmap from 'enmap';
+declare module 'discord-akairo' {
 	interface AkairoClient {
-		setting: settings
+		setting: settings;
 		logger: Logger;
 		tags: Enmap;
 		prefixes: Enmap;
@@ -31,13 +37,16 @@ interface Option {
 
 export default class Client extends AkairoClient {
 	public commandHandler: CommandHandler = new CommandHandler(this, {
-		directory: join(__dirname, "..", "Commands"),
+		directory: join(__dirname, '..', 'Commands'),
 		prefix: (message) => {
 			if (message.guild !== null) this.prefixes.ensure(message.guild.id, {});
-			if (message.guild == null || !this.prefixes.get(message.guild.id, "prefix")) {
-				return [settings.prefix, "malil"]
+			if (
+				message.guild == null ||
+				!this.prefixes.get(message.guild.id, 'prefix')
+			) {
+				return [settings.prefix, 'malil'];
 			} else {
-				return [this.prefixes.get(message.guild.id, "prefix"), 'malil']
+				return [this.prefixes.get(message.guild.id, 'prefix'), 'malil'];
 			}
 		},
 		aliasReplacement: /-g/,
@@ -48,28 +57,31 @@ export default class Client extends AkairoClient {
 		defaultCooldown: 6000,
 		argumentDefaults: {
 			prompt: {
-				modifyStart: (_, str): string => `${str}\n\nType \`cancel\` to cancel the commmand`,
-				modifyRetry: (_, str): string => `${str}\n\nType \`cancel\` to cancel the commmand`,
-				timeout: "You took too long, the command has been cancelled now.",
-				ended: "You exceeded the maximum amout of trie, this command has now been cancelled.",
-				cancel: "This command has been cancelled now.",
+				modifyStart: (_, str): string =>
+					`${str}\n\nType \`cancel\` to cancel the commmand`,
+				modifyRetry: (_, str): string =>
+					`${str}\n\nType \`cancel\` to cancel the commmand`,
+				timeout: 'You took too long, the command has been cancelled now.',
+				ended:
+					'You exceeded the maximum amout of trie, this command has now been cancelled.',
+				cancel: 'This command has been cancelled now.',
 				retries: 3,
-				time: 30000
+				time: 30000,
 			},
-			otherwise: ""
-		}
+			otherwise: '',
+		},
 	});
 	public listenerHandler: ListenerHandler = new ListenerHandler(this, {
-		directory: join(__dirname, "..", "Listeners")
+		directory: join(__dirname, '..', 'Listeners'),
 	});
 
 	public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, {
-		directory: join(__dirname, "..", "Inhibitors")
+		directory: join(__dirname, '..', 'Inhibitors'),
 	});
 
 	public taskHandler: TaskHandler = new TaskHandler(this, {
-		directory: join()
-	})
+		directory: join(),
+	});
 
 	public botLists: BotLists = new BotLists(this, {
 		topgg: settings.bottokens.topgg,
@@ -77,35 +89,69 @@ export default class Client extends AkairoClient {
 		bladebotlist: settings.bottokens.bladebotlist,
 		discordextremelist: settings.bottokens.discordextremelist,
 		botsgg: settings.bottokens.botsgg,
-		verbose: true
-	})
+		verbose: true,
+	});
 
-	public config: Option
+	public config: Option;
 
 	public constructor(config: Option) {
-		super(
-			{
-				ownerID: config.owners,
-				superUserID: config.superUsers,
-				intents: ['GUILDS', 'GUILD_MESSAGES', "GUILD_MEMBERS", 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS', 'GUILD_MESSAGE_REACTIONS'],
-				partials: ["CHANNEL", "REACTION"]
-			},
-			{
-				intents: ['GUILDS', 'GUILD_MESSAGES', "GUILD_MEMBERS", 'GUILD_WEBHOOKS', 'GUILD_INTEGRATIONS', "GUILD_MESSAGE_REACTIONS"],
-				partials: ["CHANNEL", "REACTION"]
-			}
-		);
-		this.setting = settings
+		// @ts-ignore
+		super({
+			ownerID: config.owners,
+			superUserID: config.superUsers,
+			intents: [
+				'GUILDS',
+				'GUILD_MESSAGES',
+				'GUILD_MEMBERS',
+				'GUILD_WEBHOOKS',
+				'GUILD_INTEGRATIONS',
+				'GUILD_MESSAGE_REACTIONS',
+			],
+			partials: ['CHANNEL', 'REACTION'],
+		});
+		this.setting = settings;
 		this.config = config;
 		this.logger = logger;
-		this.logchannel = new Enmap({ name: "logchannel", dataDir: join(__dirname, "..", "..", "data/logchannel"), polling: true });
-		this.tags = new Enmap({ name: "tags", dataDir: join(__dirname, "..", "..", "data/tags"), polling: true });
-		this.prefixes = new Enmap({ name: "prefixes", dataDir: join(__dirname, "..", "..", "data/prefixes"), polling: true });
-		this.blacklist = new Enmap({ name: "blacklist", dataDir: join(__dirname, "..", "..", "data/blacklist"), polling: true });
-		this.releases = new Enmap({ name: "releases", dataDir: join(__dirname, "..", "..", "data/releases"), polling: true });
-		this.infractions = new Enmap({ name: "infractions", dataDir: join(__dirname, "..", "..", "data/infractions"), polling: true });
-		this.gp = new Enmap({ name: "gp", dataDir: join(__dirname, "..", "..", "data/gp"), polling: true })
-		this.UserData = new Enmap({ name: "users", dataDir: join(__dirname, "..", "..", "data/userData"), polling: true });
+		this.logchannel = new Enmap({
+			name: 'logchannel',
+			dataDir: join(__dirname, '..', '..', 'data/logchannel'),
+			polling: true,
+		});
+		this.tags = new Enmap({
+			name: 'tags',
+			dataDir: join(__dirname, '..', '..', 'data/tags'),
+			polling: true,
+		});
+		this.prefixes = new Enmap({
+			name: 'prefixes',
+			dataDir: join(__dirname, '..', '..', 'data/prefixes'),
+			polling: true,
+		});
+		this.blacklist = new Enmap({
+			name: 'blacklist',
+			dataDir: join(__dirname, '..', '..', 'data/blacklist'),
+			polling: true,
+		});
+		this.releases = new Enmap({
+			name: 'releases',
+			dataDir: join(__dirname, '..', '..', 'data/releases'),
+			polling: true,
+		});
+		this.infractions = new Enmap({
+			name: 'infractions',
+			dataDir: join(__dirname, '..', '..', 'data/infractions'),
+			polling: true,
+		});
+		this.gp = new Enmap({
+			name: 'gp',
+			dataDir: join(__dirname, '..', '..', 'data/gp'),
+			polling: true,
+		});
+		this.UserData = new Enmap({
+			name: 'users',
+			dataDir: join(__dirname, '..', '..', 'data/userData'),
+			polling: true,
+		});
 	}
 
 	public _init() {
