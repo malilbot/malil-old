@@ -77,6 +77,7 @@ export default class Client extends AkairoClient {
 
 	public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, {
 		directory: join(__dirname, '..', 'Inhibitors'),
+		automateCategories: true,
 	});
 
 	public taskHandler: TaskHandler = new TaskHandler(this, {
