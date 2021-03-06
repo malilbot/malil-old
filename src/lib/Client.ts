@@ -8,7 +8,7 @@ import {
 	InhibitorHandler,
 } from 'discord-akairo';
 import { logger } from './exports/Logger';
-import { settings } from '../settings';
+import { setting, credentials, consts } from '../settings';
 import TaskHandler from './taskhandler';
 import BotLists from './BotLists';
 import { Logger } from 'winston';
@@ -16,7 +16,9 @@ import { join } from 'path';
 import Enmap from 'enmap';
 declare module 'discord-akairo' {
 	interface AkairoClient {
-		setting: any;
+		settings: any;
+		credentials: any;
+		consts: any;
 		logger: Logger;
 		tags: Enmap;
 		prefixes: Enmap;
@@ -45,7 +47,7 @@ export default class Client extends AkairoClient {
 				message.guild == null ||
 				!this.prefixes.get(message.guild.id, 'prefix')
 			) {
-				return [settings.prefix, 'malil'];
+				return [setting.prefix, 'malil'];
 			} else {
 				return [this.prefixes.get(message.guild.id, 'prefix'), 'malil'];
 			}
@@ -64,7 +66,7 @@ export default class Client extends AkairoClient {
 					`${str}\n\nType \`cancel\` to cancel the commmand`,
 				timeout: 'You took too long, the command has been cancelled now.',
 				ended:
-					'You exceeded the maximum amout of trie, this command has now been cancelled.',
+					'You exceeded the maximum amout of tries, this command has now been cancelled.',
 				cancel: 'This command has been cancelled now.',
 				retries: 3,
 				time: 30000,
@@ -86,11 +88,11 @@ export default class Client extends AkairoClient {
 	});
 
 	public botLists: BotLists = new BotLists(this, {
-		topgg: settings.bottokens.topgg,
-		discordbotlist: settings.bottokens.discordbotlist,
-		bladebotlist: settings.bottokens.Bladebnots,
-		discordextremelist: settings.bottokens.discordextreme,
-		botsgg: settings.bottokens.botsgg,
+		topgg: credentials.bottokens.topgg,
+		discordbotlist: credentials.bottokens.discordbotlist,
+		bladebotlist: credentials.bottokens.Bladebnots,
+		discordextremelist: credentials.bottokens.discordextreme,
+		botsgg: credentials.bottokens.botsgg,
 		verbose: true,
 	});
 
@@ -111,7 +113,9 @@ export default class Client extends AkairoClient {
 			],
 			partials: ['CHANNEL', 'REACTION'],
 		});
-		this.setting = settings;
+		this.settings = setting;
+		this.consts = consts;
+		this.credentials = credentials;
 		this.config = config;
 		this.logger = logger;
 		this.logchannel = new Enmap({

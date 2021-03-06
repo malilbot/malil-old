@@ -1,30 +1,32 @@
-
-import { Command } from "discord-akairo";
-import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
-import { MessageEmbed } from "discord.js";
+import { Command } from 'discord-akairo';
+import type {
+	Message,
+	GuildMember,
+	ImageSize,
+	AllowedImageFormat,
+} from 'discord.js';
+import { MessageEmbed } from 'discord.js';
 
 export default class ServerCommand extends Command {
 	public constructor() {
-		super("server", {
-			aliases: ["server"],
-			category: "Info",
+		super('server', {
+			aliases: ['server'],
+			category: 'Info',
 			quoted: true,
 			description: {
-				content: "Get some info about the discord server",
-				usage: "server",
-				example: [
-					"server"
-				]
+				content: 'Get some info about the discord server',
+				usage: 'server',
+				example: ['server'],
 			},
 			clientPermissions: ['SEND_MESSAGES'],
 			ratelimit: 1,
-			channel: "guild"
+			channel: 'guild',
 		});
 	}
 
 	public async exec(message: Message) {
 		const embed = new MessageEmbed()
-			.setColor(this.client.setting.colors.orange)
+			.setColor(this.client.consts.colors.orange)
 			.setTitle('Server Info')
 			.setDescription(`${message.guild}'s information`)
 			.addField('Owner', `The owner of this server is ${message.guild.owner}`)
@@ -46,7 +48,5 @@ export default class ServerCommand extends Command {
 			);
 
 		message.util.send(embed);
-
-
 	}
 }

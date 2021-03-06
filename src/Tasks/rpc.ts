@@ -4,7 +4,7 @@ module.exports = {
 	runOnStart: true,
 	awaitReady: true,
 	execute(client) {
-		if (client.setting.rpc.on == true) {
+		if (client.settings.rpc == true) {
 			try {
 				const clientId = '795717859170844673';
 

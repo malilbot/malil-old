@@ -2,16 +2,16 @@
 
 import Enmap from 'enmap';
 import { join } from 'path';
-import { settings } from '../settings';
-
+import { credentials, setting } from '../settings';
+const settings = setting;
 const generalpurpose = new Enmap({
 	name: 'gp',
 	dataDir: join(__dirname, '..', '..', 'data/gp'),
 	polling: true,
 });
 if (!generalpurpose.get('superUsers')) generalpurpose.ensure('superUsers', []);
-let login = settings.token;
-if (settings.dev == true) login = settings.devtoken;
+let login = credentials.token;
+if (settings.dev == true) login = credentials.devtoken;
 
 export const token: string = login;
 export const owners: string[] = settings.owners;
