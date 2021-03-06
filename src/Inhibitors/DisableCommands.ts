@@ -16,7 +16,7 @@ export default class extends Inhibitor {
         this.client.gp.ensure('disabledCommands', {
 					[message.guild.id]: [],
 				});
-		//if (superUsers.includes(message.author.id)) return false;
+		if (superUsers.includes(message.author.id)) return false;
         console.log(command?.id);
 		const disabledCommands: string[] = (await this.client.gp.get(
 			'disabledCommands', message.guild.id
