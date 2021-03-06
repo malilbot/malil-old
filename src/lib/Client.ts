@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import {
@@ -7,7 +8,7 @@ import {
 	InhibitorHandler,
 } from 'discord-akairo';
 import { logger } from './exports/Logger';
-import settings from '../../settings.js';
+import { settings } from '../settings';
 import TaskHandler from './taskhandler';
 import BotLists from './BotLists';
 import { Logger } from 'winston';
@@ -15,7 +16,7 @@ import { join } from 'path';
 import Enmap from 'enmap';
 declare module 'discord-akairo' {
 	interface AkairoClient {
-		setting: settings;
+		setting: any;
 		logger: Logger;
 		tags: Enmap;
 		prefixes: Enmap;
@@ -87,8 +88,8 @@ export default class Client extends AkairoClient {
 	public botLists: BotLists = new BotLists(this, {
 		topgg: settings.bottokens.topgg,
 		discordbotlist: settings.bottokens.discordbotlist,
-		bladebotlist: settings.bottokens.bladebotlist,
-		discordextremelist: settings.bottokens.discordextremelist,
+		bladebotlist: settings.bottokens.Bladebnots,
+		discordextremelist: settings.bottokens.discordextreme,
 		botsgg: settings.bottokens.botsgg,
 		verbose: true,
 	});
