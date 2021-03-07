@@ -1,7 +1,7 @@
 import { red, blue, gray, yellow, green, magenta, cyan, hex } from 'chalk';
 
-import { setting } from '../../settings';
-const { dev } = setting;
+import { Settings } from '../../settings';
+const { dev } = Settings;
 const num = Math.floor(Math.random() * 2 + 1);
 let main, sec, third, fourth, a1, split;
 if (dev == true) {

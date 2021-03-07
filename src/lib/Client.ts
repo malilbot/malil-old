@@ -7,8 +7,8 @@ import {
 	ListenerHandler,
 	InhibitorHandler,
 } from 'discord-akairo';
-import { logger } from './exports/Logger';
-import { setting, credentials, consts } from '../settings';
+import { logger, generalpurpose } from './Utils';
+import { Settings, credentials, consts } from '../settings';
 import TaskHandler from './taskhandler';
 import BotLists from './BotLists';
 import { Logger } from 'winston';
@@ -47,7 +47,7 @@ export default class Client extends AkairoClient {
 				message.guild == null ||
 				!this.prefixes.get(message.guild.id, 'prefix')
 			) {
-				return [setting.prefix, 'malil'];
+				return [Settings.prefix, 'malil'];
 			} else {
 				return [this.prefixes.get(message.guild.id, 'prefix'), 'malil'];
 			}
@@ -113,7 +113,8 @@ export default class Client extends AkairoClient {
 			],
 			partials: ['CHANNEL', 'REACTION'],
 		});
-		this.settings = setting;
+		this.gp = generalpurpose;
+		this.settings = Settings;
 		this.consts = consts;
 		this.credentials = credentials;
 		this.config = config;
@@ -146,11 +147,6 @@ export default class Client extends AkairoClient {
 		this.infractions = new Enmap({
 			name: 'infractions',
 			dataDir: join(__dirname, '..', '..', 'data/infractions'),
-			polling: true,
-		});
-		this.gp = new Enmap({
-			name: 'gp',
-			dataDir: join(__dirname, '..', '..', 'data/gp'),
 			polling: true,
 		});
 		this.UserData = new Enmap({
