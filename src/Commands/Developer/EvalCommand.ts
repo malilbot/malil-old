@@ -65,78 +65,23 @@ export default class EvalCommand extends Command {
 		try {
 			output = await eval(code);
 			if (typeof output !== 'string')
-				output = inspect(output, { depth: deph || 0 });
-			output = output.replace(
-				new RegExp(this.client.credentials.token, 'g'),
-				'[HIDDEN]'
-			);
-			output = output.replace(
-				new RegExp([...this.client.credentials.token].reverse().join(''), 'g'),
-				'[HIDDEN]'
-			);
-			output = output.replace(
-				new RegExp(
-					this.client.credentials.mongoPath.replace(
-						/[.*+?^${}()|[\]\\]/g,
-						'\\$&'
-					),
-					'g'
-				),
-				'[HIDDEN]'
-			);
-			output = output.replace(
-				new RegExp(this.client.credentials.devtoken, 'g'),
-				'[HIDDEN]'
-			);
-			output = output.replace(
-				new RegExp(this.client.settings.owners, 'g'),
-				'[HIDDEN]'
-			);
-			output = output.replace(
-				new RegExp(this.client.credentials.TestServer, 'g'),
-				'[HIDDEN]'
-			);
-			output = output.replace(
-				new RegExp('\\' + this.client.credentials.prefix, 'g'),
-				'[HIDDEN]'
-			);
-			output = output.replace(
-				new RegExp(this.client.credentials.gist, 'g'),
-				'[HIDDEN]'
-			);
-			output = output.replace(
-				new RegExp(this.client.credentials.genius.toString(), 'g'),
-				'[HIDDEN]'
-			);
-			output = output.replace(
-				new RegExp(
-					this.client.credentials.bottokens.discordbotlist.toString(),
-					'g'
-				),
-				'[HIDDEN]'
-			);
-			output = output.replace(
-				new RegExp(
-					this.client.credentials.bottokens.Bladebnots.toString(),
-					'g'
-				),
-				'[HIDDEN]'
-			);
-			output = output.replace(
-				new RegExp(this.client.credentials.bottokens.topgg.toString(), 'g'),
-				'[HIDDEN]'
-			);
-			output = output.replace(
-				new RegExp(
-					this.client.credentials.bottokens.discordextreme.toString(),
-					'g'
-				),
-				'[HIDDEN]'
-			);
-			output = output.replace(
-				new RegExp(this.client.credentials.bottokens.botsgg.toString(), 'g'),
-				'[HIDDEN]'
-			);
+				//prettier-ignore
+				output = inspect(output, { depth: deph || 0 })
+					.replace(new RegExp(this.client.credentials.token, 'g'), '[HIDDEN]')
+					.replace(new RegExp([...this.client.credentials.token].reverse().join(''), 'g'), '[HIDDEN]')
+					.replace(new RegExp(this.client.credentials.mongoPath.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),'[HIDDEN]')
+					.replace(new RegExp(this.client.credentials.devtoken, 'g'),'[HIDDEN]')
+					.replace(new RegExp(this.client.settings.owners, 'g'), '[HIDDEN]')
+					.replace(new RegExp(this.client.credentials.TestServer, 'g'),'[HIDDEN]')
+					.replace(new RegExp('\\' + this.client.credentials.prefix, 'g'),'[HIDDEN]')
+					.replace(new RegExp(this.client.credentials.gist, 'g'), '[HIDDEN]')
+					.replace(new RegExp(this.client.credentials.genius.toString(), 'g'),'[HIDDEN]')
+					.replace(new RegExp(this.client.credentials.bottokens.discordbotlist.toString(),'g'),'[HIDDEN]')
+					.replace(new RegExp(this.client.credentials.dagpi.toString(), 'g'),'[HIDDEN]')
+					.replace(new RegExp(this.client.credentials.bottokens.Bladebnots.toString(),'g'),'[HIDDEN]')
+					.replace(new RegExp(this.client.credentials.bottokens.topgg.toString(), 'g'),'[HIDDEN]')
+					.replace(new RegExp(this.client.credentials.bottokens.discordextreme.toString(),'g'),'[HIDDEN]')
+					.replace(new RegExp(this.client.credentials.bottokens.botsgg.toString(),'g'),'[HIDDEN]');
 			if (output.length > 1024) {
 				embed.addField('🫓 Output', await hst(output));
 				embed.addField('Type', typeof output);
