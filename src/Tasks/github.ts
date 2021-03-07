@@ -21,7 +21,7 @@ module.exports = {
 			await sleep(2000);
 			if (!data.documentation_url) {
 				if (data[0]?.tag_name) {
-					repoList += data[0]?.tag_name + ' ';
+					repoList += `${split[0]} `;
 					if (split[1] !== data[0].tag_name) {
 						for (let l = 0; l < repos.length; l++) {
 							if (repos[l] == repos[i]) {

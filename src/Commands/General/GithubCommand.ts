@@ -1,10 +1,11 @@
 import { Command } from 'discord-akairo';
 import { Message } from 'discord.js';
 import centra from 'centra';
+import { MessageEmbed } from 'discord.js';
 export default class GithubCommand extends Command {
 	public constructor() {
 		super('github', {
-			aliases: ['github'],
+			aliases: ['github', 'stalk'],
 			category: 'General',
 			quoted: true,
 			args: [
@@ -34,13 +35,14 @@ export default class GithubCommand extends Command {
 	public async exec(message: Message, { args }) {
 		if (!args)
 			return message.reply(
-				'use  *github set <channel id> to get started use *help github for more info'
+				'use  *github set <#channel> to get started use *help github for more info'
 			);
+
 		this.client.releases.ensure(message.guild.id, { channel: '', repos: [] });
 		const arg2 = args.split(' ');
 
 		if (arg2[0] == 'set') {
-			const channel = arg2[1];
+			const channel = arg2[1].replace('<#', '').replace('>', '');
 			let o = '';
 			await this.client.channels
 				.fetch(channel)
@@ -61,7 +63,7 @@ export default class GithubCommand extends Command {
 		} else if (arg2[0] == 'add') {
 			if (!this.client.releases.get(message.guild.id, 'channel'))
 				return message.util.send(
-					'no channel set please set one with: `github set <chanid> `'
+					'no channel set please set one with: `github set <#channel> `'
 				);
 			if (this.client.releases.get(message.guild.id, 'repos').length > 5)
 				return message.reply('Sorry you can only have a maximum of 5 repos');
@@ -77,12 +79,21 @@ export default class GithubCommand extends Command {
 					.header('Authorization', `token ${this.client.credentials.gist}`)
 					.send()
 			).json();
+			if (data.message == 'Not Found')
+				return message.util.send(
+					'Please try the command again but this time send a repo link'
+				);
 			const urls = await (
 				await centra(`https://api.github.com/repos/${name}`, 'GET')
 					.header('User-Agent', 'Malil')
 					.header('Authorization', `token ${this.client.credentials.gist}`)
 					.send()
 			).json();
+			console.log(urls);
+			if (urls.message == 'Not Found')
+				return message.util.send(
+					'Please try the command again but this time send a repo link'
+				);
 			if (urls.documentation_url)
 				return message.util.send('I have been api limited');
 			let version;
@@ -102,7 +113,11 @@ export default class GithubCommand extends Command {
 				.toString()
 				.replace(/,/g, '\n');
 			if (!thing) return message.util.send('Currently not watching anything');
-			message.util.send('**currently watching:** \n' + thing || 'Nothing');
+			const embed = new MessageEmbed()
+				.addField('**currently watching:**', thing || 'nothing')
+				.setColor(this.client.consts.colors.green)
+				.setFooter(this.client.user.username, this.client.user.avatarURL());
+			message.util.send(embed);
 		} else
 			message.util.reply('Check `*help github` for info about this command');
 
