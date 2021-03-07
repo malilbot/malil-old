@@ -3,7 +3,7 @@ import { MessageEmbed, Message } from 'discord.js';
 import { inspect } from 'util';
 import centra from 'centra';
 import { hst } from '../../lib/Utils';
-import { red } from 'chalk';
+let EvalCode = '';
 export default class EvalCommand extends Command {
 	public constructor() {
 		super('eval', {
@@ -20,7 +20,6 @@ export default class EvalCommand extends Command {
 					id: 'code',
 					type: 'string',
 					match: 'rest',
-					default: 'Please input some code',
 				},
 				{
 					id: 'noreturn',
@@ -33,6 +32,12 @@ export default class EvalCommand extends Command {
 					type: 'number',
 					match: 'option',
 					flag: ['--depth', '-i'],
+				},
+				{
+					id: 'reset',
+					type: 'boolean',
+					match: 'flag',
+					flag: ['--reset', '-r'],
 				},
 				{
 					id: 'del',
@@ -52,7 +57,14 @@ export default class EvalCommand extends Command {
 			noreturn,
 			del,
 			deph,
-		}: { code: string; noreturn: boolean; del: boolean; deph: number }
+			reset,
+		}: {
+			code: string;
+			noreturn: boolean;
+			del: boolean;
+			deph: number;
+			reset: boolean;
+		}
 	) {
 		let output = '';
 		const gists = '';
@@ -61,9 +73,15 @@ export default class EvalCommand extends Command {
 			.setTitle(`${this.client.user.tag}'s Evaled`)
 			.setColor(this.client.consts.colors.red)
 			.addField('🍞 Input', `\`\`\`ts\n${code}\`\`\``);
-
+		if (!code && reset) return message.reply('Eval history reset');
+		else if (!code) return message.reply('What r you gonna eval air?');
 		try {
-			output = await eval(code);
+			if (reset == true) EvalCode = '';
+			console.log(EvalCode);
+			output = await eval(
+				'const { MessageEmbed } = require("discord.js");' + EvalCode + code
+			);
+			EvalCode += code + ';';
 			if (typeof output !== 'string')
 				//prettier-ignore
 				output = inspect(output, { depth: deph || 0 })
