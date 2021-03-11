@@ -13,3 +13,4 @@
 - fix errors regarding no message content
 - Maybe? put every util in one file
 - Update github
+- autoBlacklist
