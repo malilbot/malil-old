@@ -48,10 +48,10 @@ module.exports = {
 					}
 				}
 				client.releases.set('all', repos);
-				console.log(sec('Deleted: ' + repos[i] + ' From the repo list'));
+				console.log(sec('[DELETED] ' + repos[i] + ' From the repo list'));
 			}
 		}
-		console.log(sec('Scanned: ') + main(repoList));
+		console.log(sec('[SCANNED] ') + main(repoList));
 
 		async function SendMessage(servers, split, client, url, data, fetchs) {
 			let body = fetchs.body;
@@ -71,7 +71,7 @@ module.exports = {
 							const guild: Guild = client.guilds.fetch(servers[i]);
 							console.log(
 								sec(
-									'Removed watch channel from ' +
+									'[Removed watch channel from] ' +
 										guild.name +
 										' The channel didnt excist'
 								)
@@ -88,7 +88,7 @@ module.exports = {
 								const guild: Guild = client.guilds.fetch(servers[i]);
 								console.log(
 									sec(
-										'Removed watch channel from ' +
+										'[Removed watch channel from] ' +
 											guild.name +
 											' Cause they didnt let me send messages there'
 									)
