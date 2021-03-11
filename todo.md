@@ -6,7 +6,6 @@
 
 - WEB dashboard
 - 100 guild
-- fix prefix
 - fix server embed
 - fix user embed
 - remove shitty rr roles
