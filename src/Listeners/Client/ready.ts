@@ -17,6 +17,8 @@ export default class Ready extends Listener {
 		this.client = client;
 	}
 	public async exec() {
+		/*
+		Auto role code
 		try {
 			await this.client.channels
 				.fetch('816069520292708372')
@@ -24,6 +26,7 @@ export default class Ready extends Listener {
 					(cnk as TextChannel).messages.fetch('816074611199574027')
 				);
 		} catch (e) {}
+		*/
 
 		if (
 			this.client.shard.ids[0] == this.client.options.shardCount - 1 &&
