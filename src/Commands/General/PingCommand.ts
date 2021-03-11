@@ -13,7 +13,7 @@ export default class PingCommand extends Command {
                 ]
             },
             clientPermissions: ['SEND_MESSAGES'],
-            ownerOnly: true,
+            ownerOnly: false,
             ratelimit: 3
         });
     }
