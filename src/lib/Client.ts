@@ -111,6 +111,7 @@ export default class Client extends AkairoClient {
 				'GUILD_INTEGRATIONS',
 				'GUILD_MESSAGE_REACTIONS',
 				'DIRECT_MESSAGES',
+				'DIRECT_MESSAGE_TYPING',
 				'DIRECT_MESSAGE_REACTIONS',
 			],
 			//partials: ['CHANNEL', 'REACTION'],

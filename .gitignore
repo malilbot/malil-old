@@ -7,6 +7,7 @@ data
 #FINISH FILE
 finish
 dist
+src/tasks/rpc.ts
 #LOGS FILE
 Logs
  ## Ignore Visual Studio temporary files, build results, and
