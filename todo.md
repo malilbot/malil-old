@@ -11,3 +11,4 @@
 - remove shitty rr roles
 - add option to disable catagorys
 - fix errors regarding no message content
+- Maybe? put every util in one file
