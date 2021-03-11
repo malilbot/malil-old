@@ -34,10 +34,10 @@ export default class EvalCommand extends Command {
 					flag: ['--depth', '-i'],
 				},
 				{
-					id: 'reset',
+					id: 'remember',
 					type: 'boolean',
 					match: 'flag',
-					flag: ['--reset', '-r'],
+					flag: ['--remember', '-r'],
 				},
 				{
 					id: 'del',
@@ -76,7 +76,7 @@ export default class EvalCommand extends Command {
 		if (!code && reset) return message.reply('Eval history reset');
 		else if (!code) return message.reply('What r you gonna eval air?');
 		try {
-			if (reset == true) EvalCode = '';
+			if (reset == false) EvalCode = '';
 			console.log(EvalCode);
 			output = await eval(
 				'const { MessageEmbed } = require("discord.js");' + EvalCode + code
