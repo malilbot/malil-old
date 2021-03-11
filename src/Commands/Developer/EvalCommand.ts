@@ -73,11 +73,9 @@ export default class EvalCommand extends Command {
 			.setTitle(`${this.client.user.tag}'s Evaled`)
 			.setColor(this.client.consts.colors.red)
 			.addField('🍞 Input', `\`\`\`ts\n${code}\`\`\``);
-		if (!code && reset) return message.reply('Eval history reset');
-		else if (!code) return message.reply('What r you gonna eval air?');
+
 		try {
 			if (reset == false) EvalCode = '';
-			console.log(EvalCode);
 			output = await eval(
 				'const { MessageEmbed } = require("discord.js");' + EvalCode + code
 			);

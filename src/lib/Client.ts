@@ -110,8 +110,10 @@ export default class Client extends AkairoClient {
 				'GUILD_WEBHOOKS',
 				'GUILD_INTEGRATIONS',
 				'GUILD_MESSAGE_REACTIONS',
+				'DIRECT_MESSAGES',
+				'DIRECT_MESSAGE_REACTIONS',
 			],
-			partials: ['CHANNEL', 'REACTION'],
+			//partials: ['CHANNEL', 'REACTION'],
 		});
 		this.gp = generalpurpose;
 		this.settings = Settings;
@@ -171,7 +173,7 @@ export default class Client extends AkairoClient {
 	}
 
 	public async goo() {
-		await this._init();
+		this._init();
 		return this.login(this.config.token);
 	}
 }
