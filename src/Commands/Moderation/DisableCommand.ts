@@ -32,7 +32,7 @@ export default class DisableCommand extends Command {
 		{ cmd, catagory }: { cmd: Command; catagory: string }
 	): Promise<Message> {
 		// typos are intentionally
-		let catagoryList: string[] = [];
+		const catagoryList: string[] = [];
 		let type: string;
 		const db = this.client.gp;
 		db.ensure('disabledCommands', {
