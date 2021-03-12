@@ -1,145 +1,140 @@
-import { createLogger, transports, format } from 'winston';
-import DailyRotateFile from 'winston-daily-rotate-file';
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-types */
 import { red, blue, gray, yellow, green, magenta, cyan, hex } from 'chalk';
+import { createLogger, transports, format } from 'winston';
+import { Message, Client, GuildMember } from 'discord.js';
+import DailyRotateFile from 'winston-daily-rotate-file';
 import { credentials, Settings } from '../settings';
 import centra from 'centra';
-import { exec } from 'child_process';
-import { Message, Client, GuildMember } from 'discord.js';
-const site = 'https://hst.sh/';
-const { dev } = Settings;
+import os from 'os';
 const num = Math.floor(Math.random() * 2 + 1);
 let main, sec, third, fourth, a1, split;
+const site = 'https://hst.sh/';
+const { dev } = Settings;
+const _os = os;
 
-/** oS utils taken from https://github.com/oscmejia/os-utils under the mit license */
-const _os = require('os');
+/** code taken from ms https://github.com/vercel/ms */
 
-export const platform = function () {
-	return process.platform;
-};
+const s = 1000;
+const m = s * 60;
+const h = m * 60;
+const d = h * 24;
+const w = d * 7;
+const y = d * 365.25;
 
-export const cpuCount = function () {
-	return _os.cpus().length;
-};
-
-export const sysUptime = function () {
-	//seconds
-	return _os.uptime();
-};
-
-export const processUptime = function () {
-	//seconds
-	return process.uptime();
-};
-
-// Memory
-export const freemem = function () {
-	return _os.freemem() / (1024 * 1024);
-};
-
-export const totalmem = function () {
-	return _os.totalmem() / (1024 * 1024);
-};
-
-export const freememPercentage = function () {
-	return _os.freemem() / _os.totalmem();
-};
-
-export const freeCommand = function (callback) {
-	// Only Linux
-	exec('free -m', function (error, stdout, stderr) {
-		const lines = stdout.split('\n');
-
-		const str_mem_info = lines[1].replace(/[\s\n\r]+/g, ' ');
-
-		const mem_info = str_mem_info.split(' ');
-
-		const total_mem = parseFloat(mem_info[1]);
-		const free_mem = parseFloat(mem_info[3]);
-		const buffers_mem = parseFloat(mem_info[5]);
-		const cached_mem = parseFloat(mem_info[6]);
-
-		const used_mem = total_mem - (free_mem + buffers_mem + cached_mem);
-
-		callback(used_mem - 2);
-	});
-};
-
-// Hard Disk Drive
-
-// Return process running current
-export const getProcesses = function (nProcess, callback) {
-	// if nprocess is undefined then is function
-	if (typeof nProcess === 'function') {
-		callback = nProcess;
-		nProcess = 0;
+export const ms = function (val: any, options?: any): any {
+	options = options || {};
+	const type = typeof val;
+	if (type === 'string' && val.length > 0) {
+		return parse(val);
+	} else if (type === 'number' && isFinite(val)) {
+		return options.long ? fmtLong(val) : fmtShort(val);
 	}
-
-	let command = 'ps -eo pcpu,pmem,time,args | sort -k 1 -r | head -n' + 10;
-	//command = 'ps aux | head -n '+ 11
-	//command = 'ps aux | head -n '+ (nProcess + 1)
-	if (nProcess > 0)
-		command =
-			'ps -eo pcpu,pmem,time,args | sort -k 1 -r | head -n' + (nProcess + 1);
-
-	exec(command, function (error, stdout) {
-		const that = this;
-
-		const lines = stdout.split('\n');
-		lines.shift();
-		lines.pop();
-
-		let result = '';
-
-		lines.forEach(function (_item, _i) {
-			const __str = _item.replace(/[\s\n\r]+/g, ' ');
-
-			const _str = __str.split(' ');
-
-			// result += _str[10]+" "+_str[9]+" "+_str[2]+" "+_str[3]+"\n";  // process
-			result +=
-				_str[1] +
-				' ' +
-				_str[2] +
-				' ' +
-				_str[3] +
-				' ' +
-				_str[4].substring(_str[4].length - 25) +
-				'\n'; // process
-		});
-
-		callback(result);
-	});
-};
-
-/*
- * Returns All the load average usage for 1, 5 or 15 minutes.
- */
-export const allLoadavg = function () {
-	const loads = _os.loadavg();
-
-	return (
-		loads[0].toFixed(4) + ',' + loads[1].toFixed(4) + ',' + loads[2].toFixed(4)
+	throw new Error(
+		'val is not a non-empty string or a valid number. val=' +
+			JSON.stringify(val)
 	);
 };
 
-/*
- * Returns the load average usage for 1, 5 or 15 minutes.
- */
-export const loadavg = function (_time) {
-	if (_time === undefined || (_time !== 5 && _time !== 15)) _time = 1;
+function parse(str) {
+	str = String(str);
+	if (str.length > 100) {
+		return;
+	}
+	const match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
+		str
+	);
+	if (!match) {
+		return;
+	}
+	const n = parseFloat(match[1]);
+	const type = (match[2] || 'ms').toLowerCase();
+	switch (type) {
+		case 'years':
+		case 'year':
+		case 'yrs':
+		case 'yr':
+		case 'y':
+			return n * y;
+		case 'weeks':
+		case 'week':
+		case 'w':
+			return n * w;
+		case 'days':
+		case 'day':
+		case 'd':
+			return n * d;
+		case 'hours':
+		case 'hour':
+		case 'hrs':
+		case 'hr':
+		case 'h':
+			return n * h;
+		case 'minutes':
+		case 'minute':
+		case 'mins':
+		case 'min':
+		case 'm':
+			return n * m;
+		case 'seconds':
+		case 'second':
+		case 'secs':
+		case 'sec':
+		case 's':
+			return n * s;
+		case 'milliseconds':
+		case 'millisecond':
+		case 'msecs':
+		case 'msec':
+		case 'ms':
+			return n;
+		default:
+			return undefined;
+	}
+}
 
-	const loads = _os.loadavg();
-	let v = 0;
-	if (_time == 1) v = loads[0];
-	if (_time == 5) v = loads[1];
-	if (_time == 15) v = loads[2];
+function fmtShort(ms) {
+	const msAbs = Math.abs(ms);
+	if (msAbs >= d) {
+		return Math.round(ms / d) + 'd';
+	}
+	if (msAbs >= h) {
+		return Math.round(ms / h) + 'h';
+	}
+	if (msAbs >= m) {
+		return Math.round(ms / m) + 'm';
+	}
+	if (msAbs >= s) {
+		return Math.round(ms / s) + 's';
+	}
+	return ms + 'ms';
+}
 
-	return v;
-};
+function fmtLong(ms) {
+	const msAbs = Math.abs(ms);
+	if (msAbs >= d) {
+		return plural(ms, msAbs, d, 'day');
+	}
+	if (msAbs >= h) {
+		return plural(ms, msAbs, h, 'hour');
+	}
+	if (msAbs >= m) {
+		return plural(ms, msAbs, m, 'minute');
+	}
+	if (msAbs >= s) {
+		return plural(ms, msAbs, s, 'second');
+	}
+	return ms + ' ms';
+}
 
-export const cpuFree = function (callback) {
-	getCPUUsage(callback, true);
-};
+function plural(ms, msAbs, n, name) {
+	const isPlural = msAbs >= n * 1.5;
+	return Math.round(ms / n) + ' ' + name + (isPlural ? 's' : '');
+}
+
+/** oS utils taken from https://github.com/oscmejia/os-utils under the mit license */
 
 export const cpuUsage = function (callback) {
 	getCPUUsage(callback, false);
@@ -172,7 +167,6 @@ function getCPUInfo() {
 	let sys = 0;
 	let idle = 0;
 	let irq = 0;
-	var total = 0;
 
 	for (const cpu in cpus) {
 		if (!cpus.hasOwnProperty(cpu)) continue;
@@ -183,11 +177,11 @@ function getCPUInfo() {
 		idle += cpus[cpu].times.idle;
 	}
 
-	var total = user + nice + sys + idle + irq;
+	const totals = user + nice + sys + idle + irq;
 
 	return {
 		idle: idle,
-		total: total,
+		total: totals,
 	};
 }
 

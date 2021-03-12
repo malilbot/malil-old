@@ -1,8 +1,7 @@
 import { Command } from 'discord-akairo';
 import { MessageEmbed, Message } from 'discord.js';
 import { exec } from 'child_process';
-import ms from 'ms';
-import { cpuUsage, fixspace } from '../../lib/Utils';
+import { cpuUsage, fixspace, ms } from '../../lib/Utils';
 import os from 'os';
 export default class LoadCommand extends Command {
 	public constructor() {

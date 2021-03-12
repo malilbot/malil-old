@@ -1,6 +1,5 @@
 import { Command } from 'discord-akairo';
 import { MessageEmbed, GuildChannel, TextChannel } from 'discord.js';
-import ms from 'ms';
 export default class ClearCommand extends Command {
 	public constructor() {
 		super('clear', {

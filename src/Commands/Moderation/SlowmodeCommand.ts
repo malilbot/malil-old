@@ -6,7 +6,7 @@ import type {
 	AllowedImageFormat,
 } from 'discord.js';
 import { MessageEmbed } from 'discord.js';
-import ms from 'ms';
+import { ms } from '../../lib/Utils';
 export default class SlowmodeCommand extends Command {
 	public constructor() {
 		super('slowmode', {
