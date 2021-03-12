@@ -3,11 +3,193 @@ import DailyRotateFile from 'winston-daily-rotate-file';
 import { red, blue, gray, yellow, green, magenta, cyan, hex } from 'chalk';
 import { credentials, Settings } from '../settings';
 import centra from 'centra';
+import { exec } from 'child_process';
 import { Message, Client, GuildMember } from 'discord.js';
 const site = 'https://hst.sh/';
 const { dev } = Settings;
 const num = Math.floor(Math.random() * 2 + 1);
 let main, sec, third, fourth, a1, split;
+
+/** oS utils taken from https://github.com/oscmejia/os-utils under the mit license */
+const _os = require('os');
+
+export const platform = function () {
+	return process.platform;
+};
+
+export const cpuCount = function () {
+	return _os.cpus().length;
+};
+
+export const sysUptime = function () {
+	//seconds
+	return _os.uptime();
+};
+
+export const processUptime = function () {
+	//seconds
+	return process.uptime();
+};
+
+// Memory
+export const freemem = function () {
+	return _os.freemem() / (1024 * 1024);
+};
+
+export const totalmem = function () {
+	return _os.totalmem() / (1024 * 1024);
+};
+
+export const freememPercentage = function () {
+	return _os.freemem() / _os.totalmem();
+};
+
+export const freeCommand = function (callback) {
+	// Only Linux
+	exec('free -m', function (error, stdout, stderr) {
+		const lines = stdout.split('\n');
+
+		const str_mem_info = lines[1].replace(/[\s\n\r]+/g, ' ');
+
+		const mem_info = str_mem_info.split(' ');
+
+		const total_mem = parseFloat(mem_info[1]);
+		const free_mem = parseFloat(mem_info[3]);
+		const buffers_mem = parseFloat(mem_info[5]);
+		const cached_mem = parseFloat(mem_info[6]);
+
+		const used_mem = total_mem - (free_mem + buffers_mem + cached_mem);
+
+		callback(used_mem - 2);
+	});
+};
+
+// Hard Disk Drive
+
+// Return process running current
+export const getProcesses = function (nProcess, callback) {
+	// if nprocess is undefined then is function
+	if (typeof nProcess === 'function') {
+		callback = nProcess;
+		nProcess = 0;
+	}
+
+	let command = 'ps -eo pcpu,pmem,time,args | sort -k 1 -r | head -n' + 10;
+	//command = 'ps aux | head -n '+ 11
+	//command = 'ps aux | head -n '+ (nProcess + 1)
+	if (nProcess > 0)
+		command =
+			'ps -eo pcpu,pmem,time,args | sort -k 1 -r | head -n' + (nProcess + 1);
+
+	exec(command, function (error, stdout) {
+		const that = this;
+
+		const lines = stdout.split('\n');
+		lines.shift();
+		lines.pop();
+
+		let result = '';
+
+		lines.forEach(function (_item, _i) {
+			const __str = _item.replace(/[\s\n\r]+/g, ' ');
+
+			const _str = __str.split(' ');
+
+			// result += _str[10]+" "+_str[9]+" "+_str[2]+" "+_str[3]+"\n";  // process
+			result +=
+				_str[1] +
+				' ' +
+				_str[2] +
+				' ' +
+				_str[3] +
+				' ' +
+				_str[4].substring(_str[4].length - 25) +
+				'\n'; // process
+		});
+
+		callback(result);
+	});
+};
+
+/*
+ * Returns All the load average usage for 1, 5 or 15 minutes.
+ */
+export const allLoadavg = function () {
+	const loads = _os.loadavg();
+
+	return (
+		loads[0].toFixed(4) + ',' + loads[1].toFixed(4) + ',' + loads[2].toFixed(4)
+	);
+};
+
+/*
+ * Returns the load average usage for 1, 5 or 15 minutes.
+ */
+export const loadavg = function (_time) {
+	if (_time === undefined || (_time !== 5 && _time !== 15)) _time = 1;
+
+	const loads = _os.loadavg();
+	let v = 0;
+	if (_time == 1) v = loads[0];
+	if (_time == 5) v = loads[1];
+	if (_time == 15) v = loads[2];
+
+	return v;
+};
+
+export const cpuFree = function (callback) {
+	getCPUUsage(callback, true);
+};
+
+export const cpuUsage = function (callback) {
+	getCPUUsage(callback, false);
+};
+
+function getCPUUsage(callback, free) {
+	const stats1 = getCPUInfo();
+	const startIdle = stats1.idle;
+	const startTotal = stats1.total;
+
+	setTimeout(function () {
+		const stats2 = getCPUInfo();
+		const endIdle = stats2.idle;
+		const endTotal = stats2.total;
+
+		const idle = endIdle - startIdle;
+		const total = endTotal - startTotal;
+		const perc = idle / total;
+
+		if (free === true) callback(perc);
+		else callback(1 - perc);
+	}, 1000);
+}
+
+function getCPUInfo() {
+	const cpus = _os.cpus();
+
+	let user = 0;
+	let nice = 0;
+	let sys = 0;
+	let idle = 0;
+	let irq = 0;
+	var total = 0;
+
+	for (const cpu in cpus) {
+		if (!cpus.hasOwnProperty(cpu)) continue;
+		user += cpus[cpu].times.user;
+		nice += cpus[cpu].times.nice;
+		sys += cpus[cpu].times.sys;
+		irq += cpus[cpu].times.irq;
+		idle += cpus[cpu].times.idle;
+	}
+
+	var total = user + nice + sys + idle + irq;
+
+	return {
+		idle: idle,
+		total: total,
+	};
+}
 
 export async function fixword(input: string): Promise<string> {
 	input = input
@@ -52,10 +234,7 @@ if (dev == true) {
 	}
 }
 
-export async function fixspace(
-	input: string | number,
-	target: number
-): Promise<string> {
+export function fixspace(input: string | number, target: number): string {
 	input = input.toString();
 	if (input.length > target) return input;
 	const spaces = target - input.length;

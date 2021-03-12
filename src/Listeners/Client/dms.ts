@@ -18,18 +18,22 @@ export default class message extends Listener {
 
 	async exec(message: Message) {
 		if (message.content.includes('malil')) {
-			this.client.logger.info(
-				`${main('[ MALIL MENTIONED ]')}${third('[AUTHOR]')} ${
-					message.author.tag
-				} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`
-			);
+			if (!message.author.bot) {
+				this.client.logger.info(
+					`${main('[ MALIL MENTIONED ]')}${third('[AUTHOR]')} ${
+						message.author.tag
+					} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`
+				);
+			}
 		}
 		if (message.content.includes('tricked')) {
-			this.client.logger.info(
-				`${main('[ MALIL MENTIONED ]')}${third('[AUTHOR]')} ${
-					message.author.tag
-				} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`
-			);
+			if (!message.author.bot) {
+				this.client.logger.info(
+					`${main('[ MALIL MENTIONED ]')}${third('[AUTHOR]')} ${
+						message.author.tag
+					} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`
+				);
+			}
 		}
 		if (this.client.gp.get('shitpost').includes(message?.channel?.id)) {
 			if (!message.author.bot) {
