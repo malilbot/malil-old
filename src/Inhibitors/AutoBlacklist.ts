@@ -1,5 +1,6 @@
 import { Inhibitor, Command } from 'discord-akairo';
 import { Message } from 'discord.js';
+import { superUsers } from '../lib/config';
 const timeoutObject = {};
 const blacklist = {};
 export default class extends Inhibitor {
@@ -12,6 +13,7 @@ export default class extends Inhibitor {
 	}
 
 	public async exec(message: Message): Promise<boolean> {
+		if (superUsers.includes(message.author.id)) return false;
 		if (blacklist[message.author.id] == true) return true;
 		console.log(timeoutObject);
 		if (!timeoutObject[message.author.id]) {
