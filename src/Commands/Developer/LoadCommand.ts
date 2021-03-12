@@ -78,7 +78,7 @@ export default class LoadCommand extends Command {
 					exec('ps -e | wc -l', async (error, stdout) => {
 						const processes = stdout;
 						exec('free -m', async (error, stdout) => {
-							const memory = ' ' || stdout;
+							const memory = stdout;
 							exec(
 								'cat /sys/class/thermal/thermal_zone0/temp',
 								async (error, stdout) => {
