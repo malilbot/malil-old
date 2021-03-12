@@ -9,4 +9,3 @@
 - 100 guild
 - fix server embed
 - fix user embed
-- autoBlacklist
