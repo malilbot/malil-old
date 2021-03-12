@@ -35,7 +35,7 @@ export default class PrefixCommand extends Command {
 				return message.channel.send(
 					"you need to be a 'ADMINISTRATOR' to use this command"
 				);
-			else if (message.content.includes('@'))
+			else if (args.includes('@'))
 				return message.reply("Sorry you cant use @'s in prefixes");
 			this.client.prefixes.set(message.guild.id, args, 'prefix');
 			message.channel.send('Updated the prefix to ' + args);
