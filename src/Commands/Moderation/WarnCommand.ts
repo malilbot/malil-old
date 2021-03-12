@@ -43,7 +43,7 @@ export default class WarnCommand extends Command {
 		const user = await GetUser(message, this.client);
 		if (!user) return message.util.send('please mention a user');
 
-		await (user as GuildMember).user
+		await user
 			.send(
 				`You has been Warned in **${message.guild.name}** for : \`${reason}\``
 			)

@@ -1,13 +1,2 @@
-export * from "./exports/Function";
-export * from "./exports/gist"
-export * from "./exports/sleep"
-export * from "./exports/getuser"
-export * from "./exports/hstpost"
-export * from "./exports/fix-spaces"
-export * from "./exports/Logger"
-export * from "./exports/colors"
-export * from "./exports/badwordfilter"
-export * from "./BotLists"
-export * from "./config"
-export * from "./taskhandler"
-export * from "./Client"
+export * from './util';
+export { logger } from './util';

@@ -7,18 +7,19 @@ import {
 	ListenerHandler,
 	InhibitorHandler,
 } from 'discord-akairo';
-import { logger, generalpurpose } from './Utils';
+import { logger } from './Utils';
 import { Settings, credentials, consts } from '../settings';
 import TaskHandler from './taskhandler';
 import BotLists from './BotLists';
+import { superUsers } from './config';
 import { Logger } from 'winston';
 import { join } from 'path';
 import Enmap from 'enmap';
 declare module 'discord-akairo' {
 	interface AkairoClient {
-		settings: any;
-		credentials: any;
-		consts: any;
+		settings: typeof Settings;
+		credentials: typeof credentials;
+		consts: typeof consts;
 		logger: Logger;
 		tags: Enmap;
 		prefixes: Enmap;
@@ -55,6 +56,7 @@ export default class Client extends AkairoClient {
 		aliasReplacement: /-g/,
 		allowMention: true,
 		handleEdits: true,
+		ignorePermissions: superUsers,
 		commandUtil: true,
 		commandUtilLifetime: 3e5,
 		defaultCooldown: 6000,
@@ -116,12 +118,17 @@ export default class Client extends AkairoClient {
 			],
 			//partials: ['CHANNEL', 'REACTION'],
 		});
-		this.gp = generalpurpose;
+
 		this.settings = Settings;
 		this.consts = consts;
 		this.credentials = credentials;
 		this.config = config;
 		this.logger = logger;
+		this.gp = new Enmap({
+			name: 'gp',
+			dataDir: join(__dirname, '..', '..', 'data/gp'),
+			polling: true,
+		});
 		this.logchannel = new Enmap({
 			name: 'logchannel',
 			dataDir: join(__dirname, '..', '..', 'data/logchannel'),

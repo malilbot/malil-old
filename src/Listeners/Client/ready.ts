@@ -27,13 +27,12 @@ export default class Ready extends Listener {
 				);
 		} catch (e) {}
 		*/
-
 		if (
-			this.client.shard.ids[0] == this.client.options.shardCount - 1 &&
+			this.client?.shard?.ids[0] == this.client.options.shardCount - 1 &&
 			this.client.shard.ids[0] !== 0
 		)
 			return this.client.logger.info('[ MAXSHARDS ]');
-		if (this.client.shard.ids[0] !== 0) return;
+		if (this.client?.shard?.ids[0] !== 0) return;
 		const num = floor(random() * 2 + 1);
 
 		const mm1 = String.raw`          /           `,
