@@ -10,4 +10,3 @@
 - fix server embed
 - fix user embed
 - autoBlacklist
-- fix but regarding not being able to reply

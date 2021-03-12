@@ -17,6 +17,16 @@ export default class CommandErrorListener extends Listener {
 		message: Message,
 		command: Command | null | undefined
 	): Promise<void> {
+		if (
+			error.stack.startsWith(
+				'DiscordAPIError: Cannot reply without permission to read message history'
+			)
+		) {
+			message.channel.send(
+				'I cannot work properly without seeing message history'
+			);
+			return;
+		}
 		const errorNo = Math.floor(Math.random() * 6969696969) + 69; // hehe funy number
 		console.log(error);
 		const errorEmbed: MessageEmbed = new MessageEmbed()
