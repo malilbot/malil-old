@@ -14,7 +14,9 @@ export default class extends Inhibitor {
 		if (message.author.bot) return false;
 		if (superUsers.includes(message.author.id)) return false;
 
-		
+		this.client.gp.ensure('disabledCategory', {
+			[message.guild.id]: [],
+		});
 
 		/**
 		 * Category stuff
