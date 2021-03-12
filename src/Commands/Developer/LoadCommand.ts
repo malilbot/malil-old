@@ -40,6 +40,7 @@ export default class LoadCommand extends Command {
 				.replace('\n', '')
 				.replace('     ', '')
 				.replace(' 1K', 'ext')
+				.replace('    mmcblk0', 'mmcblk0')
 				.replace(/sda/g, 'mmcblk')
 				.replace(/sdb/g, 'mmcblk')
 				.replace('sr0     1024M', 'sr0     1024M   ');
