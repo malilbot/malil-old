@@ -29,10 +29,7 @@ export default class LoadCommand extends Command {
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(
-		message: Message,
-		{ args }: { args: string }
-	): Promise<void> {
+	public async exec(message: Message): Promise<void> {
 		exec('lsblk -e7 -o NAME,SIZE', async (error, stdout) => {
 			const lsblks = stdout
 				.replace('NAME', '')
