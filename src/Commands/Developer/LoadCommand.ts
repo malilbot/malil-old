@@ -50,25 +50,27 @@ export default class LoadCommand extends Command {
 				if (_neofetch.length < lsblk.length) length = lsblk.length;
 				for (let i = 0; i < length + 2; i++) {
 					if (i < 2) {
-						list += `${'             '}  ${_neofetch[i]}\n`;
+						list += `${'                '}  ${_neofetch[i]}\n`;
 						continue;
 					}
 					if (
-						`${lsblk[i - 2] || '             '}  ${_neofetch[i]}\n` ==
+						`${lsblk[i - 2] || '                '}  ${_neofetch[i]}\n` ==
 							'               ' ||
 						undefined
 					)
 						continue;
 					if (
-						`${lsblk[i - 2] || '             '}  ${
+						`${lsblk[i - 2] || '                '}  ${
 							_neofetch[i] || ''
 						}`.endsWith('  ') &&
-						`${lsblk[i - 2] || '             '}  ${
+						`${lsblk[i - 2] || '                '}  ${
 							_neofetch[i] || ''
 						}`.startsWith(' ')
 					)
 						continue;
-					list += `${lsblk[i - 2] || '             '}  ${_neofetch[i] || ''}\n`;
+					list += `${lsblk[i - 2] || '                '}  ${
+						_neofetch[i] || ''
+					}\n`;
 				}
 				cpuUsage((v) => {
 					exec('ps -e | wc -l', async (error, stdout) => {
@@ -80,7 +82,7 @@ export default class LoadCommand extends Command {
 								async (error, stdout) => {
 									const temps = Number(stdout);
 
-									message.reply(
+									message.channel.send(
 										'```diff\n' +
 											`+ uptime ${fixspace(
 												ms(os.uptime() * 1000, { long: true }) + ',',
