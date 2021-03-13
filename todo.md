@@ -9,3 +9,5 @@
 - 100 guild
 - fix server embed
 - fix user embed
+- lock channel command
+- unlock channel command
