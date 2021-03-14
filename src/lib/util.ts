@@ -280,7 +280,7 @@ export class Util {
         return res.join(":")
     }
 }
-export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
+export const GetMember = async function (msg: Message, args?: string, client?:client): Promise<GuildMember> {
     let user: GuildMember
     const prefix = prefixes.get(msg.guild.id, "prefix")
     if (args) {
