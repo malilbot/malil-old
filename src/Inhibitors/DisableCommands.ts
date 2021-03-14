@@ -1,17 +1,18 @@
-import { Inhibitor, Command } from 'discord-akairo';
-import { Message } from 'discord.js';
-import { superUsers } from '../lib/config';
+import { Inhibitor, Command } from "discord-akairo";
+import { Message } from "discord.js";
+import { superUsers } from "../lib/config";
 export default class extends Inhibitor {
-	constructor() {
-		super('disabledCommands', {
-			reason: 'disabled',
-			priority: 1,
-			type: 'post',
-		});
-	}
-	// prettier-ignore
-	public async exec(message: Message, command: Command | null | undefined ): Promise<boolean> {
+    constructor() {
+        super("disabledCommands", {
+            reason: "disabled",
+            priority: 1,
+            type: "post",
+        });
+    }
+    // prettier-ignore
+    public async exec(message: Message, command: Command | null | undefined ): Promise<boolean> {
 		if (message.author.bot) return false;
+		if(command.id == "disable") return false
 		if (superUsers.includes(message.author.id)) return false;
 
 		this.client.gp.ensure('disabledCategory', {
