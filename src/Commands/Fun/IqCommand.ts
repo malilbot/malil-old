@@ -6,7 +6,7 @@ import type {
 	AllowedImageFormat,
 } from 'discord.js';
 import { MessageEmbed } from 'discord.js';
-import { GetSelf } from '../../lib/Utils';
+import {  GetMember} from '../../lib/Utils';
 
 export default class IqCommand extends Command {
 	public constructor() {
@@ -32,7 +32,7 @@ export default class IqCommand extends Command {
 
 	public async exec(message: Message, {}) {
 		const member: GuildMember =
-			(await GetSelf(message, this.client)) || message.member;
+			(await GetMember(message)) || message.member;
 		let iq;
 		this.client.UserData.ensure(member.id, {
 			pp: '',

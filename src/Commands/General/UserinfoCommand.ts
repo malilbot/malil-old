@@ -2,7 +2,7 @@ import moment from 'moment';
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-import { GetUser, GetSelf } from "../../lib/Utils"
+import { GetMember  } from "../../lib/Utils"
 export default class UserinfoCommand extends Command {
 	public constructor() {
 		super("userinfo", {
@@ -55,7 +55,7 @@ export default class UserinfoCommand extends Command {
 			VERIFIED_DEVELOPER: 'Verified Bot Developer'
 		};
 		// member = member ? member.id : message.guild.members.fetch(args)
-		let member = await GetSelf(message, this.client)
+		let member = await GetMember(message, args)
 		member = (member as GuildMember) || message.member
 		const userFlags = member.user.flags.toArray();
 		const embed = new MessageEmbed()

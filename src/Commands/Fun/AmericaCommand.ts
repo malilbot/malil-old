@@ -1,6 +1,6 @@
 import { Command } from 'discord-akairo';
 import { Message } from 'discord.js';
-import { GetSelf } from '../../lib/Utils';
+import { GetMember } from '../../lib/Utils';
 import centra from 'centra';
 export default class AmeticaCommand extends Command {
 	public constructor() {
@@ -37,7 +37,7 @@ export default class AmeticaCommand extends Command {
 			});
 		}
 		if (!url) {
-			const user = await GetSelf(message, this.client);
+			const user = await GetMember(message);
 			url = user.user.displayAvatarURL({
 				format: 'png',
 				size: 2048,

@@ -7,7 +7,7 @@ import {
 	Message,
 } from 'discord.js';
 import { utc } from 'moment';
-import { GetUser, GetSelf } from '../../lib/Utils';
+import { GetMember  } from '../../lib/Utils';
 
 export default class KickCommand extends Command {
 	public constructor() {
@@ -28,7 +28,7 @@ export default class KickCommand extends Command {
 				{
 					id: 'reason',
 					type: 'string',
-					default: 'No reason provided....',
+					default: 'e No reason provided....',
 				},
 			],
 		});
@@ -37,9 +37,11 @@ export default class KickCommand extends Command {
 	public async exec(
 		message: Message,
 		{ reason }: { user: GuildMember; reason: string }
-	) {
-		let user = await GetUser(message, this.client);
+	){	
+		
+		let user = await GetMember(message, reason);
 		user = user as GuildMember;
+		reason = reason.split(" ").slice(1).join(" ")
 		if (!user) return message.reply('user not found');
 		if (!user.kickable)
 			return message.channel.send(`Sorry, i can't kick this user`);

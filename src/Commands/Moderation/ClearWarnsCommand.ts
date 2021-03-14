@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
-import { GetUser, GetSelf } from "../../lib/Utils"
+import { GetMember  } from "../../lib/Utils"
 export default class ClearWarnsCommand extends Command {
     public constructor() {
         super("clearwarns", {
@@ -24,7 +24,7 @@ export default class ClearWarnsCommand extends Command {
     public async exec(message: Message, { args }) {
 
 
-        const user = await GetUser(message, this.client)
+        const user = await GetMember(message, args)
         if (!user) message.reply("user not found")
         this.client.infractions.delete(message.guild.id, user.id)
         message.reply("infractions cleared", { allowedMentions: { repliedUser: false } })

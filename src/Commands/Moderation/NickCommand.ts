@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import { GetUser, GetSelf } from "../../lib/Utils"
+import { GetMember  } from "../../lib/Utils"
 import { MessageEmbed } from "discord.js";
 
 export default class NickCommand extends Command {
@@ -29,11 +29,11 @@ export default class NickCommand extends Command {
     }
 
     public async exec(message, { name }) {
-
-        const user = await GetUser(message, this.client)
+        const NewName = name.split(" ").splice(1).join(" ") 
+        const user = await GetMember(message, name)
         if (!user) return message.reply("user not found")
         try {
-            await user.setNickname(name)
+            await user.setNickname(NewName, `${message.author.tag} Used nick.`)
             message.reply("NickName Changed")
         } catch (err) { message.reply("Sorry cant do", { allowedMentions: { repliedUser: false } }) }
 

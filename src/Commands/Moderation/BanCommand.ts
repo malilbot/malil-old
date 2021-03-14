@@ -8,7 +8,7 @@ import {
 	TextChannel,
 } from 'discord.js';
 import { utc } from 'moment';
-import { GetUser, GetSelf } from '../../lib/Utils';
+import { GetMember  } from '../../lib/Utils';
 export default class BanCommand extends Command {
 	public constructor() {
 		super('ban', {
@@ -25,11 +25,6 @@ export default class BanCommand extends Command {
 			userPermissions: ['BAN_MEMBERS'],
 			args: [
 				{
-					id: 'user',
-					type: 'member',
-					match: 'rest',
-				},
-				{
 					id: 'day',
 					type: (_: Message, str: string): null | number => {
 						if (
@@ -45,7 +40,7 @@ export default class BanCommand extends Command {
 				{
 					id: 'reason',
 					type: 'strin',
-					default: 'No reason provided...',
+					default: 'e No reason provided...',
 				},
 			],
 		});
@@ -55,9 +50,10 @@ export default class BanCommand extends Command {
 		message: Message,
 		{ day, reason }: { user: GuildMember; day: number; reason: string }
 	) {
-		let user = await GetUser(message, this.client);
+
+		let user = await GetMember(message, reason);
 		if (!user) return message.reply('user not found');
-		reason = reason.replace(user.id, '').replace(/<.*?>/g, '');
+		reason = reason.split(" ").slice(1).join(" ")
 		if (!user.bannable)
 			return message.channel.send(`Sorry, i can't ban this user`);
 

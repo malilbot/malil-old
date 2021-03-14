@@ -6,7 +6,7 @@ import {
 	TextChannel,
 	GuildMember,
 } from 'discord.js';
-import { GetUser, GetSelf } from '../../lib/Utils';
+import { GetMember } from '../../lib/Utils';
 import moment from 'moment';
 import { utc } from 'moment';
 
@@ -40,7 +40,7 @@ export default class WarnCommand extends Command {
 		const split = reason.split(' ');
 		reason = split.slice(1).join(' ');
 
-		const user = await GetUser(message, this.client);
+		const user = await GetMember(message, reason);
 		if (!user) return message.util.send('please mention a user');
 
 		await user

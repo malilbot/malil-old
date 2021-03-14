@@ -1,6 +1,6 @@
 import { Command } from 'discord-akairo';
 import { MessageEmbed, Message, GuildMember } from 'discord.js';
-import { GetSelf } from '../../lib/Utils';
+import { GetMember } from '../../lib/Utils';
 export default class PpCommand extends Command {
 	public constructor() {
 		super('pp', {
@@ -28,7 +28,7 @@ export default class PpCommand extends Command {
 
 	public async exec(message: Message, {}) {
 		const member: GuildMember =
-			(await GetSelf(message, this.client)) || message.member;
+			(await GetMember(message)) || message.member;
 		let pp;
 		const id = member.id;
 		this.client.UserData.ensure(member.id, {

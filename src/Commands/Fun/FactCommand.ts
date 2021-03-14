@@ -1,6 +1,6 @@
 import { Command } from 'discord-akairo';
 import { Message } from 'discord.js';
-import { GetSelf } from '../../lib/Utils';
+import {  } from '../../lib/Utils';
 import centra from 'centra';
 export default class FactCommand extends Command {
 	public constructor() {

@@ -1,5 +1,5 @@
 import { Command } from 'discord-akairo';
-import { GetUser } from '../../lib/Utils';
+import { GetMember } from '../../lib/Utils';
 import {
 	MessageEmbed,
 	Message,
@@ -27,7 +27,7 @@ export default class InfractionsCommand extends Command {
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message) {
-		const user = await GetUser(message, this.client);
+		const user = await GetMember(message);
 		if (!user) return message.reply('user not found');
 		const usID = user.id;
 		this.client.infractions.ensure(message.guild.id, { [usID]: {} });
