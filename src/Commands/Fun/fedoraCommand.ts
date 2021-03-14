@@ -29,6 +29,7 @@ export default class FedoraCommand extends Command {
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message) {
+		const msg = await message.channel.send("<a:loading:820592866685485076>")
 		let url = '';
 		if (message.attachments) {
 			message.attachments.forEach((attachment) => {
@@ -51,8 +52,9 @@ export default class FedoraCommand extends Command {
 			.header('Authorization', this.client.credentials.dagpi)
 			.send();
 		const meme = res.body;
-		return await message.channel.send('', {
+		await message.channel.send('', {
 			files: [{ attachment: meme, name: `fedoraed.png` }],
 		});
+		msg.delete()
 	}
 }

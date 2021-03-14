@@ -29,7 +29,7 @@ export default class AmeticaCommand extends Command {
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message) {
-		const msg = await message.channel.send('fetching');
+		const msg = await message.channel.send("<a:loading:820592866685485076>")
 		let url = '';
 		if (message.attachments) {
 			message.attachments.forEach((attachment) => {
@@ -52,10 +52,10 @@ export default class AmeticaCommand extends Command {
 			.header('Authorization', this.client.credentials.dagpi)
 			.send();
 		const meme = res.body;
-
+		
 		await message.channel.send('', {
 			files: [{ attachment: meme, name: `America.png` }],
 		});
-		msg.delete;
+		msg.delete()
 	}
 }

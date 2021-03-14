@@ -66,6 +66,7 @@ export default class EvalCommand extends Command {
 			reset: boolean;
 		}
 	) {
+		if(!code) return message.reply("You cant eval air")
 		let output = '';
 		const gists = '';
 		if (del == true) message.delete();
@@ -75,7 +76,7 @@ export default class EvalCommand extends Command {
 			.addField('🍞 Input', `\`\`\`ts\n${code}\`\`\``);
 
 		try {
-			if (reset == false) EvalCode = '';
+			if (!reset) EvalCode = '';
 			output = await eval(
 				'const { MessageEmbed } = require("discord.js");' + EvalCode + code
 			);
