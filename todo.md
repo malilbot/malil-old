@@ -12,4 +12,9 @@
 -   lock channel command
 -   unlock channel command
 -   Add ids to shitpost list
--   fix Superusers
+-   fix Superusers command
+-   Auto remove stickets
+-   loading bar for api
+-   timed mutes
+-   custom args
+-   restore ( copys a embed and sends it again )
