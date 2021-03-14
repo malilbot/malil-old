@@ -296,8 +296,7 @@ export const GetMember = async function (msg: Message, args?: string, client?:cl
         }
     }
 
-    const stuff = msg.content.split(" ")
-    const item = stuff[0]
+    const item = msg.content.split(" ")[0]
 
     user = msg.guild.members.cache.get(item)
     if (!user) {
