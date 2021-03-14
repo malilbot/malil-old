@@ -12,7 +12,5 @@
 -   lock channel command
 -   unlock channel command
 -   Auto remove stickers option
--   loading bar for api
 -   timed mutes
 -   custom args
--   restore ( copys a embed and sends it again )
