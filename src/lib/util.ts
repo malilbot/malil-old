@@ -281,12 +281,30 @@ export class Util {
 }
 export const GetMember = async function (msg: Message, args?: string, client?: client): Promise<GuildMember> {
     let user: GuildMember;
+    const _mentions = [];
+    const id = msg.guild.me.user.id;
+
     const prefix = prefixes.get(msg.guild.id, "prefix");
+    for (const mentions of msg.mentions.users) {
+        _mentions.push(mentions[1].id);
+    }
+    console.log(_mentions);
+    if (_mentions[1]) {
+        if (_mentions[0] !== _mentions[1]) return msg.mentions.members.last();
+    }
+
+    const _content = msg.content.replace(id, "");
+
+    if (_content.includes(id)) {
+        return msg.mentions.members.last();
+    }
+
     if (args) {
         msg.content = args;
     } else {
         msg.content = msg.content
-            .replace(/(malil|<@!749020331187896410>|<@!800389986042118175>)/, "")
+            .replace(new RegExp(`<@!${id}>`), "")
+            .replace("malil", "")
             .split(" ")
             .splice(1)
             .join(" ");
@@ -308,9 +326,6 @@ export const GetMember = async function (msg: Message, args?: string, client?: c
         if (item == "^" && msg.channel.messages.cache.size >= 4) {
             user = msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author.id != msg.author.id).last().member as GuildMember;
         }
-    }
-    if (!user) {
-        user = msg.mentions.members.last();
     }
     return user || null;
 };
