@@ -5,7 +5,7 @@ export default class SecretCommand extends Command {
 	public constructor() {
 		super("secret", {
 			aliases: [
-				"Custom"
+				"secret"
 			],
 			category: "Developer",
 			description: {
@@ -22,7 +22,7 @@ export default class SecretCommand extends Command {
 		});
 	}
 
-	public async secret(message: Message, { code }) {
+	public async exec(message: Message, { code }) {
 		message.util.reply("woah you found my  secret command", { allowedMentions: { repliedUser: false } });
 	}
 }
