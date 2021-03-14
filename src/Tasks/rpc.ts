@@ -16,12 +16,11 @@ module.exports = {
 				rpc.on('ready', () => {
 					rpc.setActivity({
 						buttons: [
-							{ label: 'Support', url: 'https://discord.gg/mY8zTARu4g' },
-							{
-								label: 'invite',
-								url:
-									'https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824',
-							},
+							//prettier-ignore
+							//{ label: 'Support', url: 'https://discord.gg/mY8zTARu4g' },
+							//prettier-ignore
+							{ label: 'google', url: 'https://google.com' },
+							//{ label: 'invite', url:'https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824', },
 						],
 						largeImageKey: 'pfp2',
 						largeImageText: 'CODING BOT',
