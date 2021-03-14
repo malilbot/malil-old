@@ -30,16 +30,11 @@ export default class ShitPostCommand extends Command {
 		if (!args) {
 			let list = '';
 			const arr = this.client.gp.get('shitpost');
-			console.log(arr);
 			await arr.forEach(async (item: string) => {
-				console.log(item);
 
 				const name = ((await this.client.channels.fetch(item)) as TextChannel)
-					.name;
-
-				console.log(name);
-				console.log(list);
-				list += `${name}\n`;
+					
+				list += `${name.name}: ${name.id}\n`;
 			});
 
 			return message.reply(list || 'nothing......');

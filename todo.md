@@ -11,7 +11,6 @@
 -   fix user embed
 -   lock channel command
 -   unlock channel command
--   Add ids to shitpost list
 -   fix Superusers command
 -   Auto remove stickets
 -   loading bar for api
