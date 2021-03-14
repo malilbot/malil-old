@@ -1,4 +1,5 @@
 import * as DiscordRPC from "discord-rpc"
+import { main, sec, third, fourth, a1, split } from '../lib/Utils';
 module.exports = {
 	name: 'rpc',
 	delay: '30m',
@@ -7,7 +8,7 @@ module.exports = {
 	execute(client) {
 		if (client.settings.rpc == true) {
 			try {
-				console.log("[ CONNECTING TO RPC ]")
+				console.log(fourth("[ CONNECTING TO RPC ]"))
 				const clientId = '795717859170844673';
 				DiscordRPC.register(clientId);
 
@@ -29,10 +30,10 @@ module.exports = {
 						state: 'Invite MALIL for cookies',
 						instance: false,
 					})
-					console.log("[ CONNECTED TO RPC ]")
+					console.log(fourth("[ CONNECTED TO RPC ]"))
 				});
 			} catch (e) {
-				console.log('[ COULD NOT CONNECT TO RPC ]');
+				console.log(fourth('[ COULD NOT CONNECT TO RPC ]'));
 			}
 		}
 	},
