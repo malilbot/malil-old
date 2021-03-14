@@ -54,7 +54,7 @@ module.exports = {
         }
         log += 1
         if (log == 4) {
-            console.log(sec("[SCANNED] ") + main(repoList))
+            console.log(sec("[ SCANNED ] ") + main(repoList))
             log = 0
         }
 
