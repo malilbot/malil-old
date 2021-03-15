@@ -32,7 +32,6 @@ export default class StatsCommand extends Command {
 				.setAuthor(this.client.user.tag, this.client.user.avatarURL())
 				.setThumbnail(this.client.user.displayAvatarURL())
 				.setTimestamp()
-				.setFooter("[credits](https://github.com/SkyBlockDev/malil-akairo/blob/main/credits.markdown)")
 				.setColor(message.guild.me.displayHexColor || "RED")
 				.addField("General", [
 					`**● Name:** ${this.client.user.tag} (${this.client.user.id})`,
@@ -60,6 +59,7 @@ export default class StatsCommand extends Command {
 					`\u3000 Total: ${ut.formatBytes(process.memoryUsage().heapTotal)}`,
 					`\u3000 Used: ${ut.formatBytes(process.memoryUsage().heapUsed)}`,
 					"\u200b",
+					`[credits](https://github.com/SkyBlockDev/malil-akairo/blob/main/credits.markdown)`,
 				])
 		);
 	}
