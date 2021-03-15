@@ -14,3 +14,5 @@
 -   Auto remove stickers option
 -   timed mutes
 -   custom args
+-   better user detection
+-   fix aci not working sometimes
