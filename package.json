@@ -58,5 +58,18 @@
     "moment": "^2.29.1",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.1"
-  }
+  },
+  "engines": {
+		"node": ">=14.15.1"
+	},
+	"prettier": {
+		"tabWidth": 4,
+		"singleQuote": false,
+		"semi": true,
+		"bracketSpacing": true,
+		"arrowParens": "always",
+		"printWidth": 140,
+		"useTabs": true,
+		"endOfLine": "lf"
+	}
 }

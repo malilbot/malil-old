@@ -7,7 +7,6 @@ import { createLogger, transports, format } from "winston";
 import { Message, Client, GuildMember } from "discord.js";
 import DailyRotateFile from "winston-daily-rotate-file";
 import { credentials, Settings } from "../settings";
-import client from "../lib/Client";
 import centra from "centra";
 import Enmap from "enmap";
 import os from "os";
@@ -15,6 +14,7 @@ import { join } from "path";
 /** Pre defining */
 
 const num = Math.floor(Math.random() * 2 + 1);
+const { combine, timestamp, printf } = format;
 let main, sec, third, fourth, a1, split;
 const site = "https://hst.sh/";
 const { dev } = Settings;
@@ -398,7 +398,7 @@ function replace(msg: string) {
         .replace("[ SHARD ]", sec("[ STARTING SHARD ]"))
         .replace("[ MAXSHARDS ]", third("[ SHARDING DONE ]"));
 }
-const { combine, timestamp, printf } = format;
+
 export const logger = createLogger({
     level: "info",
     format: combine(
