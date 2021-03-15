@@ -14,4 +14,3 @@
 -   Auto remove stickers option
 -   timed mutes
 -   custom args
--   fix aci not working sometimes
