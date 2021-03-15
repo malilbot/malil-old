@@ -1,33 +1,28 @@
-import { Command } from 'discord-akairo';
-import type {
-	Message,
-	GuildMember,
-	ImageSize,
-	AllowedImageFormat,
-} from 'discord.js';
-import { MessageEmbed } from 'discord.js';
-import { fixword } from '../../lib/Utils';
+import { Command } from "discord-akairo";
+import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
+import { MessageEmbed } from "discord.js";
+import { fixword } from "../../lib/Utils";
 
 export default class EightballCommand extends Command {
 	public constructor() {
-		super('eightball', {
-			aliases: ['eightball', '8ball', 'ask'],
-			category: 'Fun',
+		super("eightball", {
+			aliases: ["eightball", "8ball", "ask"],
+			category: "Fun",
 			quoted: false,
 			args: [
 				{
-					id: 'args',
-					match: 'content',
+					id: "args",
+					match: "content",
 				},
 			],
 			description: {
-				content: 'Find your 8ball',
-				usage: 'eightball',
-				example: ['eightball'],
+				content: "Find your 8ball",
+				usage: "eightball",
+				example: ["eightball"],
 			},
-			clientPermissions: ['SEND_MESSAGES'],
+			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: 'guild',
+			channel: "guild",
 		});
 	}
 
@@ -42,18 +37,23 @@ export default class EightballCommand extends Command {
 			});
 
 		const replies = [
-			'Yes.',
-			'No.',
-			'Maybe.',
-			'Yes and definitely.',
-			'It is certain.',
-			'As I see it, yes.',
-			'Very doubtful.',
-			'Eh I will say yes to that.',
-			'NO!',
-			'Never.',
-			'Nope.',
-			'Scientifically yes.',
+			"Yes.",
+			"No.",
+			"Maybe.",
+			"Yes and definitely.",
+			"It is certain.",
+			"As I see it, yes.",
+			"Very doubtful.",
+			"Eh I will say yes to that.",
+			"NO!",
+			"Yes - definitely.",
+			"Most likely.",
+			"Never.",
+			"Better not tell you now",
+			"My sources say no",
+			"My reply is no.",
+			"Nope.",
+			"Scientifically yes.",
 		];
 
 		const result = Math.floor(Math.random() * replies.length);
@@ -61,8 +61,8 @@ export default class EightballCommand extends Command {
 		const wisdom = new MessageEmbed()
 			.setAuthor(message.author.tag)
 			.setColor(this.client.consts.colors.purple)
-			.addField('Question', (await fixword(args)) || 'haha censor go brrr')
-			.addField('Answer', replies[result])
+			.addField("Question", (await fixword(args)) || "haha censor go brrr")
+			.addField("Answer", replies[result])
 			.setFooter(`8ball`);
 		message.util.send(wisdom);
 	}

@@ -56,13 +56,10 @@ export default class AsciifyCommand extends Command {
 				});
 		}
 		if (!url) return message.reply("please add a image attachment");
-		//if (url?.name.split(".").pop() !== ("png" || "jpg" || "jpeg")) return message.reply("please use either a png or a jpg");
 		const option = big ? bigoptions : options;
 
 		asciify(url, option, async function (err, asciified) {
 			if (err) return message.reply("Unsupported file type");
-
-			// Print to console
 			let sentence = "Success! " + (await hst(asciified)) + ".txt";
 			if (member) sentence = "Success! " + (await hst(asciified)) + ".txt \nProtip: You can add a image and it will asiifyy that";
 			message.reply(sentence, { allowedMentions: { repliedUser: false } });

@@ -4,11 +4,7 @@ import { fixword } from "../../lib/Utils";
 export default class MockCommand extends Command {
 	public constructor() {
 		super("mock", {
-			aliases: [
-				"mock",
-				"itriedmybest",
-				"mok"
-			],
+			aliases: ["mock", "itriedmybest", "mok"],
 			category: "Fun",
 			quoted: true,
 			args: [
@@ -16,19 +12,17 @@ export default class MockCommand extends Command {
 					id: "args",
 					type: "array",
 					match: "rest",
-					default: "Me When No Arguments"
-				}
+					default: "Me When No Arguments",
+				},
 			],
 			description: {
 				content: "Find your 8ball",
 				usage: "mock",
-				example: [
-					"mock"
-				]
+				example: ["mock"],
 			},
-			clientPermissions: ['SEND_MESSAGES'],
+			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
@@ -38,24 +32,22 @@ export default class MockCommand extends Command {
 		// -- defining text
 		let text = "";
 		// -- foreach item
-		array.forEach((item: any) => {
+		array.forEach((item: string) => {
 			text += tried(item);
 		});
 		// -- send the output
-		message.util.send(await fixword(text.replace(/@/g, "@​")) || "try actually sending nice text");
+		message.util.send((await fixword(text.replace(/@/g, "@​"))) || "try actually sending nice text");
 
 		// -- my amazing function
-		function tried(item) {
+		function tried(item: string): string {
 			const num = Math.floor(Math.random() * 2);
 			// -- if its a space return
 			if (item == " ") return item;
 			// -- advanced rng
 			if (num == 0) {
-				item = item.toLowerCase();
-				return item;
+				return item.toLowerCase();
 			} else {
-				item = item.toUpperCase();
-				return item;
+				return item.toUpperCase();
 			}
 		}
 		// -- end of code tour
