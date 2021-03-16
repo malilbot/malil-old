@@ -60,7 +60,6 @@ export default class BlacklistCommand extends Command {
 			this.client.blacklist.set("blacklisted", arr, "list");
 			return message.reply(`Removed ${Member.tag} from blacklist`);
 		}
-		console.log(userID);
 		this.client.blacklist.push("blacklisted", userID, "list");
 		message.reply(`Added ${Member.tag} to blacklist`);
 	}

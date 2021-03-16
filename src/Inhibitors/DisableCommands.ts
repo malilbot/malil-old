@@ -1,16 +1,17 @@
 import { Inhibitor, Command } from "discord-akairo";
 import { Message } from "discord.js";
 import { superUsers } from "../lib/config";
+import { Format, a1 } from "../lib/Utils";
 export default class extends Inhibitor {
-    constructor() {
-        super("disabledCommands", {
-            reason: "disabled",
-            priority: 1,
-            type: "post",
-        });
-    }
-    // prettier-ignore
-    public async exec(message: Message, command: Command | null | undefined ): Promise<boolean> {
+	constructor() {
+		super("disabledCommands", {
+			reason: "disabled",
+			priority: 1,
+			type: "post",
+		});
+	}
+	// prettier-ignore
+	public async exec(message: Message, command: Command | null | undefined ): Promise<boolean> {
 		if (message.author.bot) return false;
 		if(command.id == "disable") return false
 		if (superUsers.includes(message.author.id)) return false;
@@ -27,6 +28,8 @@ export default class extends Inhibitor {
 			message.guild.id
 		)) as string[];
 		if (disabledCategory.includes(command?.categoryID)) {
+			const { GStr, UStr, CStr } = Format(message, command, null, null);
+			this.client.logger.info(a1(`[ CMD ] ${CStr} [ USER ] ${UStr} [ GUILD ] ${GStr} [ COMMAND STOPPED ] reason: disabled in server`));
 			message.reply(
 				`**${command?.categoryID}** Commands are disabled in this server`
 			);
@@ -43,6 +46,8 @@ export default class extends Inhibitor {
 			message.guild.id
 		)) as string[];
 		if (disabledCommands.includes(command?.id)) {
+			const { GStr, UStr, CStr } = Format(message, command, null, null);
+			this.client.logger.info(a1(`[ CMD ] ${CStr} [ USER ] ${UStr} [ GUILD ] ${GStr} [ COMMAND STOPPED ] reason: disabled in server`));
 			message.reply(`**${command?.id}** command is disabled in this server`);
 			return true;
 		}

@@ -14,3 +14,4 @@
 -   Auto remove stickers option
 -   timed mutes
 -   custom args
+-   try and improve performance

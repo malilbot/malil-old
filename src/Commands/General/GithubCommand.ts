@@ -69,7 +69,7 @@ export default class GithubCommand extends Command {
 					.header("Authorization", `token ${this.client.credentials.gist}`)
 					.send()
 			).json();
-			console.log(urls);
+			this.client.logger.info(urls);
 			if (urls.message == "Not Found") return message.util.send("Please try the command again but this time send a repo link");
 			if (urls.documentation_url) return message.util.send("I have been api limited");
 			let version;

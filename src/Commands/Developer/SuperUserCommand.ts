@@ -29,7 +29,6 @@ export default class SuperUserCommand extends Command {
 		if (!args) {
 			let list = "";
 			const arr = this.client.gp.get("superUsers");
-			console.log(arr);
 			await arr.forEach(async (item: string) => {
 				const name = (await this.client.users.fetch(item)) as User;
 
@@ -56,7 +55,6 @@ export default class SuperUserCommand extends Command {
 			this.client.gp.set("superUsers", arr);
 			return message.reply(`Removed ${Member.tag} from SuperUser list`);
 		}
-		console.log(userID);
 		this.client.gp.push("superUsers", userID);
 		message.reply(`Added ${Member.tag} to SuperUser list`);
 	}

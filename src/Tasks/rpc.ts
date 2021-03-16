@@ -7,9 +7,11 @@ module.exports = {
 	awaitReady: true,
 	execute(client) {
 		if (client.settings.rpc == true) {
+			//malil
 			try {
-				console.log(fourth("[ CONNECTING TO RPC ]"));
-				const clientId = "795717859170844673";
+				client.logger.info(fourth("[ CONNECTING TO RPC ]"));
+				const clientId = "795717859170844673"; // bot
+				//const clientId = "821104492476891218"; // sway
 				DiscordRPC.register(clientId);
 
 				const rpc = new DiscordRPC.Client({ transport: "ipc" });
@@ -29,11 +31,12 @@ module.exports = {
 						smallImageText: "why are you looking here invite it already",
 						state: "Invite MALIL for cookies",
 						instance: false,
+						//largeImageKey: "sway2",
 					});
-					console.log(fourth("[ CONNECTED TO RPC ]"));
+					client.logger.info(fourth("[ CONNECTED TO RPC ]"));
 				});
 			} catch (e) {
-				console.log(fourth("[ COULD NOT CONNECT TO RPC ]"));
+				client.logger.info(fourth("[ COULD NOT CONNECT TO RPC ]"));
 			}
 		}
 	},

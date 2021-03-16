@@ -7,6 +7,7 @@ import { createLogger, transports, format } from "winston";
 import { Message, Client, GuildMember } from "discord.js";
 import DailyRotateFile from "winston-daily-rotate-file";
 import { credentials, Settings } from "../settings";
+import { Command } from "discord-akairo";
 import centra from "centra";
 import Enmap from "enmap";
 import os from "os";
@@ -24,6 +25,29 @@ const prefixes = new Enmap({
 	dataDir: join(__dirname, "..", "..", "data/prefixes"),
 	polling: true,
 });
+
+export function Format(msg: Message, Cmd?: Command, missing?: string[], reason?: string): FormatIF {
+	let mis: string;
+	let cmd = main(Cmd);
+	let usr = sec(msg?.author.tag) + " " + fourth(msg.author.id);
+	let gld = sec(msg?.guild.name) + " " + fourth(msg.guild.id);
+	if (missing && missing[0]) {
+		mis = main(missing[0]?.toLowerCase().replace(/_/g, " "));
+	}
+	let rsn = third(reason);
+	if (cmd == undefined) cmd = null;
+	if (usr == undefined) usr = null;
+	if (gld == undefined) gld = null;
+	if (mis == undefined) mis = null;
+	if (rsn == undefined) rsn = null;
+	return {
+		CStr: cmd,
+		UStr: usr,
+		GStr: gld,
+		MStr: mis,
+		RStr: rsn,
+	};
+}
 
 /** code taken from ms https://github.com/vercel/ms */
 
@@ -440,5 +464,12 @@ interface gistif {
 }
 class InterfaceClient extends Client {
 	public credentials = credentials;
+}
+interface FormatIF {
+	GStr: string;
+	UStr: string;
+	CStr: string;
+	MStr: string;
+	RStr: string;
 }
 export { main, sec, third, fourth, a1, split };

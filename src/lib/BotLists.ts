@@ -23,8 +23,6 @@ export default class BotLists {
 		this.botsgg = botsgg;
 	}
 	async post() {
-		if (this.verbose == true) console.log("[ POSTING TO BOT SITES ]");
-
 		const topgg = {
 			server_count: this.client.guilds.cache.size,
 			shard_count: this.client.shard.ids.length,
