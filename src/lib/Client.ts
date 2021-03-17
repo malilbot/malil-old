@@ -10,7 +10,6 @@ import { superUsers } from "./config";
 import { Logger } from "winston";
 import { join } from "path";
 import Enmap from "enmap";
-import enmap from "enmap";
 declare module "discord-akairo" {
 	interface AkairoClient {
 		settings: typeof Settings;

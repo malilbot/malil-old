@@ -40,7 +40,7 @@ export default class CommandErrorListener extends Listener {
 			.setDescription("To get an update on if the issue has been fixed go to the [support discord](https://discord.gg/TAp9Kt2)")
 			.setTimestamp()
 			.setColor(this.client.consts.colors.orange);
-		const channel = await this.client.channels.fetch("815328569051971595");
+		const channel = await this.client.channels.fetch(this.client.consts.errChannel);
 		await (channel as TextChannel).send(errorEmbed);
 		message.channel.send(errorUserEmbed);
 	}

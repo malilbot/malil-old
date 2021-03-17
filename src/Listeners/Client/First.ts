@@ -1,6 +1,7 @@
 import { Listener } from "discord-akairo";
 import { Message } from "discord.js";
 import Client from "../../lib/Client";
+import { mkdir } from "fs";
 import { main, sec, third, fourth, a1, split, sleep } from "../../lib/Utils";
 export default class First extends Listener {
 	client: Client;
@@ -25,21 +26,30 @@ export default class First extends Listener {
 			!this.client.gp.get("shitpost")
 			//!this.client.gp.get("commands")
 		) {
-			await this.client.blacklist.ensure("blacklisted", [], "guilds");
-			await this.client.blacklist.ensure("blacklisted", [], "list");
-			await this.client.gp.ensure("superUsers", []);
-			await this.client.blacklist.ensure("blacklist", [], "leavelist");
-			await this.client.releases.ensure("all", []);
-			await this.client.gp.ensure("commands", 0);
-			await this.client.gp.ensure("shitpost", []);
-			await sleep("2000");
-			this.client.logger.info(main("[ LOADING DB FIRST TIME ]"));
-			this.client.logger.info(sec("[ DATABASE LOADED ]"));
-			this.client.logger.info(sec("[ PLEASE RESTART THE BOT ]"));
-			this.client.logger.info(sec("[ TO MAKE SURE EVERYTHING WENT THROUGH ]"));
-			this.client.logger.info(third("[ REPO: https://github.com/SkyBlockDev/malil-akairo ]"));
-			this.client.logger.info(third("[ DISCORD: https://discord.gg/mY8zTARu4g ]"));
-			this.client.logger.info(third("[ WEBSITE:  https://tricked-dev.gitbook.io/malil/ ]"));
+			setInterval(() => {
+				log(this.client);
+			}, 0);
+			innitialize(this.client).then((res) => {
+				log(this.client);
+			});
 		}
 	}
 }
+const log = function (client) {
+	client.logger.info(main("[ LOADING DB FIRST TIME ]"));
+	client.logger.info(sec("[ DATABASE LOADED ]"));
+	client.logger.info(sec("[ PLEASE RESTART THE BOT ]"));
+	client.logger.info(sec("[ TO MAKE SURE EVERYTHING WENT THROUGH ]"));
+	client.logger.info(third("[ REPO: https://github.com/SkyBlockDev/malil-akairo ]"));
+	client.logger.info(third("[ DISCORD: https://discord.gg/mY8zTARu4g ]"));
+	client.logger.info(third("[ WEBSITE:  https://tricked-dev.gitbook.io/malil/ ]"));
+};
+const innitialize = async function (client) {
+	await client.blacklist.ensure("blacklisted", [], "guilds");
+	await client.blacklist.ensure("blacklisted", [], "list");
+	await client.gp.ensure("superUsers", []);
+	await client.blacklist.ensure("blacklist", [], "leavelist");
+	await client.releases.ensure("all", []);
+	await client.gp.ensure("commands", 0);
+	await client.gp.ensure("shitpost", []);
+};

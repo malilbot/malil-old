@@ -70,7 +70,7 @@
 		"semi": true,
 		"bracketSpacing": true,
 		"arrowParens": "always",
-		"printWidth": 140,
+		"printWidth": 200,
 		"useTabs": true,
 		"endOfLine": "lf"
 	}

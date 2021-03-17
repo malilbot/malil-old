@@ -6,6 +6,7 @@ import { credentials, Settings, consts } from "../settings";
 import { Command } from "discord-akairo";
 import centra from "centra";
 import Enmap from "enmap";
+import { mkdir, existsSync } from "fs";
 //import { client } from "../lib/bot";
 import os from "os";
 import { join } from "path";

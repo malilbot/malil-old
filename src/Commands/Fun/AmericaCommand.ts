@@ -29,19 +29,14 @@ export default class AmeticaCommand extends Command {
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message) {
 		const msg = await message.channel.send("<a:loading:820592866685485076>");
-		let url;
+
 		const member = (await GetMember(message)) || message.member;
 
-		message.attachments.forEach((attachment) => {
-			url = attachment;
+		const url = member.user.displayAvatarURL({
+			size: 512,
+			format: "png",
+			dynamic: true,
 		});
-		if (!url) {
-			url = member.user.displayAvatarURL({
-				size: 512,
-				format: "png",
-				dynamic: true,
-			});
-		}
 
 		const res = await centra(`https://api.dagpi.xyz/image/america/?url=${url}`, "get")
 			.header("Authorization", this.client.credentials.dagpi)
