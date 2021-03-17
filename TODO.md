@@ -12,7 +12,6 @@
 -   lock channel command
 -   unlock channel command
 -   Auto remove stickers option
--   timed mutes
 -   custom args
 -   try and improve performance
 -   add response to muted
@@ -23,5 +22,7 @@
 -   staff unmute
 -   add role on rejoin
 -   dont allow bot muting itself
--   fix fedora
 -   prevent muting self
+-   more types
+-   use consistent capitalization please (ClassName, variableName, FileName.ts)
+-   source mapping

@@ -2,7 +2,6 @@ import { Listener } from "discord-akairo";
 import type Client from "../../lib/Client";
 import { sec, main, third, Format, Infract } from "../../lib/Utils";
 import { GuildMember } from "discord.js";
-import message from "./dms";
 export default class Raw extends Listener {
 	client: Client;
 	public constructor(client: Client) {
@@ -16,7 +15,7 @@ export default class Raw extends Listener {
 
 	public async exec(member: GuildMember, time: number) {
 		const role = member.guild.roles.cache.get(this.client.mutes.get(member.guild.id, "role"));
-		member.roles.add(role);
+		member.roles.add(role, "User muted").catch((e) => this.client.mutes.delete(member.guild.id, "role"));
 		console.log(
 			main(`[ MUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`)
 		);
@@ -30,7 +29,7 @@ export default class Raw extends Listener {
 					)}`
 				)
 			);
-			member.roles.remove(role);
+			member.roles.remove(role, "mute duration expired");
 			Infract(null, "Mute duration expired", member, "UNMUTE", client);
 			//message.reply("times up");
 		};

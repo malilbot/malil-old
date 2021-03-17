@@ -60,12 +60,12 @@ export default class MuteCommand extends Command {
 		if (!Args && role) return message.reply("Please provide a user and a time");
 
 		/**GETTING THE TIME*/
-		let time: number;
+		let time;
 		try {
 			time = ms(args[1]);
 			if (!time) {
 				time = ms(args[0]);
-				if (!time) return message.reply("please provide a valid time");
+				if (!time) time = "PERM";
 			}
 		} catch (e) {
 			return message.reply("Thats not a valid amount of time");
@@ -77,11 +77,13 @@ export default class MuteCommand extends Command {
 		member = await GetMember(message, args[0]);
 		if (!member) {
 			member = await GetMember(message, args[1]);
-			if (!member) return message.reply("please provide a valid time");
+			if (!member) return message.reply("Please say who you want to mute");
 		}
+		if (member.user.id == message.author.id) return message.reply("You cant mute yourself Dummy.");
 		const endtime = time + Date.now();
 		const ENDS = endtime - Date.now();
 		this.client.emit("mute", member, ENDS);
+		message.channel.send(`**Muted ${member.user.tag}**`);
 		const mutes = this.client.mutes.get(message.guild.id, "mutes");
 		mutes[member.user.id] = endtime;
 		this.client.mutes.set(message.guild.id, mutes, "mutes");
