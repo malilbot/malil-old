@@ -1,65 +1,67 @@
 {
-  "name": "malil",
-  "version": "1.0.0",
-  "description": "Malil discord bot",
-  "main": "dist/index.js",
-  "scripts": {
-    "start": "tsc && node ./dist/index.js",
-    "build": "tsc",
-    "test": "jest",
-    "enmap": "sh ./resources/fixEnmap.sh",
-    "dir": "sh resources/mkdir.sh",
-    "dev": "nodemon -e ts --exec \"yarn start\"",
-    "deb": "nodemon -e ts --exec \"yarn start\"",
-    "vps": "npm run build && npm start",
-    "lint": "eslint . --ext .ts",
-    "lintfix": "eslint . --ext .ts --fix",
-    "rm": "rm -r dist/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/SkyBlockDev/malil-akairo"
-  },
-  "keywords": [
-    "akairo",
-    "discordbot",
-    "tricked"
-  ],
-  "author": "tricked#3777",
-  "license": "SEE LICENSE IN README.md",
-  "bugs": {
-    "url": "https://github.com/SkyBlockDev/malil-akairo/issues"
-  },
-  "homepage": "https://github.com/SkyBlockDev/malil-akairo#readme",
-  "devDependencies": {
-    "@types/centra": "^2.2.0",
-    "@types/node": "^14.14.35",
-    "@types/node-fetch": "^2.5.8",
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "@typescript-eslint/parser": "^4.18.0",
-    "discord-rpc": "^3.2.0",
-    "eslint": "^7.22.0",
-    "nodemon": "^2.0.7",
-    "typescript": "^4.2.3"
-  },
-  "dependencies": {
-    "bufferutil": "^4.0.3",
-    "zlib-sync": "^0.1.7",
-    "utf-8-validate": "^5.0.4",
-    "alexa-bot-api": "^0.2.1",
-    "asciify-image": "^0.1.6",
-    "centra": "^2.4.2",
-    "chalk": "^4.1.0",
-    "common-tags": "^1.8.0",
-    "discord-akairo": "https://github.com/SkyBlockDev/discord-akairo",
-    "discord.js": "https://github.com/discordjs/discord.js",
-    "enmap": "^5.8.4",
-    "genius-lyrics-api": "^3.0.6",
-    "moment": "^2.29.1",
-    "winston": "^3.3.3",
-    "winston-daily-rotate-file": "^4.5.1"
-  },
-  "engines": {
+	"name": "malil",
+	"version": "1.0.0",
+	"description": "Malil discord bot",
+	"main": "dist/index.js",
+	"scripts": {
+		"start": "tsc && node ./dist/index.js",
+		"build": "tsc",
+		"test": "jest",
+		"enmap": "sh ./resources/fixEnmap.sh",
+		"dir": "sh resources/mkdir.sh",
+		"dev": "nodemon -e ts --exec \"yarn start\"",
+		"deb": "nodemon -e ts --exec \"yarn start\"",
+		"vps": "npm run build && npm start",
+		"lint": "eslint . --ext .ts",
+		"lintfix": "eslint . --ext .ts --fix",
+		"rm": "rm -r dist/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/SkyBlockDev/malil-akairo"
+	},
+	"keywords": [
+		"akairo",
+		"discordbot",
+		"tricked"
+	],
+	"author": "tricked#3777",
+	"license": "SEE LICENSE IN LICENSE",
+	"bugs": {
+		"url": "https://github.com/SkyBlockDev/malil-akairo/issues"
+	},
+	"homepage": "https://github.com/SkyBlockDev/malil-akairo#readme",
+	"devDependencies": {
+		"@types/centra": "^2.2.0",
+		"@types/node": "^14.14.35",
+		"@types/node-fetch": "^2.5.8",
+		"@typescript-eslint/eslint-plugin": "^4.18.0",
+		"@typescript-eslint/parser": "^4.18.0",
+		"discord-rpc": "^3.2.0",
+		"eslint": "^7.22.0",
+		"nodemon": "^2.0.7",
+		"typescript": "^4.2.3"
+	},
+	"optionalDependencies": {
+		"bufferutil": "^4.0.3",
+		"zlib-sync": "^0.1.7",
+		"utf-8-validate": "^5.0.4"
+	},
+	"dependencies": {
+		"alexa-bot-api": "^0.2.1",
+		"asciify-image": "^0.1.6",
+		"centra": "^2.4.2",
+		"chalk": "^4.1.0",
+		"common-tags": "^1.8.0",
+		"discord-akairo": "https://github.com/SkyBlockDev/discord-akairo",
+		"discord.js": "https://github.com/discordjs/discord.js",
+		"enmap": "^5.8.4",
+		"genius-lyrics-api": "^3.0.6",
+		"moment": "^2.29.1",
+		"winston": "^3.3.3",
+		"winston-daily-rotate-file": "^4.5.1"
+	},
+	"engines": {
 		"node": ">=14.15.1"
 	},
 	"prettier": {
