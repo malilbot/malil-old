@@ -9,9 +9,9 @@ export default class MuteCommand extends Command {
 			aliases: ["mute", "tempmute", "muterole", "mutedrole"],
 			category: "Moderation",
 			description: {
-				content: "To mute member on this guild",
+				content: "Used to mute members",
 				usage: "mute < member > ",
-				example: ["mute @member"],
+				example: ["mute @member", "mute @member 1d", "mute 2d @member"],
 			},
 			ratelimit: 3,
 
@@ -61,17 +61,14 @@ export default class MuteCommand extends Command {
 
 		/**GETTING THE TIME*/
 		let time;
-		try {
-			time = ms(args[1]);
-			if (!time) {
-				time = ms(args[0]);
-				if (!time) time = "PERM";
-			}
-		} catch (e) {
-			return message.reply("Thats not a valid amount of time");
+
+		time = ms(args[1]);
+		if (!time) {
+			time = ms(args[0]);
+			if (!time) time = "PERM";
 		}
-		if (time > 604800001) return message.reply("Cant mute longer than 7 days");
-		if (time < 59090) return message.reply("Sorry cant mute for less than one minute");
+		if (time > 604800001 && time !== "perm") return message.reply("Cant mute longer than 7 days");
+		if (time < 59090 && time !== "perm") return message.reply("Sorry cant mute for less than one minute");
 		let member: GuildMember;
 		/**GETTING MEMBER*/
 		member = await GetMember(message, args[0]);
@@ -79,15 +76,22 @@ export default class MuteCommand extends Command {
 			member = await GetMember(message, args[1]);
 			if (!member) return message.reply("Please say who you want to mute");
 		}
-		if (member.user.id == message.author.id) return message.reply("You cant mute yourself Dummy.");
-		const endtime = time + Date.now();
-		const ENDS = endtime - Date.now();
-		this.client.emit("mute", member, ENDS);
+		//if (member.user.id == message.author.id) return message.reply("You cant mute yourself Dummy.");
+		let ENDS: number;
+		let endtime: number;
+		if (typeof time !== "string") {
+			endtime = time + Date.now();
+			ENDS = endtime - Date.now();
+		}
+		let _time: string;
+		this.client.emit("mute", member, ENDS || time);
 		message.channel.send(`**Muted ${member.user.tag}**`);
-		const mutes = this.client.mutes.get(message.guild.id, "mutes");
-		mutes[member.user.id] = endtime;
-		this.client.mutes.set(message.guild.id, mutes, "mutes");
-		const _time = time.toString();
-		Infract(message, _time, member, "MUTE", this.client);
+		if (typeof time !== "string") {
+			const mutes = this.client.mutes.get(message.guild.id, "mutes");
+			mutes[member.user.id] = endtime;
+			this.client.mutes.set(message.guild.id, mutes, "mutes");
+			_time = time.toString();
+		}
+		Infract(message, _time || time, member, "MUTE", this.client);
 	}
 }

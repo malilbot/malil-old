@@ -13,9 +13,10 @@ export default class Raw extends Listener {
 		this.client = client;
 	}
 
-	public async exec(member: GuildMember, time: number) {
+	public async exec(member: GuildMember, time: number | string) {
 		const role = member.guild.roles.cache.get(this.client.mutes.get(member.guild.id, "role"));
 		member.roles.add(role, "User muted").catch((e) => this.client.mutes.delete(member.guild.id, "role"));
+		if (time == "PERM") return;
 		console.log(
 			main(`[ MUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`)
 		);
@@ -33,6 +34,6 @@ export default class Raw extends Listener {
 			Infract(null, "Mute duration expired", member, "UNMUTE", client);
 			//message.reply("times up");
 		};
-		setTimeout(msg, time);
+		setTimeout(msg, time as number);
 	}
 }

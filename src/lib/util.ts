@@ -55,7 +55,7 @@ const d = h * 24;
 const w = d * 7;
 const y = d * 365.25;
 
-export const ms = function (val: any, options?: any) {
+export const ms = function (val: any, options?: any): any {
 	options = options || {};
 	const type = typeof val;
 	if (type === "string" && val.length > 0) {
@@ -63,7 +63,7 @@ export const ms = function (val: any, options?: any) {
 	} else if (type === "number" && isFinite(val)) {
 		return options.long ? fmtLong(val) : fmtShort(val);
 	}
-	throw new Error("val is not a non-empty string or a valid number. val=" + JSON.stringify(val));
+	return null;
 };
 
 function parse(str) {
@@ -450,7 +450,7 @@ export async function Infract(
 				embed.setTimestamp();
 			} else if (type == "MUTE") {
 				embed.setAuthor(`User Muted by ${message.author.tag}`, message.author.avatarURL());
-				embed.setDescription(`Member: ${member.user.tag}\nTime ${ms(ms(reason), { long: true })}`);
+				embed.setDescription(`Member: ${member.user.tag}\nTime ${ms(ms(reason), { long: true }) || "Perma"}`);
 				embed.setColor(client.consts.colors.red);
 				embed.setFooter(`User id: ${member.user.id}`);
 				embed.setTimestamp();
