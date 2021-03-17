@@ -20,3 +20,4 @@
 -   use consistent capitalization please (ClassName, variableName, FileName.ts)
 -   source mapping
 -   url shortener (https://app.shrtco.de/)
+-   Softban
