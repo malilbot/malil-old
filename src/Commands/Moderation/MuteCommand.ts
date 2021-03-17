@@ -75,6 +75,7 @@ export default class MuteCommand extends Command {
 			member = await GetMember(message, args[1]);
 			if (!member) return message.reply("Please say who you want to mute");
 		}
+		if (member.user.id == this.client.user.id) return message.reply("HAHA you cant fool me into muting myself this easy");
 		//if (member.user.id == message.author.id) return message.reply("You cant mute yourself Dummy.");
 		let ENDS: number;
 		let endtime: number;
