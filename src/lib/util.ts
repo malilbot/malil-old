@@ -55,7 +55,7 @@ const d = h * 24;
 const w = d * 7;
 const y = d * 365.25;
 
-export const ms = function (val: any, options?: any): any {
+export const ms = function (val: any, options?: any) {
 	options = options || {};
 	const type = typeof val;
 	if (type === "string" && val.length > 0) {
@@ -164,7 +164,7 @@ function plural(ms, msAbs, n, name) {
 
 /** oS utils taken from https://github.com/oscmejia/os-utils under the mit license */
 
-export const cpuUsage = function (callback) {
+export const cpuUsage = function (callback): any {
 	getCPUUsage(callback, false);
 };
 
@@ -518,13 +518,13 @@ interface gistif {
 	git_pull_url: string;
 	git_push_url: string;
 	html_url: string;
-	files: any;
+	files: string;
 }
 class InterfaceClient extends Client {
 	public credentials = credentials;
 	public consts = consts;
-	public logchannel: any;
-	public infractions: any;
+	public logchannel: Enmap;
+	public infractions: Enmap;
 	public logger: Logger;
 }
 interface FormatIF {
