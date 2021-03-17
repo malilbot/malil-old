@@ -2,6 +2,7 @@ import { Listener } from "discord-akairo";
 import { Message } from "discord.js";
 const talkedRecently = new Set();
 import Client from "../../lib/Client";
+import { superUsers } from "../../lib/config";
 import { main, sec, third, fourth, a1, split } from "../../lib/Utils";
 import alexa from "alexa-bot-api";
 const ai = new alexa();
@@ -37,17 +38,20 @@ export default class message extends Listener {
 		}
 		if (this.client.gp.get("shitpost").includes(message?.channel?.id)) {
 			if (!message.author.bot) {
-				if (!talkedRecently.has(message.author.id)) {
-					if (message.content[0] !== "#") {
-						this.client.logger.info(`[ MSG ${message.author.tag} ] ${message.content}`);
-						const reply = await ai.getReply(message.content || "OOOOGAAA BOOGA");
-						this.client.logger.info(`[ ${message.guild.name} ][ REPLY ] ${reply}`);
-						message.reply(reply, { allowedMentions: { repliedUser: false } });
+				if (!message.system) {
+					if (!talkedRecently.has(message.author.id)) {
+						if (message.content[0] !== "#") {
+							this.client.logger.info(`[ MSG ${message.author.tag} ] ${message.content}`);
+							const reply = await ai.getReply(message.content || "OOOOGAAA BOOGA");
+							this.client.logger.info(`[ ${message.guild.name} ][ REPLY ] ${reply}`);
+							message.reply(reply, { allowedMentions: { repliedUser: false } });
+						}
+						if (superUsers.includes(message.author.id)) return;
+						talkedRecently.add(message.author.id);
+						setTimeout(() => {
+							talkedRecently.delete(message.author.id);
+						}, 2000);
 					}
-					talkedRecently.add(message.author.id);
-					setTimeout(() => {
-						talkedRecently.delete(message.author.id);
-					}, 2000);
 				}
 			}
 			if (message.author.bot) return;

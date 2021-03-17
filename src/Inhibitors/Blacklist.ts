@@ -10,10 +10,7 @@ export default class extends Inhibitor {
 	}
 
 	exec(message: Message): boolean {
-		if (
-			this.client.blacklist.get("blacklisted", "list").includes(message.author.id) &&
-			(message.author.id !== "336465356304678913") == true
-		) {
+		if (this.client.blacklist.get("blacklisted", "list").includes(message.author.id) == true) {
 			const { GStr, UStr } = Format(message, null, null, null);
 			this.client.logger.info(a1(`[ USER ] ${UStr} [ GUILD ] ${GStr} [ REJECTED FOR BEING BLACKLISTED ]`));
 			return true;

@@ -1,21 +1,17 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import {
-	AkairoClient,
-	CommandHandler,
-	ListenerHandler,
-	InhibitorHandler,
-} from 'discord-akairo';
-import { logger } from './Utils';
-import { Settings, credentials, consts } from '../settings';
-import TaskHandler from './taskhandler';
-import BotLists from './BotLists';
-import { superUsers } from './config';
-import { Logger } from 'winston';
-import { join } from 'path';
-import Enmap from 'enmap';
-declare module 'discord-akairo' {
+import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
+import { logger } from "./Utils";
+import { Settings, credentials, consts } from "../settings";
+import TaskHandler from "./taskhandler";
+import BotLists from "./BotLists";
+import { superUsers } from "./config";
+import { Logger } from "winston";
+import { join } from "path";
+import Enmap from "enmap";
+import enmap from "enmap";
+declare module "discord-akairo" {
 	interface AkairoClient {
 		settings: typeof Settings;
 		credentials: typeof credentials;
@@ -29,6 +25,7 @@ declare module 'discord-akairo' {
 		infractions: Enmap;
 		ColorNames: Enmap;
 		gp: Enmap;
+		mutes: Enmap;
 		UserData: Enmap;
 	}
 }
@@ -41,16 +38,13 @@ interface Option {
 
 export default class Client extends AkairoClient {
 	public commandHandler: CommandHandler = new CommandHandler(this, {
-		directory: join(__dirname, '..', 'Commands'),
+		directory: join(__dirname, "..", "Commands"),
 		prefix: (message) => {
 			if (message.guild !== null) this.prefixes.ensure(message.guild.id, {});
-			if (
-				message.guild == null ||
-				!this.prefixes.get(message.guild.id, 'prefix')
-			) {
-				return [Settings.prefix, 'malil'];
+			if (message.guild == null || !this.prefixes.get(message.guild.id, "prefix")) {
+				return [Settings.prefix, "malil"];
 			} else {
-				return [this.prefixes.get(message.guild.id, 'prefix'), 'malil'];
+				return [this.prefixes.get(message.guild.id, "prefix"), "malil"];
 			}
 		},
 		aliasReplacement: /-g/,
@@ -62,26 +56,23 @@ export default class Client extends AkairoClient {
 		defaultCooldown: 6000,
 		argumentDefaults: {
 			prompt: {
-				modifyStart: (_, str): string =>
-					`${str}\n\nType \`cancel\` to cancel the commmand`,
-				modifyRetry: (_, str): string =>
-					`${str}\n\nType \`cancel\` to cancel the commmand`,
-				timeout: 'You took too long, the command has been cancelled now.',
-				ended:
-					'You exceeded the maximum amout of tries, this command has now been cancelled.',
-				cancel: 'This command has been cancelled now.',
+				modifyStart: (_, str): string => `${str}\n\nType \`cancel\` to cancel the commmand`,
+				modifyRetry: (_, str): string => `${str}\n\nType \`cancel\` to cancel the commmand`,
+				timeout: "You took too long, the command has been cancelled now.",
+				ended: "You exceeded the maximum amout of tries, this command has now been cancelled.",
+				cancel: "This command has been cancelled now.",
 				retries: 3,
 				time: 30000,
 			},
-			otherwise: '',
+			otherwise: "",
 		},
 	});
 	public listenerHandler: ListenerHandler = new ListenerHandler(this, {
-		directory: join(__dirname, '..', 'Listeners'),
+		directory: join(__dirname, "..", "Listeners"),
 	});
 
 	public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, {
-		directory: join(__dirname, '..', 'Inhibitors'),
+		directory: join(__dirname, "..", "Inhibitors"),
 		automateCategories: true,
 	});
 
@@ -106,15 +97,15 @@ export default class Client extends AkairoClient {
 			ownerID: config.owners,
 			superUserID: config.superUsers,
 			intents: [
-				'GUILDS',
-				'GUILD_MESSAGES',
-				'GUILD_MEMBERS',
-				'GUILD_WEBHOOKS',
-				'GUILD_INTEGRATIONS',
-				'GUILD_MESSAGE_REACTIONS',
-				'DIRECT_MESSAGES',
-				'DIRECT_MESSAGE_TYPING',
-				'DIRECT_MESSAGE_REACTIONS',
+				"GUILDS",
+				"GUILD_MESSAGES",
+				"GUILD_MEMBERS",
+				"GUILD_WEBHOOKS",
+				"GUILD_INTEGRATIONS",
+				"GUILD_MESSAGE_REACTIONS",
+				"DIRECT_MESSAGES",
+				"DIRECT_MESSAGE_TYPING",
+				"DIRECT_MESSAGE_REACTIONS",
 			],
 			//partials: ['CHANNEL', 'REACTION'],
 		});
@@ -125,43 +116,48 @@ export default class Client extends AkairoClient {
 		this.config = config;
 		this.logger = logger;
 		this.gp = new Enmap({
-			name: 'gp',
-			dataDir: join(__dirname, '..', '..', 'data/gp'),
+			name: "gp",
+			dataDir: join(__dirname, "..", "..", "data/gp"),
 			polling: true,
 		});
 		this.logchannel = new Enmap({
-			name: 'logchannel',
-			dataDir: join(__dirname, '..', '..', 'data/logchannel'),
+			name: "logchannel",
+			dataDir: join(__dirname, "..", "..", "data/logchannel"),
 			polling: true,
 		});
 		this.tags = new Enmap({
-			name: 'tags',
-			dataDir: join(__dirname, '..', '..', 'data/tags'),
+			name: "tags",
+			dataDir: join(__dirname, "..", "..", "data/tags"),
 			polling: true,
 		});
 		this.prefixes = new Enmap({
-			name: 'prefixes',
-			dataDir: join(__dirname, '..', '..', 'data/prefixes'),
+			name: "prefixes",
+			dataDir: join(__dirname, "..", "..", "data/prefixes"),
 			polling: true,
 		});
 		this.blacklist = new Enmap({
-			name: 'blacklist',
-			dataDir: join(__dirname, '..', '..', 'data/blacklist'),
+			name: "blacklist",
+			dataDir: join(__dirname, "..", "..", "data/blacklist"),
+			polling: true,
+		});
+		this.mutes = new Enmap({
+			name: "mutes",
+			dataDir: join(__dirname, "..", "..", "data/mutes"),
 			polling: true,
 		});
 		this.releases = new Enmap({
-			name: 'releases',
-			dataDir: join(__dirname, '..', '..', 'data/releases'),
+			name: "releases",
+			dataDir: join(__dirname, "..", "..", "data/releases"),
 			polling: true,
 		});
 		this.infractions = new Enmap({
-			name: 'infractions',
-			dataDir: join(__dirname, '..', '..', 'data/infractions'),
+			name: "infractions",
+			dataDir: join(__dirname, "..", "..", "data/infractions"),
 			polling: true,
 		});
 		this.UserData = new Enmap({
-			name: 'users',
-			dataDir: join(__dirname, '..', '..', 'data/userData'),
+			name: "users",
+			dataDir: join(__dirname, "..", "..", "data/userData"),
 			polling: true,
 		});
 	}

@@ -15,3 +15,13 @@
 -   timed mutes
 -   custom args
 -   try and improve performance
+-   add response to muted
+-   prob some other stuff
+-   remove alot of loggings
+-   user tempmute as a mute arg
+-   use muterole to set muterole
+-   staff unmute
+-   add role on rejoin
+-   dont allow bot muting itself
+-   fix fedora
+-   prevent muting self

@@ -1,15 +1,12 @@
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/ban-types */
 import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
-import { createLogger, transports, format } from "winston";
-import { Message, Client, GuildMember } from "discord.js";
+import { createLogger, transports, format, Logger } from "winston";
+import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed } from "discord.js";
 import DailyRotateFile from "winston-daily-rotate-file";
-import { credentials, Settings } from "../settings";
+import { credentials, Settings, consts } from "../settings";
 import { Command } from "discord-akairo";
 import centra from "centra";
 import Enmap from "enmap";
+//import { client } from "../lib/bot";
 import os from "os";
 import { join } from "path";
 /** Pre defining */
@@ -416,7 +413,68 @@ function replace(msg: string) {
 		.replace("[ SHARD ]", sec("[ STARTING SHARD ]"))
 		.replace("[ MAXSHARDS ]", third("[ SHARDING DONE ]"));
 }
+export async function Infract(
+	message?: Message,
+	reason?: string,
+	member?: GuildMember,
+	type?: string,
+	client?: InterfaceClient
+): Promise<void> {
+	if (type !== "UNMUTE") {
+		const usID = member.id;
+		client.infractions.ensure(message.guild.id, { [usID]: {} });
+		const infraction = client.infractions.get(message.guild.id, usID);
+		const _log = {
+			who: message.author.tag,
+			reason: reason,
+			type: type,
+		};
+		infraction[Date.now()] = _log;
+		client.infractions.set(message.guild.id, infraction, usID);
+	}
 
+	if (client.logchannel.get(member.guild.id)) {
+		if (((await client.channels.fetch(client.logchannel.get(member.guild.id))) as GuildChannel).deleted == false) {
+			const embed = new MessageEmbed();
+			if (type == "KICK") {
+				embed.setAuthor(`User Kicked by ${message.author.tag}`, message.author.avatarURL());
+				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason}`);
+				embed.setColor(client.consts.colors.red);
+				embed.setFooter(`User id: ${member.user.id}`);
+				embed.setTimestamp();
+			} else if (type == "BAN") {
+				embed.setAuthor(`User Banned by ${message.author.tag}`, message.author.avatarURL());
+				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason}`);
+				embed.setColor(client.consts.colors.red);
+				embed.setFooter(`User id: ${member.user.id}`);
+				embed.setTimestamp();
+			} else if (type == "MUTE") {
+				embed.setAuthor(`User Muted by ${message.author.tag}`, message.author.avatarURL());
+				embed.setDescription(`Member: ${member.user.tag}\nTime ${ms(ms(reason), { long: true })}`);
+				embed.setColor(client.consts.colors.red);
+				embed.setFooter(`User id: ${member.user.id}`);
+				embed.setTimestamp();
+			} else if (type == "UNMUTE") {
+				embed.setDescription(`Unmuted ${member.user.tag}\n Reason: Mute duration expired.`);
+				embed.setColor(client.consts.colors.red);
+				embed.setFooter(`User id: ${member.user.id}`);
+				embed.setTimestamp();
+			} else if (type == "STAFFUNMUTE") {
+				embed.setAuthor(`User Muted by ${message.author.tag}`, message.author.avatarURL());
+				embed.setDescription(`unmuted ${member.user.tag}\n Reason: Manually unmuted by staff`);
+				embed.setColor(client.consts.colors.red);
+				embed.setFooter(`User id: ${member.user.id}`);
+				embed.setTimestamp();
+			}
+			const channel = (await client.channels.fetch(client.logchannel.get(member.guild.id))) as TextChannel;
+			if (!channel || channel.deleted == true) {
+				client.logchannel.set(member.guild.id, null);
+				return;
+			}
+			channel.send(embed).catch(() => client.logchannel.set(member.guild.id, null));
+		}
+	}
+}
 export const logger = createLogger({
 	level: "info",
 	format: combine(
@@ -464,6 +522,10 @@ interface gistif {
 }
 class InterfaceClient extends Client {
 	public credentials = credentials;
+	public consts = consts;
+	public logchannel: any;
+	public infractions: any;
+	public logger: Logger;
 }
 interface FormatIF {
 	GStr: string;

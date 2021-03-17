@@ -9,9 +9,9 @@ export default class AsciifyCommand extends Command {
 			args: [
 				{
 					id: "big",
-					type: "string",
+					type: "boolean",
 					flag: "--big",
-					match: "option",
+					match: "flag",
 				},
 			],
 			category: "General",
@@ -41,27 +41,30 @@ export default class AsciifyCommand extends Command {
 			color: false,
 		};
 		let url;
-		if (message.attachments) {
-			message.attachments.forEach((attachment) => {
-				url = attachment;
-			});
-		}
+		let text = true;
 		const member = (await GetMember(message)) || message.member;
+
+		message.attachments.forEach((attachment) => {
+			url = attachment;
+		});
 		if (!url) {
-			if (member)
-				url = member.user.displayAvatarURL({
-					size: 1024,
-					format: "jpg",
-					dynamic: true,
-				});
+			text = false;
+			url = member.user.displayAvatarURL({
+				size: 512,
+				format: "png",
+				dynamic: true,
+			});
 		}
 		if (!url) return message.reply("please add a image attachment");
 		const option = big ? bigoptions : options;
 
 		asciify(url, option, async function (err, asciified) {
 			if (err) return message.reply("Unsupported file type");
-			let sentence = "Success! " + (await hst(asciified)) + ".txt";
-			if (member) sentence = "Success! " + (await hst(asciified)) + ".txt \nProtip: You can add a image and it will asiifyy that";
+			let sentence: string;
+			if (text == true) sentence = "Success! " + (await hst(asciified)) + ".txt";
+			else if (text == false)
+				sentence = "Success! " + (await hst(asciified)) + ".txt \nProtip: You can add a image and it will asiifyy that";
+			else sentence = "Idk what happend but no image arrived";
 			message.reply(sentence, { allowedMentions: { repliedUser: false } });
 		});
 	}
