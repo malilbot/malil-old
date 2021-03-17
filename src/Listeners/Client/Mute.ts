@@ -17,13 +17,13 @@ export default class Raw extends Listener {
 		const role = member.guild.roles.cache.get(this.client.mutes.get(member.guild.id, "role"));
 		member.roles.add(role, "User muted").catch((e) => this.client.mutes.delete(member.guild.id, "role"));
 		if (time == "PERM") return;
-		console.log(
+		this.client.logger.info(
 			main(`[ MUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`)
 		);
 		const client = this.client;
 		const msg = function () {
 			//execute tasks
-			console.log(
+			this.client.logger.info(
 				main(
 					`[ UNMUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(
 						member.guild.id

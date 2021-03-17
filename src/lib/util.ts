@@ -456,13 +456,13 @@ export async function Infract(
 				embed.setTimestamp();
 			} else if (type == "UNMUTE") {
 				embed.setDescription(`Unmuted ${member.user.tag}\n Reason: Mute duration expired.`);
-				embed.setColor(client.consts.colors.red);
+				embed.setColor(client.consts.colors.green);
 				embed.setFooter(`User id: ${member.user.id}`);
 				embed.setTimestamp();
 			} else if (type == "STAFFUNMUTE") {
 				embed.setAuthor(`User Muted by ${message.author.tag}`, message.author.avatarURL());
-				embed.setDescription(`unmuted ${member.user.tag}\n Reason: Manually unmuted by staff`);
-				embed.setColor(client.consts.colors.red);
+				embed.setDescription(`Unmuted ${member.user.tag}\n Reason: ${reason || "Manually unmuted by staff"}`);
+				embed.setColor(client.consts.colors.green);
 				embed.setFooter(`User id: ${member.user.id}`);
 				embed.setTimestamp();
 			}

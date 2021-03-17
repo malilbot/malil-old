@@ -46,7 +46,6 @@ export default class MuteCommand extends Command {
 			mutes: {},
 		});
 		const role = this.client.mutes.get(message.guild.id, "role");
-		console.log(args[0]);
 		if (args[0] == "set" || args[0] == "role") {
 			const role = await message.guild.roles.fetch(args[1]);
 			if (role?.id) {

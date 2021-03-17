@@ -23,18 +23,10 @@ export default class MuteReady extends Listener {
 		const keys = this.client.mutes.keyArray();
 		keys.forEach((Element) => {
 			const mutes = this.client.mutes.get(Element, "mutes");
-			if (mutes == "{}") return console.log("Guild doesnt have mutes");
+			if (mutes == "{}") return;
 			Object.keys(mutes).forEach(async (key) => {
 				if (Date.now() > mutes[key]) {
 					const obj = this.client.mutes.get(Element, "mutes");
-					console.log(Element);
-					console.log("----------------");
-					console.log(obj);
-					console.log("----------------");
-					delete obj[key];
-					console.log("----------------");
-					console.log(obj);
-					console.log("----------------");
 					this.client.mutes.set(Element, obj, "mutes");
 				} else {
 					const MRole = this.client.mutes.get(Element, `role`);
@@ -43,10 +35,9 @@ export default class MuteReady extends Listener {
 					const client = this.client;
 					setTimeout(async function () {
 						const guild = client.guilds.cache.get(Element as string) || (await client.guilds.fetch(Element as string));
-						if (!guild) return console.log("WTF???");
 						const role: Role = guild.roles.cache.get(MRole) || (await guild.roles.fetch(MRole));
 						const member: GuildMember = guild.members.cache.get(key) || (await guild.members.fetch(key));
-						console.log(
+						client.logger.info(
 							main(
 								`[ UNMUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(guild.name)} ${third(guild.id)}`
 							)
