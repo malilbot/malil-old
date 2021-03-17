@@ -15,7 +15,7 @@ export default class CommandStarted extends Listener {
 
 	async exec(message, command) {
 		this.client.gp.math("commands", "+", 1);
-		const cmd = await main(await fixspace(command, 7));
+		const cmd = await main(command);
 		const usr = sec(message.author.tag) + " " + fourth(message.author.id);
 		const gld = sec(message.guild.name) + " " + fourth(message.guild.id);
 		this.client.logger.info(a1("[ COMMAND RAN ] ") + cmd + a1(" [ USER ] ") + usr + a1(" [ GUILD ] ") + gld);
