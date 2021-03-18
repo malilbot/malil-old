@@ -10,13 +10,7 @@ export default class AvatarCommand extends Command {
 			description: {
 				content: "Display your discord avatar otr other user.",
 				usage: "avatar [ member ]",
-				example: [
-					"avatar @example#1111",
-					"avatar @example",
-					"avatar @example size=512",
-					"avatar @example format=png",
-					"avatar @example size=512 format=jpg",
-				],
+				example: ["avatar @example#1111", "avatar @example", "avatar @example size=512", "avatar @example format=png", "avatar @example size=512 format=jpg"],
 			},
 			ratelimit: 3,
 			args: [
@@ -29,8 +23,7 @@ export default class AvatarCommand extends Command {
 				{
 					id: "size",
 					type: (_: Message, str: string): null | number => {
-						if (str && !isNaN(Number(str)) && [16, 32, 65, 128, 256, 512, 1024, 2048, 4096].includes(Number(str)))
-							return Number(str);
+						if (str && !isNaN(Number(str)) && [16, 32, 65, 128, 256, 512, 1024, 2048, 4096].includes(Number(str))) return Number(str);
 						return null;
 					},
 					match: "option",
@@ -53,7 +46,6 @@ export default class AvatarCommand extends Command {
 
 	public async exec(message: Message, { size, format }: { member: GuildMember; size: number; format: string }): Promise<Message> {
 		const member = (await GetMember(message)) || message.member;
-		throw new Error("FUCK");
 		return message.util.send(
 			new MessageEmbed()
 				.setTitle(`${member.user.username}'s Avatar`)
