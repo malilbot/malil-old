@@ -5,7 +5,6 @@ export default class extends Inhibitor {
 	constructor() {
 		super("blacklist", {
 			reason: "blacklist",
-			type: "all",
 			type: "post",
 		});
 	}
