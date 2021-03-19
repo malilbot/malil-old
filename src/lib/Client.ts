@@ -14,7 +14,7 @@ declare module "discord-akairo" {
 	interface AkairoClient {
 		settings: typeof Settings;
 		credentials: typeof credentials;
-		consts: typeof consts;
+		consts: any;
 		logger: Logger;
 		tags: Enmap;
 		prefixes: Enmap;
