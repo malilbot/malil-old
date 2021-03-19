@@ -52,7 +52,7 @@ manager.spawn();
 //
 /**Here it is happy now? */
 function Dir(): void {
-	if (existsSync("./data") && existsSync("./data/blacklist")) return;
+	if (existsSync("./data") && existsSync("./data/guilddata")) return;
 
 	mkdir("./data", (e) => {
 		console.log(e || "/data CREATED");
@@ -80,6 +80,9 @@ function Dir(): void {
 	});
 	mkdir("./data/releases", (e) => {
 		console.log(e || "/data/releases");
+	});
+	mkdir("./data/guilddata", (e) => {
+		console.log(e || "/data/guilddata");
 	});
 	mkdir("./data/tags", (e) => {
 		console.log(e || "/data/tags");

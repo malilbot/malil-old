@@ -24,6 +24,7 @@ declare module "discord-akairo" {
 		infractions: Enmap;
 		ColorNames: Enmap;
 		gp: Enmap;
+		guilddata: Enmap;
 		mutes: Enmap;
 		UserData: Enmap;
 	}
@@ -137,6 +138,11 @@ export default class Client extends AkairoClient {
 		this.blacklist = new Enmap({
 			name: "blacklist",
 			dataDir: join(__dirname, "..", "..", "data/blacklist"),
+			polling: true,
+		});
+		this.guilddata = new Enmap({
+			name: "guildata",
+			dataDir: join(__dirname, "..", "..", "data/guilddata"),
 			polling: true,
 		});
 		this.mutes = new Enmap({
