@@ -7,7 +7,7 @@ export default class TodoCommand extends Command {
 	public constructor() {
 		super("todo", {
 			aliases: ["todo"],
-			category: "Information",
+			category: "Info",
 			quoted: true,
 			description: {
 				content: "",
@@ -21,11 +21,7 @@ export default class TodoCommand extends Command {
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message, { args }) {
-		const res = await (
-			await centra("https://raw.githubusercontent.com/SkyBlockDev/malil-akairo/main/TODO.md", "GET")
-				.header("User-Agent", "Malil")
-				.send()
-		).text();
+		const res = await (await centra("https://raw.githubusercontent.com/SkyBlockDev/malil-akairo/main/TODO.md", "GET").header("User-Agent", "Malil").send()).text();
 		const todo = res.replace("### TODO LIST", "").replace("### TODO", "").split("-").slice(3).join("-").replace(/\n\n/g, "");
 		message.channel.send(new MessageEmbed().addField("TODO:", "- " + todo).setColor(this.client.consts.colors.default));
 	}
