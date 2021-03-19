@@ -33,10 +33,10 @@ export default class MuteCommand extends Command {
 		const args = Args.split(" ");
 		const alias = message.util.parsed.alias;
 		if (alias == "muterole" || alias == "mutedrole") {
-			const role = await message.guild.roles.fetch(Args);
+			const role = message.guild.roles.cache.find((role) => role.name.toLowerCase() == Args) || (await message.guild.roles.cache.get(Args)) || (await message.guild.roles.fetch(Args));
 			if (role?.id) {
 				this.client.mutes.set(message.guild.id, role.id, "role");
-				return message.reply("Muted role updated");
+				return message.reply("New muted role set to " + role.name);
 			} else {
 				return message.reply("Role not found please provide a valid role id");
 			}
