@@ -1,0 +1,41 @@
+import { Command } from "discord-akairo";
+import { Message } from "discord.js";
+import centra from "centra";
+import { MessageEmbed } from "discord.js";
+export default class shortCommand extends Command {
+	public constructor() {
+		super("short", {
+			aliases: ["short"],
+			category: "General",
+			args: [
+				{
+					id: "args",
+					type: "string",
+					match: "rest",
+				},
+			],
+			description: {
+				content: "Show short and latency bot",
+				usage: "short",
+				example: ["short"],
+			},
+			clientPermissions: ["SEND_MESSAGES"],
+			ownerOnly: false,
+			ratelimit: 1,
+		});
+	}
+
+	public async exec(message: Message, { args }) {
+		//full_short_link
+		const msg = await message.channel.send(new MessageEmbed().setFooter("FETCHING"));
+		const res = await (await centra(`https://api.shrtco.de/v2/shorten?url=${args}`, "GET").send()).json();
+		if (res.ok !== true) return message.reply("This link is unsupported or blacklisted");
+		const embed = new MessageEmbed()
+			.setFooter("Powered by app.shrtco.de <3")
+			.setTitle("Sucessfully shorten the url.")
+			.addField("app.shrtco.de", `https://${res.result.short_link}`)
+			.addField("9qr.de", `https://${res.result.short_link2}`)
+			.addField("shiny.link", `https://${res.result.short_link3}`);
+		msg.edit(embed);
+	}
+}

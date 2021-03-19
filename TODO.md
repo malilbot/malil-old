@@ -14,10 +14,10 @@
 -   [ ] Auto remove stickers option
 -   [ ] custom args
 -   [ ] try and improve performance
--   [ ] use muterole to set muterole
+-   [X] use muterole to set muterole
 -   [ ] add role on rejoin
 -   [ ] more types
 -   [ ] use consistent capitalization please (ClassName, variableName, FileName.ts)
 -   [ ] source mapping
--   [ ] url shortener (https://app.shrtco.de/)
+-   [X] url shortener (https://app.shrtco.de/)
 -   [ ] Softban
