@@ -1,13 +1,11 @@
+import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed } from "discord.js";
 import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
 import { createLogger, transports, format, Logger } from "winston";
-import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed } from "discord.js";
-import DailyRotateFile from "winston-daily-rotate-file";
 import { credentials, Settings, consts } from "../settings";
+import DailyRotateFile from "winston-daily-rotate-file";
 import { Command } from "discord-akairo";
 import centra from "centra";
 import Enmap from "enmap";
-import { mkdir, existsSync } from "fs";
-//import { client } from "../lib/bot";
 import os from "os";
 import { join } from "path";
 /** Pre defining */
@@ -56,12 +54,12 @@ const d = h * 24;
 const w = d * 7;
 const y = d * 365.25;
 
-export const ms = function (val: any, options?: any): any {
+export const ms = function (val: string | number, options?: any): any {
 	options = options || {};
 	const type = typeof val;
-	if (type === "string" && val.length > 0) {
+	if (type === "string" && (val as string).length > 0) {
 		return parse(val);
-	} else if (type === "number" && isFinite(val)) {
+	} else if (type === "number" && isFinite(val as number)) {
 		return options.long ? fmtLong(val) : fmtShort(val);
 	}
 	return null;
@@ -72,9 +70,7 @@ function parse(str) {
 	if (str.length > 100) {
 		return;
 	}
-	const match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
-		str
-	);
+	const match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(str);
 	if (!match) {
 		return;
 	}
@@ -361,11 +357,7 @@ export const CreateGist = async function (name: string, content: string, client:
 		files,
 	};
 	const gist = await (
-		await centra("https://api.github.com/gists", "POST")
-			.header("User-Agent", "Malil")
-			.header("Authorization", `token ${client.credentials.gist}`)
-			.body(body, "json")
-			.send()
+		await centra("https://api.github.com/gists", "POST").header("User-Agent", "Malil").header("Authorization", `token ${client.credentials.gist}`).body(body, "json").send()
 	).json();
 	const out = `${gist.id}`;
 	return out;
@@ -409,18 +401,9 @@ export async function hst(body: string): Promise<string> {
 }
 
 function replace(msg: string) {
-	return msg
-		.replace("[ GOING OVER GUILDS ]", sec("[ GOING OVER GUILDS ]"))
-		.replace("[ SHARD ]", sec("[ STARTING SHARD ]"))
-		.replace("[ MAXSHARDS ]", third("[ SHARDING DONE ]"));
+	return msg.replace("[ GOING OVER GUILDS ]", sec("[ GOING OVER GUILDS ]")).replace("[ SHARD ]", sec("[ STARTING SHARD ]")).replace("[ MAXSHARDS ]", third("[ SHARDING DONE ]"));
 }
-export async function Infract(
-	message?: Message,
-	reason?: string,
-	member?: GuildMember,
-	type?: string,
-	client?: InterfaceClient
-): Promise<void> {
+export async function Infract(message?: Message, reason?: string, member?: GuildMember, type?: string, client?: InterfaceClient): Promise<void> {
 	if (type !== "UNMUTE") {
 		const usID = member.id;
 		client.infractions.ensure(message.guild.id, { [usID]: {} });
