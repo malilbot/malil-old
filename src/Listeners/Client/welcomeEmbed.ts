@@ -1,8 +1,7 @@
 import { Listener } from "discord-akairo";
-import { MessageEmbed } from "discord.js";
-import { GuildMember, TextChannel } from "discord.js";
+import { GuildMember, TextChannel, MessageEmbed } from "discord.js";
 import Client from "../../lib/Client";
-import { main, sec, third, fourth, a1, split, sleep, Format } from "../../lib/Utils";
+import { main, sec, fourth, a1 } from "../../lib/Utils";
 export default class WelcomeEmbed extends Listener {
 	client: Client;
 	public constructor(client: Client) {
@@ -14,12 +13,14 @@ export default class WelcomeEmbed extends Listener {
 		this.client = client;
 	}
 
-	async exec(member: GuildMember) {
+	async exec(member: GuildMember): Promise<void> {
 		if (this.client.mutes.get(member.guild.id) && this.client.mutes.get(member.guild.id, "mutes") && this.client.mutes.get(member.guild.id, "role")) {
 			const mutes = this.client.mutes.get(member.guild.id, "mutes");
 			if (mutes[member.id]) {
-				const role = member.guild.roles.cache.get(this.client.mutes.get(member.guild.id, "role")) || (await member.guild.roles.fetch(this.client.mutes.get(member.guild.id, "role")));
-				member.roles.add(role);
+				if (Date.now() < mutes[member.id]) {
+					const role = member.guild.roles.cache.get(this.client.mutes.get(member.guild.id, "role")) || (await member.guild.roles.fetch(this.client.mutes.get(member.guild.id, "role")));
+					member.roles.add(role);
+				}
 			}
 		}
 		if (this.client.settings.dev == false) {
@@ -56,7 +57,7 @@ export default class WelcomeEmbed extends Listener {
 		}
 	}
 }
-function shuffle(a) {
+function shuffle(a: string[]) {
 	for (let i = a.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
 		[a[i], a[j]] = [a[j], a[i]];
