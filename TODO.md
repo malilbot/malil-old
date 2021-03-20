@@ -9,15 +9,18 @@
 -   [ ] 100 guild
 -   [ ] fix server embed
 -   [ ] fix user embed
--   [X] lock channel command
--   [X] unlock channel command
 -   [ ] Auto remove stickers option
 -   [ ] custom args
 -   [ ] try and improve performance
--   [X] use muterole to set muterole
--   [X] add mute role on rejoin
 -   [ ] more types
 -   [ ] use consistent capitalization please (ClassName, variableName, FileName.ts)
 -   [ ] source mapping
--   [X] url shortener (https://app.shrtco.de/)
 -   [ ] Softban
+
+
+### COMPLETED LISt
+-   [X] use muterole to set muterole
+-   [X] add mute role on rejoin
+-   [X] lock channel command
+-   [X] unlock channel command
+-   [X] url shortener (https://app.shrtco.de/)
