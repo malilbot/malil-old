@@ -15,11 +15,13 @@ export default class WelcomeEmbed extends Listener {
 	}
 
 	async exec(member: GuildMember) {
-if(this.client.mutes.get(member.guild.id, "role")){
-		const role = member.guild.roles.cache.get(this.client.mutes.get(member.guild.id, "role")) || (await member.guild.roles.fetch(this.client.mutes.get(member.guild.id, "role")));
-		const mutes = this.client.mutes.get(member.guild.id, "mutes");
-		if (mutes[member.id]) member.roles.add(role);
-}
+		if (this.client.mutes.get(member.guild.id) && this.client.mutes.get(member.guild.id, "mutes") && this.client.mutes.get(member.guild.id, "role")) {
+			const mutes = this.client.mutes.get(member.guild.id, "mutes");
+			if (mutes[member.id]) {
+				const role = member.guild.roles.cache.get(this.client.mutes.get(member.guild.id, "role")) || (await member.guild.roles.fetch(this.client.mutes.get(member.guild.id, "role")));
+				member.roles.add(role);
+			}
+		}
 		if (this.client.settings.dev == false) {
 			if (member.guild.id == "748956745409232945") {
 				let gifs = [
