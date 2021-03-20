@@ -27,6 +27,7 @@ export default class shortCommand extends Command {
 
 	public async exec(message: Message, { args }) {
 		//full_short_link
+		if (!args.startsWith("https://")) return message.channel.send("Thats not a link");
 		const msg = await message.channel.send(new MessageEmbed().setFooter("FETCHING"));
 		const res = await (await centra(`https://api.shrtco.de/v2/shorten?url=${args}`, "GET").send()).json();
 		if (res.ok !== true) return message.reply("This link is unsupported or blacklisted");

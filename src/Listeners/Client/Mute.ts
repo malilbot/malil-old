@@ -17,19 +17,11 @@ export default class Raw extends Listener {
 		const role = member.guild.roles.cache.get(this.client.mutes.get(member.guild.id, "role"));
 		member.roles.add(role, "User muted").catch((e) => this.client.mutes.delete(member.guild.id, "role"));
 		if (time == "PERM") return;
-		this.client.logger.info(
-			main(`[ MUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`)
-		);
+		this.client.logger.info(main(`[ MUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`));
 		const client = this.client;
 		const msg = function () {
 			//execute tasks
-			this.client.logger.info(
-				main(
-					`[ UNMUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(
-						member.guild.id
-					)}`
-				)
-			);
+			client.logger.info(main(`[ UNMUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`));
 			member.roles.remove(role, "mute duration expired");
 			Infract(null, "Mute duration expired", member, "UNMUTE", client);
 			//message.reply("times up");

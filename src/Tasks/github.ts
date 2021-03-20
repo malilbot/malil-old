@@ -14,10 +14,7 @@ module.exports = {
 		for (let i = 0; i < repos.length; i++) {
 			const split = repos[i].split("|");
 			const data = await (
-				await centra(`https://api.github.com/repos/${split[0]}/releases`, "GET")
-					.header("User-Agent", "Malil")
-					.header("Authorization", `token ${client.credentials.gist}`)
-					.send()
+				await centra(`https://api.github.com/repos/${split[0]}/releases`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${client.credentials.gist}`).send()
 			).json();
 			await sleep(2000);
 			if (!data.documentation_url) {
@@ -33,12 +30,7 @@ module.exports = {
 						client.releases.push("all", split[0] + "|" + data[0].tag_name);
 						const url = data[0].html_url.split("/");
 						const servers = client.releases.keyArray();
-						const fetchs = await (
-							await centra(data[0].url, "GET")
-								.header("User-Agent", "Malil")
-								.header("Authorization", `token ${client.credentials.gist}`)
-								.send()
-						).json();
+						const fetchs = await (await centra(data[0].url, "GET").header("User-Agent", "Malil").header("Authorization", `token ${client.credentials.gist}`).send()).json();
 						SendMessage(servers, split, client, url, data, fetchs);
 					}
 				}
@@ -69,26 +61,26 @@ module.exports = {
 						body += "....";
 					}
 					client.logger.info(url[4] + " " + data[0].tag_name);
-					if (client.releases.get(servers[i], "repos").includes(split[0])) {
-						const id = client.releases.get(servers[i], "channel");
-						const channel = await client.channels.fetch(id).catch(() => {
-							client.releases.delete(servers[i], "channel");
-							const guild: Guild = client.guilds.fetch(servers[i]);
-							client.logger.info(sec("[Removed watch channel from] " + guild.name + " The channel didnt excist"));
-						});
-						if (channel && channel.deleted == false) {
-							const embed = new MessageEmbed()
-								.setDescription(data[0].html_url)
-								.setTitle("new release from:  " + data[0].author.login)
-								.addField(url[4] + " " + data[0].tag_name, body);
-							await sleep(1000);
-							await (channel as TextChannel).send(embed).catch(() => {
+					if (servers[i]) {
+						if (client?.releases?.get(servers[i], "repos")?.includes(split[0])) {
+							const id = client.releases.get(servers[i], "channel");
+							const channel = await client.channels.fetch(id).catch(() => {
 								client.releases.delete(servers[i], "channel");
 								const guild: Guild = client.guilds.fetch(servers[i]);
-								client.logger.info(
-									sec("[Removed watch channel from] " + guild.name + " Cause they didnt let me send messages there")
-								);
+								client.logger.info(sec("[Removed watch channel from] " + guild.name + " The channel didnt excist"));
 							});
+							if (channel && channel.deleted == false) {
+								const embed = new MessageEmbed()
+									.setDescription(data[0].html_url)
+									.setTitle("new release from:  " + data[0].author.login)
+									.addField(url[4] + " " + data[0].tag_name, body);
+								await sleep(1000);
+								await (channel as TextChannel).send(embed).catch(() => {
+									client.releases.delete(servers[i], "channel");
+									const guild: Guild = client.guilds.fetch(servers[i]);
+									client.logger.info(sec("[Removed watch channel from] " + guild.name + " Cause they didnt let me send messages there"));
+								});
+							}
 						}
 					}
 				}

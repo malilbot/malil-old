@@ -11,11 +11,11 @@
 -   [ ] fix user embed
 -   [ ] lock channel command
 -   [ ] unlock channel command
--   [ ] Auto remove stickers option
+-   [-] Auto remove stickers option
 -   [ ] custom args
 -   [ ] try and improve performance
 -   [X] use muterole to set muterole
--   [ ] add role on rejoin
+-   [X] add mute role on rejoin
 -   [ ] more types
 -   [ ] use consistent capitalization please (ClassName, variableName, FileName.ts)
 -   [ ] source mapping
