@@ -19,7 +19,7 @@ export default class WelcomeEmbed extends Listener {
 			if (mutes[member.id]) {
 				if (Date.now() < mutes[member.id]) {
 					const role = member.guild.roles.cache.get(this.client.mutes.get(member.guild.id, "role")) || (await member.guild.roles.fetch(this.client.mutes.get(member.guild.id, "role")));
-					member.roles.add(role);
+					member.roles.add(role, "L eft and rejoined while muted");
 				}
 			}
 		}

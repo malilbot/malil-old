@@ -9,8 +9,8 @@
 -   [ ] 100 guild
 -   [ ] fix server embed
 -   [ ] fix user embed
--   [ ] lock channel command
--   [ ] unlock channel command
+-   [X] lock channel command
+-   [X] unlock channel command
 -   [ ] Auto remove stickers option
 -   [ ] custom args
 -   [ ] try and improve performance
