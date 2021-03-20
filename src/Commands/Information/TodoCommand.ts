@@ -20,9 +20,18 @@ export default class TodoCommand extends Command {
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message) {
 		const res = await (await centra("https://raw.githubusercontent.com/SkyBlockDev/malil-akairo/main/TODO.md", "GET").header("User-Agent", "Malil").send()).text();
-		const todo = res.replace("### TODO LIST", "").replace("### TODO", "").replace(/\[ \]/gi, "").replace(/\[X]/gi, "").split("-").slice(3).join("-").replace(/\n\n/g, "");
-		message.channel.send(new MessageEmbed().addField("TODO:", "- " + todo).setColor(this.client.consts.colors.default));
+		const body = res.split("\n");
+		let done = "",
+			todo = "";
+		for (let i = 0; i < body.length; i++) {
+			if (body[i].startsWith("-   [ ]")) {
+				todo += `${body[i].replace("-   [ ]", "")}\n`;
+			} else if (body[i].startsWith("-   [X]")) {
+				done += `${body[i].replace("-   [X]", "")}\n`;
+			}
+		}
+		message.channel.send(new MessageEmbed().addField("TODO:", todo).addField("COMPLETED:", done).setColor(this.client.consts.colors.default));
 	}
 }
