@@ -302,7 +302,7 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 	let user: GuildMember;
 	const _mentions = [];
 	const id = msg.guild.me.user.id;
-	if (msg.mentions.members.last().user.id !== id) return msg.mentions.members.last();
+	if (msg.mentions.members.last()?.user.id !== id) return msg.mentions.members.last();
 	for (const mentions of msg.mentions.users) {
 		_mentions.push(mentions[1].id);
 	}
