@@ -2,10 +2,10 @@ import { Command } from "discord-akairo";
 import { Message } from "discord.js";
 import centra from "centra";
 import { MessageEmbed } from "discord.js";
-export default class shortCommand extends Command {
+export default class shortenCommand extends Command {
 	public constructor() {
-		super("short", {
-			aliases: ["short"],
+		super("shorten", {
+			aliases: ["short", "shorten"],
 			category: "General",
 			args: [
 				{
