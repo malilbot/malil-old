@@ -303,16 +303,18 @@ export class Util {
 	}
 }
 export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
-	logger.info(a1("[ FETCHING USER ] ") + main(`BY ${msg.author.tag}`));
 	let user: GuildMember;
 	const _mentions = [];
 	const id = msg.guild.me.user.id;
-	if (msg.mentions.members.last()?.user.id !== id) return msg.mentions.members.last();
+
+	if (!msg.content?.startsWith(`<@!${id}>`) && msg.content.includes(id)) return msg.guild.me;
+
 	for (const mentions of msg.mentions.users) {
 		_mentions.push(mentions[1].id);
 	}
 	/** Checking if there are 2 mentions */
 	if (_mentions[1]) {
+		if (msg.mentions.members.last()?.user.id !== id) return msg.mentions.members.last();
 		if (_mentions[0] !== _mentions[1]) return msg.mentions.members.last();
 	}
 
@@ -320,7 +322,7 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 	if (_content.includes(id)) {
 		return msg.mentions.members.last();
 	}
-	if (!msg.content?.startsWith(`<@!${id}>`) && msg.content.includes(id)) return msg.guild.me;
+
 	const prefix = prefixes.get(msg.guild.id, "prefix");
 	if (args) {
 		msg.content = args;
@@ -332,8 +334,10 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 		if (msg.content?.startsWith(" ")) msg.content = msg.content.replace(" ", "");
 		msg.content = msg.content.split(" ").splice(1).join(" ");
 	}
+
 	/**Defining what to search for */
 	const item = msg.content.trim().split(" ")[0];
+
 	if (!item) return null;
 	if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
 	else if (item == "^") {
@@ -341,9 +345,11 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 	}
 
 	if (item == "me") return msg.member;
+
 	user = msg.guild.members.cache.get(item);
 	if (!user) {
 		try {
+			logger.info(a1("[ FETCHING USER ] ") + main(`BY ${msg.author.tag}`));
 			user = await msg.guild.members.fetch(item);
 		} catch (e) {
 			user = msg.guild.members.cache.find((member) => {
