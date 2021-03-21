@@ -332,12 +332,11 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 		else if (msg.content?.startsWith("malil")) msg.content = msg.content.replace("malil", "");
 		else if (msg.content?.startsWith(prefix)) msg.content = msg.content.replace(prefix, "");
 		if (msg.content?.startsWith(" ")) msg.content = msg.content.replace(" ", "");
-		msg.content = msg.content.split(" ").splice(1).join(" ");
+		msg.content = msg.content.trim().split(" ").splice(1).join(" ");
 	}
 
 	/**Defining what to search for */
 	const item = msg.content.trim().split(" ")[0];
-
 	if (!item) return null;
 	if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
 	else if (item == "^") {
