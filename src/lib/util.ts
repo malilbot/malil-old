@@ -306,6 +306,7 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 	}
 	/** Checking if there are 2 mentions */
 	if (_mentions[1]) {
+		console.log("EE");
 		if (_mentions[0] !== _mentions[1]) return msg.mentions.members.last();
 	}
 
@@ -322,15 +323,17 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 		if (msg.content?.startsWith(`<@!${id}>`)) msg.content = msg.content.replace(new RegExp(`<@!${id}>`), "");
 		else if (msg.content?.startsWith("malil")) msg.content = msg.content.replace("malil", "");
 		else if (msg.content?.startsWith(prefix)) msg.content = msg.content.replace(prefix, "");
+		if (msg.content?.startsWith(" ")) msg.content = msg.content.replace(" ", "");
 		msg.content = msg.content.split(" ").splice(1).join(" ");
 	}
 	/**Defining what to search for */
-	const item = msg.content.split(" ")[0];
+	const item = msg.content.trim().split(" ")[0];
 	if (!item) return null;
-	if (item == "^" && msg.channel.messages.cache.size >= 4) {
-		user = msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author.id != msg.author.id).last().member as GuildMember;
+	if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
+	else if (item == "^") {
+		return null;
 	}
-	if (item == "^" && msg.channel.messages.cache.size <= 4) return null;
+
 	if (item == "me") return msg.member;
 	user = msg.guild.members.cache.get(item);
 	if (!user) {
