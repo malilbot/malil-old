@@ -301,7 +301,8 @@ export class Util {
 export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
 	let user: GuildMember;
 	const _mentions = [];
-
+	const id = msg.guild.me.user.id;
+	if (msg.mentions.members.last().user.id !== id) return msg.mentions.members.last();
 	for (const mentions of msg.mentions.users) {
 		_mentions.push(mentions[1].id);
 	}
@@ -310,7 +311,6 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 		if (_mentions[0] !== _mentions[1]) return msg.mentions.members.last();
 	}
 
-	const id = msg.guild.me.user.id;
 	const _content = msg.content.replace(id, "");
 	if (_content.includes(id)) {
 		return msg.mentions.members.last();
