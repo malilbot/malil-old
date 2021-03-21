@@ -20,11 +20,9 @@ export default class Raw extends Listener {
 		this.client.logger.info(main(`[ MUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`));
 		const client = this.client;
 		const msg = function () {
-			//execute tasks
 			client.logger.info(main(`[ UNMUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`));
 			member.roles.remove(role, "mute duration expired");
 			Infract(null, "Mute duration expired", member, "UNMUTE", client);
-			//message.reply("times up");
 		};
 		setTimeout(msg, time as number);
 	}

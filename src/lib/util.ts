@@ -4,16 +4,20 @@ import { createLogger, transports, format, Logger } from "winston";
 import { credentials, Settings, consts } from "../settings";
 import DailyRotateFile from "winston-daily-rotate-file";
 import { Command } from "discord-akairo";
+import { join } from "path";
 import centra from "centra";
 import Enmap from "enmap";
 import os from "os";
-import { join } from "path";
-import message from "@root/Listeners/Client/dms";
 /** Pre defining */
 
 const num = Math.floor(Math.random() * 2 + 1);
 const { combine, timestamp, printf } = format;
-let main, sec, third, fourth, a1, split;
+let main: (string: string | Command | number) => string,
+	sec: (string: string | Command | number) => string,
+	third: (string: string | Command | number) => string,
+	fourth: (string: string | Command | number) => string,
+	a1: (string: string | Command | number) => string,
+	split: string;
 const site = "https://hst.sh/";
 const { dev } = Settings;
 const _os = os;
@@ -299,6 +303,7 @@ export class Util {
 	}
 }
 export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
+	logger.info(a1("[ FETCHING USER ] ") + main(`BY ${msg.author.tag}`));
 	let user: GuildMember;
 	const _mentions = [];
 	const id = msg.guild.me.user.id;
@@ -351,6 +356,7 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 };
 
 export const CreateGist = async function (name: string, content: string, client: InterfaceClient): Promise<string> {
+	logger.info(a1("[ CREATING GIST ] ") + main(`NAME ${name}`));
 	const files: { [key: string]: { content: string } } = {};
 	files[name] = {
 		content: content || "oops something went wrong :(",
@@ -367,6 +373,7 @@ export const CreateGist = async function (name: string, content: string, client:
 	return out;
 };
 export const EditGist = async function (name: string, content: string, GistId: string, client: InterfaceClient): Promise<gistif> {
+	logger.info(a1("[ EDITING GIST ] ") + main(`NAME ${name}`));
 	const files: { [key: string]: { content: string } } = {};
 	files[name] = {
 		content: content || "oops something went wrong :(",
@@ -386,6 +393,7 @@ export const EditGist = async function (name: string, content: string, GistId: s
 	return gist;
 };
 export const GetGist = async function (GistId: string, client: InterfaceClient): Promise<gistif> {
+	logger.info(a1("[ GETTING GIST ] ") + main(`NAME ${name}`));
 	const gist = await (
 		await centra("https://api.github.com/gists/" + GistId, "GET")
 			.header("User-Agent", "Malil")
@@ -396,6 +404,7 @@ export const GetGist = async function (GistId: string, client: InterfaceClient):
 };
 
 export async function hst(body: string): Promise<string> {
+	logger.info(a1("[ POSTING ON hst.sh ] "));
 	const post = await (
 		await centra(site + "documents", "POST")
 			.body(body)
@@ -408,6 +417,7 @@ function replace(msg: string) {
 	return msg.replace("[ GOING OVER GUILDS ]", sec("[ GOING OVER GUILDS ]")).replace("[ SHARD ]", sec("[ STARTING SHARD ]")).replace("[ MAXSHARDS ]", third("[ SHARDING DONE ]"));
 }
 export async function Infract(message?: Message, reason?: string, member?: GuildMember, type?: string, client?: InterfaceClient): Promise<void> {
+	logger.info(sec("[ GIVING OUT A INFRACTION ] ") + main(`[ TO ] ${member.user.tag || "noone? huh what"} `) + third(`[ TYPE ] ${type || "no type? wtf"}`));
 	if (type !== "UNMUTE") {
 		const usID = member.id;
 		client.infractions.ensure(message.guild.id, { [usID]: {} });
