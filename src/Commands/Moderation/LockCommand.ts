@@ -1,7 +1,5 @@
 import { Command } from "discord-akairo";
-import { GetMember } from "../../lib/Utils";
-import { MessageEmbed, Message, GuildChannel, TextChannel, GuildMember, Channel } from "discord.js";
-import { hst } from "../../lib/Utils";
+import { MessageEmbed, Message, TextChannel } from "discord.js";
 export default class LockCommand extends Command {
 	public constructor() {
 		super("lock", {
