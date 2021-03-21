@@ -21,6 +21,7 @@ export default class shortenCommand extends Command {
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ownerOnly: false,
+			typing: true,
 			ratelimit: 1,
 		});
 	}

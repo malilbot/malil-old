@@ -16,7 +16,6 @@ export default class LockCommand extends Command {
 			channel: "guild",
 			clientPermissions: ["MANAGE_CHANNELS"],
 			userPermissions: ["MANAGE_CHANNELS"],
-			typing: true,
 		});
 	}
 

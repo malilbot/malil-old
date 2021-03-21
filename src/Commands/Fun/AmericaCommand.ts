@@ -23,6 +23,7 @@ export default class AmeticaCommand extends Command {
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
 			channel: "guild",
+			typing: true,
 		});
 	}
 
@@ -38,9 +39,7 @@ export default class AmeticaCommand extends Command {
 			dynamic: true,
 		});
 
-		const res = await centra(`https://api.dagpi.xyz/image/america/?url=${url}`, "get")
-			.header("Authorization", this.client.credentials.dagpi)
-			.send();
+		const res = await centra(`https://api.dagpi.xyz/image/america/?url=${url}`, "get").header("Authorization", this.client.credentials.dagpi).send();
 		const meme = res.body;
 
 		await message.channel.send("", {
