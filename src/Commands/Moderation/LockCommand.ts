@@ -11,7 +11,7 @@ export default class LockCommand extends Command {
 			args: [
 				{
 					id: "selectedChannel",
-					type: "channel",
+					type: "content",
 					match: "rest",
 				},
 			],
@@ -22,8 +22,10 @@ export default class LockCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { selectedChannel }: { selectedChannel: TextChannel }): Promise<void> {
-		const channel: TextChannel = selectedChannel ? (selectedChannel as TextChannel) : (message.channel as TextChannel);
+	public async exec(message: Message, { selectedChannel }: { selectedChannel: string }): Promise<void> {
+		selectedChannel = selectedChannel.replace(/(<|>|#)/, "");
+		const chnl = message.guild.channels.cache.find((channel) => channel.name.toLowerCase() == selectedChannel) || message.guild.channels.cache.get(selectedChannel);
+		const channel: TextChannel = selectedChannel ? (chnl as TextChannel) : (message.channel as TextChannel);
 		if (message.util.parsed.alias == "unlockchannel" || message.util.parsed.alias == "unlock") {
 			channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: null });
 			const embed: MessageEmbed = new MessageEmbed()
