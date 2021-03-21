@@ -8,6 +8,7 @@ import centra from "centra";
 import Enmap from "enmap";
 import os from "os";
 import { join } from "path";
+import message from "@root/Listeners/Client/dms";
 /** Pre defining */
 
 const num = Math.floor(Math.random() * 2 + 1);
@@ -306,7 +307,6 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 	}
 	/** Checking if there are 2 mentions */
 	if (_mentions[1]) {
-		console.log("EE");
 		if (_mentions[0] !== _mentions[1]) return msg.mentions.members.last();
 	}
 
@@ -315,6 +315,7 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 	if (_content.includes(id)) {
 		return msg.mentions.members.last();
 	}
+	if (!msg.content?.startsWith(`<@!${id}>`) && msg.content.includes(id)) return msg.guild.me;
 	const prefix = prefixes.get(msg.guild.id, "prefix");
 	if (args) {
 		msg.content = args;
