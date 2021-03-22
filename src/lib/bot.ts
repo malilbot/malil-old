@@ -1,6 +1,8 @@
 import Client from "./Client";
 import { owners, token, superUsers } from "./config";
-
-export const client = new Client({ owners: owners, token: token, superUsers: superUsers });
+//import { credentials } from "../settings";
+//for (const token of credentials.tokens) {
+const client = new Client({ owners: owners, token: token, superUsers: superUsers });
 
 client.goo();
+//}
