@@ -313,10 +313,8 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 		_mentions.push(mentions[1].id);
 	}
 	/** Checking if there are 2 mentions */
-	if (_mentions[1]) {
-		if (msg.mentions.members.last()?.user.id !== id) return msg.mentions.members.last();
-		if (_mentions[0] !== _mentions[1]) return msg.mentions.members.last();
-	}
+	if (_mentions[0]) if (msg.mentions.members.last()?.user.id !== id) return msg.mentions.members.last();
+	if (_mentions[1]) if (_mentions[0] !== _mentions[1]) return msg.mentions.members.last();
 
 	const _content = msg.content.replace(id, "");
 	if (_content.includes(id)) {
