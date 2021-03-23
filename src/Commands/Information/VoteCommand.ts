@@ -6,7 +6,7 @@ import { MessageEmbed, Message } from "discord.js";
 export default class VoteCommand extends Command {
 	public constructor() {
 		super("vote", {
-			aliases: ["vote"],
+			aliases: ["vote", "votes"],
 			category: "Info",
 			quoted: true,
 			description: {
@@ -25,10 +25,11 @@ export default class VoteCommand extends Command {
 			.setTitle("Vote lists")
 			.setThumbnail(this.client.user.avatarURL())
 			.setTimestamp()
+			.setColor(this.client.consts.colors.default)
 			.setDescription(
-				"[topgg](https://top.gg/bot/749020331187896410/vote), increases iq\n" +
-					"[discordbotlist.com](https://discordbotlist.com/bots/malil/upvote)\n" +
-					"[BladeBots](https://bladebotlist.xyz/bot/749020331187896410/vote)\n" +
+				"[topgg](https://top.gg/bot/749020331187896410/vote), (increases iq)\n" +
+					"[discordbotlist.com](https://discordbotlist.com/bots/malil/upvote),\n" +
+					"[BladeBots](https://bladebotlist.xyz/bot/749020331187896410/vote),\n" +
 					"[fateList](https://fateslist.xyz/bot/749020331187896410/vote)"
 			);
 		message.channel.send(embed);
