@@ -37,7 +37,9 @@ export default class IqCommand extends Command {
 			iq = Math.floor(Math.random() * 150) + 1;
 			this.client.UserData.set(member.id, iq, "iq");
 		}
+		const num = Math.floor(Math.random() * 10 + 1);
 		const iEmbed = new MessageEmbed().setColor(this.client.consts.colors.default).setTitle("IQ Test").setDescription(`${member}'s IQ is: \`${iq}\`!`);
+		if (num == 5) iEmbed.setFooter(`You can vote to get increased iq ${(await this.client.prefixes.get(message.guild.id, "prefix")) || this.client.settings.prefix}vote`);
 		message.util.send(iEmbed);
 	}
 }

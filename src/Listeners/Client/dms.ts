@@ -18,22 +18,34 @@ export default class message extends Listener {
 	}
 
 	async exec(message: Message) {
+		if (message.channel.id == "823935750168117312") {
+			if (message.webhookID) {
+				try {
+					if (!message.content.startsWith("{")) return;
+					const res = JSON.parse(message.content);
+					const member = await this.client.users.fetch(res.user);
+					console.log(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
+					const user = res.user;
+					const wknd = res.isWeekend;
+					const cur = this.client.UserData.get(user as string, "iq");
+					if (!cur) return;
+					const amount = wknd ? 2 : 1;
+					this.client.UserData.set(user, cur + amount, "iq");
+					message.channel.send(`Vote Counted ${member.tag}, ${member.id}\nEarned ${amount} iq point(s) while voting`);
+				} catch (e) {
+					console.log(e);
+					message.author.send("Hey this is not a place to talk");
+				}
+			}
+		}
 		if (message.content.includes("malil")) {
 			if (!message.author.bot) {
-				this.client.logger.info(
-					`${main("[ MALIL MENTIONED ]")}${third("[AUTHOR]")} ${message.author.tag} (${
-						message.author.id
-					}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`
-				);
+				this.client.logger.info(`${main("[ MALIL MENTIONED ]")}${third("[AUTHOR]")} ${message.author.tag} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`);
 			}
 		}
 		if (message.content.includes("tricked")) {
 			if (!message.author.bot) {
-				this.client.logger.info(
-					`${main("[ MALIL MENTIONED ]")}${third("[AUTHOR]")} ${message.author.tag} (${
-						message.author.id
-					}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`
-				);
+				this.client.logger.info(`${main("[ MALIL MENTIONED ]")}${third("[AUTHOR]")} ${message.author.tag} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`);
 			}
 		}
 		if (this.client.gp.get("shitpost").includes(message?.channel?.id)) {
@@ -56,11 +68,7 @@ export default class message extends Listener {
 			}
 			if (message.author.bot) return;
 			if (message.guild !== null) return;
-			this.client.logger.info(
-				`${main("[ DM ]")}${third("[AUTHOR]")} ${message.author.tag} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${
-					message.content
-				}`
-			);
+			this.client.logger.info(`${main("[ DM ]")}${third("[AUTHOR]")} ${message.author.tag} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`);
 		}
 	}
 }
