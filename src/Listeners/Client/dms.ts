@@ -27,14 +27,14 @@ export default class message extends Listener {
 					console.log(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
 					const user = res.user;
 					const wknd = res.isWeekend;
-					const cur = this.client.UserData.get(user as string, "iq");
+					const cur = Number(this.client.UserData.get(member.id, "iq"))
 					if (!cur) return;
 					const amount = wknd ? 2 : 1;
-					this.client.UserData.set(user, cur + amount, "iq");
+					this.client.UserData.set(member.id, cur + amount, "iq");
 					message.channel.send(`Vote Counted ${member.tag}, ${member.id}\nEarned ${amount} iq point(s) while voting`);
 				} catch (e) {
 					console.log(e);
-					message.author.send("Hey this is not a place to talk");
+					
 				}
 			}
 		}
