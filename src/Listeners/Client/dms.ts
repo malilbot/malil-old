@@ -24,7 +24,8 @@ export default class message extends Listener {
 					if (!message.content.startsWith("{")) return;
 					const res = JSON.parse(message.content);
 					const member = await this.client.users.fetch(res.user);
-					this.client.UserData.ensure(member.id, { iq: 0 });
+					const iq = Math.floor(Math.random() * 150) + 1;
+					this.client.UserData.ensure(member.id, { iq: iq });
 					if (!member) return console.log("WHATTT?");
 					console.log(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
 					const wknd = res.isWeekend;
