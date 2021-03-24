@@ -21,9 +21,9 @@ module.exports = {
 			// prettier-ignore
 			const totalGuilds = await client.shard.fetchClientValues('guilds.cache.size').then(serv => serv.reduce((acc, guildCount) => acc + guildCount, 0))
 			// prettier-ignore
-			const totalMembers = await client.shard.broadcastEval('guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)').then(member => member.reduce((acc, memberCount) => acc + memberCount, 0))
+			const totalMembers = await client.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)').then(member => member.reduce((acc, memberCount) => acc + memberCount, 0))
 			// prettier-ignore
-			const totalChannels = await client.shard.broadcastEval('guilds.cache.reduce((acc, guild) => acc + guild.channels.cache.size, 0)').then(channel => channel.reduce((acc, channelCount) => acc + channelCount, 0))
+			const totalChannels = await client.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.channels.cache.size, 0)').then(channel => channel.reduce((acc, channelCount) => acc + channelCount, 0))
 			// prettier-ignore
 			if (client.shard.ids[0] == 0) {
 				if(CurStats == [totalGuilds, totalChannels]) return

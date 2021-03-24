@@ -30,6 +30,47 @@ export default class LoadCommand extends Command {
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message): Promise<void> {
 		const ut = new Util();
+		//prettier-ignore
+		const totalGuilds = await this.client.shard
+			.fetchClientValues("guilds.cache.size")
+			.then((serv) => serv.reduce((acc, guildCount) => acc + guildCount, 0));
+		const totalMembers = await this.client.shard
+			.broadcastEval("this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)")
+			.then((member) => member.reduce((acc, memberCount) => acc + memberCount, 0));
+		cpuUsage((v: number) => {
+			exec("ps -e | wc -l", async (error, stdout) => {
+				const processes = stdout;
+				exec("free -m | grep Mem", async (error, stdout) => {
+					const memory = stdout.trim().split(" ")[20];
+					exec("cat /sys/class/thermal/thermal_zone0/temp", async (error, stdout) => {
+						const temps = Number(stdout);
+						const sysStats =
+							"```\n" +
+							`Uptime ${ms(os.uptime() * 1000, { long: true })}, processes ${processes}` +
+							`CPU Used: ${(v * 100).toFixed(1)}%, Heat ${temps / 1000} C\n` +
+							`Ram used: ${memory} MB\n` +
+							"```\n";
+						const botStats =
+							"```\n" +
+							`Bot Uptime: ${ms(process.uptime() * 1000, { long: true })}` +
+							`Memory Used: ${ut.formatBytes(process.memoryUsage().heapUsed)}\n` +
+							`Guilds: ${totalGuilds}, Members: ${totalMembers}\n` +
+							`Commands Used: ${this.client.gp.get("commands")}\n` +
+							"```\n";
+						const embed = new MessageEmbed()
+							.setFooter(message.author.tag)
+							.setThumbnail(this.client.user.avatarURL())
+							.setColor(this.client.consts.colors.default)
+							.addField(`☆ Bot Stats ${this.client.user.username}`, botStats)
+							.addField(`☆ System stats`, sysStats);
+						message.channel.send(embed);
+					});
+				});
+			});
+		});
+	}
+}
+/*
 		exec("lsblk -e7 -o NAME,SIZE", async (error, stdout) => {
 			const lsblks = stdout
 				.replace("NAME", "")
@@ -57,33 +98,6 @@ export default class LoadCommand extends Command {
 					list += `${lsblk[i - 2] || spaces}  ${_neofetch[i] || ""}\n`;
 					list = list.replace("                      ", " ".repeat(lsblk[2]?.length) + "  ");
 				}
-				cpuUsage((v) => {
-					exec("ps -e | wc -l", async (error, stdout) => {
-						const processes = stdout;
-						exec("free -m", async (error, stdout) => {
-							const memory = stdout;
-							exec("cat /sys/class/thermal/thermal_zone0/temp", async (error, stdout) => {
-								const temps = Number(stdout);
-
-								message.channel.send(
-									"```js\n" +
-										`MemoryUsed: ${ut.formatBytes(process.memoryUsage().heapUsed)}\n` +
-										`System stats\n` +
-										`Uptime ${fixspace(ms(os.uptime() * 1000, { long: true }) + ",", 10)} processes ${processes}\n` +
-										`CPU Used ${(v * 100).toFixed(1)}%, Heat ${temps / 1000} C\n` +
-										`${memory.replace("      ", "Memory")}\n` +
-										`${list}\n` +
-										"\n```"
-								);
-							});
-						});
-					});
-				});
-			});
-		});
-	}
-}
-/*
 			exec('ps -e | wc -l', async (error, stdout) => {
 				message.reply('```' + `${lsblk}` + '```');
 			});
