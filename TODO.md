@@ -13,6 +13,7 @@
 -   [ ] custom args
 -   [ ] try and improve performance
 -   [ ] more types
+-   [ ] ModOnly channels
 -   [ ] use consistent capitalization please (ClassName, variableName, FileName.ts)
 -   [ ] source mapping
 -   [ ] Softban
