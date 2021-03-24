@@ -107,6 +107,15 @@ export default class Client extends AkairoClient {
 				"DIRECT_MESSAGE_TYPING",
 				"DIRECT_MESSAGE_REACTIONS",
 			],
+			presence: {
+				// @ts-expect-error - https://github.com/discordjs/discord.js/pull/5317
+				activities: [
+					{
+						name: `${Settings.prefix}help`,
+						type: "LISTENING",
+					},
+				],
+			},
 			//partials: ['CHANNEL', 'REACTION'],
 		});
 

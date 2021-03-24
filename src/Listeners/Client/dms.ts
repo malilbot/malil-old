@@ -3,6 +3,7 @@ import { Message } from "discord.js";
 const talkedRecently = new Set();
 import Client from "../../lib/Client";
 import { superUsers } from "../../lib/config";
+import { Logger } from "winston";
 import { main, sec, third, fourth, a1, split } from "../../lib/Utils";
 import alexa from "alexa-bot-api";
 const ai = new alexa();
@@ -17,10 +18,11 @@ export default class message extends Listener {
 		this.client = client;
 	}
 
-	async exec(message: Message) {
+	async exec(message: Message): Promise<void | Logger> {
 		if (message.channel.id == "823935750168117312") {
 			if (message.webhookID) {
 				try {
+					this.client.gp.math("commands", "+", 1);
 					if (!message.content.startsWith("{")) return;
 					const res = JSON.parse(message.content);
 					const member = await this.client.users.fetch(res.user);
@@ -50,6 +52,7 @@ export default class message extends Listener {
 			}
 		}
 		if (this.client.gp.get("shitpost").includes(message?.channel?.id)) {
+			this.client.gp.math("commands", "+", 1);
 			if (!message.author.bot) {
 				if (!message.system) {
 					if (!talkedRecently.has(message.author.id)) {
