@@ -26,8 +26,8 @@ export default class message extends Listener {
 					const member = await this.client.users.fetch(res.user);
 					const iq = Math.floor(Math.random() * 150) + 1;
 					this.client.UserData.ensure(member.id, { iq: iq });
-					if (!member) return console.log("WHATTT?");
-					console.log(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
+					if (!member) return this.client.logger.info("WHATTT?");
+					this.client.logger.info(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
 					const wknd = res.isWeekend;
 					const cur = Number(this.client.UserData.get(member.id, "iq"));
 					if (!cur) return;
@@ -35,7 +35,7 @@ export default class message extends Listener {
 					this.client.UserData.set(member.id, cur + amount, "iq");
 					message.channel.send(`Vote Counted ${member.tag}, ${member.id}\nEarned ${amount} iq point(s) while voting`);
 				} catch (e) {
-					console.log(e);
+					this.client.logger.info(e);
 				}
 			}
 		}
