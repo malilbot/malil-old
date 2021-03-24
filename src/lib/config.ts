@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 import Enmap from "enmap";
 import { join } from "path";
 import { credentials, Settings } from "../settings";
