@@ -24,17 +24,17 @@ export default class message extends Listener {
 					if (!message.content.startsWith("{")) return;
 					const res = JSON.parse(message.content);
 					const member = await this.client.users.fetch(res.user);
+					this.client.UserData.ensure(member.id, { iq: 0 });
+					if (!member) return console.log("WHATTT?");
 					console.log(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
-					const user = res.user;
 					const wknd = res.isWeekend;
-					const cur = Number(this.client.UserData.get(member.id, "iq"))
+					const cur = Number(this.client.UserData.get(member.id, "iq"));
 					if (!cur) return;
 					const amount = wknd ? 2 : 1;
 					this.client.UserData.set(member.id, cur + amount, "iq");
 					message.channel.send(`Vote Counted ${member.tag}, ${member.id}\nEarned ${amount} iq point(s) while voting`);
 				} catch (e) {
 					console.log(e);
-					
 				}
 			}
 		}
