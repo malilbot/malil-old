@@ -1,10 +1,9 @@
-> # MALIL
->
-> Malil is a must have **all in one** bot with tons of commands to enjoy  
-> To view the list of commands in discord you can use \*help
-> So where are you waiting for give malil a try
+# MALIL
+Malil is a must have **all in one** bot with tons of commands to enjoy!  
+To view the list of commands in discord you can use \*help.
+So, what are you waiting for? Give Malil a try!
 
-> List of awesome commands you can use in your server if you invite malil 
+List of awesome commands you can use in your server if you invite Malil:
 -------
 ### **Fun**
 
@@ -12,17 +11,17 @@
 -   America : Sends a picture of mentioned user with a flag over it
 -   Fedora : Adds a fedora on you
 -   IQ : uses rng to decide your iq
--   UWU : uwufy's some text
+-   UWU : uwuify's some text
 -   Mock : mOcK WhEn lIfE LeTs yOu dOwN
 -   Clap : 👏clap👏
--   Pp : shows you pp size
+-   Pp : shows your pp size
 
 ### **general**
 
 -   asciify : turns a image into a ascii
 -   Help : Sends the help embed
 -   Ping : Sends the current ping
--   github : Stalks a github repo and sends a message when a new release releases
+-   github : Stalks a github repo and sends a message when a new release arrives
 -   Todo : Sends a embed with the things that are on the todo list
 -   Userinfo : Shows some info about a user
 
@@ -30,7 +29,7 @@
 
 -   Avatar : Allows you to get someone's Profile picuture
 -   lyrics: Gets the lyrics of the requested song
--   server : Sends some geenral server info
+-   server : Sends some general server info
 -   stats : Shows some stats about the Bot
 
 ### **moderation**
@@ -50,13 +49,13 @@
 
 ### **utility**
 
--   quote : quotes a message by creating a webhook and making it say what the message said
--   Poll : hold a poll
--   Prefix : change the prefix
+-   quote : Quotes a message by creating a webhook and making it say what the message said
+-   Poll : Hold a poll
+-   Prefix : Change the prefix
 -   Invite : Invite the bot to your server
--   Disable : disables Commands/Categorys
--   Encode : encode some text
--   Decode : decode some text
+-   Disable : Disables Commands/Categorys
+-   Encode : Encode some text
+-   Decode : Decode some text
 
 > ### Github command preview:
 > ![Github command preview](https://imgur.com/tALvIXY.png)
