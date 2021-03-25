@@ -3,6 +3,9 @@
 -   if you have any feature request feel free to make a pr and add them to this list and i ight considere making them
 -   You can make a pr adding any of these aswell thanks
 
+### I WONT DO
+
+-   [ ] source mapping
 ### TODO LIST
 
 -   [ ] WEB dashboard
@@ -14,8 +17,6 @@
 -   [ ] try and improve performance
 -   [ ] more types
 -   [ ] ModOnly channels
--   [ ] use consistent capitalization please (ClassName, variableName, FileName.ts)
--   [ ] source mapping
 -   [ ] Softban
 
 
