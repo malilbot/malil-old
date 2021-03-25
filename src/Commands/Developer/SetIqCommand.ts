@@ -27,14 +27,15 @@ export default class setiqCommand extends Command {
 	}
 
 	public async exec(message: Message, { args }) {
-		if (!args) return message.reply("No args");
-		const tt = args.split(" ");
-		if (!args[1]) return message.reply("No iq provided");
-		const user = await GetMember(message, tt[0]);
-		if (!user) return message.reply("No user provided");
-		const iq = parseInt(tt[1])
-		if (!iq) return message.reply("thats not a number");
-		if (iq < 0 || iq > 150) return message.reply("thats to much");
+		if (!args) return message.reply("No args provided.");
+		const _args = args.split(" ");
+		if (!args[1]) return message.reply("No iq provided.");
+		const user = await GetMember(message, _args[0]);
+		if (!user) return message.reply("No user provided.");
+		const iq = parseInt(_args[1]);
+		if (!iq) return message.reply("Thats not a number.");
+		if (iq < 0 || iq > 150) return message.reply("You cant have a number more than 150 and less than 0 use eval to bypass this limit.");
 		this.client.UserData.set(user.user.id, iq, "iq");
+		message.reply(`Succesfully changed ${user.user.tag}'s iq.`);
 	}
 }
