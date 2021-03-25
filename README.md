@@ -7,45 +7,45 @@ List of awesome commands you can use in your server if you invite Malil:
 -------
 ### **Fun**
 
--   8ball : Ask your question
--   America : Sends a picture of mentioned user with a flag over it
--   Fedora : Adds a fedora on you
+-   8ball : Ask a question
+-   america : Sends a picture of mentioned user with a flag over it
+-   fedora : Sends your profile picture with a fedora on it
 -   IQ : uses rng to decide your iq
 -   UWU : uwuify's some text
--   Mock : mOcK WhEn lIfE LeTs yOu dOwN
--   Clap : 👏clap👏
--   Pp : shows your pp size
+-   mock : mOcK WhEn lIfE LeTs yOu dOwN
+-   clap : 👏clap👏
+-   pp : shows your pp size
 
 ### **general**
 
 -   asciify : turns a image into a ascii
--   Help : Sends the help embed
--   Ping : Sends the current ping
+-   help : Sends the help embed
+-   ping : Sends the current ping
 -   github : Stalks a github repo and sends a message when a new release arrives
--   Todo : Sends a embed with the things that are on the todo list
--   Userinfo : Shows some info about a user
+-   todo : Sends a embed with the things that are on the todo list
+-   userinfo : Shows some info about a user
 
 ### **info**
 
--   Avatar : Allows you to get someone's Profile picuture
--   lyrics: Gets the lyrics of the requested song
+-   avatar : Allows you to get someone's profile picture
+-   lyrics : Gets the lyrics of the requested song
 -   server : Sends some general server info
 -   stats : Shows some stats about the Bot
 
 ### **moderation**
 
--   Ban : bans a user
--   Kick : kick someone
--   Mute : mute a muted person
--   Unmute : Unmute a muted person
--   Nick : give someone a nick
--   Slowmode : Set slowmode
+-   ban : bans a user
+-   kick : kick someone
+-   mute : mute a muted person
+-   unmute : unmute a muted person
+-   nick : give someone a nick
+-   slowmode : Set slowmode
 -   rules : Get some cool instant rules
--   Warn : Warns a user
--   LogChannel : Sets a log channel where all modlogs will get posted
--   Clear : clears the chat
+-   warn : Warns a user
+-   logchannel : Sets a log channel where all modlogs will get posted
+-   clear : clears the chat
 -   clearwarns : Clear the warns of a user
--   Infractions : Shows the infractions a certain user has
+-   infractions : Shows the infractions a certain user has
 
 ### **utility**
 
@@ -53,7 +53,7 @@ List of awesome commands you can use in your server if you invite Malil:
 -   Poll : Hold a poll
 -   Prefix : Change the prefix
 -   Invite : Invite the bot to your server
--   Disable : Disables Commands/Categorys
+-   Disable : Disables Commands/Categories
 -   Encode : Encode some text
 -   Decode : Decode some text
 
@@ -71,7 +71,7 @@ List of awesome commands you can use in your server if you invite Malil:
 
 ## Malil
 
-Malil is a discord bot made and maintained by tricked\#3777
+Malil is a discord bot made and maintained by tricked#3777
 
-The bot is build on [neo akairo](https://github.com/Unwork-ID/Neo-Akairo) thanks for the amazing base tokisaki
+The bot is built on [neo akairo](https://github.com/Unwork-ID/Neo-Akairo) thanks for the amazing base tokisaki
 
