@@ -27,7 +27,7 @@ List of awesome commands you can use in your server if you invite Malil:
 
 ### **info**
 
--   Avatar : Allows you to get someone's Profile picuture
+-   Avatar : Allows you to get someone's Profile picture
 -   lyrics: Gets the lyrics of the requested song
 -   server : Sends some general server info
 -   stats : Shows some stats about the Bot
