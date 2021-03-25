@@ -28,11 +28,11 @@ export default class setiqCommand extends Command {
 
 	public async exec(message: Message, { args }) {
 		if (!args) return message.reply("No args");
-		args.split(" ");
+		const tt = args.split(" ");
 		if (!args[1]) return message.reply("No iq provided");
-		const user = await GetMember(message, args[0]);
+		const user = await GetMember(message, tt[0]);
 		if (!user) return message.reply("No user provided");
-		const iq = parseInt(args[1])
+		const iq = parseInt(tt[1])
 		if (!iq) return message.reply("thats not a number");
 		if (iq < 0 || iq > 150) return message.reply("thats to much");
 		this.client.UserData.set(user.user.id, iq, "iq");
