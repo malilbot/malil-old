@@ -21,7 +21,7 @@
 		"experimentalDecorators": true,
 		"baseUrl": "./",
 		"paths": {
-			"@Utils/*": ["src/Utils/*"],
+			"@lib/*": ["src/lib/*"],
 			"@root/*": ["src/*"]
 		}
 	},

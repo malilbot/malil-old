@@ -26,7 +26,8 @@
 		"tricked"
 	],
 	"author": "tricked#3777",
-	"license": "SEE LICENSE IN LICENSE",
+	"license": "UNLICENSED",
+	"private": true,
 	"bugs": {
 		"url": "https://github.com/SkyBlockDev/malil-akairo/issues"
 	},
@@ -63,7 +64,8 @@
 		"winston-daily-rotate-file": "^4.5.1"
 	},
 	"engines": {
-		"node": ">=14.15.1"
+		"node": ">=14.15.1",
+		"yarn": "^0.13.0"
 	},
 	"prettier": {
 		"tabWidth": 4,

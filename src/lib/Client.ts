@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/ban-types */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
-import { logger } from "./Utils";
 import { Settings, credentials, consts } from "../settings";
 import TaskHandler from "./taskhandler";
-import BotLists from "./BotLists";
 import { superUsers } from "./config";
+import BotLists from "./BotLists";
+import { logger } from "./Utils";
 import { Logger } from "winston";
 import { join } from "path";
 import Enmap from "enmap";
@@ -14,7 +11,8 @@ declare module "discord-akairo" {
 	interface AkairoClient {
 		settings: typeof Settings;
 		credentials: typeof credentials;
-		consts: any;
+		consts: typeof consts;
+		colors: typeof consts.colors;
 		logger: Logger;
 		tags: Enmap;
 		prefixes: Enmap;
@@ -92,21 +90,15 @@ export default class Client extends AkairoClient {
 	public config: Option;
 
 	public constructor(config: Option) {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		super({
 			ownerID: config.owners,
 			superUserID: config.superUsers,
-			intents: [
-				"GUILDS",
-				"GUILD_MESSAGES",
-				"GUILD_MEMBERS",
-				"GUILD_WEBHOOKS",
-				"GUILD_INTEGRATIONS",
-				"GUILD_MESSAGE_REACTIONS",
-				"DIRECT_MESSAGES",
-				"DIRECT_MESSAGE_TYPING",
-				"DIRECT_MESSAGE_REACTIONS",
-			],
+			intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS", "GUILD_WEBHOOKS", "GUILD_INTEGRATIONS", "GUILD_MESSAGE_REACTIONS", "DIRECT_MESSAGES", "DIRECT_MESSAGE_TYPING"],
+			messageSweepInterval: 1800, // 30 mins
+			messageEditHistoryMaxSize: 2,
+			messageCacheLifetime: 1800, // 30 mins
 			presence: {
 				// @ts-expect-error - https://github.com/discordjs/discord.js/pull/5317
 				activities: [
@@ -116,64 +108,24 @@ export default class Client extends AkairoClient {
 					},
 				],
 			},
-			//partials: ['CHANNEL', 'REACTION'],
 		});
 
 		this.settings = Settings;
 		this.consts = consts;
+		this.colors = consts.colors;
 		this.credentials = credentials;
 		this.config = config;
 		this.logger = logger;
-		this.gp = new Enmap({
-			name: "gp",
-			dataDir: join(__dirname, "..", "..", "data/gp"),
-			polling: true,
-		});
-		this.logchannel = new Enmap({
-			name: "logchannel",
-			dataDir: join(__dirname, "..", "..", "data/logchannel"),
-			polling: true,
-		});
-		this.tags = new Enmap({
-			name: "tags",
-			dataDir: join(__dirname, "..", "..", "data/tags"),
-			polling: true,
-		});
-		this.prefixes = new Enmap({
-			name: "prefixes",
-			dataDir: join(__dirname, "..", "..", "data/prefixes"),
-			polling: true,
-		});
-		this.blacklist = new Enmap({
-			name: "blacklist",
-			dataDir: join(__dirname, "..", "..", "data/blacklist"),
-			polling: true,
-		});
-		this.guilddata = new Enmap({
-			name: "guildata",
-			dataDir: join(__dirname, "..", "..", "data/guilddata"),
-			polling: true,
-		});
-		this.mutes = new Enmap({
-			name: "mutes",
-			dataDir: join(__dirname, "..", "..", "data/mutes"),
-			polling: true,
-		});
-		this.releases = new Enmap({
-			name: "releases",
-			dataDir: join(__dirname, "..", "..", "data/releases"),
-			polling: true,
-		});
-		this.infractions = new Enmap({
-			name: "infractions",
-			dataDir: join(__dirname, "..", "..", "data/infractions"),
-			polling: true,
-		});
-		this.UserData = new Enmap({
-			name: "users",
-			dataDir: join(__dirname, "..", "..", "data/userData"),
-			polling: true,
-		});
+		this.gp = new Enmap({ name: "gp", dataDir: join(__dirname, "..", "..", "data/gp"), polling: true });
+		this.logchannel = new Enmap({ name: "logchannel", dataDir: join(__dirname, "..", "..", "data/logchannel"), polling: true });
+		this.tags = new Enmap({ name: "tags", dataDir: join(__dirname, "..", "..", "data/tags"), polling: true });
+		this.prefixes = new Enmap({ name: "prefixes", dataDir: join(__dirname, "..", "..", "data/prefixes"), polling: true });
+		this.blacklist = new Enmap({ name: "blacklist", dataDir: join(__dirname, "..", "..", "data/blacklist"), polling: true });
+		this.guilddata = new Enmap({ name: "guildata", dataDir: join(__dirname, "..", "..", "data/guilddata"), polling: true });
+		this.mutes = new Enmap({ name: "mutes", dataDir: join(__dirname, "..", "..", "data/mutes"), polling: true });
+		this.releases = new Enmap({ name: "releases", dataDir: join(__dirname, "..", "..", "data/releases"), polling: true });
+		this.infractions = new Enmap({ name: "infractions", dataDir: join(__dirname, "..", "..", "data/infractions"), polling: true });
+		this.UserData = new Enmap({ name: "users", dataDir: join(__dirname, "..", "..", "data/userData"), polling: true });
 	}
 
 	public _init() {
