@@ -32,7 +32,7 @@ export default class setiqCommand extends Command {
 		if (!args[1]) return message.reply("No iq provided");
 		const user = await GetMember(message, args[0]);
 		if (!user) return message.reply("No user provided");
-		const iq = Number(args[1]);
+		const iq = args[1].parseInt()
 		if (!iq) return message.reply("thats not a number");
 		if (iq < 0 || iq > 150) return message.reply("thats to much");
 		this.client.UserData.set(user.user.id, iq, "iq");
