@@ -73,5 +73,5 @@ List of awesome commands you can use in your server if you invite Malil:
 
 Malil is a discord bot made and maintained by tricked\#3777
 
-The bot is build on [neo akairo](https://github.com/Unwork-ID/Neo-Akairo) thanks for the amazing base tokisaki
+The bot is build on [neo akairo](https://github.com/Unwork-ID/Neo-Akairo). Thanks for the amazing base, tokisaki!
 
