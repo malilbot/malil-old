@@ -1,46 +1,49 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
 //import { manager } from "../../index"
-import { exec } from "child_process"
+import { hst } from "../../lib/Utils";
+import { exec } from "child_process";
 export default class ReloadCommand extends Command {
 	public constructor() {
 		super("reload", {
-			aliases: [
-				"reload", "update", "refresh", "pull", "updat"
-			],
+			aliases: ["reload", "update", "refresh", "pull", "updat"],
 			category: "Developer",
 			quoted: true,
 			description: {
 				content: "",
 				usage: "reload",
-				example: [
-					"reload"
-				]
+				example: ["reload"],
 			},
 			ratelimit: 3,
 			channel: "guild",
-			ownerOnly: true
+			ownerOnly: true,
 		});
 	}
 
 	public async exec(message: Message) {
-		const msg = await message.reply("Reloading :robot:", { allowedMentions: { repliedUser: false } });
-		exec("git pull", async (error, stdout) => {
+		const embed = new MessageEmbed().setTitle("Update time").setColor(this.client.consts.colors.green);
+		embed.addField("\u200B", "Updating <a:updating:824662408239906897>");
+		//const msg = await message.reply("Updating <a:updating:824662408239906897>", { allowedMentions: { repliedUser: false } });
+		const msg = await message.reply({ embed, allowedMentions: { repliedUser: false } });
+		exec("git pull", async (e, stdout) => {
+			let _stdout: string;
+			if (stdout.length > 1024) {
+				_stdout = await hst(stdout);
+			} else {
+				_stdout = "```" + stdout + "```\n";
+			}
+			embed.addField("\u200B", "Running git pull <:github:824673035499733022>\n" + _stdout);
+			msg.edit({ embed, allowedMentions: { repliedUser: false } });
 
-			msg.edit("```" + stdout + "```");
+			exec("yarn rm", () => {
+				embed.addField("\u200B", "Deleting the Dist folder <:join_arrow:824668785163894845>");
+				msg.edit({ embed, allowedMentions: { repliedUser: false } });
 
-			exec("yarn rm", async (error, stdout) => {
-
-				msg.edit("```" + stdout + "```");
-
-				exec("npx tsc", async (error, stdout) => {
-					if (stdout) {
-						await msg.edit("```" + stdout + "```");
-					}
-					await msg.edit("restarting now").then(() => this.client.shard.respawnAll())
-
-				})
-			})
-		})
+				exec("npx tsc", async () => {
+					embed.addField("\u200B", "Reloading <a:updating:824662408239906897>");
+					await msg.edit({ embed, allowedMentions: { repliedUser: false } }).then(() => this.client.shard.respawnAll());
+				});
+			});
+		});
 	}
 }
