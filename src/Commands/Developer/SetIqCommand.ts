@@ -1,6 +1,5 @@
 import { Command } from "discord-akairo";
-import type { Message, ImageSize, AllowedImageFormat } from "discord.js";
-import { MessageEmbed } from "discord.js";
+import type { Message } from "discord.js";
 import { GetMember } from "../../lib/Utils";
 export default class setiqCommand extends Command {
 	public constructor() {
@@ -16,7 +15,7 @@ export default class setiqCommand extends Command {
 				},
 			],
 			description: {
-				content: "setiq's a user",
+				content: "Set the iq of a user",
 				usage: "setiq",
 				example: ["setiq"],
 			},
