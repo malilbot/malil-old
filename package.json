@@ -44,8 +44,8 @@
 	},
 	"optionalDependencies": {
 		"bufferutil": "^4.0.3",
-		"zlib-sync": "^0.1.7",
-		"utf-8-validate": "^5.0.4"
+		"utf-8-validate": "^5.0.4",
+		"zlib-sync": "^0.1.7"
 	},
 	"dependencies": {
 		"alexa-bot-api": "^0.2.1",
@@ -58,6 +58,7 @@
 		"enmap": "^5.8.4",
 		"genius-lyrics-api": "^3.0.6",
 		"moment": "^2.29.1",
+		"node-fetch": "^2.6.1",
 		"winston": "^3.3.3",
 		"winston-daily-rotate-file": "^4.5.1"
 	},

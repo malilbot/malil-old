@@ -32,6 +32,6 @@ export default class TodoCommand extends Command {
 				done += `${body[i].replace("-   [X]", "")}\n`;
 			}
 		}
-		message.channel.send(new MessageEmbed().addField("TODO:", todo).addField("COMPLETED:", done).setColor(this.client.consts.colors.default));
+		message.channel.send(new MessageEmbed().setFooter("TODO list").addField("TODO:", todo).addField("COMPLETED:", done).setColor(this.client.consts.colors.default));
 	}
 }

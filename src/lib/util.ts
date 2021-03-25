@@ -302,10 +302,10 @@ export class Util {
 		return res.join(":");
 	}
 }
-export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
+export const GetMember = async function (msg: Message, args?: string, client?): Promise<GuildMember> {
 	let user: GuildMember;
 	const _mentions = [];
-	const id = msg.guild.me.user.id;
+	const id = msg.guild.me.user.id || client.user.id;
 
 	if (!msg.content?.startsWith(`<@!${id}>`) && msg.content.includes(id)) return msg.guild.me;
 
