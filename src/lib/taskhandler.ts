@@ -12,7 +12,7 @@ export default class TaskHandler {
 		this.client = client;
 		this.directory = directory;
 	}
-	async loadall() {
+	loadall() {
 		const taskfiles = readdirSync(join(__dirname, "..", "Tasks")).filter((file) => file.endsWith(".js"));
 		for (const file of taskfiles) {
 			const task = require(join(__dirname, "..", "Tasks/" + file));

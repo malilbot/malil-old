@@ -128,7 +128,7 @@ export default class Client extends AkairoClient {
 		this.UserData = new Enmap({ name: "users", dataDir: join(__dirname, "..", "..", "data/userData"), polling: true });
 	}
 
-	public _init() {
+	public _init(): void {
 		this.commandHandler.useListenerHandler(this.listenerHandler);
 		this.commandHandler.useInhibitorHandler(this.inhibitorHandler);
 		this.listenerHandler.setEmitters({
@@ -142,8 +142,8 @@ export default class Client extends AkairoClient {
 		this.listenerHandler.loadAll();
 	}
 
-	public async goo() {
+	public async goo(): Promise<unknown> {
 		this._init();
-		return this.login(this.config.token);
+		return await this.login(this.config.token);
 	}
 }
