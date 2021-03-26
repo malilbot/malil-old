@@ -18,6 +18,7 @@
 -   [ ] more types
 -   [ ] ModOnly channels
 -   [ ] Softban
+-   [ ] temproles ( Dont make shitty ones )
 
 
 ### COMPLETED LISt
