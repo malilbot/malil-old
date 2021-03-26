@@ -10,12 +10,12 @@ export default class CoolDown extends Listener {
 		super("CoolDown", {
 			emitter: "commandHandler",
 			event: "cooldown",
-			category: "commandHandler"
+			category: "commandHandler",
 		});
 		this.client = client;
 	}
 
-	exec(message: Message) {
+	exec(message: Message): void {
 		if (!talkedRecently.has(message.author.id)) {
 			if (!Talk.has(message.author.id)) {
 				message.reply(new MessageEmbed().setTitle("You are using commands too fast please slow down").setImage("https://http.cat/429").setColor(this.client.consts.colors.red));

@@ -1,6 +1,6 @@
 import { Listener, Command } from "discord-akairo";
-import { MessageEmbed, Message } from "discord.js";
-import { main, sec, third, fourth, a1, split, Format } from "../../lib/Utils";
+import { Message } from "discord.js";
+import { a1, Format } from "../../lib/Utils";
 import Client from "../../lib/Client";
 export default class missingPermissions extends Listener {
 	client: Client;
@@ -8,7 +8,7 @@ export default class missingPermissions extends Listener {
 		super("missingPermissions", {
 			emitter: "commandHandler",
 			event: "missingPermissions",
-			category: "commandHandler"
+			category: "commandHandler",
 		});
 		this.client = client;
 	}
