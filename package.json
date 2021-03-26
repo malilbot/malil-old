@@ -54,18 +54,17 @@
 		"centra": "^2.4.2",
 		"chalk": "^4.1.0",
 		"common-tags": "^1.8.0",
-		"discord-akairo": "https://github.com/SkyBlockDev/discord-akairo",
-		"discord.js": "https://github.com/discordjs/discord.js",
+		"discord-akairo": "SkyBlockDev/discord-akairo",
+		"discord.js": "discordjs/discord.js",
 		"enmap": "^5.8.4",
 		"genius-lyrics-api": "^3.0.6",
 		"moment": "^2.29.1",
-		"node-fetch": "^2.6.1",
 		"winston": "^3.3.3",
 		"winston-daily-rotate-file": "^4.5.1"
 	},
 	"engines": {
 		"node": ">=14.15.1",
-		"yarn": "^0.13.0"
+		"yarn": "^1.22.10"
 	},
 	"prettier": {
 		"tabWidth": 4,
