@@ -9,7 +9,7 @@ export default class CommandErrorListener extends Listener {
 		super("commandError", {
 			emitter: "commandHandler",
 			event: "error",
-			category: "commands",
+			category: "commands"
 		});
 	}
 

@@ -10,7 +10,7 @@ export default class AvatarCommand extends Command {
 			description: {
 				content: "Display your discord avatar otr other user.",
 				usage: "avatar [ member ]",
-				example: ["avatar @example#1111", "avatar @example", "avatar @example size=512", "avatar @example format=png", "avatar @example size=512 format=jpg"],
+				example: ["avatar @example#1111", "avatar @example", "avatar @example size=512", "avatar @example format=png", "avatar @example size=512 format=jpg"]
 			},
 			ratelimit: 3,
 			args: [
@@ -18,7 +18,7 @@ export default class AvatarCommand extends Command {
 					id: "member",
 					type: "member",
 					match: "rest",
-					default: (msg: Message) => msg.member,
+					default: (msg: Message) => msg.member
 				},
 				{
 					id: "size",
@@ -28,7 +28,7 @@ export default class AvatarCommand extends Command {
 					},
 					match: "option",
 					flag: ["size="],
-					default: 4096,
+					default: 4096
 				},
 				{
 					id: "format",
@@ -36,11 +36,11 @@ export default class AvatarCommand extends Command {
 						if (str && String(str) && ["png", "webp", "jpg", "jpeg", "gif"].includes(String(str))) return String(str);
 					},
 					match: "option",
-					flag: "format=",
-				},
+					flag: "format="
+				}
 			],
 			clientPermissions: ["SEND_MESSAGES"],
-			channel: "guild",
+			channel: "guild"
 		});
 	}
 
@@ -53,7 +53,7 @@ export default class AvatarCommand extends Command {
 					member.user.displayAvatarURL({
 						format: format as AllowedImageFormat,
 						size: size as ImageSize,
-						dynamic: true,
+						dynamic: true
 					})
 				)
 				.setColor(this.client.consts.colors.blue)
@@ -61,7 +61,7 @@ export default class AvatarCommand extends Command {
 					member.user.displayAvatarURL({
 						format: format as AllowedImageFormat,
 						size: size as ImageSize,
-						dynamic: true,
+						dynamic: true
 					})
 				)
 		);

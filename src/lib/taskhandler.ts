@@ -3,10 +3,10 @@
 import { join } from "path";
 import { ms } from "../lib/Utils";
 import { readdirSync } from "fs";
-
+import client from "./Client";
 export default class TaskHandler {
 	directory: string;
-	client: any;
+	client: client;
 
 	constructor(client, { directory }) {
 		this.client = client;

@@ -10,17 +10,17 @@ export default class FloppaCommand extends Command {
 				{
 					id: "args",
 					type: "number",
-					match: "rest",
-				},
+					match: "rest"
+				}
 			],
 			description: {
 				content: "floppa",
 				usage: "floppa",
-				example: ["floppa"],
+				example: ["floppa"]
 			},
 			ratelimit: 3,
 			channel: "guild",
-			ownerOnly: false,
+			ownerOnly: false
 		});
 	}
 
@@ -52,7 +52,7 @@ export default class FloppaCommand extends Command {
 					young: floppa[0],
 					good: floppa[1],
 					old: floppa[2],
-					born: null,
+					born: null
 				};
 				const babys = floppaObject.good / 2;
 				floppaObject["born"] = babys;
@@ -67,9 +67,7 @@ export default class FloppaCommand extends Command {
 			.setAuthor("tricked floppa's machine")
 			.addField(
 				"stats",
-				`${floppas.young} young floppas were made\n${floppas.good} adult floppas were made\n${
-					floppas.old
-				} old floppas were made \n${floor(floppas.born)} baby floppas were born`
+				`${floppas.young} young floppas were made\n${floppas.good} adult floppas were made\n${floppas.old} old floppas were made \n${floor(floppas.born)} baby floppas were born`
 			);
 		message.reply(embed);
 	}

@@ -9,22 +9,22 @@ export default class DisableCommand extends Command {
 			description: {
 				content: "A command to disable/enable commands.",
 				usage: "disable|enable <command>",
-				examples: ["disable ban", "enable ban"],
+				examples: ["disable ban", "enable ban"]
 			},
 			args: [
 				{
 					id: "cmd",
 					type: "commandAlias",
-					match: "content",
+					match: "content"
 				},
 				{
 					id: "catagory",
 					type: "string",
-					match: "restContent",
-				},
+					match: "restContent"
+				}
 			],
 			clientPermissions: ["SEND_MESSAGES"],
-			userPermissions: ["MANAGE_GUILD"],
+			userPermissions: ["MANAGE_GUILD"]
 		});
 	}
 	public async exec(message: Message, { cmd, catagory }: { cmd: Command; catagory: string }): Promise<Message> {
@@ -33,10 +33,10 @@ export default class DisableCommand extends Command {
 		let type: string;
 		const db = this.client.gp;
 		db.ensure("disabledCommands", {
-			[message.guild.id]: [],
+			[message.guild.id]: []
 		});
 		db.ensure("disabledCategory", {
-			[message.guild.id]: [],
+			[message.guild.id]: []
 		});
 		catagory = catagory[0].toUpperCase() + catagory.substring(1);
 		if (!cmd && !catagory) return message.reply("Please mention a command");

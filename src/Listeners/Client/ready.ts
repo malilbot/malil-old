@@ -12,13 +12,12 @@ export default class Ready extends Listener {
 		super("ready", {
 			emitter: "client",
 			event: "ready",
-			category: "client",
+			category: "client"
 		});
 		this.client = client;
 	}
 	public async exec() {
-		if (this.client?.shard?.ids[0] == this.client.options.shardCount - 1 && this.client.shard.ids[0] !== 0)
-			return this.client.logger.info("[ MAXSHARDS ]");
+		if (this.client?.shard?.ids[0] == this.client.options.shardCount - 1 && this.client.shard.ids[0] !== 0) return this.client.logger.info("[ MAXSHARDS ]");
 		if (this.client?.shard?.ids[0] !== 0) return;
 		const num = floor(random() * 2 + 1);
 

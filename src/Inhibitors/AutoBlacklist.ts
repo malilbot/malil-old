@@ -9,7 +9,7 @@ export default class extends Inhibitor {
 		super("Autoblacklist", {
 			reason: "Autoblacklist",
 			priority: 5,
-			type: "post",
+			type: "post"
 		});
 	}
 

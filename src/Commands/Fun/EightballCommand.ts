@@ -12,17 +12,17 @@ export default class EightballCommand extends Command {
 			args: [
 				{
 					id: "args",
-					match: "content",
-				},
+					match: "content"
+				}
 			],
 			description: {
 				content: "Find your 8ball",
 				usage: "eightball",
-				example: ["eightball"],
+				example: ["eightball"]
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild",
+			channel: "guild"
 		});
 	}
 
@@ -31,9 +31,9 @@ export default class EightballCommand extends Command {
 			return message.reply({
 				embed: {
 					color: `#FF0000`,
-					description: `Please ask a question!`,
+					description: `Please ask a question!`
 				},
-				allowedMentions: { repliedUser: false },
+				allowedMentions: { repliedUser: false }
 			});
 
 		const replies = [
@@ -53,7 +53,7 @@ export default class EightballCommand extends Command {
 			"My sources say no",
 			"My reply is no.",
 			"Nope.",
-			"Scientifically yes.",
+			"Scientifically yes."
 		];
 
 		const result = Math.floor(Math.random() * replies.length);

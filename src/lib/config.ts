@@ -4,7 +4,7 @@ import { credentials, Settings } from "../settings";
 export const generalpurpose = new Enmap({
 	name: "gp",
 	dataDir: join(__dirname, "..", "..", "data/gp"),
-	polling: true,
+	polling: true
 });
 if (!generalpurpose.get("superUsers")) generalpurpose.ensure("superUsers", []);
 let login = credentials.token;

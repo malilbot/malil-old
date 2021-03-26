@@ -9,7 +9,7 @@ export default class First extends Listener {
 		super("first", {
 			emitter: "client",
 			event: "ready",
-			category: "client",
+			category: "client"
 		});
 		this.client = client;
 	}

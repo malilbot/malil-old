@@ -8,7 +8,7 @@ export default class missingPermissions extends Listener {
 		super("missingPermissions", {
 			emitter: "commandHandler",
 			event: "missingPermissions",
-			category: "commandHandler",
+			category: "commandHandler"
 		});
 		this.client = client;
 	}

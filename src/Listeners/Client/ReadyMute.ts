@@ -12,7 +12,7 @@ export default class MuteReady extends Listener {
 		});
 		this.client = client;
 	}
-	public async exec() {
+	public async exec(): Promise<void> {
 		//const res = this.client.mutes.fetchEverything();
 		const keys = this.client.mutes.keyArray();
 		keys.forEach((Element) => {

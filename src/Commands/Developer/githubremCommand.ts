@@ -4,9 +4,7 @@ import { MessageEmbed, Message } from "discord.js";
 export default class GithubremCommand extends Command {
 	public constructor() {
 		super("githubrem", {
-			aliases: [
-				"githubrem"
-			],
+			aliases: ["githubrem"],
 			category: "Developer",
 			quoted: true,
 			args: [
@@ -24,9 +22,7 @@ export default class GithubremCommand extends Command {
 			description: {
 				content: "githubrem's a user",
 				usage: "githubrem",
-				example: [
-					"githubrem"
-				]
+				example: ["githubrem"]
 			},
 			ratelimit: 3,
 			channel: "guild",
@@ -44,9 +40,7 @@ export default class GithubremCommand extends Command {
 		}
 		const z = this.client.releases.get("all").toString().replace(/,/g, "\n");
 		const x = repos.toString().replace(/,/g, "\n");
-		const embed = new MessageEmbed()
-			.addField("old", `\`\`\`bash\n${z}\`\`\``)
-			.addField("new", `\`\`\`bash\n${x}\`\`\``);
+		const embed = new MessageEmbed().addField("old", `\`\`\`bash\n${z}\`\`\``).addField("new", `\`\`\`bash\n${x}\`\`\``);
 		message.util.reply({ embed: embed, allowedMentions: { repliedUser: false } });
 		this.client.releases.set("all", repos);
 	}

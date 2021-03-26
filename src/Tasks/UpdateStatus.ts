@@ -8,5 +8,5 @@ module.exports = {
 		const strin = `Prefix ${client.settings.prefix} or mention me`;
 		//const strin = `MAINTENCE MODE DATA WONT BE SAVED`;
 		client.user.setActivity(strin, { type: "PLAYING" });
-	},
+	}
 };

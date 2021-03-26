@@ -12,17 +12,17 @@ export default class PpCommand extends Command {
 					id: "member",
 					type: "member",
 					match: "rest",
-					default: (msg: Message) => msg.member,
-				},
+					default: (msg: Message) => msg.member
+				}
 			],
 			description: {
 				content: "pp command",
 				usage: "pp",
-				example: ["pp @someone"],
+				example: ["pp @someone"]
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild",
+			channel: "guild"
 		});
 	}
 
@@ -31,7 +31,7 @@ export default class PpCommand extends Command {
 		let pp;
 		const id = member.id;
 		this.client.UserData.ensure(member.id, {
-			pp: "",
+			pp: ""
 		});
 
 		if (this.client.UserData.get(id, "pp")) {

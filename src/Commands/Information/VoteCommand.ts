@@ -12,11 +12,11 @@ export default class VoteCommand extends Command {
 			description: {
 				content: "",
 				usage: "vote",
-				example: ["vote"],
+				example: ["vote"]
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild",
+			channel: "guild"
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

@@ -1,33 +1,33 @@
-import { Command } from 'discord-akairo';
-import { MessageEmbed, Message } from 'discord.js';
+import { Command } from "discord-akairo";
+import { MessageEmbed, Message } from "discord.js";
 
 export default class RulesCommand extends Command {
 	public constructor() {
-		super('rules', {
-			aliases: ['rules'],
-			category: 'Moderation',
+		super("rules", {
+			aliases: ["rules"],
+			category: "Moderation",
 			quoted: true,
 			args: [
 				{
-					id: 'args',
-					type: 'array',
-					match: 'rest',
-				},
+					id: "args",
+					type: "array",
+					match: "rest"
+				}
 			],
 			description: {
-				content: 'A easy way to get some rules in your server',
-				usage: 'rules < number >',
-				example: ['Rules 1', 'rules 2', 'rules 3'],
+				content: "A easy way to get some rules in your server",
+				usage: "rules < number >",
+				example: ["Rules 1", "rules 2", "rules 3"]
 			},
 			ratelimit: 3,
-			channel: 'guild',
-			clientPermissions: ['SEND_MESSAGES'],
-			userPermissions: ['ADMINISTRATOR'],
+			channel: "guild",
+			clientPermissions: ["SEND_MESSAGES"],
+			userPermissions: ["ADMINISTRATOR"]
 		});
 	}
 
 	public async exec(message: Message, { args }) {
-		if (args == '1') {
+		if (args == "1") {
 			const embed = new MessageEmbed()
 				.setDescription(
 					`
@@ -62,7 +62,7 @@ If there are loopholes in our rules, the staff team may moderate based on what t
 				.setColor(this.client.consts.colors.red)
 				.setTimestamp();
 			message.util.send(embed);
-		} else if (args == '2') {
+		} else if (args == "2") {
 			const embed = new MessageEmbed()
 				.setDescription(
 					`**Rules of the server**\n
@@ -75,7 +75,7 @@ No bot spamming`
 				.setTimestamp()
 				.setColor(this.client.consts.colors.red);
 			message.channel.send(embed);
-		} else if (args == '3') {
+		} else if (args == "3") {
 			const embed = new MessageEmbed()
 				.setDescription(
 					`**Guidelines**
@@ -103,8 +103,8 @@ And lastly, abide by all rules set out in the Discord ToS and Discord Guidelines
 				.setTimestamp();
 			message.channel.send(embed);
 		} else
-			message.util.reply('choose from 1 to 3', {
-				allowedMentions: { repliedUser: false },
+			message.util.reply("choose from 1 to 3", {
+				allowedMentions: { repliedUser: false }
 			});
 	}
 }

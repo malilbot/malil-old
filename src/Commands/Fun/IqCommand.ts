@@ -12,16 +12,16 @@ export default class IqCommand extends Command {
 				{
 					id: "member",
 					type: "member",
-					match: "rest",
-				},
+					match: "rest"
+				}
 			],
 			description: {
 				content: "Find your iq",
 				usage: "iq",
-				example: ["iq"],
+				example: ["iq"]
 			},
 			clientPermissions: ["SEND_MESSAGES"],
-			ratelimit: 3,
+			ratelimit: 3
 		});
 	}
 
@@ -29,7 +29,7 @@ export default class IqCommand extends Command {
 		const member: GuildMember = (await GetMember(message)) || message.member;
 		let iq: number;
 		this.client.UserData.ensure(member.id, {
-			iq: 0,
+			iq: 0
 		});
 		if (this.client.UserData.get(member.id, "iq")) {
 			iq = this.client.UserData.get(member.id, "iq");

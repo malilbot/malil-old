@@ -11,17 +11,17 @@ export default class setiqCommand extends Command {
 				{
 					id: "args",
 					type: "content",
-					match: "rest",
-				},
+					match: "rest"
+				}
 			],
 			description: {
 				content: "Set the iq of a user",
 				usage: "setiq",
-				example: ["setiq"],
+				example: ["setiq"]
 			},
 			ratelimit: 3,
 			channel: "guild",
-			superUserOnly: true,
+			superUserOnly: true
 		});
 	}
 

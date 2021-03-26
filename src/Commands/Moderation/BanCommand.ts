@@ -11,7 +11,7 @@ export default class BanCommand extends Command {
 			description: {
 				content: "To ban members on this guild",
 				usage: "ban < member >",
-				example: ["ban @member", "ban @member 7"],
+				example: ["ban @member", "ban @member 7"]
 			},
 			channel: "guild",
 			ratelimit: 3,
@@ -24,14 +24,14 @@ export default class BanCommand extends Command {
 						if (str && !isNaN(Number(str)) && [0, 1, 2, 3, 4, 5, 7].includes(Number(str))) return Number(str);
 						return null;
 					},
-					default: 0,
+					default: 0
 				},
 				{
 					id: "reason",
 					type: "strin",
-					default: "e No reason provided...",
-				},
-			],
+					default: "e No reason provided..."
+				}
+			]
 		});
 	}
 

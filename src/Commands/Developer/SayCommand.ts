@@ -5,18 +5,12 @@ import { fixword } from "../../lib/Utils";
 export default class SayCommand extends Command {
 	public constructor() {
 		super("say", {
-			aliases: [
-				"say",
-
-				"tell"
-			],
+			aliases: ["say", "tell"],
 			category: "Developer",
 			description: {
 				content: "force the bot to say stuff",
 				usage: "say",
-				example: [
-					"say pog"
-				]
+				example: ["say pog"]
 			},
 			ratelimit: 3,
 			args: [
@@ -34,9 +28,11 @@ export default class SayCommand extends Command {
 
 	public async exec(message: Message, { code }) {
 		try {
-			message.delete().catch(e => { })
-		} catch (e) { return }
+			message.delete().catch((e) => {});
+		} catch (e) {
+			return;
+		}
 
-		message.channel.send(await fixword(code.replace(/@/, "@​")) || "Sorry i just prevented weird stuff");
+		message.channel.send((await fixword(code.replace(/@/, "@​"))) || "Sorry i just prevented weird stuff");
 	}
 }

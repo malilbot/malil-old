@@ -11,17 +11,17 @@ export default class SuperUserCommand extends Command {
 				{
 					id: "args",
 					type: "content",
-					match: "rest",
-				},
+					match: "rest"
+				}
 			],
 			description: {
 				content: "Superuser's a user",
 				usage: "su",
-				example: ["su"],
+				example: ["su"]
 			},
 			ratelimit: 3,
 			channel: "guild",
-			ownerOnly: true,
+			ownerOnly: true
 		});
 	}
 

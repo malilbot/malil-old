@@ -13,7 +13,7 @@ export default class message extends Listener {
 		super("message", {
 			emitter: "client",
 			event: "message",
-			category: "client",
+			category: "client"
 		});
 		this.client = client;
 	}

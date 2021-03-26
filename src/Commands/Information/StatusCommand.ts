@@ -13,11 +13,11 @@ export default class StatsCommand extends Command {
 			description: {
 				content: "The Statistic of bot",
 				usage: "stats",
-				example: ["stats"],
+				example: ["stats"]
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 1,
-			channel: "guild",
+			channel: "guild"
 		});
 	}
 
@@ -46,7 +46,7 @@ export default class StatsCommand extends Command {
 					`**● Node.js:** ${process.version}`,
 					`**● Akairo:** ${akairov}`,
 					`**● Discord.js:** ${djsversion}`,
-					"\u200b",
+					"\u200b"
 				])
 				.addField("System", [
 					`**● Platform** Ubuntu Server (pi)`,
@@ -59,7 +59,7 @@ export default class StatsCommand extends Command {
 					`\u3000 Total: ${ut.formatBytes(process.memoryUsage().heapTotal)}`,
 					`\u3000 Used: ${ut.formatBytes(process.memoryUsage().heapUsed)}`,
 					"\u200b",
-					`[credits](https://github.com/SkyBlockDev/malil-akairo/blob/main/credits.markdown)`,
+					`[credits](https://github.com/SkyBlockDev/malil-akairo/blob/main/credits.markdown)`
 				])
 		);
 	}

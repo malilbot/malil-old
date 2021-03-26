@@ -11,19 +11,19 @@ export default class AsciifyCommand extends Command {
 					id: "big",
 					type: "boolean",
 					flag: "--big",
-					match: "flag",
-				},
+					match: "flag"
+				}
 			],
 			category: "General",
 			quoted: true,
 			description: {
 				content: "Turn a image into a ascii",
 				usage: "asciify",
-				example: ["asciify then a attachment"],
+				example: ["asciify then a attachment"]
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 1,
-			channel: "guild",
+			channel: "guild"
 		});
 	}
 
@@ -32,13 +32,13 @@ export default class AsciifyCommand extends Command {
 			fit: "box",
 			width: 64,
 			height: 64,
-			color: false,
+			color: false
 		};
 		const bigoptions = {
 			fit: "box",
 			width: 128,
 			height: 128,
-			color: false,
+			color: false
 		};
 		let url;
 		let text = true;
@@ -52,7 +52,7 @@ export default class AsciifyCommand extends Command {
 			url = member.user.displayAvatarURL({
 				size: 512,
 				format: "png",
-				dynamic: true,
+				dynamic: true
 			});
 		}
 		if (!url) return message.reply("please add a image attachment");
@@ -62,8 +62,7 @@ export default class AsciifyCommand extends Command {
 			if (err) return message.reply("Unsupported file type");
 			let sentence: string;
 			if (text == true) sentence = "Success! " + (await hst(asciified)) + ".txt";
-			else if (text == false)
-				sentence = "Success! " + (await hst(asciified)) + ".txt \nProtip: You can add a image and it will asiifyy that";
+			else if (text == false) sentence = "Success! " + (await hst(asciified)) + ".txt \nProtip: You can add a image and it will asiifyy that";
 			else sentence = "Idk what happend but no image arrived";
 			message.reply(sentence, { allowedMentions: { repliedUser: false } });
 		});

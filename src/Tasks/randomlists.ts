@@ -4,5 +4,5 @@ module.exports = {
 	async execute(client) {
 		if (client.user.id !== "749020331187896410") return;
 		client.botLists.post();
-	},
+	}
 };

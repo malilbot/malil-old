@@ -8,7 +8,7 @@ export default class Raw extends Listener {
 		super("mute", {
 			emitter: "client",
 			event: "mute",
-			category: "client",
+			category: "client"
 		});
 		this.client = client;
 	}

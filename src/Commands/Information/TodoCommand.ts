@@ -12,11 +12,11 @@ export default class TodoCommand extends Command {
 			description: {
 				content: "",
 				usage: "todo",
-				example: ["todo"],
+				example: ["todo"]
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild",
+			channel: "guild"
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

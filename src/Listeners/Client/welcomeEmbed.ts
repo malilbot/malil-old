@@ -8,7 +8,7 @@ export default class WelcomeEmbed extends Listener {
 		super("welcomeEmbed", {
 			emitter: "client",
 			event: "guildMemberAdd",
-			category: "client",
+			category: "client"
 		});
 		this.client = client;
 	}
@@ -29,7 +29,7 @@ export default class WelcomeEmbed extends Listener {
 					"https://i.imgur.com/MqGBqZs.gif",
 					"https://media.giphy.com/media/4Zo41lhzKt6iZ8xff9/giphy.gif",
 					"https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif",
-					"https://media.giphy.com/media/Cmr1OMJ2FN0B2/giphy.gif",
+					"https://media.giphy.com/media/Cmr1OMJ2FN0B2/giphy.gif"
 				];
 				gifs = shuffle(gifs);
 				const welcomeEmbed = new MessageEmbed()
@@ -43,8 +43,8 @@ export default class WelcomeEmbed extends Listener {
 					webhook.edit({
 						avatar: member.user.displayAvatarURL({
 							size: 2048,
-							format: "png",
-						}),
+							format: "png"
+						})
 					})
 				);
 				this.client.logger.info(a1(`[ USER ] ${main(member.user.tag)} [ GUILD ] ${sec(member.guild.name)} [ USER JOINED ]`));

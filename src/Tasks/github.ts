@@ -86,7 +86,7 @@ module.exports = {
 				}
 			}
 		}
-	},
+	}
 };
 function cutString(s, n) {
 	const cut = s.indexOf(" ", n);

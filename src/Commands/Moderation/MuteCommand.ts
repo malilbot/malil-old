@@ -11,7 +11,7 @@ export default class MuteCommand extends Command {
 			description: {
 				content: "Used to mute members",
 				usage: "mute < member > ",
-				example: ["mute @member", "mute @member 1d", "mute 2d @member"],
+				example: ["mute @member", "mute @member 1d", "mute 2d @member"]
 			},
 			ratelimit: 3,
 
@@ -22,9 +22,9 @@ export default class MuteCommand extends Command {
 				{
 					id: "Args",
 					match: "rest",
-					type: "string",
-				},
-			],
+					type: "string"
+				}
+			]
 		});
 	}
 
@@ -43,7 +43,7 @@ export default class MuteCommand extends Command {
 		}
 		this.client.mutes.ensure(message.guild.id, {
 			role: null,
-			mutes: {},
+			mutes: {}
 		});
 		const role = this.client.mutes.get(message.guild.id, "role");
 		if (args[0] == "set" || args[0] == "role") {

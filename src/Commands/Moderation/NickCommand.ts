@@ -11,18 +11,18 @@ export default class NickCommand extends Command {
 			args: [
 				{
 					id: "name",
-					type: "string",
-				},
+					type: "string"
+				}
 			],
 			description: {
 				content: "Change a nickname",
 				usage: "nick",
-				example: ["nick"],
+				example: ["nick"]
 			},
 			clientPermissions: ["MANAGE_NICKNAMES", "SEND_MESSAGES"],
 			userPermissions: ["MANAGE_NICKNAMES"],
 			ratelimit: 3,
-			channel: "guild",
+			channel: "guild"
 		});
 	}
 

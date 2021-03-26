@@ -12,17 +12,17 @@ export default class MockCommand extends Command {
 					id: "args",
 					type: "array",
 					match: "rest",
-					default: "Me When No Arguments",
-				},
+					default: "Me When No Arguments"
+				}
 			],
 			description: {
 				content: "Find your 8ball",
 				usage: "mock",
-				example: ["mock"],
+				example: ["mock"]
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild",
+			channel: "guild"
 		});
 	}
 

@@ -12,18 +12,18 @@ export default class FedoraCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest",
-				},
+					match: "rest"
+				}
 			],
 			description: {
 				content: "Fedora something or yourself doesnt work on attachment links only real attachments sorry",
 				usage: "fedora",
-				example: ["fedora"],
+				example: ["fedora"]
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
 			channel: "guild",
-			typing: true,
+			typing: true
 		});
 	}
 
@@ -36,13 +36,13 @@ export default class FedoraCommand extends Command {
 		const url = member.user.displayAvatarURL({
 			size: 512,
 			format: "png",
-			dynamic: true,
+			dynamic: true
 		});
 
 		const res = await centra(`https://api.dagpi.xyz/image/fedora/?url=${url}`, "get").header("Authorization", this.client.credentials.dagpi).send();
 		const meme = res.body;
 		await message.channel.send("", {
-			files: [{ attachment: meme, name: `fedoraed.png` }],
+			files: [{ attachment: meme, name: `fedoraed.png` }]
 		});
 		msg.delete();
 	}

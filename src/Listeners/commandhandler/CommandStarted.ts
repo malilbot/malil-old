@@ -8,7 +8,7 @@ export default class CommandStarted extends Listener {
 		super("commandStarted", {
 			emitter: "commandHandler",
 			event: "commandStarted",
-			category: "commandHandler",
+			category: "commandHandler"
 		});
 		this.client = client;
 	}

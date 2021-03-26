@@ -4,10 +4,7 @@ import { MessageEmbed, Message } from "discord.js";
 export default class UnBlacklistCommand extends Command {
 	public constructor() {
 		super("unblacklist", {
-			aliases: [
-				"unblacklist",
-				"-blacklist"
-			],
+			aliases: ["unblacklist", "-blacklist"],
 			category: "Developer",
 			quoted: true,
 			args: [
@@ -25,11 +22,9 @@ export default class UnBlacklistCommand extends Command {
 			description: {
 				content: "unblacklist's a user",
 				usage: "unblacklist",
-				example: [
-					"unblacklist"
-				]
+				example: ["unblacklist"]
 			},
-			clientPermissions: ['SEND_MESSAGES'],
+			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
 			channel: "guild",
 			ownerOnly: true
@@ -45,7 +40,7 @@ export default class UnBlacklistCommand extends Command {
 				list.splice(i, 1);
 			}
 		}
-		message.reply("list " + list)
+		message.reply("list " + list);
 		// // console.log(this.client.blacklist.set('blacklisted', newlist, 'list'))
 		// console.log(list);
 		// console.log(this.client.blacklist.get("blacklisted", "list"));

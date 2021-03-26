@@ -4,19 +4,15 @@ import { Message } from "discord.js";
 export default class SecretCommand extends Command {
 	public constructor() {
 		super("secret", {
-			aliases: [
-				"secret"
-			],
+			aliases: ["secret"],
 			category: "Developer",
 			description: {
 				content: "why Would you care",
 				usage: "E",
-				example: [
-					"R"
-				]
+				example: ["R"]
 			},
 			ratelimit: 3,
-			clientPermissions: ['SEND_MESSAGES'],
+			clientPermissions: ["SEND_MESSAGES"],
 			ownerOnly: false,
 			channel: "guild"
 		});

@@ -12,18 +12,18 @@ export default class LogChannelCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest",
-				},
+					match: "rest"
+				}
 			],
 			description: {
 				content: "A way to log all actions in the Moderation catagory requires manage server permissions to use",
 				usage: "logchannel",
-				example: ["logchannel", "logchannel #channel", "logchannel <channel id>", "logchannel get"],
+				example: ["logchannel", "logchannel #channel", "logchannel <channel id>", "logchannel get"]
 			},
 			ratelimit: 3,
 			clientPermissions: ["SEND_MESSAGES"],
 			userPermissions: ["MANAGE_CHANNELS"],
-			channel: "guild",
+			channel: "guild"
 		});
 	}
 

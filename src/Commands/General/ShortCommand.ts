@@ -11,18 +11,18 @@ export default class shortenCommand extends Command {
 				{
 					id: "args",
 					type: "string",
-					match: "rest",
-				},
+					match: "rest"
+				}
 			],
 			description: {
 				content: "Show short and latency bot",
 				usage: "short",
-				example: ["short"],
+				example: ["short"]
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ownerOnly: false,
 			typing: true,
-			ratelimit: 1,
+			ratelimit: 1
 		});
 	}
 

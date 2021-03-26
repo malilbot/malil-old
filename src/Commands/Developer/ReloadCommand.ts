@@ -12,11 +12,11 @@ export default class ReloadCommand extends Command {
 			description: {
 				content: "",
 				usage: "reload",
-				example: ["reload"],
+				example: ["reload"]
 			},
 			ratelimit: 3,
 			channel: "guild",
-			ownerOnly: true,
+			ownerOnly: true
 		});
 	}
 

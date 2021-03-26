@@ -13,18 +13,18 @@ export default class LoadCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest",
-				},
+					match: "rest"
+				}
 			],
 			description: {
 				content: "",
 				usage: "no",
-				example: ["haha"],
+				example: ["haha"]
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
 			ownerOnly: true,
-			channel: "guild",
+			channel: "guild"
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

@@ -10,12 +10,12 @@ export default class LockCommand extends Command {
 				{
 					id: "selectedChannel",
 					type: "content",
-					match: "rest",
-				},
+					match: "rest"
+				}
 			],
 			channel: "guild",
 			clientPermissions: ["MANAGE_CHANNELS"],
-			userPermissions: ["MANAGE_CHANNELS"],
+			userPermissions: ["MANAGE_CHANNELS"]
 		});
 	}
 

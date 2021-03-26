@@ -12,18 +12,18 @@ export default class GithubCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest",
-				},
+					match: "rest"
+				}
 			],
 			description: {
 				content: "Watches github releases from a github repo",
 				usage: "github",
-				example: ["github add < github repo >", "github set < channel id >", "github delete", "github list"],
+				example: ["github add < github repo >", "github set < channel id >", "github delete", "github list"]
 			},
 			ratelimit: 1,
 			channel: "guild",
 			clientPermissions: ["SEND_MESSAGES"],
-			userPermissions: ["MANAGE_MESSAGES"],
+			userPermissions: ["MANAGE_MESSAGES"]
 		});
 	}
 
@@ -38,9 +38,7 @@ export default class GithubCommand extends Command {
 			let o = "";
 			await this.client.channels
 				.fetch(channel)
-				.then((channel) =>
-					message.util.send("Succesfully set the channel to: " + channel + "\n make sure that i have permission to that channel")
-				)
+				.then((channel) => message.util.send("Succesfully set the channel to: " + channel + "\n make sure that i have permission to that channel"))
 				.catch((e) => (o = e));
 			if (o) return message.util.send("channel not found");
 			this.client.releases.set(message.guild.id, _args[1], "channel");
@@ -49,25 +47,17 @@ export default class GithubCommand extends Command {
 			this.client.releases.set(message.guild.id, {}, "repos");
 			return message.reply("oke deleted the github list");
 		} else if (_args[0] == "add") {
-			if (!this.client.releases.get(message.guild.id, "channel"))
-				return message.util.send("no channel set please set one with: `github set <#channel> `");
-			if (this.client.releases.get(message.guild.id, "repos").length > 5)
-				return message.reply("Sorry you can only have a maximum of 5 repos");
+			if (!this.client.releases.get(message.guild.id, "channel")) return message.util.send("no channel set please set one with: `github set <#channel> `");
+			if (this.client.releases.get(message.guild.id, "repos").length > 5) return message.reply("Sorry you can only have a maximum of 5 repos");
 			args = args.split("/");
 			const name = args[3] + "/" + args[4];
 			if (!args[4]) return message.util.send("Please try the command again but this time send a repo link");
 			const data = await (
-				await centra(`https://api.github.com/repos/${name}/releases`, "GET")
-					.header("User-Agent", "Malil")
-					.header("Authorization", `token ${this.client.credentials.gist}`)
-					.send()
+				await centra(`https://api.github.com/repos/${name}/releases`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.gist}`).send()
 			).json();
 			if (data.message == "Not Found") return message.util.send("Please try the command again but this time send a repo link");
 			const urls = await (
-				await centra(`https://api.github.com/repos/${name}`, "GET")
-					.header("User-Agent", "Malil")
-					.header("Authorization", `token ${this.client.credentials.gist}`)
-					.send()
+				await centra(`https://api.github.com/repos/${name}`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.gist}`).send()
 			).json();
 			this.client.logger.info(urls);
 			if (urls.message == "Not Found") return message.util.send("Please try the command again but this time send a repo link");

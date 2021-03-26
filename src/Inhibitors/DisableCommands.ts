@@ -7,7 +7,7 @@ export default class extends Inhibitor {
 		super("disabledCommands", {
 			reason: "disabled",
 			priority: 1,
-			type: "post",
+			type: "post"
 		});
 	}
 	// prettier-ignore

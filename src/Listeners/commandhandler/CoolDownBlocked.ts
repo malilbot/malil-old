@@ -10,7 +10,7 @@ export default class CoolDown extends Listener {
 		super("CoolDown", {
 			emitter: "commandHandler",
 			event: "cooldown",
-			category: "commandHandler",
+			category: "commandHandler"
 		});
 		this.client = client;
 	}
@@ -18,12 +18,7 @@ export default class CoolDown extends Listener {
 	exec(message: Message) {
 		if (!talkedRecently.has(message.author.id)) {
 			if (!Talk.has(message.author.id)) {
-				message.reply(
-					new MessageEmbed()
-						.setTitle("You are using commands too fast please slow down")
-						.setImage("https://http.cat/429")
-						.setColor(this.client.consts.colors.red)
-				);
+				message.reply(new MessageEmbed().setTitle("You are using commands too fast please slow down").setImage("https://http.cat/429").setColor(this.client.consts.colors.red));
 				talkedRecently.add(message.author.id);
 				setTimeout(() => {
 					talkedRecently.delete(message.author.id);

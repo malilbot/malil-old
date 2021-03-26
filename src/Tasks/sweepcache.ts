@@ -11,5 +11,5 @@ module.exports = {
 			guild.presences.cache.sweep(() => true);
 		});
 		client.users.cache.sweep((user: User) => user.id != client.user?.id);
-	},
+	}
 };

@@ -10,18 +10,18 @@ export default class UnmuteCommand extends Command {
 			description: {
 				content: "",
 				usage: "unmute",
-				example: ["unmute"],
+				example: ["unmute"]
 			},
 			args: [
 				{
 					id: "args",
-					type: "string",
-				},
+					type: "string"
+				}
 			],
 			ratelimit: 3,
 			clientPermissions: ["SEND_MESSAGES"],
 			userPermissions: ["MANAGE_MESSAGES"],
-			channel: "guild",
+			channel: "guild"
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -35,13 +35,7 @@ export default class UnmuteCommand extends Command {
 		const MRole = this.client.mutes.get(message.guild.id, `role`);
 		const role: Role = message.guild.roles.cache.get(MRole) || (await message.guild.roles.fetch(MRole));
 
-		this.client.logger.info(
-			main(
-				`[ STAFFUNMUTE ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(message.guild.name)} ${third(
-					message.guild.id
-				)}`
-			)
-		);
+		this.client.logger.info(main(`[ STAFFUNMUTE ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(message.guild.name)} ${third(message.guild.id)}`));
 
 		member.roles.remove(role, "mute duration expired");
 		Infract(message, reason, member, "STAFFUNMUTE", this.client);

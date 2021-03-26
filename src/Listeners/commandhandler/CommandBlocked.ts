@@ -9,7 +9,7 @@ export default class commandBlocked extends Listener {
 		super("commandBlocked", {
 			emitter: "commandHandler",
 			event: "commandBlocked",
-			category: "commandHandler",
+			category: "commandHandler"
 		});
 		this.client = client;
 	}

@@ -14,7 +14,7 @@ const { token } = credentials;
 /** SHARDING MANAGER */
 const manager = new ShardingManager("./dist/lib/bot.js", {
 	token: token,
-	totalShards: "auto",
+	totalShards: "auto"
 });
 
 /**Created some directories */

@@ -11,17 +11,17 @@ export default class BlacklistCommand extends Command {
 				{
 					id: "args",
 					type: "string",
-					match: "text",
-				},
+					match: "text"
+				}
 			],
 			description: {
 				content: "blacklist's a user",
 				usage: "blacklist",
-				example: ["blacklist"],
+				example: ["blacklist"]
 			},
 			ratelimit: 3,
 			channel: "guild",
-			ownerOnly: true,
+			ownerOnly: true
 		});
 	}
 

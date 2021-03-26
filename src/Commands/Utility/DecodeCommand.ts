@@ -4,9 +4,7 @@ import { MessageEmbed, Message } from "discord.js";
 export default class DecodeCommand extends Command {
 	public constructor() {
 		super("decode", {
-			aliases: [
-				"decode"
-			],
+			aliases: ["decode"],
 			category: "Utility",
 			quoted: true,
 			args: [
@@ -20,11 +18,9 @@ export default class DecodeCommand extends Command {
 			description: {
 				content: "",
 				usage: "decode",
-				example: [
-					"decode"
-				]
+				example: ["decode"]
 			},
-			clientPermissions: ['SEND_MESSAGES'],
+			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
 			channel: "guild"
 		});

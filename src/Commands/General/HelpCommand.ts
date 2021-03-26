@@ -9,18 +9,18 @@ export default class HelpCommand extends Command {
 			description: {
 				content: "Show available commands on the bot",
 				usage: "help [ command ]",
-				example: ["help ping", "h ping"],
+				example: ["help ping", "h ping"]
 			},
 			ratelimit: 3,
 			args: [
 				{
 					id: "command",
 					type: "commandAlias",
-					default: null,
-				},
+					default: null
+				}
 			],
 			clientPermissions: ["SEND_MESSAGES"],
-			channel: "guild",
+			channel: "guild"
 		});
 	}
 
@@ -66,7 +66,7 @@ export default class HelpCommand extends Command {
 		}
 		return message.util.reply({
 			embed: embed,
-			allowedMentions: { repliedUser: false },
+			allowedMentions: { repliedUser: false }
 		});
 	}
 }

@@ -36,5 +36,5 @@ module.exports = {
 			log(main(`[ MEMBERS  ] ${sec(clientMembers)}`));
 			log(main(`[ GUILDS   ] ${sec(clientGuilds)}`));
 		}
-	},
+	}
 };
