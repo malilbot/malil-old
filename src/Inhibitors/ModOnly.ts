@@ -10,20 +10,20 @@ export default class extends Inhibitor {
 			type: "post",
 		});
 	}
-	public async exec(message: Message): Promise<any> {
+	public async exec(message: Message): Promise<boolean> {
 		//if (superUsers.includes(message.author.id)) return false;
 		//if (message.member.permissions.has("MANAGE_MESSAGES")) return false;
-		/*
 		this.client.guilddata.ensure(message.guild.id, [], "modonly");
+
 		const channels = this.client.guilddata.get(message.guild.id, "modonly");
+
+		console.log(this.client.guilddata.get(message.guild.id, "modonly"));
 		if (!channels[0]) return false;
-		if (typeof channels == "object") {
-			if (channels.include(message.channel.id)) {
-				const { GStr, UStr } = Format(message, null, null, null);
-				this.client.logger.info(a1(`[ USER ] ${UStr} [ GUILD ] ${GStr} [ MODONLY ]`));
-				return true;
-			}
+
+		if (channels.includes(message.channel.id)) {
+			const { GStr, UStr } = Format(message, null, null, null);
+			this.client.logger.info(a1(`[ USER ] ${UStr} [ GUILD ] ${GStr} [ MODONLY ]`));
+			return true;
 		}
-		*/
 	}
 }
