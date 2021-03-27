@@ -14,7 +14,6 @@ List of awesome commands you can use in your server if you invite Malil:
 -   UWU : uwuify's some text
 -   mock : mOcK WhEn lIfE LeTs yOu dOwN
 -   clap : 👏clap👏
--   pp : shows your pp size
 
 ### **general**
 
