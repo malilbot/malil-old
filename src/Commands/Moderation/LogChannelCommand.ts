@@ -16,7 +16,7 @@ export default class LogChannelCommand extends Command {
 				},
 			],
 			description: {
-				content: "A way to log all actions in the Moderation catagory requires manage server permissions to use",
+				content: "A way to log all actions in the Moderation category requires manage server permissions to use",
 				usage: "logchannel",
 				example: ["logchannel", "logchannel #channel", "logchannel <channel id>", "logchannel get"],
 			},
