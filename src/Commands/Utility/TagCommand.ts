@@ -25,7 +25,7 @@ export default class TagCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }: { args: string }): Promise<Message> {
 		if (!args) return message.util.send("Try again but this time actually mention a tag");
 		await this.client.tags.ensure(message.guild.id, {});
 		if (!this.client.tags.get(message.guild.id, args)) return message.util.send("Sorry couldnt find that tag");

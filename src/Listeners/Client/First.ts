@@ -9,12 +9,12 @@ export default class First extends Listener {
 		super("first", {
 			emitter: "client",
 			event: "ready",
-			category: "client"
+			category: "client",
 		});
 		this.client = client;
 	}
 
-	async exec(message: Message) {
+	async exec(): Promise<void> {
 		if (
 			!this.client.blacklist.get("blacklist") ||
 			!this.client.blacklist.get("blacklisted") ||
