@@ -37,7 +37,7 @@ export default class PpCommand extends Command {
 		if (this.client.UserData.get(id, "pp")) {
 			pp = this.client.UserData.get(id, "pp");
 		} else {
-			const phrases = ["ur a women", "8D Smoll", "8=D", "8==D", "8===D", "8====D", "8=====D Average Sizer", "8======D", "8=======D", "8========D", "8=========D", "8==========D BBC Right Here"];
+			const phrases = ["ur a women", "8D Smoll", "8=D", "8==D", "8===D", "8====D", "8=====D Average Sizer", "8======D", "8=======D", "8========D", "8=========D", "8==========D BIG"];
 			pp = phrases[Math.floor(Math.random() * phrases.length)];
 			this.client.UserData.set(id, pp, "pp");
 		}
