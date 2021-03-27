@@ -12,23 +12,23 @@ export default class SlowmodeCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "",
 				usage: "slowmode",
-				example: ["slowmode"]
+				example: ["slowmode"],
 			},
 			clientPermissions: ["MANAGE_CHANNELS", "SEND_MESSAGES"],
 			userPermissions: ["MANAGE_CHANNELS"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
 	public async exec(message, { args }) {
-		return message.reply("Sorry this command is currently disabled due to djs issues");
+		return message.util.send("Sorry this command is currently disabled due to djs issues");
 		const Embed = new MessageEmbed().setColor(this.client.consts.colors.purple).setTimestamp();
 
 		if (args == "none" || args == "off") {
@@ -42,16 +42,16 @@ export default class SlowmodeCommand extends Command {
 			} else {
 				time = ms(args);
 			}
-			if (!time) return message.reply("Invalid syntax please use slowmode 1m || slowmode off");
-			message.channel.setRateLimitPerUser(time / 1000).catch(() => message.reply("Sorry something went wrong"));
+			if (!time) return message.util.send("Invalid syntax please use slowmode 1m || slowmode off");
+			message.channel.setRateLimitPerUser(time / 1000).catch(() => message.util.send("Sorry something went wrong"));
 			const longtime = ms(ms(args), { long: true });
 
 			Embed.setAuthor(`slowmode has been set to ${longtime} per message`);
 		}
 
-		return message.reply({
+		return message.util.send({
 			embed: Embed,
-			allowedMentions: { repliedUser: false }
+			allowedMentions: { repliedUser: false },
 		});
 	}
 }

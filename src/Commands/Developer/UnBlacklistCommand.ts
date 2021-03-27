@@ -11,23 +11,23 @@ export default class UnBlacklistCommand extends Command {
 				{
 					id: "user",
 					type: "member",
-					match: "rest"
+					match: "rest",
 				},
 				{
 					id: "args",
 					type: "string",
-					match: "text"
-				}
+					match: "text",
+				},
 			],
 			description: {
 				content: "unblacklist's a user",
 				usage: "unblacklist",
-				example: ["unblacklist"]
+				example: ["unblacklist"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
 			channel: "guild",
-			ownerOnly: true
+			ownerOnly: true,
 		});
 	}
 
@@ -40,7 +40,7 @@ export default class UnBlacklistCommand extends Command {
 				list.splice(i, 1);
 			}
 		}
-		message.reply("list " + list);
+		message.util.send("list " + list);
 		// // console.log(this.client.blacklist.set('blacklisted', newlist, 'list'))
 		// console.log(list);
 		// console.log(this.client.blacklist.get("blacklisted", "list"));

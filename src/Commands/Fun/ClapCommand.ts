@@ -13,21 +13,21 @@ export default class ClapCommand extends Command {
 					id: "args",
 					type: "array",
 					match: "rest",
-					default: "Me When No Arguments"
-				}
+					default: "Me When No Arguments",
+				},
 			],
 			description: {
 				content: "👏Clap👏on👏the👏text.👏",
 				usage: "clap",
-				example: ["clap"]
+				example: ["clap"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
 	public async exec(message: Message, { args }) {
-		message.channel.send("👏" + (await fixword(args.replace("/s+/g", "👏").replace(/@/g, "@​").split(" ").join("👏"))) + "👏");
+		message.util.send("👏" + (await fixword(args.replace("/s+/g", "👏").replace(/@/g, "@​").split(" ").join("👏"))) + "👏");
 	}
 }

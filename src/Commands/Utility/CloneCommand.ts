@@ -28,26 +28,26 @@ export default class CloneCommand extends Command {
 
 	public async exec(message: Message, { args }: { args: string }): Promise<void> {
 		if (!args.startsWith("<:") || !args.endsWith(">")) {
-			message.reply("Thats not a emoji");
+			message.util.send("Thats not a emoji");
 			return;
 		}
 		const customEmo = Util.parseEmoji(args);
 		if (!customEmo) {
-			message.reply("Atleast give a valid emoji");
+			message.util.send("Atleast give a valid emoji");
 			return;
 		}
 		const link = `https://cdn.discordapp.com/emojis/${customEmo.id}.${customEmo.animated ? "gif" : "png"}`;
 
 		const emoname = customEmo.name;
 		if (!customEmo) {
-			message.reply("Atleast give a valid emoji");
+			message.util.send("Atleast give a valid emoji");
 			return;
 		}
 		if (message.guild.emojis.cache.find((emoji) => emoji.id === customEmo.id)) {
-			message.channel.send("You cant clone a emoji you already have that would be weird");
+			message.util.send("You cant clone a emoji you already have that would be weird");
 			return;
 		}
 		const emoji = message.guild.emojis.create(`${link}`, `${emoname}`);
-		message.channel.send(`Cloned ${await emoji} enjoy!`);
+		message.util.send(`Cloned ${await emoji} enjoy!`);
 	}
 }

@@ -12,24 +12,24 @@ export default class DTagCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "Run a tag and delete the original website",
 				usage: "dtag",
-				example: ["dtag"]
+				example: ["dtag"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
 	public async exec(message: Message, { args }) {
 		await this.client.tags.ensure(message.guild.id, {});
-		message.delete().catch((e) => message.channel.send("sorry something went wrong: " + e));
-		if (!this.client.tags.get(message.guild.id, args)) message.channel.send("Sorry couldnt find that tag");
+		message.delete().catch((e) => message.util.send("sorry something went wrong: " + e));
+		if (!this.client.tags.get(message.guild.id, args)) message.util.send("Sorry couldnt find that tag");
 		const embed = new MessageEmbed().setColor(this.client.consts.colors.default).setTitle(args).setDescription(this.client.tags.get(message.guild.id, args));
 	}
 }

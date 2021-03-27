@@ -10,11 +10,11 @@ export default class TagsCommand extends Command {
 			description: {
 				content: "",
 				usage: "tags",
-				example: ["tags"]
+				example: ["tags"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
@@ -28,6 +28,6 @@ export default class TagsCommand extends Command {
 		// // console.log(tags)
 
 		const Embed = new MessageEmbed().setTitle(`tags in ${message.guild}`).setDescription(tags).setColor(this.client.consts.colors.green);
-		message.reply({ embed: Embed, allowedMentions: { repliedUser: false } });
+		message.util.send({ embed: Embed, allowedMentions: { repliedUser: false } });
 	}
 }

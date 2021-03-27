@@ -13,7 +13,7 @@ export default class message extends Listener {
 		super("message", {
 			emitter: "client",
 			event: "message",
-			category: "client"
+			category: "client",
 		});
 		this.client = client;
 	}
@@ -35,7 +35,7 @@ export default class message extends Listener {
 					if (!cur) return;
 					const amount = wknd ? 2 : 1;
 					this.client.UserData.set(member.id, cur + amount, "iq");
-					message.channel.send(`Vote Counted ${member.tag}, ${member.id}\nEarned ${amount} iq point(s) while voting`);
+					message.util.send(`Vote Counted ${member.tag}, ${member.id}\nEarned ${amount} iq point(s) while voting`);
 				} catch (e) {
 					this.client.logger.info(e);
 				}

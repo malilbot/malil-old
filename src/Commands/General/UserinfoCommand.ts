@@ -14,22 +14,22 @@ export default class UserinfoCommand extends Command {
 					id: "member",
 					type: "member",
 					match: "rest",
-					default: (msg: Message) => msg.member
+					default: (msg: Message) => msg.member,
 				},
 				{
 					id: "args",
 					type: "string",
-					match: "text"
-				}
+					match: "text",
+				},
 			],
 			description: {
 				content: "Get some inf about a user",
 				usage: "userinfo",
-				example: ["userinfo"]
+				example: ["userinfo"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
@@ -47,7 +47,7 @@ export default class UserinfoCommand extends Command {
 			TEAM_USER: "Team User",
 			SYSTEM: "System",
 			VERIFIED_BOT: "Verified Bot",
-			VERIFIED_DEVELOPER: "Verified Bot Developer"
+			VERIFIED_DEVELOPER: "Verified Bot Developer",
 		};
 		// member = member ? member.id : message.guild.members.fetch(args)
 		let member = await GetMember(message, args);
@@ -64,13 +64,13 @@ export default class UserinfoCommand extends Command {
 				`**❯ Avatar:** [Link to avatar](${member.user.displayAvatarURL({ dynamic: true })})`,
 				`**❯ Time Created:** ${moment(member.user.createdTimestamp).format("LT")} ${moment(member.user.createdTimestamp).format("LL")} ${moment(member.user.createdTimestamp).fromNow()}`,
 				//`**❯ Game:** ${member.user.presence || 'Not playing a game.'}`,
-				`\u200b`
+				`\u200b`,
 			])
 			.addField("Member", [
 				`**❯ Highest Role:** ${member.roles.highest.id === message.guild.id ? "None" : member.roles.highest.name}`,
 				`**❯ Server Join Date:** ${moment(member.joinedAt).format("LL LTS")}`,
 				`**❯ Hoist Role:** ${member.roles.hoist ? member.roles.hoist.name : "None"}`,
-				`\u200b`
+				`\u200b`,
 			]);
 		return message.util.send(embed);
 	}

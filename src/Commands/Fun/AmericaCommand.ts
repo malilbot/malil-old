@@ -12,38 +12,38 @@ export default class AmeticaCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "america something or yourself doesnt work on attachment links only real attachments sorry",
 				usage: "america",
-				example: ["america @user"]
+				example: ["america @user"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
 			channel: "guild",
-			typing: true
+			typing: true,
 		});
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message) {
-		const msg = await message.channel.send("<a:loading:820592866685485076>");
+		const msg = await message.util.send("<a:loading:820592866685485076>");
 
 		const member = (await GetMember(message)) || message.member;
 
 		const url = member.user.displayAvatarURL({
 			size: 512,
 			format: "png",
-			dynamic: true
+			dynamic: true,
 		});
 
 		const res = await centra(`https://api.dagpi.xyz/image/america/?url=${url}`, "get").header("Authorization", this.client.credentials.dagpi).send();
 		const meme = res.body;
 
-		await message.channel.send("", {
-			files: [{ attachment: meme, name: `America.png` }]
+		await message.util.send("", {
+			files: [{ attachment: meme, name: `America.png` }],
 		});
 		msg.delete();
 	}

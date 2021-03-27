@@ -13,24 +13,24 @@ export default class PollCommand extends Command {
 					id: "args",
 					type: "array",
 					match: "rest",
-					default: "Please input some code"
-				}
+					default: "Please input some code",
+				},
 			],
 			description: {
 				content: "Share your questions",
 				usage: "poll",
-				example: ["poll"]
+				example: ["poll"],
 			},
 			ratelimit: 3,
 			channel: "guild",
 			userPermissions: ["MANAGE_MESSAGES"],
-			clientPermissions: ["MANAGE_MESSAGES", "SEND_MESSAGES"]
+			clientPermissions: ["MANAGE_MESSAGES", "SEND_MESSAGES"],
 		});
 	}
 
 	public async exec(message: Message, { args }) {
 		const input = await fixword(args);
-		if (!input) return message.reply("pelase ask a question");
+		if (!input) return message.util.send("pelase ask a question");
 
 		const dataEmbed = {
 			title: input,
@@ -38,8 +38,8 @@ export default class PollCommand extends Command {
 			color: `GREEN`,
 			footer: {
 				text: `requested by ${message.author.tag}`,
-				icon_url: ""
-			}
+				icon_url: "",
+			},
 		};
 
 		try {

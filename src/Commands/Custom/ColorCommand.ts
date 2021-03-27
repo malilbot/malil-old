@@ -13,17 +13,17 @@ export default class ColorCommand extends Command {
 					id: "args",
 					type: "array",
 					match: "rest",
-					default: null
-				}
+					default: null,
+				},
 			],
 			description: {
 				content: "",
 				usage: "color",
-				example: ["color"]
+				example: ["color"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -40,7 +40,7 @@ export default class ColorCommand extends Command {
 			args = args.split(" ");
 
 			/** Checking if the args are a valid color */
-			if (!colors.includes(args[0])) return message.util.reply("you can only choose one of the following colors: " + list, { allowedMentions: { repliedUser: false } });
+			if (!colors.includes(args[0])) return message.util.send("you can only choose one of the following colors: " + list, { allowedMentions: { repliedUser: false } });
 
 			/** getting the gist with my epic function */
 			const res = await GetGist("6993d1f641ddcdb6ab2761a6ff8eb317", this.client);
@@ -49,28 +49,28 @@ export default class ColorCommand extends Command {
 			let uuid;
 			const channel = message.channel;
 			/** asking for the ign */
-			message.channel.send("Whats your ign?");
+			message.util.send("Whats your ign?");
 			const filter = (m) => m.author.id === message.author.id;
 			/**
 			 * collector stuff starts here
 			 * */
 			const collector = new MessageCollector(channel as TextChannel, filter, {
 				max: 1,
-				time: 1000 * 15
+				time: 1000 * 15,
 			});
 			collector.on("end", (collected) => {
 				collected.forEach(async (value) => {
 					/** requesting sloth pixel cuz hypixel api sucks */
 					const response = await fetch(`https://api.slothpixel.me/api/players/${value.content}`).then((resp) => resp.json());
 					/** making sure the user exists */
-					if (response.error || response.username == null) return message.reply("user does not exist");
+					if (response.error || response.username == null) return message.util.send("user does not exist");
 					/** defining stuff */
 					const name = response.username;
 					uuid = response.uuid;
 					const discord = response.links.DISCORD;
 					/** comparing the user's discord tag */
-					if (message.author.tag !== discord) return message.reply("Discord acount and minecraft acount a renot linked");
-					message.channel.send("Aight got it " + name);
+					if (message.author.tag !== discord) return message.util.send("Discord acount and minecraft acount a renot linked");
+					message.util.send("Aight got it " + name);
 					input[uuid] = args[0];
 					const txt = JSON.stringify(input);
 					/**
@@ -95,7 +95,7 @@ export default class ColorCommand extends Command {
 			let uuid;
 			const channel = message.channel;
 			/** asking for the ign */
-			message.channel.send("Whats your ign?");
+			message.util.send("Whats your ign?");
 			const filter = (m) => m.author.id === message.author.id;
 			/**
 			 *
@@ -104,19 +104,19 @@ export default class ColorCommand extends Command {
 			 * */
 			const collector = new MessageCollector(channel as TextChannel, filter, {
 				max: 1,
-				time: 1000 * 15
+				time: 1000 * 15,
 			});
 			collector.on("end", (collected) => {
 				collected.forEach(async (value) => {
 					/** requesting sloth pixel cuz hypixel api sucks */
 					const response = await fetch(`https://api.mojang.com/users/profiles/minecraft/${value.content}`).then((resp) => resp.json());
 					/** making sure the user exists */
-					if (response.name == null) return message.reply("user does not exist");
+					if (response.name == null) return message.util.send("user does not exist");
 					/** defining stuff */
 					const name = response.name;
 					uuid = response.id;
 					/** comparing the user's discord tag */
-					message.channel.send("Aight got it gave " + name + " color " + args);
+					message.util.send("Aight got it gave " + name + " color " + args);
 					input[uuid] = args;
 					const txt = JSON.stringify(input);
 					/**

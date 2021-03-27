@@ -11,17 +11,17 @@ export default class SuperUserCommand extends Command {
 				{
 					id: "args",
 					type: "content",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "Superuser's a user",
 				usage: "su",
-				example: ["su"]
+				example: ["su"],
 			},
 			ratelimit: 3,
 			channel: "guild",
-			ownerOnly: true
+			ownerOnly: true,
 		});
 	}
 
@@ -35,12 +35,12 @@ export default class SuperUserCommand extends Command {
 				list += `${name.tag}: ${name.id}\n`;
 			});
 
-			return message.reply(list || "Noone f......");
+			return message.util.send(list || "Noone f......");
 		}
 		let Member: GuildMember | User = (await GetMember(message, args)).user;
 		if (!Member) Member = await this.client.users.fetch(args);
 		if (!Member) {
-			return message.reply("User not found");
+			return message.util.send("User not found");
 		}
 		const userID = Member.id;
 
@@ -53,9 +53,9 @@ export default class SuperUserCommand extends Command {
 			}
 
 			this.client.gp.set("superUsers", arr);
-			return message.reply(`Removed ${Member.tag} from SuperUser list`);
+			return message.util.send(`Removed ${Member.tag} from SuperUser list`);
 		}
 		this.client.gp.push("superUsers", userID);
-		message.reply(`Added ${Member.tag} to SuperUser list`);
+		message.util.send(`Added ${Member.tag} to SuperUser list`);
 	}
 }

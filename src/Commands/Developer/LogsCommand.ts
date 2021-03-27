@@ -14,17 +14,17 @@ export default class LogsCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "",
 				usage: "logs",
-				example: ["logs"]
+				example: ["logs"],
 			},
 			ratelimit: 3,
 			superUserOnly: true,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -39,6 +39,6 @@ export default class LogsCommand extends Command {
 			.replace(/\u001b\[.*?m/g, "")
 			.replace(/.*/, "");
 		await EditGist(`${lastItem.replace("log", "js")}`, data, "d9eb95751264b4a105c6aac79a409673", this.client);
-		message.reply("https://gist.github.com/SkyBlockDev/d9eb95751264b4a105c6aac79a409673");
+		message.util.send("https://gist.github.com/SkyBlockDev/d9eb95751264b4a105c6aac79a409673");
 	}
 }

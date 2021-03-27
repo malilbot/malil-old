@@ -10,7 +10,7 @@ export default class SayCommand extends Command {
 			description: {
 				content: "force the bot to say stuff",
 				usage: "say",
-				example: ["say pog"]
+				example: ["say pog"],
 			},
 			ratelimit: 3,
 			args: [
@@ -18,11 +18,11 @@ export default class SayCommand extends Command {
 					id: "code",
 					type: "string",
 					match: "rest",
-					default: "Please input some code"
-				}
+					default: "Please input some code",
+				},
 			],
 			superUserOnly: true,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
@@ -33,6 +33,6 @@ export default class SayCommand extends Command {
 			return;
 		}
 
-		message.channel.send((await fixword(code.replace(/@/, "@​"))) || "Sorry i just prevented weird stuff");
+		message.util.send((await fixword(code.replace(/@/, "@​"))) || "Sorry i just prevented weird stuff");
 	}
 }

@@ -11,22 +11,22 @@ export default class BotListCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "",
 				usage: "botList",
-				example: ["botList"]
+				example: ["botList"],
 			},
 			ratelimit: 3,
 			ownerOnly: true,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message, { args }) {
-		if (this.client.user.id !== "749020331187896410") return message.reply("Not sure if you want todo this chief");
-		message.reply("EWWW");
+		if (this.client.user.id !== "749020331187896410") return message.util.send("Not sure if you want todo this chief");
+		message.util.send("EWWW");
 	}
 }

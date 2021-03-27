@@ -11,34 +11,34 @@ export default class QuoteCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
+					match: "rest",
 				},
 				{
 					id: "force",
 					type: "boolean",
 					match: "flag",
-					flag: ["--force", "-f"]
-				}
+					flag: ["--force", "-f"],
+				},
 			],
 			description: {
 				content: "Quotes someone",
 				usage: "quote",
-				example: ["!quote https://canary.discord.com/channels/748956745409232945/777886689300709406/777889131829264384"]
+				example: ["!quote https://canary.discord.com/channels/748956745409232945/777886689300709406/777889131829264384"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
 	public async exec(message: Message, { args, force }) {
-		if (!args) return message.reply("please add a message link");
-		if (!message.content.includes("/")) return message.reply("Please add a message link");
+		if (!args) return message.util.send("please add a message link");
+		if (!message.content.includes("/")) return message.util.send("Please add a message link");
 
 		const split = args.split(/\/| /);
 
 		if (!split[5] || !split[6]) {
-			return message.reply("message not found");
+			return message.util.send("message not found");
 		}
 		let chan;
 		let msg: Message;
@@ -47,7 +47,7 @@ export default class QuoteCommand extends Command {
 			chan = await this.client.channels.fetch(split[5]);
 			msg = await (chan as TextChannel).messages.fetch(split[6]);
 		} catch (error) {
-			return message.reply("message not found");
+			return message.util.send("message not found");
 		}
 
 		let url = "";
@@ -58,28 +58,28 @@ export default class QuoteCommand extends Command {
 		}
 		if ((chan as TextChannel).nsfw == true) {
 			if (!force) {
-				return message.reply("nsfw");
+				return message.util.send("nsfw");
 			} else if (!this.client.gp.get("superUsers").includes(message.author.id) && !this.client.settings.owners.includes(message.author.id)) {
-				return message.reply("nsfw");
+				return message.util.send("nsfw");
 			}
 		}
 
 		let attachment: unknown;
 		if (url) attachment = await new MessageAttachment(url);
 		if (!message.member.guild.me.permissions.has(["MANAGE_WEBHOOKS"])) {
-			return message.channel.send(
+			return message.util.send(
 				new MessageEmbed().setImage(url).setAuthor(msg.author.tag, msg.author.avatarURL()).setDescription(msg.content).setFooter("didnt have WebhookPermissions so send a embed instead")
 			);
 		}
 		const name = msg.webhookID ? msg.author.username : msg.author.tag;
 		const webhook = await (message.channel as TextChannel).createWebhook(name).then((webhook) =>
 			webhook.edit({
-				avatar: msg.author.displayAvatarURL({ size: 2048, format: "png" })
+				avatar: msg.author.displayAvatarURL({ size: 2048, format: "png" }),
 			})
 		);
 		webhook
 			.send(msg.content || msg.embeds, attachment)
 			.then(() => webhook.delete())
-			.catch(() => message.reply("Something went wrong"));
+			.catch(() => message.util.send("Something went wrong"));
 	}
 }

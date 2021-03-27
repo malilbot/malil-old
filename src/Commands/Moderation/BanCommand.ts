@@ -37,9 +37,9 @@ export default class BanCommand extends Command {
 
 	public async exec(message: Message, { day, reason }: { user: GuildMember; day: number; reason: string }) {
 		const user = await GetMember(message, reason);
-		if (!user) return message.reply("user not found");
+		if (!user) return message.util.send("user not found");
 		reason = reason.split(" ").slice(1).join(" ");
-		if (!user.bannable) return message.channel.send(`Sorry, i can't ban this user`);
+		if (!user.bannable) return message.util.send(`Sorry, i can't ban this user`);
 
 		try {
 			await user.send(`You has been banned from **${message.guild.name} for reason: \`${reason}\``);

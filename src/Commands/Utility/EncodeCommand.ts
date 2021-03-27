@@ -13,17 +13,17 @@ export default class EncodeCommand extends Command {
 					id: "args",
 					type: "array",
 					match: "rest",
-					default: "none"
-				}
+					default: "none",
+				},
 			],
 			description: {
 				content: "",
 				usage: "encode",
-				example: ["encode"]
+				example: ["encode"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
@@ -35,25 +35,25 @@ export default class EncodeCommand extends Command {
 				{
 					name: "hex",
 					value: Buffer.from(args).toString("hex") || "none",
-					inline: true
+					inline: true,
 				},
 				{
 					name: "utf8",
 					value: Buffer.from(args).toString("utf8") || "none",
-					inline: true
+					inline: true,
 				},
 				{ name: "\u200B", value: "\u200B" },
 				{
 					name: "utf16le/ucs2",
 					value: Buffer.from(args).toString("ucs2") || "none",
-					inline: true
+					inline: true,
 				},
 				{
 					name: "base64",
 					value: Buffer.from(args).toString("base64") || "none",
-					inline: true
+					inline: true,
 				}
 			);
-		message.channel.send(embed);
+		message.util.send(embed);
 	}
 }

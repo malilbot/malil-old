@@ -9,7 +9,7 @@ export default class extends Inhibitor {
 		super("Autoblacklist", {
 			reason: "Autoblacklist",
 			priority: 5,
-			type: "post"
+			type: "post",
 		});
 	}
 
@@ -31,7 +31,7 @@ export default class extends Inhibitor {
 			this.client.logger.info(a1(`[ USER ] ${UStr} [ GUILD ] ${GStr} [ BLACKLISTED ]`));
 			timeoutObject[message.author.id] = 0;
 			blacklist[message.author.id] = true;
-			message.reply(
+			message.util.send(
 				new MessageEmbed()
 					.setImage("https://http.cat/423")
 					.addField("You have been blacklisted from using this bot for 24 hours", "If you believe this is a mistake visit the support [server](https://discord.gg/mY8zTARu4g)")

@@ -11,7 +11,7 @@ export default class KickCommand extends Command {
 			description: {
 				content: "To kick member on this guild",
 				usage: "kick < member > ",
-				example: ["kick @member"]
+				example: ["kick @member"],
 			},
 			ratelimit: 3,
 
@@ -22,9 +22,9 @@ export default class KickCommand extends Command {
 				{
 					id: "reason",
 					type: "string",
-					default: "e No reason provided...."
-				}
-			]
+					default: "e No reason provided....",
+				},
+			],
 		});
 	}
 
@@ -32,11 +32,10 @@ export default class KickCommand extends Command {
 		let user = await GetMember(message, reason);
 		user = user as GuildMember;
 		reason = reason.split(" ").slice(1).join(" ");
-		if (!user) return message.reply("user not found");
-		if (!user.kickable) return message.channel.send(`Sorry, i can't kick this user`);
+		if (!user) return message.util.send("user not found");
+		if (!user.kickable) return message.util.send(`Sorry, i can't kick this user`);
 
-		if (!message.member.guild.me.permissions.has(["KICK_MEMBERS"]))
-			return message.channel.send(`Sorry, i don't have permission to kick members, make sure you give me \`KICK_MEMBERS\` permission`);
+		if (!message.member.guild.me.permissions.has(["KICK_MEMBERS"])) return message.util.send(`Sorry, i don't have permission to kick members, make sure you give me \`KICK_MEMBERS\` permission`);
 		reason = reason.replace(user.id, "").replace(/<.*?>/g, "");
 		user.kick().then((x) => {
 			x.send(`You has been kicked from **${message.guild.name}** for reason \`${reason}\``);

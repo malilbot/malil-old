@@ -7,7 +7,7 @@ export default class extends Inhibitor {
 		super("disabledCommands", {
 			reason: "disabled",
 			priority: 1,
-			type: "post"
+			type: "post",
 		});
 	}
 	// prettier-ignore
@@ -30,7 +30,7 @@ export default class extends Inhibitor {
 		if (disabledCategory.includes(command?.categoryID)) {
 			const { GStr, UStr, CStr } = Format(message, command, null, null);
 			this.client.logger.info(a1(`[ CMD ] ${CStr} [ USER ] ${UStr} [ GUILD ] ${GStr} [ COMMAND STOPPED ] reason: disabled in server`));
-			message.reply(
+			message.util.send(
 				`**${command?.categoryID}** Commands are disabled in this server`
 			);
 			return true;
@@ -48,7 +48,7 @@ export default class extends Inhibitor {
 		if (disabledCommands.includes(command?.id)) {
 			const { GStr, UStr, CStr } = Format(message, command, null, null);
 			this.client.logger.info(a1(`[ CMD ] ${CStr} [ USER ] ${UStr} [ GUILD ] ${GStr} [ COMMAND STOPPED ] reason: disabled in server`));
-			message.reply(`**${command?.id}** command is disabled in this server`);
+			message.util.send(`**${command?.id}** command is disabled in this server`);
 			return true;
 		}
 		return false;

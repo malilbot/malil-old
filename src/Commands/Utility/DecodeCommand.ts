@@ -12,17 +12,17 @@ export default class DecodeCommand extends Command {
 					id: "args",
 					type: "array",
 					match: "rest",
-					default: "none"
-				}
+					default: "none",
+				},
 			],
 			description: {
 				content: "",
 				usage: "decode",
-				example: ["decode"]
+				example: ["decode"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
@@ -37,7 +37,7 @@ export default class DecodeCommand extends Command {
 				{ name: "utf16le/ucs2", value: Buffer.from(args, "ucs2").toString() || "none", inline: true },
 				{ name: "base64", value: Buffer.from(args, "base64").toString() || "none", inline: true }
 			);
-		message.channel.send(embed);
+		message.util.send(embed);
 		//Buffer.from.alloc(args, 'hex').toString()
 	}
 }

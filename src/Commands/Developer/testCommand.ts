@@ -10,17 +10,17 @@ export default class FloppaCommand extends Command {
 				{
 					id: "args",
 					type: "number",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "floppa",
 				usage: "floppa",
-				example: ["floppa"]
+				example: ["floppa"],
 			},
 			ratelimit: 3,
 			channel: "guild",
-			ownerOnly: false
+			ownerOnly: false,
 		});
 	}
 
@@ -52,15 +52,15 @@ export default class FloppaCommand extends Command {
 					young: floppa[0],
 					good: floppa[1],
 					old: floppa[2],
-					born: null
+					born: null,
 				};
 				const babys = floppaObject.good / 2;
 				floppaObject["born"] = babys;
 				return floppaObject;
 			}
 		}
-		if (typeof args !== "number") return message.reply("not a number");
-		if (args > 5000) return message.reply("cant handle too many floppas srry");
+		if (typeof args !== "number") return message.util.send("not a number");
+		if (args > 5000) return message.util.send("cant handle too many floppas srry");
 		const floppa = await new Floppa(args);
 		const floppas = await floppa.makemore();
 		const embed = new MessageEmbed()
@@ -69,6 +69,6 @@ export default class FloppaCommand extends Command {
 				"stats",
 				`${floppas.young} young floppas were made\n${floppas.good} adult floppas were made\n${floppas.old} old floppas were made \n${floor(floppas.born)} baby floppas were born`
 			);
-		message.reply(embed);
+		message.util.send(embed);
 	}
 }

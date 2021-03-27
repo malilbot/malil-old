@@ -10,17 +10,17 @@ export default class PrefixCommand extends Command {
 				{
 					id: "args",
 					type: "string",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "Find your 8ball",
 				usage: "prefix",
-				example: ["prefix"]
+				example: ["prefix"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
@@ -28,13 +28,13 @@ export default class PrefixCommand extends Command {
 		if (!args || args.length == 0 || args.size == 0) {
 			if (this.client.prefixes.get(message.guild.id, "prefix")) {
 				const item = this.client.prefixes.get(message.guild.id, "prefix");
-				if (item) return message.channel.send("my prefix is " + item);
-			} else return message.channel.send("my prefix is *");
+				if (item) return message.util.send("my prefix is " + item);
+			} else return message.util.send("my prefix is *");
 		} else {
-			if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("you need to be a 'ADMINISTRATOR' to use this command");
-			else if (args.includes("@")) return message.reply("Sorry you cant use @'s in prefixes");
+			if (!message.member.permissions.has("ADMINISTRATOR")) return message.util.send("you need to be a 'ADMINISTRATOR' to use this command");
+			else if (args.includes("@")) return message.util.send("Sorry you cant use @'s in prefixes");
 			this.client.prefixes.set(message.guild.id, args, "prefix");
-			message.channel.send("Updated the prefix to " + args);
+			message.util.send("Updated the prefix to " + args);
 		}
 	}
 }

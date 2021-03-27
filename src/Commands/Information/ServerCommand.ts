@@ -11,11 +11,11 @@ export default class ServerCommand extends Command {
 			description: {
 				content: "Get some info about the discord server",
 				usage: "server",
-				example: ["server"]
+				example: ["server"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 1,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 

@@ -9,22 +9,22 @@ export default class DisableCommand extends Command {
 			description: {
 				content: "A command to disable/enable commands.",
 				usage: "disable|enable <command>",
-				examples: ["disable ban", "enable ban"]
+				examples: ["disable ban", "enable ban"],
 			},
 			args: [
 				{
 					id: "cmd",
 					type: "commandAlias",
-					match: "content"
+					match: "content",
 				},
 				{
 					id: "catagory",
 					type: "string",
-					match: "restContent"
-				}
+					match: "restContent",
+				},
 			],
 			clientPermissions: ["SEND_MESSAGES"],
-			userPermissions: ["MANAGE_GUILD"]
+			userPermissions: ["MANAGE_GUILD"],
 		});
 	}
 	public async exec(message: Message, { cmd, catagory }: { cmd: Command; catagory: string }): Promise<Message> {
@@ -33,14 +33,14 @@ export default class DisableCommand extends Command {
 		let type: string;
 		const db = this.client.gp;
 		db.ensure("disabledCommands", {
-			[message.guild.id]: []
+			[message.guild.id]: [],
 		});
 		db.ensure("disabledCategory", {
-			[message.guild.id]: []
+			[message.guild.id]: [],
 		});
 		catagory = catagory[0].toUpperCase() + catagory.substring(1);
-		if (!cmd && !catagory) return message.reply("Please mention a command");
-		if (cmd?.id == "disable") return await message.util.reply(`You cannot disable ${cmd?.aliases[0]}.`);
+		if (!cmd && !catagory) return message.util.send("Please mention a command");
+		if (cmd?.id == "disable") return await message.util.send(`You cannot disable ${cmd?.aliases[0]}.`);
 		let action: string;
 		const disabledCommands: string[] = (await db.get("disabledCommands", message.guild.id)) as string[];
 		const disabledCatagorys: string[] = (await db.get("disabledCategory", message.guild.id)) as string[];
@@ -67,11 +67,11 @@ export default class DisableCommand extends Command {
 			action = "disabled";
 			type = "catagory";
 		} else {
-			return message.reply("Thats not a category or a command");
+			return message.util.send("Thats not a category or a command");
 		}
 		if (type == "catagory") {
-			return await message.channel.send(`${action} category **${catagory}**`);
+			return await message.util.send(`${action} category **${catagory}**`);
 		}
-		return await message.channel.send(`${action} command **${cmd?.aliases[0]}**`);
+		return await message.util.send(`${action} command **${cmd?.aliases[0]}**`);
 	}
 }

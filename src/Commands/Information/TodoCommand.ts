@@ -12,11 +12,11 @@ export default class TodoCommand extends Command {
 			description: {
 				content: "",
 				usage: "todo",
-				example: ["todo"]
+				example: ["todo"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -32,6 +32,6 @@ export default class TodoCommand extends Command {
 				done += `${body[i].replace("-   [X]", "")}\n`;
 			}
 		}
-		message.channel.send(new MessageEmbed().setFooter("TODO list").addField("TODO:", todo).addField("COMPLETED:", done).setColor(this.client.consts.colors.default));
+		message.util.send(new MessageEmbed().setFooter("TODO list").addField("TODO:", todo).addField("COMPLETED:", done).setColor(this.client.consts.colors.default));
 	}
 }

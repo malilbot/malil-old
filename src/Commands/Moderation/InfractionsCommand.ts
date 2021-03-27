@@ -11,18 +11,18 @@ export default class InfractionsCommand extends Command {
 			description: {
 				content: "",
 				usage: "infractions",
-				example: ["infractions"]
+				example: ["infractions"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			userPermissions: ["MANAGE_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message) {
 		const user = await GetMember(message);
-		if (!user) return message.reply("user not found");
+		if (!user) return message.util.send("user not found");
 		const usID = user.id;
 		this.client.infractions.ensure(message.guild.id, { [usID]: {} });
 		const infractions = this.client.infractions.get(message.guild.id, usID);
@@ -41,6 +41,6 @@ export default class InfractionsCommand extends Command {
 			embed.addField("warns of " + user, await hst(mesg));
 		} else embed.addField("warns of " + user, mesg);
 
-		message.reply({ embed: embed, allowedMentions: { repliedUser: false } });
+		message.util.send({ embed: embed, allowedMentions: { repliedUser: false } });
 	}
 }

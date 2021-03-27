@@ -8,11 +8,11 @@ export default class PingCommand extends Command {
 			description: {
 				content: "Show ping and latency bot",
 				usage: "ping",
-				example: ["ping"]
+				example: ["ping"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ownerOnly: false,
-			ratelimit: 3
+			ratelimit: 3,
 		});
 	}
 

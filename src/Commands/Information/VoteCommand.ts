@@ -12,11 +12,11 @@ export default class VoteCommand extends Command {
 			description: {
 				content: "",
 				usage: "vote",
-				example: ["vote"]
+				example: ["vote"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -32,6 +32,6 @@ export default class VoteCommand extends Command {
 					"[BladeBots](https://bladebotlist.xyz/bot/749020331187896410/vote),\n" +
 					"[fateList](https://fateslist.xyz/bot/749020331187896410/vote)"
 			);
-		message.channel.send(embed);
+		message.util.send(embed);
 	}
 }

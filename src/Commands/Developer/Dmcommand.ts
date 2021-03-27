@@ -12,23 +12,23 @@ export default class DmCommand extends Command {
 				{
 					id: "args",
 					type: "content",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "dm's a user",
 				usage: "dm",
-				example: ["dm"]
+				example: ["dm"],
 			},
 			ratelimit: 3,
 			channel: "guild",
-			superUserOnly: true
+			superUserOnly: true,
 		});
 	}
 
 	public async exec(message: Message, { args }) {
 		const user = (await GetMember(message)) || message.member;
-		user.send(args || "e").catch((e) => message.reply(e, { allowedMentions: { repliedUser: false } }));
-		message.util.reply("message recieved", { allowedMentions: { repliedUser: false } });
+		user.send(args || "e").catch((e) => message.util.send(e, { allowedMentions: { repliedUser: false } }));
+		message.util.send("message recieved", { allowedMentions: { repliedUser: false } });
 	}
 }

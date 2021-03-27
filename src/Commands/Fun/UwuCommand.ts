@@ -13,17 +13,17 @@ export default class UwuCommand extends Command {
 					id: "args",
 					type: "array",
 					match: "rest",
-					default: "uwu"
-				}
+					default: "uwu",
+				},
 			],
 			description: {
 				content: "Uwufy some text",
 				usage: "Uwu",
-				example: ["Uwu"]
+				example: ["Uwu"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
@@ -43,7 +43,7 @@ export default class UwuCommand extends Command {
 		// Get question to answer
 		const text = await fixword(args || "haha censor go brrrr");
 		if (!text) {
-			return message.util.reply(`**You need to specify a message..**`), { allowedMentions: { repliedUser: false } };
+			return message.util.send(`**You need to specify a message..**`), { allowedMentions: { repliedUser: false } };
 		}
 
 		// Send message

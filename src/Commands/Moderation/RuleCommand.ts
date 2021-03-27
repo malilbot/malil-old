@@ -11,18 +11,18 @@ export default class RulesCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "A easy way to get some rules in your server",
 				usage: "rules < number >",
-				example: ["Rules 1", "rules 2", "rules 3"]
+				example: ["Rules 1", "rules 2", "rules 3"],
 			},
 			ratelimit: 3,
 			channel: "guild",
 			clientPermissions: ["SEND_MESSAGES"],
-			userPermissions: ["ADMINISTRATOR"]
+			userPermissions: ["ADMINISTRATOR"],
 		});
 	}
 
@@ -74,7 +74,7 @@ No bot spamming`
 				)
 				.setTimestamp()
 				.setColor(this.client.consts.colors.red);
-			message.channel.send(embed);
+			message.util.send(embed);
 		} else if (args == "3") {
 			const embed = new MessageEmbed()
 				.setDescription(
@@ -101,10 +101,10 @@ And lastly, abide by all rules set out in the Discord ToS and Discord Guidelines
 				)
 				.setColor(this.client.consts.colors.red)
 				.setTimestamp();
-			message.channel.send(embed);
+			message.util.send(embed);
 		} else
-			message.util.reply("choose from 1 to 3", {
-				allowedMentions: { repliedUser: false }
+			message.util.send("choose from 1 to 3", {
+				allowedMentions: { repliedUser: false },
 			});
 	}
 }

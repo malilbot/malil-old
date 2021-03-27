@@ -11,17 +11,17 @@ export default class InviteCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "Invite malil to your server aswell",
 				usage: "invite",
-				example: ["invite"]
+				example: ["invite"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
@@ -31,9 +31,9 @@ export default class InviteCommand extends Command {
 			.setURL("https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824")
 			.setColor(this.client.consts.colors.default);
 
-		message.util.reply({
+		message.util.send({
 			embed: embed,
-			allowedMentions: { repliedUser: false }
+			allowedMentions: { repliedUser: false },
 		});
 	}
 }

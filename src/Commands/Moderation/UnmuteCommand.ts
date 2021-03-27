@@ -10,28 +10,28 @@ export default class UnmuteCommand extends Command {
 			description: {
 				content: "",
 				usage: "unmute",
-				example: ["unmute"]
+				example: ["unmute"],
 			},
 			args: [
 				{
 					id: "args",
-					type: "string"
-				}
+					type: "string",
+				},
 			],
 			ratelimit: 3,
 			clientPermissions: ["SEND_MESSAGES"],
 			userPermissions: ["MANAGE_MESSAGES"],
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message, { args }) {
-		if (!args) return message.reply("No user provided");
+		if (!args) return message.util.send("No user provided");
 		const user = args.split(" ")[0];
 		const reason = args.split(" ").slice(1).join(" ");
 		const member = await GetMember(message, user);
-		if (!member) return message.reply("User not found");
-		message.reply(`Unmuted ${member.user.username} 👍`);
+		if (!member) return message.util.send("User not found");
+		message.util.send(`Unmuted ${member.user.username} 👍`);
 		const MRole = this.client.mutes.get(message.guild.id, `role`);
 		const role: Role = message.guild.roles.cache.get(MRole) || (await message.guild.roles.fetch(MRole));
 

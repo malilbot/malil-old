@@ -11,7 +11,7 @@ export default class MuteCommand extends Command {
 			description: {
 				content: "Used to mute members",
 				usage: "mute < member > ",
-				example: ["mute @member", "mute @member 1d", "mute 2d @member"]
+				example: ["mute @member", "mute @member 1d", "mute 2d @member"],
 			},
 			ratelimit: 3,
 
@@ -22,41 +22,41 @@ export default class MuteCommand extends Command {
 				{
 					id: "Args",
 					match: "rest",
-					type: "string"
-				}
-			]
+					type: "string",
+				},
+			],
 		});
 	}
 
 	public async exec(message: Message, { Args }: { Args: string }) {
-		if (!Args) return message.reply("No user or role provided");
+		if (!Args) return message.util.send("No user or role provided");
 		const args = Args.split(" ");
 		const alias = message.util.parsed.alias;
 		if (alias == "muterole" || alias == "mutedrole") {
 			const role = message.guild.roles.cache.find((role) => role.name.toLowerCase() == Args) || (await message.guild.roles.cache.get(Args)) || (await message.guild.roles.fetch(Args));
 			if (role?.id) {
 				this.client.mutes.set(message.guild.id, role.id, "role");
-				return message.reply("New muted role set to " + role.name);
+				return message.util.send("New muted role set to " + role.name);
 			} else {
-				return message.reply("Role not found please provide a valid role id");
+				return message.util.send("Role not found please provide a valid role id");
 			}
 		}
 		this.client.mutes.ensure(message.guild.id, {
 			role: null,
-			mutes: {}
+			mutes: {},
 		});
 		const role = this.client.mutes.get(message.guild.id, "role");
 		if (args[0] == "set" || args[0] == "role") {
 			const role = await message.guild.roles.fetch(args[1]);
 			if (role?.id) {
 				this.client.mutes.set(message.guild.id, role.id, "role");
-				return message.reply("Muted role updated");
+				return message.util.send("Muted role updated");
 			} else {
-				return message.reply("Role not found please provide a valid role id");
+				return message.util.send("Role not found please provide a valid role id");
 			}
 		}
-		if (!role) return message.reply("No role setup use @malil muterole <your mute role>, to setup mutes");
-		if (!Args && role) return message.reply("Please provide a user and a time");
+		if (!role) return message.util.send("No role setup use @malil muterole <your mute role>, to setup mutes");
+		if (!Args && role) return message.util.send("Please provide a user and a time");
 
 		/**GETTING THE TIME*/
 		let time;
@@ -66,17 +66,17 @@ export default class MuteCommand extends Command {
 			time = ms(args[0]);
 			if (!time) time = "PERM";
 		}
-		if (time > 604800001 && time !== "perm") return message.reply("Cant mute longer than 7 days");
-		if (time < 59090 && time !== "perm") return message.reply("Sorry cant mute for less than one minute");
+		if (time > 604800001 && time !== "perm") return message.util.send("Cant mute longer than 7 days");
+		if (time < 59090 && time !== "perm") return message.util.send("Sorry cant mute for less than one minute");
 		let member: GuildMember;
 		/**GETTING MEMBER*/
 		member = await GetMember(message, args[0]);
 		if (!member) {
 			member = await GetMember(message, args[1]);
-			if (!member) return message.reply("Please say who you want to mute");
+			if (!member) return message.util.send("Please say who you want to mute");
 		}
-		if (member.user.id == this.client.user.id) return message.reply("HAHA you cant fool me into muting myself this easy");
-		if (member.user.id == message.author.id) return message.reply("You cant mute yourself Dummy.");
+		if (member.user.id == this.client.user.id) return message.util.send("HAHA you cant fool me into muting myself this easy");
+		if (member.user.id == message.author.id) return message.util.send("You cant mute yourself Dummy.");
 		let ENDS: number;
 		let endtime: number;
 		if (typeof time !== "string") {
@@ -85,7 +85,7 @@ export default class MuteCommand extends Command {
 		}
 		let _time: string;
 		this.client.emit("mute", member, ENDS || time);
-		message.channel.send(`**Muted ${member.user.tag}**`);
+		message.util.send(`**Muted ${member.user.tag}**`);
 		if (typeof time !== "string") {
 			const mutes = this.client.mutes.get(message.guild.id, "mutes");
 			mutes[member.user.id] = endtime;

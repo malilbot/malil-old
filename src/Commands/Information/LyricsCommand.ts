@@ -12,17 +12,17 @@ export default class lyricsCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "Get the lyrics of a song",
 				usage: "lyrics",
-				example: ["lyrics"]
+				example: ["lyrics"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 1,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
@@ -37,11 +37,11 @@ export default class lyricsCommand extends Command {
 			apiKey: this.client.credentials.genius,
 			title: args,
 			artist: "",
-			optimizeQuery: true
+			optimizeQuery: true,
 		};
 
 		getSong(options).then((song) => {
-			if (!song) return message.reply("song not found F");
+			if (!song) return message.util.send("song not found F");
 			let lyrics = song.lyrics;
 
 			if (song.lyrics.length > 1024) {
@@ -56,7 +56,7 @@ export default class lyricsCommand extends Command {
 				.replace(/\n\n/g, "\n");
 			// prettier-ignore
 			//{ allowedMentions: { repliedUser: false } }
-			message.util.reply({ embed: new MessageEmbed().setTitle(args).setURL(song.url).addField("lyrics", lyrics), allowedMentions: { repliedUser: false } });
+			message.util.send({ embed: new MessageEmbed().setTitle(args).setURL(song.url).addField("lyrics", lyrics), allowedMentions: { repliedUser: false } });
 		});
 	}
 }

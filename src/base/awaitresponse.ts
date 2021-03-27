@@ -2,7 +2,7 @@
 <message>.channel.send('Please enter more input.').then(() => {
 	const filter = m => <message>.author.id === m.author.id;
 
-	<message>.channel.awaitMessages(filter, { time: 60000, max: 1, errors: ['time'] })
+	<message>.channel.await messages(filter, { time: 60000, max: 1, errors: ['time'] })
 		.then(messages => {
 			<message>.channel.send(`You've entered: ${messages.first().content}`);
 		})

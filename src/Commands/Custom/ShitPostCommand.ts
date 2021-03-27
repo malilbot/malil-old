@@ -11,18 +11,18 @@ export default class ShitPostCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "",
 				usage: "shitPost",
-				example: ["shitPost"]
+				example: ["shitPost"],
 			},
 			ownerOnly: true,
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -36,7 +36,7 @@ export default class ShitPostCommand extends Command {
 				list += `${name.name}: ${name.id}\n`;
 			});
 
-			return message.reply(list || "nothing......");
+			return message.util.send(list || "nothing......");
 		}
 		args = args.replace(/\</, "").replace(/\>/, "").replace(/\#/, "");
 		const name = ((await this.client.channels.fetch(args)) as TextChannel).name;
@@ -49,10 +49,10 @@ export default class ShitPostCommand extends Command {
 			}
 
 			this.client.gp.set("shitpost", arr);
-			return message.reply(`Removed ${name} from shitpost list`);
+			return message.util.send(`Removed ${name} from shitpost list`);
 		}
 
 		this.client.gp.push("shitpost", args);
-		message.reply(`Added ${name} to shitpost list`);
+		message.util.send(`Added ${name} to shitpost list`);
 	}
 }

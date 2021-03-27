@@ -11,28 +11,28 @@ export default class leaveguildCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "",
 				usage: "leaveguild",
-				example: ["leaveguild"]
+				example: ["leaveguild"],
 			},
 			ratelimit: 3,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message, { args }) {
 		const guild = await this.client.guilds.cache.get(args);
-		await guild.leave().catch((e) => message.reply("a error occured trying to leave that guild"));
-		message.reply({
+		await guild.leave().catch((e) => message.util.send("a error occured trying to leave that guild"));
+		message.util.send({
 			embed: new MessageEmbed()
 				.setTitle("guild left")
 				.setDescription("left the guild named " + guild.name)
 				.addField("users", guild.members.cache.filter((member) => !member.user.bot).size),
-			allowedMentions: { repliedUser: false }
+			allowedMentions: { repliedUser: false },
 		});
 	}
 }

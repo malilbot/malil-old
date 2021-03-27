@@ -10,18 +10,18 @@ export default class ExecCommand extends Command {
 			description: {
 				content: "Do some bash code",
 				usage: "exec bash",
-				example: ["exec ls"]
+				example: ["exec ls"],
 			},
 			ratelimit: 3,
 			args: [
 				{
 					id: "code",
 					type: "string",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			ownerOnly: true,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
@@ -40,9 +40,9 @@ export default class ExecCommand extends Command {
 				embed.addField("Type", "shell");
 			}
 
-			return message.util.reply({
+			return message.util.send({
 				embed: embed,
-				allowedMentions: { repliedUser: false }
+				allowedMentions: { repliedUser: false },
 			});
 		});
 	}

@@ -12,23 +12,23 @@ export default class FactCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "Searches the internet for a fact",
 				usage: "fact",
-				example: ["fact"]
+				example: ["fact"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 2,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message) {
 		const res = await (await centra(`https://api.dagpi.xyz/data/fact`, "get").header("Authorization", this.client.credentials.dagpi).send()).json();
-		message.reply(res.fact, { allowedMentions: { repliedUser: false } });
+		message.util.send(res.fact, { allowedMentions: { repliedUser: false } });
 	}
 }

@@ -9,13 +9,13 @@ export default class CommandErrorListener extends Listener {
 		super("commandError", {
 			emitter: "commandHandler",
 			event: "error",
-			category: "commands"
+			category: "commands",
 		});
 	}
 
 	public async exec(error: Error, message: Message, command: Command | null | undefined): Promise<void> {
-		if (error.stack.startsWith("DiscordAPIError: Cannot reply without permission to read message history")) {
-			message.channel.send("I cannot work properly without seeing message history");
+		if (error.stack.startsWith("DiscordAPIError: Cannot channel.send without permission to read message history")) {
+			message.util.send("I cannot work properly without seeing message history");
 			return;
 		}
 		const { GStr, UStr, CStr } = Format(message, command, null);
@@ -42,6 +42,6 @@ export default class CommandErrorListener extends Listener {
 			.setColor(this.client.consts.colors.orange);
 		const channel = await this.client.channels.fetch(this.client.consts.errChannel);
 		await (channel as TextChannel).send(errorEmbed);
-		message.channel.send(errorUserEmbed);
+		message.util.send(errorUserEmbed);
 	}
 }

@@ -11,27 +11,27 @@ export default class shortenCommand extends Command {
 				{
 					id: "args",
 					type: "string",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "Show short and latency bot",
 				usage: "short",
-				example: ["short"]
+				example: ["short"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ownerOnly: false,
 			typing: true,
-			ratelimit: 1
+			ratelimit: 1,
 		});
 	}
 
 	public async exec(message: Message, { args }) {
 		//full_short_link
-		if (!args.startsWith("https://")) return message.channel.send("Thats not a link");
-		const msg = await message.channel.send(new MessageEmbed().setFooter("FETCHING"));
+		if (!args.startsWith("https://")) return message.util.send("Thats not a link");
+		const msg = await message.util.send(new MessageEmbed().setFooter("FETCHING"));
 		const res = await (await centra(`https://api.shrtco.de/v2/shorten?url=${args}`, "GET").send()).json();
-		if (res.ok !== true) return message.reply("This link is unsupported or blacklisted");
+		if (res.ok !== true) return message.util.send("This link is unsupported or blacklisted");
 		const embed = new MessageEmbed()
 			.setFooter("Powered by app.shrtco.de <3")
 			.setTitle("Sucessfully shorten the url.")

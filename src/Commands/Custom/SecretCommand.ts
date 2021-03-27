@@ -9,16 +9,16 @@ export default class SecretCommand extends Command {
 			description: {
 				content: "why Would you care",
 				usage: "E",
-				example: ["R"]
+				example: ["R"],
 			},
 			ratelimit: 3,
 			clientPermissions: ["SEND_MESSAGES"],
 			ownerOnly: false,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 
 	public async exec(message: Message, { code }) {
-		message.util.reply("woah you found my  secret command", { allowedMentions: { repliedUser: false } });
+		message.util.send("woah you found my  secret command", { allowedMentions: { repliedUser: false } });
 	}
 }

@@ -13,18 +13,18 @@ export default class LoadCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "",
 				usage: "no",
-				example: ["haha"]
+				example: ["haha"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
 			ownerOnly: true,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -63,7 +63,7 @@ export default class LoadCommand extends Command {
 							.setColor(this.client.consts.colors.default)
 							.addField(`☆ Bot Stats ${this.client.user.username}`, botStats)
 							.addField(`☆ System stats`, sysStats);
-						message.channel.send(embed);
+						message.util.send(embed);
 					});
 				});
 			});
@@ -99,6 +99,6 @@ export default class LoadCommand extends Command {
 					list = list.replace("                      ", " ".repeat(lsblk[2]?.length) + "  ");
 				}
 			exec('ps -e | wc -l', async (error, stdout) => {
-				message.reply('```' + `${lsblk}` + '```');
+				message.util.send('```' + `${lsblk}` + '```');
 			});
             */

@@ -11,22 +11,22 @@ export default class GithubremCommand extends Command {
 				{
 					id: "user",
 					type: "member",
-					match: "rest"
+					match: "rest",
 				},
 				{
 					id: "args",
 					type: "string",
-					match: "text"
-				}
+					match: "text",
+				},
 			],
 			description: {
 				content: "githubrem's a user",
 				usage: "githubrem",
-				example: ["githubrem"]
+				example: ["githubrem"],
 			},
 			ratelimit: 3,
 			channel: "guild",
-			ownerOnly: true
+			ownerOnly: true,
 		});
 	}
 
@@ -41,7 +41,7 @@ export default class GithubremCommand extends Command {
 		const z = this.client.releases.get("all").toString().replace(/,/g, "\n");
 		const x = repos.toString().replace(/,/g, "\n");
 		const embed = new MessageEmbed().addField("old", `\`\`\`bash\n${z}\`\`\``).addField("new", `\`\`\`bash\n${x}\`\`\``);
-		message.util.reply({ embed: embed, allowedMentions: { repliedUser: false } });
+		message.util.send({ embed: embed, allowedMentions: { repliedUser: false } });
 		this.client.releases.set("all", repos);
 	}
 }

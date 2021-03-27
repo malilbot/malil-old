@@ -34,6 +34,6 @@ export default class messageReactionAdd extends Listener {
 
 this.client.on('message', msg => {
     if (msg?.guild?.id !== "755166643927122091") return
-    else if (msg.content.toLowerCase().includes('retard') && !message.author.bot) return msg.reply("Please dont use the word retard and be nice")
+    else if (msg.content.toLowerCase().includes('retard') && !message.author.bot) return msg.channel.send("Please dont use the word retard and be nice")
 })
 */

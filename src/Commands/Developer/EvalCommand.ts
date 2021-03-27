@@ -12,42 +12,42 @@ export default class EvalCommand extends Command {
 			description: {
 				content: "Some super javascript code",
 				usage: "eval < javascript >",
-				example: ["eval message.guild.id"]
+				example: ["eval message.guild.id"],
 			},
 			ratelimit: 1,
 			args: [
 				{
 					id: "code",
 					type: "string",
-					match: "rest"
+					match: "rest",
 				},
 				{
 					id: "noreturn",
 					type: "boolean",
 					match: "flag",
-					flag: ["--noreturn", "-nr", "--silent", "-s"]
+					flag: ["--noreturn", "-nr", "--silent", "-s"],
 				},
 				{
 					id: "deph",
 					type: "number",
 					match: "option",
-					flag: ["--depth", "-i"]
+					flag: ["--depth", "-i"],
 				},
 				{
 					id: "remember",
 					type: "boolean",
 					match: "flag",
-					flag: ["--remember", "-r"]
+					flag: ["--remember", "-r"],
 				},
 				{
 					id: "del",
 					type: "boolean",
 					match: "flag",
-					flag: ["--delete", "-d"]
-				}
+					flag: ["--delete", "-d"],
+				},
 			],
 			ownerOnly: true,
-			channel: "guild"
+			channel: "guild",
 		});
 	}
 	public async exec(
@@ -57,7 +57,7 @@ export default class EvalCommand extends Command {
 			noreturn,
 			del,
 			deph,
-			reset
+			reset,
 		}: {
 			code: string;
 			noreturn: boolean;
@@ -66,7 +66,7 @@ export default class EvalCommand extends Command {
 			reset: boolean;
 		}
 	) {
-		if (!code) return message.reply("You cant eval air");
+		if (!code) return message.util.send("You cant eval air");
 		let output = "";
 		const gists = "";
 		if (del == true) message.delete();
@@ -113,16 +113,16 @@ export default class EvalCommand extends Command {
 		let msg;
 		if (noreturn == true) msg = await message.author.send(embed);
 		else
-			msg = await message.util.reply({
+			msg = await message.util.send({
 				embed: embed,
-				allowedMentions: { repliedUser: false }
+				allowedMentions: { repliedUser: false },
 			});
 
 		msg.react("🗑️");
 		msg.react("🔁");
 		msg.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == "🗑️" || reaction.emoji.name == "🔁"), {
 			max: 1,
-			time: 60000
+			time: 60000,
 		}).then((collected) => {
 			if (!collected.first()) return;
 			if (collected.first().emoji.name == "🗑️") {

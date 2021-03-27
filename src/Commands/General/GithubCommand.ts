@@ -12,23 +12,23 @@ export default class GithubCommand extends Command {
 				{
 					id: "args",
 					type: "array",
-					match: "rest"
-				}
+					match: "rest",
+				},
 			],
 			description: {
 				content: "Watches github releases from a github repo",
 				usage: "github",
-				example: ["github add < github repo >", "github set < channel id >", "github delete", "github list"]
+				example: ["github add < github repo >", "github set < channel id >", "github delete", "github list"],
 			},
 			ratelimit: 1,
 			channel: "guild",
 			clientPermissions: ["SEND_MESSAGES"],
-			userPermissions: ["MANAGE_MESSAGES"]
+			userPermissions: ["MANAGE_MESSAGES"],
 		});
 	}
 
 	public async exec(message: Message, { args }) {
-		if (!args) return message.reply("use  *github set <#channel> to get started use *help github for more info");
+		if (!args) return message.util.send("use  *github set <#channel> to get started use *help github for more info");
 
 		this.client.releases.ensure(message.guild.id, { channel: "", repos: [] });
 		const _args = args.split(" ");
@@ -45,10 +45,10 @@ export default class GithubCommand extends Command {
 		} else if (_args[0] == "delete") {
 			this.client.releases.delete(message.guild.id, "repos");
 			this.client.releases.set(message.guild.id, {}, "repos");
-			return message.reply("oke deleted the github list");
+			return message.util.send("oke deleted the github list");
 		} else if (_args[0] == "add") {
 			if (!this.client.releases.get(message.guild.id, "channel")) return message.util.send("no channel set please set one with: `github set <#channel> `");
-			if (this.client.releases.get(message.guild.id, "repos").length > 5) return message.reply("Sorry you can only have a maximum of 5 repos");
+			if (this.client.releases.get(message.guild.id, "repos").length > 5) return message.util.send("Sorry you can only have a maximum of 5 repos");
 			args = args.split("/");
 			const name = args[3] + "/" + args[4];
 			if (!args[4]) return message.util.send("Please try the command again but this time send a repo link");
@@ -81,7 +81,7 @@ export default class GithubCommand extends Command {
 				.setColor(this.client.consts.colors.green)
 				.setFooter(this.client.user.username, this.client.user.avatarURL());
 			message.util.send(embed);
-		} else message.util.reply("Check `*help github` for info about this command");
+		} else message.util.send("Check `*help github` for info about this command");
 
 		/*
   {

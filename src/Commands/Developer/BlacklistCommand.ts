@@ -11,17 +11,17 @@ export default class BlacklistCommand extends Command {
 				{
 					id: "args",
 					type: "string",
-					match: "text"
-				}
+					match: "text",
+				},
 			],
 			description: {
 				content: "blacklist's a user",
 				usage: "blacklist",
-				example: ["blacklist"]
+				example: ["blacklist"],
 			},
 			ratelimit: 3,
 			channel: "guild",
-			ownerOnly: true
+			ownerOnly: true,
 		});
 	}
 
@@ -29,7 +29,7 @@ export default class BlacklistCommand extends Command {
 		/*
 		const id = user ? user.id : args;
 		this.client.blacklist.push("blacklisted", id, "list");
-		message.reply("Users blacklisted: " + id, { allowedMentions: { repliedUser: false } });
+		message.util.send("Users blacklisted: " + id, { allowedMentions: { repliedUser: false } });
 		*/
 		if (!args) {
 			let list = "";
@@ -40,12 +40,12 @@ export default class BlacklistCommand extends Command {
 				list += `${name.tag}: ${name.id}\n`;
 			});
 
-			return message.reply(list || "Laughs in noone blacklisted");
+			return message.util.send(list || "Laughs in noone blacklisted");
 		}
 		let Member: GuildMember | User = (await GetMember(message, args)).user;
 		if (!Member) Member = await this.client.users.fetch(args);
 		if (!Member) {
-			return message.reply("User not found");
+			return message.util.send("User not found");
 		}
 		const userID = Member.id;
 
@@ -58,9 +58,9 @@ export default class BlacklistCommand extends Command {
 			}
 
 			this.client.blacklist.set("blacklisted", arr, "list");
-			return message.reply(`Removed ${Member.tag} from blacklist`);
+			return message.util.send(`Removed ${Member.tag} from blacklist`);
 		}
 		this.client.blacklist.push("blacklisted", userID, "list");
-		message.reply(`Added ${Member.tag} to blacklist`);
+		message.util.send(`Added ${Member.tag} to blacklist`);
 	}
 }
