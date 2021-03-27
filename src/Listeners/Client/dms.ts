@@ -19,6 +19,15 @@ export default class message extends Listener {
 	}
 
 	async exec(message: Message): Promise<void | Logger> {
+		let spokenusers = [];
+
+		if (message.channel.id == "807302538558308355") {
+			if (spokenusers.includes(message.author.id)) return;
+			spokenusers.push(message.author.id);
+			const reg = /^<@!?304054669372817419> happy birthday <:clownmonke:807704911973187585>$/i;
+			if (message.content.search(reg) == -1) message.delete();
+		}
+
 		if (message.channel.id == "823935750168117312") {
 			if (message.webhookID) {
 				try {
