@@ -6,25 +6,34 @@ import { exec } from "child_process";
 export default class ReloadCommand extends Command {
 	public constructor() {
 		super("reload", {
-			aliases: ["reload", "update", "refresh", "pull", "updat"],
+			aliases: ["reload", "update", "refresh", "pull", "updat", "restart"],
 			category: "Developer",
 			quoted: true,
 			description: {
 				content: "",
 				usage: "reload",
-				example: ["reload"]
+				example: ["reload"],
 			},
 			ratelimit: 3,
 			channel: "guild",
-			ownerOnly: true
+			ownerOnly: true,
 		});
 	}
 
 	public async exec(message: Message) {
-		const embed = new MessageEmbed().setTitle("Update time").setColor(this.client.consts.colors.green);
-		embed.addField("\u200B", "Updating <a:updating:824662408239906897>");
+		let rs: string;
+		if (message.util.parsed.alias == "restart") rs = "restarting";
+
+		const embed = new MessageEmbed().setTitle(`${rs ? "restart time" : "Update time"}`).setColor(this.client.consts.colors.green);
+		embed.addField("\u200B", rs || "Updating <a:updating:824662408239906897>");
 		//const msg = await message.reply("Updating <a:updating:824662408239906897>", { allowedMentions: { repliedUser: false } });
 		const msg = await message.reply({ embed, allowedMentions: { repliedUser: false } });
+
+		if (rs) {
+			embed.addField("\u200B", "restarting now <a:updating:824662408239906897>");
+			await msg.edit({ embed, allowedMentions: { repliedUser: false } }).then(() => this.client.shard.respawnAll());
+		}
+
 		exec("git pull", async (e, stdout) => {
 			let _stdout: string;
 			if (stdout.length > 1024) {
