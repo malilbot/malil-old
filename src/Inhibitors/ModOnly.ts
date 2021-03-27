@@ -17,7 +17,6 @@ export default class extends Inhibitor {
 
 		const channels = this.client.guilddata.get(message.guild.id, "modonly");
 
-		console.log(this.client.guilddata.get(message.guild.id, "modonly"));
 		if (!channels[0]) return false;
 
 		if (channels.includes(message.channel.id)) {
