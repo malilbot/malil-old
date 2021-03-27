@@ -1,7 +1,5 @@
 import { Command } from "discord-akairo";
-import { MessageEmbed, GuildChannel, TextChannel, GuildMember, Message } from "discord.js";
-import { utc } from "moment";
-import { GetMember, ms, Infract } from "../../lib/Utils";
+import { Message } from "discord.js";
 
 export default class StickerCommand extends Command {
 	public constructor() {
@@ -11,7 +9,7 @@ export default class StickerCommand extends Command {
 			description: {
 				content: "This is very usefull and removes all those useless stickers that flood the chat and make some peoples devices into a slideshow",
 				usage: "nosticker on",
-				example: ["nosticker on"]
+				example: ["nosticker on"],
 			},
 			ratelimit: 3,
 
@@ -22,9 +20,9 @@ export default class StickerCommand extends Command {
 				{
 					id: "Args",
 					match: "rest",
-					type: "string"
-				}
-			]
+					type: "string",
+				},
+			],
 		});
 	}
 
