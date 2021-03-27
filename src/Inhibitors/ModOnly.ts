@@ -15,7 +15,7 @@ export default class extends Inhibitor {
 		if (message.member.permissions.has("MANAGE_MESSAGES")) return false;
 		this.client.guilddata.ensure(message.guild.id, [], "modonly");
 		const channels = this.client.guilddata.get(message.guild.id, "modonly");
-		if (!channels) return false;
+		if (!channels[0]) return false;
 
 		if (channels?.include(message.channel.id)) {
 			const { GStr, UStr } = Format(message, null, null, null);
