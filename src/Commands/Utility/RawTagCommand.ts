@@ -18,7 +18,7 @@ export default class RawTagCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "show a tag as in raw",
 				usage: "rawtag",
 				example: ["rawtag"],
 			},

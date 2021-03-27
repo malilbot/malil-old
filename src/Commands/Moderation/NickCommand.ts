@@ -15,7 +15,7 @@ export default class NickCommand extends Command {
 				},
 			],
 			description: {
-				content: "Change a nickname",
+				content: "Change the nickname of a user",
 				usage: "nick",
 				example: ["nick"],
 			},

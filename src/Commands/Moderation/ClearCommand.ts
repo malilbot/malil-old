@@ -14,7 +14,7 @@ export default class ClearCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "to clear messages from the chat",
 				usage: "clear",
 				example: ["clear"],
 			},

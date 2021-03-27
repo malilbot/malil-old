@@ -16,7 +16,7 @@ export default class DTagCommand extends Command {
 				},
 			],
 			description: {
-				content: "Run a tag and delete the original website",
+				content: "Run a tag and delete the original message",
 				usage: "dtag",
 				example: ["dtag"],
 			},

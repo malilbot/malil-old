@@ -8,7 +8,7 @@ export default class TagsCommand extends Command {
 			category: "Developer",
 			quoted: true,
 			description: {
-				content: "",
+				content: "Show all tags",
 				usage: "tags",
 				example: ["tags"],
 			},

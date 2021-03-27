@@ -17,7 +17,7 @@ export default class ColorCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "custom command",
 				usage: "color",
 				example: ["color"],
 			},

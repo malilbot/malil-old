@@ -14,7 +14,7 @@ export default class PrefixCommand extends Command {
 				},
 			],
 			description: {
-				content: "Find your 8ball",
+				content: "Set the prefix of malil in your server",
 				usage: "prefix",
 				example: ["prefix"],
 			},

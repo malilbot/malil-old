@@ -9,7 +9,7 @@ export default class InfractionsCommand extends Command {
 			category: "Moderation",
 			quoted: true,
 			description: {
-				content: "",
+				content: "check a user's warnings",
 				usage: "infractions",
 				example: ["infractions"],
 			},

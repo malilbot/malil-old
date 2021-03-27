@@ -10,7 +10,7 @@ export default class VoteCommand extends Command {
 			category: "Info",
 			quoted: true,
 			description: {
-				content: "",
+				content: "get the bot's voting link",
 				usage: "vote",
 				example: ["vote"],
 			},

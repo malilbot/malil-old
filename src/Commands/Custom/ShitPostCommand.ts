@@ -15,7 +15,7 @@ export default class ShitPostCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "Set shitpost channel",
 				usage: "shitPost",
 				example: ["shitPost"],
 			},

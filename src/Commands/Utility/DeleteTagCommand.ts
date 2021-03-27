@@ -15,7 +15,7 @@ export default class DeleteTagCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "Delete a tag",
 				usage: "deletetag",
 				example: ["deletetag <name>"],
 			},

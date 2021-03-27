@@ -8,7 +8,7 @@ export default class UnmuteCommand extends Command {
 			category: "Moderation",
 			quoted: true,
 			description: {
-				content: "",
+				content: "To unmute a user",
 				usage: "unmute",
 				example: ["unmute"],
 			},

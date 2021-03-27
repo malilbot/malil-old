@@ -16,7 +16,7 @@ export default class SlowmodeCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "To change the slowmode of a channel",
 				usage: "slowmode",
 				example: ["slowmode"],
 			},

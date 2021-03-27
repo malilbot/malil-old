@@ -10,7 +10,7 @@ export default class ReloadCommand extends Command {
 			category: "Developer",
 			quoted: true,
 			description: {
-				content: "",
+				content: "reload the bot",
 				usage: "reload",
 				example: ["reload"],
 			},
