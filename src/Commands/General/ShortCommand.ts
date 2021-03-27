@@ -28,7 +28,7 @@ export default class shortenCommand extends Command {
 
 	public async exec(message: Message, { args }) {
 		//full_short_link
-		if (!args) message.reply("Please provide a link");
+		if (!args) return message.util.send("Please provide a link");
 		if (!args.startsWith("https://")) return message.util.send("Thats not a link");
 		const msg = await message.util.send(new MessageEmbed().setFooter("FETCHING"));
 		const res = await (await centra(`https://api.shrtco.de/v2/shorten?url=${args}`, "GET").send()).json();
