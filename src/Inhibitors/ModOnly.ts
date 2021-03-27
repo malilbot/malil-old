@@ -11,13 +11,15 @@ export default class extends Inhibitor {
 		});
 	}
 	public async exec(message: Message): Promise<boolean> {
-		if (superUsers.includes(message.author.id)) return false;
-		if (message.member.permissions.has("MANAGE_MESSAGES")) return false;
+		//if (superUsers.includes(message.author.id)) return false;
+		//if (message.member.permissions.has("MANAGE_MESSAGES")) return false;
 		this.client.guilddata.ensure(message.guild.id, [], "modonly");
 		const channels = this.client.guilddata.get(message.guild.id, "modonly");
 		if (!channels[0]) return false;
-
-		if (channels?.include(message.channel.id)) {
+		channels.include(message.channel.id).catch(() => {
+			return;
+		});
+		if (channels.include(message.channel.id)) {
 			const { GStr, UStr } = Format(message, null, null, null);
 			this.client.logger.info(a1(`[ USER ] ${UStr} [ GUILD ] ${GStr} [ MODONLY ]`));
 			return true;
