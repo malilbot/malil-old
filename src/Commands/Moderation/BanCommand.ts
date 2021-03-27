@@ -6,12 +6,12 @@ import { GetMember, Infract } from "../../lib/Utils";
 export default class BanCommand extends Command {
 	public constructor() {
 		super("ban", {
-			aliases: ["ban"],
+			aliases: ["ban", "bang"],
 			category: "Moderation",
 			description: {
 				content: "To ban members on this guild",
 				usage: "ban < member >",
-				example: ["ban @member", "ban @member 7"]
+				example: ["ban @member", "ban @member 7"],
 			},
 			channel: "guild",
 			ratelimit: 3,
@@ -24,14 +24,14 @@ export default class BanCommand extends Command {
 						if (str && !isNaN(Number(str)) && [0, 1, 2, 3, 4, 5, 7].includes(Number(str))) return Number(str);
 						return null;
 					},
-					default: 0
+					default: 0,
 				},
 				{
 					id: "reason",
 					type: "strin",
-					default: "e No reason provided..."
-				}
-			]
+					default: "e No reason provided...",
+				},
+			],
 		});
 	}
 
@@ -51,12 +51,7 @@ export default class BanCommand extends Command {
 			new MessageEmbed()
 				.setAuthor(`User Banned by ${message.author.tag}`, message.author.avatarURL())
 				.setThumbnail(user.user.avatarURL())
-				.setDescription(
-					`
-                Name: ${user.user.tag}
-                Time: ${utc(Date.now())}
-                Reason: ${reason}`
-				)
+				.setDescription(`Name: ${user.user.tag}\n` + `Time: ${utc(Date.now())}\n` + `Reason: ${reason}`)
 				.setFooter(`Sayonara~`)
 				.setTimestamp()
 		);
