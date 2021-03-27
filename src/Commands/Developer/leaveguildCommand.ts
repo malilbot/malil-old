@@ -15,7 +15,7 @@ export default class leaveguildCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "leave a guild",
 				usage: "leaveguild",
 				example: ["leaveguild"],
 			},

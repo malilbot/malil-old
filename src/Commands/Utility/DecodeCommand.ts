@@ -16,7 +16,7 @@ export default class DecodeCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "Decode some stuff",
 				usage: "decode",
 				example: ["decode"],
 			},

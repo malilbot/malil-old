@@ -19,7 +19,7 @@ export default class WarnCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "To warn a user",
 				usage: "warn",
 				example: ["warn"],
 			},

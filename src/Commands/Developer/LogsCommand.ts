@@ -18,7 +18,7 @@ export default class LogsCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "give the bot's log with a gist",
 				usage: "logs",
 				example: ["logs"],
 			},

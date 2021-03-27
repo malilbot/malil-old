@@ -15,7 +15,7 @@ export default class InviteCommand extends Command {
 				},
 			],
 			description: {
-				content: "Invite malil to your server aswell",
+				content: "Invite malil to your server as well",
 				usage: "invite",
 				example: ["invite"],
 			},

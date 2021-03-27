@@ -15,7 +15,7 @@ export default class BotListCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "Botlist command",
 				usage: "botList",
 				example: ["botList"],
 			},

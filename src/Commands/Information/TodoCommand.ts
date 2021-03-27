@@ -10,7 +10,7 @@ export default class TodoCommand extends Command {
 			category: "Info",
 			quoted: true,
 			description: {
-				content: "",
+				content: "get the todo list of the bot",
 				usage: "todo",
 				example: ["todo"],
 			},

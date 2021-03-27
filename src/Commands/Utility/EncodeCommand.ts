@@ -17,7 +17,7 @@ export default class EncodeCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "Encode your message",
 				usage: "encode",
 				example: ["encode"],
 			},

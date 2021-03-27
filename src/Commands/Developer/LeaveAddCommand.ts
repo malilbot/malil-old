@@ -16,7 +16,7 @@ export default class LeaveAddCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "add a guild to leave list",
 				usage: "leaveAdd",
 				example: ["leaveAdd"],
 			},

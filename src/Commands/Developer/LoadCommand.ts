@@ -17,7 +17,7 @@ export default class LoadCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "load the bot",
 				usage: "no",
 				example: ["haha"],
 			},

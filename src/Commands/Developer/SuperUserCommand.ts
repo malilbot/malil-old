@@ -15,7 +15,7 @@ export default class SuperUserCommand extends Command {
 				},
 			],
 			description: {
-				content: "Superuser's a user",
+				content: "Set a user as a superuser",
 				usage: "su",
 				example: ["su"],
 			},

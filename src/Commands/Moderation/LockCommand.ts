@@ -13,6 +13,11 @@ export default class LockCommand extends Command {
 					match: "rest"
 				}
 			],
+			description: {
+				content: "To lock a channel",
+				usage: "lock #channel",
+				example: ["lock #general"],
+			},
 			channel: "guild",
 			clientPermissions: ["MANAGE_CHANNELS"],
 			userPermissions: ["MANAGE_CHANNELS"]

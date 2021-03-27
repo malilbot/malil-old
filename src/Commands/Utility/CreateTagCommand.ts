@@ -15,7 +15,7 @@ export default class CreatetagCommand extends Command {
 				},
 			],
 			description: {
-				content: "",
+				content: "Create a tag",
 				usage: "createtag",
 				example: ["createtag <name> <input>"],
 			},
