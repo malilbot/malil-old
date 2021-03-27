@@ -24,7 +24,7 @@ const _os = os;
 const prefixes = new Enmap({
 	name: "prefixes",
 	dataDir: join(__dirname, "..", "..", "data/prefixes"),
-	polling: true
+	polling: true,
 });
 
 export function Format(msg: Message, Cmd?: Command, missing?: string[], reason?: string): FormatIF {
@@ -46,7 +46,7 @@ export function Format(msg: Message, Cmd?: Command, missing?: string[], reason?:
 		UStr: usr,
 		GStr: gld,
 		MStr: mis,
-		RStr: rsn
+		RStr: rsn,
 	};
 }
 
@@ -211,7 +211,7 @@ function getCPUInfo() {
 
 	return {
 		idle: idle,
-		total: totals
+		total: totals,
 	};
 }
 
@@ -280,7 +280,7 @@ export class Util {
 			d: 0,
 			h: 0,
 			m: 0,
-			s: 0
+			s: 0,
 		};
 		time.s = Math.floor(ms / 1000);
 		time.m = Math.floor(time.s / 60);
@@ -302,24 +302,13 @@ export class Util {
 		return res.join(":");
 	}
 }
-export const GetMember = async function (msg: Message, args?: string, client?): Promise<GuildMember> {
+export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
 	let user: GuildMember;
-	const _mentions = [];
-	const id = msg.guild.me.user.id || client.user.id;
 
-	if (!msg.content?.startsWith(`<@!${id}>`) && msg.content.includes(id)) return msg.guild.me;
+	const id = msg.guild.me.user.id;
 
-	for (const mentions of msg.mentions.users) {
-		_mentions.push(mentions[1].id);
-	}
 	/** Checking if there are 2 mentions */
-	if (_mentions[0]) if (msg.mentions.members.last()?.user.id !== id) return msg.mentions.members.last();
-	if (_mentions[1]) if (_mentions[0] !== _mentions[1]) return msg.mentions.members.last();
-
-	const _content = msg.content.replace(id, "");
-	if (_content.includes(id)) {
-		return msg.mentions.members.last();
-	}
+	if (msg.mentions.members.last()?.user.id !== id) return msg.mentions.members.last();
 
 	const prefix = prefixes.get(msg.guild.id, "prefix");
 	if (args) {
@@ -362,12 +351,12 @@ export const CreateGist = async function (name: string, content: string, client:
 	logger.info(a1("[ CREATING GIST ] ") + main(`NAME ${name}`));
 	const files: { [key: string]: { content: string } } = {};
 	files[name] = {
-		content: content || "oops something went wrong :("
+		content: content || "oops something went wrong :(",
 	};
 	const body = {
 		description: `Malil`,
 		public: false,
-		files
+		files,
 	};
 	const gist = await (
 		await centra("https://api.github.com/gists", "POST").header("User-Agent", "Malil").header("Authorization", `token ${client.credentials.gist}`).body(body, "json").send()
@@ -379,12 +368,12 @@ export const EditGist = async function (name: string, content: string, GistId: s
 	logger.info(a1("[ EDITING GIST ] ") + main(`NAME ${name}`));
 	const files: { [key: string]: { content: string } } = {};
 	files[name] = {
-		content: content || "oops something went wrong :("
+		content: content || "oops something went wrong :(",
 	};
 	const body = {
 		description: `Malil`,
 		public: false,
-		files
+		files,
 	};
 	const gist = await (
 		await centra("https://api.github.com/gists/" + GistId, "POST")
@@ -428,7 +417,7 @@ export async function Infract(message?: Message, reason?: string, member?: Guild
 		const _log = {
 			who: message.author.tag,
 			reason: reason,
-			type: type
+			type: type,
 		};
 		infraction[Date.now()] = _log;
 		client.infractions.set(message.guild.id, infraction, usID);
@@ -488,7 +477,7 @@ export const logger = createLogger({
 
 	transports: [
 		new transports.Console({
-			level: "info"
+			level: "info",
 		}),
 		new DailyRotateFile({
 			format: combine(timestamp()),
@@ -496,9 +485,9 @@ export const logger = createLogger({
 			zippedArchive: true,
 			extension: ".log",
 			filename: "./Logs/malil-%DATE%",
-			maxFiles: "14d"
-		})
-	]
+			maxFiles: "14d",
+		}),
+	],
 });
 export const sleep = async function (ms: number | string): Promise<string | number> {
 	let mis: number;
