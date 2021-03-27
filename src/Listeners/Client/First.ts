@@ -14,7 +14,7 @@ export default class First extends Listener {
 		this.client = client;
 	}
 
-	async exec(): Promise<void> {
+	async exec(message: Message) {
 		if (
 			!this.client.blacklist.get("blacklist") ||
 			!this.client.blacklist.get("blacklisted") ||

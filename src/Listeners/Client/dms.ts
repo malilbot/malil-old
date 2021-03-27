@@ -20,17 +20,6 @@ export default class message extends Listener {
 	}
 
 	async exec(message: Message): Promise<void | Logger> {
-		this.client.gp.ensure("on", true);
-		const on = this.client.gp.get("on");
-		if (on == true) {
-			if (message.channel.id == "807302538558308355") {
-				if (spokenusers.includes(message.author.id)) return;
-				const reg = /^<@!?304054669372817419> happy birthday <:clownmonke:807704911973187585>$/i;
-				if (message.content.search(reg) == -1) message.delete();
-				spokenusers.push(message.author.id);
-			}
-		}
-
 		if (message.channel.id == "823935750168117312") {
 			if (message.webhookID) {
 				try {
