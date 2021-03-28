@@ -8,7 +8,7 @@ export default class guildDelete extends Listener {
 		super("guildDelete", {
 			emitter: "client",
 			event: "guildDelete",
-			category: "client"
+			category: "client",
 		});
 		this.client = client;
 	}
