@@ -22,7 +22,7 @@ export default class server extends Listener {
 		this.client = client;
 	}
 	public async exec(): Promise<void> {
-		const { password, auth, clientID, port, site, clientSecret } = Settings;
+		const { password, auth, clientID, port, site, clientSecret, ownerid } = Settings;
 		if (site !== true) return;
 
 		const client = this.client;
@@ -46,7 +46,7 @@ export default class server extends Listener {
 		);
 
 		// Express and Passport Session
-		app.use(session({ secret: "jsonworldbestplaformforjsframeworks" }));
+		app.use(session({ secret: password }));
 		app.use(passport.initialize());
 		app.use(passport.session());
 
@@ -72,10 +72,10 @@ export default class server extends Listener {
 
 		app.get("/dashboard", function (req, res) {
 			if (req.isAuthenticated()) {
-				if (req.user.id == "72335827") {
-					res.sendFile(join(__dirname, "..", "..", "..", "resources", "/view.html"));
+				if (req.user.id == ownerid) {
+					res.sendFile(join(__dirname, "..", "..", "..", "resources", "/login.html"));
 				}
-				res.sendFile(join(__dirname, "..", "..", "..", "resources", "/login.html"));
+				res.sendFile(join(__dirname, "..", "..", "..", "resources", "/noacess.html"));
 			}
 			res.sendFile(join(__dirname, "..", "..", "..", "resources", "/dashboard.html"));
 		});
