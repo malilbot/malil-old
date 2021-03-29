@@ -36,7 +36,7 @@ export default class server extends Listener {
 				{
 					clientID,
 					clientSecret,
-					callbackURL: `http://localhost:${port}/auth/github/callback`,
+					callbackURL: `http://localhost:${port}/admin/auth/github/callback`,
 				},
 				function (accessToken, refreshToken, profile, done) {
 					// we will just use the profile object returned by GitHub
@@ -61,44 +61,27 @@ export default class server extends Listener {
 
 			done(null, user); // null is for errors
 		});
+		app.use(express.static(join(__dirname, "..", "..", "..", "resources", "/style.css")));
 
-		// we will call this to start the GitHub Login process
-		app.get("/auth/github", passport.authenticate("github"));
-		app.get("/login", passport.authenticate("github"));
-		// GitHub will call this URL
-		app.get("/auth/github/callback", passport.authenticate("github", { failureRedirect: "/" }), function (req, res) {
-			res.redirect("/");
+		app.get("/admin/auth/github", passport.authenticate("github"));
+		app.get("/admin/login", function (req, res) {
+			res.sendFile(join(__dirname, "..", "..", "..", "resources", "/login.html"));
 		});
 
-		app.get("/dashboard", function (req, res) {
+		app.get("/admin/auth/github/callback", passport.authenticate("github", { failureRedirect: "/" }), function (req, res) {
+			res.redirect("/dashboard");
+		});
+
+		app.get("/admin/dashboard", function (req, res) {
 			if (req.isAuthenticated()) {
 				if (req.user.id == ownerid) {
-					res.sendFile(join(__dirname, "..", "..", "..", "resources", "/login.html"));
+					res.sendFile(join(__dirname, "..", "..", "..", "resources", "/dashboard.html"));
+				} else {
+					res.sendFile(join(__dirname, "..", "..", "..", "resources", "/noacess.html"));
 				}
-				res.sendFile(join(__dirname, "..", "..", "..", "resources", "/noacess.html"));
+			} else {
+				res.redirect("/admin/login");
 			}
-			res.sendFile(join(__dirname, "..", "..", "..", "resources", "/dashboard.html"));
-		});
-
-		app.get("/logout", function (req, res) {
-			req.logout();
-			res.redirect("/");
-		});
-
-		// Simple route middleware to ensure user is authenticated.
-		//  Use this route middleware on any resource that needs to be protected.  If
-		//  the request is authenticated (typically via a persistent login session),
-		//  the request will proceed.  Otherwise, the user will be redirected to the login page.
-
-		function ensureAuthenticated(req, res, next) {
-			if (req.isAuthenticated()) {
-				return next();
-			}
-			res.redirect("/");
-		}
-
-		app.get("/protected", ensureAuthenticated, function (req, res) {
-			res.send("acess granted");
 		});
 
 		app.post("/api/votes", async function (req, res) {
@@ -159,5 +142,26 @@ export default class server extends Listener {
 		});
 		app.get("/admin2", async function (req, res) {
 			res.sendFile(join(__dirname, "..", "..", "..", "resources", "/login.html"));
+		});
+		*/
+/*
+		app.get("/logout", function (req, res) {
+			req.logout();
+			res.redirect("/");
+		});
+		*/
+// Simple route middleware to ensure user is authenticated.
+//  Use this route middleware on any resource that needs to be protected.  If
+//  the request is authenticated (typically via a persistent login session),
+//  the request will proceed.  Otherwise, the user will be redirected to the login page.
+
+function ensureAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+	}
+}
+/*
+		app.get("/protected", ensureAuthenticated, function (req, res) {
+			res.send("acess granted");
 		});
 		*/
