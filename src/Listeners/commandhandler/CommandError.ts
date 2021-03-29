@@ -35,11 +35,21 @@ export default class CommandErrorListener extends Listener {
 			)
 			.addField("Error", `${await hst(error.stack)}`)
 			.setTimestamp();
-		const errorUserEmbed: MessageEmbed = new MessageEmbed()
-			.setTitle("An error occurred and has been reported to the devs")
-			.setDescription("To get an update on if the issue has been fixed go to the [support discord](https://discord.gg/TAp9Kt2)")
-			.setTimestamp()
-			.setColor(this.client.consts.colors.orange);
+		let errorUserEmbed: MessageEmbed;
+		if (message.guild.id == "748956745409232945") {
+			errorUserEmbed = new MessageEmbed()
+				.setTitle("An error occurred and has been reported to the devs")
+				.setDescription("haha errors go brrrrr")
+				.setTimestamp()
+				.setColor(this.client.consts.colors.orange);
+		} else {
+			errorUserEmbed = new MessageEmbed()
+				.setTitle("An error occurred and has been reported to the devs")
+				.setDescription("To get an update on if the issue has been fixed go to the [support discord](https://discord.gg/TAp9Kt2)")
+				.setTimestamp()
+				.setColor(this.client.consts.colors.orange);
+		}
+
 		const channel = await this.client.channels.fetch(this.client.consts.errChannel);
 		await (channel as TextChannel).send(errorEmbed);
 		message.util.send(errorUserEmbed);

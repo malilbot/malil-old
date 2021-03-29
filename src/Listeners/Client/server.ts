@@ -7,7 +7,7 @@ import { join } from "path";
 import passport from "passport";
 import session from "express-session";
 import { Strategy } from "passport-github";
-import { main, sec, third, fourth, split } from "../../lib/Utils";
+import { sec, fourth } from "../../lib/Utils";
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -22,9 +22,10 @@ export default class server extends Listener {
 		this.client = client;
 	}
 	public async exec(): Promise<void> {
-		const { password, auth, clientID, port, site, clientSecret, ownerid } = Settings;
+		const { site, server, auth } = Settings;
 		if (site !== true) return;
-
+		const { password, clientID, port, clientSecret, ownerid } = server;
+		const { topAuth, dbotsAuth } = auth;
 		const client = this.client;
 
 		/***************************************************************
@@ -87,9 +88,22 @@ export default class server extends Listener {
 		app.post("/api/votes", async function (req, res) {
 			const headers = req.headers;
 			if (headers?.authorization) {
-				if (headers.authorization == auth) {
+				if (headers.authorization == topAuth) {
 					client.gp.math("commands", "+", 1);
 					const member = await client.users.fetch(req.body.user);
+					const iq = Math.floor(Math.random() * 150) + 1;
+					client.UserData.ensure(member.id, { iq: iq });
+					if (!member) return client.logger.info("WHATTT?");
+					client.logger.info(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
+					const wknd = req.body.isWeekend;
+					const cur = Number(client.UserData.get(member.id, "iq"));
+					if (!cur) return;
+					const amount = wknd ? 2 : 1;
+					client.UserData.set(member.id, cur + amount, "iq");
+					return res.send({ success: true, status: 200 });
+				} else if (headers.authorization == dbotsAuth) {
+					client.gp.math("commands", "+", 1);
+					const member = await client.users.fetch(req.body.id);
 					const iq = Math.floor(Math.random() * 150) + 1;
 					client.UserData.ensure(member.id, { iq: iq });
 					if (!member) return client.logger.info("WHATTT?");
@@ -154,7 +168,7 @@ export default class server extends Listener {
 //  Use this route middleware on any resource that needs to be protected.  If
 //  the request is authenticated (typically via a persistent login session),
 //  the request will proceed.  Otherwise, the user will be redirected to the login page.
-
+/*
 function ensureAuthenticated(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
