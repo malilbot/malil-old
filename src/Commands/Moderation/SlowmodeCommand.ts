@@ -28,7 +28,7 @@ export default class SlowmodeCommand extends Command {
 	}
 
 	public async exec(message, { args }) {
-		//return message.util.send("Sorry this command is currently disabled due to djs issues");
+		return message.util.send("Sorry this command is currently disabled due to djs issues");
 		const Embed = new MessageEmbed().setColor(this.client.consts.colors.purple).setTimestamp();
 
 		if (args == "none" || args == "off") {
