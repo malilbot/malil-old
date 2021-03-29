@@ -3,7 +3,7 @@ import { Settings, credentials, consts } from "../settings";
 import TaskHandler from "./taskhandler";
 import { superUsers } from "./config";
 import BotLists from "./BotLists";
-import { logger } from "./Utils";
+import { logger, readyLog } from "./Utils";
 import { Logger } from "winston";
 import { join } from "path";
 import Enmap from "enmap";

@@ -1,5 +1,5 @@
 import { Listener, Command } from "discord-akairo";
-import { Format } from "../../lib/util";
+import { Format, sLog } from "../../lib/util";
 import Client from "../../lib/Client";
 import { Message } from "discord.js";
 import { a1 } from "../../lib/Utils";
@@ -15,8 +15,7 @@ export default class commandBlocked extends Listener {
 	}
 
 	exec(message: Message, command: Command, reason: string): void {
-		const { GStr, UStr, RStr, CStr } = Format(message, command, null, reason);
-		this.client.logger.info(a1(`[ CMD ] ${CStr} [ USER ] ${UStr} [ GUILD ] ${GStr} [ BLOCKED FOR ] ${RStr}`));
+		sLog({ msg: message, command, type: reason });
 		if (reason == "owner") {
 			message.react("812398880515817472");
 		}

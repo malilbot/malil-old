@@ -30,8 +30,6 @@ export default class MuteReady extends Listener {
 						const guild = client.guilds.cache.get(Element as string) || (await client.guilds.fetch(Element as string));
 						const role: Role = guild.roles.cache.get(MRole) || (await guild.roles.fetch(MRole));
 						const member: GuildMember = guild.members.cache.get(key) || (await guild.members.fetch(key));
-						client.logger.info(main(`[ UNMUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(guild.name)} ${third(guild.id)}`));
-
 						member.roles.remove(role, "mute duration expired");
 						Infract(null, "Mute duration expired", member, "UNMUTE", client);
 					}, time - Date.now());

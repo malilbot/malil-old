@@ -9,7 +9,7 @@ export default class process extends Listener {
 		super("process", {
 			emitter: "process",
 			event: "unhandledRejection",
-			category: "process"
+			category: "process",
 		});
 		this.client = client;
 	}
@@ -27,10 +27,7 @@ export default class process extends Listener {
 			await (channel as TextChannel).send(
 				new MessageEmbed({
 					title: "Unhandled promise rejection",
-					description: `
-			 Promise \`${promise}\` threw an error, unhandled.
-			 Stack: ${await hst(error.stack)}
-			`
+					description: `Promise \`${promise}\` threw an error, unhandled.\n` + `Stack: ${await hst(error.stack)}`,
 				})
 			);
 		} catch (e) {}

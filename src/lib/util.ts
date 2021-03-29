@@ -1,9 +1,9 @@
-import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed } from "discord.js";
+import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, Guild } from "discord.js";
+import { Command, CommandHandler, InhibitorHandler, ListenerHandler } from "discord-akairo";
 import { red, blue, gray, yellow, green, magenta, cyan, hex, underline } from "chalk";
 import { createLogger, transports, format, Logger } from "winston";
 import { credentials, Settings, consts } from "../settings";
 import DailyRotateFile from "winston-daily-rotate-file";
-import { Command } from "discord-akairo";
 import { join } from "path";
 import centra from "centra";
 import Enmap from "enmap";
@@ -346,6 +346,54 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 	return user || null;
 };
 
+export function sLog({
+	msg = null,
+	type = null,
+	guild = null,
+	member = null,
+	command = null,
+	mod = false,
+}: {
+	msg?: Message;
+	type?: string;
+	guild?: Guild;
+	member?: GuildMember;
+	command?: Command;
+	mod?: boolean;
+}): void {
+	if (guild) {
+		if (type == "GUILDADD") {
+			logger.info(`${sec("[ SERVER ADD ]")} ${main(guild.name)}`);
+		} else if (type == "GUILDDELETE") {
+			logger.info(`${sec("[ SERVER KICK ]")} ${main(guild.name)} Fuck this guy removing me from his server`);
+		} else if (type == "MEMBERADD") {
+			logger.info(a1(`[ USER ] ${main(member.user.tag)} [ GUILD ] ${sec(member.guild.name)} [ USER JOINED ]`));
+		}
+	}
+	if (type.includes("MUTE")) {
+		if (type == "MUTE") {
+			logger.info(main(`[ MUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`));
+		} else if (type == "UNMUTE") {
+			logger.info(main(`[ UNMUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`));
+		} else if (type == "REMUTE") {
+			logger.info(main(`[ REMUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`));
+		}
+	} else if (mod == true) {
+		const actions = {
+			KICK: "KICKED",
+			BAN: "BANNED",
+		};
+		logger.info(main(`[ ${actions[type]} ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`));
+	}
+	if (command) {
+		const { GStr, UStr, RStr, CStr } = Format(msg, command, null, type);
+
+		if (RStr) {
+			this.client.logger.info(a1(`[ CMD ] ${CStr} [ USER ] ${UStr} [ GUILD ] ${GStr} [ BLOCKED FOR ] ${RStr}`));
+		}
+	}
+}
+
 export const CreateGist = async function (name: string, content: string, client: InterfaceClient): Promise<string> {
 	logger.info(a1("[ CREATING GIST ] ") + main(`NAME ${name}`));
 	const files: { [key: string]: { content: string } } = {};
@@ -410,6 +458,7 @@ function replace(msg: string) {
 export async function Infract(message?: Message, reason?: string, member?: GuildMember, type?: string, client?: InterfaceClient): Promise<void> {
 	logger.info(sec("[ GIVING OUT A INFRACTION ] ") + main(`[ TO ] ${member.user.tag || "noone? huh what"} `) + third(`[ TYPE ] ${type || "no type? wtf"}`));
 	if (type !== "UNMUTE") {
+		sLog({ type: "UNMUTE", member });
 		const usID = member.id;
 		client.infractions.ensure(message.guild.id, { [usID]: {} });
 		const infraction = client.infractions.get(message.guild.id, usID);
@@ -425,6 +474,7 @@ export async function Infract(message?: Message, reason?: string, member?: Guild
 	if (client.logchannel.get(member.guild.id)) {
 		if (((await client.channels.fetch(client.logchannel.get(member.guild.id))) as GuildChannel).deleted == false) {
 			const embed = new MessageEmbed();
+			sLog({ member, type, mod: true });
 			if (type == "KICK") {
 				embed.setAuthor(`User Kicked by ${message.author.tag}`, message.author.avatarURL());
 				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason}`);
@@ -438,6 +488,7 @@ export async function Infract(message?: Message, reason?: string, member?: Guild
 				embed.setFooter(`User id: ${member.user.id}`);
 				embed.setTimestamp();
 			} else if (type == "MUTE") {
+				sLog({ member, type: "MUTE" });
 				embed.setAuthor(`User Muted by ${message.author.tag}`, message.author.avatarURL());
 				embed.setDescription(`Member: ${member.user.tag}\nTime ${ms(ms(reason), { long: true }) || "Perma"}`);
 				embed.setColor(client.consts.colors.red);
@@ -464,6 +515,101 @@ export async function Infract(message?: Message, reason?: string, member?: Guild
 		}
 	}
 }
+
+export function readyLog(client: InterfaceClient): void {
+	const { log } = console;
+	const num = Math.floor(Math.random() * 2 + 1);
+
+	const notes = "Nice stolen aci",
+		mm1 = String.raw`          /           `,
+		mm2 = String.raw`       ${sec("/╬")}▓           `,
+		mm3 = String.raw`     ${sec("/▓▓")}╢            `,
+		mm4 = String.raw`   [${sec("▓▓")}▓╣/            `,
+		mm5 = String.raw`   [╢╢╣▓             `,
+		mm6 = String.raw`    %,╚╣╣@\          `,
+		mm7 = String.raw`      #,╙▓▓▓\╙N      `,
+		mm8 = String.raw`       '╙ \▓▓▓╖╙╦    `,
+		mm9 = String.raw`            \@╣▓╗╢%  `,
+		m10 = String.raw`               ▓╣╢╢] `,
+		m11 = String.raw`              /╣▓${sec("▓▓")}] `,
+		m12 = String.raw`              ╢${sec("▓▓/")}   `,
+		m13 = String.raw`             ▓${sec("╬/")}     `,
+		m14 = String.raw`            /        `;
+	notes;
+
+	const anote = "Yeah big mess",
+		ll1 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ",
+		ll2 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
+		ll3 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
+		ll4 = "⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
+		ll5 = "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍",
+		ll6 = "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍",
+		ll7 = "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍",
+		ll8 = "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍",
+		ll9 = "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍",
+		l10 = "⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍",
+		l11 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
+		l12 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
+		l13 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
+		l14 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍";
+	anote;
+
+	const q1 = `1.0.0 [ ${client.user.username} ]`,
+		q2 = 5,
+		a1 = fixspace(client.commandHandler.modules.size, q2),
+		a2 = fixspace(client.listenerHandler.modules.size, q2),
+		a3 = fixspace(client.inhibitorHandler.modules.size, q2),
+		a4 = fixspace(client.guilds.cache.size, q2),
+		a5 = fixspace(
+			client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0),
+			q2
+		),
+		a6 = fixspace(
+			client.guilds.cache.reduce((a, b) => a + b.memberCount, 0),
+			q2
+		),
+		a7 = fixspace(client.options.shardCount, q2);
+	const note = "yeah this is a mess",
+		b1 = " ███╗   ███╗ █████╗ ██╗     ██╗██╗",
+		b2 = " ████╗ ████║██╔══██╗██║     ██║██║",
+		b3 = " ██╔████╔██║███████║██║     ██║██║",
+		b4 = " ██║╚██╔╝██║██╔══██║██║     ██║██║",
+		b5 = " ██║ ╚═╝ ██║██║  ██║███████╗██║███████╗",
+		b6 = " ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚══════╝";
+	note;
+	if (num == 2) {
+		log(main(ll1) + fourth(q1));
+		log(main(ll2) + sec(b1));
+		log(main(ll3) + sec(b2));
+		log(main(ll4) + sec(b3));
+		log(main(ll5) + sec(b4));
+		log(main(ll6) + sec(b5));
+		log(main(ll7) + sec(b6));
+		log(main(ll8), split, third(a1), split, third("Commands"));
+		log(main(ll9), split, third(a2), split, third("Listeners"));
+		log(main(l10), split, third(a3), split, third("Inhibitors"));
+		log(main(l11), split, third(a4), split, third("Guilds"));
+		log(main(l12), split, third(a5), split, third("Channels"));
+		log(main(l13), split, third(a6), split, third("Users"));
+		log(main(l14), split, third(a7), split, third("Shards"));
+	} else {
+		log(main(mm1) + fourth(q1));
+		log(main(mm2) + sec(b1));
+		log(main(mm3) + sec(b2));
+		log(main(mm4) + sec(b3));
+		log(main(mm5) + sec(b4));
+		log(main(mm6) + sec(b5));
+		log(main(mm7) + sec(b6));
+		log(main(mm8), split, third(a1), split, third("Commands"));
+		log(main(mm9), split, third(a2), split, third("Listeners"));
+		log(main(m10), split, third(a3), split, third("Inhibitors"));
+		log(main(m11), split, third(a4), split, third("Guilds"));
+		log(main(m12), split, third(a5), split, third("Channels"));
+		log(main(m13), split, third(a6), split, third("Users"));
+		log(main(m14), split, third(a7), split, third("Shards"));
+	}
+}
+
 export const logger = createLogger({
 	level: "info",
 	format: combine(
@@ -515,6 +661,9 @@ class InterfaceClient extends Client {
 	public logchannel: Enmap;
 	public infractions: Enmap;
 	public logger: Logger;
+	public commandHandler?: CommandHandler;
+	public listenerHandler?: ListenerHandler;
+	public inhibitorHandler?: InhibitorHandler;
 }
 interface FormatIF {
 	GStr: string;

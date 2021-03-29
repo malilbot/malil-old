@@ -1,7 +1,7 @@
 import { Listener } from "discord-akairo";
 import { Guild } from "discord.js";
 import Client from "../../lib/Client";
-import { main, sec, third, fourth, a1, split, sleep } from "../../lib/Utils";
+import { main, sec, third, fourth, a1, split, sleep, sLog } from "../../lib/Utils";
 export default class guildDelete extends Listener {
 	client: Client;
 	public constructor(client: Client) {
@@ -13,9 +13,7 @@ export default class guildDelete extends Listener {
 		this.client = client;
 	}
 
-	async exec(guild: Guild) {
-		if (guild?.name) {
-			this.client.logger.info(`${sec("[ SERVER KICK ]")} ${main(guild.name)} Fuck this guy removing me from his server`);
-		}
+	async exec(guild: Guild): Promise<void> {
+		sLog({ type: "GUILDDELETE", guild: guild });
 	}
 }

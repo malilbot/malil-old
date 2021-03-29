@@ -1,14 +1,14 @@
 import { Listener } from "discord-akairo";
 import { GuildMember, TextChannel, MessageEmbed } from "discord.js";
 import Client from "../../lib/Client";
-import { main, sec, fourth, a1 } from "../../lib/Utils";
+import { main, sec, fourth, a1, sLog } from "../../lib/Utils";
 export default class WelcomeEmbed extends Listener {
 	client: Client;
 	public constructor(client: Client) {
 		super("welcomeEmbed", {
 			emitter: "client",
 			event: "guildMemberAdd",
-			category: "client"
+			category: "client",
 		});
 		this.client = client;
 	}
@@ -19,7 +19,8 @@ export default class WelcomeEmbed extends Listener {
 			if (mutes[member.id]) {
 				if (Date.now() < mutes[member.id]) {
 					const role = member.guild.roles.cache.get(this.client.mutes.get(member.guild.id, "role")) || (await member.guild.roles.fetch(this.client.mutes.get(member.guild.id, "role")));
-					member.roles.add(role, "L eft and rejoined while muted");
+					sLog({ type: "REMUTE", member });
+					member.roles.add(role, "Left and rejoined while muted");
 				}
 			}
 		}
@@ -29,7 +30,7 @@ export default class WelcomeEmbed extends Listener {
 					"https://i.imgur.com/MqGBqZs.gif",
 					"https://media.giphy.com/media/4Zo41lhzKt6iZ8xff9/giphy.gif",
 					"https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif",
-					"https://media.giphy.com/media/Cmr1OMJ2FN0B2/giphy.gif"
+					"https://media.giphy.com/media/Cmr1OMJ2FN0B2/giphy.gif",
 				];
 				gifs = shuffle(gifs);
 				const welcomeEmbed = new MessageEmbed()
@@ -43,12 +44,11 @@ export default class WelcomeEmbed extends Listener {
 					webhook.edit({
 						avatar: member.user.displayAvatarURL({
 							size: 2048,
-							format: "png"
-						})
+							format: "png",
+						}),
 					})
 				);
-				this.client.logger.info(a1(`[ USER ] ${main(member.user.tag)} [ GUILD ] ${sec(member.guild.name)} [ USER JOINED ]`));
-
+				sLog({ member, type: "MEMBERADD", guild: member.guild });
 				await webhook
 					.send(welcomeEmbed)
 					.then(() => webhook.delete())

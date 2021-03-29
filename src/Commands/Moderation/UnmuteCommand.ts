@@ -25,13 +25,13 @@ export default class UnmuteCommand extends Command {
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<Message> {
 		if (!args) return message.util.send("No user provided");
 		const user = args.split(" ")[0];
 		const reason = args.split(" ").slice(1).join(" ");
 		const member = await GetMember(message, user);
 		if (!member) return message.util.send("User not found");
-		message.util.send(`Unmuted ${member.user.username} 👍`);
+
 		const MRole = this.client.mutes.get(message.guild.id, `role`);
 		const role: Role = message.guild.roles.cache.get(MRole) || (await message.guild.roles.fetch(MRole));
 
@@ -39,5 +39,6 @@ export default class UnmuteCommand extends Command {
 
 		member.roles.remove(role, "mute duration expired");
 		Infract(message, reason, member, "STAFFUNMUTE", this.client);
+		return await message.util.send(`Unmuted ${member.user.username} 👍`);
 	}
 }
