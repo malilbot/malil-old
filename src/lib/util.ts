@@ -1,5 +1,5 @@
 import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed } from "discord.js";
-import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
+import { red, blue, gray, yellow, green, magenta, cyan, hex, underline } from "chalk";
 import { createLogger, transports, format, Logger } from "winston";
 import { credentials, Settings, consts } from "../settings";
 import DailyRotateFile from "winston-daily-rotate-file";
@@ -9,7 +9,6 @@ import centra from "centra";
 import Enmap from "enmap";
 import os from "os";
 /** Pre defining */
-
 const num = Math.floor(Math.random() * 2 + 1);
 const { combine, timestamp, printf } = format;
 let main: (string: string | Command | number) => string,

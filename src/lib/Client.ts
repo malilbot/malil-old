@@ -60,22 +60,22 @@ export default class Client extends AkairoClient {
 				ended: "You exceeded the maximum amout of tries, this command has now been cancelled.",
 				cancel: "This command has been cancelled now.",
 				retries: 3,
-				time: 30000
+				time: 30000,
 			},
-			otherwise: ""
-		}
+			otherwise: "",
+		},
 	});
 	public listenerHandler: ListenerHandler = new ListenerHandler(this, {
-		directory: join(__dirname, "..", "Listeners")
+		directory: join(__dirname, "..", "Listeners"),
 	});
 
 	public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, {
 		directory: join(__dirname, "..", "Inhibitors"),
-		automateCategories: true
+		automateCategories: true,
 	});
 
 	public taskHandler: TaskHandler = new TaskHandler(this, {
-		directory: join()
+		directory: join(),
 	});
 
 	public botLists: BotLists = new BotLists(this, {
@@ -84,7 +84,7 @@ export default class Client extends AkairoClient {
 		bladebotlist: credentials.bottokens.Bladebnots,
 		discordextremelist: credentials.bottokens.discordextreme,
 		botsgg: credentials.bottokens.botsgg,
-		verbose: true
+		verbose: true,
 	});
 
 	public config: Option;
@@ -104,10 +104,10 @@ export default class Client extends AkairoClient {
 				activities: [
 					{
 						name: `${Settings.prefix}help`,
-						type: "LISTENING"
-					}
-				]
-			}
+						type: "LISTENING",
+					},
+				],
+			},
 		});
 
 		this.settings = Settings;
@@ -134,7 +134,7 @@ export default class Client extends AkairoClient {
 		this.listenerHandler.setEmitters({
 			commandHandler: this.commandHandler,
 			listenerHandler: this.listenerHandler,
-			process
+			process,
 		});
 		this.inhibitorHandler.loadAll();
 		this.taskHandler.loadall();

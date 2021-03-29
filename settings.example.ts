@@ -1,24 +1,4 @@
-export const credentials = {
-	/** I would suggest you to split long tokens with + to make them format better */
-	devtoken: "",
-
-	token: "",
-
-	genius: "",
-	dagpi: "",
-
-	bottokens: {
-		discordbotlist: "",
-		Bladebnots: "",
-		topgg: "",
-		discordextreme: "",
-		botsgg: ""
-	},
-	TestServer: "",
-
-	gist: "",
-	mongoPath: ""
-};
+export const credentials = {};
 export const consts = {
 	colors: {
 		default: "#6df902",
@@ -26,12 +6,27 @@ export const consts = {
 		green: "#00ff27",
 		purple: "#f000ff",
 		orange: "#ff7c00",
-		blue: "#0f00ff"
-	}
+		blue: "#0f00ff",
+	},
+	errChannel: "",
 };
-export const setting = {
-	owners: ["336465356304678913"],
+export const Settings = {
+	owners: [""],
+	site: false,
 	dev: true,
-	rpc: true,
-	prefix: "-"
+	rpc: false,
+	prefix: "%",
+
+	auth: {
+		topAuth: "",
+		dbotsAuth: "",
+	},
+
+	server: {
+		port: "",
+		ownerid: "",
+		clientID: "",
+		clientSecret: "",
+		password: "",
+	},
 };
