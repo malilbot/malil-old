@@ -7,7 +7,7 @@ import { CreateGist } from "../../lib/Utils";
 export default class RawTagCommand extends Command {
 	public constructor() {
 		super("rawtag", {
-			aliases: ["rawtag", "raw"],
+			aliases: ["rawtag"],
 			category: "Developer",
 			quoted: true,
 			args: [
