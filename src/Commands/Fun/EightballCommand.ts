@@ -51,7 +51,6 @@ export default class EightballCommand extends Command {
 			"Never.",
 			"Better not tell you now",
 			"My sources say no",
-			"My channel.send is no.",
 			"Nope.",
 			"Scientifically yes.",
 		];
