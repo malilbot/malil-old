@@ -10,7 +10,7 @@ export default class extends Inhibitor {
 			type: "post",
 		});
 	}
-	public async exec(message: Message): Promise<boolean> {
+	public async exec(message: Message, command: Command): Promise<boolean> {
 		if (superUsers.includes(message.author.id)) return false;
 		if (message.member.permissions.has("MANAGE_MESSAGES")) return false;
 		this.client.guilddata.ensure(message.guild.id, [], "modonly");
@@ -21,10 +21,12 @@ export default class extends Inhibitor {
 
 		if (channels.includes(message.channel.id)) {
 			if (message.channel.id == "824350969696354346") {
-				const cur = Number(this.client.UserData.get(message.member.id as string, "iq"));
-				if (!cur) return;
-				if (cur - 50 < 0) this.client.UserData.set(message.member.id, 1, "iq");
-				else this.client.UserData.set(message.member.id, cur - 50, "iq");
+				if (`${command}`.toLowerCase() == "iq") {
+					const cur = Number(this.client.UserData.get(message.member.id as string, "iq"));
+					if (!cur) return;
+					if (cur - 50 < 0) this.client.UserData.set(message.member.id, 1, "iq");
+					else this.client.UserData.set(message.member.id, cur - 50, "iq");
+				}
 			}
 			const { GStr, UStr } = Format(message, null, null, null);
 			this.client.logger.info(a1(`[ USER ] ${UStr} [ GUILD ] ${GStr} [ MODONLY ]`));
