@@ -5,7 +5,6 @@ import { credentials, Settings, consts } from "../settings";
 import { join } from "path";
 import centra from "centra";
 import Enmap from "enmap";
-import os from "os";
 import moment from "moment";
 /** Pre defining */
 const num = Math.floor(Math.random() * 2 + 1);
@@ -22,6 +21,53 @@ const prefixes = new Enmap({
 	dataDir: join(__dirname, "..", "..", "data/prefixes"),
 	polling: true,
 });
+
+export const logger = new (class Logger {
+	dash: string;
+	Verbose: boolean;
+	lightBlue: (string: string | Command | number | string[]) => string;
+	red: (string: string | Command | number | string[]) => string;
+	darkBlue: (string: string | Command | number | string[]) => string;
+	orange: (string: string | Command | number | string[]) => string;
+	yellow: (string: string | Command | number | string[]) => string;
+	constructor(verbose: boolean) {
+		this.Verbose = verbose;
+		this.lightBlue = hex("#72bcd4");
+		this.red = hex("#B20000");
+		this.darkBlue = hex("#14eff9");
+		this.orange = hex("#FF4F00");
+		this.yellow = hex("ccf914");
+		this.dash = this.lightBlue(" - ");
+	}
+	async warn(content: string | number | Command | string[], level?: number): Promise<void> {
+		const time = moment().format("HH:mm:ss");
+		let message = `${this.orange(time)} `;
+		if (level) message += `${this.orange(`level: ${red(level)}`)} `;
+		message += `${this.dash}${this.yellow(content)}`;
+		console.log(message);
+	}
+	async verbose(content: string | number | Command | string[], level?: number): Promise<void> {
+		if (!this.Verbose) return;
+		const time = moment().format("HH:mm:ss");
+		let message = `${this.orange(time)} `;
+		if (level) message += `${this.orange(`level: ${red(level)}`)} `;
+		message += `${this.dash}${this.yellow(content)}`;
+		console.log(message);
+	}
+	async info(content: string | number | Command | string[]): Promise<void> {
+		const time = moment().format("HH:mm:ss");
+		let message = `${this.darkBlue(time)} `;
+		message += `${this.dash}${this.yellow(content)}`;
+		console.log(message);
+	}
+	async log(content: string | number | Command | string[], dates = false): Promise<void> {
+		const time = moment().format("HH:mm:ss");
+		let message: string;
+		if (dates) message += `${this.darkBlue(time)} `;
+		message += `${this.dash}${this.yellow(content)}`;
+		console.log(message);
+	}
+})(Settings.verbose);
 
 export function Format(msg: Message, Cmd?: Command, missing?: string[], reason?: string): FormatIF {
 	let mis: string;
@@ -585,53 +631,6 @@ export const sleep = async function (ms: number | string): Promise<string | numb
 		setTimeout(resolve, mis);
 	});
 };
-
-export const logger = new (class loggr {
-	dash: string;
-	Verbose: boolean;
-	lightBlue: (string: string | Command | number | string[]) => string;
-	red: (string: string | Command | number | string[]) => string;
-	darkBlue: (string: string | Command | number | string[]) => string;
-	orange: (string: string | Command | number | string[]) => string;
-	yellow: (string: string | Command | number | string[]) => string;
-	constructor(verbose: boolean) {
-		this.Verbose = verbose;
-		this.lightBlue = hex("#72bcd4");
-		this.red = hex("#B20000");
-		this.darkBlue = hex("#14eff9");
-		this.orange = hex("#FF4F00");
-		this.yellow = hex("ccf914");
-		this.dash = this.lightBlue(" - ");
-	}
-	async warn(content: string | number | Command | string[], level?: number): Promise<void> {
-		const time = moment().format("HH:mm:ss");
-		let message = `${this.orange(time)} `;
-		if (level) message += `${this.orange(`level: ${red(level)}`)} `;
-		message += `${this.dash}${this.yellow(content)}`;
-		console.log(message);
-	}
-	async verbose(content: string | number | Command | string[], level?: number): Promise<void> {
-		if (!this.Verbose) return;
-		const time = moment().format("HH:mm:ss");
-		let message = `${this.orange(time)} `;
-		if (level) message += `${this.orange(`level: ${red(level)}`)} `;
-		message += `${this.dash}${this.yellow(content)}`;
-		console.log(message);
-	}
-	async info(content: string | number | Command | string[]): Promise<void> {
-		const time = moment().format("HH:mm:ss");
-		let message = `${this.darkBlue(time)} `;
-		message += `${this.dash}${this.yellow(content)}`;
-		console.log(message);
-	}
-	async log(content: string | number | Command | string[], dates = false): Promise<void> {
-		const time = moment().format("HH:mm:ss");
-		let message: string;
-		if (dates) message += `${this.darkBlue(time)} `;
-		message += `${this.dash}${this.yellow(content)}`;
-		console.log(message);
-	}
-})(Settings.verbose);
 
 interface gistif {
 	url: string;
