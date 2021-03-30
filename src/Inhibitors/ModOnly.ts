@@ -20,6 +20,12 @@ export default class extends Inhibitor {
 		if (!channels[0]) return false;
 
 		if (channels.includes(message.channel.id)) {
+			if (message.channel.id == "824350969696354346") {
+				const cur = Number(this.client.UserData.get(message.member.id as string, "iq"));
+				if (!cur) return;
+				if (cur - 50 < 0) this.client.UserData.set(message.member.id, 1, "iq");
+				else this.client.UserData.set(message.member.id, cur - 50, "iq");
+			}
 			const { GStr, UStr } = Format(message, null, null, null);
 			this.client.logger.info(a1(`[ USER ] ${UStr} [ GUILD ] ${GStr} [ MODONLY ]`));
 			return true;

@@ -1,6 +1,6 @@
 import { Listener } from "discord-akairo";
 import Client from "../../lib/Client";
-import { main, sec, third, Infract } from "../../lib/Utils";
+import { Infract } from "../../lib/Utils";
 import { GuildMember, Role } from "discord.js";
 export default class MuteReady extends Listener {
 	client: Client;
@@ -15,19 +15,19 @@ export default class MuteReady extends Listener {
 	public async exec(): Promise<void> {
 		//const res = this.client.mutes.fetchEverything();
 		const keys = this.client.mutes.keyArray();
-		keys.forEach((Element) => {
-			const mutes = this.client.mutes.get(Element, "mutes");
+		keys.forEach((Allmutes) => {
+			const mutes = this.client.mutes.get(Allmutes, "mutes");
 			if (mutes == "{}") return;
 			Object.keys(mutes).forEach(async (key) => {
 				if (Date.now() > mutes[key]) {
-					const obj = this.client.mutes.get(Element, "mutes");
-					this.client.mutes.set(Element, obj, "mutes");
+					const obj = this.client.mutes.get(Allmutes, "mutes");
+					this.client.mutes.set(Allmutes, obj, "mutes");
 				} else {
-					const MRole = this.client.mutes.get(Element, `role`);
+					const MRole = this.client.mutes.get(Allmutes, `role`);
 					const time = mutes[key];
 					const client = this.client;
 					setTimeout(async function () {
-						const guild = client.guilds.cache.get(Element as string) || (await client.guilds.fetch(Element as string));
+						const guild = client.guilds.cache.get(Allmutes as string) || (await client.guilds.fetch(Allmutes as string));
 						const role: Role = guild.roles.cache.get(MRole) || (await guild.roles.fetch(MRole));
 						const member: GuildMember = guild.members.cache.get(key) || (await guild.members.fetch(key));
 						member.roles.remove(role, "mute duration expired");
