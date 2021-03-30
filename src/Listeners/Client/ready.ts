@@ -1,11 +1,6 @@
 import { Listener } from "discord-akairo";
 import Client from "../../lib/Client";
-import { fixspace } from "../../lib/Utils";
-import { log } from "console";
-import { TextChannel } from "discord.js";
-import { exec } from "child_process";
-import { main, sec, third, fourth, split, readyLog } from "../../lib/Utils";
-const { floor, random } = Math;
+import { readyLog } from "../../lib/Utils";
 export default class Ready extends Listener {
 	client: Client;
 	public constructor(client: Client) {

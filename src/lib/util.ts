@@ -585,6 +585,7 @@ export function readyLog(client: InterfaceClient): void {
 		log(main(ll5) + sec(b4));
 		log(main(ll6) + sec(b5));
 		log(main(ll7) + sec(b6));
+
 		log(main(ll8), split, third(a1), split, third("Commands"));
 		log(main(ll9), split, third(a2), split, third("Listeners"));
 		log(main(l10), split, third(a3), split, third("Inhibitors"));
@@ -600,6 +601,7 @@ export function readyLog(client: InterfaceClient): void {
 		log(main(mm5) + sec(b4));
 		log(main(mm6) + sec(b5));
 		log(main(mm7) + sec(b6));
+
 		log(main(mm8), split, third(a1), split, third("Commands"));
 		log(main(mm9), split, third(a2), split, third("Listeners"));
 		log(main(m10), split, third(a3), split, third("Inhibitors"));

@@ -13,6 +13,7 @@ declare module "discord-akairo" {
 		credentials: typeof credentials;
 		consts: typeof consts;
 		colors: typeof consts.colors;
+		ReadyLog: typeof readyLog;
 		logger: Logger;
 		tags: Enmap;
 		prefixes: Enmap;
@@ -86,7 +87,6 @@ export default class Client extends AkairoClient {
 		botsgg: credentials.bottokens.botsgg,
 		verbose: true,
 	});
-
 	public config: Option;
 
 	public constructor(config: Option) {
@@ -109,7 +109,7 @@ export default class Client extends AkairoClient {
 				],
 			},
 		});
-
+		this.ReadyLog = readyLog;
 		this.settings = Settings;
 		this.consts = consts;
 		this.colors = consts.colors;
