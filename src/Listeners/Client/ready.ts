@@ -11,12 +11,12 @@ export default class Ready extends Listener {
 		});
 		this.client = client;
 	}
-	public async exec(): Promise<void> {
+	public exec(): void {
 		if (this.client?.shard?.ids[0] == this.client.options.shardCount - 1 && this.client.shard.ids[0] !== 0) {
 			this.client.logger.info("[ MAXSHARDS ]");
 			return;
 		}
 		if (this.client?.shard?.ids[0] !== 0) return;
-		readyLog(this.client);
+		return readyLog(this.client);
 	}
 }

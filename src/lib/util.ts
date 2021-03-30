@@ -1,17 +1,15 @@
 import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, Guild } from "discord.js";
 import { Command, CommandHandler, InhibitorHandler, ListenerHandler } from "discord-akairo";
-import { red, blue, gray, yellow, green, magenta, cyan, hex, underline } from "chalk";
-import { createLogger, transports, format, Logger } from "winston";
+import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
 import { credentials, Settings, consts } from "../settings";
-import DailyRotateFile from "winston-daily-rotate-file";
 import { join } from "path";
 import centra from "centra";
 import Enmap from "enmap";
 import os from "os";
+import moment from "moment";
 /** Pre defining */
 const num = Math.floor(Math.random() * 2 + 1);
-const { combine, timestamp, printf } = format;
-let main: (string: string | Command | number) => string,
+export let main: (string: string | Command | number) => string,
 	sec: (string: string | Command | number) => string,
 	third: (string: string | Command | number) => string,
 	fourth: (string: string | Command | number) => string,
@@ -19,7 +17,6 @@ let main: (string: string | Command | number) => string,
 	split: string;
 const site = "https://hst.sh/";
 const { dev } = Settings;
-const _os = os;
 const prefixes = new Enmap({
 	name: "prefixes",
 	dataDir: join(__dirname, "..", "..", "data/prefixes"),
@@ -161,57 +158,6 @@ function fmtLong(ms) {
 function plural(ms, msAbs, n, name) {
 	const isPlural = msAbs >= n * 1.5;
 	return Math.round(ms / n) + " " + name + (isPlural ? "s" : "");
-}
-
-/** oS utils taken from https://github.com/oscmejia/os-utils under the mit license */
-
-export const cpuUsage = function (callback): any {
-	getCPUUsage(callback, false);
-};
-
-function getCPUUsage(callback, free) {
-	const stats1 = getCPUInfo();
-	const startIdle = stats1.idle;
-	const startTotal = stats1.total;
-
-	setTimeout(function () {
-		const stats2 = getCPUInfo();
-		const endIdle = stats2.idle;
-		const endTotal = stats2.total;
-
-		const idle = endIdle - startIdle;
-		const total = endTotal - startTotal;
-		const perc = idle / total;
-
-		if (free === true) callback(perc);
-		else callback(1 - perc);
-	}, 1000);
-}
-
-function getCPUInfo() {
-	const cpus = _os.cpus();
-
-	let user = 0;
-	let nice = 0;
-	let sys = 0;
-	let idle = 0;
-	let irq = 0;
-
-	for (const cpu in cpus) {
-		if (!cpus.hasOwnProperty(cpu)) continue;
-		user += cpus[cpu].times.user;
-		nice += cpus[cpu].times.nice;
-		sys += cpus[cpu].times.sys;
-		irq += cpus[cpu].times.irq;
-		idle += cpus[cpu].times.idle;
-	}
-
-	const totals = user + nice + sys + idle + irq;
-
-	return {
-		idle: idle,
-		total: totals,
-	};
 }
 
 export async function fixword(input: string): Promise<string> {
@@ -451,10 +397,6 @@ export async function hst(body: string): Promise<string> {
 	).json();
 	return site + post.key;
 }
-
-function replace(msg: string) {
-	return msg.replace("[ GOING OVER GUILDS ]", sec("[ GOING OVER GUILDS ]")).replace("[ SHARD ]", sec("[ STARTING SHARD ]")).replace("[ MAXSHARDS ]", third("[ SHARDING DONE ]"));
-}
 export async function Infract(message?: Message, reason?: string, member?: GuildMember, type?: string, client?: InterfaceClient): Promise<void> {
 	logger.info(sec("[ GIVING OUT A INFRACTION ] ") + main(`[ TO ] ${member.user.tag || "noone? huh what"} `) + third(`[ TYPE ] ${type || "no type? wtf"}`));
 	if (type !== "UNMUTE") {
@@ -473,38 +415,33 @@ export async function Infract(message?: Message, reason?: string, member?: Guild
 
 	if (client.logchannel.get(member.guild.id)) {
 		if (((await client.channels.fetch(client.logchannel.get(member.guild.id))) as GuildChannel).deleted == false) {
-			const embed = new MessageEmbed();
+			const embed = new MessageEmbed().setTimestamp();
 			sLog({ member, type, mod: true });
 			if (type == "KICK") {
 				embed.setAuthor(`User Kicked by ${message.author.tag}`, message.author.avatarURL());
 				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason}`);
 				embed.setColor(client.consts.colors.red);
 				embed.setFooter(`User id: ${member.user.id}`);
-				embed.setTimestamp();
 			} else if (type == "BAN") {
 				embed.setAuthor(`User Banned by ${message.author.tag}`, message.author.avatarURL());
 				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason}`);
 				embed.setColor(client.consts.colors.red);
 				embed.setFooter(`User id: ${member.user.id}`);
-				embed.setTimestamp();
 			} else if (type == "MUTE") {
 				sLog({ member, type: "MUTE" });
 				embed.setAuthor(`User Muted by ${message.author.tag}`, message.author.avatarURL());
 				embed.setDescription(`Member: ${member.user.tag}\nTime ${ms(ms(reason), { long: true }) || "Perma"}`);
 				embed.setColor(client.consts.colors.red);
 				embed.setFooter(`User id: ${member.user.id}`);
-				embed.setTimestamp();
 			} else if (type == "UNMUTE") {
 				embed.setDescription(`Unmuted ${member.user.tag}\n Reason: Mute duration expired.`);
 				embed.setColor(client.consts.colors.green);
 				embed.setFooter(`User id: ${member.user.id}`);
-				embed.setTimestamp();
 			} else if (type == "STAFFUNMUTE") {
 				embed.setAuthor(`User Muted by ${message.author.tag}`, message.author.avatarURL());
 				embed.setDescription(`Unmuted ${member.user.tag}\n Reason: ${reason || "Manually unmuted by staff"}`);
 				embed.setColor(client.consts.colors.green);
 				embed.setFooter(`User id: ${member.user.id}`);
-				embed.setTimestamp();
 			}
 			const channel = (await client.channels.fetch(client.logchannel.get(member.guild.id))) as TextChannel;
 			if (!channel || channel.deleted == true) {
@@ -611,8 +548,8 @@ export function readyLog(client: InterfaceClient): void {
 		log(main(m14), split, third(a7), split, third("Shards"));
 	}
 }
-
-export const logger = createLogger({
+/*
+export const logr = createLogger({
 	level: "info",
 	format: combine(
 		timestamp({ format: "YYYY/MM/DD HH:mm:ss" }),
@@ -636,6 +573,8 @@ export const logger = createLogger({
 		}),
 	],
 });
+*/
+
 export const sleep = async function (ms: number | string): Promise<string | number> {
 	let mis: number;
 	if (typeof ms !== "number") {
@@ -646,6 +585,54 @@ export const sleep = async function (ms: number | string): Promise<string | numb
 		setTimeout(resolve, mis);
 	});
 };
+
+export const logger = new (class loggr {
+	dash: string;
+	Verbose: boolean;
+	lightBlue: (string: string | Command | number | string[]) => string;
+	red: (string: string | Command | number | string[]) => string;
+	darkBlue: (string: string | Command | number | string[]) => string;
+	orange: (string: string | Command | number | string[]) => string;
+	yellow: (string: string | Command | number | string[]) => string;
+	constructor(verbose: boolean) {
+		this.Verbose = verbose;
+		this.lightBlue = hex("#72bcd4");
+		this.red = hex("#B20000");
+		this.darkBlue = hex("#14eff9");
+		this.orange = hex("#FF4F00");
+		this.yellow = hex("ccf914");
+		this.dash = this.lightBlue(" - ");
+	}
+	async warn(content: string | number | Command | string[], level?: number): Promise<void> {
+		const time = moment().format("HH:mm:ss");
+		let message = `${this.orange(time)} `;
+		if (level) message += `${this.orange(`level: ${red(level)}`)} `;
+		message += `${this.dash}${this.yellow(content)}`;
+		console.log(message);
+	}
+	async verbose(content: string | number | Command | string[], level?: number): Promise<void> {
+		if (!this.Verbose) return;
+		const time = moment().format("HH:mm:ss");
+		let message = `${this.orange(time)} `;
+		if (level) message += `${this.orange(`level: ${red(level)}`)} `;
+		message += `${this.dash}${this.yellow(content)}`;
+		console.log(message);
+	}
+	async info(content: string | number | Command | string[]): Promise<void> {
+		const time = moment().format("HH:mm:ss");
+		let message = `${this.darkBlue(time)} `;
+		message += `${this.dash}${this.yellow(content)}`;
+		console.log(message);
+	}
+	async log(content: string | number | Command | string[], dates = false): Promise<void> {
+		const time = moment().format("HH:mm:ss");
+		let message: string;
+		if (dates) message += `${this.darkBlue(time)} `;
+		message += `${this.dash}${this.yellow(content)}`;
+		console.log(message);
+	}
+})(Settings.verbose);
+
 interface gistif {
 	url: string;
 	forks_url: string;
@@ -662,7 +649,7 @@ class InterfaceClient extends Client {
 	public consts = consts;
 	public logchannel: Enmap;
 	public infractions: Enmap;
-	public logger: Logger;
+	public logger: typeof logger;
 	public commandHandler?: CommandHandler;
 	public listenerHandler?: ListenerHandler;
 	public inhibitorHandler?: InhibitorHandler;
@@ -674,4 +661,3 @@ interface FormatIF {
 	MStr: string;
 	RStr: string;
 }
-export { main, sec, third, fourth, a1, split };

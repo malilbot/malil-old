@@ -4,7 +4,6 @@ import TaskHandler from "./taskhandler";
 import { superUsers } from "./config";
 import BotLists from "./BotLists";
 import { logger, readyLog } from "./Utils";
-import { Logger } from "winston";
 import { join } from "path";
 import Enmap from "enmap";
 declare module "discord-akairo" {
@@ -14,7 +13,7 @@ declare module "discord-akairo" {
 		consts: typeof consts;
 		colors: typeof consts.colors;
 		ReadyLog: typeof readyLog;
-		logger: Logger;
+		logger: typeof logger;
 		tags: Enmap;
 		prefixes: Enmap;
 		blacklist: Enmap;
