@@ -14,9 +14,9 @@ module.exports = {
 		if (curStats == [clientChannels, clientGuilds]) return;
 		curStats = [clientChannels, clientGuilds];
 		if (client.shard.ids.length == 1) {
-			log(main(`[ CHANNELS ] ${sec(clientChannels)}`));
-			log(main(`[ MEMBERS  ] ${sec(clientMembers)}`));
-			log(main(`[ GUILDS   ] ${sec(clientGuilds)}`));
+			client.logger.verbose(main(`[ CHANNELS ] ${sec(clientChannels)}`));
+			client.logger.verbose(main(`[ MEMBERS  ] ${sec(clientMembers)}`));
+			client.logger.verbose(main(`[ GUILDS   ] ${sec(clientGuilds)}`));
 		} else {
 			// prettier-ignore
 			const totalGuilds = await client.shard.fetchClientValues('guilds.cache.size').then(serv => serv.reduce((acc, guildCount) => acc + guildCount, 0))
@@ -28,13 +28,13 @@ module.exports = {
 			if (client.shard.ids[0] == 0) {
 				if(CurStats == [totalGuilds, totalChannels]) return
 				CurStats == [totalGuilds, totalChannels]
-                log(main(`[ TOTAL CHANNELS ] ${sec(totalChannels)}`))
-                log(main(`[ TOTAL MEMBERS  ] ${sec(totalMembers)}`))
-                log(main(`[ TOTAL GUILS    ] ${sec(totalGuilds)}`))
+                client.logger.verbose(main(`[ TOTAL CHANNELS ] ${sec(totalChannels)}`))
+                client.logger.verbose(main(`[ TOTAL MEMBERS  ] ${sec(totalMembers)}`))
+                client.logger.verbose(main(`[ TOTAL GUILS    ] ${sec(totalGuilds)}`))
             }
-			log(main(`[ CHANNELS ] ${sec(clientChannels)}`));
-			log(main(`[ MEMBERS  ] ${sec(clientMembers)}`));
-			log(main(`[ GUILDS   ] ${sec(clientGuilds)}`));
+			client.logger.verbose(main(`[ CHANNELS ] ${sec(clientChannels)}`));
+			client.logger.verbose(main(`[ MEMBERS  ] ${sec(clientMembers)}`));
+			client.logger.verbose(main(`[ GUILDS   ] ${sec(clientGuilds)}`));
 		}
-	}
+	},
 };

@@ -6,6 +6,7 @@ import { join } from "path";
 import centra from "centra";
 import Enmap from "enmap";
 import moment from "moment";
+import { exec } from "child_process";
 /** Pre defining */
 const num = Math.floor(Math.random() * 2 + 1);
 export let main: (string: string | Command | number) => string,
@@ -373,6 +374,7 @@ export function sLog({
 	} else if (mod == true) {
 		const actions = {
 			KICK: "KICKED",
+			WARN: "WARNED",
 			BAN: "BANNED",
 		};
 		logger.info(main(`[ ${actions[type]} ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`));
@@ -465,18 +467,23 @@ export async function Infract(message?: Message, reason?: string, member?: Guild
 			sLog({ member, type, mod: true });
 			if (type == "KICK") {
 				embed.setAuthor(`User Kicked by ${message.author.tag}`, message.author.avatarURL());
-				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason}`);
+				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason || "No reason provided."}`);
 				embed.setColor(client.consts.colors.red);
 				embed.setFooter(`User id: ${member.user.id}`);
 			} else if (type == "BAN") {
 				embed.setAuthor(`User Banned by ${message.author.tag}`, message.author.avatarURL());
-				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason}`);
+				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason || "No reason provided."}`);
+				embed.setColor(client.consts.colors.red);
+				embed.setFooter(`User id: ${member.user.id}`);
+			} else if (type == "WARN") {
+				embed.setAuthor(`User Warned by ${message.author.tag}`, message.author.avatarURL());
+				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason || "No reason provided."}`);
 				embed.setColor(client.consts.colors.red);
 				embed.setFooter(`User id: ${member.user.id}`);
 			} else if (type == "MUTE") {
 				sLog({ member, type: "MUTE" });
 				embed.setAuthor(`User Muted by ${message.author.tag}`, message.author.avatarURL());
-				embed.setDescription(`Member: ${member.user.tag}\nTime ${ms(ms(reason), { long: true }) || "Perma"}`);
+				embed.setDescription(`Member: ${member.user.tag}\nTime ${ms(ms(reason || "No reason provided."), { long: true }) || "Perma"}`);
 				embed.setColor(client.consts.colors.red);
 				embed.setFooter(`User id: ${member.user.id}`);
 			} else if (type == "UNMUTE") {

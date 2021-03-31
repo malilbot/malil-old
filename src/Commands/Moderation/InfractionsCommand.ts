@@ -29,7 +29,7 @@ export default class InfractionsCommand extends Command {
 		let mesg = "";
 		Object.keys(infractions).forEach((key) => {
 			mesg += "**Reason:** " + infractions[key].reason + "\n**Type:** ";
-			mesg += infractions[key].type + "\n**Mod:** ";
+			mesg += infractions[key].type.toLowerCase() + "\n**Mod:** ";
 			mesg += infractions[key].who + "\n";
 			mesg += "----------------------------\n";
 		});
