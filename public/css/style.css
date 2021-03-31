@@ -1,137 +1,420 @@
-/* 
-   This css file is meant to serve as a dark mode / dark theme for Nebula at the
-   watchnebula.com website.
+﻿
+/*=============================================================
+    Authour URI: www.binarytheme.com
+    License: Commons Attribution 3.0
+
+    http://creativecommons.org/licenses/by/3.0/
+
+    100% To use For Personal And Commercial Use.
+    IN EXCHANGE JUST GIVE US CREDITS AND TELL YOUR FRIENDS ABOUT US
    
-   You can use a Firefox add-on or Chrome extension like Stylus to apply these
-   rules to all urls on the watchnebula.com domain. For the userstyles.org link
-   see: http://userstyles.org/styles/195440
-   
-   The variables defined in :root can be modified to change colors across the
-   entire site.
+    ========================================================  */
 
-   This was written by Parker Addison. The most up-to-date version can be found
-   at: https://gist.github.com/parkeraddison/6b0c4735b6bb48debb007c2fd884178d
-   Comment there if you find any changes we should make!
-*/
 
-:root {
-    --background: #24292e;
-    --background-alt: #1f2428;
-    --nebula-navy: #00141e;
-    --text: #eee;
-    --text-alt: #888;
-    --icon-brightness: 175%;
+/*=======================================
+    GENERAL STYLES
+==================================================*/
+
+body {
+          font-family:'Open Sans', sans-serif;
+    font-size:14px;
 }
 
-/* === MAIN RECOLOR ========================================================= */
-
-/* Start by making everything have a dark background and light text. We'll make
-   tweaks to other stuff, but this takes care of most of the page! */
-body,
-#NebulaApp div > [class^="css"] {
-    background: var(--background);
-    color: var(--text);
+h1, h2, h3, h4, h5, h6 {
+    font-family:'Open Sans', sans-serif;
 }
 
-/* Headers get some special treatment */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: var(--text) !important;
-    /* Descenders were being cut off by the background (whoops) */
-    line-height: 2;
+h1 {
+    line-height:50px;
+    font-weight:900;
+    font-size:40px;
+    padding:10px 20px 5px 20px;
+    text-transform:uppercase;
 }
 
-/* Some things should be darker than others! Namely the menu and nav bar. */
-menu,
-menu div {
-    /* We'll utilize the same background variable across all menu elements. */
-    --background-menu: var(--background-alt); /* Could also use nebula-navy */
-    background-color: var(--background-menu) !important;
-    color: var(--text) !important;
-}
-nav,
-nav div {
-    --background-nav: var(--background-alt);
-    background-color: var(--background-nav) !important;
-    color: var(--text) !important;
+ h1:before {
+content: '';
+display: block;
+position: absolute;
+width: 120px;
+height: 1px;
+background: #222428;
+margin: auto;
+left: -150px;
+right: 0;
 }
 
-/* The bottom of the page is supposed to have an alternate background too. */
-#NebulaApp > :nth-child(2) > :nth-child(2) > :last-child,
-#NebulaApp > :nth-child(2) > :nth-child(2) > :last-child * {
-    background-color: var(--nebula-navy) !important;
+ h1:after {
+content: '';
+display: block;
+position: absolute;
+width: 120px;
+height: 1px;
+background: #2A2D32;
+margin: auto;
+left: 0;
+right: -150px;
+}
+.pad-adjust {
+    padding-top: 5px; 
+    padding-bottom: 5px;
 }
 
-/* === MENU TWEAKS ========================================================== */
-
-/* The links in the menu have weird backgrounds now. Let's fix it! */
-menu a {
-    background-color: var(--background-menu) !important;
-}
-menu form {
-    border-radius: 100% !important;
-}
-menu input {
-    color: var(--text) !important;
-    background-color: var(--background) !important;
-}
-/* Lets turn the bright blue star into a light grey. For explanation see nav. */
-menu > div > a img {
-    filter: invert(50%) brightness(var(--icon-brightness));
-}
-/* Make the profile icon darker. */
-menu img[alt="Your Account"] {
-    filter: brightness(0.5);
+.text-center {
+    text-align:center;
 }
 
-/* === NAV TWEAKS =========================================================== */
 
-/* Let's do the image background fixes for the nav bar too. Unforunately because
-   they're not SVGs rather rasters we can't change their fill color directly.
-   What we *can* do is use an invert filter! At 50% invert every color is half-
-   inverted to a solid middle grey. Then we can boost the brightness to make it
-   a light grey! */
-nav img {
-    background: none !important;
-    filter: invert(50%) brightness(var(--icon-brightness));
+h2 {
+    line-height:50px;
+}
+h3 {
+    line-height:30px;
+    padding-bottom:20px;
+}
+h4 {
+    padding-top:10px;
+    line-height:40px;
+    padding-bottom:20px;
 }
 
-/* === CARD TWEAKS ========================================================== */
-
-/* The main content cards should have light text and dark borders. */
-a div {
-    border-color: var(--background-alt) !important;
-    color: var(--text) !important;
-}
-/* Remove white backgrounds on images which cause border artifacts. The
-   featured cards also have these artifacts. */
-a img,
-a picture,
-div[class^="slick"] div {
-    background: none !important;
-}
-/* And we'll make the creator/category item slightly dimmer than the title. */
-a div:nth-of-type(2) {
-    color: var(--text-alt) !important;
+p {
+    font-weight:300;
+    line-height:30px;
+    padding-bottom:20px;
 }
 
-/* === VIDEO TWEAKS ========================================================= */
-
-/* To get a rounded iframe effect the devs added four divs at each corner of the
-   video. These need to have a transparent background color for the effect to
-   works -- we can use opacity instead. */
-iframe ~ div {
-    opacity: 0;
+.space-free {
+    height:100px;
 }
 
-/* === ADDITIONAL TWEAKS ==================================================== */
+.g-pad-bottom {
+    padding-bottom:40px;
+}
+.for-full-back {
+     /* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
 
-/* This isn't a color tweak, but it bothered me. While we're at it how about we
-   give that video player some breathing room! */
-div[id^="zype"] {
-    margin: 2.2em auto;
+  /* IE 5-7 */
+  filter: alpha(opacity=90);
+
+  /* Netscape */
+  -moz-opacity: 0.9;
+
+  /* Safari 1.x */
+  -khtml-opacity: 0.9;
+
+  /* Good browsers */
+  opacity: 0.9;
+}
+
+section {
+    padding-top:20px;
+}
+
+ /*=======================================
+    SIDE MENUS STYLES
+==================================================*/
+
+#cbp-spmenu-s1 {
+    overflow:auto;
+}
+
+#cbp-spmenu-s1>h3 {
+    text-align:right;
+}
+#icon-left {
+    text-align:right;
+}
+
+#showLeftPush {
+    position:fixed;
+    z-index:9999;
+    left:5px;
+    top:20px;
+    color: #222428;
+}
+
+#cbp-spmenu-s2 {
+     overflow:auto;
+}
+ #cbp-spmenu-s2 > h3 {
+     text-align:left;
+    }
+#icon-right {
+    text-align:right;
+}
+#showRightPush {
+    position: fixed; 
+    z-index: 9999;
+     right: 5px; 
+     top: 20px; 
+     color: #fff;
+}
+/*=======================================
+    COMPONENTS.CSS ADJUSTMENTS STYLES
+==================================================*/
+
+.cbp-spmenu a:focus,.cbp-spmenu a:hover {
+    text-decoration:none;
+}
+
+.cbp-spmenu a>i {
+    margin-right:25px;
+}
+.cbp-spmenu h3 {
+font-size: 2.9em;
+font-weight: 900;
+color:#fff;
+padding:30px;
+
+}
+
+.cbp-spmenu a {
+display: block;
+color: #fff;
+font-size: 1.1em;
+font-weight: 900;
+}
+
+/*=======================================
+    HOME SECTION STYLES
+==================================================*/
+
+
+.head-btn-one {
+    background-color: rgba(252, 64, 101, 1);
+     border: 0px solid #fff;
+
+}
+
+#home {
+    padding-top:130px;
+    padding-bottom:200px;
+    color:#222428;
+}
+.head-main {
+    font-size:80px ;
+    font-weight:900;
+    
+}
+.head-sub-main {
+    font-size:40px ;
+    font-weight:600;
+    padding:5px 20px 10px 20px;
+}
+.head-last {
+    font-size:20px ;
+    font-weight:300;
+    padding:5px 20px 20px 20px;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+border-radius: 0px; 
+
+}
+
+/*=======================================
+    ABOUT SECTION STYLES
+==================================================*/
+
+.team-member {
+    float: left;
+    position: relative;
+    width: 100%;
+}
+.team-member > img {
+    float: left;
+    width: 100%;
+}
+.team-member > h3 {
+    background: rgba(252, 64, 101, 1);
+    bottom: 25px;
+    color:#fff;
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 16px;
+    padding: 15px 0;
+    position: absolute;
+    text-align: center;  
+    width: 100%;
+    
+	-webkit-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-ms-transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+}
+.team-member:hover > h3 {
+    background: #0d77b6;
+    bottom: -55px;
+    color: #FFFFFF;	
+	-webkit-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-ms-transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+}
+
+/*=======================================
+    PRICE SECTION STYLES
+==================================================*/
+#price-sec {
+    padding-top: 80px;
+     padding-bottom: 80px;
+}
+
+.plan {
+    background: #2A2D32;
+    padding: 0 0 15px 0;
+    margin: 30px 0px;
+    list-style: none;
+    text-align: center;
+  
+    -webkit-transition: all 0.2s ease;
+       -moz-transition: all 0.2s ease;
+         -o-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+}
+
+.plan:hover {
+    -webkit-transform: scale(1.2);
+       -moz-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+         -o-transform: scale(1.2);
+            transform: scale(1.2);
+}
+
+.plan li {
+    padding: 15px 0px;
+    color: #434749;
+    border-top: 1px dashed #000;
+}
+
+.plan li.plan-head {
+   padding: 15px 0px;
+background-color: #0d77b6;
+color: #FFFFFF;
+line-height: 20px;
+font-size: 20px;
+font-weight: 600;
+border: none;
+   }
+
+.plan li.main-price {
+   padding: 25px 0px;
+background-color:rgba(21, 180, 255, 1);
+color: #fff;
+border: none;
+font-weight: 900;
+font-size: 30px;
+}
+
+.c-b {
+    background-color:#B60D43!important;
+}
+.c-v {
+    background-color: #01AA30!important;
+}
+.c-a {
+    background-color: #818181!important;
+}
+/*=======================================
+    SERVICE SECTION STYLES
+==================================================*/
+#services-inner {
+    padding-top:50px;
+    padding-bottom:40px;
+}
+
+.service-div {
+	width: 100%;
+	min-height: 100px;
+	background-color: #FFFF;
+	box-shadow: none;
+	border: 0;
+    padding:20px;
+    margin-bottom:30px;
+}
+.service-div > i {
+    color:rgba(252, 64, 101, 1);
+}
+
+/*=======================================
+    STATS SECTION STYLES
+==================================================*/
+.stats-div {
+    text-align:center;
+    width: 100%;
+    min-height: 100px;
+    padding: 30px 20px 30px 20px;
+    color:#fff;
+}
+
+.stats-div > h3 {
+    font-size:60px;
+    font-weight:900;
+}
+
+/*=======================================
+    CONTACT STYLES
+==================================================*/
+#contact-inner {
+    padding-bottom:60px;
+    padding-bottom:50px;
+}
+.contact-cls {
+    font-size:20px;
+    line-height:40px;
+}
+    .contact-cls i {
+        margin-right:8px;
+    }
+
+ /*=======================================
+  SOCIAL  STATS SECTION STYLES
+==================================================*/
+ .social-stats-div {
+    text-align:center;
+    width: 100%;
+    min-height: 100px;
+    padding: 30px 20px 30px 20px;
+    color:#fff;
+}
+
+.social-stats-div > h3 {
+    font-size:35px;
+    font-weight:900;
+    line-height:40px;
+}
+
+/*=======================================
+    COLOR CODES
+==================================================*/
+
+.color-bg-one {
+    background-color:rgba(0, 122, 255, 1)!important;
+    color:#FFFF;;
+}
+.color-white {
+   background-color:#2A2D32!important;
+}
+.color-dark {
+   background-color:#FFFF!important;
+}
+
+.color-light {
+   background-color:#FFFF!important;
+}
+
+/*=======================================
+    FOOTER STYLES
+==================================================*/
+
+
+#footer {
+    background-color:#000;
+    color:#222428;
+    padding:20px 50px 20px 50px;
+    text-align:right;
 }
