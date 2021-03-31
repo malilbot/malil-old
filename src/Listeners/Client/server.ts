@@ -30,9 +30,11 @@ export default class server extends Listener {
 		const client = this.client;
 		app.use(express.static(join(__dirname, "..", "..", "..", "public")));
 		app.get("/", async function (req, res) {
-			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "home.html"));
+			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "index.html"));
 		});
-
+		app.get("/privacy", async function (req, res) {
+			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "privacy.html"));
+		});
 		app.post("/api/votes", async function (req, res) {
 			const headers = req.headers;
 			if (headers?.authorization) {
@@ -43,6 +45,7 @@ export default class server extends Listener {
 					} else if (headers.authorization == dbotsAuth) {
 						member = await client.users.fetch(req.body.id);
 					}
+
 					client.gp.math("commands", "+", 1);
 					const iq = Math.floor(Math.random() * 150) + 1;
 					client.UserData.ensure(member.id, { iq: iq });
@@ -69,8 +72,10 @@ export default class server extends Listener {
 				});
 			}
 		});
-		app.listen(port, async () => {
-			/*
+		app.listen(port);
+	}
+}
+/*
 			console.log("Server is running...");
 			const res = await (
 				await centra(`http://127.0.0.1:${port}/api/votes`, "post")
@@ -80,9 +85,6 @@ export default class server extends Listener {
 			).json();
 			console.log(await res);
 			*/
-		});
-	}
-}
 /*
 		app.get("/", async function (req, res) {
 			res.sendFile(join(__dirname, "..", "..", "..", "resources", "/view.html"));
