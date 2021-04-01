@@ -387,7 +387,7 @@ export function sLog({
 		const { GStr, UStr, RStr, CStr } = Format(msg, command, null, type);
 
 		if (RStr) {
-			this.client.logger.info(a1(`[ CMD ] ${CStr} [ USER ] ${UStr} [ GUILD ] ${GStr} [ BLOCKED FOR ] ${RStr}`));
+			logger.info(a1(`[ CMD ] ${CStr} [ USER ] ${UStr} [ GUILD ] ${GStr} [ BLOCKED FOR ] ${RStr}`));
 		}
 	}
 }
