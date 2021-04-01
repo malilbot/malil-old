@@ -2,7 +2,7 @@ import { Listener } from "discord-akairo";
 import Client from "../../lib/Client";
 import { Settings } from "../../settings";
 import express from "express";
-import { User } from "discord.js";
+import { User, MessageEmbed } from "discord.js";
 const app = express();
 import { join } from "path";
 import passport from "passport";
@@ -56,6 +56,15 @@ export default class server extends Listener {
 					if (!cur) return;
 					const amount = wknd ? 2 : 1;
 					client.UserData.set(member.id, cur + amount, "iq");
+
+					const channel = this.client.channels.cache.get("823935750168117312") || (await this.client.channels.fetch("823935750168117312"));
+					channel.send(
+						new MessageEmbed()
+							.setAuthor(`vote from ${member.tag}`, member.avatarURL())
+							.setDescription(`**${member} had ${cur || "Nothing"} iq now has ${cur + amount || "Nothing"} iq**`)
+							.setTimestamp()
+							.setColor(this.client.colors.blue)
+					);
 					return res.send({ success: true, status: 200 });
 				} else {
 					return res.send({

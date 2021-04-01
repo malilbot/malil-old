@@ -1,5 +1,5 @@
 import { Listener } from "discord-akairo";
-import { Message } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
 const talkedRecently = new Set();
 import Client from "../../lib/Client";
 import { superUsers } from "../../lib/config";
@@ -36,7 +36,13 @@ export default class message extends Listener {
 					if (!cur) return;
 					const amount = wknd ? 2 : 1;
 					this.client.UserData.set(member.id, cur + amount, "iq");
-					message.channel.send(`Vote Counted ${member.tag}, ${member.id}\nEarned ${amount} iq point(s) while voting`);
+					message.channel.send(
+						new MessageEmbed()
+							.setAuthor(`vote from ${member.tag}`, member.avatarURL())
+							.setDescription(`**${member} had ${cur || "Nothing"} iq now has ${cur + amount || "Nothing"} iq**`)
+							.setTimestamp()
+							.setColor(this.client.colors.blue)
+					);
 				} catch (e) {
 					this.client.logger.info(e);
 				}
