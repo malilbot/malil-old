@@ -14,6 +14,7 @@ export default class guildCreate extends Listener {
 	}
 
 	exec(guild: Guild): void {
+		if (!guild.name) return;
 		//if (this.client.blacklist.get("blacklist", "leavelist").includes(guild.id)) return guild.leave();
 		sLog({ type: "GUILDADD", guild });
 	}

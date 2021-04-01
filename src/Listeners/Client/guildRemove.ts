@@ -14,6 +14,7 @@ export default class guildDelete extends Listener {
 	}
 
 	async exec(guild: Guild): Promise<void> {
+		if (!guild.name) return;
 		sLog({ type: "GUILDDELETE", guild: guild });
 	}
 }
