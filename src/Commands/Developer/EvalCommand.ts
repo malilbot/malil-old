@@ -1,8 +1,8 @@
 import { Command } from "discord-akairo";
-import { MessageEmbed, Message } from "discord.js";
+import { MessageEmbed, Message, MessageAttachment } from "discord.js";
 import { inspect } from "util";
 import centra from "centra";
-import { hst } from "../../lib/Utils";
+import { hst, InterfaceClient } from "../../lib/Utils";
 let EvalCode = "";
 export default class EvalCommand extends Command {
 	public constructor() {
@@ -65,34 +65,24 @@ export default class EvalCommand extends Command {
 			deph: number;
 			reset: boolean;
 		}
-	) {
+	): Promise<Message> {
 		if (!code) return message.util.send("You cant eval air");
-		let output = "";
-		const gists = "";
-		if (del == true) message.delete();
-		const embed = new MessageEmbed().setTitle(`${this.client.user.tag}'s Evaled`).setColor(this.client.consts.colors.red).addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``);
 
+		if (del == true) message.delete();
+		const embed = new MessageEmbed().setColor(this.client.consts.colors.red).addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``);
+		let output: string;
+		let msg: Message;
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { member, guild, channel, author, util } = message;
+		if (noreturn == true) msg = await message.author.send(embed);
+		else msg = await message.util.send({ embed });
+		msg.react("🗑️");
 		try {
 			if (!reset) EvalCode = "";
 			output = await eval('const { MessageEmbed } = require("discord.js");' + EvalCode + code);
 			EvalCode += code + ";";
-			if (typeof output !== "string")
-				//prettier-ignore
-				output = inspect(output, { depth: deph || 0 })
-					.replace(new RegExp(this.client.credentials.token, 'g'), '[HIDDEN]')
-					.replace(new RegExp([...this.client.credentials.token].reverse().join(''), 'g'), '[HIDDEN]')
-					.replace(new RegExp(this.client.credentials.mongoPath.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),'[HIDDEN]')
-					.replace(new RegExp(this.client.credentials.devtoken, 'g'),'[HIDDEN]')
-					.replace(new RegExp(this.client.credentials.TestServer, 'g'),'[HIDDEN]')
-					.replace(new RegExp('\\' + this.client.settings.prefix, 'g'),'[HIDDEN]')
-					.replace(new RegExp(this.client.credentials.gist, 'g'), '[HIDDEN]')
-					.replace(new RegExp(this.client.credentials.genius.toString(), 'g'),'[HIDDEN]')
-					.replace(new RegExp(this.client.credentials.bottokens.discordbotlist.toString(),'g'),'[HIDDEN]')
-					.replace(new RegExp(this.client.credentials.dagpi.toString(), 'g'),'[HIDDEN]')
-					.replace(new RegExp(this.client.credentials.bottokens.Bladebnots.toString(),'g'),'[HIDDEN]')
-					.replace(new RegExp(this.client.credentials.bottokens.topgg.toString(), 'g'),'[HIDDEN]')
-					.replace(new RegExp(this.client.credentials.bottokens.discordextreme.toString(),'g'),'[HIDDEN]')
-					.replace(new RegExp(this.client.credentials.bottokens.botsgg.toString(),'g'),'[HIDDEN]');
+			if (typeof output !== "string") output = replace(inspect(output, { depth: deph || 0 }), this.client);
+
 			if (output.length > 1024) {
 				embed.addField("🫓 Output", await hst(output));
 				embed.addField("Type", typeof output);
@@ -110,20 +100,10 @@ export default class EvalCommand extends Command {
 				embed.addField("Type", typeof output);
 			}
 		}
-		let msg;
 		if (noreturn == true) msg = await message.author.send(embed);
-		else
-			msg = await message.util.send({
-				embed: embed,
-				allowedMentions: { repliedUser: false },
-			});
+		else msg.edit({ embed: embed, allowedMentions: { repliedUser: false } });
 
-		msg.react("🗑️");
-		msg.react("🔁");
-		msg.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == "🗑️" || reaction.emoji.name == "🔁"), {
-			max: 1,
-			time: 60000,
-		}).then((collected) => {
+		msg.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == "🗑️" || reaction.emoji.name == "🔁"), { max: 1, time: 60000 }).then((collected) => {
 			if (!collected.first()) return;
 			if (collected.first().emoji.name == "🗑️") {
 				msg.edit(
@@ -133,21 +113,25 @@ export default class EvalCommand extends Command {
 						.addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``)
 						.addField("🫓 Output", `\`\`\`ts\nDeleted :kekw:\`\`\``)
 				);
-				if (gists) {
-					centra(`https://api.github.com/gists/${gists}`, "DELETE").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.gist}`).send();
-				}
-			} else if (collected.first().emoji.name == "🔁") {
-				const evaled = eval(code);
-				const output = inspect(evaled, { depth: 0 });
-				msg.edit(
-					new MessageEmbed()
-						.setTitle(`${this.client.user.tag}'s Evaled`)
-						.setColor(this.client.consts.colors.red)
-						.addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``)
-						.addField("🫓 Output", `\`\`\`ts\n${output}\`\`\``)
-						.addField("Type", typeof evaled)
-				);
 			}
 		});
+
+		function replace(content: string, client: InterfaceClient) {
+			return content
+				.replace(new RegExp(client.credentials.token, "g"), "[HIDDEN]")
+				.replace(new RegExp([...client.credentials.token].reverse().join(""), "g"), "[HIDDEN]")
+				.replace(new RegExp(client.credentials.mongoPath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"), "[HIDDEN]")
+				.replace(new RegExp(client.credentials.devtoken, "g"), "[HIDDEN]")
+				.replace(new RegExp(client.credentials.TestServer, "g"), "[HIDDEN]")
+				.replace(new RegExp("\\" + client.settings.prefix, "g"), "[HIDDEN]")
+				.replace(new RegExp(client.credentials.gist, "g"), "[HIDDEN]")
+				.replace(new RegExp(client.credentials.genius.toString(), "g"), "[HIDDEN]")
+				.replace(new RegExp(client.credentials.bottokens.discordbotlist.toString(), "g"), "[HIDDEN]")
+				.replace(new RegExp(client.credentials.dagpi.toString(), "g"), "[HIDDEN]")
+				.replace(new RegExp(client.credentials.bottokens.Bladebnots.toString(), "g"), "[HIDDEN]")
+				.replace(new RegExp(client.credentials.bottokens.topgg.toString(), "g"), "[HIDDEN]")
+				.replace(new RegExp(client.credentials.bottokens.discordextreme.toString(), "g"), "[HIDDEN]")
+				.replace(new RegExp(client.credentials.bottokens.botsgg.toString(), "g"), "[HIDDEN]");
+		}
 	}
 }

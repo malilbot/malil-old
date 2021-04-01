@@ -27,13 +27,10 @@ export default class InviteCommand extends Command {
 
 	public async exec(message: Message, { args }) {
 		const embed = new MessageEmbed()
-			.setTitle("click here to invtite malil to your server")
-			.setURL("https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824")
+			.setTitle(`click here to invtite ${this.client.user.username} to your server`)
+			.setURL(`https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&scope=bot&permissions=117824`)
 			.setColor(this.client.consts.colors.default);
 
-		message.util.send({
-			embed: embed,
-			allowedMentions: { repliedUser: false },
-		});
+		message.util.send({ embed: embed, allowedMentions: { repliedUser: false } });
 	}
 }

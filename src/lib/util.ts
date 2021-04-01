@@ -69,7 +69,7 @@ export const logger = new (class Logger {
 		console.log(message);
 	}
 })(Settings.verbose);
-
+const { warn, log, info, verbose } = logger;
 export function Format(msg: Message, Cmd?: Command, missing?: string[], reason?: string): FormatIF {
 	let mis: string;
 	let cmd = main(Cmd);
@@ -296,13 +296,15 @@ export class Util {
 }
 export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
 	let user: GuildMember;
-
+	console.log("e");
 	const id = msg.guild.me.user.id;
 
 	/** Checking if there are 2 mentions */
 	if (msg.mentions.members.last()?.user.id !== id) return msg.mentions.members.last();
 
 	const prefix = prefixes.get(msg.guild.id, "prefix");
+	console.log("e");
+	console.log(msg.content);
 	if (args) {
 		msg.content = args;
 	} else {
@@ -315,7 +317,9 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 	}
 
 	/**Defining what to search for */
+	console.log(msg.content);
 	const item = msg.content.trim().split(" ")[0];
+	console.log(item);
 	if (!item) return null;
 	if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
 	else if (item == "^") {
@@ -650,9 +654,10 @@ interface gistif {
 	html_url: string;
 	files: string;
 }
-class InterfaceClient extends Client {
+export class InterfaceClient extends Client {
 	public credentials = credentials;
 	public consts = consts;
+	public settings = Settings;
 	public logchannel: Enmap;
 	public infractions: Enmap;
 	public logger: typeof logger;
