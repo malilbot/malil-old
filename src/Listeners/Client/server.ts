@@ -76,7 +76,7 @@ export default class server extends Listener {
 		app.get("*", (req, res) => {
 			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "404.html"));
 		});
-		app.listen(port);
+		app.listen(port, async () => await this.client.logger.info(sec(`Server running at http://localhost::${port}`)));
 	}
 }
 /*

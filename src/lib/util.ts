@@ -296,15 +296,12 @@ export class Util {
 }
 export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
 	let user: GuildMember;
-	console.log("e");
 	const id = msg.guild.me.user.id;
 
 	/** Checking if there are 2 mentions */
-	if (msg.mentions.members.last()?.user.id !== id) return msg.mentions.members.last();
+	if (msg.mentions.members.last()) if (msg.mentions.members.last()?.user.id !== id) return msg.mentions.members.last();
 
 	const prefix = prefixes.get(msg.guild.id, "prefix");
-	console.log("e");
-	console.log(msg.content);
 	if (args) {
 		msg.content = args;
 	} else {
@@ -317,9 +314,7 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 	}
 
 	/**Defining what to search for */
-	console.log(msg.content);
 	const item = msg.content.trim().split(" ")[0];
-	console.log(item);
 	if (!item) return null;
 	if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
 	else if (item == "^") {
@@ -331,7 +326,7 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 	user = msg.guild.members.cache.get(item);
 	if (!user) {
 		try {
-			logger.info(a1("[ FETCHING USER ] ") + main(`BY ${msg.author.tag}`));
+			logger.info(a1("[ FETCHING USER ] ") + main(`[ BY ] ${msg.author.tag}`) + +main(`[ TEXT ] ${item}`));
 			user = await msg.guild.members.fetch(item);
 		} catch (e) {
 			user = msg.guild.members.cache.find((member) => {
