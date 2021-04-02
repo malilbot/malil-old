@@ -73,10 +73,10 @@ export default class server extends Listener {
 					);
 					return res.send({ success: true, status: 200 });
 				} else {
-					return res.send({ success: false, status: 203, message: "Authorization is required to access this endpoint." });
+					return res.status(203).send({ success: false, status: 203, message: "Authorization is required to access this endpoint." });
 				}
 			} else {
-				return res.send({ success: false, status: 203, message: "Authorization is required to access this endpoint." });
+				return res.status(203).send({ success: false, status: 203, message: "Authorization is required to access this endpoint." });
 			}
 		});
 		app.get("*", (req, res) => {
