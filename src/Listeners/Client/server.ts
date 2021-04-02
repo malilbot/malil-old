@@ -2,12 +2,9 @@ import { Listener } from "discord-akairo";
 import Client from "../../lib/Client";
 import { Settings } from "../../settings";
 import express from "express";
-import { User, MessageEmbed } from "discord.js";
+import { User, MessageEmbed, TextChannel } from "discord.js";
 const app = express();
 import { join } from "path";
-import passport from "passport";
-import session from "express-session";
-import { Strategy } from "passport-github";
 import { sec, fourth } from "../../lib/Utils";
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,20 +22,26 @@ export default class server extends Listener {
 	public async exec(): Promise<void> {
 		const { site, server, auth } = Settings;
 		if (site !== true) return;
-		const { password, clientID, port, clientSecret, ownerid } = server;
+		const { port } = server;
 		const { topAuth, dbotsAuth } = auth;
 		const client = this.client;
 		app.use(express.static(join(__dirname, "..", "..", "..", "public")));
-		app.get("/", async function (req, res) {
+		app.get("/", (req, res) => {
 			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "home.html"));
 		});
-		app.get("/privacy", async function (req, res) {
+		app.get("/privacy", (req, res) => {
 			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "privacy.html"));
 		});
-		app.get("/commands", async function (req, res) {
+		app.get("/commands", (req, res) => {
 			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "commands.html"));
 		});
-		app.post("/api/votes", async function (req, res) {
+		app.get("/cmds", (req, res) => {
+			res.redirect("/commands");
+		});
+		app.get("/cmd", (req, res) => {
+			res.redirect("/commands");
+		});
+		app.post("/api/votes", async (req, res) => {
 			const headers = req.headers;
 			if (headers?.authorization) {
 				let member: User;
@@ -60,7 +63,7 @@ export default class server extends Listener {
 					const amount = wknd ? 2 : 1;
 					client.UserData.set(member.id, cur + amount, "iq");
 
-					const channel = this.client.channels.cache.get("823935750168117312") || (await this.client.channels.fetch("823935750168117312"));
+					const channel = (this.client.channels.cache.get("823935750168117312") || (await this.client.channels.fetch("823935750168117312"))) as TextChannel;
 					channel.send(
 						new MessageEmbed()
 							.setAuthor(`vote from ${member.tag}`, member.avatarURL())

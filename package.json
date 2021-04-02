@@ -64,11 +64,8 @@
 		"discord.js": "discordjs/discord.js",
 		"enmap": "^5.8.4",
 		"express": "^4.17.1",
-		"express-session": "^1.17.1",
 		"genius-lyrics-api": "^3.0.6",
 		"moment": "^2.29.1",
-		"passport": "^0.4.1",
-		"passport-github": "^1.1.0",
 		"winston": "^3.3.3",
 		"winston-daily-rotate-file": "^4.5.1"
 	},
