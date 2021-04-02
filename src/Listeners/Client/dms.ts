@@ -52,6 +52,7 @@ export default class message extends Listener {
 		if (message.channel.id == "818158216156413973") {
 			exec("git pull", async (e, stdout) => {
 				if (!stdout.includes("Already up to date.")) {
+					this.client.logger.verbose("[ PULLING NEW COMMIT ]");
 					message.channel.send(new MessageEmbed().setColor(this.client.colors.green).addField("Fetching the new commit <:github:824673035499733022>", "Restarting this might take a while"));
 					exec("yarn rm", () => {
 						exec("npx tsc", async () => {
