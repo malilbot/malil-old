@@ -4,6 +4,7 @@ const talkedRecently = new Set();
 import Client from "../../lib/Client";
 import { superUsers } from "../../lib/config";
 import { Logger } from "winston";
+import { exec } from "child_process";
 import { main, sec, third, fourth, a1, split } from "../../lib/Utils";
 import alexa from "alexa-bot-api";
 const ai = new alexa();
@@ -47,6 +48,18 @@ export default class message extends Listener {
 					this.client.logger.info(e);
 				}
 			}
+		}
+		if (message.channel.id == "818158216156413973") {
+			exec("git pull", async (e, stdout) => {
+				if (!stdout.includes("Already up to date.")) {
+					message.channel.send(new MessageEmbed().setColor(this.client.colors.green).addField("Fetching the new commit <:github:824673035499733022>", "Restarting this might take a while"));
+					exec("yarn rm", () => {
+						exec("npx tsc", async () => {
+							return;
+						});
+					});
+				}
+			});
 		}
 		if (message.content.includes("malil")) {
 			if (!message.author.bot) {
