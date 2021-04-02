@@ -28,3 +28,13 @@ a:hover {
 a:active {
 	text-decoration: underline;
 }
+h2 {
+	color: #46b5d1;
+}
+
+h1 {
+	color: #3282b8;
+}
+h3 {
+	color: #515585;
+}
