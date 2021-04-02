@@ -385,7 +385,29 @@ export function sLog({
 		}
 	}
 }
+/*
+import { readFileSync } from "fs";
 
+let commit: string;
+
+export const getCommitHash = (): string => {
+	if (commit) return commit.slice(0, 7);
+	const hash = readFileSync(".git/HEAD")
+		.toString()
+		.trim()
+		.split(/.*[: ]/)
+		.slice(-1)[0];
+	if (hash.indexOf("/") == -1) {
+		commit = hash;
+		return commit.slice(0, 7);
+	} else {
+		commit = readFileSync(".git/" + hash)
+			.toString()
+			.trim();
+		return commit.slice(0, 7);
+	}
+};
+*/
 export const CreateGist = async function (name: string, content: string, client: InterfaceClient): Promise<string> {
 	logger.info(a1("[ CREATING GIST ] ") + main(`NAME ${name}`));
 	const files: { [key: string]: { content: string } } = {};
