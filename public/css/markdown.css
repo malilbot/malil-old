@@ -1,0 +1,13 @@
+body {
+	background-color: #181818;
+	color: #bfbfc0;
+}
+
+div {
+	background-color: #222428;
+	width: 60%;
+	padding: 10px;
+	border: 1px solid #c9c9c9;
+	margin: 0;
+	margin: auto;
+}
