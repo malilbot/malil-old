@@ -30,7 +30,7 @@ export default class server extends Listener {
 		const client = this.client;
 		app.use(express.static(join(__dirname, "..", "..", "..", "public")));
 		app.get("/", async function (req, res) {
-			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "index.html"));
+			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "home.html"));
 		});
 		app.get("/privacy", async function (req, res) {
 			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "privacy.html"));
