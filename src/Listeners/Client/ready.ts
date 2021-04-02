@@ -17,6 +17,7 @@ export default class Ready extends Listener {
 			return;
 		}
 		if (this.client?.shard?.ids[0] !== 0) return;
+		this.client.emit("startServer");
 		return readyLog(this.client);
 	}
 }

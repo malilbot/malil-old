@@ -14,7 +14,7 @@ export default class server extends Listener {
 	public constructor(client: Client) {
 		super("server", {
 			emitter: "client",
-			event: "ready",
+			event: "startServer",
 			category: "client",
 		});
 		this.client = client;
