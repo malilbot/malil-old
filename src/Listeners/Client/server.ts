@@ -26,22 +26,22 @@ export default class server extends Listener {
 		const { topAuth, dbotsAuth } = auth;
 		const client = this.client;
 		app.use(express.static(join(__dirname, "..", "..", "..", "public")));
-		app.get("/", (req, res) => {
+		app.get("/", (req: express.Request, res: express.Response) => {
 			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "home.html"));
 		});
-		app.get("/privacy", (req, res) => {
+		app.get("/privacy", (req: express.Request, res: express.Response) => {
 			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "privacy.html"));
 		});
-		app.get("/commands", (req, res) => {
+		app.get("/commands", (req: express.Request, res: express.Response) => {
 			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "commands.html"));
 		});
-		app.get("/cmds", (req, res) => {
+		app.get("/cmds", (req: express.Request, res: express.Response) => {
 			res.redirect("/commands");
 		});
-		app.get("/cmd", (req, res) => {
+		app.get("/cmd", (req: express.Request, res: express.Response) => {
 			res.redirect("/commands");
 		});
-		app.post("/api/votes", async (req, res) => {
+		app.post("/api/votes", async (req: any, res: express.Response) => {
 			const headers = req.headers;
 			if (headers?.authorization) {
 				let member: User;
