@@ -35,6 +35,9 @@ export default class server extends Listener {
 		app.get("/privacy", async function (req, res) {
 			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "privacy.html"));
 		});
+		app.get("/commands", async function (req, res) {
+			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "commands.html"));
+		});
 		app.post("/api/votes", async function (req, res) {
 			const headers = req.headers;
 			if (headers?.authorization) {
