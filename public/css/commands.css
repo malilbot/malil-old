@@ -1,17 +1,20 @@
 .sidenav {
-	height: 90%; /* Full-height: remove this if you want "auto" height */
+	justify-content: center;
+	height: 60%; /* Full-height: remove this if you want "auto" height */
 	width: 160px; /* Set the width of the sidebar */
 	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
 	z-index: 1; /* Stay on top */
 	top: 0; /* Stay at the top */
 	left: 0;
-	background-color: #111; /* Black */
+	background-color: #222428; /* Black */
 	overflow-x: hidden; /* Disable horizontal scroll */
 	padding-top: 20px;
+	top: 10%;
 }
 
 /* The navigation menu links */
 .sidenav a {
+	top: 50%;
 	padding: 8px 10px 10px 16px;
 	text-decoration: none;
 	font-size: 20px;
@@ -22,7 +25,7 @@ div {
 	background-color: #222428;
 	width: 70%;
 	padding: 10px;
-	border: 1px solid #c9c9c9;
+	border: 1px solid #3d3d3d;
 }
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
