@@ -6,7 +6,6 @@ import { join } from "path";
 import centra from "centra";
 import Enmap from "enmap";
 import moment from "moment";
-import { exec } from "child_process";
 /** Pre defining */
 const num = Math.floor(Math.random() * 2 + 1);
 export let main: (string: string | Command | number) => string,
@@ -600,32 +599,6 @@ export function readyLog(client: InterfaceClient): void {
 		log(main(m14), split, third(a7), split, third("Shards"));
 	}
 }
-/*
-export const logr = createLogger({
-	level: "info",
-	format: combine(
-		timestamp({ format: "YYYY/MM/DD HH:mm:ss" }),
-		printf((info): string => {
-			const { message } = info;
-			return a1(replace(message));
-		})
-	),
-
-	transports: [
-		new transports.Console({
-			level: "info",
-		}),
-		new DailyRotateFile({
-			format: combine(timestamp()),
-			level: "debug",
-			zippedArchive: true,
-			extension: ".log",
-			filename: "./Logs/malil-%DATE%",
-			maxFiles: "14d",
-		}),
-	],
-});
-*/
 
 export const sleep = async function (ms: number | string): Promise<string | number> {
 	let mis: number;
