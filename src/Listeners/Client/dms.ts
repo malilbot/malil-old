@@ -56,7 +56,8 @@ export default class message extends Listener {
 					message.channel.send(new MessageEmbed().setColor(this.client.colors.green).addField("Fetching the new commit <:github:824673035499733022>", "Restarting this might take a while"));
 					exec("yarn rm", () => {
 						exec("npx tsc", async () => {
-							return;
+							this.client.logger.verbose("[ RESTARTING ]");
+							this.client.shard.respawnAll();
 						});
 					});
 				}

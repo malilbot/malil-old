@@ -39,14 +39,14 @@ export const logger = new (class Logger {
 		this.yellow = hex("ccf914");
 		this.dash = this.lightBlue(" - ");
 	}
-	async warn(content: string | number | Command | string[], level?: number): Promise<void> {
+	warn(content: string | number | Command | string[], level?: number): void {
 		const time = moment().format("HH:mm:ss");
 		let message = `${this.orange(time)} `;
 		if (level) message += `${this.orange(`level: ${red(level)}`)} `;
 		message += `${this.dash}${this.yellow(content)}`;
 		console.log(message);
 	}
-	async verbose(content: string | number | Command | string[], level?: number): Promise<void> {
+	verbose(content: string | number | Command | string[], level?: number): void {
 		if (!this.Verbose) return;
 		const time = moment().format("HH:mm:ss");
 		let message = `${this.orange(time)} `;
@@ -54,13 +54,13 @@ export const logger = new (class Logger {
 		message += `${this.dash}${this.yellow(content)}`;
 		console.log(message);
 	}
-	async info(content: string | number | Command | string[]): Promise<void> {
+	info(content: string | number | Command | string[]): void {
 		const time = moment().format("HH:mm:ss");
 		let message = `${this.darkBlue(time)} `;
 		message += `${this.dash}${this.yellow(content)}`;
 		console.log(message);
 	}
-	async log(content: string | number | Command | string[], dates = false): Promise<void> {
+	log(content: string | number | Command | string[], dates = false): void {
 		const time = moment().format("HH:mm:ss");
 		let message: string;
 		if (dates) message += `${this.darkBlue(time)} `;
