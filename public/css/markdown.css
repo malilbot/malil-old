@@ -39,3 +39,7 @@ h1 {
 h3 {
 	color: #515585;
 }
+img {
+	max-width: 80%;
+	height: auto;
+}
