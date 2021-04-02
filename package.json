@@ -73,8 +73,7 @@
 		"winston-daily-rotate-file": "^4.5.1"
 	},
 	"engines": {
-		"node": ">=14.15.1",
-		"yarn": "^1.22.10"
+		"node": ">=14.15.1"
 	},
 	"prettier": {
 		"tabWidth": 4,
