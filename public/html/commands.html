@@ -1,548 +1,556 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8" />
-		<title>Malil Commands</title>
-		<link rel="stylesheet" href="../css/markdown.css" type="text/css" />
-		<link rel="stylesheet" href="../css/commands.css" type="text/css" />
-	</head>
 
-	<body class="text">
-		<div class="sidenav">
-			<h2>Table of Contents</h2>
-			<a href="#fun-commands">Fun</a>
-			<a href="#general-commands">General</a>
-			<a href="#info-commands">Information</a>
-			<a href="#moderation-commands">Moderation</a>
-			<a href="#utility-commands">Utility</a>
-		</div>
-		<div>
-			<h1 id="commands">Commands</h1>
-			<p>Prefixes malil, @malil, *<br />Messages are cached for 10 seconds and editing them within that time can make a command trigger.</p>
+<head>
+	<meta charset="UTF-8" />
+	<title>Malil Commands</title>
+	<link rel="stylesheet" href="../css/bar.css" type="text/css" />
+	<link rel="stylesheet" href="../css/markdown.css" type="text/css" />
+	<link rel="stylesheet" href="../css/commands.css" type="text/css" />
 
-			<br />
-			<h1 id="fun-commands">Fun Commands</h1>
-			<h2 id="fedora">Fedora</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>fedora</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Puts a fedora on your profile pic or any image you send (doesn't work with links yet)</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>fedora ^</li>
-			</ul>
-			<h2 id="america">America</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>america</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Overlays an American Flag on your profile picture or an image</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>america</li>
-			</ul>
-			<h2 id="clap">clap</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>clap</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Puts :clap: in between words</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>clap oo aa</li>
-			</ul>
-			<h2 id="8ball">8ball</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>eightball, 8ball, ask</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Ask a question and get a yes/no/maybe answer</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>Ask am i worth the time</li>
-				<li>8ball oo aa oo aa</li>
-			</ul>
-			<h2 id="iq">iq</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>iq</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Sends your IQ (not random, different for every user)</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>iq ^</li>
-			</ul>
-			<h2 id="mock">mock</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>mock, itriedmybest</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Make text's capitalization random/li></li>
-			</ul>
+</head>
 
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>mock hello guys this</li>
-			</ul>
-			<h2 id="uwu">uwu</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>uwu, owo</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Change some text into UwU language</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>owo hello guys this</li>
-			</ul>
-			<h1 id="general-commands">General Commands</h1>
-			<h2 id="asciify">asciify</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>asciify, ascii, assci, asccii, asci, aci</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Turn a image into a ascii</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>ascii</li>
-			</ul>
-			<h2 id="github">github</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>github</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Stalk a github repository and get a message when a new release happens</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>github set</li>
-				<li>github add</li>
-				<li>github list // sends the full list of currently watching repos</li>
-				<li>github delete // deletes the github list be carefull</li>
-			</ul>
-			<h2 id="ping">ping</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>ping</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Send the bot's current ping</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>ping // returns numbers</li>
-			</ul>
-			<h2 id="userinfo">userinfo</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>u, user, userinfo</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Sends some basic info about a user</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>u ^</li>
-				<li>user</li>
-				<li>userinfo @mention</li>
-				<li>user ^</li>
-			</ul>
-			<h1 id="info-commands">Info Commands</h1>
-			<h2 id="avatar">avatar</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>av, avatar</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Get the specified user's avatar</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>av ^</li>
-				<li>av @mention</li>
-				<li>av</li>
-				<li>avatar ^</li>
-				<li>avatar @mention</li>
-				<li>avatar</li>
-			</ul>
-			<h2 id="lyrics">lyrics</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>lyrics, lyc</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Sends the lyrics of a song</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>lyc rapgod</li>
-				<li>lyrics gangster paradise</li>
-			</ul>
-			<h2 id="server">server</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>server</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Shows some info about the server you are in</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>server</li>
-			</ul>
-			<h2 id="stats">stats</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>st, stats</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Shows some statistics about the bot</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>st</li>
-				<li>stats</li>
-			</ul>
-			<h1 id="moderation-commands">Moderation Commands</h1>
-			<h2 id="ban">ban</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>ban</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Ban a user</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>ban ^</li>
-				<li>ban @mention</li>
-				<li>ban</li>
-			</ul>
-			<h2 id="lock">lock</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>lock, unlock, lockchannel</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Locks a given channel, making no one able to talk in it</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>lock</li>
-				<li>unlock</li>
-				<li>lock #general</li>
-			</ul>
-			<h2 id="clear">clear</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>clear</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Deletes a given amount of messages (limit 100)</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>clear 40</li>
-				<li>clear 60</li>
-				<li>clear 23</li>
-			</ul>
-			<h2 id="clearwarns">clearwarns</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>clearwarns</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Clear the warns of a user</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>clearwarns ^</li>
-				<li>clearwarns</li>
-				<li>clearwarns @mention</li>
-			</ul>
-			<h2 id="infractions">infractions</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>infraction, warns</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Shows the moderation logs from a user</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>warns ^</li>
-				<li>infractions @mention</li>
-			</ul>
-			<h2 id="kick">kick</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>kick</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Kick a user from the server</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>kick</li>
-			</ul>
-			<h2 id="logchannel">logchannel</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>logchannel</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Makes a specified channel a 'log channel.' Malil will send moderation updates and more in this channel.</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>logchannel #general</li>
-				<li>logchannel</li>
-			</ul>
-			<h2 id="nick">nick</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>nick</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Change the nickname of a user</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>nick ^ guy</li>
-			</ul>
-			<h2 id="rules">rules</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>rules</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Send some instant rules</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>rules 1</li>
-				<li>rules 2</li>
-				<li>rules 4</li>
-				<li>rules 5</li>
-			</ul>
-			<h2 id="slowmode">slowmode</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>slowmode</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Add slowmode to the channel you're in</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>slowmode 5m</li>
-				<li>slowmode 6h</li>
-				<li>slowmode 2s</li>
-				<li>slowmode 8m</li>
-			</ul>
-			<h2 id="warn">warn</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>warn</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Warns a user for a given reason</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>warn ^ yes</li>
-			</ul>
-			<h2 id="mute">mute</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>mute, muterole, tempmute</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Mute a user making them unable to chat</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>mute ^ 5s</li>
-				<li>mute tricked 1d</li>
-				<li>mute tricked</li>
-			</ul>
-			<h2 id="unmute">Unmute</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>unmute</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Unmute someone who has been muted</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>unmute tricked</li>
-			</ul>
-			<h1 id="utility-commands">Utility Commands</h1>
-			<h2 id="clone">clone</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>clone, steal</li>
-			</ul>
-			<h3 id="information">information</h3>
-			<ul>
-				<li>Steal a emoji from another server</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>clone :weirdchamp:</li>
-			</ul>
-			<h2 id="raw">raw</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>raw</li>
-			</ul>
-			<h3 id="information">information</h3>
-			<ul>
-				<li>Sends the raw content of your message</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>raw :weirdchamp: @user etc</li>
-			</ul>
-			<h2 id="decode">decode</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>decode, decrypt</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Decode some text with hex, utf8, utf16le/ucs2, or base64 in it</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>decode 7265656565</li>
-				<li>decode cmVlZWU=</li>
-			</ul>
-			<h2 id="encode">encode</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>encode, encrypt</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Encode some text with hex, utf8, utf16le/ucs2, or base64 encoding</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>encde reee</li>
-				<li>encrypt reee</li>
-			</ul>
-			<h2 id="invite">invite</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>invite, inv</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Get the link to invite Malil to your server</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>inv</li>
-				<li>invite</li>
-			</ul>
-			<h2 id="poll">poll</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>poll</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Hold a poll (Currently there are only yes/no answers)</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>poll are cats good?</li>
-			</ul>
-			<h2 id="prefix">prefix</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>prefix</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Get the current prefix of the bot or change it</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>prefix</li>
-				<li>prefix !</li>
-				<li>prefix pog</li>
-			</ul>
-			<h2 id="quote">quote</h2>
-			<h3 id="aliases">Aliases</h3>
-			<ul>
-				<li>qt quote</li>
-			</ul>
-			<h3 id="information">Information</h3>
-			<ul>
-				<li>Takes your message link and sends the message again using a webhook</li>
-			</ul>
-			<h3 id="example">Example</h3>
-			<ul>
-				<li>
-					qt
-					<a href="https://discord.com/channels/748956745409232945/811240979918618634/813038781653188609"
-						>https://discord.com/channels/748956745409232945/811240979918618634/813038781653188609</a
-					>
-				</li>
-				<li>
-					quote
-					<a href="https://discord.com/channels/748956745409232945/811240979918618634/813002591024840714"
-						>https://discord.com/channels/748956745409232945/811240979918618634/813002591024840714</a
-					>
-				</li>
-			</ul>
-		</div>
-	</body>
+<body class="text">
+	<div class="topnav">
+		<a href="/">Home</a>
+		<a class="active" href="">Commands</a>
+	</div>
+	<div class="sidenav">
+		<h2>Table of Contents</h2>
+		<a href="#fun-commands">Fun</a>
+		<a href="#general-commands">General</a>
+		<a href="#info-commands">Information</a>
+		<a href="#moderation-commands">Moderation</a>
+		<a href="#utility-commands">Utility</a>
+	</div>
+	<div>
+		<h1 id="commands">Commands</h1>
+		<p>Prefixes malil, @malil, *<br />Messages are cached for 10 seconds and editing them within that time can make
+			a command trigger.</p>
+
+		<br />
+		<h1 id="fun-commands">Fun Commands</h1>
+		<h2 id="fedora">Fedora</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>fedora</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Puts a fedora on your profile pic or any image you send (doesn't work with links yet)</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>fedora ^</li>
+		</ul>
+		<h2 id="america">America</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>america</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Overlays an American Flag on your profile picture or an image</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>america</li>
+		</ul>
+		<h2 id="clap">clap</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>clap</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Puts :clap: in between words</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>clap oo aa</li>
+		</ul>
+		<h2 id="8ball">8ball</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>eightball, 8ball, ask</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Ask a question and get a yes/no/maybe answer</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>Ask am i worth the time</li>
+			<li>8ball oo aa oo aa</li>
+		</ul>
+		<h2 id="iq">iq</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>iq</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Sends your IQ (not random, different for every user)</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>iq ^</li>
+		</ul>
+		<h2 id="mock">mock</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>mock, itriedmybest</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Make text's capitalization random/li></li>
+		</ul>
+
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>mock hello guys this</li>
+		</ul>
+		<h2 id="uwu">uwu</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>uwu, owo</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Change some text into UwU language</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>owo hello guys this</li>
+		</ul>
+		<h1 id="general-commands">General Commands</h1>
+		<h2 id="asciify">asciify</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>asciify, ascii, assci, asccii, asci, aci</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Turn a image into a ascii</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>ascii</li>
+		</ul>
+		<h2 id="github">github</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>github</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Stalk a github repository and get a message when a new release happens</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>github set</li>
+			<li>github add</li>
+			<li>github list // sends the full list of currently watching repos</li>
+			<li>github delete // deletes the github list be carefull</li>
+		</ul>
+		<h2 id="ping">ping</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>ping</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Send the bot's current ping</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>ping // returns numbers</li>
+		</ul>
+		<h2 id="userinfo">userinfo</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>u, user, userinfo</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Sends some basic info about a user</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>u ^</li>
+			<li>user</li>
+			<li>userinfo @mention</li>
+			<li>user ^</li>
+		</ul>
+		<h1 id="info-commands">Info Commands</h1>
+		<h2 id="avatar">avatar</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>av, avatar</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Get the specified user's avatar</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>av ^</li>
+			<li>av @mention</li>
+			<li>av</li>
+			<li>avatar ^</li>
+			<li>avatar @mention</li>
+			<li>avatar</li>
+		</ul>
+		<h2 id="lyrics">lyrics</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>lyrics, lyc</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Sends the lyrics of a song</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>lyc rapgod</li>
+			<li>lyrics gangster paradise</li>
+		</ul>
+		<h2 id="server">server</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>server</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Shows some info about the server you are in</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>server</li>
+		</ul>
+		<h2 id="stats">stats</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>st, stats</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Shows some statistics about the bot</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>st</li>
+			<li>stats</li>
+		</ul>
+		<h1 id="moderation-commands">Moderation Commands</h1>
+		<h2 id="ban">ban</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>ban</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Ban a user</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>ban ^</li>
+			<li>ban @mention</li>
+			<li>ban</li>
+		</ul>
+		<h2 id="lock">lock</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>lock, unlock, lockchannel</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Locks a given channel, making no one able to talk in it</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>lock</li>
+			<li>unlock</li>
+			<li>lock #general</li>
+		</ul>
+		<h2 id="clear">clear</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>clear</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Deletes a given amount of messages (limit 100)</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>clear 40</li>
+			<li>clear 60</li>
+			<li>clear 23</li>
+		</ul>
+		<h2 id="clearwarns">clearwarns</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>clearwarns</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Clear the warns of a user</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>clearwarns ^</li>
+			<li>clearwarns</li>
+			<li>clearwarns @mention</li>
+		</ul>
+		<h2 id="infractions">infractions</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>infraction, warns</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Shows the moderation logs from a user</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>warns ^</li>
+			<li>infractions @mention</li>
+		</ul>
+		<h2 id="kick">kick</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>kick</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Kick a user from the server</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>kick</li>
+		</ul>
+		<h2 id="logchannel">logchannel</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>logchannel</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Makes a specified channel a 'log channel.' Malil will send moderation updates and more in this channel.
+			</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>logchannel #general</li>
+			<li>logchannel</li>
+		</ul>
+		<h2 id="nick">nick</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>nick</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Change the nickname of a user</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>nick ^ guy</li>
+		</ul>
+		<h2 id="rules">rules</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>rules</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Send some instant rules</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>rules 1</li>
+			<li>rules 2</li>
+			<li>rules 4</li>
+			<li>rules 5</li>
+		</ul>
+		<h2 id="slowmode">slowmode</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>slowmode</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Add slowmode to the channel you're in</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>slowmode 5m</li>
+			<li>slowmode 6h</li>
+			<li>slowmode 2s</li>
+			<li>slowmode 8m</li>
+		</ul>
+		<h2 id="warn">warn</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>warn</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Warns a user for a given reason</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>warn ^ yes</li>
+		</ul>
+		<h2 id="mute">mute</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>mute, muterole, tempmute</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Mute a user making them unable to chat</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>mute ^ 5s</li>
+			<li>mute tricked 1d</li>
+			<li>mute tricked</li>
+		</ul>
+		<h2 id="unmute">Unmute</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>unmute</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Unmute someone who has been muted</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>unmute tricked</li>
+		</ul>
+		<h1 id="utility-commands">Utility Commands</h1>
+		<h2 id="clone">clone</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>clone, steal</li>
+		</ul>
+		<h3 id="information">information</h3>
+		<ul>
+			<li>Steal a emoji from another server</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>clone :weirdchamp:</li>
+		</ul>
+		<h2 id="raw">raw</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>raw</li>
+		</ul>
+		<h3 id="information">information</h3>
+		<ul>
+			<li>Sends the raw content of your message</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>raw :weirdchamp: @user etc</li>
+		</ul>
+		<h2 id="decode">decode</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>decode, decrypt</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Decode some text with hex, utf8, utf16le/ucs2, or base64 in it</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>decode 7265656565</li>
+			<li>decode cmVlZWU=</li>
+		</ul>
+		<h2 id="encode">encode</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>encode, encrypt</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Encode some text with hex, utf8, utf16le/ucs2, or base64 encoding</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>encde reee</li>
+			<li>encrypt reee</li>
+		</ul>
+		<h2 id="invite">invite</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>invite, inv</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Get the link to invite Malil to your server</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>inv</li>
+			<li>invite</li>
+		</ul>
+		<h2 id="poll">poll</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>poll</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Hold a poll (Currently there are only yes/no answers)</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>poll are cats good?</li>
+		</ul>
+		<h2 id="prefix">prefix</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>prefix</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Get the current prefix of the bot or change it</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>prefix</li>
+			<li>prefix !</li>
+			<li>prefix pog</li>
+		</ul>
+		<h2 id="quote">quote</h2>
+		<h3 id="aliases">Aliases</h3>
+		<ul>
+			<li>qt quote</li>
+		</ul>
+		<h3 id="information">Information</h3>
+		<ul>
+			<li>Takes your message link and sends the message again using a webhook</li>
+		</ul>
+		<h3 id="example">Example</h3>
+		<ul>
+			<li>
+				qt
+				<a
+					href="https://discord.com/channels/748956745409232945/811240979918618634/813038781653188609">https://discord.com/channels/748956745409232945/811240979918618634/813038781653188609</a>
+			</li>
+			<li>
+				quote
+				<a
+					href="https://discord.com/channels/748956745409232945/811240979918618634/813002591024840714">https://discord.com/channels/748956745409232945/811240979918618634/813002591024840714</a>
+			</li>
+		</ul>
+	</div>
+</body>
+
 </html>
