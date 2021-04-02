@@ -36,7 +36,7 @@ export default class FedoraCommand extends Command {
 		const url = member.user.displayAvatarURL({
 			size: 512,
 			format: "png",
-			dynamic: true,
+			dynamic: false,
 		});
 
 		const res = await centra(`https://api.dagpi.xyz/image/fedora/?url=${url}`, "get").header("Authorization", this.client.credentials.dagpi).send();
