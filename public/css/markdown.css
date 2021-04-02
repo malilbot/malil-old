@@ -11,3 +11,21 @@ div {
 	margin: 0;
 	margin: auto;
 }
+a {
+	color: green;
+}
+a:link {
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:active {
+	text-decoration: underline;
+}
