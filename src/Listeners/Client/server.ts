@@ -1,15 +1,14 @@
 import { Listener } from "discord-akairo";
 import Client from "../../lib/Client";
 import { Settings } from "../../settings";
-import express from "express";
 import { User, MessageEmbed, TextChannel } from "discord.js";
-const app = express();
-import rateLimit from "express-rate-limit";
 import { join } from "path";
 import { sec, fourth } from "../../lib/Utils";
 import { readFileSync } from "fs";
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const fastify = require("fastify")({
+	logger: false,
+	root: join(__dirname, "..", "..", "..", "public", "html"),
+});
 
 export default class server extends Listener {
 	client: Client;
@@ -28,32 +27,32 @@ export default class server extends Listener {
 		const { topAuth, dbotsAuth } = auth;
 		const client = this.client;
 
-		app.use(express.static(join(__dirname, "..", "..", "..", "public")));
-
-		const limiter = rateLimit({
-			windowMs: 15 * 60 * 1000,
-			max: 15,
+		fastify.register(require("fastify-static"), {
+			root: join(__dirname, "..", "..", "..", "public"),
+			//prefix: "/public/", // optional: default '/'
 		});
 
-		app.use("/api/", limiter);
-
-		app.get("/", (req: express.Request, res: express.Response) => {
-			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "home.html"));
+		fastify.get("/", (req, res) => {
+			console.log(req.ip);
+			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "..", "public", "html", "home.html"));
+			res.type("text/html").send(bufferIndexHtml);
 		});
 
-		app.get("/privacy", (req: express.Request, res: express.Response) => {
-			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "privacy.html"));
+		fastify.get("/privacy", (req, res) => {
+			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "..", "public", "html", "privacy.html"));
+			res.type("text/html").send(bufferIndexHtml);
 		});
-		app.get("/commands", (req: express.Request, res: express.Response) => {
-			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "commands.html"));
+		fastify.get("/commands", (req, res) => {
+			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "..", "public", "html", "commands.html"));
+			res.type("text/html").send(bufferIndexHtml);
 		});
-		app.get("/cmds", (req: express.Request, res: express.Response) => {
+		fastify.get("/cmds", (req, res) => {
 			res.redirect("/commands");
 		});
-		app.get("/cmd", (req: express.Request, res: express.Response) => {
+		fastify.get("/cmd", (req, res) => {
 			res.redirect("/commands");
 		});
-		app.post("/api/votes", async (req: any, res: express.Response) => {
+		fastify.post("/api/votes", async (req: any, res) => {
 			const headers = req.headers;
 			if (headers?.authorization) {
 				let member: User;
@@ -83,21 +82,22 @@ export default class server extends Listener {
 							.setTimestamp()
 							.setColor(this.client.colors.blue)
 					);
-					return res.send({ success: true, status: 200 });
+					return { success: true, status: 200 };
 				} else {
-					return res.status(203).send({ success: false, status: 203, message: "Authorization is required to access this endpoint." });
+					return { success: false, status: 203, message: "Authorization is required to access this endpoint." };
 				}
 			} else {
-				return res.status(203).send({ success: false, status: 203, message: "Authorization is required to access this endpoint." });
+				return { success: false, status: 203, message: "Authorization is required to access this endpoint." };
 			}
 		});
-		app.get("/api/*", (req, res) => {
-			return res.send({ success: false, message: "End point was not found." });
+		fastify.get("/api/*", (req, res) => {
+			return { success: false, message: "End point was not found." };
 		});
-		app.get("*", (req, res) => {
-			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "404.html"));
+		fastify.get("*", (req, res) => {
+			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "..", "public", "html", "404.html"));
+			res.type("text/html").send(bufferIndexHtml);
 		});
-		app.listen(port, "0.0.0.0", () => this.client.logger.info(sec(`Server running at http://localhost:${port}`)));
+		fastify.listen(port, "0.0.0.0", () => this.client.logger.info(sec(`Server running at http://localhost:${port}`)));
 	}
 }
 /*
