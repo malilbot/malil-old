@@ -20,6 +20,9 @@ module.exports = function (fastify, opts, done) {
 	fastify.get("/cmd", (req, res) => {
 		res.redirect("/commands");
 	});
+	fastify.get("/home", (req, res) => {
+		res.redirect("/");
+	});
 	fastify.get("/api/*", () => {
 		return { success: false, message: "End point was not found." };
 	});
