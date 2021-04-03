@@ -4,6 +4,7 @@ import { Settings } from "../../settings";
 import express from "express";
 import { User, MessageEmbed, TextChannel } from "discord.js";
 const app = express();
+import rateLimit from "express-rate-limit";
 import { join } from "path";
 import { sec, fourth } from "../../lib/Utils";
 import { readFileSync } from "fs";
@@ -28,6 +29,14 @@ export default class server extends Listener {
 		const client = this.client;
 
 		app.use(express.static(join(__dirname, "..", "..", "..", "public")));
+
+		const limiter = rateLimit({
+			windowMs: 15 * 60 * 1000,
+			max: 15,
+		});
+
+		app.use("/api/", limiter);
+
 		app.get("/", (req: express.Request, res: express.Response) => {
 			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "home.html"));
 		});

@@ -64,6 +64,7 @@
 		"discord.js": "discordjs/discord.js",
 		"enmap": "^5.8.4",
 		"express": "^4.17.1",
+		"express-rate-limit": "^5.2.6",
 		"genius-lyrics-api": "^3.0.6",
 		"moment": "^2.29.1",
 		"winston": "^3.3.3",
@@ -75,10 +76,21 @@
 	"eslintConfig": {
 		"root": true,
 		"parser": "@typescript-eslint/parser",
-		"plugins": ["prettier", "@typescript-eslint"],
-		"extends": ["prettier", "eslint:recommended", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended"]
+		"plugins": [
+			"prettier",
+			"@typescript-eslint"
+		],
+		"extends": [
+			"prettier",
+			"eslint:recommended",
+			"plugin:@typescript-eslint/eslint-recommended",
+			"plugin:@typescript-eslint/recommended"
+		]
 	},
-	"eslingignore": ["node_modules","dist/*"],
+	"eslingignore": [
+		"node_modules",
+		"dist/*"
+	],
 	"prettier": {
 		"tabWidth": 4,
 		"singleQuote": false,
