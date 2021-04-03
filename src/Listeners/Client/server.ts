@@ -3,8 +3,7 @@ import Client from "../../lib/Client";
 import { Settings } from "../../settings";
 import { User, MessageEmbed, TextChannel } from "discord.js";
 import { join } from "path";
-import { sec, fourth } from "../../lib/Utils";
-import { readFileSync } from "fs";
+import { sec, fourth, api } from "../../lib/Utils";
 const fastify = require("fastify")({
 	logger: false,
 	root: join(__dirname, "..", "..", "..", "public", "html"),
@@ -20,83 +19,21 @@ export default class server extends Listener {
 		});
 		this.client = client;
 	}
-	public async exec(guilds: number, users: number): Promise<void> {
+	public async exec(): Promise<void> {
 		const { site, server, auth } = Settings;
 		if (site !== true) return;
 		const { port } = server;
 		const { topAuth, dbotsAuth } = auth;
 		const client = this.client;
 
-		fastify.register(require("fastify-static"), {
+		fastify.register(import("fastify-static"), {
 			root: join(__dirname, "..", "..", "..", "public"),
-			//prefix: "/public/", // optional: default '/'
 		});
 
-		fastify.get("/", (req, res) => {
-			console.log(req.ip);
-			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "..", "public", "html", "home.html"));
-			res.type("text/html").send(bufferIndexHtml);
+		fastify.post("/api/votes", async (req, res) => {
+			return await api(req, client, topAuth, dbotsAuth);
 		});
-
-		fastify.get("/privacy", (req, res) => {
-			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "..", "public", "html", "privacy.html"));
-			res.type("text/html").send(bufferIndexHtml);
-		});
-		fastify.get("/commands", (req, res) => {
-			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "..", "public", "html", "commands.html"));
-			res.type("text/html").send(bufferIndexHtml);
-		});
-		fastify.get("/cmds", (req, res) => {
-			res.redirect("/commands");
-		});
-		fastify.get("/cmd", (req, res) => {
-			res.redirect("/commands");
-		});
-		fastify.post("/api/votes", async (req: any, res) => {
-			const headers = req.headers;
-			if (headers?.authorization) {
-				let member: User;
-				if (headers.authorization == topAuth || headers.authorization == dbotsAuth) {
-					if (headers.authorization == topAuth) {
-						member = await client.users.fetch(req.body.user);
-					} else if (headers.authorization == dbotsAuth) {
-						member = await client.users.fetch(req.body.id);
-					}
-
-					client.gp.math("commands", "+", 1);
-					const iq = Math.floor(Math.random() * 150) + 1;
-					client.UserData.ensure(member.id, { iq: iq });
-					if (!member) return client.logger.info("WHATTT?");
-					client.logger.info(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
-					const wknd = req.body.isWeekend;
-					const cur = Number(client.UserData.get(member.id as string, "iq"));
-					if (!cur) return;
-					const amount = wknd ? 2 : 1;
-					client.UserData.set(member.id, cur + amount, "iq");
-
-					const channel = (this.client.channels.cache.get("823935750168117312") || (await this.client.channels.fetch("823935750168117312"))) as TextChannel;
-					channel.send(
-						new MessageEmbed()
-							.setAuthor(`vote from ${member.tag}`, member.avatarURL())
-							.setDescription(`**${member} had ${cur || "Nothing"} iq now has ${cur + amount || "Nothing"} iq**`)
-							.setTimestamp()
-							.setColor(this.client.colors.blue)
-					);
-					return { success: true, status: 200 };
-				} else {
-					return { success: false, status: 203, message: "Authorization is required to access this endpoint." };
-				}
-			} else {
-				return { success: false, status: 203, message: "Authorization is required to access this endpoint." };
-			}
-		});
-		fastify.get("/api/*", (req, res) => {
-			return { success: false, message: "End point was not found." };
-		});
-		fastify.get("*", (req, res) => {
-			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "..", "public", "html", "404.html"));
-			res.type("text/html").send(bufferIndexHtml);
-		});
+		fastify.register(import("../../lib/routes"), { logLevel: "warn" });
 		fastify.listen(port, "0.0.0.0", () => this.client.logger.info(sec(`Server running at http://localhost:${port}`)));
 	}
 }
