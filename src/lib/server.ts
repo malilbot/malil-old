@@ -32,41 +32,31 @@ export default class Server {
 		await sleep("2000").then((r) => this.client.logger.info(sec(`Server running at http://localhost:${this.port}`)));
 	}
 	public async Api(req: req): Promise<{ success: boolean; status: number; message?: string }> {
-		const headers = req.headers;
-		if (headers?.authorization) {
+		if (req?.headers?.authorization == this.topAuth || req?.headers?.authorization == this.dbotsAuth) {
 			let member: User;
-			if (headers.authorization == this.topAuth || headers.authorization == this.dbotsAuth) {
-				if (headers.authorization == this.topAuth) {
-					member = await this.client.users.fetch(req.body.user);
-				} else if (headers.authorization == this.dbotsAuth) {
-					member = await this.client.users.fetch(req.body.id);
-				}
-
-				this.client.gp.math("commands", "+", 1);
-				const iq = Math.floor(Math.random() * 150) + 1;
-				this.client.UserData.ensure(member.id, { iq: iq });
-				if (!member) return;
-				this.client.logger.info(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
-				const wknd = req.body.isWeekend;
-				const cur = Number(this.client.UserData.get(member.id as string, "iq"));
-				if (!cur) return;
-				const amount = wknd ? 2 : 1;
-				this.client.UserData.set(member.id, cur + amount, "iq");
-
-				const channel = (this.client.channels.cache.get("823935750168117312") || (await this.client.channels.fetch("823935750168117312"))) as TextChannel;
-				channel.send(
-					new MessageEmbed()
-						.setAuthor(`vote from ${member.tag}`, member.avatarURL())
-						.setDescription(`**${member} had ${cur || "Nothing"} iq now has ${cur + amount || "Nothing"} iq**`)
-						.setTimestamp()
-						.setColor("#f000ff")
-				);
-				return { success: true, status: 200 };
-			} else {
-				return { success: false, status: 203, message: "Authorization is required to access this endpoint." };
+			if (req?.headers.authorization == this.topAuth) {
+				member = await this.client.users.fetch(req.body.user);
+			} else if (req?.headers.authorization == this.dbotsAuth) {
+				member = await this.client.users.fetch(req.body.id);
 			}
-		} else {
-			return { success: false, status: 203, message: "Authorization is required to access this endpoint." };
-		}
+			const iq = Math.floor(Math.random() * 150) + 1;
+			this.client.UserData.ensure(member.id, { iq: iq });
+			if (!member) return;
+			this.client.logger.info(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
+			const cur = Number(this.client.UserData.get(member.id as string, "iq"));
+			if (!cur) return;
+			const amount = req.body.isWeekend ? 2 : 1;
+			this.client.UserData.set(member.id, cur + amount, "iq");
+
+			const channel = (this.client.channels.cache.get("823935750168117312") || (await this.client.channels.fetch("823935750168117312"))) as TextChannel;
+			channel.send(
+				new MessageEmbed()
+					.setAuthor(`vote from ${member.tag}`, member.avatarURL())
+					.setDescription(`**${member} had ${cur || "Nothing"} iq now has ${cur + amount || "Nothing"} iq**`)
+					.setTimestamp()
+					.setColor("#f000ff")
+			);
+			return { success: true, status: 200 };
+		} else return { success: false, status: 203, message: "Authorization is required to access this endpoint." };
 	}
 }
