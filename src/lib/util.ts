@@ -387,45 +387,6 @@ export function sLog({
 	}
 }
 
-export async function api(req: req, client: InterfaceClient, topAuth: string, dbotsAuth: string): Promise<{ success: boolean; status: number; message?: string }> {
-	const headers = req.headers;
-	if (headers?.authorization) {
-		let member: User;
-		if (headers.authorization == topAuth || headers.authorization == dbotsAuth) {
-			if (headers.authorization == topAuth) {
-				member = await client.users.fetch(req.body.user);
-			} else if (headers.authorization == dbotsAuth) {
-				member = await client.users.fetch(req.body.id);
-			}
-
-			client.gp.math("commands", "+", 1);
-			const iq = Math.floor(Math.random() * 150) + 1;
-			client.UserData.ensure(member.id, { iq: iq });
-			if (!member) return;
-			client.logger.info(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
-			const wknd = req.body.isWeekend;
-			const cur = Number(client.UserData.get(member.id as string, "iq"));
-			if (!cur) return;
-			const amount = wknd ? 2 : 1;
-			client.UserData.set(member.id, cur + amount, "iq");
-
-			const channel = (this.client.channels.cache.get("823935750168117312") || (await this.client.channels.fetch("823935750168117312"))) as TextChannel;
-			channel.send(
-				new MessageEmbed()
-					.setAuthor(`vote from ${member.tag}`, member.avatarURL())
-					.setDescription(`**${member} had ${cur || "Nothing"} iq now has ${cur + amount || "Nothing"} iq**`)
-					.setTimestamp()
-					.setColor(this.client.colors.blue)
-			);
-			return { success: true, status: 200 };
-		} else {
-			return { success: false, status: 203, message: "Authorization is required to access this endpoint." };
-		}
-	} else {
-		return { success: false, status: 203, message: "Authorization is required to access this endpoint." };
-	}
-}
-
 /*
 import { readFileSync } from "fs";
 
@@ -685,7 +646,7 @@ interface gistif {
 	html_url: string;
 	files: string;
 }
-interface req {
+export interface req {
 	headers: {
 		authorization: string;
 	};

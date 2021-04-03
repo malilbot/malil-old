@@ -1,5 +1,6 @@
 import { Listener } from "discord-akairo";
 import Client from "../../lib/Client";
+/*
 import { Settings } from "../../settings";
 import { join } from "path";
 import { sec, api } from "../../lib/Utils";
@@ -19,19 +20,7 @@ export default class server extends Listener {
 		});
 		this.client = client;
 	}
-	public async exec(): Promise<void> {
-		const { site, server, auth } = Settings;
-		if (site !== true) return;
-		const { port } = server;
-		const { topAuth, dbotsAuth } = auth;
-		const client = this.client;
-		//prettier-ignore
-		fastify.register(import("fastify-static"), { root: join(__dirname, "..", "..", "..", "public") });
-		//prettier-ignore
-		fastify.post("/api/votes", async (req) => { return await api(req, client, topAuth, dbotsAuth); });
-		fastify.register(import("../../lib/routes"), { logLevel: "warn" });
-		fastify.listen(port, "0.0.0.0", () => this.client.logger.info(sec(`Server running at http://localhost:${port}`)));
-	}
+	public async exec(): Promise<void> {}
 }
 /*
 			console.log("Server is running...");

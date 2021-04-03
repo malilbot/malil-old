@@ -3,6 +3,7 @@ import { Settings, credentials, consts } from "../settings";
 import TaskHandler from "./taskhandler";
 import { superUsers } from "./config";
 import BotLists from "./BotLists";
+import Server from "./server";
 import { logger, readyLog } from "./Utils";
 import { join } from "path";
 import Enmap from "enmap";
@@ -78,12 +79,16 @@ export default class Client extends AkairoClient {
 		directory: join(),
 	});
 
+	public server: Server = new Server(this, {
+		online: Settings.site,
+		port: 3001,
+		topAuth: Settings.auth.topAuth,
+		dbotsAuth: Settings.auth.dbotsAuth,
+	});
+
 	public botLists: BotLists = new BotLists(this, {
 		topgg: credentials.bottokens.topgg,
 		discordbotlist: credentials.bottokens.discordbotlist,
-		bladebotlist: credentials.bottokens.Bladebnots,
-		discordextremelist: credentials.bottokens.discordextreme,
-		botsgg: credentials.bottokens.botsgg,
 		verbose: true,
 	});
 	public config: Option;
@@ -139,6 +144,7 @@ export default class Client extends AkairoClient {
 		this.taskHandler.loadall();
 		this.commandHandler.loadAll();
 		this.listenerHandler.loadAll();
+		this.server.Start();
 	}
 
 	public async goo(): Promise<unknown> {
