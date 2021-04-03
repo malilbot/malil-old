@@ -4,7 +4,7 @@ body {
 	color: #bfbfc0;
 }
 
-div {
+.body {
 	background-color: #222428;
 	width: 60%;
 	padding: 10px;

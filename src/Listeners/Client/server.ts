@@ -6,6 +6,7 @@ import { User, MessageEmbed, TextChannel } from "discord.js";
 const app = express();
 import { join } from "path";
 import { sec, fourth } from "../../lib/Utils";
+import { readFileSync } from "fs";
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -19,16 +20,18 @@ export default class server extends Listener {
 		});
 		this.client = client;
 	}
-	public async exec(): Promise<void> {
+	public async exec(guilds: number, users: number): Promise<void> {
 		const { site, server, auth } = Settings;
 		if (site !== true) return;
 		const { port } = server;
 		const { topAuth, dbotsAuth } = auth;
 		const client = this.client;
+
 		app.use(express.static(join(__dirname, "..", "..", "..", "public")));
 		app.get("/", (req: express.Request, res: express.Response) => {
 			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "home.html"));
 		});
+
 		app.get("/privacy", (req: express.Request, res: express.Response) => {
 			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "privacy.html"));
 		});
@@ -79,6 +82,9 @@ export default class server extends Listener {
 				return res.status(203).send({ success: false, status: 203, message: "Authorization is required to access this endpoint." });
 			}
 		});
+		app.get("/api/*", (req, res) => {
+			return res.send({ success: false, message: "End point was not found." });
+		});
 		app.get("*", (req, res) => {
 			res.sendFile(join(__dirname, "..", "..", "..", "public", "html", "404.html"));
 		});
@@ -96,6 +102,14 @@ export default class server extends Listener {
 			console.log(await res);
 			*/
 /*
+app.set("view engine", "html");
+		const file = (await readFileSync(join(__dirname, "..", "..", "..", "public", "html", "home.html")))
+			.toString()
+			.replace(`{{ GUILDS }}`, guilds.toString())
+			.replace("{{ MEMBERS }}", users.toString());
+		console.log(file);
+		app.set("view engine", "html");
+
 		app.get("/", async function (req, res) {
 			res.sendFile(join(__dirname, "..", "..", "..", "resources", "/view.html"));
 		});
