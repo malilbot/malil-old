@@ -8,7 +8,7 @@ import { exec } from "child_process";
 import { main, sec, third, fourth, a1, split } from "../../lib/Utils";
 import alexa from "alexa-bot-api";
 const ai = new alexa();
-let spokenusers = [];
+const spokenusers = [];
 export default class message extends Listener {
 	client: Client;
 	public constructor(client: Client) {

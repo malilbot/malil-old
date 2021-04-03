@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
+import type { Message, GuildMember } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import { GetMember } from "../../lib/Utils";
 
@@ -25,7 +25,7 @@ export default class IqCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, {}) {
+	public async exec(message: Message): Promise<void> {
 		const member: GuildMember = (await GetMember(message)) || message.member;
 		let iq: number;
 		this.client.UserData.ensure(member.id, {

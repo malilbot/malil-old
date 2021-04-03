@@ -20,7 +20,7 @@ export default class process extends Listener {
         (channel as TextChannel).send(error.stack)
     }
     */
-	public async exec(error: Error, promise: Promise<unknown>) {
+	public async exec(error: Error, promise: Promise<unknown>): Promise<void> {
 		this.client.logger.info(error.stack);
 		try {
 			const channel = await this.client.channels.fetch(this.client.consts.errChannel);
@@ -30,6 +30,8 @@ export default class process extends Listener {
 					description: `Promise \`${promise}\` threw an error, unhandled.\n` + `Stack: ${await hst(error.stack)}`,
 				})
 			);
-		} catch (e) {}
+		} catch (e) {
+			this.client.logger.warn("Something went wrong in process: " + e.stack);
+		}
 	}
 }

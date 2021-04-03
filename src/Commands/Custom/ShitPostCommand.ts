@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import { MessageEmbed, Message, TextChannel } from "discord.js";
+import { Message, TextChannel } from "discord.js";
 
 export default class ShitPostCommand extends Command {
 	public constructor() {
@@ -38,7 +38,7 @@ export default class ShitPostCommand extends Command {
 
 			return message.util.send(list || "nothing......");
 		}
-		args = args.replace(/\</, "").replace(/\>/, "").replace(/\#/, "");
+		args = args.replace(/</, "").replace(/>/, "").replace(/#/, "");
 		const name = ((await this.client.channels.fetch(args)) as TextChannel).name;
 		if (this.client.gp.get("shitpost").includes(args)) {
 			const arr = this.client.gp.get("shitpost");

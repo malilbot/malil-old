@@ -28,7 +28,9 @@ export default class SayCommand extends Command {
 
 	public async exec(message: Message, { code }) {
 		try {
-			message.delete().catch((e) => {});
+			message.delete().catch((e) => {
+				message.author.send("Me  can no delete your message");
+			});
 		} catch (e) {
 			return;
 		}

@@ -84,7 +84,9 @@ export default class ColorCommand extends Command {
 			if (!args) return message.util.send("not args provided");
 			try {
 				args = args.toLowerCase();
-			} catch (e) {}
+			} catch (e) {
+				this.client.logger.warn(e);
+			}
 
 			/** Checking if the args are a valid color */
 
