@@ -31,6 +31,10 @@ export default class Server {
 		});
 		await sleep("2000").then(() => this.client.logger.info(sec(`Server running at http://localhost:${this.port}`)));
 	}
+	public async Close(): Promise<void> {
+		this.client.logger.warn("[ CLOSING SERVER ]", 5);
+		return await fastify.close();
+	}
 	public async Api(req: req): Promise<{ success: boolean; status: number; message?: string }> {
 		if (req?.headers?.authorization == this.topAuth || req?.headers?.authorization == this.dbotsAuth) {
 			let member: User;
