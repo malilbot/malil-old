@@ -9,16 +9,12 @@ export default class BotLists {
 	botsgg: string;
 	verbose: boolean;
 
-	constructor(client: Client, { topgg = "none", discordbotlist = "none", bladebotlist = "none", discordextremelist = "none", botsgg = "none", verbose = false }) {
-		this.verbose = verbose;
+	constructor(client: Client, { topgg = "none", discordbotlist = "none" }: { topgg: string; discordbotlist: string }) {
 		this.client = client;
 		this.topgg = topgg;
 		this.discordbotlist = discordbotlist;
-		this.bladebotlist = bladebotlist;
-		this.discordextremelist = discordextremelist;
-		this.botsgg = botsgg;
 	}
-	async post() {
+	async post(): Promise<void> {
 		const topgg = {
 			server_count: this.client.guilds.cache.size,
 			shard_count: this.client.shard.ids.length,

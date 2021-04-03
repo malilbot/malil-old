@@ -1,6 +1,6 @@
 import { Listener } from "discord-akairo";
 import { Guild } from "discord.js";
-import Client from "../../lib/Client";
+import Client from "../../classes/Client";
 import { sLog } from "../../lib/Utils";
 export default class guildCreate extends Listener {
 	client: Client;

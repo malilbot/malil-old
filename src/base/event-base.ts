@@ -2,7 +2,7 @@
 
 import { Listener } from 'discord-akairo';
 import { Message } from 'discord.js'
-import Client from '../../lib/Client';
+import Client from '../../classes/Client';
 
 export default class replaceme extends Listener {
     client: Client

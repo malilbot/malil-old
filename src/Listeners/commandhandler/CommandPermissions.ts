@@ -1,7 +1,7 @@
 import { Listener, Command } from "discord-akairo";
 import { Message } from "discord.js";
 import { a1, Format } from "../../lib/Utils";
-import Client from "../../lib/Client";
+import Client from "../../classes/Client";
 export default class missingPermissions extends Listener {
 	client: Client;
 	public constructor(client: Client) {

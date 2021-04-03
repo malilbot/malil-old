@@ -1,7 +1,7 @@
 import { Listener } from "discord-akairo";
 import { Message, MessageEmbed } from "discord.js";
 const talkedRecently = new Set();
-import Client from "../../lib/Client";
+import Client from "../../classes/Client";
 import { superUsers } from "../../lib/config";
 import { Logger } from "winston";
 import { exec } from "child_process";

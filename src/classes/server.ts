@@ -1,5 +1,5 @@
 import { join } from "path";
-import { InterfaceClient, req, fourth, sec, sleep } from "./Utils";
+import { InterfaceClient, req, fourth, sec, sleep } from "../lib/Utils";
 import type { User, TextChannel } from "discord.js";
 import { MessageEmbed } from "discord.js";
 const fastify = require("fastify")({
@@ -25,11 +25,11 @@ export default class Server {
 		fastify.register(import("fastify-static"), { root: join(__dirname, "..",  "..", "public") });
 		//prettier-ignore
 		fastify.post("/api/votes", async (req) => { return await this.Api(req); });
-		fastify.register(import("./routes"), { logLevel: "warn" });
+		fastify.register(import("../lib/routes"), { logLevel: "warn" });
 		fastify.listen(this.port, "0.0.0.0", () => {
 			this.client.logger.info(sec(`Server running at http://localhost:${this.port}`));
 		});
-		await sleep("2000").then((r) => this.client.logger.info(sec(`Server running at http://localhost:${this.port}`)));
+		await sleep("2000").then(() => this.client.logger.info(sec(`Server running at http://localhost:${this.port}`)));
 	}
 	public async Api(req: req): Promise<{ success: boolean; status: number; message?: string }> {
 		if (req?.headers?.authorization == this.topAuth || req?.headers?.authorization == this.dbotsAuth) {

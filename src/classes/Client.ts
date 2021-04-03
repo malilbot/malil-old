@@ -1,10 +1,10 @@
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
 import { Settings, credentials, consts } from "../settings";
 import TaskHandler from "./taskhandler";
-import { superUsers } from "./config";
+import { superUsers } from "../lib/config";
 import BotLists from "./BotLists";
 import Server from "./server";
-import { logger, readyLog } from "./Utils";
+import { logger, readyLog } from "../lib/Utils";
 import { join } from "path";
 import Enmap from "enmap";
 declare module "discord-akairo" {
@@ -72,7 +72,6 @@ export default class Client extends AkairoClient {
 
 	public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, {
 		directory: join(__dirname, "..", "Inhibitors"),
-		automateCategories: true,
 	});
 
 	public taskHandler: TaskHandler = new TaskHandler(this, {
@@ -89,7 +88,6 @@ export default class Client extends AkairoClient {
 	public botLists: BotLists = new BotLists(this, {
 		topgg: credentials.bottokens.topgg,
 		discordbotlist: credentials.bottokens.discordbotlist,
-		verbose: true,
 	});
 	public config: Option;
 

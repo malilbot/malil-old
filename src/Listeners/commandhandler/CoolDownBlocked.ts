@@ -1,6 +1,6 @@
 import { Listener } from "discord-akairo";
 import { main, sec } from "../../lib/Utils";
-import Client from "../../lib/Client";
+import Client from "../../classes/Client";
 import { MessageEmbed, Message } from "discord.js";
 const talkedRecently = new Set();
 const Talk = new Set();

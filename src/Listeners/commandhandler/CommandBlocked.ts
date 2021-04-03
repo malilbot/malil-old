@@ -1,6 +1,6 @@
 import { Listener, Command } from "discord-akairo";
 import { sLog } from "../../lib/util";
-import Client from "../../lib/Client";
+import Client from "../../classes/Client";
 import { Message } from "discord.js";
 import {} from "../../lib/Utils";
 export default class commandBlocked extends Listener {

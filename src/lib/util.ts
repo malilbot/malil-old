@@ -1,4 +1,4 @@
-import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, Guild, User } from "discord.js";
+import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, Guild } from "discord.js";
 import { Command, CommandHandler, InhibitorHandler, ListenerHandler } from "discord-akairo";
 import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
 import { credentials, Settings, consts } from "../settings";

@@ -1,5 +1,5 @@
 import { Listener } from "discord-akairo";
-import Client from "../../lib/Client";
+import Client from "../../classes/Client";
 import { main, sec, third } from "../../lib/Utils";
 export default class First extends Listener {
 	client: Client;

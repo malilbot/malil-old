@@ -1,7 +1,7 @@
 /* eslint-disable prefer-spread */
 /* eslint-disable no-var */
 import { Listener } from "discord-akairo";
-import Client from "../../lib/Client";
+import Client from "../../classes/Client";
 
 export default class messageReactionAdd extends Listener {
 	client: Client;
