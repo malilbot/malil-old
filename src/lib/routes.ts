@@ -20,11 +20,11 @@ module.exports = function (fastify, opts, done) {
 	fastify.get("/cmd", (req, res) => {
 		res.redirect("/commands");
 	});
-	fastify.get("/api/*", (req, res) => {
+	fastify.get("/api/*", () => {
 		return { success: false, message: "End point was not found." };
 	});
 	fastify.get("*", (req, res) => {
-		const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "..", "public", "html", "404.html"));
+		const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "404.html"));
 		res.type("text/html").send(bufferIndexHtml);
 	});
 	done();

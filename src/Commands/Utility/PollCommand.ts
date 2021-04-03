@@ -1,6 +1,5 @@
 import { Command } from "discord-akairo";
-import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
-import { MessageEmbed } from "discord.js";
+import type { Message } from "discord.js";
 import { fixword } from "../../lib/Utils";
 export default class PollCommand extends Command {
 	public constructor() {
@@ -28,7 +27,7 @@ export default class PollCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }: { args: string }): Promise<Message> {
 		const input = await fixword(args);
 		if (!input) return message.util.send("pelase ask a question");
 

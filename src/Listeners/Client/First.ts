@@ -1,8 +1,6 @@
 import { Listener } from "discord-akairo";
-import { Message } from "discord.js";
 import Client from "../../lib/Client";
-import { mkdir } from "fs";
-import { main, sec, third, fourth, a1, split, sleep } from "../../lib/Utils";
+import { main, sec, third } from "../../lib/Utils";
 export default class First extends Listener {
 	client: Client;
 	public constructor(client: Client) {
@@ -14,7 +12,7 @@ export default class First extends Listener {
 		this.client = client;
 	}
 
-	async exec(message: Message) {
+	async exec(): Promise<void> {
 		if (
 			!this.client.blacklist.get("blacklist") ||
 			!this.client.blacklist.get("blacklisted") ||

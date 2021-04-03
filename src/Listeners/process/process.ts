@@ -1,7 +1,6 @@
 import { Listener } from "discord-akairo";
-import { Message, TextChannel, MessageEmbed } from "discord.js";
+import { TextChannel, MessageEmbed } from "discord.js";
 import Client from "../../lib/Client";
-import { unindent } from "common-tags";
 import { hst } from "../../lib/Utils";
 export default class process extends Listener {
 	client: Client;

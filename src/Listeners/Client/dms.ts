@@ -5,10 +5,9 @@ import Client from "../../lib/Client";
 import { superUsers } from "../../lib/config";
 import { Logger } from "winston";
 import { exec } from "child_process";
-import { main, sec, third, fourth, a1, split } from "../../lib/Utils";
+import { main, sec, third, fourth } from "../../lib/Utils";
 import alexa from "alexa-bot-api";
 const ai = new alexa();
-const spokenusers = [];
 export default class message extends Listener {
 	client: Client;
 	public constructor(client: Client) {

@@ -1,9 +1,9 @@
 import { Listener } from "discord-akairo";
 import Client from "../../lib/Client";
 import { Settings } from "../../settings";
-import { User, MessageEmbed, TextChannel } from "discord.js";
 import { join } from "path";
-import { sec, fourth, api } from "../../lib/Utils";
+import { sec, api } from "../../lib/Utils";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const fastify = require("fastify")({
 	logger: false,
 	root: join(__dirname, "..", "..", "..", "public", "html"),

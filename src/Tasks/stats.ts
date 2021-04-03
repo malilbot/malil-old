@@ -1,5 +1,4 @@
 import { main, sec } from "../lib/Utils";
-const { log } = console;
 let curStats = [];
 const CurStats = [];
 module.exports = {

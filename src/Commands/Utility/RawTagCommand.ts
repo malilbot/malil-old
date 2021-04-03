@@ -1,6 +1,5 @@
 import { Command } from "discord-akairo";
-import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
-import { MessageFlags } from "discord.js";
+import type { Message } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import { CreateGist } from "../../lib/Utils";
 
@@ -28,7 +27,7 @@ export default class RawTagCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<Message> {
 		await this.client.tags.ensure(message.guild.id, {});
 		const raw = await this.client.tags.get(message.guild.id, args);
 		if (!raw) return message.util.send("tag not found");

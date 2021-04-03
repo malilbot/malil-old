@@ -24,8 +24,8 @@ export default class PrefixCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
-		if (!args || args.length == 0 || args.size == 0) {
+	public async exec(message: Message, { args }: { args: string }): Promise<Message> {
+		if (!args || args.length == 0) {
 			if (this.client.prefixes.get(message.guild.id, "prefix")) {
 				const item = this.client.prefixes.get(message.guild.id, "prefix");
 				if (item) return message.util.send("my prefix is " + item);

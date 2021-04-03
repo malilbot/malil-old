@@ -4,11 +4,11 @@ export default class extends Inhibitor {
 	constructor() {
 		super("GuildBlacklist", {
 			reason: "blacklist",
-			type: "all"
+			type: "all",
 		});
 	}
 
-	exec(message: Message) {
+	exec(message: Message): boolean {
 		if (message?.guild?.id) return this.client.blacklist.get("blacklisted", "guilds").includes(message.guild.id);
 	}
 }

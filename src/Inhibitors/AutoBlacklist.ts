@@ -1,6 +1,6 @@
-import { Inhibitor, Command } from "discord-akairo";
+import { Inhibitor } from "discord-akairo";
 import { Message, MessageEmbed } from "discord.js";
-import { main, sec, third, fourth, split, a1, Format } from "../lib/Utils";
+import { sec, third, a1, Format } from "../lib/Utils";
 import { superUsers } from "../lib/config";
 const timeoutObject = {};
 const blacklist = {};

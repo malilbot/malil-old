@@ -68,7 +68,7 @@ export const logger = new (class Logger {
 		console.log(message);
 	}
 })(Settings.verbose);
-const { warn, log, info, verbose } = logger;
+
 export function Format(msg: Message, Cmd?: Command, missing?: string[], reason?: string): FormatIF {
 	let mis: string;
 	let cmd = main(Cmd);
@@ -101,6 +101,7 @@ const d = h * 24;
 const w = d * 7;
 const y = d * 365.25;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ms = function (val: string | number, options?: any): any {
 	options = options || {};
 	const type = typeof val;
@@ -385,7 +386,8 @@ export function sLog({
 		}
 	}
 }
-export async function api(req, client, topAuth, dbotsAuth): Promise<{ success: boolean; status: number; message?: string }> {
+
+export async function api(req: req, client: InterfaceClient, topAuth: string, dbotsAuth: string): Promise<{ success: boolean; status: number; message?: string }> {
 	const headers = req.headers;
 	if (headers?.authorization) {
 		let member: User;
@@ -399,7 +401,7 @@ export async function api(req, client, topAuth, dbotsAuth): Promise<{ success: b
 			client.gp.math("commands", "+", 1);
 			const iq = Math.floor(Math.random() * 150) + 1;
 			client.UserData.ensure(member.id, { iq: iq });
-			if (!member) return client.logger.info("WHATTT?");
+			if (!member) return;
 			client.logger.info(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
 			const wknd = req.body.isWeekend;
 			const cur = Number(client.UserData.get(member.id as string, "iq"));
@@ -683,10 +685,22 @@ interface gistif {
 	html_url: string;
 	files: string;
 }
+interface req {
+	headers: {
+		authorization: string;
+	};
+	body: {
+		user: string;
+		id: string;
+		isWeekend: boolean;
+	};
+}
 export class InterfaceClient extends Client {
 	public credentials = credentials;
 	public consts = consts;
 	public settings = Settings;
+	public gp: Enmap;
+	public UserData: Enmap;
 	public logchannel: Enmap;
 	public infractions: Enmap;
 	public logger: typeof logger;

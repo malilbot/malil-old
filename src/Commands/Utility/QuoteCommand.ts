@@ -31,7 +31,7 @@ export default class QuoteCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args, force }) {
+	public async exec(message: Message, { args, force }: { args: string; force: boolean }): Promise<Message> {
 		if (!args) return message.util.send("please add a message link");
 		if (!message.content.includes("/")) return message.util.send("Please add a message link");
 

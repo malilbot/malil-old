@@ -1,4 +1,4 @@
-import { GuildMember, TextChannel, Guild, User } from "discord.js";
+import { GuildMember, Guild, User } from "discord.js";
 module.exports = {
 	name: "sweep",
 	delay: "30m",
@@ -11,5 +11,5 @@ module.exports = {
 			guild.presences.cache.sweep(() => true);
 		});
 		client.users.cache.sweep((user: User) => user.id != client.user?.id);
-	}
+	},
 };

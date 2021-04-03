@@ -1,7 +1,7 @@
 import { Listener } from "discord-akairo";
 import { GuildMember, TextChannel, MessageEmbed } from "discord.js";
 import Client from "../../lib/Client";
-import { main, sec, fourth, a1, sLog } from "../../lib/Utils";
+import { fourth, sLog } from "../../lib/Utils";
 export default class WelcomeEmbed extends Listener {
 	client: Client;
 	public constructor(client: Client) {

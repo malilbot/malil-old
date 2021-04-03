@@ -1,7 +1,7 @@
 import { MessageEmbed, TextChannel, Guild } from "discord.js";
 import { sleep } from "../lib/Utils";
 import centra from "centra";
-import { main, sec, third, fourth, a1, split } from "../lib/Utils";
+import { main, sec } from "../lib/Utils";
 let log = 0;
 module.exports = {
 	name: "github",
@@ -86,9 +86,9 @@ module.exports = {
 				}
 			}
 		}
-	}
+	},
 };
-function cutString(s, n) {
+function cutString(s: string, n: number): string {
 	const cut = s.indexOf(" ", n);
 	if (cut == -1) return s;
 	return s.substring(0, cut);
