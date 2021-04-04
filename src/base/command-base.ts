@@ -1,17 +1,6 @@
 /*
 
 
-
-
-
-
-
-
-
-
-
-
-
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
 
@@ -44,20 +33,8 @@ export default class replacemeCommand extends Command {
     public async exec(message: Message, { args }) {
 
 
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 */
