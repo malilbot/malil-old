@@ -63,6 +63,7 @@
 		"discord.js": "discordjs/discord.js",
 		"enmap": "^5.8.4",
 		"fastify": "^3.14.1",
+		"fastify-rate-limit": "fastify/fastify-rate-limit",
 		"fastify-static": "^4.0.1",
 		"genius-lyrics-api": "^3.0.6",
 		"moment": "^2.29.1",

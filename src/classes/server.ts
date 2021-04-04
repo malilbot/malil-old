@@ -2,6 +2,8 @@ import { join } from "path";
 import { InterfaceClient, req, fourth, sec, sleep } from "../lib/Utils";
 import type { User, TextChannel } from "discord.js";
 import { MessageEmbed } from "discord.js";
+import { readFileSync } from "fs";
+import rateLimit from "fastify-rate-limit";
 const fastify = require("fastify")({
 	logger: false,
 	root: join(__dirname, "..", "..", "..", "public", "html"),
@@ -21,19 +23,29 @@ export default class Server {
 	}
 	public async Start(): Promise<void> {
 		if (this.online !== true) return;
-		//prettier-ignore
-		fastify.register(import("fastify-static"), { root: join(__dirname, "..",  "..", "public") });
-		//prettier-ignore
-		fastify.post("/api/votes", async (req) => { return await this.Api(req); });
-		fastify.register(import("../lib/routes"), { logLevel: "warn" });
-		fastify.listen(this.port, "0.0.0.0", () => {
+		await fastify.register(rateLimit, { global: true, max: 100, timeWindow: 100000 });
+		await fastify.register(import("fastify-static"), { root: join(__dirname, "..", "..", "public") });
+		// Register all the routes
+		await this.Routes();
+		await fastify.listen(this.port, "0.0.0.0", () => {
 			this.client.logger.info(sec(`Server running at http://localhost:${this.port}`));
 		});
-		await sleep("2000").then(() => this.client.logger.info(sec(`Server running at http://localhost:${this.port}`)));
+		return await sleep("2000").then(() => this.client.logger.info(sec(`Server running at http://localhost:${this.port}`)));
 	}
 	public async Close(): Promise<void> {
 		this.client.logger.warn("[ CLOSING SERVER ]", 5);
 		return await fastify.close();
+	}
+	public async Routes(): Promise<void> {
+		await fastify.post("/api/votes", async (req) => {
+			return await this.Api(req);
+		});
+		await fastify.register(import("../lib/routes"), { logLevel: "warn" });
+
+		return await fastify.setNotFoundHandler({ onRequest: fastify.rateLimit }, (req, res) => {
+			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "404.html"));
+			res.code(404).type("text/html").send(bufferIndexHtml);
+		});
 	}
 	public async Api(req: req): Promise<{ success: boolean; status: number; message?: string }> {
 		if (req?.headers?.authorization == this.topAuth || req?.headers?.authorization == this.dbotsAuth) {

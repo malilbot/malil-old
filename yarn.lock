@@ -1973,6 +1973,14 @@ fastify-plugin@^3.0.0:
   resolved "https://registry.npmjs.org/fastify-plugin/-/fastify-plugin-3.0.0.tgz"
   integrity sha512-ZdCvKEEd92DNLps5n0v231Bha8bkz1DjnPP/aEz37rz/q42Z5JVLmgnqR4DYuNn3NXAO3IDCPyRvgvxtJ4Ym4w==
 
+fastify-rate-limit@fastify/fastify-rate-limit:
+  version "5.5.0"
+  resolved "https://codeload.github.com/fastify/fastify-rate-limit/tar.gz/d448a7711fc97309ec770ea715a8807a817249ef"
+  dependencies:
+    fastify-plugin "^3.0.0"
+    ms "^2.1.1"
+    tiny-lru "^7.0.0"
+
 fastify-static@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/fastify-static/-/fastify-static-4.0.1.tgz"

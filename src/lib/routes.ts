@@ -5,7 +5,6 @@ module.exports = function (fastify, opts, done) {
 		const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "home.html"));
 		res.type("text/html").send(bufferIndexHtml);
 	});
-
 	fastify.get("/privacy", (req, res) => {
 		const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "privacy.html"));
 		res.type("text/html").send(bufferIndexHtml);
@@ -14,6 +13,7 @@ module.exports = function (fastify, opts, done) {
 		const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "commands.html"));
 		res.type("text/html").send(bufferIndexHtml);
 	});
+	/** redirects */
 	fastify.get("/cmds", (req, res) => {
 		res.redirect("/commands");
 	});
@@ -25,10 +25,6 @@ module.exports = function (fastify, opts, done) {
 	});
 	fastify.get("/api/*", () => {
 		return { success: false, message: "End point was not found." };
-	});
-	fastify.get("*", (req, res) => {
-		const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "404.html"));
-		res.type("text/html").send(bufferIndexHtml);
 	});
 	done();
 };
