@@ -527,6 +527,18 @@ export async function Infract(message?: Message, reason?: string, member?: Guild
 		}
 	}
 }
+export async function FetchValues(client: InterfaceClient): Promise<{ guilds: number; users: number; channels: number }> {
+	const totalGuilds = await client.shard.fetchClientValues("guilds.cache.size").then((servers) => servers.reduce((members: number, guildCount: number) => members + guildCount, 0));
+
+	const totalMembers = await client.shard
+		.broadcastEval("this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)")
+		.then((member) => member.reduce((acc, memberCount) => acc + memberCount, 0));
+
+	const totalChannels = await client.shard
+		.broadcastEval("this.guilds.cache.reduce((acc, guild) => acc + guild.channels.cache.size, 0)")
+		.then((channel) => channel.reduce((acc, channelCount) => acc + channelCount, 0));
+	return { guilds: totalGuilds, users: totalMembers, channels: totalChannels };
+}
 
 export function readyLog(client: InterfaceClient): void {
 	const { log } = console;

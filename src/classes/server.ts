@@ -14,12 +14,20 @@ export default class Server {
 	topAuth: string;
 	dbotsAuth: string;
 	client: InterfaceClient;
+	time: number;
+	totalGuilds: number;
+	totalMembers: number;
+	totalChannels: number;
 	constructor(client: InterfaceClient, { online = true, port = 3000, topAuth = "6969", dbotsAuth = "6969" }: { online?: boolean; port?: number; topAuth?: string; dbotsAuth?: string }) {
 		this.port = port;
 		this.client = client;
 		this.online = online;
 		this.topAuth = topAuth;
 		this.dbotsAuth = dbotsAuth;
+		this.time = 0;
+		this.totalGuilds = 50;
+		this.totalMembers = 40000;
+		this.totalChannels = 8000;
 	}
 	public async Start(): Promise<void> {
 		if (this.online !== true) return;
@@ -37,17 +45,34 @@ export default class Server {
 		return await fastify.close();
 	}
 	public async Routes(): Promise<void> {
+		/** Votes api */
 		await fastify.post("/api/votes", async (req) => {
-			return await this.Api(req);
+			return await this.Votes(req);
 		});
+		await fastify.get("/api/stats", async () => {
+			return await this.Stats();
+		});
+		/** Websites */
 		await fastify.register(import("../lib/routes"), { logLevel: "warn" });
-
+		/** 404's */
 		return await fastify.setNotFoundHandler({ onRequest: fastify.rateLimit }, (req, res) => {
 			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "404.html"));
 			res.code(404).type("text/html").send(bufferIndexHtml);
 		});
 	}
-	public async Api(req: req): Promise<{ success: boolean; status: number; message?: string }> {
+
+	public async Stats(): Promise<{ guilds: number; users: number; channels: number }> {
+		if (this.time == 0 || Date.now() - this.time > 1800000) {
+			this.time = Date.now();
+			this.totalGuilds = await this.client.shard.fetchClientValues("guilds.cache.size").then((serv) => serv.reduce((acc, guildCount) => acc + guildCount, 0));
+			// prettier-ignore
+			this.totalMembers = await this.client.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)').then(member => member.reduce((acc, memberCount) => acc + memberCount, 0))
+			// prettier-ignore
+			this.totalChannels = await this.client.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.channels.cache.size, 0)').then(channel => channel.reduce((acc, channelCount) => acc + channelCount, 0))
+		}
+		return { guilds: this.totalGuilds, users: this.totalMembers, channels: this.totalChannels };
+	}
+	public async Votes(req: req): Promise<{ success: boolean; status: number; message?: string }> {
 		if (req?.headers?.authorization == this.topAuth || req?.headers?.authorization == this.dbotsAuth) {
 			let member: User;
 			if (req?.headers.authorization == this.topAuth) {
