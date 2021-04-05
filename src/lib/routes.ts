@@ -13,12 +13,19 @@ module.exports = function (fastify, opts, done) {
 		const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "commands.html"));
 		res.type("text/html").send(bufferIndexHtml);
 	});
+	fastify.get("/tos", (req, res) => {
+		const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "tos.html"));
+		res.type("text/html").send(bufferIndexHtml);
+	});
 	/** redirects */
 	fastify.get("/cmds", (req, res) => {
 		res.redirect("/commands");
 	});
 	fastify.get("/cmd", (req, res) => {
 		res.redirect("/commands");
+	});
+	fastify.get("/termsofservice", (req, res) => {
+		res.redirect("/");
 	});
 	fastify.get("/home", (req, res) => {
 		res.redirect("/");
