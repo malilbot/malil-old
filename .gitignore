@@ -7,6 +7,7 @@ data
 #FINISH FILE
 finish
 dist
+code/*
 src/tasks/rpc.ts
 #LOGS FILE
 Logs
