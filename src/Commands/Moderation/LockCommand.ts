@@ -29,8 +29,6 @@ export default class LockCommand extends Command {
 		const chnl = message.guild.channels.cache.find((channel) => channel.name.toLowerCase() == selectedChannel) || message.guild.channels.cache.get(selectedChannel);
 
 		const channel: TextChannel = chnl ? (chnl as TextChannel) : (message.channel as TextChannel);
-		console.log(channel);
-
 		if (message.util.parsed.alias == "unlockchannel" || message.util.parsed.alias == "unlock") {
 			channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: null });
 			const embed: MessageEmbed = new MessageEmbed()
