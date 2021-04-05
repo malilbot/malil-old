@@ -73,11 +73,10 @@ export default class PyCommand extends Command {
 		if (!code) return message.util.send("You cant eval air");
 
 		if (del == true) message.delete();
-		const embed = new MessageEmbed().setColor(this.client.consts.colors.red).addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``);
+		const embed = new MessageEmbed().setColor(this.client.consts.colors.red).addField("🍞 Input", `\`\`\`py\n${code}\`\`\``);
 		let output: string;
 		let msg: Message;
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		const { member, guild, channel, author, util } = message;
 		if (noreturn == true) msg = await message.author.send(embed);
 		else msg = await message.util.send({ embed });
 		msg.react("🗑️");
@@ -87,33 +86,27 @@ export default class PyCommand extends Command {
 				mkdirSync(dir);
 			}
 			let i = 0;
-			console.log(join(dir, "pythonCode" + `${i}`));
 			while (true) {
-				console.log(join(dir, "pythonCode" + `${i}`));
-				if (!existsSync(join(dir, "pythonCode" + `${i}`))) break;
+				if (!existsSync(join(dir, "PythonCode" + `${i}`))) break;
 				i++;
 			}
-			writeFileSync(join(dir, "pythonCode" + `${i}`), `print(eval("${code}"))`);
+			writeFileSync(join(dir, "PythonCode" + `${i}`), `print(eval("${code}"))`);
 
-			const { stdout, stderr } = await exec(`python3 ${join(dir, "pythonCode" + `${i}`)}`);
+			const { stdout, stderr } = await exec(`python3 ${join(dir, "PythonCode" + `${i}`)}`);
 			output = stdout || stderr;
 			if (typeof output !== "string") output = replace(inspect(output, { depth: deph || 0 }), this.client);
 
 			if (output.length > 1024) {
 				embed.addField("🫓 Output", await hst(output));
-				embed.addField("Type", typeof output);
 			} else {
 				embed.addField("🫓 Output", `\`\`\`py\n${output}\`\`\``);
-				embed.addField("Type", typeof output);
 			}
 		} catch (e) {
 			const error = e;
 			if (error.length > 1024) {
 				embed.addField("🫓 Error", await hst(error));
-				embed.addField("Type", typeof output);
 			} else {
 				embed.addField("🫓 Error", `\`\`\`py\n${error}\`\`\``);
-				embed.addField("Type", typeof output);
 			}
 		}
 		if (noreturn == true) msg = await message.author.send(embed);
@@ -126,8 +119,8 @@ export default class PyCommand extends Command {
 					new MessageEmbed()
 						.setTitle(`${this.client.user.tag}'s Evaled`)
 						.setColor(this.client.consts.colors.red)
-						.addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``)
-						.addField("🫓 Output", `\`\`\`ts\nDeleted :kekw:\`\`\``)
+						.addField("🍞 Input", `\`\`\`py\n${code}\`\`\``)
+						.addField("🫓 Output", `\`\`\`py\nDeleted :kekw:\`\`\``)
 				);
 			}
 		});
