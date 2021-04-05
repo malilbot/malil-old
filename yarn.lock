@@ -1501,7 +1501,8 @@ discord-rpc@^3.2.0:
 
 discord.js@discordjs/discord.js:
   version "12.5.0"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/3af8179878c093985c8a94ee2fd7e99d45243bda"
+  uid "67025e63e4e8306a2b3ff62ae1067acf4b468a6a"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/67025e63e4e8306a2b3ff62ae1067acf4b468a6a"
   dependencies:
     "@discordjs/collection" "^0.1.6"
     "@discordjs/form-data" "^3.0.1"
