@@ -19,7 +19,7 @@ export default class ShitPostCommand extends Command {
 				usage: "shitPost",
 				example: ["shitPost"],
 			},
-			ownerOnly: true,
+			superUserOnly: true,
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
 			channel: "guild",
