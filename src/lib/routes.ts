@@ -34,6 +34,12 @@ module.exports = function (fastify, opts, done) {
 	fastify.get("/home", (req, res) => {
 		res.redirect("/");
 	});
+	fastify.get("/support", (req, res) => {
+		res.redirect("https://discord.gg/KkMKCchJb8");
+	});
+	fastify.get("/invite", (req, res) => {
+		res.redirect("https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824");
+	});
 	fastify.get("/api/*", () => {
 		return { success: false, message: "End point was not found." };
 	});
