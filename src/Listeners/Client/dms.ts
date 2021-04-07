@@ -78,8 +78,10 @@ export default class message extends Listener {
 				if (!message.system) {
 					if (!talkedRecently.has(message.author.id)) {
 						if (message.content[0] !== "#") {
+							let at: string;
+							message?.attachments?.forEach((ata) => (at = ata.name));
 							this.client.logger.info(`[ MSG ${message.author.tag} ] ${message.content}`);
-							const reply = await ai.getReply(message.content || "OOOOGAAA BOOGA");
+							const reply = await ai.getReply(message.content || at || "OOOOGAAA BOOGA");
 							this.client.logger.info(`[ ${message.guild.name} ][ REPLY ] ${reply}`);
 							message.reply(reply, { allowedMentions: { repliedUser: false } });
 						}

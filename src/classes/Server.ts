@@ -35,9 +35,7 @@ export default class Server {
 		await fastify.register(import("fastify-static"), { root: join(__dirname, "..", "..", "public") });
 		// Register all the routes
 		await this.Routes();
-		await fastify.listen(this.port, "0.0.0.0", () => {
-			this.client.logger.info(sec(`Server running at http://localhost:${this.port}`));
-		});
+		await fastify.listen(this.port, "0.0.0.0");
 		return await sleep("2000").then(() => this.client.logger.info(sec(`Server running at http://localhost:${this.port}`)));
 	}
 	public async Close(): Promise<void> {

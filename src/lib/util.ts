@@ -216,7 +216,7 @@ export async function fixword(input: string): Promise<string> {
 	return input;
 }
 
-async function GetLang(msg: Message, sentence: sentences, ...ARGS) {}
+//async function GetLang(msg: Message, sentence: sentences, ...ARGS) {}
 
 if (dev == true) {
 	if (num == 1) {
