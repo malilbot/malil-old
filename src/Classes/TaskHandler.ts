@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { join } from "path";
-import { ms } from "../lib/Utils";
+import { ms } from "../Lib/Utils";
 import { readdirSync } from "fs";
 import client from "./Client";
 export default class TaskHandler {

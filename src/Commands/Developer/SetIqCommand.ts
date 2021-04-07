@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import type { Message } from "discord.js";
-import { GetMember } from "../../lib/Utils";
+import { GetMember } from "../../Lib/Utils";
 export default class setiqCommand extends Command {
 	public constructor() {
 		super("setiq", {

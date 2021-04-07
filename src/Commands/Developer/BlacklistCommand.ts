@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message, GuildMember, User } from "discord.js";
-import { GetMember } from "../../lib/Utils";
+import { GetMember } from "../../Lib/Utils";
 export default class BlacklistCommand extends Command {
 	public constructor() {
 		super("blacklist", {

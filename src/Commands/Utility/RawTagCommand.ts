@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import type { Message } from "discord.js";
 import { MessageEmbed } from "discord.js";
-import { CreateGist } from "../../lib/Utils";
+import { CreateGist } from "../../Lib/Utils";
 
 export default class RawTagCommand extends Command {
 	public constructor() {

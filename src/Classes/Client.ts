@@ -1,10 +1,10 @@
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
 import { Settings, credentials, consts } from "../settings";
 import TaskHandler from "./TaskHandler";
-import { superUsers } from "../lib/config";
+import { superUsers } from "../Lib/config";
 import BotLists from "./BotLists";
 import Server from "./Server";
-import { logger, readyLog } from "../lib/Utils";
+import { logger, readyLog } from "../Lib/Utils";
 import { join } from "path";
 import Enmap from "enmap";
 declare module "discord-akairo" {

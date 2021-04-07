@@ -3,7 +3,7 @@ import { MessageEmbed, Message } from "discord.js";
 import { utc } from "moment";
 import os from "os";
 
-import { Util, ms } from "../../lib/Utils";
+import { Util, ms } from "../../Lib/Utils";
 
 export default class StatsCommand extends Command {
 	public constructor() {

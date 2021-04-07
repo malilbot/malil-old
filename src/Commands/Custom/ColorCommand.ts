@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { Message, MessageCollector, TextChannel } from "discord.js";
-import { EditGist, GetGist } from "../../lib/Utils";
+import { EditGist, GetGist } from "../../Lib/Utils";
 import fetch from "node-fetch";
 export default class ColorCommand extends Command {
 	public constructor() {

@@ -2,7 +2,7 @@ import { Listener } from "discord-akairo";
 import { Command } from "discord-akairo";
 import { Message, GuildMember, MessageEmbed, GuildChannel, TextChannel } from "discord.js";
 import { utc } from "moment";
-import { GetMember, Infract } from "../../lib/Utils";
+import { GetMember, Infract } from "../../Lib/Utils";
 export default class BanCommand extends Command {
 	public constructor() {
 		super("ban", {

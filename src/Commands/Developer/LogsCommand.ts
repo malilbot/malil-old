@@ -2,7 +2,7 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
 import { readdirSync, readFileSync } from "fs";
-import { EditGist } from "../../lib/Utils";
+import { EditGist } from "../../Lib/Utils";
 import { join } from "path";
 export default class LogsCommand extends Command {
 	public constructor() {

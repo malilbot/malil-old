@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import { GetMember } from "../../lib/Utils";
+import { GetMember } from "../../Lib/Utils";
 import { MessageEmbed } from "discord.js";
 
 export default class NickCommand extends Command {

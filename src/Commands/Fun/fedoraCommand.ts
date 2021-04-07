@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { Message } from "discord.js";
-import { GetMember } from "../../lib/Utils";
+import { GetMember } from "../../Lib/Utils";
 import centra from "centra";
 export default class FedoraCommand extends Command {
 	public constructor() {

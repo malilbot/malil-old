@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-import { ms } from "../../lib/Utils";
+import { ms } from "../../Lib/Utils";
 export default class SlowmodeCommand extends Command {
 	public constructor() {
 		super("slowmode", {

@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
-import { fixword } from "../../lib/Utils";
+import { fixword } from "../../Lib/Utils";
 export default class MockCommand extends Command {
 	public constructor() {
 		super("mock", {

@@ -1,4 +1,4 @@
-import { main, sec } from "../lib/Utils";
+import { main, sec } from "../Lib/Utils";
 let curStats = [];
 const CurStats = [];
 module.exports = {

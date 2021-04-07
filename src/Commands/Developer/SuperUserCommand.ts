@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message, TextChannel, User, GuildMember } from "discord.js";
-import { GetMember } from "../../lib/Utils";
+import { GetMember } from "../../Lib/Utils";
 export default class SuperUserCommand extends Command {
 	public constructor() {
 		super("superUser", {

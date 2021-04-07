@@ -4,7 +4,7 @@ import { inspect } from "util";
 import centra from "centra";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { join } from "path";
-import { hst, InterfaceClient } from "../../lib/Utils";
+import { hst, InterfaceClient } from "../../Lib/Utils";
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 let pycode = "";

@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
-import { GetMember } from "../../lib/Utils";
+import { GetMember } from "../../Lib/Utils";
 import { MessageEmbed, Message, GuildChannel, TextChannel, GuildMember } from "discord.js";
-import { hst } from "../../lib/Utils";
+import { hst } from "../../Lib/Utils";
 export default class InfractionsCommand extends Command {
 	public constructor() {
 		super("infractions", {

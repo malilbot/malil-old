@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-import { GetMember } from "../../lib/Utils";
+import { GetMember } from "../../Lib/Utils";
 export default class DmCommand extends Command {
 	public constructor() {
 		super("dm", {

@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-import { fixword } from "../../lib/Utils";
+import { fixword } from "../../Lib/Utils";
 export default class UwuCommand extends Command {
 	public constructor() {
 		super("uwu", {

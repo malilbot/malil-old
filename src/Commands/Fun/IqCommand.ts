@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember } from "discord.js";
 import { MessageEmbed } from "discord.js";
-import { GetMember } from "../../lib/Utils";
+import { GetMember } from "../../Lib/Utils";
 
 export default class IqCommand extends Command {
 	public constructor() {

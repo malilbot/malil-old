@@ -1,7 +1,7 @@
 import { MessageEmbed, TextChannel, Guild } from "discord.js";
-import { sleep } from "../lib/Utils";
+import { sleep } from "../Lib/Utils";
 import centra from "centra";
-import { main, sec } from "../lib/Utils";
+import { main, sec } from "../Lib/Utils";
 let log = 0;
 module.exports = {
 	name: "github",

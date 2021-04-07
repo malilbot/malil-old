@@ -2,7 +2,7 @@ import { MessageEmbed, Message, TextChannel } from "discord.js";
 import { Listener } from "discord-akairo";
 import { stripIndents } from "common-tags";
 import { Command } from "discord-akairo";
-import { hst, Format, a1, sLog } from "../../lib/Utils";
+import { hst, Format, a1, sLog } from "../../Lib/Utils";
 
 export default class CommandErrorListener extends Listener {
 	public constructor() {

@@ -1,4 +1,4 @@
-import Client from "../classes/Client";
+import Client from "../Classes/Client";
 module.exports = {
 	name: "status",
 	delay: "3h",

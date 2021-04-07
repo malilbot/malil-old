@@ -1,6 +1,6 @@
 import { Listener } from "discord-akairo";
-import Client from "../../classes/Client";
-import { Infract } from "../../lib/Utils";
+import Client from "../../Classes/Client";
+import { Infract } from "../../Lib/Utils";
 import { GuildMember, Role } from "discord.js";
 export default class MuteReady extends Listener {
 	client: Client;

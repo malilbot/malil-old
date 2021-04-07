@@ -1,11 +1,11 @@
 import { Listener } from "discord-akairo";
 import { Message, MessageEmbed } from "discord.js";
 const talkedRecently = new Set();
-import Client from "../../classes/Client";
-import { superUsers } from "../../lib/config";
+import Client from "../../Classes/Client";
+import { superUsers } from "../../Lib/config";
 import { Logger } from "winston";
 import { exec } from "child_process";
-import { main, sec, third, fourth } from "../../lib/Utils";
+import { main, sec, third, fourth } from "../../Lib/Utils";
 import alexa from "alexa-bot-api";
 const ai = new alexa();
 export default class message extends Listener {

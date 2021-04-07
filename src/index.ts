@@ -14,11 +14,11 @@ rl.clearLine(process.stdout, 0);
 rl.clearScreenDown(process.stdout);
 
 /**SOME COLORING AND DIR FUNCTION */
-import { logger, third, sec, main } from "./lib/Utils";
+import { logger, third, sec, main } from "./Lib/Utils";
 /** TOKEN */
 const { token } = credentials;
 /** SHARDING MANAGER */
-const manager = new ShardingManager("./dist/lib/bot.js", {
+const manager = new ShardingManager("./dist/Lib/bot.js", {
 	token: token,
 	totalShards: "auto",
 });

@@ -2,7 +2,7 @@ import { Command } from "discord-akairo";
 import { MessageEmbed, Message, MessageAttachment } from "discord.js";
 import { inspect } from "util";
 import centra from "centra";
-import { hst, InterfaceClient } from "../../lib/Utils";
+import { hst, InterfaceClient } from "../../Lib/Utils";
 let EvalCode = "";
 export default class EvalCommand extends Command {
 	public constructor() {

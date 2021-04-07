@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, GuildChannel, TextChannel, GuildMember, Message } from "discord.js";
 import { utc } from "moment";
-import { GetMember, ms, Infract } from "../../lib/Utils";
+import { GetMember, ms, Infract } from "../../Lib/Utils";
 
 export default class MuteCommand extends Command {
 	public constructor() {

@@ -1,6 +1,6 @@
 import { Listener } from "discord-akairo";
-import type Client from "../../classes/Client";
-import { Infract } from "../../lib/Utils";
+import type Client from "../../Classes/Client";
+import { Infract } from "../../Lib/Utils";
 import { GuildMember } from "discord.js";
 export default class Raw extends Listener {
 	client: Client;

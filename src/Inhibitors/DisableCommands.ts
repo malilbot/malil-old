@@ -1,7 +1,7 @@
 import { Inhibitor, Command } from "discord-akairo";
 import { Message } from "discord.js";
-import { superUsers } from "../lib/config";
-import { Format, a1 } from "../lib/Utils";
+import { superUsers } from "../Lib/config";
+import { Format, a1 } from "../Lib/Utils";
 export default class extends Inhibitor {
 	constructor() {
 		super("disabledCommands", {

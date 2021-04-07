@@ -1,5 +1,5 @@
 import { join } from "path";
-import { InterfaceClient, req, fourth, sec, sleep } from "../lib/Utils";
+import { InterfaceClient, req, fourth, sec, sleep } from "../Lib/Utils";
 import type { User, TextChannel } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import { readFileSync } from "fs";
@@ -51,7 +51,7 @@ export default class Server {
 			return await this.Stats();
 		});
 		/** Websites */
-		await fastify.register(import("../lib/routes"), { logLevel: "warn" });
+		await fastify.register(import("../Lib/routes"), { logLevel: "warn" });
 		/** 404's */
 		return await fastify.setNotFoundHandler({ onRequest: fastify.rateLimit }, (req, res) => {
 			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "404.html"));

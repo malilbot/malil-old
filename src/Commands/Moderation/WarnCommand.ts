@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message, GuildChannel, TextChannel, GuildMember } from "discord.js";
-import { GetMember, Infract } from "../../lib/Utils";
+import { GetMember, Infract } from "../../Lib/Utils";
 import moment from "moment";
 import { utc } from "moment";
 

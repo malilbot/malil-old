@@ -1,11 +1,11 @@
 import { Inhibitor } from "discord-akairo";
 import { Message } from "discord.js";
-import { a1, Format } from "../lib/Utils";
+import { a1, Format } from "../Lib/Utils";
 export default class extends Inhibitor {
 	constructor() {
 		super("blacklist", {
 			reason: "blacklist",
-			type: "post"
+			type: "post",
 		});
 	}
 

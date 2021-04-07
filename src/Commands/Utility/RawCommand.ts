@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import type { Message } from "discord.js";
-import { hst } from "../../lib/Utils";
+import { hst } from "../../Lib/Utils";
 export default class RawCommand extends Command {
 	public constructor() {
 		super("raw", {

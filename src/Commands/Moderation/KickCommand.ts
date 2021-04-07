@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, GuildChannel, TextChannel, GuildMember, Message } from "discord.js";
 import { utc } from "moment";
-import { GetMember, Infract } from "../../lib/Utils";
+import { GetMember, Infract } from "../../Lib/Utils";
 
 export default class KickCommand extends Command {
 	public constructor() {

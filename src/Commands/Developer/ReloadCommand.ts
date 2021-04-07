@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
 //import { manager } from "../../index"
-import { hst } from "../../lib/Utils";
+import { hst } from "../../Lib/Utils";
 import { exec } from "child_process";
 export default class ReloadCommand extends Command {
 	public constructor() {

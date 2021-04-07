@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import { Message } from "discord.js";
 import asciify from "asciify-image";
-import { hst, GetMember } from "../../lib/Utils";
+import { hst, GetMember } from "../../Lib/Utils";
 export default class AsciifyCommand extends Command {
 	public constructor() {
 		super("asciify", {

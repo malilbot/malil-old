@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message, Role } from "discord.js";
-import { GetMember, Infract, main, sec, third } from "../../lib/Utils";
+import { GetMember, Infract, main, sec, third } from "../../Lib/Utils";
 export default class UnmuteCommand extends Command {
 	public constructor() {
 		super("unmute", {

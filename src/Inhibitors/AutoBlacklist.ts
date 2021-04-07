@@ -1,7 +1,7 @@
 import { Inhibitor } from "discord-akairo";
 import { Message, MessageEmbed } from "discord.js";
-import { sec, third, a1, Format } from "../lib/Utils";
-import { superUsers } from "../lib/config";
+import { sec, third, a1, Format } from "../Lib/Utils";
+import { superUsers } from "../Lib/config";
 const timeoutObject = {};
 const blacklist = {};
 export default class extends Inhibitor {

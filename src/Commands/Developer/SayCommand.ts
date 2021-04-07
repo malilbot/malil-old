@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 
 import { Message } from "discord.js";
-import { fixword } from "../../lib/Utils";
+import { fixword } from "../../Lib/Utils";
 export default class SayCommand extends Command {
 	public constructor() {
 		super("say", {
