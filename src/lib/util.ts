@@ -216,6 +216,8 @@ export async function fixword(input: string): Promise<string> {
 	return input;
 }
 
+async function GetLang(msg: Message, sentence: sentences, ...ARGS) {}
+
 if (dev == true) {
 	if (num == 1) {
 		a1 = gray;
@@ -646,6 +648,49 @@ export const sleep = async function (ms: number | string): Promise<string | numb
 		setTimeout(resolve, mis);
 	});
 };
+
+const _sentences = [
+	`NO_ARGS`,
+	`QUESTION`,
+	`ANSWER`,
+	`VOTEMSG`,
+	`FILETYPE`,
+	`SUCCESS_SENTENCE`,
+	`PROTIP_SENTENCE`,
+	`SUCCESFULLY_CHANGED_CHANNEL`,
+	`CHANNEL_NOT_FOUND`,
+	`DELETE_GITHUB_LIST`,
+	`TRY_AGAIN_WITH_LINK`,
+	`GITHUB_RATE_LIMIT`,
+	`NOT_WATCHING`,
+	`GITHUB_CHECK_HELP`,
+	`NO_CONTENT`,
+	`NO_USAGE`,
+	`NO_EXAMPLE`,
+	`HELP_VISIT_SUPPORT`,
+	`HELP_INFO_COMMAND`,
+	`NO_COMMANDS_IN_CATEGORY`,
+	`NO_LINK`,
+	`NOT_A_LINK`,
+	`UNSUPPORTED`,
+	`NOT_VALID`,
+	`CANT_CLONE_SAME`,
+	`CLONED`,
+	`CLICK_TO_INVITE`,
+	`CURRENT_PREFIX`,
+	`PREFIX_IS`,
+	`CANT_USE_AT`,
+	`CHANGED_PREFIX`,
+	`QUOTE_NO_ARGS`,
+	`MESSAGE_NOT_FOUND`,
+];
+
+interface sentences {
+	numbersType: typeof _sentences[number];
+}
+
+//note just replace all null's with nothing
+//General
 
 interface gistif {
 	url: string;
