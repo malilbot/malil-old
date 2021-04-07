@@ -17,6 +17,10 @@ module.exports = function (fastify, opts, done) {
 		const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "tos.html"));
 		res.type("text/html").send(bufferIndexHtml);
 	});
+	fastify.get("/credits", (req, res) => {
+		const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "credits.html"));
+		res.type("text/html").send(bufferIndexHtml);
+	});
 	/** redirects */
 	fastify.get("/cmds", (req, res) => {
 		res.redirect("/commands");
