@@ -30,7 +30,7 @@ export default function (fastify, opts, done) {
 		res.redirect("/commands");
 	});
 	fastify.get("/termsofservice", (req, res) => {
-		res.redirect("/");
+		res.redirect("/tos");
 	});
 	fastify.get("/home", (req, res) => {
 		res.redirect("/");

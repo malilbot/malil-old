@@ -49,8 +49,13 @@ export default class Server {
 		fastify.get("/api/stats", async () => {
 			return await this.Stats();
 		});
+		fastify.get("/admin/", async () => {
+			return await this.Terminal();
+		});
 		await fastify.register(import("../Lib/routes"), { logLevel: "warn" });
 	}
+
+	public async Terminal(): Promise<any> {}
 
 	public async Stats(): Promise<{ guilds: number; users: number; channels: number }> {
 		if (this.time == 0 || Date.now() - this.time > 1800000) {
