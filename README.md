@@ -1,10 +1,11 @@
 # MALIL
+
 Malil is a must have **all in one** bot with tons of commands to enjoy!  
 To view the list of commands in discord you can use \*help.
 So, what are you waiting for? Give Malil a try!
 
-List of awesome commands you can use in your server if you invite Malil:
--------
+## List of awesome commands you can use in your server if you invite Malil:
+
 ### **Fun**
 
 -   8ball : Ask a question
@@ -57,20 +58,16 @@ List of awesome commands you can use in your server if you invite Malil:
 -   Decode : Decode some text
 
 > ### Github command preview:
+>
 > ![Github command preview](https://imgur.com/tALvIXY.png)
 
 > ### Fedora command preview:
+>
 > ![Fedora command preview](https://i.imgur.com/QzNyHTG.png)
 
 > ### Quote command preview:
+>
 > ![Quote command preview](https://i.imgur.com/Jo8CnhR.png)
 
 [![Discord Bots](https://top.gg/api/widget/status/749020331187896410.svg?noavatar=true)](https://top.gg/bot/749020331187896410)[![Discord Bots](https://top.gg/api/widget/servers/749020331187896410.svg?noavatar=true)](https://top.gg/bot/749020331187896410)[![Discord Bots](https://top.gg/api/widget/upvotes/749020331187896410.svg?noavatar=true)](https://top.gg/bot/749020331187896410)[![Discord Bots](https://top.gg/api/widget/owner/749020331187896410.svg?noavatar=true)](https://top.gg/bot/749020331187896410)[![Discord](https://discord.com/api/guilds/748956745409232945/embed.png)](https://discord.gg/mY8zTARu4g)
 ![uptime](https://img.shields.io/badge/uptime-99%25-brightgreen)[![CodeFactor](https://www.codefactor.io/repository/github/skyblockdev/malil-akairo/badge/main?s=3eba279a212050035264f1f576e01af51d7f6a27)](https://www.codefactor.io/repository/github/skyblockdev/malil-akairo/overview/main)
-
-## Malil
-
-Malil is a discord bot made and maintained by tricked#3777
-
-The bot is built on [neo akairo](https://github.com/Unwork-ID/Neo-Akairo) thanks for the amazing base tokisaki
-
