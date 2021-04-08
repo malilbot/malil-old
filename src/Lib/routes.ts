@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 import { join } from "path";
-module.exports = function (fastify, opts, done) {
+export default function (fastify, opts, done) {
 	fastify.get("/", (req, res) => {
 		console.log(req.ip);
 		const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "home.html"));
@@ -22,6 +22,7 @@ module.exports = function (fastify, opts, done) {
 		const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "credits.html"));
 		res.type("text/html").send(bufferIndexHtml);
 	});
+
 	/** redirects */
 	fastify.get("/cmds", (req, res) => {
 		res.redirect("/commands");
@@ -45,4 +46,4 @@ module.exports = function (fastify, opts, done) {
 		return { success: false, message: "End point was not found." };
 	});
 	done();
-};
+}

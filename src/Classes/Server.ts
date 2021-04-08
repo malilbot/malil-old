@@ -3,11 +3,10 @@ import { InterfaceClient, req, fourth, sec, sleep } from "../Lib/Utils";
 import type { User, TextChannel } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import { readFileSync } from "fs";
-import rateLimit from "fastify-rate-limit";
-const fastify = require("fastify")({
-	logger: false,
-	root: join(__dirname, "..", "..", "..", "public", "html"),
-});
+import Fastify from "fastify";
+
+//@ts-ignore
+const fastify = Fastify({ logger: true });
 export default class Server {
 	online: boolean;
 	port: number;
@@ -29,9 +28,10 @@ export default class Server {
 		this.totalMembers = 40000;
 		this.totalChannels = 8000;
 	}
+
 	public async Start(): Promise<void> {
 		if (this.online !== true) return;
-		await fastify.register(rateLimit, { global: true, max: 100, timeWindow: 100000 });
+		await fastify.register(import("fastify-rate-limit"), { global: true, max: 100, timeWindow: 100000 });
 		await fastify.register(import("fastify-static"), { root: join(__dirname, "..", "..", "public") });
 		// Register all the routes
 		await this.Routes();
@@ -43,20 +43,13 @@ export default class Server {
 		return await fastify.close();
 	}
 	public async Routes(): Promise<void> {
-		/** Votes api */
-		await fastify.post("/api/votes", async (req) => {
+		fastify.post("/api/votes", async (req) => {
 			return await this.Votes(req);
 		});
-		await fastify.get("/api/stats", async () => {
+		fastify.get("/api/stats", async () => {
 			return await this.Stats();
 		});
-		/** Websites */
 		await fastify.register(import("../Lib/routes"), { logLevel: "warn" });
-		/** 404's */
-		return await fastify.setNotFoundHandler({ onRequest: fastify.rateLimit }, (req, res) => {
-			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "404.html"));
-			res.code(404).type("text/html").send(bufferIndexHtml);
-		});
 	}
 
 	public async Stats(): Promise<{ guilds: number; users: number; channels: number }> {

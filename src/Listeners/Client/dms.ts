@@ -3,7 +3,6 @@ import { Message, MessageEmbed } from "discord.js";
 const talkedRecently = new Set();
 import Client from "../../Classes/Client";
 import { superUsers } from "../../Lib/config";
-import { Logger } from "winston";
 import { exec } from "child_process";
 import { main, sec, third, fourth } from "../../Lib/Utils";
 import alexa from "alexa-bot-api";
@@ -19,7 +18,7 @@ export default class message extends Listener {
 		this.client = client;
 	}
 
-	async exec(message: Message): Promise<void | Logger> {
+	async exec(message: Message): Promise<void> {
 		if (message.channel.id == "823935750168117312") {
 			if (message.webhookID) {
 				try {

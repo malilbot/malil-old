@@ -2,6 +2,7 @@ import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, 
 import { Command, CommandHandler, InhibitorHandler, ListenerHandler } from "discord-akairo";
 import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
 import { credentials, Settings, consts } from "../settings";
+import { FastifyRequestInterface } from "fastify";
 import { join } from "path";
 import centra from "centra";
 import Enmap from "enmap";
@@ -703,14 +704,15 @@ interface gistif {
 	html_url: string;
 	files: string;
 }
-export interface req {
-	headers: {
-		authorization: string;
+export interface req extends FastifyRequestInterface {
+	headers?: {
+		authorization?: string;
+		IncomingHttpHeaders?: string;
 	};
-	body: {
-		user: string;
-		id: string;
-		isWeekend: boolean;
+	body?: {
+		user?: string;
+		id?: string;
+		isWeekend?: boolean;
 	};
 }
 export class InterfaceClient extends Client {
