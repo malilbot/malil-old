@@ -2,7 +2,6 @@ import { readFileSync } from "fs";
 import { join } from "path";
 export default function (fastify, opts, done) {
 	fastify.get("/", (req, res) => {
-		console.log(req.ip);
 		const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "home.html"));
 		res.type("text/html").send(bufferIndexHtml);
 	});

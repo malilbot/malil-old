@@ -6,7 +6,7 @@ import { readFileSync } from "fs";
 import Fastify from "fastify";
 
 //@ts-ignore
-const fastify = Fastify({ logger: true });
+const fastify = Fastify({ logger: false });
 export default class Server {
 	online: boolean;
 	port: number;
