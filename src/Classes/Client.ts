@@ -1,10 +1,11 @@
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
 import { Settings, credentials, consts } from "../settings";
+import { Message } from "discord.js";
 import TaskHandler from "./TaskHandler";
 import { superUsers } from "../Lib/config";
 import BotLists from "./BotLists";
 import Server from "./Server";
-import { logger, readyLog } from "../Lib/Utils";
+import { logger } from "../Lib/Utils";
 import { join } from "path";
 import Enmap from "enmap";
 declare module "discord-akairo" {
@@ -13,7 +14,6 @@ declare module "discord-akairo" {
 		credentials: typeof credentials;
 		consts: typeof consts;
 		colors: typeof consts.colors;
-		ReadyLog: typeof readyLog;
 		logger: typeof logger;
 		tags: Enmap;
 		prefixes: Enmap;
@@ -38,14 +38,7 @@ interface Option {
 export default class Client extends AkairoClient {
 	public commandHandler: CommandHandler = new CommandHandler(this, {
 		directory: join(__dirname, "..", "Commands"),
-		prefix: (message) => {
-			if (message.guild !== null) this.prefixes.ensure(message.guild.id, {});
-			if (message.guild == null || !this.prefixes.get(message.guild.id, "prefix")) {
-				return [Settings.prefix, "malil"];
-			} else {
-				return [this.prefixes.get(message.guild.id, "prefix"), "malil"];
-			}
-		},
+		prefix: (message) => this.GetPrefixes(message),
 		aliasReplacement: /-g/,
 		allowMention: true,
 		handleEdits: true,
@@ -91,6 +84,15 @@ export default class Client extends AkairoClient {
 	});
 	public config: Option;
 
+	public GetPrefixes(message: Message) {
+		if (message.guild !== null) this.prefixes.ensure(message.guild.id, {});
+		if (message.guild == null || !this.prefixes.get(message.guild.id, "prefix")) {
+			return [Settings.prefix, "malil"];
+		} else {
+			return [this.prefixes.get(message.guild.id, "prefix"), "malil"];
+		}
+	}
+
 	public constructor(config: Option) {
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
@@ -111,7 +113,6 @@ export default class Client extends AkairoClient {
 				],
 			},
 		});
-		this.ReadyLog = readyLog;
 		this.settings = Settings;
 		this.consts = consts;
 		this.colors = consts.colors;
