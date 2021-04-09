@@ -2,7 +2,6 @@ import { Listener } from "discord-akairo";
 import Client from "../../Classes/Client";
 import { readyLog } from "../../Lib/Utils";
 export default class Ready extends Listener {
-	client: Client;
 	public constructor(client: Client) {
 		super("ready", {
 			emitter: "client",

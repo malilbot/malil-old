@@ -8,7 +8,6 @@ import { main, sec, third, fourth } from "../../Lib/Utils";
 import alexa from "alexa-bot-api";
 const ai = new alexa();
 export default class message extends Listener {
-	client: Client;
 	public constructor(client: Client) {
 		super("message", {
 			emitter: "client",

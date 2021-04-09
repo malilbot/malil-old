@@ -3,7 +3,6 @@ import Client from "../../Classes/Client";
 import { Infract } from "../../Lib/Utils";
 import { GuildMember, Role } from "discord.js";
 export default class MuteReady extends Listener {
-	client: Client;
 	public constructor(client: Client) {
 		super("MuteReady", {
 			emitter: "client",

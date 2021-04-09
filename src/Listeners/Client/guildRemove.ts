@@ -3,7 +3,6 @@ import { Guild } from "discord.js";
 import Client from "../../Classes/Client";
 import { sLog } from "../../Lib/Utils";
 export default class guildDelete extends Listener {
-	client: Client;
 	public constructor(client: Client) {
 		super("guildDelete", {
 			emitter: "client",
