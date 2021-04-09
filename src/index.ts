@@ -6,12 +6,6 @@ if (process.platform == "linux") {
 Dir();
 import { ShardingManager } from "discord.js";
 import { credentials } from "./settings";
-console.clear();
-import rl from "readline";
-
-rl.cursorTo(process.stdout, 0, 0);
-rl.clearLine(process.stdout, 0);
-rl.clearScreenDown(process.stdout);
 
 /**SOME COLORING AND DIR FUNCTION */
 import { logger, third, sec, main } from "./Lib/Utils";

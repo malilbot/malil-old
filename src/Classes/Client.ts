@@ -119,16 +119,16 @@ export default class Client extends AkairoClient {
 		this.credentials = credentials;
 		this.config = config;
 		this.logger = logger;
-		this.gp = new Enmap({ name: "gp", dataDir: join(__dirname, "..", "..", "data/gp"), polling: true });
-		this.logchannel = new Enmap({ name: "logchannel", dataDir: join(__dirname, "..", "..", "data/logchannel"), polling: true });
-		this.tags = new Enmap({ name: "tags", dataDir: join(__dirname, "..", "..", "data/tags"), polling: true });
-		this.prefixes = new Enmap({ name: "prefixes", dataDir: join(__dirname, "..", "..", "data/prefixes"), polling: true });
-		this.blacklist = new Enmap({ name: "blacklist", dataDir: join(__dirname, "..", "..", "data/blacklist"), polling: true });
-		this.guilddata = new Enmap({ name: "guildata", dataDir: join(__dirname, "..", "..", "data/guilddata"), polling: true });
-		this.mutes = new Enmap({ name: "mutes", dataDir: join(__dirname, "..", "..", "data/mutes"), polling: true });
-		this.releases = new Enmap({ name: "releases", dataDir: join(__dirname, "..", "..", "data/releases"), polling: true });
-		this.infractions = new Enmap({ name: "infractions", dataDir: join(__dirname, "..", "..", "data/infractions"), polling: true });
-		this.UserData = new Enmap({ name: "users", dataDir: join(__dirname, "..", "..", "data/userData"), polling: true });
+		this.gp = new Enmap({ name: "gp", dataDir: join(__dirname, "..", "..", "data/gp"), polling: Settings.polling });
+		this.logchannel = new Enmap({ name: "logchannel", dataDir: join(__dirname, "..", "..", "data/logchannel"), polling: Settings.polling });
+		this.tags = new Enmap({ name: "tags", dataDir: join(__dirname, "..", "..", "data/tags"), polling: Settings.polling });
+		this.prefixes = new Enmap({ name: "prefixes", dataDir: join(__dirname, "..", "..", "data/prefixes"), polling: Settings.polling });
+		this.blacklist = new Enmap({ name: "blacklist", dataDir: join(__dirname, "..", "..", "data/blacklist"), polling: Settings.polling });
+		this.guilddata = new Enmap({ name: "guildata", dataDir: join(__dirname, "..", "..", "data/guilddata"), polling: Settings.polling });
+		this.mutes = new Enmap({ name: "mutes", dataDir: join(__dirname, "..", "..", "data/mutes"), polling: Settings.polling });
+		this.releases = new Enmap({ name: "releases", dataDir: join(__dirname, "..", "..", "data/releases"), polling: Settings.polling });
+		this.infractions = new Enmap({ name: "infractions", dataDir: join(__dirname, "..", "..", "data/infractions"), polling: Settings.polling });
+		this.UserData = new Enmap({ name: "users", dataDir: join(__dirname, "..", "..", "data/userData"), polling: Settings.polling });
 	}
 
 	public _init(): void {
