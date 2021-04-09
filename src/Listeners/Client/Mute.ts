@@ -3,7 +3,6 @@ import type Client from "../../Classes/Client";
 import { Infract } from "../../Lib/Utils";
 import { GuildMember } from "discord.js";
 export default class Raw extends Listener {
-	client: Client;
 	public constructor(client: Client) {
 		super("mute", {
 			emitter: "client",
