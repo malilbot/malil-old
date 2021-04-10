@@ -30,10 +30,10 @@ export default class modonlyCommand extends Command {
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message, { args }: { args: string }): Promise<Message> {
 		let split: string[];
-		if (args) args.replace(/<|#|>/g, "");
+		if (args) args = args.replace(/<#|>/gi, "");
 
 		if (args) split = args.split(" ");
-
+		console.log(args);
 		this.client.guilddata.ensure(message.guild.id, { modonly: [] });
 		const modonly = (await this.client.guilddata.get(message.guild.id, "modonly")) ? await this.client.guilddata.get(message.guild.id, "modonly") : "none";
 
