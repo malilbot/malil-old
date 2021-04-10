@@ -12,11 +12,11 @@
 		"build": "tsc",
 		"enmap": "sh ./resources/fixEnmap.sh",
 		"test": "jest",
+		"lint": "eslint . --ext .ts",
 		"dir": "sh resources/mkdir.sh",
 		"dev": "nodemon -e ts --exec \"yarn start\"",
 		"deb": "nodemon -e ts --exec \"yarn start\"",
 		"vps": "npm run build && npm start",
-		"lint": "eslint . --ext .ts",
 		"rm": "rm -r dist/"
 	},
 	"repository": {
