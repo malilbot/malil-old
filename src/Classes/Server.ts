@@ -65,8 +65,19 @@ export default class Server {
 			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "credits.html"));
 			res.type("text/html").send(bufferIndexHtml);
 		});
+		fastify.get("/patchnotes", (req, res) => {
+			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "patchnotes.html"));
+			res.type("text/html").send(bufferIndexHtml);
+		});
+		fastify.get("/info", (req, res) => {
+			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "info.html"));
+			res.type("text/html").send(bufferIndexHtml);
+		});
 
 		/** redirects */
+		fastify.get("/patch", (req, res) => {
+			res.redirect("/patchnotes");
+		});
 		fastify.get("/cmds", (req, res) => {
 			res.redirect("/commands");
 		});
