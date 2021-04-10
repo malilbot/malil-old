@@ -15,7 +15,8 @@
 		"vps": "npm run build && npm start",
 		"lint": "eslint . --ext .ts",
 		"lintfix": "eslint . --ext .ts --fix",
-		"rm": "rm -r dist/"
+		"rm": "rm -r dist/",
+		"parsemd": "node dist/Lib/parseMd.js"
 	},
 	"repository": {
 		"type": "git",
