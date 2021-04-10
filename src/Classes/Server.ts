@@ -3,9 +3,7 @@ import { InterfaceClient, req, fourth, sec, sleep } from "../Lib/Utils";
 import type { User, TextChannel } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import { readFileSync } from "fs";
-import Fastify from "fastify";
-
-//@ts-ignore
+import Fastify, { FastifyInstance } from "fastify";
 const fastify = Fastify({ logger: false });
 export default class Server {
 	online: boolean;
@@ -33,6 +31,7 @@ export default class Server {
 		if (this.online !== true) return;
 		await fastify.register(import("fastify-rate-limit"), { global: true, max: 100, timeWindow: 100000 });
 		await fastify.register(import("fastify-static"), { root: join(__dirname, "..", "..", "public") });
+		await fastify.register(import("fastify-helmet"), { contentSecurityPolicy: false });
 		await fastify.get("/api/stats", async () => await this.stats());
 		await fastify.post("/api/votes", async (req) => await this.votes(req));
 		await fastify.register(this.Routes, { logLevel: "warn" });
@@ -45,7 +44,7 @@ export default class Server {
 		this.client.logger.warn("[ CLOSING SERVER ]", 5);
 		return await fastify.close();
 	}
-	public Routes(fastify, opts, done): void {
+	public Routes(fastify: FastifyInstance, opts, done): void {
 		fastify.get("/", (req, res) => {
 			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "home.html"));
 			res.type("text/html").send(bufferIndexHtml);

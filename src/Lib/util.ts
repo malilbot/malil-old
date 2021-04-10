@@ -530,6 +530,7 @@ export async function Infract(message?: Message, reason?: string, member?: Guild
 		}
 	}
 }
+
 export async function FetchValues(client: InterfaceClient): Promise<{ guilds: number; users: number; channels: number }> {
 	const totalGuilds = await client.shard.fetchClientValues("guilds.cache.size").then((servers) => servers.reduce((members: number, guildCount: number) => members + guildCount, 0));
 
