@@ -26,7 +26,7 @@ export default class lyricsCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<void> {
 		function cutString(s, n) {
 			/* ----------------------- */
 			const cut = s.indexOf(" ", n);
@@ -56,7 +56,7 @@ export default class lyricsCommand extends Command {
 				.replace(/\n\n/g, "\n");
 			// prettier-ignore
 			//{ allowedMentions: { repliedUser: false } }
-			message.util.send({ embed: new MessageEmbed().setTitle(args).setURL(song.url).addField("lyrics", lyrics), allowedMentions: { repliedUser: false } });
+			return message.util.send({ embed: new MessageEmbed().setTitle(args).setURL(song.url).addField("lyrics", lyrics), allowedMentions: { repliedUser: false } });
 		});
 	}
 }

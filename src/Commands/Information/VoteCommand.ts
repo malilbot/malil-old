@@ -19,8 +19,7 @@ export default class VoteCommand extends Command {
 			channel: "guild",
 		});
 	}
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message) {
+	public async exec(message: Message): Promise<Message> {
 		const embed = new MessageEmbed()
 			.setTitle("Vote lists")
 			.setThumbnail(this.client.user.avatarURL())
@@ -32,6 +31,6 @@ export default class VoteCommand extends Command {
 					"[BladeBots](https://bladebotlist.xyz/bot/749020331187896410/vote),\n" +
 					"[fateList](https://fateslist.xyz/bot/749020331187896410/vote)"
 			);
-		message.util.send(embed);
+		return message.util.send(embed);
 	}
 }

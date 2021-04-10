@@ -24,11 +24,8 @@ export default class StatsCommand extends Command {
 	public exec(message: Message): Promise<Message> {
 		const ut = new Util();
 		const core = os.cpus()[0];
-		// eslint-disable-next-line @typescript-eslint/no-var-requires
 		const djsversion = require("discord.js").version;
-		// eslint-disable-next-line @typescript-eslint/no-var-requires
 		const akairov = require("discord-akairo").version;
-		//this.client.gp
 		return message.util.send(
 			new MessageEmbed()
 				.setAuthor(this.client.user.tag, this.client.user.avatarURL())

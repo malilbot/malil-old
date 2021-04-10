@@ -19,8 +19,7 @@ export default class CreditsCommand extends Command {
 			channel: "guild",
 		});
 	}
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message) {
+	public async exec(message: Message): Promise<void> {
 		const res = await (await centra("https://raw.githubusercontent.com/SkyBlockDev/malil-akairo/main/CREDITS.md", "GET").header("User-Agent", "Malil").send()).text();
 		const body = res.replace(/### credits/g, "").replace(/###/g, "");
 
