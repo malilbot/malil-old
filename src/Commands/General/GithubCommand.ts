@@ -27,20 +27,22 @@ export default class GithubCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<Message> {
 		if (!args) return message.util.send("use  *github set <#channel> to get started use *help github for more info");
 
 		this.client.releases.ensure(message.guild.id, { channel: "", repos: [] });
 		const _args = args.split(" ");
 
 		if (_args[0] == "set") {
-			const channel = _args[1].replace("<#", "").replace(">", "");
+			const channel = _args[1].replace(/<#|>/g, "");
 			let o = "";
 			await this.client.channels
 				.fetch(channel)
 				.then((channel) => message.util.send("Succesfully set the channel to: " + channel + "\n make sure that i have permission to that channel"))
-				.catch((e) => (o = e));
-			if (o) return message.util.send("channel not found");
+				.catch((e) => (e) => {
+					return message.util.send("channel not found");
+				});
+
 			this.client.releases.set(message.guild.id, _args[1], "channel");
 		} else if (_args[0] == "delete") {
 			this.client.releases.delete(message.guild.id, "repos");

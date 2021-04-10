@@ -16,7 +16,7 @@ export default class PingCommand extends Command {
 		});
 	}
 
-	public exec(message: Message) {
+	public exec(message: Message): void {
 		message.util.send(`\`${this.client.ws.ping}\`ms`);
 	}
 }

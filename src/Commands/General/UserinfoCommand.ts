@@ -33,7 +33,7 @@ export default class UserinfoCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<Message> {
 		const flags = {
 			DISCORD_EMPLOYEE: "Discord Employee",
 			DISCORD_PARTNER: "Discord Partner",

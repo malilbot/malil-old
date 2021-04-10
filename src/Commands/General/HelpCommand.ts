@@ -24,7 +24,7 @@ export default class HelpCommand extends Command {
 		});
 	}
 
-	public exec(message: Message, { command }: { command: Command }) {
+	public exec(message: Message, { command }: { command: Command }): Promise<Message> {
 		if (command) {
 			return message.util.send(
 				new MessageEmbed()

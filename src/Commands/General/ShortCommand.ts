@@ -26,7 +26,7 @@ export default class shortenCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<Message> {
 		//full_short_link
 		if (!args) return message.util.send("Please provide a link");
 		if (!args.startsWith("https://")) return message.util.send("Thats not a link");

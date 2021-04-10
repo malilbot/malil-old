@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import { Message } from "discord.js";
+import { Message, MessageAttachment } from "discord.js";
 import asciify from "asciify-image";
 import { hst, GetMember } from "../../Lib/Utils";
 export default class AsciifyCommand extends Command {
@@ -27,7 +27,7 @@ export default class AsciifyCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { big }) {
+	public async exec(message: Message, { big }): Promise<Message> {
 		const options = {
 			fit: "box",
 			width: 64,
@@ -40,7 +40,7 @@ export default class AsciifyCommand extends Command {
 			height: 128,
 			color: false,
 		};
-		let url;
+		let url: string | MessageAttachment;
 		let text = true;
 		const member = (await GetMember(message)) || message.member;
 
@@ -58,7 +58,7 @@ export default class AsciifyCommand extends Command {
 		if (!url) return message.util.send("please add a image attachment");
 		const option = big ? bigoptions : options;
 
-		asciify(url, option, async function (err, asciified) {
+		asciify(url, option, async function (err: Error, asciified: string) {
 			if (err) return message.util.send("Unsupported file type");
 			let sentence: string;
 			if (text == true) sentence = "Success! " + (await hst(asciified)) + ".txt";
