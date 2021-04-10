@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { GetMember } from "../../Lib/Utils";
-import { MessageEmbed } from "discord.js";
+import { Message } from "discord.js";
 
 export default class NickCommand extends Command {
 	public constructor() {
@@ -26,15 +26,15 @@ export default class NickCommand extends Command {
 		});
 	}
 
-	public async exec(message, { name }) {
+	public async exec(message: Message, { name }): Promise<Message> {
 		const NewName = name.split(" ").splice(1).join(" ");
 		const user = await GetMember(message, name);
 		if (!user) return message.util.send("user not found");
 		try {
 			await user.setNickname(NewName, `${message.author.tag} Used nick.`);
-			message.util.send("NickName Changed");
+			return message.util.send("NickName Changed");
 		} catch (err) {
-			message.util.send("Sorry cant do", { allowedMentions: { repliedUser: false } });
+			return message.util.send("Sorry cant do", { allowedMentions: { repliedUser: false } });
 		}
 	}
 }

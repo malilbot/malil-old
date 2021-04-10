@@ -28,7 +28,7 @@ export default class MuteCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { Args }: { Args: string }) {
+	public async exec(message: Message, { Args }: { Args: string }): Promise<Message> {
 		if (!Args) return message.util.send("No user or role provided");
 		const args = Args.split(" ");
 		const alias = message.util.parsed.alias;

@@ -28,7 +28,7 @@ export default class KickCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { reason }: { user: GuildMember; reason: string }) {
+	public async exec(message: Message, { reason }: { user: GuildMember; reason: string }): Promise<Message> {
 		let user = await GetMember(message, reason);
 		user = user as GuildMember;
 		reason = reason.split(" ").slice(1).join(" ");

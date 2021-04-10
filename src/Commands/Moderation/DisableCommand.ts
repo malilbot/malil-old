@@ -67,7 +67,7 @@ export default class DisableCommand extends Command {
 			action = "disabled";
 			type = "catagory";
 		} else {
-			return message.util.send("Thats not a category or a command");
+			return message.util.send("Thats not a **category** or a **command**");
 		}
 		if (type == "catagory") {
 			return await message.util.send(`${action} category **${catagory}**`);

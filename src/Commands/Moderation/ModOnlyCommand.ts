@@ -28,9 +28,9 @@ export default class modonlyCommand extends Command {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message, { args }: { args: string }) {
+	public async exec(message: Message, { args }: { args: string }): Promise<Message> {
 		let split: string[];
-		if (args && args.replace(/</, "") && args.replace(/</, "") && args.replace(/</, "").replace(/#/, "").replace(/>/, "")) args = args.replace(/</, "").replace(/#/, "").replace(/>/, "");
+		if (args) args.replace(/<|#|>/g, "");
 
 		if (args) split = args.split(" ");
 

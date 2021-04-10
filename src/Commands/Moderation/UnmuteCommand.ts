@@ -24,7 +24,6 @@ export default class UnmuteCommand extends Command {
 			channel: "guild",
 		});
 	}
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public async exec(message: Message, { args }): Promise<Message> {
 		if (!args) return message.util.send("No user provided");
 		const user = args.split(" ")[0];

@@ -14,7 +14,6 @@ export default class WarnCommand extends Command {
 				{
 					id: "reason",
 					type: "string",
-					default: "No reason provided...",
 					match: "rest",
 				},
 			],
@@ -29,8 +28,7 @@ export default class WarnCommand extends Command {
 			channel: "guild",
 		});
 	}
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message, { reason }) {
+	public async exec(message: Message, { reason }): Promise<Message> {
 		const split = reason.split(" ");
 		reason = split.slice(1).join(" ");
 

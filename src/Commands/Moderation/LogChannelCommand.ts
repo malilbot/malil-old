@@ -27,14 +27,11 @@ export default class LogChannelCommand extends Command {
 		});
 	}
 
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<void> {
 		let split: string;
-		if (args && args.replace(/</, "") && args.replace(/</, "") && args.replace(/</, "").replace(/#/, "").replace(/>/, "")) args = args.replace(/</, "").replace(/#/, "").replace(/>/, "");
+		if (args) args = args.replace(/<|#|>/g, "");
 
-		// eslint-disable-next-line no-empty
-		if (!args) {
-		} else split = args.split(" ");
+		if (args) split = args.split(" ");
 
 		this.client.logchannel.ensure(message.guild.id, "");
 		const logchannel = (await this.client.logchannel.get(message.guild.id)) ? await this.client.logchannel.get(message.guild.id) : "none";

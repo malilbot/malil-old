@@ -18,11 +18,11 @@ export default class ClearWarnsCommand extends Command {
 			channel: "guild",
 		});
 	}
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message, { args }) {
+
+	public async exec(message: Message, { args }): Promise<Message> {
 		const user = await GetMember(message, args);
 		if (!user) message.util.send("user not found");
 		this.client.infractions.delete(message.guild.id, user.id);
-		message.util.send("infractions cleared", { allowedMentions: { repliedUser: false } });
+		return message.util.send("infractions cleared", { allowedMentions: { repliedUser: false } });
 	}
 }

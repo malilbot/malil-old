@@ -19,8 +19,7 @@ export default class InfractionsCommand extends Command {
 			channel: "guild",
 		});
 	}
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message) {
+	public async exec(message: Message): Promise<Message> {
 		const user = await GetMember(message);
 		if (!user) return message.util.send("user not found");
 		const usID = user.id;
@@ -28,10 +27,9 @@ export default class InfractionsCommand extends Command {
 		const infractions = this.client.infractions.get(message.guild.id, usID);
 		let mesg = "";
 		Object.keys(infractions).forEach((key) => {
-			mesg += "**Reason:** " + infractions[key].reason + "\n**Type:** ";
-			mesg += infractions[key].type.toLowerCase() + "\n**Mod:** ";
-			mesg += infractions[key].who + "\n";
-			mesg += "----------------------------\n";
+			mesg += "**Reason:** " + infractions[key].reason + "\n**Type:** " + `${infractions[key].type.toLowerCase()}\n` + "**Mod:** ";
+			+infractions[key].who + "\n";
+			+"----------------------------\n";
 		});
 		if (mesg.length < 6) {
 			return message.util.send("user doesnt have any infractions");
@@ -41,6 +39,6 @@ export default class InfractionsCommand extends Command {
 			embed.addField("warns of " + user, await hst(mesg));
 		} else embed.addField("warns of " + user, mesg);
 
-		message.util.send({ embed: embed, allowedMentions: { repliedUser: false } });
+		return message.util.send({ embed: embed, allowedMentions: { repliedUser: false } });
 	}
 }

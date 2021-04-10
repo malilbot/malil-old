@@ -26,7 +26,7 @@ export default class RulesCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<Message> {
 		if (args == "1") {
 			const embed = new MessageEmbed()
 				.setDescription(
@@ -101,9 +101,9 @@ And lastly, abide by all rules set out in the Discord ToS and Discord Guidelines
 				)
 				.setColor(this.client.consts.colors.red)
 				.setTimestamp();
-			message.util.send(embed);
+			return message.util.send(embed);
 		} else
-			message.util.send("choose from 1 to 3", {
+			return message.util.send("choose from 1 to 3", {
 				allowedMentions: { repliedUser: false },
 			});
 	}

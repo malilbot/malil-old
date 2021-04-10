@@ -61,36 +61,5 @@ export default class BanCommand extends Command {
 
 		//* ------------------------------------ infraction code */
 		Infract(message, reason, user, "BAN", this.client);
-		/*
-		this.client.infractions.ensure(message.guild.id, { [usID]: {} });
-		const infraction = this.client.infractions.get(message.guild.id, usID);
-		const riw = {
-			who: message.author.tag,
-			reason: reason,
-			type: 'Ban',
-		};
-		infraction[Date.now()] = riw;
-		this.client.infractions.set(message.guild.id, infraction, usID);
-
-		if (this.client.logchannel.get(message.guild.id)) {
-			if (
-				((await this.client.channels.fetch(
-					this.client.logchannel.get(message.guild.id)
-				)) as GuildChannel).deleted == false
-			) {
-				const embed = new MessageEmbed()
-					.setAuthor(
-						`User Banned by ${message.author.tag}`,
-						message.author.avatarURL()
-					)
-					.setDescription(`Member: ${user.user.tag}\nReason ${reason}`)
-					.setColor(this.client.consts.colors.red)
-					.setTimestamp();
-				((await this.client.channels.fetch(
-					this.client.logchannel.get(message.guild.id)
-				)) as TextChannel).send(embed);
-			}
-		}
-		*/
 	}
 }
