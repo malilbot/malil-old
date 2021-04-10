@@ -7,13 +7,6 @@ export default class InviteCommand extends Command {
 			aliases: ["invite"],
 			category: "Utility",
 			quoted: true,
-			args: [
-				{
-					id: "args",
-					type: "array",
-					match: "rest",
-				},
-			],
 			description: {
 				content: "Invite malil to your server as well",
 				usage: "invite",
@@ -25,12 +18,12 @@ export default class InviteCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message): Promise<Message> {
 		const embed = new MessageEmbed()
 			.setTitle(`click here to invite ${this.client.user.username} to your server`)
 			.setURL(`https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&scope=bot&permissions=117824`)
 			.setColor(this.client.consts.colors.default);
 
-		message.util.send({ embed: embed, allowedMentions: { repliedUser: false } });
+		return message.util.send({ embed: embed, allowedMentions: { repliedUser: false } });
 	}
 }

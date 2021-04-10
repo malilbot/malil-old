@@ -27,7 +27,7 @@ export default class EncodeCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<Message> {
 		const embed = new MessageEmbed()
 			.setTitle("Encode things")
 			.setDescription("input: " + args || "none")
@@ -54,6 +54,6 @@ export default class EncodeCommand extends Command {
 					inline: true,
 				}
 			);
-		message.util.send(embed);
+		return message.util.send(embed);
 	}
 }
