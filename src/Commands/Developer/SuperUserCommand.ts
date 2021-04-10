@@ -25,7 +25,7 @@ export default class SuperUserCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<Message> {
 		if (!args) {
 			let list = "";
 			const arr = this.client.gp.get("superUsers");
@@ -37,8 +37,7 @@ export default class SuperUserCommand extends Command {
 
 			return message.util.send(list || "Noone f......");
 		}
-		let Member: GuildMember | User = (await GetMember(message, args)).user;
-		if (!Member) Member = await this.client.users.fetch(args);
+		let Member: User = (await GetMember(message, args)).user;
 		if (!Member) {
 			return message.util.send("User not found");
 		}

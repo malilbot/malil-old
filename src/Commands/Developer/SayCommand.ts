@@ -26,14 +26,12 @@ export default class SayCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { code }) {
+	public async exec(message: Message, { code }): Promise<void> {
 		try {
 			message.delete().catch((e) => {
 				message.author.send("Me  can no delete your message");
 			});
-		} catch (e) {
-			return;
-		}
+		} catch (e) {}
 
 		message.util.send((await fixword(code.replace(/@/, "@​"))) || "Sorry i just prevented weird stuff");
 	}

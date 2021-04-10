@@ -25,12 +25,7 @@ export default class BlacklistCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args, user }) {
-		/*
-		const id = user ? user.id : args;
-		this.client.blacklist.push("blacklisted", id, "list");
-		message.util.send("Users blacklisted: " + id, { allowedMentions: { repliedUser: false } });
-		*/
+	public async exec(message: Message, { args }): Promise<Message> {
 		if (!args) {
 			let list = "";
 			const arr = this.client.blacklist.get("blacklisted", "list");
@@ -42,8 +37,7 @@ export default class BlacklistCommand extends Command {
 
 			return message.util.send(list || "Laughs in noone blacklisted");
 		}
-		let Member: GuildMember | User = (await GetMember(message, args)).user;
-		if (!Member) Member = await this.client.users.fetch(args);
+		let Member: User = (await GetMember(message, args)).user;
 		if (!Member) {
 			return message.util.send("User not found");
 		}

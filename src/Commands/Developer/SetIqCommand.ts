@@ -25,7 +25,7 @@ export default class setiqCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<Message> {
 		if (!args) return message.util.send("No args provided.");
 		const _args = args.split(" ");
 		if (!args[1]) return message.util.send("No iq provided.");

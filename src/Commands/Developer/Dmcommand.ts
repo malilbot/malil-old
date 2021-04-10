@@ -27,8 +27,9 @@ export default class DmCommand extends Command {
 	}
 
 	public async exec(message: Message, { args }) {
-		const user = (await GetMember(message)) || message.member;
-		user.send(args || "e").catch((e) => message.util.send(e, { allowedMentions: { repliedUser: false } }));
-		message.util.send("message recieved", { allowedMentions: { repliedUser: false } });
+		const user = await GetMember(message, args);
+		if (!user) return message.util.reply("User not found");
+		user.send(args.split(" ").slice(1).join(" ") || "e").catch((e) => message.util.send(e, { allowedMentions: { repliedUser: false } }));
+		message.util.send(`Dmed ${user.user.tag}`, { allowedMentions: { repliedUser: false } });
 	}
 }

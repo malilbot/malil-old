@@ -30,7 +30,7 @@ export default class GithubremCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args, user }) {
+	public exec(message: Message, { args, user }): void {
 		const repos = this.client.releases.get("all");
 
 		for (let l = 0; l < repos.length; l++) {
