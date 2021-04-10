@@ -8,26 +8,6 @@ import BotLists from "./BotLists";
 import Server from "./Server";
 import { join } from "path";
 import Enmap from "enmap";
-declare module "discord-akairo" {
-	interface AkairoClient {
-		settings: typeof Settings;
-		credentials: typeof credentials;
-		consts: typeof consts;
-		colors: typeof consts.colors;
-		logger: typeof logger;
-		tags: Enmap;
-		prefixes: Enmap;
-		blacklist: Enmap;
-		releases: Enmap;
-		logchannel: Enmap;
-		infractions: Enmap;
-		ColorNames: Enmap;
-		gp: Enmap;
-		guilddata: Enmap;
-		mutes: Enmap;
-		UserData: Enmap;
-	}
-}
 
 interface Option {
 	owners?: string | string[];
@@ -94,8 +74,6 @@ export default class Client extends AkairoClient {
 	}
 
 	public constructor(config: Option) {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
 		super({
 			ownerID: config.owners,
 			superUserID: config.superUsers,
@@ -149,5 +127,26 @@ export default class Client extends AkairoClient {
 	public async goo(): Promise<unknown> {
 		this._init();
 		return await this.login(this.config.token);
+	}
+}
+
+declare module "discord-akairo" {
+	interface AkairoClient {
+		settings: typeof Settings;
+		credentials: typeof credentials;
+		consts: typeof consts;
+		colors: typeof consts.colors;
+		logger: typeof logger;
+		tags: Enmap;
+		prefixes: Enmap;
+		blacklist: Enmap;
+		releases: Enmap;
+		logchannel: Enmap;
+		infractions: Enmap;
+		ColorNames: Enmap;
+		gp: Enmap;
+		guilddata: Enmap;
+		mutes: Enmap;
+		UserData: Enmap;
 	}
 }

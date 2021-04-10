@@ -16,7 +16,8 @@
 		"lint": "eslint . --ext .ts",
 		"lintfix": "eslint . --ext .ts --fix",
 		"rm": "rm -r dist/",
-		"parsemd": "node dist/Lib/parseMd.js"
+		"parsemd": "node dist/Lib/parseMd.js",
+		"buildsite": "node dist/Lib/parseMd.js"
 	},
 	"repository": {
 		"type": "git",
