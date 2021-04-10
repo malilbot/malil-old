@@ -26,8 +26,7 @@ export default class FactCommand extends Command {
 		});
 	}
 
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message) {
+	public async exec(message: Message): Promise<void> {
 		const res = await (await centra(`https://api.dagpi.xyz/data/fact`, "get").header("Authorization", this.client.credentials.dagpi).send()).json();
 		message.util.send(res.fact, { allowedMentions: { repliedUser: false } });
 	}

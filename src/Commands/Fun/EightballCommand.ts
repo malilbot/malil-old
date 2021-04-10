@@ -26,7 +26,7 @@ export default class EightballCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<void | Message> {
 		if (!args)
 			return message.util.send({
 				embed: {

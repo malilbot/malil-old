@@ -27,8 +27,7 @@ export default class FedoraCommand extends Command {
 		});
 	}
 
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message) {
+	public async exec(message: Message): Promise<void> {
 		const msg = await message.util.send("<a:loading:820592866685485076>");
 
 		const member = (await GetMember(message)) || message.member;
@@ -40,9 +39,8 @@ export default class FedoraCommand extends Command {
 		});
 
 		const res = await centra(`https://api.dagpi.xyz/image/fedora/?url=${url}`, "get").header("Authorization", this.client.credentials.dagpi).send();
-		const meme = res.body;
 		await message.util.send("", {
-			files: [{ attachment: meme, name: `fedoraed.png` }],
+			files: [{ attachment: res.body, name: `fedoraed.png` }],
 		});
 		msg.delete();
 	}

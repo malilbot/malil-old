@@ -27,8 +27,7 @@ export default class AmeticaCommand extends Command {
 		});
 	}
 
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message) {
+	public async exec(message: Message): Promise<void> {
 		const msg = await message.util.send("<a:loading:820592866685485076>");
 
 		const member = (await GetMember(message)) || message.member;

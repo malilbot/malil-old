@@ -27,7 +27,7 @@ export default class UwuCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<Message> {
 		const faces = [`(・'ω'・)`, ";;w;;", "owo", "UwU", ">w<", "^w^", "0w0", "*w*"];
 		function Owoify(str) {
 			return str
@@ -43,7 +43,7 @@ export default class UwuCommand extends Command {
 		// Get question to answer
 		const text = await fixword(args || "haha censor go brrrr");
 		if (!text) {
-			return message.util.send(`**You need to specify a message..**`), { allowedMentions: { repliedUser: false } };
+			return message.util.send(`**You need to specify a message..**`);
 		}
 
 		// Send message
