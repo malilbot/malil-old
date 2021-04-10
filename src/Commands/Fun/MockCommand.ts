@@ -26,7 +26,7 @@ export default class MockCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }): Promise<void> {
 		// -- split the args
 		const array = args.split("");
 		// -- defining text
