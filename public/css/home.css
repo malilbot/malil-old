@@ -1,3 +1,10 @@
+img {
+	transition: 500ms linear;
+}
+img:hover {
+	transform: scale(1.1);
+	animation-timing-function: ease;
+}
 .Malil {
 	position: relative;
 	width: 150px;

@@ -1,5 +1,6 @@
 .topnav {
-	background-color: #222428;
+	animation-duration: 4s;
+	animation-name: example;
 	width: 60%;
 	padding: 10px;
 	border: 1px solid #3d3d3d;
