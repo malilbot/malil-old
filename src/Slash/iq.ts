@@ -5,7 +5,7 @@ export default class iqqCommand extends Command {
 	constructor() {
 		super("iqq", {
 			// Discord doesnt allow 2 letter slash commands.
-			description: "Generate a number between 1 and x.",
+			description: "",
 		});
 	}
 
