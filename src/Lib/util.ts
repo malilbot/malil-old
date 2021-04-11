@@ -207,7 +207,11 @@ function plural(ms, msAbs, n, name) {
 	const isPlural = msAbs >= n * 1.5;
 	return Math.round(ms / n) + " " + name + (isPlural ? "s" : "");
 }
-
+/**
+ * Function that filters text sorry for the bad words please forgive me lol
+ * @param input string to fix
+ * @returns returns "cleanised" text
+ */
 export async function fixword(input: string): Promise<string> {
 	input = input
 		.replace(/nig+ger/gi, "")
@@ -297,6 +301,12 @@ export class Util {
 		return res.join(":");
 	}
 }
+/**
+ *
+ * @param msg - Message Object used to get prefix etc;
+ * @param args - args used to be more precise
+ * @returns - returns a GuildMember object
+ */
 export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
 	let user: GuildMember;
 	const id = msg.guild.me.user.id;
@@ -413,7 +423,7 @@ export const getCommitHash = (): string => {
 	}
 };
 */
-export const CreateGist = async function (name: string, content: string, client: InterfaceClient): Promise<string> {
+export async function CreateGist(name: string, content: string, client: InterfaceClient): Promise<string> {
 	logger.info(a1("[ CREATING GIST ] ") + main(`NAME ${name}`));
 	const files: { [key: string]: { content: string } } = {};
 	files[name] = {
@@ -429,8 +439,8 @@ export const CreateGist = async function (name: string, content: string, client:
 	).json();
 	const out = `${gist.id}`;
 	return out;
-};
-export const EditGist = async function (name: string, content: string, GistId: string, client: InterfaceClient): Promise<gistif> {
+}
+export async function EditGist(name: string, content: string, GistId: string, client: InterfaceClient): Promise<gistif> {
 	logger.info(a1("[ EDITING GIST ] ") + main(`NAME ${name}`));
 	const files: { [key: string]: { content: string } } = {};
 	files[name] = {
@@ -449,7 +459,7 @@ export const EditGist = async function (name: string, content: string, GistId: s
 			.send()
 	).json();
 	return gist;
-};
+}
 export const GetGist = async function (GistId: string, client: InterfaceClient): Promise<gistif> {
 	logger.info(a1("[ GETTING GIST ] ") + main(`NAME ${name}`));
 	const gist = await (
@@ -530,7 +540,11 @@ export async function Infract(message?: Message, reason?: string, member?: Guild
 		}
 	}
 }
-
+/**
+ *
+ * @param client - Used to get values.
+ * @returns - Returns a nice member object
+ */
 export async function FetchValues(client: InterfaceClient): Promise<{ guilds: number; users: number; channels: number }> {
 	const totalGuilds = await client.shard.fetchClientValues("guilds.cache.size").then((servers) => servers.reduce((members: number, guildCount: number) => members + guildCount, 0));
 
@@ -543,7 +557,10 @@ export async function FetchValues(client: InterfaceClient): Promise<{ guilds: nu
 		.then((channel) => channel.reduce((acc, channelCount) => acc + channelCount, 0));
 	return { guilds: totalGuilds, users: totalMembers, channels: totalChannels };
 }
-
+/**
+ *
+ * @param client - Client to get values
+ */
 export function readyLog(client: InterfaceClient): void {
 	const { log } = console;
 	const num = Math.floor(Math.random() * 2 + 1);
@@ -639,7 +656,11 @@ export function readyLog(client: InterfaceClient): void {
 		log(main(m14), split, third(a7), split, third("Shards"));
 	}
 }
-
+/**
+ *
+ * @param ms - time to wait in micro seconds
+ * @returns
+ */
 export const sleep = async function (ms: number | string): Promise<string | number> {
 	let mis: number;
 	if (typeof ms !== "number") {
@@ -650,46 +671,6 @@ export const sleep = async function (ms: number | string): Promise<string | numb
 		setTimeout(resolve, mis);
 	});
 };
-
-const _sentences = [
-	`NO_ARGS`,
-	`QUESTION`,
-	`ANSWER`,
-	`VOTEMSG`,
-	`FILETYPE`,
-	`SUCCESS_SENTENCE`,
-	`PROTIP_SENTENCE`,
-	`SUCCESFULLY_CHANGED_CHANNEL`,
-	`CHANNEL_NOT_FOUND`,
-	`DELETE_GITHUB_LIST`,
-	`TRY_AGAIN_WITH_LINK`,
-	`GITHUB_RATE_LIMIT`,
-	`NOT_WATCHING`,
-	`GITHUB_CHECK_HELP`,
-	`NO_CONTENT`,
-	`NO_USAGE`,
-	`NO_EXAMPLE`,
-	`HELP_VISIT_SUPPORT`,
-	`HELP_INFO_COMMAND`,
-	`NO_COMMANDS_IN_CATEGORY`,
-	`NO_LINK`,
-	`NOT_A_LINK`,
-	`UNSUPPORTED`,
-	`NOT_VALID`,
-	`CANT_CLONE_SAME`,
-	`CLONED`,
-	`CLICK_TO_INVITE`,
-	`CURRENT_PREFIX`,
-	`PREFIX_IS`,
-	`CANT_USE_AT`,
-	`CHANGED_PREFIX`,
-	`QUOTE_NO_ARGS`,
-	`MESSAGE_NOT_FOUND`,
-];
-
-interface sentences {
-	numbersType: typeof _sentences[number];
-}
 
 //note just replace all null's with nothing
 //General
