@@ -21,7 +21,7 @@ export default class InviteCommand extends Command {
 	public async exec(message: Message): Promise<Message> {
 		const embed = new MessageEmbed()
 			.setTitle(`click here to invite ${this.client.user.username} to your server`)
-			.setURL(`https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&scope=bot&permissions=117824`)
+			.setURL(`https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&permissions=117824&scope=bot%20applications.commands`)
 			.setColor(this.client.consts.colors.default);
 
 		return message.util.send({ embed: embed, allowedMentions: { repliedUser: false } });
