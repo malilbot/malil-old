@@ -80,7 +80,6 @@ export default class Client extends AkairoClient {
 
 	async loadCommands() {
 		for (const file of CommandHandler.readdirRecursive(this.slashHandler.directory)) {
-			console.log(file);
 			const { default: command } = await import(`${file}`);
 			this.slashHandler.load(command);
 		}
