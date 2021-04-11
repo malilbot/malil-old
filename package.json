@@ -62,7 +62,7 @@
 		"chalk": "^4.1.0",
 		"common-tags": "^1.8.0",
 		"discord-akairo": "SkyBlockDev/discord-akairo",
-		"discord.js": "discordjs/discord.js",
+		"discord.js": "vaporox/discord.js#feat-interactions",
 		"enmap": "^5.8.4",
 		"fastify": "^3.14.1",
 		"fastify-helmet": "^5.3.1",

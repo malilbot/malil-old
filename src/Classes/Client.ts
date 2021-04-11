@@ -5,6 +5,7 @@ import TaskHandler from "./TaskHandler";
 import { logger } from "../Lib/Utils";
 import { Message } from "discord.js";
 import BotLists from "./BotLists";
+import SlashHandler from "./SlashHandler";
 import Server from "./Server";
 import { join } from "path";
 import Enmap from "enmap";
@@ -16,6 +17,10 @@ interface Option {
 }
 
 export default class Client extends AkairoClient {
+	public slashHandler: SlashHandler = new SlashHandler(this, {
+		directory: join(__dirname, "..", "Slash"),
+	});
+
 	public commandHandler: CommandHandler = new CommandHandler(this, {
 		directory: join(__dirname, "..", "Commands"),
 		prefix: (message) => this.GetPrefixes(message),
@@ -64,12 +69,20 @@ export default class Client extends AkairoClient {
 	});
 	public config: Option;
 
-	public GetPrefixes(message: Message) {
+	private GetPrefixes(message: Message) {
 		if (message.guild !== null) this.prefixes.ensure(message.guild.id, {});
 		if (message.guild == null || !this.prefixes.get(message.guild.id, "prefix")) {
 			return [Settings.prefix, "malil"];
 		} else {
 			return [this.prefixes.get(message.guild.id, "prefix"), "malil"];
+		}
+	}
+
+	async loadCommands() {
+		for (const file of CommandHandler.readdirRecursive(this.slashHandler.directory)) {
+			console.log(file);
+			const { default: command } = await import(`${file}`);
+			this.slashHandler.load(command);
 		}
 	}
 
@@ -117,6 +130,7 @@ export default class Client extends AkairoClient {
 			listenerHandler: this.listenerHandler,
 			process,
 		});
+		this.loadCommands();
 		this.inhibitorHandler.loadAll();
 		this.taskHandler.loadall();
 		this.commandHandler.loadAll();
