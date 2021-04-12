@@ -6,8 +6,16 @@ import c from "centra";
 export default class fedoraCommand extends Command {
 	constructor() {
 		super("fedora", {
-			//
-			description: "",
+			name: "fedora",
+			description: "fedora a user's avatar",
+			options: [
+				{
+					type: 6,
+					name: "user",
+					description: "user to fedora",
+					required: false,
+				},
+			],
 		});
 	}
 

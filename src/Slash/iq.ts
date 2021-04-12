@@ -4,8 +4,16 @@ import type { CommandInteraction } from "discord.js";
 export default class iqqCommand extends Command {
 	constructor() {
 		super("iqq", {
-			// Discord doesnt allow 2 letter slash commands.
-			description: "",
+			name: "iqq",
+			description: "Send your **actual** iq",
+			options: [
+				{
+					type: 6,
+					name: "user",
+					description: "The iq of the user you want to see",
+					required: false,
+				},
+			],
 		});
 	}
 

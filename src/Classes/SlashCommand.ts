@@ -1,11 +1,27 @@
 import { AkairoModule } from "discord-akairo";
 import type { AkairoModuleOptions } from "discord-akairo";
-import type { CommandInteraction, ApplicationCommandData, ApplicationCommandOption } from "discord.js";
+import type { CommandInteraction, ApplicationCommandOptionChoice } from "discord.js";
 
 /**
  * Options for an interaction command.
  */
+interface ApplicationCommandData {
+	name: string;
+	description: string;
+	options?: ApplicationCommandOption[];
+	defaultPermission?: boolean;
+}
+
+interface ApplicationCommandOption {
+	type: number;
+	name: string;
+	description: string;
+	required?: boolean;
+	choices?: ApplicationCommandOptionChoice[];
+}
+
 interface CommandOptions extends AkairoModuleOptions {
+	name?: string;
 	description: string;
 	options?: ApplicationCommandOption[];
 	ownerOnly?: boolean;

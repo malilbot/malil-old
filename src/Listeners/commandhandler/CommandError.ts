@@ -14,7 +14,11 @@ export default class CommandErrorListener extends Listener {
 	}
 
 	public async exec(error: Error, message: Message, command: Command | null | undefined): Promise<void> {
-		if (error.stack.startsWith("DiscordAPIError: Cannot channel.send without permission to read message history")) {
+		if (error.stack.includes("DiscordAPIError: Cannot channel.send without permission to read message history")) {
+			message.util.send("I cannot work properly without seeing message history");
+			return;
+		}
+		if (error.stack.includes("DiscordAPIError: Cannot reply without permission to read message history")) {
 			message.util.send("I cannot work properly without seeing message history");
 			return;
 		}

@@ -4,8 +4,16 @@ import type { CommandInteraction } from "discord.js";
 export default class avatarCommand extends Command {
 	constructor() {
 		super("avatar", {
-			//
-			description: "",
+			name: "avatar",
+			description: "Send the avatar of a user",
+			options: [
+				{
+					type: 6,
+					name: "user",
+					description: "User you want the avatar of",
+					required: false,
+				},
+			],
 		});
 	}
 

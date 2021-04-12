@@ -23,62 +23,16 @@ export default class EnSlashCommand extends Command {
 
 	public async exec(message: Message) {
 		try {
-			let out = eval(stripIndents`this.client.api
-				.applications(this.client.user.id)
-				.guilds(message.guild.id)
-				.commands.post({
-					data: {
-						name: "fedora",
-						description: "fedora a user's avatar",
-						options: [
-							{
-								type: 6,
-								name: "user",
-								description: "user to fedora",
-								default: false,
-								required: false,
-							},
-						],
-					},
-				});
-			
-			this.client.api 
-				.applications(this.client.user.id)
-				.guilds(message.guild.id)
-				.commands.post({
-					data: {
-						name: "avatar",
-						description: "Send the avatar of a user",
-						options: [
-							{
-								type: 6,
-								name: "user",
-								description: "User you want the avatar of",
-								default: false,
-								required: false,
-							},
-						],
-					},
-				}); 
-			this.client.api
-				.applications(this.client.user.id)
-				.guilds(message.guild.id)
-				.commands.post({
-					data: {
-						name: "iqq",
-						description: "Send your **actual** iq",
-						options: [
-							{
-								type: 6,
-								name: "user",
-								description: "The iq of the user you want to see",
-								default: false,
-								required: false,
-							},
-						],
-					},
-				});`);
-			message.reply(out);
+			//@ts-ignore
+			for (let cmd of this.client.slashHandler.modules) {
+				//@ts-ignore
+				this.client.api //@ts-ignore so many fucking errors
+					.applications(this.client.user.id)
+					.guilds(message.guild.id)
+					.commands.post({
+						data: cmd[1].data,
+					});
+			}
 			return message.reply("Enabled the slash commands in this server");
 		} catch (e) {
 			return message.reply(
