@@ -1945,7 +1945,8 @@ fastify-plugin@^3.0.0:
 
 fastify-rate-limit@fastify/fastify-rate-limit:
   version "5.5.0"
-  resolved "https://codeload.github.com/fastify/fastify-rate-limit/tar.gz/d448a7711fc97309ec770ea715a8807a817249ef"
+  uid "449c3ca802346069360eace97fcf7beaae7785b2"
+  resolved "https://codeload.github.com/fastify/fastify-rate-limit/tar.gz/449c3ca802346069360eace97fcf7beaae7785b2"
   dependencies:
     fastify-plugin "^3.0.0"
     ms "^2.1.1"
