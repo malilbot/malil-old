@@ -655,6 +655,7 @@ export function readyLog(client: InterfaceClient): void {
 		log(main(m13), split, third(a6), split, third("Users"));
 		log(main(m14), split, third(a7), split, third("Shards"));
 	}
+	log(split, split, main(client.inhibitorHandler.modules.size), split, third("Slash Commands"));
 }
 /**
  *
