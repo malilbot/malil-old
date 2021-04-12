@@ -1,4 +1,4 @@
--   invite: https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824
+-   invite: https://discord.com/oauth2/authorize?client_id=749020331187896410&permissions=117824&scope=bot%20applications.commands
 -   prefix : \*
 -   id: 749020331187896410
 -   Website: https://github.com/SkyBlockDev/malil-akairo/wiki
