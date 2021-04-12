@@ -5,7 +5,7 @@ export default class avatarCommand extends Command {
 	constructor() {
 		super("avatar", {
 			name: "avatar",
-			description: "Send the avatar of a user",
+			description: "Sends the avatar of a user",
 			options: [
 				{
 					type: 6,
