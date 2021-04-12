@@ -1490,7 +1490,8 @@ dir-glob@^3.0.1:
 
 discord-akairo@SkyBlockDev/discord-akairo:
   version "8.1.1"
-  resolved "https://codeload.github.com/SkyBlockDev/discord-akairo/tar.gz/fa73cd2f3d5cacf4d047319f8ecd3a5febeb9662"
+  uid acc0faf8081734c413f3be95c9a81d3dbe956ed5
+  resolved "https://codeload.github.com/SkyBlockDev/discord-akairo/tar.gz/acc0faf8081734c413f3be95c9a81d3dbe956ed5"
 
 discord-rpc@^3.2.0:
   version "3.2.0"
