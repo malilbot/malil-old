@@ -13,3 +13,7 @@ Malil is a all in one bot with lots of useful commands.
 > ### Quote command preview:
 >
 > ![Quote](https://i.imgur.com/Jo8CnhR.png)
+
+> ### Youtube command preview:
+>
+> ![Youtube](https://i.imgur.com/oTegEmR.png)
