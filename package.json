@@ -64,7 +64,7 @@
 		"discord-akairo": "SkyBlockDev/discord-akairo",
 		"discord.js": "vaporox/discord.js#feat-interactions",
 		"enmap": "^5.8.4",
-		"fastify": "^3.14.1",
+		"fastify": "^3.14.2",
 		"fastify-helmet": "^5.3.1",
 		"fastify-rate-limit": "fastify/fastify-rate-limit",
 		"fastify-redis": "^4.3.0",
