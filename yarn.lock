@@ -2011,10 +2011,10 @@ fastify-warning@^0.2.0:
   resolved "https://registry.npmjs.org/fastify-warning/-/fastify-warning-0.2.0.tgz"
   integrity sha512-s1EQguBw/9qtc1p/WTY4eq9WMRIACkj+HTcOIK1in4MV5aFaQC9ZCIt0dJ7pr5bIf4lPpHvAtP2ywpTNgs7hqw==
 
-fastify@^3.14.1:
-  version "3.14.1"
-  resolved "https://registry.npmjs.org/fastify/-/fastify-3.14.1.tgz"
-  integrity sha512-9hoK1vvopsUJnUJpge90t8PZIqNQhGM54yDrd2veCZLkxh8eipnaHrXe2+f7tIt6UScUZ92JZQavxFGB4HX7xA==
+fastify@^3.14.2:
+  version "3.14.2"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-3.14.2.tgz#136c80ab5a811e2f44ef361c1e1986c8a31d6e83"
+  integrity sha512-/PY//7gJnGxLQORaRHCEW148vpFKFpBIQNz1Yo/DxbHuk5EQqK2comzyE2ug8FSEldDX8nleapTshl0m78Px2w==
   dependencies:
     "@fastify/proxy-addr" "^3.0.0"
     abstract-logging "^2.0.0"
