@@ -48,7 +48,9 @@ export default class message extends Listener {
 		}
 		if (message?.guild?.id == "804143990869590066") {
 			if (message.author.bot) return;
-			if (message.content.toLowerCase().includes("remove") || message.content.toLowerCase().includes("close")) {
+			if (message.content.toLowerCase().includes("bannable") && message.content.toLowerCase().includes("this")) {
+				message.reply("The mod is not bannable and doesnt trigger watchdog.");
+			} else if (message.content.toLowerCase().includes("remove") || message.content.toLowerCase().includes("close")) {
 				if (message.content.toLowerCase().includes("pic") || message.content.toLowerCase().includes("image")) {
 					message.reply(
 						"To remove the SBP secret images, you have to press a hotkey (which is configurable in the Minecraft controls menu). Default keys are O to open images, B for previous image, N for next image, and M to clear/remove images from the screen."
