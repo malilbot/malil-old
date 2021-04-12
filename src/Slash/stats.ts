@@ -31,7 +31,7 @@ export default class statsCommand extends Command {
 					`**● Channels:** ${this.client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0)}`,
 					`**● Creation Date:** ${utc(this.client.user.createdTimestamp).format("Do MMMM YYYY HH:mm:ss")}`,
 					`**● Bot Uptime:** ${ms(process.uptime() * 1000, { long: true })}`,
-					`**● Owner:** <@!336465356304678913>`,
+					`**● Owner:** Tricked#3777`,
 					`**● Support:** [Support server](https://discord.gg/mY8zTARu4g)`,
 					`**● Commands ran:** ${this.client.gp.get("commands")}`,
 					`**● Node.js:** ${process.version}`,

@@ -6,6 +6,7 @@
 ### I WONT DO
 
 -   [ ] source mapping
+
 ### TODO LIST
 
 -   [ ] WEB dashboard
@@ -14,16 +15,15 @@
 -   [ ] fix user embed
 -   [ ] Auto remove stickers option
 -   [ ] custom args
--   [ ] try and improve performance
--   [ ] more types
--   [ ] ModOnly channels
 -   [ ] Softban
 -   [ ] temproles ( Dont make shitty ones )
 
-
 ### COMPLETED LISt
--   [X] use muterole to set muterole
--   [X] add mute role on rejoin
--   [X] lock channel command
--   [X] unlock channel command
--   [X] url shortener (https://app.shrtco.de/)
+
+-   [x] more types
+-   [x] ModOnly channels
+-   [x] use muterole to set muterole
+-   [x] add mute role on rejoin
+-   [x] lock channel command
+-   [x] unlock channel command
+-   [x] url shortener (https://app.shrtco.de/)
