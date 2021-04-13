@@ -5,7 +5,7 @@ export default class iqqCommand extends Command {
 	constructor() {
 		super("iqq", {
 			name: "iqq",
-			description: "Send your **actual** iq",
+			description: "Send your actual iq",
 			options: [
 				{
 					type: 6,
@@ -19,19 +19,12 @@ export default class iqqCommand extends Command {
 
 	async exec(message: CommandInteraction) {
 		const member = message.options[0]?.user ?? message.user;
-		let iq: number;
-		this.client.UserData.ensure(member.id, {
-			iq: 0,
-		});
-		if (this.client.UserData.get(member.id, "iq")) {
-			iq = this.client.UserData.get(member.id, "iq");
-		} else {
-			iq = Math.floor(Math.random() * 150) + 1;
-			this.client.UserData.set(member.id, iq, "iq");
-		}
-		const iEmbed = this.client.util.embed().setColor(this.client.consts.colors.default).setTitle("IQ Test").setDescription(`${member}'s IQ is: \`${iq}\`!`);
-		if (Math.floor(Math.random() * 10 + 1) == 5)
-			iEmbed.setFooter(`You can vote to get increased iq ${(await this.client.prefixes.get(message.guild.id, "prefix")) || this.client.settings.prefix}vote`);
-		message.reply(iEmbed);
+		const em = this.client.util
+			.embed()
+			.setColor(this.client.consts.colors.default)
+			.setTitle("IQ Test")
+			.setDescription(`${message.options[0]?.user ?? message.user}'s IQ is: \`${this.client.UserData.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq")}\`!`);
+		if (Math.floor(Math.random() * 10 + 1) == 5) em.setFooter(`You can vote to get increased iq /vote`);
+		message.reply(em);
 	}
 }
