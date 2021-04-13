@@ -49,6 +49,7 @@ export default class SlashHandler extends AkairoHandler {
 		}
 
 		try {
+			this.emit("slashStarted", interaction, command);
 			await command.exec(interaction);
 		} catch (error: unknown) {
 			console.error(error);
