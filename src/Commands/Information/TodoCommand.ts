@@ -27,8 +27,8 @@ export default class TodoCommand extends Command {
 		for (let i = 0; i < body.length; i++) {
 			if (body[i].startsWith("-   [ ]")) {
 				todo += `${body[i].replace("-   [ ]", "")}\n`;
-			} else if (body[i].startsWith("-   [X]")) {
-				done += `${body[i].replace("-   [X]", "")}\n`;
+			} else if (body[i].startsWith("-   [x]")) {
+				done += `${body[i].replace("-   [x]", "")}\n`;
 			}
 		}
 		return message.util.send(new MessageEmbed().setFooter("TODO list").addField("TODO:", todo).addField("COMPLETED:", done).setColor(this.client.consts.colors.default));

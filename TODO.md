@@ -18,7 +18,7 @@
 -   [ ] Softban
 -   [ ] temproles ( Dont make shitty ones )
 
-### COMPLETED LISt
+### COMPLETED LIST
 
 -   [x] more types
 -   [x] ModOnly channels
