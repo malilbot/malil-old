@@ -48,14 +48,25 @@ export default class message extends Listener {
 		}
 		if (message?.guild?.id == "804143990869590066") {
 			if (message.author.bot) return;
-			if (message.content.toLowerCase().includes("bannable") && message.content.toLowerCase().includes("this")) {
-				message.reply("The mod is not bannable and doesnt trigger watchdog.");
-			} else if (message.content.toLowerCase().includes("remove") || message.content.toLowerCase().includes("close")) {
-				if (message.content.toLowerCase().includes("pic") || message.content.toLowerCase().includes("image")) {
-					message.reply(
-						"To remove the SBP secret images, you have to press a hotkey (which is configurable in the Minecraft controls menu). Default keys are O to open images, B for previous image, N for next image, and M to clear/remove images from the screen."
-					);
+			const content = message.content.toLowerCase();
+			if (!talkedRecently.has(message.author.id)) {
+				if (content.includes("next") && content.includes("secret")) {
+					talkedRecently.add(message.author.id); // Add the user to a blacklist to prevent the bot from being spammed
+					message.reply(`Default is B for previous, N for next, and M to clear, **note** these keybinds can also be used by other mods so make sure they are bound correctly.`);
+				} else if (content.includes("bannable") && content.includes("this")) {
+					talkedRecently.add(message.author.id);
+					message.reply("The mod is not bannable and doesnt trigger watchdog.");
+				} else if (content.includes("remove") || content.includes("close")) {
+					if (content.includes("pic") || content.includes("image")) {
+						talkedRecently.add(message.author.id);
+						message.reply(
+							"To remove the SBP secret images, you have to press a hotkey (which is configurable in the Minecraft controls menu). Default keys are O to open images, B for previous image, N for next image, and M to clear/remove images from the screen."
+						);
+					}
 				}
+				setTimeout(() => {
+					talkedRecently.delete(message.author.id);
+				}, 10000); //10 seconds
 			}
 		}
 
