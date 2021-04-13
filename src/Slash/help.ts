@@ -19,7 +19,7 @@ export default class helpCommand extends Command {
 		let slashes = [];
 		//@ts-ignore
 		for (const module of this.client.slashHandler.modules) {
-			slashes.push(`\`${module[1].data.name}\``);
+			slashes.push(`**\`${module[1].data.name}\`**`);
 		}
 		embed.addField("Slash Commands", slashes.join(" | "));
 		//@ts-ignore
