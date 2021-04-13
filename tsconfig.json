@@ -18,6 +18,8 @@
 		"esModuleInterop": true,
 		"inlineSourceMap": true,
 		"emitDecoratorMetadata": true,
+		"importHelpers": true,
+		"forceConsistentCasingInFileNames": true,
 		"experimentalDecorators": true,
 		"baseUrl": "./",
 		"paths": {
