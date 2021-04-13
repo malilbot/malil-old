@@ -18,6 +18,6 @@ export default class SlashStarted extends Listener {
 		const cmd = main(command);
 		const usr = sec(message.user.tag) + " " + fourth(message.user.id);
 		const gld = sec(message.guild.name) + " " + fourth(message.guild.id);
-		this.client.logger.info(a1("[ COMMAND RAN ] ") + cmd + a1(" [ USER ] ") + usr + a1(" [ GUILD ] ") + gld);
+		this.client.logger.info(a1("[ SlASH RAN ] ") + cmd + a1(" [ USER ] ") + usr + a1(" [ GUILD ] ") + gld);
 	}
 }
