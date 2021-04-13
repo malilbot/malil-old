@@ -1155,6 +1155,18 @@ cheerio-without-node-native@0.20.2:
   optionalDependencies:
     jsdom "^7.0.2"
 
+cheerio-without-node-native@^1.0.0-rc.2:
+  version "1.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/cheerio-without-node-native/-/cheerio-without-node-native-1.0.0-rc.2.tgz#80baad74f393028bad2cd722964a458d040ec6bc"
+  integrity sha512-x2cvTHynt0QVibdOb0ToOS6bjMwIl2SW8JwDDj1KP7tZkgQkRKho0ClAw6tHygQ8dG7cSFhZRYWZSsc3YNcGJw==
+  dependencies:
+    css-select "~1.2.0"
+    dom-serializer "~0.1.0"
+    entities "~1.1.1"
+    htmlparser2-without-node-native "^3.9.0"
+    lodash "^4.1.0"
+    parse5 "^3.0.1"
+
 chokidar@^3.2.2:
   version "3.5.1"
   resolved "https://registry.npmjs.org/chokidar/-/chokidar-3.5.1.tgz"
@@ -1490,7 +1502,6 @@ dir-glob@^3.0.1:
 
 discord-akairo@SkyBlockDev/discord-akairo:
   version "8.1.1"
-  uid acc0faf8081734c413f3be95c9a81d3dbe956ed5
   resolved "https://codeload.github.com/SkyBlockDev/discord-akairo/tar.gz/acc0faf8081734c413f3be95c9a81d3dbe956ed5"
 
 discord-rpc@^3.2.0:
@@ -1980,7 +1991,6 @@ fastify-plugin@^3.0.0:
 
 fastify-rate-limit@fastify/fastify-rate-limit:
   version "5.5.0"
-  uid "449c3ca802346069360eace97fcf7beaae7785b2"
   resolved "https://codeload.github.com/fastify/fastify-rate-limit/tar.gz/449c3ca802346069360eace97fcf7beaae7785b2"
   dependencies:
     fastify-plugin "^3.0.0"
@@ -3398,6 +3408,13 @@ parse5@^1.5.1:
   version "1.5.1"
   resolved "https://registry.npmjs.org/parse5/-/parse5-1.5.1.tgz"
   integrity sha1-m387DeMr543CQBsXVzzK8Pb1nZQ=
+
+parse5@^3.0.1:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-3.0.3.tgz#042f792ffdd36851551cf4e9e066b3874ab45b5c"
+  integrity sha512-rgO9Zg5LLLkfJF9E6CCmXlSE4UVceloys8JrFqCcHloC3usd/kJCyPDwH2SOlzix2j3xaP9sUX3e8+kvkuleAA==
+  dependencies:
+    "@types/node" "*"
 
 path-exists@^3.0.0:
   version "3.0.0"

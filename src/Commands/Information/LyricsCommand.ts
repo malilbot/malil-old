@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message } from "discord.js";
-import { getLyrics, getSong } from "genius-lyrics-api";
+import { GetSong } from "../../Lib/Utils";
 
 export default class lyricsCommand extends Command {
 	public constructor() {
@@ -40,7 +40,7 @@ export default class lyricsCommand extends Command {
 			optimizeQuery: true,
 		};
 
-		getSong(options).then((song) => {
+		GetSong(options).then((song) => {
 			if (!song) return message.util.send("song not found F");
 			let lyrics = song.lyrics;
 

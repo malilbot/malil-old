@@ -60,6 +60,7 @@
 		"asciify-image": "^0.1.6",
 		"centra": "^2.4.2",
 		"chalk": "^4.1.0",
+		"cheerio-without-node-native": "^1.0.0-rc.2",
 		"common-tags": "^1.8.0",
 		"discord-akairo": "SkyBlockDev/discord-akairo",
 		"discord.js": "vaporox/discord.js#feat-interactions",
@@ -69,7 +70,6 @@
 		"fastify-rate-limit": "fastify/fastify-rate-limit",
 		"fastify-redis": "^4.3.0",
 		"fastify-static": "^4.0.1",
-		"genius-lyrics-api": "^3.0.6",
 		"marked": "^2.0.3",
 		"moment": "^2.29.1",
 		"showdown": "^1.9.1"

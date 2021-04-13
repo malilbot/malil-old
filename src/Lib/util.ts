@@ -400,6 +400,93 @@ export function sLog({
 	}
 }
 
+// Code "borrowed" from :https://github.com/farshed/genius-lyrics-api
+
+const getTitle = (title, artist) => {
+	return `${title} ${artist}`
+		.toLowerCase()
+		.replace(/ *\([^)]*\) */g, "")
+		.replace(/ *\[[^\]]*]/, "")
+		.replace(/feat.|ft./g, "")
+		.replace(/\s+/g, " ")
+		.trim();
+};
+
+const cio = require("cheerio-without-node-native");
+
+/**
+ * @param {string} url - Genius URL
+ */
+async function extractLyrics(url) {
+	try {
+		let { body } = await await centra(url).send();
+		const $ = cio.load(body);
+		let lyrics = $('div[class="lyrics"]').text().trim();
+		if (!lyrics) {
+			lyrics = "";
+			$('div[class^="Lyrics__Container"]').each((i, elem) => {
+				if ($(elem).text().length !== 0) {
+					let snippet = $(elem)
+						.html()
+						.replace(/<br>/g, "\n")
+						.replace(/<(?!\s*br\s*\/?)[^>]+>/gi, "");
+					lyrics += $("<textarea/>").html(snippet).text().trim() + "\n\n";
+				}
+			});
+		}
+		if (!lyrics) return null;
+		return lyrics.trim();
+	} catch (e) {
+		throw e;
+	}
+}
+
+/**
+ * @param {{apiKey: string, title: string, artist: string, optimizeQuery: boolean}} options
+ */
+export async function GetSong(options) {
+	try {
+		let results = await searchSong(options);
+		if (!results) return null;
+		let lyrics = await extractLyrics(results[0].url);
+		return {
+			id: results[0].id,
+			url: results[0].url,
+			lyrics,
+			albumArt: results[0].albumArt,
+		};
+	} catch (e) {
+		throw e;
+	}
+}
+
+const searchUrl = "https://api.genius.com/search?q=";
+
+/**
+ * @param {{apiKey: string, title: string, artist: string, optimizeQuery: boolean}} options
+ */
+async function searchSong(options) {
+	try {
+		let { apiKey, title, artist, optimizeQuery = false } = options;
+		const song = optimizeQuery ? getTitle(title, artist) : `${title} ${artist}`;
+		const reqUrl = `${searchUrl}${encodeURIComponent(song)}`;
+
+		let res = await (
+			await centra(reqUrl, "GET")
+				.header("Authorization", "Bearer " + apiKey)
+				.send()
+		).json();
+		if (res.response.hits.length === 0) return null;
+		const results = res.response.hits.map((val) => {
+			const { full_title, song_art_image_url, id, url } = val.result;
+			return { id, title: full_title, albumArt: song_art_image_url, url };
+		});
+		return results;
+	} catch (e) {
+		throw e;
+	}
+}
+
 /*
 import { readFileSync } from "fs";
 
