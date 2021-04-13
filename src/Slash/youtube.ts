@@ -20,6 +20,7 @@ export default class youtubeCommand extends Command {
 	async exec(message: CommandInteraction) {
 		const channel = message.options[0]?.channel;
 		if (channel.type !== "voice") return message.reply("This command can only be used on a textchannel");
+		if (!channel.guild.me.permissions.has("CREATE_INSTANT_INVITE")) return message.reply("I need the **create invite** permission for this command to work");
 		//@ts-expect-error
 		this.client.api //@ts-expect-error
 			.channels(channel.id)
