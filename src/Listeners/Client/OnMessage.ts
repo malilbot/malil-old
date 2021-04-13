@@ -50,9 +50,11 @@ export default class message extends Listener {
 			if (message.author.bot) return;
 			const content = message.content.toLowerCase();
 			if (!talkedRecently.has(message.author.id)) {
-				if (content.includes("next") && content.includes("secret")) {
-					talkedRecently.add(message.author.id); // Add the user to a blacklist to prevent the bot from being spammed
-					message.reply(`Default is B for previous, N for next, and M to clear, **note** these keybinds can also be used by other mods so make sure they are bound correctly.`);
+				if (content.includes("next") || content.includes("change")) {
+					if (content.includes("secret")) {
+						talkedRecently.add(message.author.id); // Add the user to a blacklist to prevent the bot from being spammed
+						message.reply(`Default is B for previous, N for next, and M to clear, **note** these keybinds can also be used by other mods so make sure they are bound correctly.`);
+					}
 				} else if (content.includes("bannable") && content.includes("this")) {
 					talkedRecently.add(message.author.id);
 					message.reply("The mod is not bannable and doesnt trigger watchdog.");
