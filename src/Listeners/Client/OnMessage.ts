@@ -62,6 +62,7 @@ export default class message extends Listener {
 				if (message.channel.id == "831744864001064971") {
 					if (message.content.includes("RUINED IT AT")) {
 						message.pin({ reason: "Imagine failing math" });
+		                                message.channel.send("bald")
 					}
 				}
 			}
