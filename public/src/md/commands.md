@@ -1,6 +1,6 @@
 # Commands
 
-Prefixes: malil, @malil, \*(can be changed).  
+Prefixes: malil, \@malil, \*(can be changed).  
 Messages are cached for 10 seconds and editing them within that time can make a command trigger.
 
 # Fun Commands

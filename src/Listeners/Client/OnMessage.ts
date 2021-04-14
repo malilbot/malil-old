@@ -42,6 +42,7 @@ export default class message extends Listener {
 				);
 			}
 		}
+
 		if (message.channel.id == "818158216156413973") {
 			exec("git pull", async (e, stdout) => {
 				if (!stdout.includes("Already up to date.")) {
@@ -56,8 +57,14 @@ export default class message extends Listener {
 				}
 			});
 		} else if (message?.guild?.id == "804143990869590066") {
-			if (message.author.bot) return;
 			const content = message.content.toLowerCase();
+			if (message.author.id == "510016054391734273") {
+				if (content.includes("RUINED IT AT") && message.mentions.users.first()) {
+					message.pin({ reason: "Imagine failing math" });
+				}
+			}
+			if (message.author.bot) return;
+
 			if (!talkedRecently.has(message.author.id)) {
 				if (content.includes("next") || content.includes("change")) {
 					if (content.includes("secret")) {

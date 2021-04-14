@@ -1,18 +1,24 @@
 import { readFileSync, writeFileSync, readdirSync } from "fs";
 import { join } from "path";
-import marked from "marked";
 import { exec } from "child_process";
-const showdown = require("showdown"),
-	converter = new showdown.Converter();
-converter.setFlavor("github");
-for (const file of readdirSync(join(__dirname, "..", "..", "public", "md")).filter((file) => file.endsWith(".md"))) {
-	writeFileSync(
-		join(__dirname, "..", "..", "public", "html", file.replace(".md", ".html")),
-		readFileSync(join(__dirname, "..", "..", "public", "md", file.replace(".md", ".html")), "utf-8").replace(
-			"{{input}}",
-			converter.makeHtml(readFileSync(join(__dirname, "..", "..", "public", "md", file), "utf-8"))
-		)
-	);
+import Showdown from "showdown";
+const showdown = new Showdown.Converter();
+showdown.setFlavor("github");
+const topnav = readFileSync(join(__dirname, "..", "..", "public", "src", "global", "topnav.as"), "utf-8");
+const head = readFileSync(join(__dirname, "..", "..", "public", "src", "global", "head.as"), "utf-8");
+const breef = readFileSync(join(__dirname, "..", "..", "wiki", "Breef.md"), "utf-8");
+for (const file of readdirSync(join(__dirname, "..", "..", "public", "src", "md")).filter((file) => file.endsWith(".md"))) {
+	const converted = showdown.makeHtml(readFileSync(join(__dirname, "..", "..", "public", "src", "md", file), "utf-8").replace("{{breef}}", breef));
+
+	const dir = join(__dirname, "..", "..", "public", "html", file.replace(".md", ".html"));
+
+	const out = readFileSync(join(__dirname, "..", "..", "public", "src", "html", file.replace(".md", ".html")), "utf-8")
+		.replace("{{input}}", converted)
+		.replace("{{topnav}}", topnav)
+		.replace("{{head}}", head)
+		.replace("{{title}}", file.replace(".md", ""));
+
+	writeFileSync(dir, out);
 	console.log(file);
 }
 exec("npx prettier-eslint --write ./public/**/**");

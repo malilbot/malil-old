@@ -8,6 +8,7 @@ data
 finish
 dist
 code/*
+svelte/*
 src/tasks/rpc.ts
 #LOGS FILE
 Logs

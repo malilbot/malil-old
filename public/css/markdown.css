@@ -1,5 +1,6 @@
 body {
 	font-family: Comfortaa;
+	font-size: 1em;
 	background-color: #181818;
 	color: #bfbfc0;
 }
@@ -7,7 +8,7 @@ body {
 .body {
 	background-color: #222428;
 	width: 60%;
-	padding: 10px;
+	padding: 1rem;
 	border: 1px solid #3d3d3d;
 	margin: auto;
 }
@@ -15,8 +16,8 @@ body {
 blockquote {
 	display: block;
 	background: #2c3035;
-	padding: 5px 10px 5px 20px;
-	margin: 0 0 10px;
+	padding: 0.01rem 0.1rem 0.1rem 1.7em;
+	margin: 0.1em 0.1em 10px;
 	position: relative;
 	line-height: 1.2;
 	color: #666;
@@ -28,8 +29,8 @@ blockquote::before {
 	font-weight: bold;
 	color: #999;
 	position: absolute;
-	left: 10px;
-	top: 5px;
+	left: 0.1em;
+	top: 0.5em;
 }
 
 blockquote::after {
@@ -40,7 +41,7 @@ blockquote a {
 	text-decoration: none;
 	background: #eee;
 	cursor: pointer;
-	padding: 0 3px;
+	padding: 0 0.3em;
 }
 
 a {

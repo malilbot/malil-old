@@ -1,4 +1,4 @@
-Malil is a all in one bot with lots of useful commands.
+{{breef}}
 
 [Invite malil here](https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824)
 

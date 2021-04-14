@@ -4,32 +4,12 @@ img {
 img:hover {
 	transform: scale(1.1);
 	animation-timing-function: ease;
+	top: 30%;
+	left: 10%;
 }
 .Malil {
 	position: relative;
 	width: 150px;
 	top: 30%;
 	left: 40%;
-}
-.Github {
-	position: relative;
-	top: 30%;
-	left: 10%;
-}
-
-.Fedora {
-	position: relative;
-	top: 30%;
-	left: 10%;
-}
-
-.Quote {
-	position: relative;
-	top: 30%;
-	left: 10%;
-}
-.Youtube {
-	position: relative;
-	top: 30%;
-	left: 10%;
 }
