@@ -59,8 +59,10 @@ export default class message extends Listener {
 		} else if (message?.guild?.id == "804143990869590066") {
 			const content = message.content.toLowerCase();
 			if (message.author.id == "510016054391734273") {
-				if (content.includes("RUINED IT AT") && message.mentions.users.first()) {
-					message.pin({ reason: "Imagine failing math" });
+				if (message.channel.id == "831744864001064971") {
+					if (message.content.includes("RUINED IT AT")) {
+						message.pin({ reason: "Imagine failing math" });
+					}
 				}
 			}
 			if (message.author.bot) return;
