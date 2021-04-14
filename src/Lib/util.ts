@@ -402,7 +402,7 @@ export function sLog({
 
 // Code "borrowed" from :https://github.com/farshed/genius-lyrics-api
 
-const getTitle = (title, artist) => {
+const getTitle = (title: string | number | boolean, artist: string | number | boolean): string => {
 	return `${title} ${artist}`
 		.toLowerCase()
 		.replace(/ *\([^)]*\) */g, "")
@@ -417,7 +417,7 @@ const cio = require("cheerio-without-node-native");
 /**
  * @param {string} url - Genius URL
  */
-async function extractLyrics(url) {
+async function extractLyrics(url: string): Promise<string> {
 	try {
 		let { body } = await await centra(url).send();
 		const $ = cio.load(body);
@@ -444,7 +444,12 @@ async function extractLyrics(url) {
 /**
  * @param {{apiKey: string, title: string, artist: string, optimizeQuery: boolean}} options
  */
-export async function GetSong(options) {
+export async function GetSong(options: {
+	apiKey: string;
+	title: string | number | boolean;
+	artist: string | number | true;
+	optimizeQuery: boolean;
+}): Promise<{ id: string; url: string; lyrics: string; albumArt: string }> {
 	try {
 		let results = await searchSong(options);
 		if (!results) return null;
@@ -465,7 +470,12 @@ const searchUrl = "https://api.genius.com/search?q=";
 /**
  * @param {{apiKey: string, title: string, artist: string, optimizeQuery: boolean}} options
  */
-async function searchSong(options) {
+async function searchSong(options: {
+	apiKey: string;
+	title: string | number | boolean;
+	artist: string | number | true;
+	optimizeQuery: boolean;
+}): Promise<{ apiKey: string; title: string; artist: string; optimizeQuery: boolean }> {
 	try {
 		let { apiKey, title, artist, optimizeQuery = false } = options;
 		const song = optimizeQuery ? getTitle(title, artist) : `${title} ${artist}`;
