@@ -4,7 +4,6 @@
 	--background: #333;
 	--border: #3d3d3d;
 }
-
 .topnav {
 	width: 100%;
 	padding: 0.1rem;
@@ -12,17 +11,15 @@
 	margin: auto;
 	background-color: var(--background);
 	overflow: hidden;
+	a {
+		float: left;
+		color: var(--white);
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+		font-size: 17px;
+		&:hover {
+			color: var(--black);
+		}
+	}
 }
-.topnav a {
-	float: left;
-	color: var(--white);
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	font-size: 17px;
-}
-.topnav a:hover {
-	color: var(--black);
-}
-
-/*# sourceMappingURL=bar.css.map */

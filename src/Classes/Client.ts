@@ -91,10 +91,8 @@ export default class Client extends AkairoClient {
 			superUserID: config.superUsers,
 			intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS", "GUILD_WEBHOOKS", "GUILD_INTEGRATIONS", "GUILD_MESSAGE_REACTIONS", "DIRECT_MESSAGES", "DIRECT_MESSAGE_TYPING"],
 			messageSweepInterval: 1800, // 30 mins
-			messageEditHistoryMaxSize: 2,
 			messageCacheLifetime: 1800, // 30 mins
 			presence: {
-				// @ts-expect-error - https://github.com/discordjs/discord.js/pull/5317
 				activities: [
 					{
 						name: `${Settings.prefix}help`,

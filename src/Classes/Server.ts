@@ -62,7 +62,7 @@ export default class Server {
 			res.type("text/html").send(bufferIndexHtml);
 		});
 		fastify.get("/credits", (req, res) => {
-			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "credits.html"));
+			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "credit.html"));
 			res.type("text/html").send(bufferIndexHtml);
 		});
 		fastify.get("/patchnotes", (req, res) => {

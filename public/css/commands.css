@@ -2,20 +2,27 @@ img:hover {
 	animation: moveToRight 10s ease-in-out;
 	animation-timing-function: ease;
 }
+
 .sidenav {
 	justify-content: center;
-	height: 50%; /* Full-height: remove this if you want "auto" height */
-	width: 9%; /* Set the width of the sidebar */
-	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-	z-index: 1; /* Stay on top */
-	top: 0; /* Stay at the top */
+	height: 50%;
+	/* Full-height: remove this if you want "auto" height */
+	width: 9%;
+	/* Set the width of the sidebar */
+	position: fixed;
+	/* Fixed Sidebar (stay in place on scroll) */
+	z-index: 1;
+	/* Stay on top */
+	top: 0;
+	/* Stay at the top */
 	left: 0;
-	background-color: #222428; /* Black */
-	overflow-x: hidden; /* Disable horizontal scroll */
+	background-color: #222428;
+	/* Black */
+	overflow-x: hidden;
+	/* Disable horizontal scroll */
 	padding-top: 0%;
 	top: 10%;
 }
-
 .sidenav a {
 	transition: 500ms linear;
 	top: 60%;
@@ -25,20 +32,13 @@ img:hover {
 	color: #818181;
 	display: block;
 }
-div {
-	background-color: #222428;
-	width: 70%;
-	padding: 1%;
-	border: 1px solid #3d3d3d;
+.sidenav a .main {
+	margin-left: 10%;
+	padding: 0px 3%;
 }
 .sidenav a:hover {
 	transform: scale(1.1);
 	color: #f1f1f1;
-}
-
-.main {
-	margin-left: 10%;
-	padding: 0px 3%;
 }
 @keyframes moveToRight {
 	0% {
@@ -48,3 +48,5 @@ div {
 		transform: translateX(300px);
 	}
 }
+
+/*# sourceMappingURL=commands.css.map */
