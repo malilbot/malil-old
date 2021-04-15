@@ -1,4 +1,17 @@
-# Malil tos
+<!DOCTYPE html>
+<html>
+
+<head>
+	{{head}}
+</head>
+
+<body class="text">
+	{{topnav}}
+	<div class="body">{{input}}</div>
+</body>
+
+</html>
+{!# Malil tos
 
 ### Dont use more than 30 commands in 20 mins
 

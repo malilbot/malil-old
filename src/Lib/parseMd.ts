@@ -1,24 +1,34 @@
 import { readFileSync, writeFileSync, readdirSync } from "fs";
 import { join } from "path";
 import { exec } from "child_process";
+import { green, blue } from "chalk";
 import Showdown from "showdown";
 const showdown = new Showdown.Converter();
 showdown.setFlavor("github");
 const topnav = readFileSync(join(__dirname, "..", "..", "public", "src", "global", "topnav.as"), "utf-8");
 const head = readFileSync(join(__dirname, "..", "..", "public", "src", "global", "head.as"), "utf-8");
 const breef = readFileSync(join(__dirname, "..", "..", "wiki", "Breef.md"), "utf-8");
-for (const file of readdirSync(join(__dirname, "..", "..", "public", "src", "md")).filter((file) => file.endsWith(".md"))) {
-	const converted = showdown.makeHtml(readFileSync(join(__dirname, "..", "..", "public", "src", "md", file), "utf-8").replace("{{breef}}", breef));
+for (const file of readdirSync(join(__dirname, "..", "..", "public", "src", "md")).filter((file) => file.endsWith(".tf"))) {
+	console.time(blue(file));
+	const html = readFileSync(join(__dirname, "..", "..", "public", "src", "md", file), "utf-8").replace("{{breef}}", breef).split("{!")[0];
+	const md = readFileSync(join(__dirname, "..", "..", "public", "src", "md", file), "utf-8").replace("{{breef}}", breef).split("{!")[1];
+	const converted = showdown.makeHtml(md);
+	//todo time
+	const dir = join(__dirname, "..", "..", "public", "html", file.replace(".tf", ".html"));
 
-	const dir = join(__dirname, "..", "..", "public", "html", file.replace(".md", ".html"));
-
-	const out = readFileSync(join(__dirname, "..", "..", "public", "src", "html", file.replace(".md", ".html")), "utf-8")
+	const out = html
 		.replace("{{input}}", converted)
+
 		.replace("{{topnav}}", topnav)
+
 		.replace("{{head}}", head)
-		.replace("{{title}}", file.replace(".md", ""));
+
+		.replace("{{breef}}", breef)
+
+		.replace("{{title}}", file.replace(".tf", ""));
 
 	writeFileSync(dir, out);
-	console.log(file);
+	console.timeEnd(blue(file));
 }
-exec("npx prettier-eslint --write ./public/**/**");
+console.time(green("Formatted"));
+exec("npx prettier-eslint --write ./public/**/**", () => console.timeEnd(green("Formatted")));

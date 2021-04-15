@@ -1,4 +1,17 @@
-### 4-10
+<!DOCTYPE html>
+<html>
+
+<head>
+	{{head}}
+</head>
+
+<body class="text">
+	{{topnav}}
+	<div class="body">{{input}}</div>
+</body>
+
+</html>
+{!### 4-10
 
 > long time since last patch but there have been alot of changes to the backend and a nicer website is here
 

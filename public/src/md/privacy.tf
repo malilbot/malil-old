@@ -1,4 +1,17 @@
-### First of all:
+<!DOCTYPE html>
+<html>
+
+<head>
+	{{head}}
+</head>
+
+<body class="text">
+	{{topnav}}
+	<div class="body">{{input}}</div>
+</body>
+
+</html>
+{!### First of all:
 
 Security and data safety is important to us. Also the privacy of our users. That is why we try to store as little data as possible to operate our service.
 What data do we store and why?

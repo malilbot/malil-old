@@ -3,7 +3,8 @@
 
 <head>
 
-	{{head}}
+    {{head}}
+
 </head>
 
 <body class="text">
@@ -12,3 +13,4 @@
 </body>
 
 </html>
+{!Sorry the requested page could not be found [go back?](/)

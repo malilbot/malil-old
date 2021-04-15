@@ -1,4 +1,30 @@
-# Commands
+<!DOCTYPE html>
+<html>
+
+<head>
+	{{head}}
+	<link rel="stylesheet" href="../css/commands.css" type="text/css" />
+</head>
+
+<body class="text">
+	{{topnav}}
+	<div class="sidenav">
+		<h2>Table of Contents</h2>
+		<a href="#fun-commands">Fun</a>
+		<a href="#general-commands">General</a>
+		<a href="#info-commands">Information</a>
+		<a href="#moderation-commands">Moderation</a>
+		<a href="#utility-commands">Utility</a>
+		<p class="Malil">
+			<img src="../img/nobg.png" />
+		</p>
+	</div>
+	<div class="body">{{input}}</div>
+</body>
+
+</html>
+
+{!# Commands
 
 Prefixes: malil, \@malil, \*(can be changed).  
 Messages are cached for 10 seconds and editing them within that time can make a command trigger.
