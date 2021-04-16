@@ -1,9 +1,8 @@
 import { exec } from "child_process";
-import { mkdir, existsSync } from "fs";
+
 if (process.platform == "linux") {
 	exec("cat resources/enmap.txt > ./node_modules/enmap/src/index.js");
 }
-Dir();
 import { ShardingManager } from "discord.js";
 import { credentials } from "./settings";
 
@@ -25,69 +24,3 @@ manager.on("shardCreate", (shard) => {
 });
 
 manager.spawn();
-/** */
-/** Dont go down further */
-//
-//
-/** I said dont */
-//
-//
-//
-//
-/** You can stop now*/
-//
-//
-//
-//
-//
-/** Its not worth it */
-//
-//
-//
-//
-/** Aight you asked for it */
-//
-//
-//
-//
-/**Here it is happy now? */
-function Dir(): void {
-	if (existsSync("./data") && existsSync("./data/guilddata")) return;
-
-	mkdir("./data", (e) => {
-		console.log(e || "/data CREATED");
-	});
-	mkdir("./data/blacklist", (e) => {
-		console.log(e || "/data/blacklist");
-	});
-	mkdir("./data/colornames", (e) => {
-		console.log(e || "/data/colornames");
-	});
-	mkdir("./data/gp", (e) => {
-		console.log(e || "/data/gp");
-	});
-	mkdir("./data/infractions", (e) => {
-		console.log(e || "/data/infractions");
-	});
-	mkdir("./data/logchannel", (e) => {
-		console.log(e || "/data/logchannel");
-	});
-	mkdir("./data/mutes", (e) => {
-		console.log(e || "/data/mutes");
-	});
-	mkdir("./data/prefixes", (e) => {
-		console.log(e || "/data/prefixes");
-	});
-	mkdir("./data/releases", (e) => {
-		console.log(e || "/data/releases");
-	});
-	mkdir("./data/guilddata", (e) => {
-		console.log(e || "/data/guilddata");
-	});
-	mkdir("./data/tags", (e) => {
-		console.log(e || "/data/tags");
-	});
-	mkdir("./data/userData", (e) => {
-		console.log(e || "/data/userData");
-	});
-}
