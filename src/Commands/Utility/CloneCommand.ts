@@ -34,26 +34,5 @@ export default class CloneCommand extends Command {
 		collector.on("end", (collected) => {
 			message.channel.send("Fun time over");
 		});
-		/*
-		msg.awaitReactions((reaction, user) => user.id == message.author.id, { max: 1, time: 60000 }).then((collected) => {
-			if (!collected.first()) return msg.edit("Atleast react with your emojis <:)");
-			console.log(collected);
-			if (collected.first().emoji.name == "🗑️") {
-				msg.edit("e");
-			}
-		});
-		/*
-		if (!emoji) {
-			message.util.send("Atleast give a valid emoji");
-			return;
-		}
-
-		const link = `https://cdn.discordapp.com/emojis/${emoji.id}.${emoji.animated ? "gif" : "png"}`;
-
-		const emoname = emoji.name;
-
-		const Emoji = message.guild.emojis.create(`${link}`, `${emoname}`);
-		message.util.send(`Cloned ${await Emoji} enjoy!`);
-		*/
 	}
 }
