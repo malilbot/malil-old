@@ -56,7 +56,7 @@ const compiler = new (class Compiler {
 		this.compileScss();
 		this.compileTf();
 		console.time(green("Formatted"));
-		//exec("npx prettier-eslint --write ./public/**/**", () => console.timeEnd(green("Formatted")));
+		exec("npx prettier-eslint --write ./public/**/**", () => console.timeEnd(green("Formatted")));
 	}
 })({
 	scss: join(__dirname, "..", "..", "public", "src", "scss"),

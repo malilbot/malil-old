@@ -57,6 +57,10 @@ export default class Server {
 			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "commands.html"));
 			res.type("text/html").send(bufferIndexHtml);
 		});
+		fastify.get("/commands/list", (req, res) => {
+			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "list.html"));
+			res.type("text/html").send(bufferIndexHtml);
+		});
 		fastify.get("/tos", (req, res) => {
 			const bufferIndexHtml = readFileSync(join(__dirname, "..", "..", "public", "html", "tos.html"));
 			res.type("text/html").send(bufferIndexHtml);

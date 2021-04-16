@@ -8,7 +8,7 @@
 
 <body class="text">
 	{{topnav}}
-	<div class="body">
+	<div class="body" style="text-align: center;">
 		<p >
 			<img src="../img/nobg.png" class="HomeMalil" />
 		</p>
@@ -29,6 +29,10 @@
   <h3 id="youtube-command-preview">Youtube command preview:</h3>
   <p><img src="https://i.imgur.com/oTegEmR.png" class="preview" /></p>
 </blockquote>
+<blockquote>
+  <h3 id="8ball-command-preview">8ball command preview:</h3>
+  <p><img src="https://i.imgur.com/ezeshay.png" class="preview" /></p>
+</blockquote>
 	</div>
 	<div class="underline">
 		<p class="underl"><a href="/privacy">Privacy</a> | <a href="/tos">TOS</a> | <a href="/patchnotes">Patchnotes</a>
@@ -37,6 +41,7 @@
 </body>
 
 </html>
+
 {!{{breef}}
 
 [Invite malil here](https://discord.com/oauth2/authorize?client_id=749020331187896410&scope=bot&permissions=117824)

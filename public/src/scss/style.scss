@@ -4,6 +4,7 @@ $border: hsl(0, 0%, 24%);
 $white: hsl(0, 0%, 95%);
 $navborder: hsl(0, 0%, 24%);
 $navbg: hsl(0, 0%, 20%);
+@import url("https://fonts.googleapis.com/css?family=Comfortaa");
 
 html,
 body {
@@ -142,6 +143,27 @@ h3 {
 	}
 }
 
+table {
+	width: 100%;
+}
+
+th,
+td {
+	padding: 10px;
+}
+th {
+	height: 30px;
+	background-color: #4caf50;
+	color: white;
+}
+
+table,
+th,
+td {
+	border-collapse: collapse;
+	border: 1px black solid;
+}
+
 .CommandsMalil {
 	max-width: 80%;
 	height: auto;
@@ -156,13 +178,10 @@ h3 {
 	position: relative;
 	width: 150px;
 	top: 30%;
-	left: 40%;
 	transition: 500ms linear;
 	&:hover {
 		transform: scale(1.1);
 		animation-timing-function: ease;
-		top: 30%;
-		left: 10%;
 	}
 }
 
@@ -187,5 +206,26 @@ h3 {
 		padding: 1rem;
 		border: 1px solid $border;
 		margin: auto;
+	}
+}
+details {
+	padding: 0.2em;
+	border-radius: 3px;
+	background: #2c3035;
+	summary {
+		font-size: 17px;
+		vertical-align: top;
+		background: #333;
+		color: #fff;
+		border-radius: 3px;
+		padding: 5px 10px;
+		outline: none;
+	}
+	[open] summary {
+		background: $navbg;
+		color: $white;
+		&:before {
+			background-position: -18px 0;
+		}
 	}
 }

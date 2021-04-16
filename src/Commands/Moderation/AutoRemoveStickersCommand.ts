@@ -7,7 +7,7 @@ export default class StickerCommand extends Command {
 			aliases: ["Sticker", "removesticker", "nosticker", "sticcker", "blackliststicker", "sweepsticker", "byesticker", "fucksticker", "nomoresticker", "quitstickers"],
 			category: "Moderation",
 			description: {
-				content: "This is very usefull and removes all those useless stickers that flood the chat and make some peoples devices into a slideshow",
+				content: "Should remove all stickers once finished",
 				usage: "nosticker on",
 				example: ["nosticker on"],
 			},

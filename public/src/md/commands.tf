@@ -25,571 +25,347 @@
 
 {!# Commands
 
+<!--This is a auto generated page to change the contents of this edit the command files themself-->
+
+### FOR A SHORTER LIST VISIT [THIS](/commands/list)
+
 Prefixes: malil, \@malil, \*(can be changed).  
 Messages are cached for 10 seconds and editing them within that time can make a command trigger.
 
-# Fun Commands
+# Fun
 
-## Fedora
-
-### Aliases
-
--   fedora
-
+<details><summary>america</summary>
+### Aliasses
+ * america
+ * ame 
 ### Information
-
--   Fedora something or yourself doesnt work on attachment links only real attachments sorry
-
-### Example
-
--   fedora ^
-
-## America
-
-### Aliases
-
--   america
-
+ * america something or yourself doesnt work on attachment links only real attachments sorry
+</details>
+<details><summary>clap</summary>
+### Aliasses
+ * clap 
 ### Information
-
--   America something or yourself doesnt work on attachment links only real attachments sorry
-
-### Example
-
--   america
-
-## clap
-
-### Aliases
-
--   clap
-
+ * 👏Clap👏on👏the👏text.👏
+</details>
+<details><summary>eightball</summary>
+### Aliasses
+ * eightball
+ * 8ball
+ * ask 
 ### Information
-
--   clap on some text
-
-### Example
-
--   clap oo aa
-
-## 8ball
-
-### Aliases
-
--   eightball, 8ball, ask
-
+ * Find your 8ball
+</details>
+<details><summary>fact</summary>
+### Aliasses
+ * fact 
 ### Information
-
--   Ask your question
-
-### Example
-
--   Ask am i worth the time
--   8ball oo aa oo aa
-
-## iq
-
-### Aliases
-
--   iq
-
+ * Searches the internet for a fact
+</details>
+<details><summary>iq</summary>
+### Aliasses
+ * iq
+ * smart 
 ### Information
-
--   Sends your iq it will stay this way
-
-### Example
-
--   iq ^
-
-## mock
-
-### Aliases
-
--   mock, itriedmybest
-
+ * Find your iq
+</details>
+<details><summary>mock</summary>
+### Aliasses
+ * mock
+ * itriedmybest
+ * mok 
 ### Information
-
--   mock makes your text look like this: HeLo GUyS ThIs
-
-### Example
-
--   mock hello guys this
-
-## uwu
-
-### Aliases
-
--   uwu, owo
-
+ * Find your 8ball
+</details>
+<details><summary>uwu</summary>
+### Aliasses
+ * uwu
+ * owo 
 ### Information
-
--   turn your text into owo language
-
-### Example
-
--   owo hello guys this
-
-# General Commands
-
-## asciify
-
-### Aliases
-
--   asciify, ascii, assci, asccii, asci, aci
-
+ * Uwufy some text
+</details>
+<details><summary>fedora</summary>
+### Aliasses
+ * fedora 
 ### Information
+ * Fedora something or yourself doesnt work on attachment links only real attachments sorry
+</details>
 
--   turn a image into a ascii
+# General
 
-### Example
-
--   ascii
-
-## github
-
-### Aliases
-
--   github
-
+<details><summary>asciify</summary>
+### Aliasses
+ * asciify
+ * ascii
+ * assci
+ * asccii
+ * asci
+ * aci 
 ### Information
-
--   Stalk a github repository and get a message when a new release happens
-
-### Example
-
--   github set
--   github add
--   github list // sends the full list of currently watching repos
--   github delete // deletes the github list be carefull
-
-## ping
-
-### Aliases
-
--   ping
-
+ * Turn a image into a ascii
+</details>
+<details><summary>github</summary>
+### Aliasses
+ * github
+ * stalk 
 ### Information
-
--   send the current ping
-
-### Example
-
--   ping // returns numbers
-
-## userinfo
-
-### Aliases
-
--   u, user, userinfo
-
+ * Watches github releases from a github repo
+</details>
+<details><summary>help</summary>
+### Aliasses
+ * help
+ * h
+ * ls
+ * commands 
 ### Information
-
--   gives some basic info about a user
-
-### Example
-
--   u ^
--   user
--   userinfo @mention
--   user ^
-
-# Info Commands
-
-## avatar
-
-### Aliases
-
--   av, avatar
-
+ * Show available commands on the bot
+</details>
+<details><summary>ping</summary>
+### Aliasses
+ * ping 
 ### Information
-
--   get the users avatar
-
-### Example
-
--   av ^
--   av @mention
--   av
--   avatar ^
--   avatar @mention
--   avatar
-
-## lyrics
-
-### Aliases
-
--   lyrics, lyc
-
+ * Show ping and latency bot
+</details>
+<details><summary>shorten</summary>
+### Aliasses
+ * short
+ * shorten 
 ### Information
-
--   Get the lyrics of a song
-
-### Example
-
--   lyc rapgod
--   lyrics gangster paradise
-
-## server
-
-### Aliases
-
--   server
-
+ * Show short and latency bot
+</details>
+<details><summary>userinfo</summary>
+### Aliasses
+ * userinfo
+ * u
+ * user 
 ### Information
+ * Get some inf about a user
+</details>
 
--   Shows some info about this discord server
+# Info
 
-### Example
-
--   server
-
-## stats
-
-### Aliases
-
--   st, stats
-
+<details><summary>avatar</summary>
+### Aliasses
+ * avatar
+ * av 
 ### Information
-
--   Shows some statistics about the bot
-
-### Example
-
--   st
--   stats
-
-# Moderation Commands
-
-## ban
-
-### Aliases
-
--   ban
-
+ * Display your discord avatar otr other user.
+</details>
+<details><summary>credits</summary>
+### Aliasses
+ * credits
+ * credit 
 ### Information
-
--   ban a user be carefull with this one
-
-### Example
-
--   ban ^
--   ban @mention
--   ban
-
-## lock
-
-### Aliases
-
--   lock, unlock, lockchannel
-
+ * Credits to everyone who has contributed to the bot
+</details>
+<details><summary>lyrics</summary>
+### Aliasses
+ * lyrics
+ * lyc 
 ### Information
-
--   Locks a given channel
-
-### Example
-
--   lock
--   unlock
--   lock #general
-
-## clear
-
-### Aliases
-
--   clear
-
+ * Get the lyrics of a song
+</details>
+<details><summary>server</summary>
+### Aliasses
+ * server 
 ### Information
-
--   clears some chat message limit: 100
-
-### Example
-
--   clear 40
--   clear 60
--   clear 23
-
-## clearwarns
-
-### Aliases
-
--   clearwarns
-
+ * Get some info about the discord server
+</details>
+<details><summary>stats</summary>
+### Aliasses
+ * stats
+ * st
+ * info 
 ### Information
-
--   clear the warns of a user
-
-### Example
-
--   clearwarns ^
--   clearwarns
--   clearwarns @mention
-
-## infractions
-
-### Aliases
-
--   infraction, warns
-
+ * The Statistic of bot
+</details>
+<details><summary>todo</summary>
+### Aliasses
+ * todo 
 ### Information
-
--   shows the mod logs from a user
-
-### Example
-
--   warns ^
--   infractions @mention
-
-## kick
-
-### Aliases
-
--   kick
-
+ * get the todo list of the bot
+</details>
+<details><summary>vote</summary>
+### Aliasses
+ * vote
+ * votes 
 ### Information
+ * get the bot's voting link
+</details>
 
--   kick a user from the server
+# Moderation
 
-### Example
-
--   kick
-
-## logchannel
-
-### Aliases
-
--   logchannel
-
+<details><summary>Sticker</summary>
+### Aliasses
+ * Sticker
+ * removesticker
+ * nosticker
+ * sticcker
+ * blackliststicker
+ * sweepsticker
+ * byesticker
+ * fucksticker
+ * nomoresticker
+ * quitstickers 
 ### Information
-
--   make a channel the log channel
-
-### Example
-
--   logchannel \#general
--   logchannel
-
-## nick
-
-### Aliases
-
--   nick
-
+ * Should remove all stickers once finished
+</details>
+<details><summary>ban</summary>
+### Aliasses
+ * ban
+ * bang 
 ### Information
-
--   change the nickname of a user
-
-### Example
-
--   nick ^ guy
-
-## rules
-
-### Aliases
-
--   rules
-
+ * To ban members on this guild
+</details>
+<details><summary>clear</summary>
+### Aliasses
+ * clear
+ * clean 
 ### Information
-
--   get some instant rules
-
-### Example
-
--   rules 1
--   rules 2
--   rules 4
--   rules 5
-
-## slowmode
-
-### Aliases
-
--   slowmode
-
+ * to clear messages from the chat
+</details>
+<details><summary>clearwarns</summary>
+### Aliasses
+ * clearwarns 
 ### Information
-
--   Add slowmode to the server
-
-### Example
-
--   slowmode 5m
--   slowmode 6h
--   slowmode 2s
--   slowmode 8m
-
-## warn
-
-### Aliases
-
--   warn
-
+ * clear a user's warning
+</details>
+<details><summary>infractions</summary>
+### Aliasses
+ * infractions
+ * warns
+ * warnings 
 ### Information
-
--   warn a user for a given reason
-
-### Example
-
--   warn ^ yes
-
-## mute
-
-### Aliases
-
--   mute, muterole, tempmute
-
+ * check a user's warnings
+</details>
+<details><summary>kick</summary>
+### Aliasses
+ * kick 
 ### Information
-
--   Mute people
-
-### Example
-
--   mute ^ 5s
--   mute tricked 1d
--   mute tricked
-
-## Unmute
-
-### Aliases
-
--   unmute
-
+ * To kick member on this guild
+</details>
+<details><summary>lock</summary>
+### Aliasses
+ * lock
+ * unlock
+ * close
+ * lockchannel
+ * unlockchannel 
 ### Information
-
--   Unmute someone who has been muted
-
-### Example
-
--   unmute tricked
-
-# Utility Commands
-
-## clone
-
-### Aliases
-
--   clone, steal
-
-### information
-
--   steal a emoji
-
-### Example
-
--   clone :weirchamp:
-
-## raw
-
-### Aliases
-
--   raw
-
-### information
-
--   sends the raw content of your message
-
-### Example
-
--   raw :weirdchamp: @user etc
-
-## decode
-
-### Aliases
-
--   decode, decrypt
-
+ * To lock a channel
+</details>
+<details><summary>logchannel</summary>
+### Aliasses
+ * logchannel
+ * modlogs 
 ### Information
-
--   decode some text with hex, utf8, utf16le/ucs2, base64 in it
-
-### Example
-
--   decode 7265656565
--   decode cmVlZWU=
-
-## encode
-
-### Aliases
-
--   encode, encrypt
-
+ * A way to log all actions in the Moderation category requires manage server permissions to use
+</details>
+<details><summary>modonly</summary>
+### Aliasses
+ * modonly 
 ### Information
-
--   encode some text with hex, utf8, utf16le/ucs2, base64 encoding
-
-### Example
-
--   encde reee
--   encrypt reee
-
-## invite
-
-### Aliases
-
--   invite, inv
-
+ * Make a channel modeonly aka only people with manage messages can use commands there
+</details>
+<details><summary>mute</summary>
+### Aliasses
+ * mute
+ * tempmute
+ * muterole
+ * mutedrole 
 ### Information
-
--   Get the link to invite malil to your server
-
-### Example
-
--   inv
--   invite
-
-## poll
-
-### Aliases
-
--   poll
-
+ * Use to mute members
+</details>
+<details><summary>nick</summary>
+### Aliasses
+ * nick
+ * changenick 
 ### Information
-
--   Hold a poll currently there are only yes or no answers
-
-### Example
-
--   poll are cats good?
-
-## prefix
-
-### Aliases
-
--   prefix
-
+ * Change the nickname of a user
+</details>
+<details><summary>rules</summary>
+### Aliasses
+ * rules 
 ### Information
-
--   Get the current prefix of the bot or change it
-
-### Example
-
--   prefix
--   prefix !
--   prefix pog
-
-## quote
-
-### Aliases
-
--   qt quote
-
+ * A easy way to get some rules in your server
+</details>
+<details><summary>slowmode</summary>
+### Aliasses
+ * slowmode
+ * sm 
 ### Information
-
--   Takes your message link and sends the message again
-
-### Example
-
--   qt [https://discord.com/channels/748956745409232945/811240979918618634/813038781653188609](https://discord.com/channels/748956745409232945/811240979918618634/813038781653188609)
--   quote [https://discord.com/channels/748956745409232945/811240979918618634/813002591024840714](https://discord.com/channels/748956745409232945/811240979918618634/813002591024840714)
-
-## snipe
-
-### Aliases
-
--   snipe
-
+ * To change the slowmode of a channel
+</details>
+<details><summary>unmute</summary>
+### Aliasses
+ * unmute 
 ### Information
+ * To unmute a user
+</details>
+<details><summary>warn</summary>
+### Aliasses
+ * warn 
+### Information
+ * To warn a user
+</details>
 
--   Snipe a deleted message
+# Utility
 
-### Example
-
--   snipe
+<details><summary>disable</summary>
+### Aliasses
+ * disable
+ * enable 
+### Information
+ * A command to disable/enable commands.
+</details>
+<details><summary>clone</summary>
+### Aliasses
+ * clone
+ * yoink
+ * steal
+ * emo 
+### Information
+ * Yoinks a emoji from a server
+</details>
+<details><summary>decode</summary>
+### Aliasses
+ * decode 
+### Information
+ * Decode some stuff
+</details>
+<details><summary>encode</summary>
+### Aliasses
+ * encode 
+### Information
+ * Encode your message
+</details>
+<details><summary>invite</summary>
+### Aliasses
+ * invite 
+### Information
+ * Invite malil to your server as well
+</details>
+<details><summary>poll</summary>
+### Aliasses
+ * poll 
+### Information
+ * Share your questions
+</details>
+<details><summary>prefix</summary>
+### Aliasses
+ * prefix 
+### Information
+ * Set the prefix of malil in your server
+</details>
+<details><summary>quote</summary>
+### Aliasses
+ * quote
+ * qt 
+### Information
+ * Quotes a message
+</details>
+<details><summary>raw</summary>
+### Aliasses
+ * raw 
+### Information
+ * Share your questions
+</details>
