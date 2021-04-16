@@ -1,0 +1,19 @@
+.topnav {
+	width: 99%;
+	padding: 0.1rem;
+	border: 0.01rem solid $white;
+	margin: auto;
+	background-color: $navbg;
+	overflow: hidden;
+	a {
+		float: left;
+		color: $white;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+		font-size: 17px;
+		&:hover {
+			color: $background;
+		}
+	}
+}

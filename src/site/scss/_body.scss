@@ -1,0 +1,21 @@
+html,
+body {
+	overflow-x: hidden;
+	margin: 0;
+	height: 100%;
+}
+
+body {
+	font-family: Comfortaa;
+	font-size: 1em;
+	background-color: $background;
+	color: #bfbfc0;
+}
+
+.body {
+	background-color: $body;
+	width: 60%;
+	padding: 1rem;
+	border: 1px solid $border;
+	margin: auto;
+}

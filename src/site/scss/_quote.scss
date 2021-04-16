@@ -1,0 +1,27 @@
+blockquote {
+	display: block;
+	background: #2c3035;
+	padding: 0.01rem 0.1rem 0.1rem 1.7em;
+	margin: 0.1em 0.1em 10px;
+	position: relative;
+	line-height: 1.2;
+	color: #666;
+	text-align: justify;
+	border-left: 6px solid #dbdbdb;
+	::before {
+		font-weight: bold;
+		color: #999;
+		position: absolute;
+		left: 0.1em;
+		top: 0.5em;
+	}
+	::after {
+		content: "";
+	}
+	blockquote a {
+		text-decoration: none;
+		background: #eee;
+		cursor: pointer;
+		padding: 0 0.3em;
+	}
+}

@@ -1,0 +1,38 @@
+.sidenav {
+	border: 1px solid $border;
+	justify-content: center;
+	top: 6em;
+	height: 30em;
+	width: 9%;
+	position: fixed;
+	z-index: 1;
+	background-color: #222428;
+	overflow-x: hidden;
+	padding-top: 0%;
+
+	a {
+		transition: 500ms linear;
+		top: 60%;
+		padding: 3% 10% 5% 4%;
+		text-decoration: none;
+		font-size: 20px;
+		color: #818181;
+		display: block;
+		.main {
+			margin-left: 10%;
+			padding: 0px 3%;
+		}
+		&:hover {
+			transform: scale(1.1);
+			color: #f1f1f1;
+		}
+		@keyframes moveToRight {
+			0% {
+				transform: translateX(0px);
+			}
+			100% {
+				transform: translateX(300px);
+			}
+		}
+	}
+}

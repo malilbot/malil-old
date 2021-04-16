@@ -1,0 +1,21 @@
+details {
+	padding: 0.2em;
+	border-radius: 3px;
+	background: #2c3035;
+	summary {
+		font-size: 17px;
+		vertical-align: top;
+		background: #333;
+		color: #fff;
+		border-radius: 3px;
+		padding: 5px 10px;
+		outline: none;
+	}
+	[open] summary {
+		background: $navbg;
+		color: $white;
+		&:before {
+			background-position: -18px 0;
+		}
+	}
+}

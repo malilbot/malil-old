@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+}
+
+th,
+td {
+  padding: 10px;
+}
+
+th {
+  height: 30px;
+  background-color: #4caf50;
+  color: white;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+  border: 1px black solid;
+}
+
+/*# sourceMappingURL=_tables.css.map */
