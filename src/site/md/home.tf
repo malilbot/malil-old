@@ -31,7 +31,7 @@
 </blockquote>
 <blockquote>
   <h3 id="8ball-command-preview">8ball command preview:</h3>
-  <p><img src="https://i.imgur.com/ezeshay.png" class="preview" /></p>
+  <p><img src="https://i.imgur.com/1trj6DW.png" class="preview" /></p>
 </blockquote>
 	</div>
 	<div class="underline">

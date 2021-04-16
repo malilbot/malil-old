@@ -7,7 +7,7 @@ const showdown = new Showdown.Converter();
 showdown.setFlavor("github");
 const topnav = readFileSync(join(__dirname, "..", "..", "src", "site", "global", "topnav.as"), "utf-8");
 const head = readFileSync(join(__dirname, "..", "..", "src", "site", "global", "head.as"), "utf-8");
-const breef = readFileSync(join(__dirname, "..", "..", "wiki", "Breef.md"), "utf-8");
+const breef = "Malil general-purpose bot with Slash-Commands";
 
 const compiler = new (class Compiler {
 	scssdir: string;
