@@ -7,7 +7,7 @@
 		"buildsite": "node dist/Lib/parseMd.js",
 		"lintfix": "eslint . --ext .ts --fix",
 		"parsemd": "node dist/Lib/parseMd.js",
-		"webdev": "nodemon -e scss,tf --exec \"yarn parsemd\"",
+		"webdev": "nodemon -e scss,tf,as --exec \"yarn parsemd\"",
 		"format": "prettier-eslint --write \"{,!(node_modules)/**/}*.{ts,jsx}\"",
 		"start": "tsc && node ./dist/index.js",
 		"build": "tsc",

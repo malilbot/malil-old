@@ -3,7 +3,6 @@
 
 <head>
 	{{head}}
-	<link rel="stylesheet" href="../css/commands.css" type="text/css" />
 </head>
 
 <body class="text">
@@ -15,8 +14,8 @@
 		<a href="#info-commands">Information</a>
 		<a href="#moderation-commands">Moderation</a>
 		<a href="#utility-commands">Utility</a>
-		<p class="Malil">
-			<img src="../img/nobg.png" />
+		<p >
+			<img src="../img/nobg.png" class="CommandsMalil" />
 		</p>
 	</div>
 	<div class="body">{{input}}</div>

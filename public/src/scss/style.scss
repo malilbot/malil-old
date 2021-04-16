@@ -1,0 +1,171 @@
+$background: hsl(0, 0%, 9%);
+$body: hsl(220, 8%, 15%);
+$border: hsl(0, 0%, 24%);
+$white: hsl(0, 0%, 95%);
+$navborder: hsl(0, 0%, 24%);
+$navbg: hsl(0, 0%, 20%);
+
+.sidenav {
+	justify-content: center;
+	height: 50%;
+	width: 9%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #222428;
+	overflow-x: hidden;
+	padding-top: 0%;
+	top: 10%;
+	a {
+		transition: 500ms linear;
+		top: 60%;
+		padding: 3% 10% 5% 4%;
+		text-decoration: none;
+		font-size: 20px;
+		color: #818181;
+		display: block;
+		.main {
+			margin-left: 10%;
+			padding: 0px 3%;
+		}
+		&:hover {
+			transform: scale(1.1);
+			color: #f1f1f1;
+		}
+		@keyframes moveToRight {
+			0% {
+				transform: translateX(0px);
+			}
+			100% {
+				transform: translateX(300px);
+			}
+		}
+	}
+}
+
+body {
+	font-family: Comfortaa;
+	font-size: 1em;
+	background-color: $background;
+	color: #bfbfc0;
+}
+
+.body {
+	background-color: $body;
+	width: 60%;
+	padding: 1rem;
+	border: 1px solid $border;
+	margin: auto;
+}
+
+blockquote {
+	display: block;
+	background: #2c3035;
+	padding: 0.01rem 0.1rem 0.1rem 1.7em;
+	margin: 0.1em 0.1em 10px;
+	position: relative;
+	line-height: 1.2;
+	color: #666;
+	text-align: justify;
+	border-left: 6px solid #dbdbdb;
+	::before {
+		font-weight: bold;
+		color: #999;
+		position: absolute;
+		left: 0.1em;
+		top: 0.5em;
+	}
+	::after {
+		content: "";
+	}
+	blockquote a {
+		text-decoration: none;
+		background: #eee;
+		cursor: pointer;
+		padding: 0 0.3em;
+	}
+}
+
+a {
+	color: green;
+	&:link {
+		text-decoration: none;
+	}
+	&:visited {
+		text-decoration: none;
+		color: hsl(147, 59%, 32%);
+	}
+	&:hover {
+		text-decoration: underline;
+	}
+	&:active {
+		text-decoration: underline;
+	}
+}
+
+h2 {
+	color: #46b5d1;
+}
+
+h1 {
+	color: #3282b8;
+}
+h3 {
+	color: #515585;
+}
+
+.topnav {
+	width: 100%;
+	padding: 0.1rem;
+	border: 0.01rem solid $white;
+	margin: auto;
+	background-color: $navbg;
+	overflow: hidden;
+	a {
+		float: left;
+		color: $white;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+		font-size: 17px;
+		&:hover {
+			color: $background;
+		}
+	}
+}
+
+.CommandsMalil {
+	max-width: 80%;
+	height: auto;
+	transition: 500ms linear;
+	&:hover {
+		animation: moveToRight 10s ease-in-out;
+		animation-timing-function: ease;
+	}
+}
+
+.HomeMalil {
+	position: relative;
+	width: 150px;
+	top: 30%;
+	left: 40%;
+	transition: 500ms linear;
+	&:hover {
+		transform: scale(1.1);
+		animation-timing-function: ease;
+		top: 30%;
+		left: 10%;
+	}
+}
+
+.preview {
+	max-width: 80%;
+	height: auto;
+	&:hover {
+		transform: scale(1.1);
+		animation-timing-function: ease;
+		top: 30%;
+		left: 10%;
+	}
+}
