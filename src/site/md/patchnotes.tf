@@ -11,7 +11,24 @@
 </body>
 
 </html>
-{!### 4-10
+{!
+### 16-10
+
+> add /8ball command
+
+### 12-10
+
+> add /youtube command
+
+### 10-10
+
+> Added slash commands
+
+### 7-10
+
+> lots of website improvements
+
+### 4-10
 
 > long time since last patch but there have been alot of changes to the backend and a nicer website is here
 
