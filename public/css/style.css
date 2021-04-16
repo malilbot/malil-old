@@ -154,6 +154,7 @@ h3 {
 }
 
 .preview {
+  transition: 500ms linear;
   max-width: 80%;
   height: auto;
 }
@@ -162,6 +163,20 @@ h3 {
   animation-timing-function: ease;
   top: 30%;
   left: 10%;
+}
+
+@media (max-width: 650px) {
+  .sidenav {
+    opacity: 0;
+  }
+
+  .body {
+    background-color: #232529;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #3d3d3d;
+    margin: auto;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
