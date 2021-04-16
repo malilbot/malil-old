@@ -4,6 +4,7 @@ rpc.ts
 #ENV FILE
 .env
 data
+wiki/
 #FINISH FILE
 finish
 dist
