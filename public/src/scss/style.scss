@@ -5,18 +5,25 @@ $white: hsl(0, 0%, 95%);
 $navborder: hsl(0, 0%, 24%);
 $navbg: hsl(0, 0%, 20%);
 
+html,
+body {
+	overflow-x: hidden;
+	margin: 0;
+	height: 100%;
+}
+
 .sidenav {
+	border: 1px solid $border;
 	justify-content: center;
-	height: 50%;
+	top: 6em;
+	height: 30em;
 	width: 9%;
 	position: fixed;
 	z-index: 1;
-	top: 0;
-	left: 0;
 	background-color: #222428;
 	overflow-x: hidden;
 	padding-top: 0%;
-	top: 10%;
+
 	a {
 		transition: 500ms linear;
 		top: 60%;
@@ -116,7 +123,7 @@ h3 {
 }
 
 .topnav {
-	width: 100%;
+	width: 99%;
 	padding: 0.1rem;
 	border: 0.01rem solid $white;
 	margin: auto;
