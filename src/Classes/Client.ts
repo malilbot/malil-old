@@ -100,6 +100,9 @@ export default class Client extends AkairoClient {
 					},
 				],
 			},
+			allowedMentions: {
+				parse: ["users"],
+			},
 		});
 		this.settings = Settings;
 		this.consts = consts;

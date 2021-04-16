@@ -13,6 +13,7 @@
 </html>
 {!# Malil Commands in short
 <!--This is a auto generated page to change the contents of this edit the command files themself-->
+
 | Fun       | description                                                                               |
 | :-------- | :---------------------------------------------------------------------------------------- |
 | america   | america something or yourself doesnt work on attachment links only real attachments sorry |
@@ -24,6 +25,8 @@
 | uwu       | Uwufy some text                                                                           |
 | fedora    | Fedora something or yourself doesnt work on attachment links only real attachments sorry  |
 
+<!--This is a auto generated page to change the contents of this edit the command files themself-->
+
 | General  | description                                |
 | :------- | :----------------------------------------- |
 | asciify  | Turn a image into a ascii                  |
@@ -32,6 +35,8 @@
 | ping     | Show ping and latency bot                  |
 | shorten  | Show short and latency bot                 |
 | userinfo | Get some inf about a user                  |
+
+<!--This is a auto generated page to change the contents of this edit the command files themself-->
 
 | Info    | description                                        |
 | :------ | :------------------------------------------------- |
@@ -42,6 +47,8 @@
 | stats   | The Statistic of bot                               |
 | todo    | get the todo list of the bot                       |
 | vote    | get the bot's voting link                          |
+
+<!--This is a auto generated page to change the contents of this edit the command files themself-->
 
 | Moderation  | description                                                                                   |
 | :---------- | :-------------------------------------------------------------------------------------------- |
@@ -61,6 +68,8 @@
 | unmute      | To unmute a user                                                                              |
 | warn        | To warn a user                                                                                |
 
+<!--This is a auto generated page to change the contents of this edit the command files themself-->
+
 | Utility | description                            |
 | :------ | :------------------------------------- |
 | disable | A command to disable/enable commands.  |
@@ -72,3 +81,17 @@
 | prefix  | Set the prefix of malil in your server |
 | quote   | Quotes a message                       |
 | raw     | Share your questions                   |
+
+<!--This is a auto generated page to change the contents of this edit the command files themself-->
+
+| Slash   | description                                   |
+| :------ | :-------------------------------------------- |
+| 8ball   | Ask the magic 8ball                           |
+| avatar  | Sends the avatar of a user                    |
+| fedora  | fedora a user's avatar                        |
+| help    | Sends the commands malil has                  |
+| iqq     | Send your actual iq                           |
+| lyrics  | gets the lyrics of a song                     |
+| stats   | Gives some stats about the bot                |
+| vote    | Sends the links you can use to vote for malil |
+| youtube | start a youtube together session              |

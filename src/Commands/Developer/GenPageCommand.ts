@@ -1,7 +1,6 @@
 import { Command } from "discord-akairo";
-import { MessageEmbed, Message, MessageAttachment } from "discord.js";
+import { Message } from "discord.js";
 import { hst } from "../../Lib/Utils";
-import { exec } from "child_process";
 const prettier = require("prettier");
 export default class GenPageCommand extends Command {
 	public constructor() {
@@ -37,6 +36,7 @@ export default class GenPageCommand extends Command {
 					category
 						.filter((cmd) => cmd.aliases.length > 0)
 						.map((cmd) => {
+							file += "\n<!--This is a auto generated page to change the contents of this edit the command files themself-->";
 							file += "<details>";
 							file += `<summary>${cmd}</summary>\n`;
 							file += `### Aliasses\n * ${cmd.aliases.join("\n * ")} \n`;
@@ -49,6 +49,7 @@ export default class GenPageCommand extends Command {
 			for (const category of this.handler.categories.values()) {
 				if (["default"].includes(category.id)) continue;
 				if (category.id !== "Developer" && category.id !== "Custom") {
+					file += "\n<!--This is a auto generated page to change the contents of this edit the command files themself-->";
 					file += "\n";
 					file += `| ${category.id} | description |\n`;
 					file += "|:--------|:-------|\n";
@@ -58,6 +59,14 @@ export default class GenPageCommand extends Command {
 							file += `| ${cmd} | ${cmd.description.content} |\n`;
 						});
 				}
+			}
+			file += "\n<!--This is a auto generated page to change the contents of this edit the command files themself-->";
+			file += "\n";
+			file += `| Slash | description |\n`;
+			file += "|:--------|:-------|\n";
+			//@ts-ignore
+			for (const module of this.client.slashHandler.modules) {
+				file += `| ${module[0]} | ${module[1].data.description} |\n`;
 			}
 		}
 

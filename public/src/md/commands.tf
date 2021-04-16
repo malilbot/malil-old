@@ -9,11 +9,11 @@
 	{{topnav}}
 	<div class="sidenav">
 		<h2>Table of Contents</h2>
-		<a href="#fun-commands">Fun</a>
-		<a href="#general-commands">General</a>
-		<a href="#info-commands">Information</a>
-		<a href="#moderation-commands">Moderation</a>
-		<a href="#utility-commands">Utility</a>
+		<a href="#fun">Fun</a>
+		<a href="#general">General</a>
+		<a href="#info">Information</a>
+		<a href="#moderation">Moderation</a>
+		<a href="#utility">Utility</a>
 		<p >
 			<img src="../img/nobg.png" class="CommandsMalil" />
 		</p>
