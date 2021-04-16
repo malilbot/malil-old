@@ -5,8 +5,8 @@ import { green, blue, cyan } from "chalk";
 import Showdown from "showdown";
 const showdown = new Showdown.Converter();
 showdown.setFlavor("github");
-const topnav = readFileSync(join(__dirname, "..", "..", "public", "src", "global", "topnav.as"), "utf-8");
-const head = readFileSync(join(__dirname, "..", "..", "public", "src", "global", "head.as"), "utf-8");
+const topnav = readFileSync(join(__dirname, "..", "..", "src", "site", "global", "topnav.as"), "utf-8");
+const head = readFileSync(join(__dirname, "..", "..", "src", "site", "global", "head.as"), "utf-8");
 const breef = readFileSync(join(__dirname, "..", "..", "wiki", "Breef.md"), "utf-8");
 
 const compiler = new (class Compiler {
@@ -59,8 +59,8 @@ const compiler = new (class Compiler {
 		exec("npx prettier-eslint --write ./public/**/**", () => console.timeEnd(green("Formatted")));
 	}
 })({
-	scss: join(__dirname, "..", "..", "public", "src", "scss"),
-	tf: join(__dirname, "..", "..", "public", "src", "md"),
+	scss: join(__dirname, "..", "..", "src", "site", "scss"),
+	tf: join(__dirname, "..", "..", "src", "site", "md"),
 	css: join(__dirname, "..", "..", "public", "css"),
 	html: join(__dirname, "..", "..", "public", "html"),
 });
