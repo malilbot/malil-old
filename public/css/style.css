@@ -1,229 +1,229 @@
 @import url("https://fonts.googleapis.com/css?family=Comfortaa");
 .sidenav {
-  border: 1px solid #3d3d3d;
-  justify-content: center;
-  top: 6em;
-  height: 30em;
-  width: 9%;
-  position: fixed;
-  z-index: 1;
-  background-color: #222428;
-  overflow-x: hidden;
-  padding-top: 0%;
+	border: 1px solid #3d3d3d;
+	justify-content: center;
+	top: 6em;
+	height: 30em;
+	width: 9%;
+	position: fixed;
+	z-index: 1;
+	background-color: #222428;
+	overflow-x: hidden;
+	padding-top: 0%;
 }
 .sidenav a {
-  transition: 500ms linear;
-  top: 60%;
-  padding: 3% 10% 5% 4%;
-  text-decoration: none;
-  font-size: 20px;
-  color: #818181;
-  display: block;
+	transition: 500ms linear;
+	top: 60%;
+	padding: 3% 10% 5% 4%;
+	text-decoration: none;
+	font-size: 20px;
+	color: #818181;
+	display: block;
 }
 .sidenav a .main {
-  margin-left: 10%;
-  padding: 0px 3%;
+	margin-left: 10%;
+	padding: 0px 3%;
 }
 .sidenav a:hover {
-  transform: scale(1.1);
-  color: #f1f1f1;
+	transform: scale(1.1);
+	color: #f1f1f1;
 }
 @keyframes moveToRight {
-  0% {
-    transform: translateX(0px);
-  }
-  100% {
-    transform: translateX(300px);
-  }
+	0% {
+		transform: translateX(0px);
+	}
+	100% {
+		transform: translateX(300px);
+	}
 }
 
 html,
 body {
-  overflow-x: hidden;
-  margin: 0;
-  height: 100%;
+	overflow-x: hidden;
+	margin: 0;
+	height: 100%;
 }
 
 body {
-  font-family: Comfortaa;
-  font-size: 1em;
-  background-color: #171717;
-  color: #bfbfc0;
+	font-family: Comfortaa;
+	font-size: 1em;
+	background-color: #171717;
+	color: #bfbfc0;
 }
 
 .body {
-  background-color: #232529;
-  width: 60%;
-  padding: 1rem;
-  border: 1px solid #3d3d3d;
-  margin: auto;
+	background-color: #232529;
+	width: 60%;
+	padding: 1rem;
+	border: 1px solid #3d3d3d;
+	margin: auto;
 }
 
 blockquote {
-  display: block;
-  background: #2c3035;
-  padding: 0.01rem 0.1rem 0.1rem 1.7em;
-  margin: 0.1em 0.1em 10px;
-  position: relative;
-  line-height: 1.2;
-  color: #666;
-  text-align: justify;
-  border-left: 6px solid #dbdbdb;
+	display: block;
+	background: #2c3035;
+	padding: 0.01rem 0.1rem 0.1rem 1.7em;
+	margin: 0.1em 0.1em 10px;
+	position: relative;
+	line-height: 1.2;
+	color: #666;
+	text-align: justify;
+	border-left: 6px solid #dbdbdb;
 }
 blockquote ::before {
-  font-weight: bold;
-  color: #999;
-  position: absolute;
-  left: 0.1em;
-  top: 0.5em;
+	font-weight: bold;
+	color: #999;
+	position: absolute;
+	left: 0.1em;
+	top: 0.5em;
 }
 blockquote ::after {
-  content: "";
+	content: "";
 }
 blockquote blockquote a {
-  text-decoration: none;
-  background: #eee;
-  cursor: pointer;
-  padding: 0 0.3em;
+	text-decoration: none;
+	background: #eee;
+	cursor: pointer;
+	padding: 0 0.3em;
 }
 
 a {
-  color: green;
+	color: green;
 }
 a:link {
-  text-decoration: none;
+	text-decoration: none;
 }
 a:visited {
-  text-decoration: none;
-  color: #21824d;
+	text-decoration: none;
+	color: #21824d;
 }
 a:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 a:active {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 h2 {
-  color: #46b5d1;
+	color: #46b5d1;
 }
 
 h1 {
-  color: #3282b8;
+	color: #3282b8;
 }
 
 h3 {
-  color: #515585;
+	color: #515585;
 }
 
 .topnav {
-  width: 99%;
-  padding: 0.1rem;
-  border: 0.01rem solid #f2f2f2;
-  margin: auto;
-  background-color: #333333;
-  overflow: hidden;
+	width: 99%;
+	padding: 0.1rem;
+	border: 0.01rem solid #f2f2f2;
+	margin: auto;
+	background-color: #333333;
+	overflow: hidden;
 }
 .topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
 }
 .topnav a:hover {
-  color: #171717;
+	color: #171717;
 }
 
 table {
-  width: 100%;
+	width: 100%;
 }
 
 th,
 td {
-  padding: 10px;
+	padding: 10px;
 }
 
 th {
-  height: 30px;
-  background-color: #4caf50;
-  color: white;
+	height: 30px;
+	background-color: #4caf50;
+	color: white;
 }
 
 table,
 th,
 td {
-  border-collapse: collapse;
-  border: 1px black solid;
+	border-collapse: collapse;
+	border: 1px black solid;
 }
 
 .CommandsMalil {
-  max-width: 80%;
-  height: auto;
-  transition: 500ms linear;
+	max-width: 80%;
+	height: auto;
+	transition: 500ms linear;
 }
 .CommandsMalil:hover {
-  animation: moveToRight 10s ease-in-out;
-  animation-timing-function: ease;
+	animation: moveToRight 10s ease-in-out;
+	animation-timing-function: ease;
 }
 
 .HomeMalil {
-  position: relative;
-  width: 150px;
-  top: 30%;
-  transition: 500ms linear;
+	position: relative;
+	width: 150px;
+	top: 30%;
+	transition: 500ms linear;
 }
 .HomeMalil:hover {
-  transform: scale(1.1);
-  animation-timing-function: ease;
+	transform: scale(1.1);
+	animation-timing-function: ease;
 }
 
 .preview {
-  transition: 500ms linear;
-  max-width: 80%;
-  height: auto;
+	transition: 500ms linear;
+	max-width: 80%;
+	height: auto;
 }
 .preview:hover {
-  transform: scale(1.1);
-  animation-timing-function: ease;
-  top: 30%;
-  left: 10%;
+	transform: scale(1.1);
+	animation-timing-function: ease;
+	top: 30%;
+	left: 10%;
 }
 
 @media (max-width: 650px) {
-  .sidenav {
-    opacity: 0;
-  }
+	.sidenav {
+		opacity: 0;
+	}
 
-  .body {
-    background-color: #232529;
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid #3d3d3d;
-    margin: auto;
-  }
+	.body {
+		background-color: #232529;
+		width: 100%;
+		padding: 1rem;
+		border: 1px solid #3d3d3d;
+		margin: auto;
+	}
 }
 details {
-  padding: 0.2em;
-  border-radius: 3px;
-  background: #2c3035;
+	padding: 0.2em;
+	border-radius: 3px;
+	background: #2c3035;
 }
 details summary {
-  font-size: 17px;
-  vertical-align: top;
-  background: #333;
-  color: #fff;
-  border-radius: 3px;
-  padding: 5px 10px;
-  outline: none;
+	font-size: 17px;
+	vertical-align: top;
+	background: #333;
+	color: #fff;
+	border-radius: 3px;
+	padding: 5px 10px;
+	outline: none;
 }
 details [open] summary {
-  background: #333333;
-  color: #f2f2f2;
+	background: #333333;
+	color: #f2f2f2;
 }
 details [open] summary:before {
-  background-position: -18px 0;
+	background-position: -18px 0;
 }
 
 /*# sourceMappingURL=style.css.map */
