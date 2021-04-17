@@ -10,6 +10,7 @@ finish
 dist
 code/*
 svelte/*
+website/*
 src/tasks/rpc.ts
 #LOGS FILE
 Logs
