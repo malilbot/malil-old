@@ -28,7 +28,7 @@ export default class patCommand extends Command {
 
 	async exec(message: CommandInteraction) {
 		let image: string;
-		if (message.options[0].name == "ign") {
+		if (message.options[0]?.name == "ign") {
 			const res = await (await c("https://api.mojang.com/users/profiles/minecraft/" + message.options[0].value, "GET").send()).json();
 			if (res !== null) {
 				image = `https://crafatar.com/renders/head/${res.id}`;
@@ -36,7 +36,7 @@ export default class patCommand extends Command {
 				message.reply("User not found");
 			}
 		} else {
-			let user = message.options[0]?.user ?? message.user;
+			let user = message.options[0]?.user || message.user;
 			image = user.displayAvatarURL({ dynamic: false, format: "png" });
 		}
 		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image), name: `patted.gif` }] });
