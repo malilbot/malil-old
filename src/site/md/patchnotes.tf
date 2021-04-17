@@ -12,19 +12,23 @@
 
 </html>
 {!
-### 16-10
+### 4-16
+
+> pat command both slash and normal
+
+### 4-16
 
 > add /8ball command
 
-### 12-10
+### 4-12
 
 > add /youtube command
 
-### 10-10
+### 4-10
 
 > Added slash commands
 
-### 7-10
+### 4-7
 
 > lots of website improvements
 
