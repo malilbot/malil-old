@@ -118,6 +118,15 @@ h3 {
 	color: #515585;
 }
 
+.footer {
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: red;
+	color: white;
+	text-align: left;
+}
+
 .topnav {
 	width: 99%;
 	padding: 0.1rem;
