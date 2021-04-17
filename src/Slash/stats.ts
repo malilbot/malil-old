@@ -32,7 +32,6 @@ export default class statsCommand extends Command {
 					`**● Creation Date:** ${utc(this.client.user.createdTimestamp).format("Do MMMM YYYY HH:mm:ss")}`,
 					`**● Bot Uptime:** ${ms(process.uptime() * 1000, { long: true })}`,
 					`**● Owner:** Tricked#3777`,
-					`**● Support:** [Support server](https://discord.gg/mY8zTARu4g)`,
 					`**● Commands ran:** ${this.client.gp.get("commands")}`,
 					`**● Node.js:** ${process.version}`,
 					`**● Akairo:** ${akairov}`,
@@ -50,7 +49,7 @@ export default class statsCommand extends Command {
 					`\u3000 Total: ${ut.formatBytes(process.memoryUsage().heapTotal)}`,
 					`\u3000 Used: ${ut.formatBytes(process.memoryUsage().heapUsed)}`,
 					"\u200b",
-					`[credits](https://github.com/SkyBlockDev/malil-akairo/blob/main/CREDITS.md)`,
+					`[website](https://malilbot.github.io/) | [credits](https://github.com/SkyBlockDev/malil-akairo/blob/main/CREDITS.md) | [Support server](https://discord.gg/mY8zTARu4g)`,
 				])
 		);
 	}

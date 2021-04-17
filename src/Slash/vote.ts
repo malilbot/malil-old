@@ -17,7 +17,6 @@ export default class voteCommand extends Command {
 				.setThumbnail(this.client.user.avatarURL())
 				.setTimestamp()
 				.setColor(this.client.consts.colors.default)
-				.setDescription("Thank you for choosing malil")
 				.setDescription(
 					"[topgg](https://top.gg/bot/749020331187896410/vote), (increases iq)\n" +
 						"[discordbotlist.com](https://discordbotlist.com/bots/malil/upvote),\n" +
