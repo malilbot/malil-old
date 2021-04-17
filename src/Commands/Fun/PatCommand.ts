@@ -46,6 +46,6 @@ export default class PatCommand extends Command {
 			image = (member as GuildMember).user.displayAvatarURL({ dynamic: false, format: "png" });
 		}
 
-		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image), name: `patted.gif` }] });
+		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image || message.author.avatarURL({ dynamic: false, format: "png" })), name: `patted.gif` }] });
 	}
 }

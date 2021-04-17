@@ -3,6 +3,7 @@ import { Command, CommandHandler, InhibitorHandler, ListenerHandler } from "disc
 import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
 import { credentials, Settings, consts } from "../settings";
 import { FastifyRequestInterface } from "fastify";
+import Slashhandler from "../Classes/SlashHandler";
 import { join } from "path";
 import centra from "centra";
 import Enmap from "enmap";
@@ -660,99 +661,60 @@ export async function FetchValues(client: InterfaceClient): Promise<{ guilds: nu
  */
 export function readyLog(client: InterfaceClient): void {
 	const { log } = console;
-	const num = Math.floor(Math.random() * 2 + 1);
 
-	const notes = "Nice stolen aci",
-		mm1 = String.raw`          /           `,
-		mm2 = String.raw`       ${sec("/╬")}▓           `,
-		mm3 = String.raw`     ${sec("/▓▓")}╢            `,
-		mm4 = String.raw`   [${sec("▓▓")}▓╣/            `,
-		mm5 = String.raw`   [╢╢╣▓             `,
-		mm6 = String.raw`    %,╚╣╣@\          `,
-		mm7 = String.raw`      #,╙▓▓▓\╙N      `,
-		mm8 = String.raw`       '╙ \▓▓▓╖╙╦    `,
-		mm9 = String.raw`            \@╣▓╗╢%  `,
-		m10 = String.raw`               ▓╣╢╢] `,
-		m11 = String.raw`              /╣▓${sec("▓▓")}] `,
-		m12 = String.raw`              ╢${sec("▓▓/")}   `,
-		m13 = String.raw`             ▓${sec("╬/")}     `,
-		m14 = String.raw`            /        `;
-	notes;
+	const spaces = 20;
 
-	const anote = "Yeah big mess",
-		ll1 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍ ",
-		ll2 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
-		ll3 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
-		ll4 = "⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
-		ll5 = "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍",
-		ll6 = "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍",
-		ll7 = "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍",
-		ll8 = "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍",
-		ll9 = "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍",
-		l10 = "⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍",
-		l11 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
-		l12 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
-		l13 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍" + fourth("᳃᳃") + "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍",
-		l14 = "⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍⁍";
-	anote;
+	const array = [
+		//handlers
+		fixspace(third("Commands"), spaces) + split + main(fixspace(client.commandHandler.modules.size, spaces)),
+		fixspace(third("Slash"), spaces) + split + main(fixspace(client.slashHandler.modules.size, spaces)),
+		fixspace(third("listeners"), spaces) + split + main(fixspace(client.listenerHandler.modules.size, spaces)),
+		fixspace(third("Inhibitors"), spaces) + split + main(fixspace(client.inhibitorHandler.modules.size, spaces)),
+		//bot stats
+		fixspace(third("Guilds"), spaces) + split + main(fixspace(client.guilds.cache.size, spaces)),
+		fixspace(third("Channels"), spaces) +
+			split +
+			main(
+				fixspace(
+					client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0),
+					spaces
+				)
+			),
+		fixspace(third("Members"), spaces) +
+			split +
+			main(
+				fixspace(
+					client.guilds.cache.reduce((a, b) => a + b.memberCount, 0),
+					spaces
+				)
+			),
+		// statuses
+		fixspace(third("rpc"), spaces) + split + main(fixspace(`${Settings.rpc ? "" : ""}`, spaces)),
+		fixspace(third("dev"), spaces) + split + main(fixspace(`${Settings.dev ? "" : ""}`, spaces)),
+		fixspace(third("site"), spaces) + split + main(fixspace(`${Settings.site ? "" : ""}`, spaces)),
+		fixspace(third("verbose"), spaces) + split + main(fixspace(`${Settings.verbose ? "" : ""}`, spaces)),
+		fixspace(third("polling"), spaces) + split + main(fixspace(`${Settings.polling ? "" : ""}`, spaces)),
+	];
 
+	console.log(array.join("\n"));
 	const q1 = `1.0.0 [ ${client.user.username} ]`,
 		q2 = 5,
-		a1 = fixspace(client.commandHandler.modules.size, q2),
-		a2 = fixspace(client.listenerHandler.modules.size, q2),
-		a3 = fixspace(client.inhibitorHandler.modules.size, q2),
-		a4 = fixspace(client.guilds.cache.size, q2),
+		a1 = fixspace(client.commandHandler.modules.size, spaces),
+		a2 = fixspace(client.listenerHandler.modules.size, spaces),
+		a3 = fixspace(client.inhibitorHandler.modules.size, spaces),
+		a4 = fixspace(client.guilds.cache.size, spaces),
 		a5 = fixspace(
 			client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0),
-			q2
+			spaces
 		),
 		a6 = fixspace(
 			client.guilds.cache.reduce((a, b) => a + b.memberCount, 0),
-			q2
+			spaces
 		),
-		a7 = fixspace(client.options.shardCount, q2);
-	const note = "yeah this is a mess",
-		b1 = " ███╗   ███╗ █████╗ ██╗     ██╗██╗",
-		b2 = " ████╗ ████║██╔══██╗██║     ██║██║",
-		b3 = " ██╔████╔██║███████║██║     ██║██║",
-		b4 = " ██║╚██╔╝██║██╔══██║██║     ██║██║",
-		b5 = " ██║ ╚═╝ ██║██║  ██║███████╗██║███████╗",
-		b6 = " ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝╚══════╝";
-	note;
-	if (num == 2) {
-		log(main(ll1) + fourth(q1));
-		log(main(ll2) + sec(b1));
-		log(main(ll3) + sec(b2));
-		log(main(ll4) + sec(b3));
-		log(main(ll5) + sec(b4));
-		log(main(ll6) + sec(b5));
-		log(main(ll7) + sec(b6));
-
-		log(main(ll8), split, third(a1), split, third("Commands"));
-		log(main(ll9), split, third(a2), split, third("Listeners"));
-		log(main(l10), split, third(a3), split, third("Inhibitors"));
-		log(main(l11), split, third(a4), split, third("Guilds"));
-		log(main(l12), split, third(a5), split, third("Channels"));
-		log(main(l13), split, third(a6), split, third("Users"));
-		log(main(l14), split, third(a7), split, third("Shards"));
-	} else {
-		log(main(mm1) + fourth(q1));
-		log(main(mm2) + sec(b1));
-		log(main(mm3) + sec(b2));
-		log(main(mm4) + sec(b3));
-		log(main(mm5) + sec(b4));
-		log(main(mm6) + sec(b5));
-		log(main(mm7) + sec(b6));
-
-		log(main(mm8), split, third(a1), split, third("Commands"));
-		log(main(mm9), split, third(a2), split, third("Listeners"));
-		log(main(m10), split, third(a3), split, third("Inhibitors"));
-		log(main(m11), split, third(a4), split, third("Guilds"));
-		log(main(m12), split, third(a5), split, third("Channels"));
-		log(main(m13), split, third(a6), split, third("Users"));
-		log(main(m14), split, third(a7), split, third("Shards"));
-	}
-	log(split, split, main(client.inhibitorHandler.modules.size), split, third("Slash Commands"));
+		a7 = fixspace(client.options.shardCount, spaces),
+		a8 = fixspace(client.options.shardCount, spaces),
+		a9 = fixspace(client.options.shardCount, spaces),
+		a10 = fixspace(client.options.shardCount, spaces);
 }
 /**
  *
@@ -804,6 +766,7 @@ export class InterfaceClient extends Client {
 	public logchannel: Enmap;
 	public infractions: Enmap;
 	public logger: typeof logger;
+	public slashHandler?: Slashhandler;
 	public commandHandler?: CommandHandler;
 	public listenerHandler?: ListenerHandler;
 	public inhibitorHandler?: InhibitorHandler;
