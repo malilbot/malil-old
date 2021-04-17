@@ -6,6 +6,8 @@ $navborder: hsl(0, 0%, 24%);
 $navbg: hsl(0, 0%, 20%);
 @import url("https://fonts.googleapis.com/css?family=Comfortaa");
 
+@import "styles/device";
+
 @import "styles/sidenav";
 
 @import "styles/body";
@@ -23,7 +25,5 @@ $navbg: hsl(0, 0%, 20%);
 @import "styles/tables";
 
 @import "styles/image";
-
-@import "styles/device";
 
 @import "styles/details";

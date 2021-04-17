@@ -1,3 +1,8 @@
+:root {
+	--gradient: linear-gradient(45deg, hsl(0, 0%, 11%), hsl(0, 1%, 13%), hsl(0, 2%, 16%), hsl(0, 1%, 13%), hsl(0, 0%, 11%));
+}
+//45deg, $background, hsl(0, 0%, 11%), hsl(0, 1%, 13%), hsl(0, 2%, 16%), hsl(0, 3%, 19%)
+
 html,
 body {
 	overflow-x: hidden;
@@ -10,12 +15,14 @@ body {
 	scroll-behavior: smooth;
 	font-family: Comfortaa;
 	font-size: 1em;
-	background-color: $background;
+	background-size: 300%;
+	background-image: var(--gradient);
+	animation: bg-animation 200s infinite;
 	color: #bfbfc0;
 }
 
 .body {
-	background-color: $body;
+	background-color: hsl(220, 8%, 15%);
 	width: 60%;
 	padding: 1rem;
 	border: 1px solid $border;
