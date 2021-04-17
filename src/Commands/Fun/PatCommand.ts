@@ -6,7 +6,7 @@ import petPetGif from "pet-pet-gif";
 export default class PatCommand extends Command {
 	public constructor() {
 		super("pat", {
-			aliases: ["pat"],
+			aliases: ["pat", "patpat", "pet"],
 			category: "Fun",
 			quoted: true,
 			args: [
