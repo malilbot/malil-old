@@ -13,7 +13,6 @@ export default class PatCommand extends Command {
 				{
 					id: "member",
 					type: async (message, content) => {
-						console.log(content);
 						let member = await GetMember(message, content);
 						if (member) return member;
 						else return content;
@@ -34,8 +33,8 @@ export default class PatCommand extends Command {
 
 	public async exec(message: Message, { member }: { member: string | GuildMember }): Promise<Message> {
 		let image: string;
-		console.log(member);
-		if (typeof member == "string") {
+		if (!member) image = message.author.avatarURL({ dynamic: false, format: "png" });
+		else if (typeof member == "string") {
 			const res = await (await c("https://api.mojang.com/users/profiles/minecraft/" + member, "GET").send()).json();
 			if (res !== null) {
 				image = `https://crafatar.com/renders/head/${res.id}`;
@@ -43,9 +42,13 @@ export default class PatCommand extends Command {
 				return message.reply("User not found");
 			}
 		} else {
-			image = (member as GuildMember).user.displayAvatarURL({ dynamic: false, format: "png" });
+			if (member) {
+				image = (member as GuildMember)?.user?.displayAvatarURL({ dynamic: false, format: "png" });
+			} else {
+				return message.reply("User not found");
+			}
 		}
 
-		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image || message.author.avatarURL({ dynamic: false, format: "png" })), name: `patted.gif` }] });
+		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image), name: `patted.gif` }] });
 	}
 }
