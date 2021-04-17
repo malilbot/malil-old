@@ -23,14 +23,13 @@ module.exports = {
 			const totalMembers = await client.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)').then(member => member.reduce((acc, memberCount) => acc + memberCount, 0))
 			// prettier-ignore
 			const totalChannels = await client.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.channels.cache.size, 0)').then(channel => channel.reduce((acc, channelCount) => acc + channelCount, 0))
-			// prettier-ignore
 			if (client.shard.ids[0] == 0) {
-				if(CurStats == [totalGuilds, totalChannels]) return
-				CurStats == [totalGuilds, totalChannels]
-                client.logger.verbose(main(`[ TOTAL CHANNELS ] ${sec(totalChannels)}`))
-                client.logger.verbose(main(`[ TOTAL MEMBERS  ] ${sec(totalMembers)}`))
-                client.logger.verbose(main(`[ TOTAL GUILS    ] ${sec(totalGuilds)}`))
-            }
+				if (CurStats == [totalGuilds, totalChannels]) return;
+				CurStats == [totalGuilds, totalChannels];
+				client.logger.verbose(main(`[ TOTAL CHANNELS ] ${sec(totalChannels)}`));
+				client.logger.verbose(main(`[ TOTAL MEMBERS  ] ${sec(totalMembers)}`));
+				client.logger.verbose(main(`[ TOTAL GUILS    ] ${sec(totalGuilds)}`));
+			}
 			client.logger.verbose(main(`[ CHANNELS ] ${sec(clientChannels)}`));
 			client.logger.verbose(main(`[ MEMBERS  ] ${sec(clientMembers)}`));
 			client.logger.verbose(main(`[ GUILDS   ] ${sec(clientGuilds)}`));
