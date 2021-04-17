@@ -84,6 +84,7 @@ export default class EnSlashCommand extends Command {
 				} else {
 					//@ts-expect-error
 					for (let cmd of this.client.slashHandler.modules) {
+						console.log(cmd[1].data);
 						//@ts-ignore
 						const res = this.client.api //@ts-ignore so many fucking errors
 							.applications(this.client.user.id)
