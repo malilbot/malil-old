@@ -2,7 +2,6 @@ import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, 
 import { Command, CommandHandler, InhibitorHandler, ListenerHandler } from "discord-akairo";
 import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
 import { credentials, Settings, consts } from "../settings";
-import { FastifyRequestInterface } from "fastify";
 import Slashhandler from "../Classes/SlashHandler";
 import { join } from "path";
 import centra from "centra";
@@ -745,17 +744,6 @@ interface gistif {
 	git_push_url: string;
 	html_url: string;
 	files: string;
-}
-export interface req extends FastifyRequestInterface {
-	headers?: {
-		authorization?: string;
-		IncomingHttpHeaders?: string;
-	};
-	body?: {
-		user?: string;
-		id?: string;
-		isWeekend?: boolean;
-	};
 }
 export class InterfaceClient extends Client {
 	public credentials = credentials;

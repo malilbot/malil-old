@@ -6,7 +6,6 @@ import { logger } from "../Lib/Utils";
 import { Message } from "discord.js";
 import BotLists from "./BotLists";
 import SlashHandler from "./SlashHandler";
-import Server from "./Server";
 import { join } from "path";
 import Enmap from "enmap";
 
@@ -54,13 +53,6 @@ export default class Client extends AkairoClient {
 
 	public taskHandler: TaskHandler = new TaskHandler(this, {
 		directory: join(),
-	});
-
-	public server: Server = new Server(this, {
-		online: Settings.site,
-		port: 3001,
-		topAuth: Settings.auth.topAuth,
-		dbotsAuth: Settings.auth.dbotsAuth,
 	});
 
 	public botLists: BotLists = new BotLists(this, {
@@ -136,7 +128,6 @@ export default class Client extends AkairoClient {
 		this.taskHandler.loadall();
 		this.commandHandler.loadAll();
 		this.listenerHandler.loadAll();
-		this.server.Start();
 	}
 
 	public async goo(): Promise<unknown> {
