@@ -13,6 +13,14 @@ export default class SuperUserCommand extends Command {
 					type: "content",
 					match: "rest",
 				},
+				{
+					id: "member",
+					type: async (message, content) => {
+						let member = await GetMember(message, content);
+						if (member) return member;
+					},
+					match: "content",
+				},
 			],
 			description: {
 				content: "Set a user as a superuser",
@@ -25,7 +33,7 @@ export default class SuperUserCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<Message> {
+	public async exec(message: Message, { args, member }: { args: string; member: GuildMember }): Promise<Message> {
 		if (!args) {
 			let list = "";
 			const arr = this.client.gp.get("superUsers");
@@ -37,24 +45,21 @@ export default class SuperUserCommand extends Command {
 
 			return message.util.send(list || "Noone f......");
 		}
-		let Member: User = (await GetMember(message, args)).user;
-		if (!Member) {
+		if (!member) {
 			return message.util.send("User not found");
 		}
-		const userID = Member.id;
-
-		if (this.client.gp.get("superUsers").includes(userID)) {
+		if (this.client.gp.get("superUsers").includes(member.id)) {
 			const arr = this.client.gp.get("superUsers");
 			for (let i = 0; i < arr.length; i++) {
-				if (arr[i] == userID) {
+				if (arr[i] == member.id) {
 					arr.splice(i, 1);
 				}
 			}
 
 			this.client.gp.set("superUsers", arr);
-			return message.util.send(`Removed ${Member.tag} from SuperUser list`);
+			return message.util.send(`Removed ${member.user.tag} from SuperUser list`);
 		}
-		this.client.gp.push("superUsers", userID);
-		message.util.send(`Added ${Member.tag} to SuperUser list`);
+		this.client.gp.push("superUsers", member.id);
+		message.util.send(`Added ${member.user.tag} to SuperUser list`);
 	}
 }

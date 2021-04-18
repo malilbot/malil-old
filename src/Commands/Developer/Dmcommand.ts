@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
+import type { Message, GuildMember } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 export default class DmCommand extends Command {
@@ -14,6 +14,14 @@ export default class DmCommand extends Command {
 					type: "content",
 					match: "rest",
 				},
+				{
+					id: "member",
+					type: async (message, content) => {
+						let member = await GetMember(message, content);
+						if (member) return member;
+					},
+					match: "content",
+				},
 			],
 			description: {
 				content: "dm's a user",
@@ -26,10 +34,9 @@ export default class DmCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
-		const user = await GetMember(message, args);
-		if (!user) return message.util.reply("User not found");
-		user.send(args.split(" ").slice(1).join(" ") || "e").catch((e) => message.util.send(e, { allowedMentions: { repliedUser: false } }));
-		message.util.send(`Dmed ${user.user.tag}`, { allowedMentions: { repliedUser: false } });
+	public async exec(message: Message, { args, member }: { args: string; member: GuildMember }) {
+		if (!member) return message.util.reply("User not found");
+		member.send(args.split(" ").slice(1).join(" ") || "e").catch((e) => message.util.send(e, { allowedMentions: { repliedUser: false } }));
+		message.util.send(`Dmed ${member.user.tag}`, { allowedMentions: { repliedUser: false } });
 	}
 }

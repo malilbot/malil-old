@@ -12,14 +12,11 @@ export default class UserinfoCommand extends Command {
 			args: [
 				{
 					id: "member",
-					type: "member",
-					match: "rest",
-					default: (msg: Message) => msg.member,
-				},
-				{
-					id: "args",
-					type: "string",
-					match: "text",
+					type: async (message, content) => {
+						let member = await GetMember(message, content);
+						if (member) return member || message.member;
+					},
+					match: "content",
 				},
 			],
 			description: {
@@ -33,7 +30,7 @@ export default class UserinfoCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<Message> {
+	public async exec(message: Message, { member }: { member: GuildMember }): Promise<Message> {
 		const flags = {
 			DISCORD_EMPLOYEE: "Discord Employee",
 			DISCORD_PARTNER: "Discord Partner",
@@ -49,9 +46,7 @@ export default class UserinfoCommand extends Command {
 			VERIFIED_BOT: "Verified Bot",
 			VERIFIED_DEVELOPER: "Verified Bot Developer",
 		};
-		// member = member ? member.id : message.guild.members.fetch(args)
-		let member = await GetMember(message, args);
-		member = (member as GuildMember) || message.member;
+
 		const userFlags = member.user.flags.toArray();
 		const embed = new MessageEmbed()
 			.setThumbnail(member.user.displayAvatarURL({ dynamic: true, size: 512 }))

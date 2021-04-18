@@ -16,9 +16,11 @@ export default class AvatarCommand extends Command {
 			args: [
 				{
 					id: "member",
-					type: "member",
-					match: "rest",
-					default: (msg: Message) => msg.member,
+					type: async (message, content) => {
+						let member = await GetMember(message, content);
+						if (member) return member || message.member;
+					},
+					match: "content",
 				},
 				{
 					id: "size",
@@ -44,8 +46,7 @@ export default class AvatarCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { size, format }: { member: GuildMember; size: number; format: string }): Promise<Message> {
-		const member = (await GetMember(message)) || message.member;
+	public async exec(message: Message, { size, format, member }: { member: GuildMember; size: number; format: string }): Promise<Message> {
 		return message.util.send(
 			new MessageEmbed()
 				.setTitle(`${member.user.username}'s Avatar`)

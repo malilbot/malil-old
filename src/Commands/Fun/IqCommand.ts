@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import type { Message, GuildMember } from "discord.js";
+import type { Message, GuildMember, Guild } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 
@@ -11,8 +11,11 @@ export default class IqCommand extends Command {
 			args: [
 				{
 					id: "member",
-					type: "member",
-					match: "rest",
+					type: async (message, content) => {
+						let member = await GetMember(message, content);
+						if (member) return member || message.member;
+					},
+					match: "content",
 				},
 			],
 			description: {
@@ -25,8 +28,7 @@ export default class IqCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message): Promise<void> {
-		const member: GuildMember = (await GetMember(message)) || message.member;
+	public async exec(message: Message, { member }: { member: GuildMember }): Promise<void> {
 		const iq: number = this.client.UserData.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq");
 
 		const iEmbed = new MessageEmbed().setColor(this.client.consts.colors.default).setTitle("IQ Test").setDescription(`${member}'s IQ is: \`${iq}\`!`);

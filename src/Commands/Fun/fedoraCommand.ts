@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import { Message } from "discord.js";
+import { GuildMember, Message } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 import centra from "centra";
 export default class FedoraCommand extends Command {
@@ -10,9 +10,12 @@ export default class FedoraCommand extends Command {
 			quoted: true,
 			args: [
 				{
-					id: "args",
-					type: "array",
-					match: "rest",
+					id: "member",
+					type: async (message, content) => {
+						let member = await GetMember(message, content);
+						if (member) return member || message.member;
+					},
+					match: "content",
 				},
 			],
 			description: {
@@ -27,11 +30,8 @@ export default class FedoraCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message): Promise<void> {
+	public async exec(message: Message, { member }: { member: GuildMember }): Promise<void> {
 		const msg = await message.util.send("<a:loading:820592866685485076>");
-
-		const member = (await GetMember(message)) || message.member;
-
 		const url = member.user.displayAvatarURL({
 			size: 512,
 			format: "png",
