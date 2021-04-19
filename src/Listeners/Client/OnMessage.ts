@@ -77,7 +77,7 @@ export default class message extends Listener {
 				} else if (content.includes("bannable") && content.includes("this")) {
 					talkedRecently.add(message.author.id);
 					message.reply("The mod is not bannable and doesnt trigger watchdog.");
-				} else if (content.includes("remove") || content.includes("close") || content.includes("rid")) {
+				} else if (content.includes("remove") || content.includes("close") || content.includes("rid") || content.includes("rid")) {
 					if (content.includes("pic") || content.includes("image")) {
 						talkedRecently.add(message.author.id);
 						message.reply(

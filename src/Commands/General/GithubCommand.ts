@@ -60,7 +60,7 @@ export default class GithubCommand extends Command {
 			this.client.releases.set(message.guild.id, channel.id, "channel");
 		} else if (action == "delete") {
 			this.client.releases.delete(message.guild.id, "repos");
-			this.client.releases.set(message.guild.id, {}, "repos");
+			this.client.releases.set(message.guild.id, [], "repos");
 			return message.util.send("oke deleted the github list");
 		} else if (action == "add") {
 			if (!this.client.releases.get(message.guild.id, "channel")) return message.util.send("no channel set please set one with: `github set <#channel> `");
@@ -88,10 +88,10 @@ export default class GithubCommand extends Command {
 			this.client.releases.push("all", output);
 			this.client.releases.push(message.guild.id, name, "repos");
 		} else if (action == "list") {
-			const thing = this.client.releases.get(message.guild.id, "repos").join("\n");
+			const thing = this.client.releases.get(message.guild.id, "repos");
 			if (!thing) return message.util.send("Currently not watching anything");
 			const embed = new MessageEmbed()
-				.addField("**currently watching:**", thing || "nothing")
+				.addField("**currently watching:**", thing.join("\n") || "nothing")
 				.setColor(this.client.consts.colors.green)
 				.setFooter(this.client.user.username, this.client.user.avatarURL());
 			message.util.send(embed);
