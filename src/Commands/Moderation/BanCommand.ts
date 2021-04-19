@@ -27,25 +27,16 @@ export default class BanCommand extends Command {
 					match: "content",
 				},
 				{
-					id: "day",
-					type: (_: Message, str: string): null | number => {
-						if (str && !isNaN(Number(str)) && [0, 1, 2, 3, 4, 5, 7].includes(Number(str))) return Number(str);
-						return null;
-					},
-					default: 0,
-				},
-				{
 					id: "reason",
-					type: "strin",
-					default: "e No reason provided...",
+					type: async (message, content) => content.split(" ").slice(1).join(" "),
+					match: "content",
 				},
 			],
 		});
 	}
 
-	public async exec(message: Message, { day, reason, user }: { user: GuildMember; day: number; reason: string }): Promise<Message> {
+	public async exec(message: Message, { reason, user }: { user: GuildMember; reason: string }): Promise<Message> {
 		if (!user) return message.util.send("user not found");
-		reason = reason.split(" ").slice(1).join(" ");
 		if (!user.bannable) return message.util.send(`Sorry, i can't ban this user`);
 
 		try {
@@ -54,7 +45,7 @@ export default class BanCommand extends Command {
 			message.reply(err);
 		}
 
-		await message.guild.members.ban(user, { days: day, reason });
+		await message.guild.members.ban(user, { reason });
 
 		message.util.send(
 			new MessageEmbed()
@@ -64,7 +55,6 @@ export default class BanCommand extends Command {
 				.setFooter(`Sayonara~`)
 				.setTimestamp()
 		);
-		this.client.infractions.ensure(message.guild.id, {});
 
 		//* ------------------------------------ infraction code */
 		Infract(message, reason, user, "BAN", this.client);

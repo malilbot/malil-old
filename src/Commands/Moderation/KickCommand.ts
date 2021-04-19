@@ -29,32 +29,23 @@ export default class KickCommand extends Command {
 				},
 				{
 					id: "reason",
-					type: "string",
-					default: "e No reason provided....",
+					type: async (message, content) => content.split(" ").slice(1).join(" "),
+					match: "content",
 				},
 			],
 		});
 	}
 
 	public async exec(message: Message, { reason, user }: { user: GuildMember; reason: string }): Promise<Message> {
-		user = user as GuildMember;
-		reason = reason.split(" ").slice(1).join(" ");
 		if (!user) return message.util.send("user not found");
 		if (!user.kickable) return message.util.send(`Sorry, i can't kick this user`);
 
-		if (!message.member.guild.me.permissions.has(["KICK_MEMBERS"])) return message.util.send(`Sorry, i don't have permission to kick members, make sure you give me \`KICK_MEMBERS\` permission`);
-		reason = reason.replace(user.id, "").replace(/<.*?>/g, "");
 		user.kick().then((x) => {
-			x.send(`You has been kicked from **${message.guild.name}** for reason \`${reason}\``);
+			x.send(`You have been kicked from **${message.guild.name}** for reason \`${reason}\``);
 			message.util.send(
 				new MessageEmbed()
 					.setAuthor(`User kicked by ${message.author.tag}`, message.author.avatarURL())
-					.setDescription(
-						`
-                Name: ${x.user.tag}
-                Time Kicked: ${utc(Date.now())}
-                Reason: ${reason}`
-					)
+					.setDescription(`Name: ${x.user.tag}\n` + `Time Kicked: ${utc(Date.now())}\n` + `Reason: ${reason}`)
 					.setFooter(`Sayonara~`)
 					.setTimestamp()
 			);
