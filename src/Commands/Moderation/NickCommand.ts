@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { GetMember } from "../../Lib/Utils";
-import { Message } from "discord.js";
+import { GuildMember, Message } from "discord.js";
 
 export default class NickCommand extends Command {
 	public constructor() {
@@ -12,6 +12,14 @@ export default class NickCommand extends Command {
 				{
 					id: "name",
 					type: "string",
+				},
+				{
+					id: "user",
+					type: async (message, content) => {
+						let member = await GetMember(message, content);
+						if (member) return member;
+					},
+					match: "content",
 				},
 			],
 			description: {
@@ -26,9 +34,8 @@ export default class NickCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { name }): Promise<Message> {
+	public async exec(message: Message, { name, user }: { name: string; user: GuildMember }): Promise<Message> {
 		const NewName = name.split(" ").splice(1).join(" ");
-		const user = await GetMember(message, name);
 		if (!user) return message.util.send("user not found");
 		try {
 			await user.setNickname(NewName, `${message.author.tag} Used nick.`);

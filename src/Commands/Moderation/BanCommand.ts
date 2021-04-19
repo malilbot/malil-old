@@ -19,6 +19,14 @@ export default class BanCommand extends Command {
 			userPermissions: ["BAN_MEMBERS"],
 			args: [
 				{
+					id: "user",
+					type: async (message, content) => {
+						let member = await GetMember(message, content);
+						if (member) return member;
+					},
+					match: "content",
+				},
+				{
 					id: "day",
 					type: (_: Message, str: string): null | number => {
 						if (str && !isNaN(Number(str)) && [0, 1, 2, 3, 4, 5, 7].includes(Number(str))) return Number(str);
@@ -35,8 +43,7 @@ export default class BanCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { day, reason }: { user: GuildMember; day: number; reason: string }): Promise<Message> {
-		const user = await GetMember(message, reason);
+	public async exec(message: Message, { day, reason, user }: { user: GuildMember; day: number; reason: string }): Promise<Message> {
 		if (!user) return message.util.send("user not found");
 		reason = reason.split(" ").slice(1).join(" ");
 		if (!user.bannable) return message.util.send(`Sorry, i can't ban this user`);

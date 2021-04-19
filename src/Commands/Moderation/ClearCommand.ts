@@ -3,7 +3,7 @@ import { MessageEmbed, GuildChannel, TextChannel, Message } from "discord.js";
 export default class ClearCommand extends Command {
 	public constructor() {
 		super("clear", {
-			aliases: ["clear", "clean"],
+			aliases: ["clear", "clean", "purge"],
 			category: "Moderation",
 			quoted: true,
 			args: [
@@ -14,7 +14,7 @@ export default class ClearCommand extends Command {
 				},
 			],
 			description: {
-				content: "to clear messages from the chat",
+				content: "Clears messages from chat",
 				usage: "clear",
 				example: ["clear"],
 			},

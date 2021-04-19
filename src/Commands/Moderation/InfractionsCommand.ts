@@ -13,14 +13,23 @@ export default class InfractionsCommand extends Command {
 				usage: "infractions",
 				example: ["infractions"],
 			},
+			args: [
+				{
+					id: "user",
+					type: async (message, content) => {
+						let member = await GetMember(message, content);
+						if (member) return member;
+					},
+					match: "content",
+				},
+			],
 			clientPermissions: ["SEND_MESSAGES"],
 			userPermissions: ["MANAGE_MESSAGES"],
 			ratelimit: 3,
 			channel: "guild",
 		});
 	}
-	public async exec(message: Message): Promise<Message> {
-		const user = await GetMember(message);
+	public async exec(message: Message, { user }: { user: GuildMember }): Promise<Message> {
 		if (!user) return message.util.send("user not found");
 		const usID = user.id;
 		this.client.infractions.ensure(message.guild.id, { [usID]: {} });

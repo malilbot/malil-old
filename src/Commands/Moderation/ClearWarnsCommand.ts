@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import { MessageEmbed, Message } from "discord.js";
+import { MessageEmbed, Message, GuildMember } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 export default class ClearWarnsCommand extends Command {
 	public constructor() {
@@ -12,6 +12,16 @@ export default class ClearWarnsCommand extends Command {
 				usage: "clearwarns",
 				example: ["clearwarns"],
 			},
+			args: [
+				{
+					id: "user",
+					type: async (message, content) => {
+						let member = await GetMember(message, content);
+						if (member) return member;
+					},
+					match: "content",
+				},
+			],
 			ratelimit: 3,
 			clientPermissions: ["SEND_MESSAGES"],
 			userPermissions: ["MANAGE_MESSAGES"],
@@ -19,8 +29,7 @@ export default class ClearWarnsCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<Message> {
-		const user = await GetMember(message, args);
+	public async exec(message: Message, { args, user }: { args: string; user: GuildMember }): Promise<Message> {
 		if (!user) message.util.send("user not found");
 		this.client.infractions.delete(message.guild.id, user.id);
 		return message.util.send("infractions cleared", { allowedMentions: { repliedUser: false } });

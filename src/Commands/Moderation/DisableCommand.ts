@@ -28,6 +28,7 @@ export default class DisableCommand extends Command {
 		});
 	}
 	public async exec(message: Message, { cmd, catagory }: { cmd: Command; catagory: string }): Promise<Message> {
+		if (!cmd && !catagory) return message.reply("No command or category specified");
 		// typos are intentionally
 		const catagoryList: string[] = [];
 		let type: string;

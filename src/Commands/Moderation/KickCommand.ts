@@ -20,6 +20,14 @@ export default class KickCommand extends Command {
 			channel: "guild",
 			args: [
 				{
+					id: "user",
+					type: async (message, content) => {
+						let member = await GetMember(message, content);
+						if (member) return member;
+					},
+					match: "content",
+				},
+				{
 					id: "reason",
 					type: "string",
 					default: "e No reason provided....",
@@ -28,8 +36,7 @@ export default class KickCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { reason }: { user: GuildMember; reason: string }): Promise<Message> {
-		let user = await GetMember(message, reason);
+	public async exec(message: Message, { reason, user }: { user: GuildMember; reason: string }): Promise<Message> {
 		user = user as GuildMember;
 		reason = reason.split(" ").slice(1).join(" ");
 		if (!user) return message.util.send("user not found");
