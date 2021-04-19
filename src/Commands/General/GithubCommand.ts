@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import { Message } from "discord.js";
+import { Message, TextChannel } from "discord.js";
 import centra from "centra";
 import { MessageEmbed } from "discord.js";
 export default class GithubCommand extends Command {
@@ -10,9 +10,29 @@ export default class GithubCommand extends Command {
 			quoted: true,
 			args: [
 				{
-					id: "args",
-					type: "array",
-					match: "rest",
+					id: "action",
+					type: (_: Message, content: string) => {
+						return content?.split(" ")[0];
+					},
+					match: "content",
+				},
+				{
+					id: "repo",
+					type: (_: Message, content: string) => {
+						return content?.split(" ").slice(1).join(" ").split("/");
+					},
+					match: "content",
+				},
+				{
+					id: "channel",
+					type: async (message: Message, content: string) => {
+						const channel =
+							message.guild.channels.cache.find((channel) => channel.name.toLowerCase() == content.split(" ")[1]) ||
+							message.guild.channels.cache.get(content.split(" ")[1]?.replace(/<#|>/g, ""));
+						if (!channel) return;
+						else if (["type", "text"].includes(channel?.type)) return channel;
+					},
+					match: "content",
 				},
 			],
 			description: {
@@ -27,33 +47,26 @@ export default class GithubCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<Message> {
-		if (!args) return message.util.send("use  *github set <#channel> to get started use *help github for more info");
+	public async exec(message: Message, { action, channel, repo }: { action: string; channel: TextChannel; repo: string[] }): Promise<Message> {
+		console.log(repo);
+		if (!action) return message.util.send("use  *github set <#channel> to get started use *help github for more info");
 
 		this.client.releases.ensure(message.guild.id, { channel: "", repos: [] });
-		const _args = args.split(" ");
 
-		if (_args[0] == "set") {
-			const channel = _args[1].replace(/<#|>/g, "");
-			let o = "";
-			await this.client.channels
-				.fetch(channel)
-				.then((channel) => message.util.send("Succesfully set the channel to: " + channel + "\n make sure that i have permission to that channel"))
-				.catch((e) => (e) => {
-					return message.util.send("channel not found");
-				});
+		if (action == "set") {
+			if (!channel) return message.reply("Channel not found / thats not a text channel");
+			message.util.send(`Succesfully set the channel to: ${channel}\nmake sure that i have permission to that channel`);
 
-			this.client.releases.set(message.guild.id, _args[1], "channel");
-		} else if (_args[0] == "delete") {
+			this.client.releases.set(message.guild.id, channel.id, "channel");
+		} else if (action == "delete") {
 			this.client.releases.delete(message.guild.id, "repos");
 			this.client.releases.set(message.guild.id, {}, "repos");
 			return message.util.send("oke deleted the github list");
-		} else if (_args[0] == "add") {
+		} else if (action == "add") {
 			if (!this.client.releases.get(message.guild.id, "channel")) return message.util.send("no channel set please set one with: `github set <#channel> `");
 			if (this.client.releases.get(message.guild.id, "repos").length > 5) return message.util.send("Sorry you can only have a maximum of 5 repos");
-			args = args.split("/");
-			const name = args[3] + "/" + args[4];
-			if (!args[4]) return message.util.send("Please try the command again but this time send a repo link");
+			const name = repo[3] + "/" + repo[4];
+			if (!repo) return message.util.send("Please try the command again but this time send a repo link");
 			const data = await (
 				await centra(`https://api.github.com/repos/${name}/releases`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.gist}`).send()
 			).json();
@@ -61,7 +74,6 @@ export default class GithubCommand extends Command {
 			const urls = await (
 				await centra(`https://api.github.com/repos/${name}`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.gist}`).send()
 			).json();
-			this.client.logger.info(urls);
 			if (urls.message == "Not Found") return message.util.send("Please try the command again but this time send a repo link");
 			if (urls.documentation_url) return message.util.send("I have been api limited");
 			let version;
@@ -75,8 +87,8 @@ export default class GithubCommand extends Command {
 			message.util.send("Added: <" + url + "> to watch list.");
 			this.client.releases.push("all", output);
 			this.client.releases.push(message.guild.id, name, "repos");
-		} else if (_args[0] == "list") {
-			const thing = this.client.releases.get(message.guild.id, "repos").toString().replace(/,/g, "\n");
+		} else if (action == "list") {
+			const thing = this.client.releases.get(message.guild.id, "repos").join("\n");
 			if (!thing) return message.util.send("Currently not watching anything");
 			const embed = new MessageEmbed()
 				.addField("**currently watching:**", thing || "nothing")
