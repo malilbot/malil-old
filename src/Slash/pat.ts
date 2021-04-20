@@ -1,6 +1,5 @@
 import Command from "../Classes/SlashCommand";
 import type { CommandInteraction } from "discord.js";
-import { MessageAttachment } from "discord.js";
 import c from "centra";
 import petPetGif from "pet-pet-gif";
 
