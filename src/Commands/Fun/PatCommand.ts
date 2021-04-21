@@ -15,7 +15,14 @@ export default class PatCommand extends Command {
 					type: async (message, content) => {
 						let member = await GetMember(message, content);
 						if (member) return member;
-						else return content;
+						else return content.split(" ")[0];
+					},
+					match: "content",
+				},
+				{
+					id: "color",
+					type: async (_, content) => {
+						return content.split(" ")[1];
 					},
 					match: "content",
 				},
@@ -31,7 +38,7 @@ export default class PatCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { member }: { member: string | GuildMember }): Promise<Message> {
+	public async exec(message: Message, { member, color }: { member: string | GuildMember; color: string }): Promise<Message> {
 		let image: string;
 		if (!member) image = message.author.avatarURL({ dynamic: false, format: "png" });
 		else if (typeof member == "string") {
@@ -48,7 +55,6 @@ export default class PatCommand extends Command {
 				return message.reply("User not found");
 			}
 		}
-
-		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image), name: `patted.gif` }] });
+		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image, color || "invis"), name: `patted.gif` }] });
 	}
 }

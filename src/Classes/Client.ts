@@ -102,6 +102,7 @@ export default class Client extends AkairoClient {
 		this.credentials = credentials;
 		this.config = config;
 		this.logger = logger;
+
 		this.gp = new Enmap({ name: "gp", dataDir: join(__dirname, "..", "..", "data/gp"), polling: Settings.polling });
 		this.logchannel = new Enmap({ name: "logchannel", dataDir: join(__dirname, "..", "..", "data/logchannel"), polling: Settings.polling });
 		this.tags = new Enmap({ name: "tags", dataDir: join(__dirname, "..", "..", "data/tags"), polling: Settings.polling });
