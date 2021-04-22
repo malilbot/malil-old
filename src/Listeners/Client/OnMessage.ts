@@ -5,9 +5,7 @@ import Client from "../../Classes/Client";
 import { superUsers } from "../../Lib/config";
 import { exec } from "child_process";
 import { main, sec, third, fourth } from "../../Lib/Utils";
-import alexa from "alexa-bot-api";
 import Centra from "centra";
-const ai = new alexa();
 export default class message extends Listener {
 	public constructor(client: Client) {
 		super("message", {
