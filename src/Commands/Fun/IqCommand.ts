@@ -29,9 +29,9 @@ export default class IqCommand extends Command {
 	}
 
 	public async exec(message: Message, { member }: { member: GuildMember }): Promise<void> {
-		const iq: number = this.client.UserData.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq");
+		const iq: number = this.client.userdata.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq");
 
-		const iEmbed = new MessageEmbed().setColor(this.client.consts.colors.default).setTitle("IQ Test").setDescription(`${member}'s IQ is: \`${iq}\`!`);
+		const iEmbed = new MessageEmbed().setColor(this.client.colors.default).setTitle("IQ Test").setDescription(`${member}'s IQ is: \`${iq}\`!`);
 
 		if (Math.floor(Math.random() * 40 + 1) == 5) iEmbed.setImage("https://i.imgur.com/skuWtMT.png");
 		if (Math.floor(Math.random() * 10 + 1) == 5)

@@ -21,9 +21,9 @@ export default class iqqCommand extends Command {
 		const member = message.options[0]?.user ?? message.user;
 		const em = this.client.util
 			.embed()
-			.setColor(this.client.consts.colors.default)
+			.setColor(this.client.colors.default)
 			.setTitle("IQ Test")
-			.setDescription(`${message.options[0]?.user ?? message.user}'s IQ is: \`${this.client.UserData.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq")}\`!`);
+			.setDescription(`${message.options[0]?.user ?? message.user}'s IQ is: \`${this.client.userdata.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq")}\`!`);
 		if (Math.floor(Math.random() * 10 + 1) == 5) em.setFooter(`You can vote to get increased iq /vote`);
 		message.reply(em);
 	}

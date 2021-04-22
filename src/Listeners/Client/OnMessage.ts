@@ -6,6 +6,7 @@ import { superUsers } from "../../Lib/config";
 import { exec } from "child_process";
 import { main, sec, third, fourth } from "../../Lib/Utils";
 import alexa from "alexa-bot-api";
+import Centra from "centra";
 const ai = new alexa();
 export default class message extends Listener {
 	public constructor(client: Client) {
@@ -25,14 +26,14 @@ export default class message extends Listener {
 				const res = JSON.parse(message.content);
 				const member = await this.client.users.fetch(res.user);
 				const iq = Math.floor(Math.random() * 150) + 1;
-				this.client.UserData.ensure(member.id, { iq: iq });
+				this.client.userdata.ensure(member.id, { iq: iq });
 				if (!member) return this.client.logger.info("WHATTT?");
 				this.client.logger.info(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
 				const wknd = res.isWeekend;
-				const cur = Number(this.client.UserData.get(member.id, "iq"));
+				const cur = Number(this.client.userdata.get(member.id, "iq"));
 				if (!cur) return;
 				const amount = wknd ? 2 : 1;
-				this.client.UserData.set(member.id, cur + amount, "iq");
+				this.client.userdata.set(member.id, cur + amount, "iq");
 				message.channel.send(
 					new MessageEmbed()
 						.setAuthor(`vote from ${member.tag}`, member.avatarURL())
@@ -109,7 +110,9 @@ export default class message extends Listener {
 						let at: string;
 						message?.attachments?.forEach((ata) => (at = ata.name));
 						this.client.logger.info(`[ MSG ${message.author.tag} ] ${message.content}`);
-						const reply = await ai.getReply(message.content || at || "OOOOGAAA BOOGA");
+						const question = message.content.replace(/ /gim, "%20");
+						const reply = (await (await Centra(`https://alexa-bot-api-web-server.vercel.app/api/alexa?stimulus=${question}`).send()).json()).reply;
+						//const reply = await ai.getReply(message.content || at || "OOOOGAAA BOOGA");
 						this.client.logger.info(`[ ${message.guild.name} ][ REPLY ] ${reply}`);
 						message.reply(reply, { allowedMentions: { repliedUser: false } });
 					}

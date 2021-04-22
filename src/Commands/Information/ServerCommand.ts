@@ -21,7 +21,7 @@ export default class ServerCommand extends Command {
 
 	public async exec(message: Message): Promise<Message> {
 		const embed = new MessageEmbed()
-			.setColor(this.client.consts.colors.orange)
+			.setColor(this.client.colors.orange)
 			.setTitle("Server Info")
 			.setDescription(`${message.guild}'s information`)
 			.addField("Owner", `The owner of this server is ${message.guild.owner}`)

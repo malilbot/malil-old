@@ -59,7 +59,7 @@ Swearing is allowed only when not used as an insult.
 **11.) Staff may moderate at their discretion**
 If there are loopholes in our rules, the staff team may moderate based on what they deem appropriate. The staff team holds final discretion.`
 				)
-				.setColor(this.client.consts.colors.red)
+				.setColor(this.client.colors.red)
 				.setTimestamp();
 			message.util.send(embed);
 		} else if (args == "2") {
@@ -73,7 +73,7 @@ Be respectful
 No bot spamming`
 				)
 				.setTimestamp()
-				.setColor(this.client.consts.colors.red);
+				.setColor(this.client.colors.red);
 			message.util.send(embed);
 		} else if (args == "3") {
 			const embed = new MessageEmbed()
@@ -99,7 +99,7 @@ Rules
 
 And lastly, abide by all rules set out in the Discord ToS and Discord Guidelines`
 				)
-				.setColor(this.client.consts.colors.red)
+				.setColor(this.client.colors.red)
 				.setTimestamp();
 			return message.util.send(embed);
 		} else

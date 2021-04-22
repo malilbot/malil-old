@@ -43,7 +43,7 @@ export default class InfractionsCommand extends Command {
 		if (mesg.length < 6) {
 			return message.util.send("user doesnt have any infractions");
 		}
-		const embed = new MessageEmbed().setColor(this.client.consts.colors.default);
+		const embed = new MessageEmbed().setColor(this.client.colors.default);
 		if (mesg.length > 1024) {
 			embed.addField("warns of " + user, await hst(mesg));
 		} else embed.addField("warns of " + user, mesg);

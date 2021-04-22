@@ -27,7 +27,7 @@ export default class TagsCommand extends Command {
 			.replace(/(\r\n|\n|\r|,)/gm, ", ");
 		// // console.log(tags)
 
-		const Embed = new MessageEmbed().setTitle(`tags in ${message.guild}`).setDescription(tags).setColor(this.client.consts.colors.green);
+		const Embed = new MessageEmbed().setTitle(`tags in ${message.guild}`).setDescription(tags).setColor(this.client.colors.green);
 		message.util.send({ embed: Embed, allowedMentions: { repliedUser: false } });
 	}
 }

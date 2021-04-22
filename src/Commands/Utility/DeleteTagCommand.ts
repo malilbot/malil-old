@@ -36,7 +36,7 @@ export default class DeleteTagCommand extends Command {
 		await this.client.tags.ensure(message.guild.id, {});
 		if (!(await this.client.tags.get(message.guild.id, args[0]))) message.util.send("Tag not found");
 		await this.client.tags.delete(message.guild.id, args[0]);
-		const embed = new MessageEmbed().setColor(this.client.consts.colors.red).setTitle("Tag deleted.");
+		const embed = new MessageEmbed().setColor(this.client.colors.red).setTitle("Tag deleted.");
 		message.util.send(embed);
 	}
 }

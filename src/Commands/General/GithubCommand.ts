@@ -92,7 +92,7 @@ export default class GithubCommand extends Command {
 			if (!thing) return message.util.send("Currently not watching anything");
 			const embed = new MessageEmbed()
 				.addField("**currently watching:**", thing.join("\n") || "nothing")
-				.setColor(this.client.consts.colors.green)
+				.setColor(this.client.colors.green)
 				.setFooter(this.client.user.username, this.client.user.avatarURL());
 			message.util.send(embed);
 		} else message.util.send("Check `*help github` for info about this command");

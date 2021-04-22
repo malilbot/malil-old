@@ -57,7 +57,7 @@ export default class AvatarCommand extends Command {
 						dynamic: true,
 					})
 				)
-				.setColor(this.client.consts.colors.blue)
+				.setColor(this.client.colors.blue)
 				.setImage(
 					member.user.displayAvatarURL({
 						format: format as AllowedImageFormat,

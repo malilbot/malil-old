@@ -35,7 +35,7 @@ export default class extends Inhibitor {
 				new MessageEmbed()
 					.setImage("https://http.cat/423")
 					.addField("You have been blacklisted from using this bot for 24 hours", "If you believe this is a mistake visit the support [server](https://discord.gg/mY8zTARu4g)")
-					.setColor(this.client.consts.colors.purple)
+					.setColor(this.client.colors.purple)
 			);
 			setTimeout(function () {
 				this.client.logger.info(third("[ UN-BLACKLISTED USER ] " + sec(`[ ${message.author.tag} ] [ ${message.author.id}]`)));

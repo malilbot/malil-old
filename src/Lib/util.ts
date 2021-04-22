@@ -601,32 +601,32 @@ export async function Infract(message?: Message, reason?: string, member?: Guild
 			if (type == "KICK") {
 				embed.setAuthor(`User Kicked by ${message.author.tag}`, message.author.avatarURL());
 				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason || "No reason provided."}`);
-				embed.setColor(client.consts.colors.red);
+				embed.setColor(client.colors.red);
 				embed.setFooter(`User id: ${member.user.id}`);
 			} else if (type == "BAN") {
 				embed.setAuthor(`User Banned by ${message.author.tag}`, message.author.avatarURL());
 				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason || "No reason provided."}`);
-				embed.setColor(client.consts.colors.red);
+				embed.setColor(client.colors.red);
 				embed.setFooter(`User id: ${member.user.id}`);
 			} else if (type == "WARN") {
 				embed.setAuthor(`User Warned by ${message.author.tag}`, message.author.avatarURL());
 				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason || "No reason provided."}`);
-				embed.setColor(client.consts.colors.red);
+				embed.setColor(client.colors.red);
 				embed.setFooter(`User id: ${member.user.id}`);
 			} else if (type == "MUTE") {
 				sLog({ member, type: "MUTE" });
 				embed.setAuthor(`User Muted by ${message.author.tag}`, message.author.avatarURL());
 				embed.setDescription(`Member: ${member.user.tag}\nTime ${ms(ms(reason || "No reason provided."), { long: true }) || "Perma"}`);
-				embed.setColor(client.consts.colors.red);
+				embed.setColor(client.colors.red);
 				embed.setFooter(`User id: ${member.user.id}`);
 			} else if (type == "UNMUTE") {
 				embed.setDescription(`Unmuted ${member.user.tag}\n Reason: Mute duration expired.`);
-				embed.setColor(client.consts.colors.green);
+				embed.setColor(client.colors.green);
 				embed.setFooter(`User id: ${member.user.id}`);
 			} else if (type == "STAFFUNMUTE") {
 				embed.setAuthor(`User Muted by ${message.author.tag}`, message.author.avatarURL());
 				embed.setDescription(`Unmuted ${member.user.tag}\n Reason: ${reason || "Manually unmuted by staff"}`);
-				embed.setColor(client.consts.colors.green);
+				embed.setColor(client.colors.green);
 				embed.setFooter(`User id: ${member.user.id}`);
 			}
 			const channel = (await client.channels.fetch(client.logchannel.get(member.guild.id))) as TextChannel;
@@ -749,9 +749,10 @@ interface gistif {
 export class InterfaceClient extends Client {
 	public credentials = credentials;
 	public consts = consts;
+	public colors = consts.colors;
 	public settings = Settings;
 	public gp: Enmap;
-	public UserData: Enmap;
+	public userdata: Enmap;
 	public logchannel: Enmap;
 	public infractions: Enmap;
 	public logger: typeof logger;

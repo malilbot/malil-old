@@ -29,7 +29,7 @@ export default class HelpCommand extends Command {
 			return message.util.send(
 				new MessageEmbed()
 					.setAuthor(`Help | ${this.client.user.tag}`, this.client.user.displayAvatarURL())
-					.setColor(this.client.consts.colors.orange)
+					.setColor(this.client.colors.orange)
 					.setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" })).setDescription(stripIndents`
             **Aliases**
             ${command.aliases.map((x) => `\`${x}\``).join(" | ")}
@@ -47,7 +47,7 @@ export default class HelpCommand extends Command {
 
 		const embed = new MessageEmbed()
 			.setAuthor(`Help | ${this.client.user.tag}`, this.client.user.displayAvatarURL())
-			.setColor(this.client.consts.colors.orange)
+			.setColor(this.client.colors.orange)
 			.setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" }))
 			.setDescription("For help and bugs visit the [support server](https://discord.gg/mY8zTARu4g).")
 			.setFooter(`@malil help [ command ] for more information on a command.`);

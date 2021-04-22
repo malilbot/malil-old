@@ -29,7 +29,7 @@ export default class TagCommand extends Command {
 		if (!args) return message.util.send("Try again but this time actually mention a tag");
 		await this.client.tags.ensure(message.guild.id, {});
 		if (!this.client.tags.get(message.guild.id, args)) return message.util.send("Sorry couldnt find that tag");
-		const embed = new MessageEmbed().setColor(this.client.consts.colors.green).setTitle(args).setDescription(this.client.tags.get(message.guild.id, args));
+		const embed = new MessageEmbed().setColor(this.client.colors.green).setTitle(args).setDescription(this.client.tags.get(message.guild.id, args));
 		message.util.send({ embed: embed, allowedMentions: { repliedUser: false } });
 	}
 }

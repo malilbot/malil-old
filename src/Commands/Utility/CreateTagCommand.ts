@@ -33,7 +33,7 @@ export default class CreatetagCommand extends Command {
 			if (!input) message.util.send("There has to be something to put in the tag.");
 			await this.client.tags.ensure(message.guild.id, {});
 			await this.client.tags.set(message.guild.id, input, args[0]);
-			const embed = new MessageEmbed().setColor(this.client.consts.colors.red).setTitle("Tag created.").addFields({ name: args[0], value: input });
+			const embed = new MessageEmbed().setColor(this.client.colors.red).setTitle("Tag created.").addFields({ name: args[0], value: input });
 			message.util.send(embed);
 		} else return message.util.send("Sorry you dont have the required permissions to use this command");
 	}

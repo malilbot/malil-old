@@ -59,7 +59,7 @@ export default class EightballCommand extends Command {
 
 		const wisdom = new MessageEmbed()
 			.setAuthor(message.author.tag)
-			.setColor(this.client.consts.colors.purple)
+			.setColor(this.client.colors.purple)
 			.addField("Question", (await fixword(args)) || "haha censor go brrr")
 			.addField("Answer", replies[result])
 			.setFooter(`8ball`);

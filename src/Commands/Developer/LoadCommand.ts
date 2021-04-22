@@ -53,7 +53,7 @@ export default class LoadCommand extends Command {
 					const embed = new MessageEmbed()
 						.setFooter(message.author.tag)
 						.setThumbnail(this.client.user.avatarURL())
-						.setColor(this.client.consts.colors.default)
+						.setColor(this.client.colors.default)
 						.addField(`☆ Bot Stats ${this.client.user.username}`, botStats)
 						.addField(`☆ System stats`, sysStats);
 					message.util.send(embed);

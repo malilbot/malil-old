@@ -33,7 +33,7 @@ export default class WelcomeEmbed extends Listener {
 				];
 				gifs = shuffle(gifs);
 				const welcomeEmbed = new MessageEmbed()
-					.setColor(this.client.consts.colors.green)
+					.setColor(this.client.colors.green)
 					.addField("Welcome " + member.user.tag, "hope you enjoy the stay")
 					.setImage(gifs[Math.floor(Math.random() * gifs.length)]);
 				const channel = await this.client.channels.fetch("748970525245702174");

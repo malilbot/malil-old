@@ -27,7 +27,7 @@ export default class ExecCommand extends Command {
 
 	public async exec(message: Message, { code }): Promise<void> {
 		exec(code, async (error, stdout, stderr) => {
-			const embed = new MessageEmbed().setTitle(`Exec`).setColor(this.client.consts.colors.default).addField("🍞 Input", `\`\`\`bash\n${code}\`\`\``).addField("Type", "bash");
+			const embed = new MessageEmbed().setTitle(`Exec`).setColor(this.client.colors.default).addField("🍞 Input", `\`\`\`bash\n${code}\`\`\``).addField("Type", "bash");
 			let output = "";
 
 			if (stderr) output = stderr;

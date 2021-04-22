@@ -35,7 +35,7 @@ export default class ClearCommand extends Command {
 		});
 		await (message.channel as TextChannel).bulkDelete(fetched).catch((error) => message.util.send(`Couldn't delete messages because of: ${error}`));
 
-		const embeds = new MessageEmbed().setColor(this.client.consts.colors.red).setDescription(`deleted ${num} messages`);
+		const embeds = new MessageEmbed().setColor(this.client.colors.red).setDescription(`deleted ${num} messages`);
 		return message.channel.send(embeds).catch(console.error);
 	}
 }

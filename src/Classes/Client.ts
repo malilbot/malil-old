@@ -102,17 +102,11 @@ export default class Client extends AkairoClient {
 		this.credentials = credentials;
 		this.config = config;
 		this.logger = logger;
-
-		this.gp = new Enmap({ name: "gp", dataDir: join(__dirname, "..", "..", "data/gp"), polling: Settings.polling });
-		this.logchannel = new Enmap({ name: "logchannel", dataDir: join(__dirname, "..", "..", "data/logchannel"), polling: Settings.polling });
-		this.tags = new Enmap({ name: "tags", dataDir: join(__dirname, "..", "..", "data/tags"), polling: Settings.polling });
-		this.prefixes = new Enmap({ name: "prefixes", dataDir: join(__dirname, "..", "..", "data/prefixes"), polling: Settings.polling });
-		this.blacklist = new Enmap({ name: "blacklist", dataDir: join(__dirname, "..", "..", "data/blacklist"), polling: Settings.polling });
-		this.guilddata = new Enmap({ name: "guildata", dataDir: join(__dirname, "..", "..", "data/guilddata"), polling: Settings.polling });
-		this.mutes = new Enmap({ name: "mutes", dataDir: join(__dirname, "..", "..", "data/mutes"), polling: Settings.polling });
-		this.releases = new Enmap({ name: "releases", dataDir: join(__dirname, "..", "..", "data/releases"), polling: Settings.polling });
-		this.infractions = new Enmap({ name: "infractions", dataDir: join(__dirname, "..", "..", "data/infractions"), polling: Settings.polling });
-		this.UserData = new Enmap({ name: "users", dataDir: join(__dirname, "..", "..", "data/userData"), polling: Settings.polling });
+		const databases = ["gp", "logchannel", "tags", "prefixes", "blacklist", "guilddata", "mutes", "releases", "infractions", "userdata"];
+		for (const item in databases) {
+			const name = databases[item];
+			this[name] = new Enmap({ name, dataDir: join(__dirname, "..", "..", "data", name), polling: Settings.polling });
+		}
 	}
 
 	public _init(): void {
@@ -154,6 +148,6 @@ declare module "discord-akairo" {
 		gp: Enmap;
 		guilddata: Enmap;
 		mutes: Enmap;
-		UserData: Enmap;
+		userdata: Enmap;
 	}
 }

@@ -97,7 +97,7 @@ export default class githubCommand extends Command {
 		const embed = this.client.util
 			.embed()
 			.addField("**currently watching:**", repos /** .join("\n")*/ || "nothing")
-			.setColor(this.client.consts.colors.green)
+			.setColor(this.client.colors.green)
 			.setFooter(this.client.user.username, this.client.user.avatarURL());
 		message.reply(embed);
 	}

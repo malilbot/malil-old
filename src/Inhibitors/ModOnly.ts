@@ -22,10 +22,10 @@ export default class extends Inhibitor {
 		if (channels.includes(message.channel.id)) {
 			if (message.channel.id == "824350969696354346") {
 				if (`${command}`.toLowerCase() == "iq") {
-					const cur = Number(this.client.UserData.get(message.member.id as string, "iq"));
+					const cur = Number(this.client.userdata.get(message.member.id as string, "iq"));
 					if (!cur) return;
-					if (cur - 50 < 0) this.client.UserData.set(message.member.id, 1, "iq");
-					else this.client.UserData.set(message.member.id, cur - 50, "iq");
+					if (cur - 50 < 0) this.client.userdata.set(message.member.id, 1, "iq");
+					else this.client.userdata.set(message.member.id, cur - 50, "iq");
 				}
 			}
 			const { GStr, UStr } = Format(message, null, null, null);

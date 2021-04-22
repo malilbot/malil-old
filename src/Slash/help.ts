@@ -13,7 +13,7 @@ export default class helpCommand extends Command {
 		const embed = this.client.util
 			.embed()
 			.setAuthor(`Help | ${this.client.user.tag}`, this.client.user.displayAvatarURL())
-			.setColor(this.client.consts.colors.orange)
+			.setColor(this.client.colors.orange)
 			.setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" }))
 			.setDescription("For help and bugs visit the [support server](https://discord.gg/mY8zTARu4g).");
 		let slashes = [];

@@ -35,7 +35,7 @@ export default class LockCommand extends Command {
 				.setTitle("Channel Unlocked")
 				.setDescription("This channel has been unlocked by a staff member. You may chat now.")
 				.setFooter(`Unlocked by ${message.author.tag}.`)
-				.setColor(this.client.consts.colors.green);
+				.setColor(this.client.colors.green);
 			channel.send(embed);
 		} else {
 			channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: false });
@@ -43,7 +43,7 @@ export default class LockCommand extends Command {
 				.setTitle("Channel locked")
 				.setDescription("This channel has been locked by a staff member. sending messages has been blocked")
 				.setFooter(`locked by ${message.author.tag}.`)
-				.setColor(this.client.consts.colors.red);
+				.setColor(this.client.colors.red);
 			channel.send(embed);
 		}
 	}

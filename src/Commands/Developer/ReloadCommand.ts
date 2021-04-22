@@ -24,7 +24,7 @@ export default class ReloadCommand extends Command {
 		let rs: string;
 		if (message.util.parsed.alias == "restart") rs = "restarting";
 
-		const embed = new MessageEmbed().setTitle(`${rs ? "restart time" : "Update time"}`).setColor(this.client.consts.colors.green);
+		const embed = new MessageEmbed().setTitle(`${rs ? "restart time" : "Update time"}`).setColor(this.client.colors.green);
 		embed.addField("\u200B", rs || "Updating <a:updating:824662408239906897>");
 		const msg = await message.util.send({ embed, allowedMentions: { repliedUser: false } });
 

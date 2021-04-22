@@ -18,7 +18,7 @@ export default class CoolDown extends Listener {
 	exec(message: Message): void {
 		if (!talkedRecently.has(message.author.id)) {
 			if (!Talk.has(message.author.id)) {
-				message.util.send(new MessageEmbed().setTitle("You are using commands too fast please slow down").setImage("https://http.cat/429").setColor(this.client.consts.colors.red));
+				message.util.send(new MessageEmbed().setTitle("You are using commands too fast please slow down").setImage("https://http.cat/429").setColor(this.client.colors.red));
 				talkedRecently.add(message.author.id);
 				setTimeout(() => {
 					talkedRecently.delete(message.author.id);

@@ -24,7 +24,7 @@ export default class avatarCommand extends Command {
 				.embed()
 				.setTitle(`${member.username}'s Avatar`)
 				.setURL(member.displayAvatarURL({ format: "png", size: 512, dynamic: true }))
-				.setColor(this.client.consts.colors.green)
+				.setColor(this.client.colors.green)
 				.setImage(member.displayAvatarURL({ format: "png", size: 512, dynamic: true }))
 		);
 	}

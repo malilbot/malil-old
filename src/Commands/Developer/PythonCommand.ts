@@ -73,7 +73,7 @@ export default class PyCommand extends Command {
 		if (!code) return message.util.send("You cant eval air");
 
 		if (del == true) message.delete();
-		const embed = new MessageEmbed().setColor(this.client.consts.colors.red).addField("🍞 Input", `\`\`\`py\n${code}\`\`\``);
+		const embed = new MessageEmbed().setColor(this.client.colors.red).addField("🍞 Input", `\`\`\`py\n${code}\`\`\``);
 		let output: string;
 		let msg: Message;
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -118,7 +118,7 @@ export default class PyCommand extends Command {
 				msg.edit(
 					new MessageEmbed()
 						.setTitle(`${this.client.user.tag}'s Evaled`)
-						.setColor(this.client.consts.colors.red)
+						.setColor(this.client.colors.red)
 						.addField("🍞 Input", `\`\`\`py\n${code}\`\`\``)
 						.addField("🫓 Output", `\`\`\`py\nDeleted :kekw:\`\`\``)
 				);

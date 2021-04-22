@@ -45,14 +45,14 @@ export default class modonlyCommand extends Command {
 				}
 				const embed = new MessageEmbed()
 					.addField("ModOnly Channels", `${channels || `No mod only channels set you can set them by using ${this.client.prefixes.get(message.guild.id, "prefix") || "*"}modonly <channel>`}`)
-					.setColor(this.client.consts.colors.default);
+					.setColor(this.client.colors.default);
 				message.util.send(embed);
 			} else {
 				message.util.send("Theres no modonly channels");
 			}
 		} else {
 			const channel = (await message.guild.channels.cache.find((channel) => channel.name.toLowerCase() == args)) || (await message.guild.channels.cache.get(split[0]));
-			if (!channel) return message.util.send(new MessageEmbed().addField("not found", "the channel was not found please enter a valid channel").setColor(this.client.consts.colors.default));
+			if (!channel) return message.util.send(new MessageEmbed().addField("not found", "the channel was not found please enter a valid channel").setColor(this.client.colors.default));
 			else {
 				if (this.client.guilddata.get(message.guild.id, "modonly").includes(channel.id)) {
 					const arr = this.client.blacklist.get("blacklisted", "list");
@@ -64,7 +64,7 @@ export default class modonlyCommand extends Command {
 					this.client.guilddata.set(message.guild.id, arr, "modonly");
 					return message.util.send(`${channel} is no longer modonly`);
 				}
-				const embed = new MessageEmbed().addField("modonly", `Added ${channel} to the modonly channels`).setColor(this.client.consts.colors.default);
+				const embed = new MessageEmbed().addField("modonly", `Added ${channel} to the modonly channels`).setColor(this.client.colors.default);
 				message.util.send(embed);
 				this.client.guilddata.push(message.guild.id, channel.id, "modonly");
 			}

@@ -28,7 +28,7 @@ export default class ballCommand extends Command {
 			this.client.util
 				.embed()
 				.setAuthor(message.user.tag)
-				.setColor(this.client.consts.colors.purple)
+				.setColor(this.client.colors.purple)
 				.addField("Question", message.options[0]?.value)
 				.addField("Answer", replies[result])
 				.setFooter(`Magic 8ball`)
