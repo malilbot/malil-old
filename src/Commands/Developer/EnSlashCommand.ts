@@ -1,8 +1,5 @@
 import { Command } from "discord-akairo";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
-import { MessageEmbed } from "discord.js";
-import { GetMember } from "../../Lib/Utils";
-import { stripIndents } from "common-tags";
 export default class EnSlashCommand extends Command {
 	public constructor() {
 		super("EnSlash", {

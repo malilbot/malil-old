@@ -412,7 +412,7 @@ const getTitle = (title: string | number | boolean, artist: string | number | bo
 		.trim();
 };
 
-const cio = require("cheerio-without-node-native");
+const cio = require("cheerio");
 
 /**
  * @param {string} url - Genius URL

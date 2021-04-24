@@ -1,6 +1,5 @@
 import { Command } from "discord-akairo";
 import { Message, MessageEmbed } from "discord.js";
-import { stripIndents } from "common-tags";
 export default class HelpCommand extends Command {
 	public constructor() {
 		super("help", {
@@ -30,18 +29,17 @@ export default class HelpCommand extends Command {
 				new MessageEmbed()
 					.setAuthor(`Help | ${this.client.user.tag}`, this.client.user.displayAvatarURL())
 					.setColor(this.client.colors.orange)
-					.setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" })).setDescription(stripIndents`
-            **Aliases**
-            ${command.aliases.map((x) => `\`${x}\``).join(" | ")}
-
-            **Description**
-            ${command.description.content || "No Content"}
-            
-            **Usage**
-            ${command.description.usage || "No Usage Provided"}
-            
-            **Example**
-            ${command.description.example ? command.description.example.map((e) => `\`${e}\``).join("\n") : "No Example Provided"}`)
+					.setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" }))
+					.setDescription(
+						`**Aliases**\n` +
+							`${command.aliases.map((x) => `\`${x}\``).join(" | ")}\n\n` +
+							`**Description**\n` +
+							`${command.description.content || "No Content"}\n\n` +
+							`**Usage**\n` +
+							`${command.description.usage || "No Usage Provided"}\n\n` +
+							`**Example**\n` +
+							`${command.description.example ? command.description.example.map((e) => `\`${e}\``).join("\n") : "No Example Provided"}`
+					)
 			);
 		}
 

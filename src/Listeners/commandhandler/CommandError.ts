@@ -37,10 +37,10 @@ export default class CommandErrorListener extends Listener {
 		const errorEmbed: MessageEmbed = new MessageEmbed()
 			.setTitle(`Error # \`${errorNo}\`: An error occurred`)
 			.setDescription(
-				stripIndents`**User:** ${message.author} (${message.author.tag})
-				**Command:** ${command}
-				**Channel:** ${message.channel} (${message.channel.id})
-				**Message:** [link](${message.url})`
+				`**User:** ${message.author} (${message.author.tag})\n` +
+					`**Command:** ${command}\n` +
+					`**Channel:** ${message.channel} (${message.channel.id})\n` +
+					`**Message:** [link](${message.url})\n`
 			)
 			.addField("Error", `${await hst(error.stack)}`)
 			.setTimestamp();
