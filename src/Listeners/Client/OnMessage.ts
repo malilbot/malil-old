@@ -71,7 +71,7 @@ export default class message extends Listener {
 					talkedRecently.add(message.author.id);
 					message.reply({ files: ["http://pays.host/uploads/add4657d-af3a-4f66-a67f-605109f80024/bzxrcnWt.png"], content: "The mod is not bannable and doesnt trigger watchdog." });
 				} else if (content.includes("how")) {
-					if (content.includes("install") || content.includes("location") || content.includes("move")) {
+					if (content.includes("install") || content.includes("location") || content.includes("move") || content.includes("edit")) {
 						talkedRecently.add(message.author.id);
 						message.reply({ files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"] });
 					}
