@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import { Message, MessageAttachment } from "discord.js";
+import { GuildMember, Message, MessageAttachment } from "discord.js";
 import asciify from "asciify-image";
 import { hst, GetMember } from "../../Lib/Utils";
 export default class AsciifyCommand extends Command {
@@ -12,6 +12,15 @@ export default class AsciifyCommand extends Command {
 					type: "boolean",
 					flag: "--big",
 					match: "flag",
+				},
+
+				{
+					id: "member",
+					type: async (message, content) => {
+						let member = await GetMember(message, content);
+						return member || message.member;
+					},
+					match: "content",
 				},
 			],
 			category: "General",
@@ -27,7 +36,7 @@ export default class AsciifyCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { big }): Promise<Message> {
+	public async exec(message: Message, { big, member }: { big: boolean; member: GuildMember }): Promise<Message> {
 		const options = {
 			fit: "box",
 			width: 64,
@@ -42,7 +51,6 @@ export default class AsciifyCommand extends Command {
 		};
 		let url: string | MessageAttachment;
 		let text = true;
-		const member = (await GetMember(message)) || message.member;
 
 		message.attachments.forEach((attachment) => {
 			url = attachment;

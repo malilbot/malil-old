@@ -22,7 +22,10 @@ export default class Client extends AkairoClient {
 
 	public commandHandler: CommandHandler = new CommandHandler(this, {
 		directory: join(__dirname, "..", "Commands"),
-		prefix: (message) => this.GetPrefixes(message),
+		prefix: async (message) => {
+			if (message?.guild == null) return [Settings.prefix, "malil"];
+			else return [this.prefixes.ensure(message.guild.id, Settings.prefix, "prefix"), "malil"];
+		},
 		aliasReplacement: /-g/,
 		allowMention: true,
 		handleEdits: true,
@@ -61,15 +64,6 @@ export default class Client extends AkairoClient {
 	});
 	public config: Option;
 
-	private GetPrefixes(message: Message) {
-		if (message.guild !== null) this.prefixes.ensure(message.guild.id, {});
-		if (message.guild == null || !this.prefixes.get(message.guild.id, "prefix")) {
-			return [Settings.prefix, "malil"];
-		} else {
-			return [this.prefixes.get(message.guild.id, "prefix"), "malil"];
-		}
-	}
-
 	async loadCommands() {
 		for (const file of CommandHandler.readdirRecursive(this.slashHandler.directory)) {
 			const { default: command } = await import(`${file}`);
@@ -80,7 +74,7 @@ export default class Client extends AkairoClient {
 	public constructor(config: Option) {
 		super({
 			ownerID: config.owners,
-			superUserID: config.superUsers,
+			//superUserID: config.superUsers,
 			intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS", "GUILD_WEBHOOKS", "GUILD_INTEGRATIONS", "GUILD_MESSAGE_REACTIONS", "DIRECT_MESSAGES", "DIRECT_MESSAGE_TYPING"],
 			messageSweepInterval: 1800, // 30 mins
 			messageCacheLifetime: 1800, // 30 mins

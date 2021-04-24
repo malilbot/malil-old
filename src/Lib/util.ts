@@ -309,26 +309,15 @@ export class Util {
  */
 export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
 	let user: GuildMember;
-	const id = msg.guild.me.user.id;
-
-	/** Checking if there are 2 mentions */
-	if (msg.mentions.members.last()) if (msg.mentions.members.last()?.user.id !== id) return msg.mentions.members.last();
 
 	const prefix = prefixes.get(msg.guild.id, "prefix");
-	if (args) {
-		msg.content = args;
-	} else {
-		/** stripping useless stuff */
-		if (msg.content?.startsWith(`<@!${id}>`)) msg.content = msg.content.replace(new RegExp(`<@!${id}>`), "");
-		else if (msg.content?.startsWith("malil")) msg.content = msg.content.replace("malil", "");
-		else if (msg.content?.startsWith(prefix)) msg.content = msg.content.replace(prefix, "");
-		if (msg.content?.startsWith(" ")) msg.content = msg.content.replace(" ", "");
-		msg.content = msg.content.trim().split(" ").splice(1).join(" ");
-	}
 
 	/**Defining what to search for */
-	const item = msg.content.trim().split(" ")[0];
+	const item = args.trim().split(" ")[0];
+	const id = args.trim()[0].replace(/[^0-9.]/g, "");
+
 	if (!item) return null;
+
 	if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
 	else if (item == "^") {
 		return null;
@@ -336,11 +325,11 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 
 	if (item == "me") return msg.member;
 
-	user = msg.guild.members.cache.get(item);
+	user = msg.guild.members.cache.get(id);
 	if (!user) {
 		try {
 			logger.info(a1("[ FETCHING USER ] ") + main(`[ BY ] ${msg.author.tag}`) + +main(`[ TEXT ] ${item}`));
-			user = await msg.guild.members.fetch(item);
+			user = await msg.guild.members.fetch(id);
 		} catch (e) {
 			user = msg.guild.members.cache.find((member) => {
 				return member.displayName.toLowerCase().includes(item) || member.user.tag.toLowerCase().includes(item);
