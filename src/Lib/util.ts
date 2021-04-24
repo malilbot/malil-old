@@ -310,7 +310,7 @@ export class Util {
 export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
 	/**Defining what to search for */
 	const item = args.trim().split(" ")[0];
-	const id = args.trim()[0].replace(/[^0-9.]/g, "");
+	const id = args.trim()[0]?.replace(/[^0-9.]/g, "");
 
 	if (!item && !id) return null;
 
