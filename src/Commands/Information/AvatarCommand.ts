@@ -18,7 +18,7 @@ export default class AvatarCommand extends Command {
 					id: "member",
 					type: async (message, content) => {
 						let member = await GetMember(message, content);
-						if (member) return member || message.member;
+						return member || message.member;
 					},
 					match: "content",
 				},

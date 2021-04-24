@@ -24,6 +24,7 @@ export default class ServerCommand extends Command {
 			.setColor(this.client.colors.orange)
 			.setTitle("Server Info")
 			.setDescription(`${message.guild}'s information`)
+			//@ts-expect-error
 			.addField("Owner", `The owner of this server is ${message.guild.owner}`)
 			.addField("Member Count", `This server has ${message.guild.memberCount} members`)
 			.addField("Emoji Count", `This server has ${message.guild.emojis.cache.size} emojis`)
