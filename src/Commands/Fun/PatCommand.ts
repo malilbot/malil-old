@@ -44,7 +44,7 @@ export default class PatCommand extends Command {
 		else if (typeof member == "string") {
 			const res = await (await c("https://api.mojang.com/users/profiles/minecraft/" + member, "GET").send()).json();
 			if (res !== null) {
-				image = `https://crafatar.com/renders/head/${res.id}`;
+				image = `https://crafatar.com/renders/head/${res.id}?overlay`;
 			} else {
 				return message.reply("User not found");
 			}
@@ -55,6 +55,6 @@ export default class PatCommand extends Command {
 				return message.reply("User not found");
 			}
 		}
-		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image, color || "invis"), name: `patted.gif` }] });
+		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image, color || null), name: `patted.gif` }] });
 	}
 }

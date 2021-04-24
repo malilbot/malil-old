@@ -308,36 +308,27 @@ export class Util {
  * @returns - returns a GuildMember object
  */
 export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
-	let user: GuildMember;
-
-	const prefix = prefixes.get(msg.guild.id, "prefix");
-
 	/**Defining what to search for */
 	const item = args.trim().split(" ")[0];
 	const id = args.trim()[0].replace(/[^0-9.]/g, "");
 
-	if (!item) return null;
+	if (!item && !id) return null;
 
 	if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
-	else if (item == "^") {
-		return null;
-	}
+	else if (item == "^") return null;
 
 	if (item == "me") return msg.member;
-
-	user = msg.guild.members.cache.get(id);
-	if (!user) {
-		try {
-			logger.info(a1("[ FETCHING USER ] ") + main(`[ BY ] ${msg.author.tag}`) + +main(`[ TEXT ] ${item}`));
-			user = await msg.guild.members.fetch(id);
-		} catch (e) {
-			user = msg.guild.members.cache.find((member) => {
-				return member.displayName.toLowerCase().includes(item) || member.user.tag.toLowerCase().includes(item);
-			});
-		}
+	let user = msg.guild.members.cache.find((member) => member.displayName.toLowerCase().includes(item) || member.user.tag.toLowerCase().includes(item));
+	if (id) {
+		user = msg.guild.members.cache.get(id);
+		if (!user)
+			try {
+				logger.info(a1("[ FETCHING USER ] ") + main(`[ BY ] ${msg.author.tag}`) + +main(`[ TEXT ] ${item}`));
+				user = await msg.guild.members.fetch(id);
+			} catch (e) {}
 	}
 
-	return user || null;
+	return user;
 };
 
 export function sLog({
@@ -649,8 +640,6 @@ export async function FetchValues(client: InterfaceClient): Promise<{ guilds: nu
  * @param client - Client to get values
  */
 export function readyLog(client: InterfaceClient): void {
-	const { log } = console;
-
 	const spaces = 20;
 
 	const array = [
@@ -685,25 +674,7 @@ export function readyLog(client: InterfaceClient): void {
 		fixspace(third("polling"), spaces) + split + main(fixspace(`${Settings.polling ? "" : ""}`, spaces)),
 	];
 
-	console.log(array.join("\n"));
-	const q1 = `1.0.0 [ ${client.user.username} ]`,
-		q2 = 5,
-		a1 = fixspace(client.commandHandler.modules.size, spaces),
-		a2 = fixspace(client.listenerHandler.modules.size, spaces),
-		a3 = fixspace(client.inhibitorHandler.modules.size, spaces),
-		a4 = fixspace(client.guilds.cache.size, spaces),
-		a5 = fixspace(
-			client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0),
-			spaces
-		),
-		a6 = fixspace(
-			client.guilds.cache.reduce((a, b) => a + b.memberCount, 0),
-			spaces
-		),
-		a7 = fixspace(client.options.shardCount, spaces),
-		a8 = fixspace(client.options.shardCount, spaces),
-		a9 = fixspace(client.options.shardCount, spaces),
-		a10 = fixspace(client.options.shardCount, spaces);
+	for (const i of array) logger.verbose(i);
 }
 /**
  *

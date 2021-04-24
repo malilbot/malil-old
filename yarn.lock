@@ -3057,11 +3057,13 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-"pet-pet-gif@https://github.com/SkyBlockDev/pet-pet-gif":
-  version "1.0.5"
-  resolved "https://github.com/SkyBlockDev/pet-pet-gif#0204289fd386a28dc983573a73687b7b9a961f3a"
+pet-pet-gif@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/pet-pet-gif/-/pet-pet-gif-1.0.8.tgz#1f98d6715a8fa4117a66a0e2e4f47232c1836d3d"
+  integrity sha512-xmQM2DhlSPb1Wo4L5Z6Er4QdzVUjblyUg6LgtvGGtXnwnuhOZBQ0JhNyM+1CL6zxJAG5CQFLhIXxxQa28YpBdg==
   dependencies:
     gifencoder "^2.0.1"
+    lodash "^4.17.21"
 
 phin@^2.9.1:
   version "2.9.3"

@@ -64,7 +64,7 @@
 		"discord.js": "vaporox/discord.js#feat-interactions",
 		"enmap": "^5.8.4",
 		"moment": "^2.29.1",
-		"pet-pet-gif": "https://github.com/SkyBlockDev/pet-pet-gif"
+		"pet-pet-gif": "^1.0.8"
 	},
 	"engines": {
 		"node": ">=14.15.1"
