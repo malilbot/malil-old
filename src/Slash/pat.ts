@@ -33,7 +33,7 @@ export default class patCommand extends Command {
 
 	async exec(message: CommandInteraction) {
 		let image: string;
-		let speed: number = (message.options.find((i) => i.name == "speed").value as number) || 100;
+		let speed: number = (message.options.find((i) => i.name == "speed")?.value as number) || 20;
 		if (message.options.find((i) => i.name == "ign")) {
 			const res = await (await c("https://api.mojang.com/users/profiles/minecraft/" + message.options[0].value, "GET").send()).json();
 			if (res !== null) {
