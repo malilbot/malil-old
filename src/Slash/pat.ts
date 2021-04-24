@@ -21,13 +21,20 @@ export default class patCommand extends Command {
 					description: "in game name of th euser you want to have patted",
 					required: false,
 				},
+				{
+					type: 4,
+					name: "speed",
+					description: "The pat speed between 1 and 200",
+					required: false,
+				},
 			],
 		});
 	}
 
 	async exec(message: CommandInteraction) {
 		let image: string;
-		if (message.options[0]?.name == "ign") {
+		let speed: number = (message.options.find((i) => i.name == "speed").value as number) || 100;
+		if (message.options.find((i) => i.name == "ign")) {
 			const res = await (await c("https://api.mojang.com/users/profiles/minecraft/" + message.options[0].value, "GET").send()).json();
 			if (res !== null) {
 				image = `https://crafatar.com/renders/head/${res.id}?overlay`;
@@ -38,6 +45,6 @@ export default class patCommand extends Command {
 			let user = message.options[0]?.user || message.user;
 			image = user.displayAvatarURL({ dynamic: false, format: "png" });
 		}
-		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image), name: `patted.gif` }] });
+		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image, { delay: speed | 20 }), name: `patted.gif` }] });
 	}
 }
