@@ -21,19 +21,26 @@ export default class message extends Listener {
 			if (message.webhookID) {
 				this.client.gp.math("commands", "+", 1);
 				if (!message.content.startsWith("{")) return;
+
 				const res = JSON.parse(message.content);
 				const member = await this.client.users.fetch(res.user);
-				const iq = Math.floor(Math.random() * 150) + 1;
-				this.client.userdata.ensure(member.id, { iq: iq });
+
+				const cur = Number(this.client.userdata.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq"));
+				const votes = Number(this.client.userdata.ensure(member.id, 1, "votes"));
+				this.client.userdata.set(member.id, votes + 1, "votes");
 				if (!member) return this.client.logger.info("WHATTT?");
+
 				this.client.logger.info(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
+
 				const wknd = res.isWeekend;
-				const cur = Number(this.client.userdata.get(member.id, "iq"));
-				if (!cur) return;
+
 				const amount = wknd ? 2 : 1;
+
 				this.client.userdata.set(member.id, cur + amount, "iq");
+
 				message.channel.send(
-					new MessageEmbed()
+					this.client.util
+						.embed()
 						.setAuthor(`vote from ${member.tag}`, member.avatarURL())
 						.setDescription(`**${member} had ${cur || "Nothing"} iq now has ${cur + amount || "Nothing"} iq**`)
 						.setTimestamp()
