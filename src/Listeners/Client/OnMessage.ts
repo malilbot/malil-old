@@ -62,6 +62,24 @@ export default class message extends Listener {
 					});
 				}
 			});
+		}
+		if (message.author.bot) return;
+		if (message?.guild?.id == "807302538558308352") {
+			if (!talkedRecently.has(message.author.id)) {
+				const content = message.content.toLowerCase();
+				if (content.includes("bann")) {
+					talkedRecently.add(message.author.id);
+					message.reply({ files: ["http://pays.host/uploads/add4657d-af3a-4f66-a67f-605109f80024/bzxrcnWt.png"], content: "The mod is not bannable and doesnt trigger watchdog." });
+				} else if (content.includes("how")) {
+					if (content.includes("install") || content.includes("location") || content.includes("move")) {
+						talkedRecently.add(message.author.id);
+						message.reply({ files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"] });
+					}
+				}
+				setTimeout(() => {
+					talkedRecently.delete(message.author.id);
+				}, 10000); //10 seconds
+			}
 		} else if (message?.guild?.id == "804143990869590066") {
 			const content = message.content.toLowerCase();
 			if (message.author.id == "510016054391734273") {
@@ -72,7 +90,6 @@ export default class message extends Listener {
 					}
 				}
 			}
-			if (message.author.bot) return;
 
 			if (!talkedRecently.has(message.author.id)) {
 				if (content.includes("next") || content.includes("change")) {
@@ -97,15 +114,6 @@ export default class message extends Listener {
 			}
 		}
 
-		if (message.author.bot) return;
-		if (message.content.includes("malil")) {
-			if (!message.author.bot) {
-				this.client.logger.info(`${main("[ MALIL MENTIONED ]")}${third("[AUTHOR]")} ${message.author.tag} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`);
-			}
-		}
-		if (message.content.includes("tricked")) {
-			this.client.logger.info(`${main("[ MALIL MENTIONED ]")}${third("[AUTHOR]")} ${message.author.tag} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`);
-		}
 		if (this.client.gp.get("shitpost").includes(message?.channel?.id)) {
 			this.client.gp.math("commands", "+", 1);
 
@@ -128,9 +136,6 @@ export default class message extends Listener {
 					}, 2000);
 				}
 			}
-
-			if (message.guild !== null) return;
-			this.client.logger.info(`${main("[ DM ]")}${third("[AUTHOR]")} ${message.author.tag} (${message.author.id}) \x1b[32m[CONTENT]\x1b[34m ${message.content}`);
 		}
 	}
 }
