@@ -80,6 +80,14 @@ export default class message extends Listener {
 					 * photo
 					 *
 					 */
+				} else if (content.includes("waypoint")) {
+					if (content.includes("broken") || content.includes("slow") || content.includes("not") || content.includes("work")) {
+						talkedRecently.add(message.author.id);
+						message.reply({
+							files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"],
+							content: "<#807303575549116417>",
+						});
+					}
 				} else if (content.includes("how")) {
 					if (content.includes("install") || content.includes("location") || content.includes("move") || content.includes("edit")) {
 						talkedRecently.add(message.author.id);
