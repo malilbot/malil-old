@@ -88,6 +88,20 @@ export default class message extends Listener {
 							content: "<#807303575549116417>",
 						});
 					}
+				} else if (content.includes("skytils") || content.includes("st")) {
+					if (content.includes("menu") || content.includes("open") || content.includes("settings") || content.includes("start")) {
+						talkedRecently.add(message.author.id);
+						message.reply({
+							content: "/st",
+						});
+					}
+				} else if (content.includes("open") || content.includes("close")) {
+					if (content.includes("menu") || content.includes("settings")) {
+						talkedRecently.add(message.author.id);
+						message.reply({
+							content: "/st",
+						});
+					}
 				} else if (content.includes("how")) {
 					if (content.includes("install") || content.includes("location") || content.includes("move") || content.includes("edit")) {
 						talkedRecently.add(message.author.id);
