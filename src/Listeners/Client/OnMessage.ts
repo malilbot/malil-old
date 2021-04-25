@@ -67,13 +67,48 @@ export default class message extends Listener {
 		if (message?.guild?.id == "807302538558308352") {
 			if (!talkedRecently.has(message.author.id)) {
 				const content = message.content.toLowerCase();
+				/**
+				 *
+				 * bannable
+				 *
+				 */
 				if (content.includes("bann")) {
 					talkedRecently.add(message.author.id);
 					message.reply({ files: ["http://pays.host/uploads/add4657d-af3a-4f66-a67f-605109f80024/bzxrcnWt.png"], content: "The mod is not bannable and doesnt trigger watchdog." });
+					/**
+					 *
+					 * photo
+					 *
+					 */
 				} else if (content.includes("how")) {
 					if (content.includes("install") || content.includes("location") || content.includes("move") || content.includes("edit")) {
 						talkedRecently.add(message.author.id);
 						message.reply({ files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"] });
+					}
+					/**
+					 *
+					 * griffin
+					 *
+					 */
+				} else if (content.includes("apply") || content.includes("work")) {
+					if (content.includes("griffin") || content.includes("burrow")) {
+						talkedRecently.add(message.author.id);
+						message.reply(
+							this.client.util
+								.embed()
+								.addField(
+									"How to use griffin burrow waypoints",
+									"1. Set your api key. Do /api new, click the message in chat then ctrl+a and ctrl+x to copy it, then do /skytils setkey and paste your key.\n" +
+										"2. Enable griffin waypoints in events in /skytils\n" +
+										"3. Leave the lobby you are in, and go to a new one to force the api to refresh.\n" +
+										"4. Go click all the starting waypoints\n" +
+										"5. Go to a new lobby or go to your island and back to hub\n" +
+										"6. Click all the 2/4 waypoints and fight the mobs\n" +
+										"7. Repeat steps 5-6"
+								)
+								.setFooter(message.guild.name, message.guild.iconURL())
+								.setTimestamp()
+						);
 					}
 				}
 				setTimeout(() => {
