@@ -80,7 +80,7 @@ export default class message extends Listener {
 					 * photo
 					 *
 					 */
-				} else if (content.includes("waypoint", "burrow")) {
+				} else if (content.includes("waypoint") || content.includes("burrow")) {
 					if (content.includes("broken") || content.includes("slow") || content.includes("not") || content.includes("work")) {
 						talkedRecently.add(message.author.id);
 						message.reply({
