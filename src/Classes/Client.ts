@@ -74,7 +74,7 @@ export default class Client extends AkairoClient {
 	public constructor(config: Option) {
 		super({
 			ownerID: config.owners,
-			//superUserID: config.superUsers,
+			superUserID: config.superUsers,
 			intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS", "GUILD_WEBHOOKS", "GUILD_INTEGRATIONS", "GUILD_MESSAGE_REACTIONS", "DIRECT_MESSAGES", "DIRECT_MESSAGE_TYPING"],
 			messageSweepInterval: 1800, // 30 mins
 			messageCacheLifetime: 1800, // 30 mins

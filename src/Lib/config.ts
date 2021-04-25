@@ -6,11 +6,10 @@ const generalpurpose = new Enmap({
 	dataDir: join(__dirname, "..", "..", "data/gp"),
 	polling: Settings.polling,
 });
-if (!generalpurpose.get("superUsers")) generalpurpose.ensure("superUsers", []);
 let login = credentials.token;
 if (Settings.dev == true) login = credentials.devtoken;
 
 export const token: string = login;
 export const owners: string[] = Settings.owners;
-export const superUsers: string[] = [].concat(Settings.owners, generalpurpose.get("superUsers"));
+export const superUsers: string[] = [].concat(Settings.owners, generalpurpose.ensure("superUsers", []));
 generalpurpose.close();
