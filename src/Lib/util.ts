@@ -310,20 +310,23 @@ export class Util {
 export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
 	/**Defining what to search for */
 	const item = args.trim().split(" ")[0];
-	const id = args.trim()[0]?.replace(/[^0-9.]/g, "");
-
+	const id = args
+		.trim()
+		.replace(/[^0-9]+/gim, "")
+		.split(" ")[0];
+	/**Slicing stuff */
 	if (!item && !id) return null;
-
-	if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
+	else if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
 	else if (item == "^") return null;
+	else if (item == "me") return msg.member;
 
-	if (item == "me") return msg.member;
 	let user = msg.guild.members.cache.find((member) => member.displayName.toLowerCase().includes(item) || member.user.tag.toLowerCase().includes(item));
-	if (id) {
+
+	if (id && !user) {
 		user = msg.guild.members.cache.get(id);
 		if (!user)
 			try {
-				logger.info(a1("[ FETCHING USER ] ") + main(`[ BY ] ${msg.author.tag}`) + +main(`[ TEXT ] ${item}`));
+				logger.info(a1("[ FETCHING USER ] ") + main(`[ BY ] ${msg.author.tag}`) + +main(`[ TEXT ] ${id}`));
 				user = await msg.guild.members.fetch(id);
 			} catch (e) {}
 	}
