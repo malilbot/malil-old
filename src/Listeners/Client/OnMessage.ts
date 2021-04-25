@@ -106,6 +106,7 @@ export default class message extends Listener {
 										"6. Click all the 2/4 waypoints and fight the mobs\n" +
 										"7. Repeat steps 5-6"
 								)
+								.setColor(this.client.colors.green)
 								.setFooter(message.guild.name, message.guild.iconURL())
 								.setTimestamp()
 						);
@@ -149,7 +150,7 @@ export default class message extends Listener {
 			}
 		}
 
-		if (this.client.gp.get("shitpost").includes(message?.channel?.id)) {
+		if (this.client.gp.ensure("shitpost", []).includes(message?.channel?.id)) {
 			this.client.gp.math("commands", "+", 1);
 
 			if (!message.system) {

@@ -59,7 +59,7 @@
 		"centra": "^2.4.2",
 		"chalk": "^4.1.0",
 		"cheerio": "^1.0.0-rc.6",
-		"discord-akairo": "github:SkyBlockDev/discord-akairo",
+		"discord-akairo": "SkyBlockDev/discord-akairo",
 		"discord-api-types": "^0.18.0",
 		"discord.js": "vaporox/discord.js#feat-interactions",
 		"enmap": "^5.8.4",
