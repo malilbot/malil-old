@@ -28,7 +28,7 @@ export default class IqCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { member }: { member: GuildMember }): Promise<void> {
+	public async exec(message: Message, { member }: { member: GuildMember }): Promise<Message> {
 		const iq: number = this.client.userdata.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq");
 
 		const iEmbed = new MessageEmbed().setColor(this.client.colors.default).setTitle("IQ Test").setDescription(`${member}'s IQ is: \`${iq}\`!`);
@@ -36,6 +36,7 @@ export default class IqCommand extends Command {
 		if (Math.floor(Math.random() * 40 + 1) == 5) iEmbed.setImage("https://i.imgur.com/skuWtMT.png");
 		if (Math.floor(Math.random() * 10 + 1) == 5)
 			iEmbed.setFooter(`You can vote to get increased iq ${(await this.client.prefixes.get(message.guild.id, "prefix")) || this.client.settings.prefix}vote`);
-		message.util.send(iEmbed);
+
+		return message.util.send(iEmbed);
 	}
 }
