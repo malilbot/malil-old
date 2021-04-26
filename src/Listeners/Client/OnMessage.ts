@@ -1,5 +1,5 @@
 import { Listener } from "discord-akairo";
-import { Message, MessageEmbed, TextChannel } from "discord.js";
+import { Message, MessageEmbed, ShardingManager, TextChannel } from "discord.js";
 const talkedRecently = new Set();
 import Client from "../../Classes/Client";
 import { superUsers } from "../../Lib/config";
@@ -81,6 +81,7 @@ export default class message extends Listener {
 		if (!talkedRecently.has(message.author.id)) {
 			if (message?.guild?.id == "807302538558308352") {
 				if (message.channel.id == "807702096064937990") return;
+				let smh: Message;
 				if (check("bann")) {
 					//skytils
 
@@ -99,31 +100,31 @@ export default class message extends Listener {
 				} else if (check("waypoint") || check("burrow")) {
 					if (check("broken") || check("slow") || check("not") || check("work")) {
 						talkedRecently.add(message.author.id);
-						message.reply({
+						smh = await message.reply({
 							files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"],
 							content: "<#807303575549116417>",
 						});
 					}
 				} else if (check("location")) {
-					message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/ ) ");
-				} else if (check("skytils") || check("st")) {
+					smh = await message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/ ) ");
+				} else if (check("skytils")) {
 					if (check("menu") || check("open") || check("settings") || check("start")) {
 						talkedRecently.add(message.author.id);
-						message.reply({
+						smh = await message.reply({
 							content: "/st",
 						});
 					}
 				} else if (check("open") || check("close")) {
 					if (check("menu") || check("settings")) {
 						talkedRecently.add(message.author.id);
-						message.reply({
+						smh = await message.reply({
 							content: "/st",
 						});
 					}
 				} else if (check("how")) {
 					if (check("install") || check("location") || check("move") || check("edit")) {
 						talkedRecently.add(message.author.id);
-						message.reply({ files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"] });
+						smh = await message.reply({ files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"] });
 					}
 					/**
 					 *
@@ -133,7 +134,7 @@ export default class message extends Listener {
 				} else if (check("apply") || check("work")) {
 					if (check("griffin") || check("burrow")) {
 						talkedRecently.add(message.author.id);
-						message.reply(
+						smh = await message.reply(
 							this.client.util
 								.embed()
 								.addField(
@@ -152,19 +153,26 @@ export default class message extends Listener {
 						);
 					}
 				}
+				if (smh?.author) {
+					const filter = (reaction, user) => {
+						return reaction.emoji.name === "❌" && user.id === message.author.id;
+					};
+					await smh.react("❌");
+					smh.awaitReactions(filter, { max: 1, time: 60000 /** 60 seconds */ }).then((collected) => {
+						if (!collected.first()) return;
+						if (collected.first()) {
+							smh.delete();
+						}
+					});
+				}
 			} else if (message?.guild?.id == "804143990869590066") {
 				// drm
 
-				if (check("next") || check("change")) {
-					if (check("secret")) {
-						talkedRecently.add(message.author.id); // Add the user to a blacklist to prevent the bot from being spammed
-						message.reply(`Default is B for previous, N for next, and M to clear, **note** these keybinds can also be used by other mods so make sure they are bound correctly.`);
-					}
-				} else if (check("bannable") && check("this")) {
+				if (check("bannable") && check("this")) {
 					talkedRecently.add(message.author.id);
 					message.reply("The mod is not bannable and doesnt trigger watchdog.");
-				} else if (check("remove") || check("close") || check("rid") || check("rid")) {
-					if (check("pic") || check("image")) {
+				} else if (check("remove") || check("close") || check("rid") || check("next") || check("change")) {
+					if (check("pic") || check("image") || check("secret")) {
 						talkedRecently.add(message.author.id);
 						message.reply(
 							"To remove the SBP secret images, you have to press a hotkey (which is configurable in the Minecraft controls menu). Default keys are O to open images, B for previous image, N for next image, and M to clear/remove images from the screen."
