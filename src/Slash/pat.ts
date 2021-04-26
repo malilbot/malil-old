@@ -32,6 +32,7 @@ export default class patCommand extends Command {
 	}
 
 	async exec(message: CommandInteraction) {
+		return message.reply("This command is currently broken sorry");
 		let image: string;
 		let speed: number = (message.options.find((i) => i.name == "speed")?.value as number) || 20;
 		if (message.options.find((i) => i.name == "ign")) {
