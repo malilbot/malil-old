@@ -6,6 +6,7 @@ import { superUsers } from "../../Lib/config";
 import { exec } from "child_process";
 import { main, sec, third, fourth } from "../../Lib/Utils";
 import Centra from "centra";
+import { SSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG } from "node:constants";
 export default class message extends Listener {
 	public constructor(client: Client) {
 		super("message", {
@@ -97,6 +98,8 @@ export default class message extends Listener {
 							content: "<#807303575549116417>",
 						});
 					}
+				} else if (content.includes("location")) {
+					message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/ ) ");
 				} else if (content.includes("skytils") || content.includes("st")) {
 					if (content.includes("menu") || content.includes("open") || content.includes("settings") || content.includes("start")) {
 						talkedRecently.add(message.author.id);
