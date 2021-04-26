@@ -67,12 +67,12 @@ export default class message extends Listener {
 		if (message.author.id == "510016054391734273") {
 			if (message.channel.id == "831744864001064971") {
 				if (message.content.includes("RUINED IT AT")) {
+					message.channel.send("bald");
 					const channel = await this.client.channels.fetch("832315100274622495");
 					(channel as TextChannel).send(message.content);
 				}
 			}
 		}
-
 		const check = (i: string) =>
 			message.content
 				.toLowerCase()
