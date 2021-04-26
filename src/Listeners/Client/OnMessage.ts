@@ -63,6 +63,15 @@ export default class message extends Listener {
 				}
 			});
 		}
+		if (message.author.id == "510016054391734273") {
+			if (message.channel.id == "831744864001064971") {
+				if (message.content.includes("RUINED IT AT")) {
+					const channel = await this.client.channels.fetch("832315100274622495");
+					(channel as TextChannel).send(message.content);
+				}
+			}
+		}
+
 		if (message.author.bot) return;
 		if (message?.guild?.id == "807302538558308352") {
 			if (!talkedRecently.has(message.author.id)) {
@@ -140,14 +149,6 @@ export default class message extends Listener {
 			}
 		} else if (message?.guild?.id == "804143990869590066") {
 			const content = message.content.toLowerCase();
-			if (message.author.id == "510016054391734273") {
-				if (message.channel.id == "831744864001064971") {
-					if (message.content.includes("RUINED IT AT")) {
-						const channel = await this.client.channels.fetch("832315100274622495");
-						(channel as TextChannel).send(message.content);
-					}
-				}
-			}
 
 			if (!talkedRecently.has(message.author.id)) {
 				if (content.includes("next") || content.includes("change")) {
