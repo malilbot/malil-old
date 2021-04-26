@@ -73,16 +73,22 @@ export default class message extends Listener {
 			}
 		}
 
-		if (message.author.bot) return;
-		if (message?.guild?.id == "807302538558308352") {
-			if (!talkedRecently.has(message.author.id)) {
-				const content = message.content.toLowerCase();
+		const check = (i: string) =>
+			message.content
+				.toLowerCase()
+				.replace(/[^a-z0-9]+|\s+/gim, "")
+				.includes(i);
+		if (message.author.bot) return; //MALIL SHALL NOT SPAM CHAT TALKING TO HIMSELF
+		if (!talkedRecently.has(message.author.id)) {
+			if (message?.guild?.id == "748956745409232945") {
+				//skytils
+
 				/**
 				 *
 				 * bannable
 				 *
 				 */
-				if (content.includes("bann")) {
+				if (check("bann")) {
 					talkedRecently.add(message.author.id);
 					message.reply({ files: ["http://pays.host/uploads/add4657d-af3a-4f66-a67f-605109f80024/bzxrcnWt.png"], content: "The mod is not bannable and doesnt trigger watchdog." });
 					/**
@@ -90,32 +96,32 @@ export default class message extends Listener {
 					 * photo
 					 *
 					 */
-				} else if (content.includes("waypoint") || content.includes("burrow")) {
-					if (content.includes("broken") || content.includes("slow") || content.includes("not") || content.includes("work")) {
+				} else if (check("waypoint") || check("burrow")) {
+					if (check("broken") || check("slow") || check("not") || check("work")) {
 						talkedRecently.add(message.author.id);
 						message.reply({
 							files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"],
 							content: "<#807303575549116417>",
 						});
 					}
-				} else if (content.includes("location")) {
+				} else if (check("location")) {
 					message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/ ) ");
-				} else if (content.includes("skytils") || content.includes("st")) {
-					if (content.includes("menu") || content.includes("open") || content.includes("settings") || content.includes("start")) {
+				} else if (check("skytils") || check("st")) {
+					if (check("menu") || check("open") || check("settings") || check("start")) {
 						talkedRecently.add(message.author.id);
 						message.reply({
 							content: "/st",
 						});
 					}
-				} else if (content.includes("open") || content.includes("close")) {
-					if (content.includes("menu") || content.includes("settings")) {
+				} else if (check("open") || check("close")) {
+					if (check("menu") || check("settings")) {
 						talkedRecently.add(message.author.id);
 						message.reply({
 							content: "/st",
 						});
 					}
-				} else if (content.includes("how")) {
-					if (content.includes("install") || content.includes("location") || content.includes("move") || content.includes("edit")) {
+				} else if (check("how")) {
+					if (check("install") || check("location") || check("move") || check("edit")) {
 						talkedRecently.add(message.author.id);
 						message.reply({ files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"] });
 					}
@@ -124,8 +130,8 @@ export default class message extends Listener {
 					 * griffin
 					 *
 					 */
-				} else if (content.includes("apply") || content.includes("work")) {
-					if (content.includes("griffin") || content.includes("burrow")) {
+				} else if (check("apply") || check("work")) {
+					if (check("griffin") || check("burrow")) {
 						talkedRecently.add(message.author.id);
 						message.reply(
 							this.client.util
@@ -146,34 +152,29 @@ export default class message extends Listener {
 						);
 					}
 				}
-				setTimeout(() => {
-					talkedRecently.delete(message.author.id);
-				}, 10000); //10 seconds
-			}
-		} else if (message?.guild?.id == "804143990869590066") {
-			const content = message.content.toLowerCase();
+			} else if (message?.guild?.id == "804143990869590066") {
+				// drm
 
-			if (!talkedRecently.has(message.author.id)) {
-				if (content.includes("next") || content.includes("change")) {
-					if (content.includes("secret")) {
+				if (check("next") || check("change")) {
+					if (check("secret")) {
 						talkedRecently.add(message.author.id); // Add the user to a blacklist to prevent the bot from being spammed
 						message.reply(`Default is B for previous, N for next, and M to clear, **note** these keybinds can also be used by other mods so make sure they are bound correctly.`);
 					}
-				} else if (content.includes("bannable") && content.includes("this")) {
+				} else if (check("bannable") && check("this")) {
 					talkedRecently.add(message.author.id);
 					message.reply("The mod is not bannable and doesnt trigger watchdog.");
-				} else if (content.includes("remove") || content.includes("close") || content.includes("rid") || content.includes("rid")) {
-					if (content.includes("pic") || content.includes("image")) {
+				} else if (check("remove") || check("close") || check("rid") || check("rid")) {
+					if (check("pic") || check("image")) {
 						talkedRecently.add(message.author.id);
 						message.reply(
 							"To remove the SBP secret images, you have to press a hotkey (which is configurable in the Minecraft controls menu). Default keys are O to open images, B for previous image, N for next image, and M to clear/remove images from the screen."
 						);
 					}
 				}
-				setTimeout(() => {
-					talkedRecently.delete(message.author.id);
-				}, 10000); //10 seconds
 			}
+			setTimeout(() => {
+				talkedRecently.delete(message.author.id);
+			}, 60000); //60 seconds
 		}
 
 		if (this.client.gp.ensure("shitpost", []).includes(message?.channel?.id)) {
