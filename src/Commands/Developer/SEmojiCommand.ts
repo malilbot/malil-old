@@ -29,7 +29,7 @@ export default class semojiCommand extends Command {
 		try {
 			message.delete().catch(() => {});
 		} catch (e) {}
-		const str = `${this.client.emojis.cache.find((e) => e.name.includes(emoji))}`;
+		const str = `${this.client.emojis.cache.find((e) => e.name.includes(emoji) && e.animated)}`;
 		if (str == "undefined") return;
 		message.channel.send(str);
 	}
