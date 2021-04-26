@@ -81,14 +81,15 @@ export default class message extends Listener {
 		if (message.author.bot) return; //MALIL SHALL NOT SPAM CHAT TALKING TO HIMSELF
 		if (!talkedRecently.has(message.author.id)) {
 			if (message?.guild?.id == "807302538558308352") {
-				//skytils
-
-				/**
-				 *
-				 * bannable
-				 *
-				 */
+				if (message.channel.id == "807702096064937990") return;
 				if (check("bann")) {
+					//skytils
+
+					/**
+					 *
+					 * bannable
+					 *
+					 */
 					talkedRecently.add(message.author.id);
 					message.reply({ files: ["http://pays.host/uploads/add4657d-af3a-4f66-a67f-605109f80024/bzxrcnWt.png"], content: "The mod is not bannable and doesnt trigger watchdog." });
 					/**
@@ -196,7 +197,7 @@ export default class message extends Listener {
 					talkedRecently.add(message.author.id);
 					setTimeout(() => {
 						talkedRecently.delete(message.author.id);
-					}, 2000);
+					}, 2000); //2 seconds
 				}
 			}
 		}
