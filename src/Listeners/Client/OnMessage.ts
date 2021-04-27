@@ -82,7 +82,6 @@ export default class message extends Listener {
 			if (message?.guild?.id == "807302538558308352") {
 				//skytils
 				if (message.channel.id == "807702096064937990") return;
-
 				let smh: Message;
 				if (check("bann")) {
 					talkedRecently.add(message.author.id);
@@ -92,6 +91,12 @@ export default class message extends Listener {
 					});
 				} else if (check("location")) {
 					smh = await message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/ ) ");
+				} else if (check("head") || check("skull") || check("item") || check("dropped")) {
+					if (check("size") || check("gian") || check("big") || check("scale")) {
+						smh = await message.reply(
+							"On updating to new 1.x pre, your config will be a bit messed up. Make sure to change the following:\n" + "- Larger Heads\n" + "- Dropped item scale"
+						);
+					}
 				} else if (check("skytils")) {
 					if (check("menu") || check("open") || check("settings") || check("start")) {
 						talkedRecently.add(message.author.id);
@@ -136,7 +141,7 @@ export default class message extends Listener {
 
 				if (smh) {
 					const filter = (reaction, user) => {
-						return reaction.emoji.name === "❌" && user.id === message.author.id;
+						return reaction.emoji.name === "❌";
 					};
 					await smh.react("❌");
 					smh.awaitReactions(filter, { max: 1, time: 60000 /** 60 seconds */ }).then((collected) => {
