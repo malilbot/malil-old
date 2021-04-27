@@ -30,7 +30,7 @@ export default class EncodeCommand extends Command {
 	public async exec(message: Message, { args }): Promise<Message> {
 		const embed = new MessageEmbed()
 			.setTitle("Encode things")
-			.setDescription("input: " + hst(args, true) || "none")
+			.setDescription("input: " + (await hst(args, true)) || "none")
 			.addFields(
 				{
 					name: "hex",
