@@ -80,31 +80,13 @@ export default class message extends Listener {
 		if (message.author.bot) return; //MALIL SHALL NOT SPAM CHAT TALKING TO HIMSELF
 		if (!talkedRecently.has(message.author.id)) {
 			if (message?.guild?.id == "807302538558308352") {
+				//skytils
 				if (message.channel.id == "807702096064937990") return;
+
 				let smh: Message;
 				if (check("bann")) {
-					//skytils
-
-					/**
-					 *
-					 * bannable
-					 *
-					 */
 					talkedRecently.add(message.author.id);
 					message.reply({ files: ["http://pays.host/uploads/add4657d-af3a-4f66-a67f-605109f80024/bzxrcnWt.png"], content: "The mod is not bannable and doesnt trigger watchdog." });
-					/**
-					 *
-					 * photo
-					 *
-					 */
-				} else if (check("waypoint") || check("burrow")) {
-					if (check("broken") || check("slow") || check("not") || check("work")) {
-						talkedRecently.add(message.author.id);
-						smh = await message.reply({
-							files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"],
-							content: "<#807303575549116417>",
-						});
-					}
 				} else if (check("location")) {
 					smh = await message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/ ) ");
 				} else if (check("skytils")) {
@@ -121,16 +103,11 @@ export default class message extends Listener {
 							content: "/st",
 						});
 					}
-				} else if (check("how")) {
-					if (check("install") || check("location") || check("move") || check("edit")) {
+				} else if (check("how") || check("waypoint") || check("burrow")) {
+					if (check("install") || check("location") || check("move") || check("work") || check("edit") || check("broken") || check("slow") || check("not")) {
 						talkedRecently.add(message.author.id);
 						smh = await message.reply({ files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"] });
 					}
-					/**
-					 *
-					 * griffin
-					 *
-					 */
 				} else if (check("apply") || check("work")) {
 					if (check("griffin") || check("burrow")) {
 						talkedRecently.add(message.author.id);

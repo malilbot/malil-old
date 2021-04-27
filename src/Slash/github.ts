@@ -50,6 +50,7 @@ export default class githubCommand extends Command {
 	}
 
 	async exec(message: CommandInteraction) {
+		this.client.releases.ensure(message.guild.id, [], "repos");
 		if (message.options[0].name == "delete") this.delete(message);
 		else if (message.options[0].name == "set") this.set(message);
 		else if (message.options[0].name == "add") this.add(message);
