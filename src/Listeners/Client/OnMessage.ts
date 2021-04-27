@@ -79,14 +79,17 @@ export default class message extends Listener {
 				.includes(i);
 		if (message.author.bot) return; //MALIL SHALL NOT SPAM CHAT TALKING TO HIMSELF
 		if (!talkedRecently.has(message.author.id)) {
-			if (message?.guild?.id == "807302538558308352") {
+			if (message?.guild?.id == "748956745409232945") {
 				//skytils
 				if (message.channel.id == "807702096064937990") return;
 
 				let smh: Message;
 				if (check("bann")) {
 					talkedRecently.add(message.author.id);
-					message.reply({ files: ["http://pays.host/uploads/add4657d-af3a-4f66-a67f-605109f80024/bzxrcnWt.png"], content: "The mod is not bannable and doesnt trigger watchdog." });
+					smh = await message.reply({
+						files: ["http://pays.host/uploads/add4657d-af3a-4f66-a67f-605109f80024/bzxrcnWt.png"],
+						content: "The mod is not bannable and doesnt trigger watchdog.",
+					});
 				} else if (check("location")) {
 					smh = await message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/ ) ");
 				} else if (check("skytils")) {
@@ -129,8 +132,9 @@ export default class message extends Listener {
 								.setTimestamp()
 						);
 					}
-				}
-				if (smh?.author) {
+				} else return;
+
+				if (smh) {
 					const filter = (reaction, user) => {
 						return reaction.emoji.name === "❌" && user.id === message.author.id;
 					};
