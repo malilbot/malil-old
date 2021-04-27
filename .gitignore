@@ -10,6 +10,7 @@ backups/*
 finish
 dist
 code/*
+code.py
 svelte/*
 website/*
 src/tasks/rpc.ts

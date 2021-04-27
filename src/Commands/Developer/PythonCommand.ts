@@ -1,13 +1,11 @@
 import { Command } from "discord-akairo";
 import { MessageEmbed, Message, MessageAttachment } from "discord.js";
 import { inspect } from "util";
-import centra from "centra";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { join } from "path";
 import { hst, InterfaceClient } from "../../Lib/Utils";
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
-let pycode = "";
 export default class PyCommand extends Command {
 	public constructor() {
 		super("py", {
@@ -71,7 +69,7 @@ export default class PyCommand extends Command {
 		}
 	): Promise<Message> {
 		if (!code) return message.util.send("You cant eval air");
-
+		code = code.replace(/```py/g, "").replace(/```/g, "").trim();
 		if (del == true) message.delete();
 		const embed = new MessageEmbed().setColor(this.client.colors.red).addField("🍞 Input", `\`\`\`py\n${code}\`\`\``);
 		let output: string;
@@ -81,19 +79,15 @@ export default class PyCommand extends Command {
 		else msg = await message.util.send({ embed });
 		msg.react("🗑️");
 		try {
-			const dir = join(__dirname, "..", "..", "..", "code");
+			const dir = join(__dirname, "..", "..", "..", "python");
 			if (!existsSync(dir)) {
 				mkdirSync(dir);
 			}
-			let i = 0;
-			while (true) {
-				if (!existsSync(join(dir, "PythonCode" + `${i}`))) break;
-				i++;
-			}
-			writeFileSync(join(dir, "PythonCode" + `${i}`), `print(eval("${code}"))`);
+			writeFileSync(join(dir, "code.py"), code);
 
-			const { stdout, stderr } = await exec(`python3 ${join(dir, "PythonCode" + `${i}`)}`);
-			output = stdout || stderr;
+			const { stdout, stderr } = await exec(`python3 ${join(dir, "run.py")}`);
+			output = (stdout || stderr).replace(/None/, "");
+
 			if (typeof output !== "string") output = replace(inspect(output, { depth: deph || 0 }), this.client);
 
 			if (output.length > 1024) {
