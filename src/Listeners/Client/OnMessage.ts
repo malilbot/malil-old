@@ -79,7 +79,7 @@ export default class message extends Listener {
 				.includes(i);
 		if (message.author.bot) return; //MALIL SHALL NOT SPAM CHAT TALKING TO HIMSELF
 		if (!talkedRecently.has(message.author.id)) {
-			if (message?.guild?.id == "748956745409232945") {
+			if (message?.guild?.id == "807302538558308352") {
 				//skytils
 				if (message.channel.id == "807702096064937990") return;
 
