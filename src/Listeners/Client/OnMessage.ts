@@ -92,7 +92,7 @@ export default class message extends Listener {
 				} else if (check("location")) {
 					smh = await message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/ ) ");
 				} else if (check("how") || check("where")) {
-					if (check("download") || check("get")) {
+					if (check("download") || check("mod")) {
 						smh = await message.reply("https://streamable.com/1rauw6");
 					}
 				} else if (check("head") || check("skull") || check("item") || check("dropped") || check("big") || check("skyblock") || check("glitching") || check("skin")) {
