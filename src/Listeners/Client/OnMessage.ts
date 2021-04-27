@@ -91,8 +91,8 @@ export default class message extends Listener {
 					});
 				} else if (check("location")) {
 					smh = await message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/ ) ");
-				} else if (check("head") || check("skull") || check("item") || check("dropped")) {
-					if (check("size") || check("gian") || check("big") || check("scale")) {
+				} else if (check("head") || check("skull") || check("item") || check("dropped") || check("big") || check("skyblock") || check("glitching") || check("skin")) {
+					if (check("size") || check("gian") || check("big") || check("scale") || check("bug")) {
 						smh = await message.reply(
 							"On updating to new 1.x pre, your config will be a bit messed up. Make sure to change the following:\n" + "- Larger Heads\n" + "- Dropped item scale"
 						);
