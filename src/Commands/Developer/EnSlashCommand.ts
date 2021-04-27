@@ -55,12 +55,7 @@ export default class EnSlashCommand extends Command {
 				} else {
 					//@ts-expect-error
 					for (let cmd of this.client.slashHandler.modules) {
-						//@ts-ignore
-						this.client.api //@ts-ignore so many fucking errors
-							.applications(this.client.user.id)
-							.commands.post({
-								data: cmd[1].data,
-							});
+						this.client.application.commands.create(cmd[1].data);
 					}
 				}
 			} else {
@@ -81,14 +76,7 @@ export default class EnSlashCommand extends Command {
 				} else {
 					//@ts-expect-error
 					for (let cmd of this.client.slashHandler.modules) {
-						console.log(cmd[1].data);
-						//@ts-ignore
-						const res = this.client.api //@ts-ignore so many fucking errors
-							.applications(this.client.user.id)
-							.guilds(message.guild.id)
-							.commands.post({
-								data: cmd[1].data,
-							});
+						message.guild.commands.create(cmd[1].data);
 					}
 				}
 			}

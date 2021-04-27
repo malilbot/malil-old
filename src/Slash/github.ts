@@ -92,7 +92,7 @@ export default class githubCommand extends Command {
 		this.client.releases.push(message.guild.id, name, "repos");
 	}
 	async get(message: CommandInteraction) {
-		const repos = this.client.releases.get(message.guild.id, "repos");
+		const repos = this.client.releases.ensure(message.guild.id, [], "repos");
 		if (!repos) return message.reply("Currently not watching anything");
 		const embed = this.client.util
 			.embed()
