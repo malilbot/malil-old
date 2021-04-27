@@ -91,6 +91,10 @@ export default class message extends Listener {
 					});
 				} else if (check("location")) {
 					smh = await message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/ ) ");
+				} else if (check("how") || check("where")) {
+					if (check("download") || check("get")) {
+						smh = await message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/ ) ");
+					}
 				} else if (check("head") || check("skull") || check("item") || check("dropped") || check("big") || check("skyblock") || check("glitching") || check("skin")) {
 					if (check("size") || check("gian") || check("big") || check("scale") || check("bug")) {
 						smh = await message.reply(
