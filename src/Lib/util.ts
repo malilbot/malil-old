@@ -551,14 +551,49 @@ export const GetGist = async function (GistId: string, client: InterfaceClient):
 	return gist;
 };
 
-export async function hst(body: string): Promise<string> {
-	logger.info(a1("[ POSTING ON hst.sh ] "));
-	const post = await (
+const urls = [
+	"https://hst.sh",
+	"https://hasteb.in",
+	"https://hastebin.com",
+	"https://mystb.in",
+	"https://haste.clicksminuteper.net",
+	"https://paste.pythondiscord.com",
+	"https://haste.unbelievaboat.com",
+];
+const post = async (contents: string) => {
+	for (const url of urls) {
+		try {
+			const res: hastebinRes = await (
+				await centra(site + "documents", "POST")
+					.body(contents)
+					.send()
+			).json();
+			return `${url}/${res.key}`;
+		} catch (e) {
+			continue;
+		}
+	}
+};
+/*
+const post = async (contents: string) => {
+	return await (
 		await centra(site + "documents", "POST")
-			.body(body)
+			.body(contents)
 			.send()
 	).json();
-	return site + post.key;
+};
+*/
+export async function hst(body: string, check: boolean = false): Promise<string> {
+	logger.info(a1("[ POSTING ON hst.sh ] "));
+	if (check) {
+		if (body.length > 1024) {
+			return await post(body);
+		} else {
+			return body;
+		}
+	}
+
+	return await post(body);
 }
 export async function Infract(message?: Message, reason?: string, member?: GuildMember, type?: string, client?: InterfaceClient): Promise<void> {
 	this.client.infractions.ensure(message.guild.id, {});
@@ -730,4 +765,7 @@ interface FormatIF {
 	CStr: string;
 	MStr: string;
 	RStr: string;
+}
+interface hastebinRes {
+	key: string;
 }

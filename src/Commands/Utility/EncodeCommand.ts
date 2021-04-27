@@ -1,7 +1,7 @@
 import { Command } from "discord-akairo";
 import { MessageManager, Message } from "discord.js";
 import { MessageEmbed } from "discord.js";
-
+import { hst } from "../../Lib/Utils";
 export default class EncodeCommand extends Command {
 	public constructor() {
 		super("encode", {
@@ -22,7 +22,7 @@ export default class EncodeCommand extends Command {
 				example: ["encode"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
-			ratelimit: 3,
+			ratelimit: 1,
 			channel: "guild",
 		});
 	}
@@ -30,27 +30,27 @@ export default class EncodeCommand extends Command {
 	public async exec(message: Message, { args }): Promise<Message> {
 		const embed = new MessageEmbed()
 			.setTitle("Encode things")
-			.setDescription("input: " + args || "none")
+			.setDescription("input: " + hst(args, true) || "none")
 			.addFields(
 				{
 					name: "hex",
-					value: Buffer.from(args).toString("hex") || "none",
+					value: (await hst(Buffer.from(args).toString("hex"), true)) || "none",
 					inline: true,
 				},
 				{
 					name: "utf8",
-					value: Buffer.from(args).toString("utf8") || "none",
+					value: (await hst(Buffer.from(args).toString("utf8"), true)) || "none",
 					inline: true,
 				},
 				{ name: "\u200B", value: "\u200B" },
 				{
 					name: "utf16le/ucs2",
-					value: Buffer.from(args).toString("ucs2") || "none",
+					value: (await hst(Buffer.from(args).toString("ucs2"), true)) || "none",
 					inline: true,
 				},
 				{
 					name: "base64",
-					value: Buffer.from(args).toString("base64") || "none",
+					value: (await hst(Buffer.from(args).toString("base64"), true)) || "none",
 					inline: true,
 				}
 			);
