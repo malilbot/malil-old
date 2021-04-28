@@ -14,6 +14,8 @@ export default class CommandStarted extends Listener {
 	}
 
 	exec(message: Message, command: Command): void {
+		const cur = this.client.gp.ensure("run", 1, `${command}`);
+		this.client.gp.ensure("run", cur + 1, `${command}`);
 		this.client.gp.math("commands", "+", 1);
 		const cmd = main(command);
 		const usr = sec(message.author.tag) + " " + fourth(message.author.id);
