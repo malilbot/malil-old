@@ -75,7 +75,7 @@ export default class message extends Listener {
 
 		if (message?.author.bot) return; //MALIL SHALL NOT SPAM CHAT TALKING TO HIMSELF
 
-		if (message?.guild?.id == "748956745409232945") {
+		if (message?.guild?.id == "807302538558308352") {
 			skytils(message);
 		} else if (message?.guild?.id == "804143990869590066") {
 			drm(message);
