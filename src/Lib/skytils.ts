@@ -38,7 +38,7 @@ export = async (message: Message) => {
 		} else if (check("location")) {
 			talkedRecently.add(message.author.id);
 
-			smh = await message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/ ) ");
+			smh = await message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/skytils/guipositions.json ) ");
 		} else if (check(["how", "where"]) && check(["download", "mod"])) {
 			talkedRecently.add(message.author.id);
 
