@@ -1,7 +1,8 @@
 import { Listener } from "discord-akairo";
-import { GuildMember, TextChannel, MessageEmbed } from "discord.js";
+import { GuildMember, TextChannel, Message } from "discord.js";
 import Client from "../../Classes/Client";
 import { fourth, sLog } from "../../Lib/Utils";
+let lastJoin: Message;
 export default class WelcomeEmbed extends Listener {
 	public constructor(client: Client) {
 		super("welcomeEmbed", {
@@ -25,33 +26,26 @@ export default class WelcomeEmbed extends Listener {
 		}
 		if (this.client.settings.dev == false) {
 			if (member.guild.id == "748956745409232945") {
-				let gifs = [
-					"https://i.imgur.com/MqGBqZs.gif",
-					"https://media.giphy.com/media/4Zo41lhzKt6iZ8xff9/giphy.gif",
-					"https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif",
-					"https://media.giphy.com/media/Cmr1OMJ2FN0B2/giphy.gif",
-				];
-				gifs = shuffle(gifs);
-				const welcomeEmbed = new MessageEmbed()
-					.setColor(this.client.colors.green)
-					.addField("Welcome " + member.user.tag, "hope you enjoy the stay")
-					.setImage(gifs[Math.floor(Math.random() * gifs.length)]);
-				const channel = await this.client.channels.fetch("748970525245702174");
-				const role = await member.guild.roles.fetch("748967146498818058");
-				member.roles.add(role);
-				const webhook = await (channel as TextChannel).createWebhook(member.user.tag).then((webhook) =>
-					webhook.edit({
-						avatar: member.user.displayAvatarURL({
-							size: 2048,
-							format: "png",
-						}),
-					})
+				const currentDate = new Date();
+
+				const date = this.client.gp.ensure("welcome", currentDate.getDate(), "date");
+
+				let amount = this.client.gp.ensure("welcome", 1, "today");
+
+				if (currentDate.getDate() !== date) {
+					this.client.gp.set("welcome", 1, "today");
+					this.client.gp.set("welcome", currentDate.getDate(), "date");
+					amount = 1;
+				} else {
+					amount = this.client.gp.ensure("welcome", 1, "today");
+					this.client.gp.set("welcome", amount + 1, "today");
+				}
+				let e: string;
+				if (lastJoin) lastJoin.delete();
+				if (amount == 1) e = "User";
+				lastJoin = await ((await this.client.channels.fetch("748957504666599507")) as TextChannel).send(
+					`Welcome ${member}! This discord server is for <@749020331187896410> support and general chatting\n\n` + `${amount} ${e ?? "Users"} joined today`
 				);
-				sLog({ member, type: "MEMBERADD", guild: member.guild });
-				await webhook
-					.send(welcomeEmbed)
-					.then(() => webhook.delete())
-					.catch(() => this.client.logger.info(fourth("Webhook messed up :(")));
 			}
 		}
 	}

@@ -2,6 +2,7 @@ import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, 
 import { Command, CommandHandler, InhibitorHandler, ListenerHandler } from "discord-akairo";
 import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
 import { credentials, Settings, consts } from "../settings";
+export { consts } from "../settings";
 import Slashhandler from "../Classes/SlashHandler";
 import { join } from "path";
 import centra from "centra";
@@ -9,6 +10,7 @@ import Enmap from "enmap";
 import moment from "moment";
 /** Pre defining */
 const num = Math.floor(Math.random() * 2 + 1);
+
 export let main: (string: string | Command | number) => string,
 	sec: (string: string | Command | number) => string,
 	third: (string: string | Command | number) => string,
