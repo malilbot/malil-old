@@ -12,13 +12,10 @@ export = async (message: Message) => {
 					.toLowerCase()
 					.replace(/[^a-z0-9]+|\s+/gim, "")
 					.includes(m);
-
 			if (typeof i == "string") {
 				return ls(i);
 			} else if (typeof i == "object") {
-				console.log("E");
 				for (const str of i) {
-					console.log(str);
 					if (ls(str)) {
 						return true;
 					} else {
