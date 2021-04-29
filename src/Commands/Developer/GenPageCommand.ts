@@ -41,6 +41,7 @@ export default class GenPageCommand extends Command {
 							file += `<summary>${cmd}</summary>\n`;
 							file += `### Aliasses\n * ${cmd.aliases.join("\n * ")} \n`;
 							file += `### Information\n * ${cmd.description.content}\n`;
+							file += `### Examples\n * ${cmd.description.example.join("\n* ")}\n`;
 							file += "</details>\n";
 						});
 				}
