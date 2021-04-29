@@ -36,8 +36,6 @@ export default class HelpCommand extends Command {
 							`**Description**\n` +
 							`${command.description.content || "No Content"}\n\n` +
 							`**Usage**\n` +
-							`${command.description.usage || "No Usage Provided"}\n\n` +
-							`**Example**\n` +
 							`${command.description.example ? command.description.example.map((e) => `\`${e}\``).join("\n") : "No Example Provided"}`
 					)
 			);
