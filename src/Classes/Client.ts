@@ -126,6 +126,7 @@ export default class Client extends AkairoClient {
 
 declare module "discord-akairo" {
 	interface AkairoClient {
+		commandHandler: CommandHandler;
 		settings: typeof Settings;
 		credentials: typeof credentials;
 		consts: typeof consts;

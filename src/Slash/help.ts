@@ -22,7 +22,6 @@ export default class helpCommand extends Command {
 			slashes.push(`**\`${module[1].data.name}\`**`);
 		}
 		embed.addField("Slash Commands", slashes.join(" | "));
-		//@ts-ignore
 		for (const category of this.client.commandHandler.categories.values()) {
 			if (["default"].includes(category.id)) continue;
 			if (category.id !== "Developer" && category.id !== "Custom") {

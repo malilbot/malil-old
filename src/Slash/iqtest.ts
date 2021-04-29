@@ -1,10 +1,10 @@
 import Command from "../Classes/SlashCommand";
 import type { CommandInteraction } from "discord.js";
 
-export default class iqqCommand extends Command {
+export default class iqtestCommand extends Command {
 	constructor() {
-		super("iqq", {
-			name: "iqq",
+		super("iqtest", {
+			name: "iqtest",
 			description: "Send your actual iq",
 			options: [
 				{
