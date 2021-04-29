@@ -20,8 +20,7 @@ export default class FedoraCommand extends Command {
 			],
 			description: {
 				content: "Fedora something or yourself doesnt work on attachment links only real attachments sorry",
-				usage: "fedora",
-				example: ["fedora"],
+				example: ["fedora", "fedora @user"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

@@ -15,9 +15,8 @@ export default class shortenCommand extends Command {
 				},
 			],
 			description: {
-				content: "Show short and latency bot",
-				usage: "short",
-				example: ["short"],
+				content: "Makes your link shorter",
+				example: ["short https://google.com", "short https://discord.gg/skytils"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ownerOnly: false,

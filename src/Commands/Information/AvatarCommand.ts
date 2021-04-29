@@ -9,7 +9,6 @@ export default class AvatarCommand extends Command {
 			category: "Info",
 			description: {
 				content: "Display your discord avatar otr other user.",
-				usage: "avatar [ member ]",
 				example: ["avatar @example#1111", "avatar @example", "avatar @example size=512", "avatar @example format=png", "avatar @example size=512 format=jpg"],
 			},
 			ratelimit: 3,

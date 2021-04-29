@@ -17,7 +17,6 @@ export default class FactCommand extends Command {
 			],
 			description: {
 				content: "Searches the internet for a fact",
-				usage: "fact",
 				example: ["fact"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],

@@ -12,7 +12,6 @@ export default class StatsCommand extends Command {
 			category: "Info",
 			description: {
 				content: "The Statistic of bot",
-				usage: "stats",
 				example: ["stats"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],

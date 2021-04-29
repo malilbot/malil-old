@@ -29,8 +29,7 @@ export default class PatCommand extends Command {
 			],
 			description: {
 				content: "You can pat a minecraft head or a discord user with this command",
-				usage: "pat",
-				example: ["pat"],
+				example: ["pat", "pat steve", "pat @user"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

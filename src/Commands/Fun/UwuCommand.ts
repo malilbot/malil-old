@@ -17,9 +17,8 @@ export default class UwuCommand extends Command {
 				},
 			],
 			description: {
-				content: "Uwufy some text",
-				usage: "Uwu",
-				example: ["Uwu"],
+				content: "Honestly dont know what this is",
+				example: ["Uwu hello owo"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

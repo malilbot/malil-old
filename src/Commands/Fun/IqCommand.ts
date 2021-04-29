@@ -19,9 +19,8 @@ export default class IqCommand extends Command {
 				},
 			],
 			description: {
-				content: "Find your iq",
-				usage: "iq",
-				example: ["iq"],
+				content: "Uses math to calculate your iq",
+				example: ["iq", "iq @user", "iq rick"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

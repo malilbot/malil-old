@@ -10,8 +10,7 @@ export default class BanCommand extends Command {
 			category: "Moderation",
 			description: {
 				content: "To ban members on this guild",
-				usage: "ban < member >",
-				example: ["ban @member", "ban @member 7"],
+				example: ["ban @member", "ban @member"],
 			},
 			channel: "guild",
 			ratelimit: 3,

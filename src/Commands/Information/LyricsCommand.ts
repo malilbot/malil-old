@@ -17,8 +17,7 @@ export default class lyricsCommand extends Command {
 			],
 			description: {
 				content: "Get the lyrics of a song",
-				usage: "lyrics",
-				example: ["lyrics"],
+				example: ["lyrics idc", "lyrics venom"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 1,

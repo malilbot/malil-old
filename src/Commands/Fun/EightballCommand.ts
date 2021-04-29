@@ -17,8 +17,7 @@ export default class EightballCommand extends Command {
 			],
 			description: {
 				content: "Find your 8ball",
-				usage: "eightball",
-				example: ["eightball"],
+				example: ["eightball e?", "8ball do you like me?", "ask Do you like potatos?"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

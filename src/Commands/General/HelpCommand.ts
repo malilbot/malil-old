@@ -7,7 +7,6 @@ export default class HelpCommand extends Command {
 			category: "General",
 			description: {
 				content: "Show available commands on the bot",
-				usage: "help [ command ]",
 				example: ["help ping", "h ping"],
 			},
 			ratelimit: 3,

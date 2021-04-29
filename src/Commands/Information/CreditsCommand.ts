@@ -11,7 +11,6 @@ export default class CreditsCommand extends Command {
 			quoted: true,
 			description: {
 				content: "Credits to everyone who has contributed to the bot",
-				usage: "credits",
 				example: ["credits"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],

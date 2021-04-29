@@ -37,8 +37,14 @@ export default class GithubCommand extends Command {
 			],
 			description: {
 				content: "Watches github releases from a github repo",
-				usage: "github",
-				example: ["github add < github repo >", "github set < channel id >", "github delete", "github list"],
+				example: [
+					"github add < github repo >",
+					"github set < channel id >",
+					"github delete",
+					"github list",
+					"github add https://github.com/malilbot/malilbot.github.io",
+					"github set #general",
+				],
 			},
 			ratelimit: 1,
 			channel: "guild",

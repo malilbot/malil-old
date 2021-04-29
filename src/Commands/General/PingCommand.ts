@@ -6,8 +6,7 @@ export default class PingCommand extends Command {
 			aliases: ["ping"],
 			category: "General",
 			description: {
-				content: "Show ping and latency bot",
-				usage: "ping",
+				content: "Sends the latency between discord and the bot",
 				example: ["ping"],
 			},
 			clientPermissions: ["SEND_MESSAGES"],
