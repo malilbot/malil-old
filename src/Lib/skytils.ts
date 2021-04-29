@@ -39,7 +39,10 @@ export = async (message: Message) => {
 		} else if (check(["send"]) && check(["crash"])) {
 			talkedRecently.add(message.author.id);
 
-			smh = await message.reply({ files: ["https://cdn.discordapp.com/attachments/472601031839055873/837321036907282432/2021-04-29T13-29-47.mp4"] });
+			smh = await message.reply({
+				content: "Win key + R and then type %appdata%\\.minecraft\\crash-reports",
+				files: ["https://cdn.discordapp.com/attachments/472601031839055873/837321036907282432/2021-04-29T13-29-47.mp4"],
+			});
 		} else if (check(["how", "where"]) && check(["download", "mod"])) {
 			talkedRecently.add(message.author.id);
 
