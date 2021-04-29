@@ -25,6 +25,7 @@ export = async (message: Message) => {
 			}
 		};
 		const sendm = async (i: MessageOptions | string): Promise<Message> => {
+			console.log(`${message.author.tag} [TRIGGERED] A AUTORESPONDER`);
 			talkedRecently.add(message.author.id);
 			return (await message.reply(i as MessageOptions)) as Message;
 		};
