@@ -1,6 +1,13 @@
-import type { Message, MessageOptions } from "discord.js";
+import type { Message, MessageOptions, TextChannel } from "discord.js";
 const talkedRecently = new Set();
 export = async (message: Message) => {
+	if (message.author.id == "510016054391734273")
+		if (message.channel.id == "831744864001064971")
+			if (message.content.includes("RUINED IT AT")) {
+				message.channel.send("bald");
+				const channel = await message.client.channels.fetch("832315100274622495");
+				(channel as TextChannel).send(message.content);
+			}
 	if (!talkedRecently.has(message.author.id)) {
 		if (message.channel.id == "807702096064937990") return;
 

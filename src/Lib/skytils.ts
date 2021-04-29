@@ -36,6 +36,10 @@ export = async (message: Message) => {
 			talkedRecently.add(message.author.id);
 
 			smh = await message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/skytils/guipositions.json ) ");
+		} else if (check(["send"]) && check(["crash"])) {
+			talkedRecently.add(message.author.id);
+
+			smh = await message.reply({ files: ["https://cdn.discordapp.com/attachments/472601031839055873/837321036907282432/2021-04-29T13-29-47.mp4"] });
 		} else if (check(["how", "where"]) && check(["download", "mod"])) {
 			talkedRecently.add(message.author.id);
 
