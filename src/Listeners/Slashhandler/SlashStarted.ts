@@ -14,6 +14,8 @@ export default class SlashStarted extends Listener {
 	}
 
 	exec(message: Interaction, command: Command): void {
+		const cur = this.client.gp.ensure("run", 1, `${command}`);
+		this.client.gp.set("run", cur + 1, `${command}`);
 		this.client.gp.math("commands", "+", 1);
 		const cmd = main(command);
 		const usr = sec(message.user.tag) + " " + fourth(message.user.id);
