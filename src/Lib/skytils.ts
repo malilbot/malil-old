@@ -1,4 +1,4 @@
-import type { Message } from "discord.js";
+import type { Message, MessageOptions } from "discord.js";
 const talkedRecently = new Set();
 import { consts } from "./Utils";
 import { MessageEmbed } from "discord.js";
@@ -24,45 +24,34 @@ export = async (message: Message) => {
 				}
 			}
 		};
+		const sendm = async (i: MessageOptions | string): Promise<Message> => {
+			talkedRecently.add(message.author.id);
+			return (await message.reply(i as MessageOptions)) as Message;
+		};
 
 		let smh: Message;
 		if (check("bann")) {
-			talkedRecently.add(message.author.id);
-			smh = await message.reply({
+			smh = await sendm({
 				files: ["http://pays.host/uploads/add4657d-af3a-4f66-a67f-605109f80024/bzxrcnWt.png"],
 				content: "The mod is not bannable and doesnt trigger watchdog.",
 			});
 		} else if (check("location")) {
-			talkedRecently.add(message.author.id);
-
-			smh = await message.reply("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/skytils/guipositions.json ) ");
+			smh = await sendm("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/skytils/guipositions.json ) ");
 		} else if (check(["send"]) && check(["crash"])) {
-			talkedRecently.add(message.author.id);
-
-			smh = await message.reply({
+			smh = await sendm({
 				content: "Win key + R and then type %appdata%\\.minecraft\\crash-reports",
 				files: ["https://cdn.discordapp.com/attachments/472601031839055873/837321036907282432/2021-04-29T13-29-47.mp4"],
 			});
 		} else if (check(["how", "where"]) && check(["download", "mod"])) {
-			talkedRecently.add(message.author.id);
-
-			smh = await message.reply("https://streamable.com/1rauw6");
+			smh = await sendm("https://streamable.com/1rauw6");
 		} else if (check(["head", "skull", "item", "dropped", "big", "skyblock", "big", "glitching", "skin"]) && check(["size", "gian", "big", "scale", "bug"])) {
-			talkedRecently.add(message.author.id);
-
-			smh = await message.reply("On updating to new 1.x pre, your config will be a bit messed up. Make sure to change the following:\n" + "- Larger Heads\n" + "- Dropped item scale");
+			smh = await sendm("On updating to new 1.x pre, your config will be a bit messed up. Make sure to change the following:\n" + "- Larger Heads\n" + "- Dropped item scale");
 		} else if (check(["open", "close", "skytils"]) && check(["menu", "settings", "start"])) {
-			talkedRecently.add(message.author.id);
-
-			smh = await message.reply("/st");
+			smh = await sendm("/st");
 		} else if (check(["how", "waypoint", "burrow"]) && check(["install", "location", "move", "work", "edit", "broken", "slow", "not"])) {
-			talkedRecently.add(message.author.id);
-
-			smh = await message.reply({ files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"] });
+			smh = await sendm({ files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"] });
 		} else if (check(["apply", "work"]) && check(["griffin", "burrow"])) {
-			talkedRecently.add(message.author.id);
-
-			smh = await message.reply(
+			smh = await sendm(
 				new MessageEmbed()
 					.addField(
 						"How to use griffin burrow waypoints",
