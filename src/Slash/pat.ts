@@ -35,11 +35,10 @@ export default class patCommand extends Command {
 		let image: string;
 		let speed: number = (message.options.find((i) => i.name == "speed")?.value as number) || 20;
 		const ign = message.options.find((i) => i.name == "ign")?.value;
-		const user = message.options.find((i) => i.name == "user")?.user;
+		let user = message.options.find((i) => i.name == "user")?.user;
 		if (ign && user) {
 			message.reply("You must only give an ign or a user, not both");
-		}
-		else if (ign) {
+		} else if (ign) {
 			const res = await (await c("https://api.mojang.com/users/profiles/minecraft/" + ign, "GET").send()).json();
 			if (res !== null) {
 				image = `https://crafatar.com/renders/head/${res.id}?overlay`;
@@ -47,7 +46,7 @@ export default class patCommand extends Command {
 				message.reply("User not found");
 			}
 		} else {
-			let user = user || message.user;
+			user = user || message.user;
 			image = user.displayAvatarURL({ dynamic: false, format: "png" });
 		}
 		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image, { delay: speed | 20 }), name: `patted.gif` }] });
