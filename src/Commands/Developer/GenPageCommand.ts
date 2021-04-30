@@ -38,9 +38,12 @@ export default class GenPageCommand extends Command {
 						.map((cmd) => {
 							file += "\n<!--This is a auto generated page to change the contents of this edit the command files themself-->";
 							file += "<details>";
-							file += `<summary>${cmd}</summary>\n`;
+							//
+							// <span style="color:#FF0000">H</span>
+							//<span style="color:#66CC66">e</span>;
+							file += `<summary><span class ="cmdname">${cmd}</span><span class ="cmdinfo"> - ${cmd.description.content}</span></summary>\n`;
 							file += `### Aliasses\n * ${cmd.aliases.join("\n * ")} \n`;
-							file += `### Information\n * ${cmd.description.content}\n`;
+							//file += `### Information\n * ${cmd.description.content}\n`;
 							file += `### Examples\n * ${cmd.description.example.join("\n* ")}\n`;
 							file += "</details>\n";
 						});

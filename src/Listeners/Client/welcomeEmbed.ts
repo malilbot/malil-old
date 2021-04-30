@@ -26,6 +26,7 @@ export default class WelcomeEmbed extends Listener {
 		}
 		if (this.client.settings.dev == false) {
 			if (member.guild.id == "748956745409232945") {
+				member.roles.add("748967146498818058");
 				const currentDate = new Date();
 
 				const date = this.client.gp.ensure("welcome", currentDate.getDate(), "date");
