@@ -18,12 +18,12 @@ export default class message extends Listener {
 	async exec(message: Message): Promise<void> {
 		if (message?.guild?.id == "748956745409232945") {
 			tricked(message);
+		} else if (message?.guild?.id == "804143990869590066") {
+			drm(message);
 		} else if (message?.author.bot) {
 			return;
 		} else if (message?.guild?.id == "807302538558308352") {
 			skytils(message);
-		} else if (message?.guild?.id == "804143990869590066") {
-			drm(message);
 		} else if (this.client.gp.ensure("shitpost", []).includes(message?.channel?.id)) {
 			shitpost(message);
 		}

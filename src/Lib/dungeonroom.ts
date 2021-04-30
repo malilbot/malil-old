@@ -8,6 +8,7 @@ export = async (message: Message) => {
 				const channel = await message.client.channels.fetch("832315100274622495");
 				(channel as TextChannel).send(message.content);
 			}
+	if (message.author.bot) return;
 	if (!talkedRecently.has(message.author.id)) {
 		if (message.channel.id == "807702096064937990") return;
 
