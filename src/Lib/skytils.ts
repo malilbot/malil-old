@@ -1,6 +1,6 @@
 import type { Message, MessageOptions } from "discord.js";
 const talkedRecently = new Set();
-import { consts } from "./Utils";
+import { consts, InterfaceClient } from "./Utils";
 import { MessageEmbed } from "discord.js";
 export = async (message: Message) => {
 	if (!talkedRecently.has(message.author.id)) {
@@ -25,7 +25,7 @@ export = async (message: Message) => {
 			}
 		};
 		const sendm = async (i: MessageOptions | string): Promise<Message> => {
-			console.log(`${message.author.tag} [TRIGGERED] A AUTORESPONDER`);
+			(message.client as InterfaceClient).logger.verbose(`${message.author.tag} [TRIGGERED] A AUTORESPONDER`);
 			talkedRecently.add(message.author.id);
 			return (await message.reply(i as MessageOptions)) as Message;
 		};
@@ -40,7 +40,7 @@ export = async (message: Message) => {
 			smh = await sendm("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/skytils/guipositions.json ) ");
 		} else if (check(["send"]) && check(["crash"])) {
 			smh = await sendm({
-				content: "Win key + R and then type %appdata%\\.minecraft\\crash-reports\nmac: ~/Library/Application Support/minecraft\nLinux: You should know this if your using linux",
+				content: "Win key + R and then type %appdata%\\" + "\\.minecraft\\crash-reports\nmac: ~/Library/Application Support/minecraft\nLinux: You should know this if your using linux",
 				files: ["https://cdn.discordapp.com/attachments/472601031839055873/837321036907282432/2021-04-29T13-29-47.mp4"],
 			});
 		} else if (check(["how", "where"]) && check(["download", "mod"])) {

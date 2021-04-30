@@ -2,9 +2,8 @@ import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, 
 import { Command, CommandHandler, InhibitorHandler, ListenerHandler } from "discord-akairo";
 import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
 import { credentials, Settings, consts } from "../settings";
-export { consts } from "../settings";
 import Slashhandler from "../Classes/SlashHandler";
-import { join } from "path";
+export { consts } from "../settings";
 import centra from "centra";
 import Enmap from "enmap";
 import moment from "moment";
@@ -19,11 +18,6 @@ export let main: (string: string | Command | number) => string,
 	split: string;
 const site = "https://hst.sh/";
 const { dev } = Settings;
-const prefixes = new Enmap({
-	name: "prefixes",
-	dataDir: join(__dirname, "..", "..", "data/prefixes"),
-	polling: true,
-});
 
 export const logger = new (class Logger {
 	dash: string;
@@ -33,6 +27,7 @@ export const logger = new (class Logger {
 	darkBlue: (string: string | Command | number | string[]) => string;
 	orange: (string: string | Command | number | string[]) => string;
 	yellow: (string: string | Command | number | string[]) => string;
+	console: (content, { colors, level }: { colors: string[]; level?: number }) => void;
 	constructor(verbose: boolean) {
 		this.Verbose = verbose;
 		this.lightBlue = hex("#72bcd4");
@@ -41,34 +36,26 @@ export const logger = new (class Logger {
 		this.orange = hex("#FF4F00");
 		this.yellow = hex("ccf914");
 		this.dash = this.lightBlue(" - ");
+		this.console = (content, { colors, level }: { colors: string[]; level?: number }) => {
+			const time = moment().format("HH:mm:ss");
+			let message = `${this[colors[0]](time)}`;
+			if (level) message += `${this[colors[1]](`level: ${this[colors[0]](level)}`)} `;
+			message += `${this.dash}${this[colors[2]](content)}`;
+			console.log(message);
+		};
 	}
 	warn(content: string | number | Command | string[], level?: number): void {
-		const time = moment().format("HH:mm:ss");
-		let message = `${this.orange(time)} `;
-		if (level) message += `${this.orange(`level: ${red(level)}`)} `;
-		message += `${this.dash}${this.yellow(content)}`;
-		console.log(message);
+		this.console(content, { level, colors: ["orange", "red", "yellow"] });
 	}
 	verbose(content: string | number | Command | string[], level?: number): void {
 		if (!this.Verbose) return;
-		const time = moment().format("HH:mm:ss");
-		let message = `${this.orange(time)} `;
-		if (level) message += `${this.orange(`level: ${red(level)}`)} `;
-		message += `${this.dash}${this.yellow(content)}`;
-		console.log(message);
+		this.console(content, { level, colors: ["orange", "darkBlue", "yellow"] });
 	}
 	info(content: string | number | Command | string[]): void {
-		const time = moment().format("HH:mm:ss");
-		let message = `${this.darkBlue(time)} `;
-		message += `${this.dash}${this.yellow(content)}`;
-		console.log(message);
+		this.console(content, { colors: ["darkBlue", "yellow", "yellow"] });
 	}
-	log(content: string | number | Command | string[], dates = false): void {
-		const time = moment().format("HH:mm:ss");
-		let message: string;
-		if (dates) message += `${this.darkBlue(time)} `;
-		message += `${this.dash}${this.yellow(content)}`;
-		console.log(message);
+	log(content: string | number | Command | string[]): void {
+		this.console(content, { colors: ["darkBlue", "yellow", "yellow"] });
 	}
 })(Settings.verbose);
 
