@@ -43,7 +43,7 @@ export default class PatCommand extends Command {
 		else if (typeof member == "string") {
 			const res = await (await c("https://api.mojang.com/users/profiles/minecraft/" + member, "GET").send()).json();
 			if (res !== null) {
-				image = `https://crafatar.com/renders/head/${res.id}?overlay`;
+				image = `https://mc-heads.net/head/${res.id}`;
 			} else {
 				return message.reply("User not found");
 			}
