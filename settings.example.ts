@@ -1,4 +1,23 @@
-export const credentials = {};
+export const credentials = {
+	devtoken: "..-",
+
+	token: "..-",
+
+	genius: "---",
+
+	dagpi: "",
+
+	bottokens: {
+		discordbotlist: "..--",
+		Bladebnots: "..",
+		topgg: "..--",
+		discordextreme: "-",
+		botsgg: "..",
+	},
+	TestServer: "755166643927122091",
+
+	gist: "",
+};
 export const consts = {
 	colors: {
 		default: "#6df902",
@@ -8,21 +27,26 @@ export const consts = {
 		orange: "#ff7c00",
 		blue: "#0f00ff",
 	},
-	errChannel: "",
+	errChannel: "815328569051971595",
 };
 export const Settings = {
-	owners: [""],
+	polling: false,
+	owners: ["336465356304678913"],
 	site: false,
 	dev: true,
 	rpc: false,
-	prefix: "%",
+	verbose: true,
+	prefix: "*",
+	ghToken: "",
 
 	auth: {
+		//not in use atm cuz no domain
 		topAuth: "",
 		dbotsAuth: "",
 	},
 
 	server: {
+		//not in use atm cuz no domain
 		port: "",
 		ownerid: "",
 		clientID: "",

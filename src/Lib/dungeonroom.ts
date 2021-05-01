@@ -43,6 +43,11 @@ export = async (message: Message) => {
 				files: ["http://pays.host/uploads/add4657d-af3a-4f66-a67f-605109f80024/bzxrcnWt.png"],
 				content: "The mod is not bannable and doesnt trigger watchdog.",
 			});
+		} else if (check(["send"]) && check(["crash"])) {
+			smh = await sendm({
+				content: "Win key + R and then type %appdata%\\" + "\\.minecraft\\crash-reports\nmac: ~/Library/Application Support/minecraft\nLinux: You should know this if your using linux",
+				files: ["https://cdn.discordapp.com/attachments/472601031839055873/837321036907282432/2021-04-29T13-29-47.mp4"],
+			});
 		} else if (check(["next", "change", "move", "close", "rid"]) && check(["image", "pic"])) {
 			smh = await sendm({
 				content:
