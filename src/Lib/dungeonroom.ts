@@ -57,9 +57,9 @@ export = async (message: Message) => {
 			smh = await sendm({
 				content:
 					"https://discord.gg/2UjaFqfPwJ\n\n" +
-					"**Make sure you download both normal SBP and the Dungeon Secrets Mod**\n" +
-					"Dungeon Secrets Mod is NOT this mod, this mod is Dungeon Rooms Mod.\n" +
-					"Again, in addition to the Dungeon Rooms Mod you downloaded from this server, you need to download **2 mods** from the Skyblock Personalized Discord server",
+					"**Download sbp from this server**\n" +
+					"Skyblock plus, this mod is Dungeon Rooms Mod.\n" +
+					"Again, in addition to the Dungeon Rooms Mod you downloaded from this server, you need to download **SkyBlockPlus** from Skyblock Personalized Discord server",
 			});
 		} else return;
 
