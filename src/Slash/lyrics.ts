@@ -53,7 +53,7 @@ export default class lyricsCommand extends Command {
 				.replace(/nigga/g, "n-")
 				.replace(/\[.*?\]/g, "")
 				.replace(/\n\n/g, "\n");
-			return message.reply({ embed: this.client.util.embed().setColor(this.client.colors.default).setTitle(`${songName}`).setURL(`${song.url}`).addField("lyrics", lyrics) });
+			message.reply(this.client.util.embed().setColor(this.client.colors.default).setTitle(`${songName}`).setURL(`${song.url}`).addField("lyrics", lyrics) as any);
 		});
 	}
 }

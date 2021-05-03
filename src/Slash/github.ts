@@ -62,7 +62,7 @@ export default class githubCommand extends Command {
 	}
 	async set(message: CommandInteraction) {
 		const channel = message.options[0].options[0].channel;
-		if (!["type", "text"].includes(channel?.type)) return message.reply("The channel has to be a textchannel");
+		if (!["type", "text"].includes(channel?.type as string)) return message.reply("The channel has to be a textchannel");
 
 		this.client.releases.set(message.guild.id, channel.id, "channel");
 		return message.reply(`Succesfully set the channel to: ${channel}\nmake sure that i have **permission** to that channel`);
