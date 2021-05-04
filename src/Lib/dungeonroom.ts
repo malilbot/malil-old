@@ -5,9 +5,9 @@ export = async (message: Message) => {
 	if (message.author.id == "510016054391734273")
 		if (message.channel.id == "831744864001064971")
 			if (message.content.includes("RUINED IT AT")) {
-				await message.member.roles.add("838949553020993557");
+				await message.mentions.members.first().roles.add("838949553020993557");
 				setTimeout(() => {
-					if (message.member.roles.cache.has("838949553020993557")) message.member.roles.remove("838949553020993557");
+					if (message.mentions.members.first().roles.cache.has("838949553020993557")) message.mentions.members.first()roles.remove("838949553020993557");
 				}, 7200000);
 				message.channel.send("bald");
 				const channel = await message.client.channels.fetch("832315100274622495");
