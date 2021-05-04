@@ -7,7 +7,7 @@ export = async (message: Message) => {
 			if (message.content.includes("RUINED IT AT")) {
 				await message.mentions.members.first().roles.add("838949553020993557");
 				setTimeout(() => {
-					if (message.mentions.members.first().roles.cache.has("838949553020993557")) message.mentions.members.first()roles.remove("838949553020993557");
+					if (message.mentions.members.first().roles.cache.has("838949553020993557")) message.mentions.members.first().roles.remove("838949553020993557");
 				}, 600000);
 				message.channel.send("bald");
 				const channel = await message.client.channels.fetch("832315100274622495");
