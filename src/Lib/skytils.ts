@@ -45,8 +45,6 @@ export = async (message: Message) => {
 			});
 		} else if (check(["how", "where"]) && check(["download", "mod"])) {
 			smh = await sendm("https://streamable.com/1rauw6");
-		} else if (check(["head", "skull", "item", "dropped", "big", "skyblock", "big", "glitching", "skin"]) && check(["size", "gian", "big", "scale", "bug"])) {
-			smh = await sendm("On updating to new 1.x pre, your config will be a bit messed up. Make sure to change the following:\n" + "- Larger Heads\n" + "- Dropped item scale");
 		} else if (check(["open", "close", "skytils"]) && check(["menu", "settings", "start"])) {
 			smh = await sendm("/st");
 		} else if (check(["how", "waypoint", "burrow"]) && check(["install", "location", "move", "work", "edit", "broken", "slow", "not"])) {
