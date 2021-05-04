@@ -8,7 +8,7 @@ export = async (message: Message) => {
 				await message.mentions.members.first().roles.add("838949553020993557");
 				setTimeout(() => {
 					if (message.mentions.members.first().roles.cache.has("838949553020993557")) message.mentions.members.first()roles.remove("838949553020993557");
-				}, 7200000);
+				}, 600000);
 				message.channel.send("bald");
 				const channel = await message.client.channels.fetch("832315100274622495");
 				(channel as TextChannel).send(message.content);
