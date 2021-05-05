@@ -96,7 +96,6 @@ export default class Client extends AkairoClient {
 		this.listenerHandler.setEmitters({
 			commandHandler: this.commandHandler,
 			listenerHandler: this.listenerHandler,
-
 			process,
 		});
 
