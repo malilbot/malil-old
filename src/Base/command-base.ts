@@ -1,7 +1,7 @@
 /*
 
 
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message } from "discord.js";
 
 export default class replacemeCommand extends Command {

@@ -1,4 +1,4 @@
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import { Message, TextChannel } from "discord.js";
 
 export default class ShitPostCommand extends Command {

@@ -1,5 +1,5 @@
-import { Command } from "discord-akairo";
-import { GuildMember, Message } from "discord.js";
+import Command from "../../Classes/malilCommand";
+import type { GuildMember, Message, CommandInteraction } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 import centra from "centra";
 export default class FedoraCommand extends Command {
@@ -16,6 +16,14 @@ export default class FedoraCommand extends Command {
 						return member || message.member;
 					},
 					match: "content",
+				},
+			],
+			options: [
+				{
+					type: 6,
+					name: "user",
+					description: "user to fedora",
+					required: false,
 				},
 			],
 			description: {
@@ -42,5 +50,12 @@ export default class FedoraCommand extends Command {
 			files: [{ attachment: res.body, name: `fedoraed.png` }],
 		});
 		msg.delete();
+	}
+	async execSlash(message: CommandInteraction) {
+		const member = message.options[0]?.user ?? message.user;
+		const res = await centra(`https://api.dagpi.xyz/image/fedora/?url=${member.avatarURL({ dynamic: false, format: "png" })}`, "get")
+			.header("Authorization", this.client.credentials.dagpi)
+			.send();
+		return message.reply({ content: "here ya go", files: [{ attachment: res.body, name: `Fedora'd.png` }] });
 	}
 }

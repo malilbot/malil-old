@@ -1,4 +1,4 @@
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 export default class EnSlashCommand extends Command {
 	public constructor() {

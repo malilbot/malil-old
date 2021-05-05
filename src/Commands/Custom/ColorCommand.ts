@@ -1,4 +1,4 @@
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import { Message, MessageCollector, TextChannel } from "discord.js";
 import { EditGist, GetGist } from "../../Lib/Utils";
 import fetch from "node-fetch";

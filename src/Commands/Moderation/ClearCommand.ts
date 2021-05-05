@@ -1,4 +1,4 @@
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import { MessageEmbed, GuildChannel, TextChannel, Message } from "discord.js";
 export default class ClearCommand extends Command {
 	public constructor() {

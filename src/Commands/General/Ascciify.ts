@@ -1,4 +1,4 @@
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import { GuildMember, Message, MessageAttachment } from "discord.js";
 import asciify from "asciify-image";
 import { hst, GetMember } from "../../Lib/Utils";

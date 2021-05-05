@@ -2,7 +2,6 @@ import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, 
 import { Command, CommandHandler, InhibitorHandler, ListenerHandler } from "discord-akairo";
 import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
 import { credentials, Settings, consts } from "../settings";
-import Slashhandler from "../Classes/SlashHandler";
 export { consts } from "../settings";
 import centra from "centra";
 import Enmap from "enmap";
@@ -672,7 +671,6 @@ export function readyLog(client: InterfaceClient): void {
 	const array = [
 		//handlers
 		fixspace(third("Commands"), spaces) + split + main(fixspace(client.commandHandler.modules.size, spaces)),
-		fixspace(third("Slash"), spaces) + split + main(fixspace(client.slashHandler.modules.size, spaces)),
 		fixspace(third("listeners"), spaces) + split + main(fixspace(client.listenerHandler.modules.size, spaces)),
 		fixspace(third("Inhibitors"), spaces) + split + main(fixspace(client.inhibitorHandler.modules.size, spaces)),
 		//bot stats
@@ -743,7 +741,6 @@ export class InterfaceClient extends Client {
 	public logchannel: Enmap;
 	public infractions: Enmap;
 	public logger: typeof logger;
-	public slashHandler?: Slashhandler;
 	public commandHandler?: CommandHandler;
 	public listenerHandler?: ListenerHandler;
 	public inhibitorHandler?: InhibitorHandler;

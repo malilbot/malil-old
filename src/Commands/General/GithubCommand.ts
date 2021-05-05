@@ -1,5 +1,5 @@
-import { Command } from "discord-akairo";
-import { Message, TextChannel } from "discord.js";
+import Command from "../../Classes/malilCommand";
+import type { Message, TextChannel, CommandInteraction } from "discord.js";
 import centra from "centra";
 import { MessageEmbed } from "discord.js";
 export default class GithubCommand extends Command {
@@ -102,38 +102,58 @@ export default class GithubCommand extends Command {
 				.setFooter(this.client.user.username, this.client.user.avatarURL());
 			message.util.send(embed);
 		} else message.util.send("Check `*help github` for info about this command");
+	}
+	async execSlash(message: CommandInteraction) {
+		this.client.releases.ensure(message.guild.id, [], "repos");
+		if (message.options[0].name == "delete") this.delete(message);
+		else if (message.options[0].name == "set") this.set(message);
+		else if (message.options[0].name == "add") this.add(message);
+		else if (message.options[0].name == "get") this.get(message);
+	}
+	async delete(message: CommandInteraction) {
+		this.client.releases.set(message.guild.id, [], "repos");
+		return message.reply("oke deleted the github list");
+	}
+	async set(message: CommandInteraction) {
+		const channel = message.options[0].options[0].channel;
+		if (!["type", "text"].includes(channel?.type as string)) return message.reply("The channel has to be a textchannel");
 
-		/*
-  {
-	url: 'https://api.github.com/repos/SkyBlockDev/The-trickster/releases/35188037',
-	assets_url: 'https://api.github.com/repos/SkyBlockDev/The-trickster/releases/35188037/assets',
-	upload_url: 'https://uploads.github.com/repos/SkyBlockDev/The-trickster/releases/35188037/assets{?name,label}',
-	html_url: 'https://github.com/SkyBlockDev/The-trickster/releases/tag/2.31.1',
-	id: 35188037,
-	author: {
-	  login: 'SkyBlockDev',
-	  id: 72335827,
-	  node_id: 'MDQ6VXNlcjcyMzM1ODI3',
-	  avatar_url: 'https://avatars.githubusercontent.com/u/72335827?v=4',
-	  gravatar_id: '',
-	  url: 'https://api.github.com/users/SkyBlockDev',
-	  html_url: 'https://github.com/SkyBlockDev',
-	  followers_url: 'https://api.github.com/users/SkyBlockDev/followers',
-	  following_url: 'https://api.github.com/users/SkyBlockDev/following{/other_user}',
-	  gists_url: 'https://api.github.com/users/SkyBlockDev/gists{/gist_id}',
-	  starred_url: 'https://api.github.com/users/SkyBlockDev/starred{/owner}{/repo}',
-	  subscriptions_url: 'https://api.github.com/users/SkyBlockDev/subscriptions',
-	  organizations_url: 'https://api.github.com/users/SkyBlockDev/orgs',
-	  repos_url: 'https://api.github.com/users/SkyBlockDev/repos',
-	  events_url: 'https://api.github.com/users/SkyBlockDev/events{/privacy}',
-	  received_events_url: 'https://api.github.com/users/SkyBlockDev/received_events',
-	  type: 'User',
-	  site_admin: false
-	},
-	node_id: 'MDc6UmVsZWFzZTM1MTg4MDM3',
-	tag_name: '2.31.1',
-	target_commitish: 'master',
+		this.client.releases.set(message.guild.id, channel.id, "channel");
+		return message.reply(`Succesfully set the channel to: ${channel}\nmake sure that i have **permission** to that channel`);
+	}
+	async add(message: CommandInteraction) {
+		const repo = (message.options[0].options[0].value as string).split("/");
+		if (!this.client.releases.get(message.guild.id, "channel")) return message.reply("no channel set please set one with: `github set <#channel> `");
+		if (this.client.releases.get(message.guild.id, "repos").length > 5) return message.reply("Sorry you can only have a maximum of 5 repos");
+		const name = repo[3] + "/" + repo[4];
 
-		*/
+		const data = await (
+			await centra(`https://api.github.com/repos/${name}/releases`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.gist}`).send()
+		).json();
+		if (data.message == "Not Found") return message.reply("Please try the command again but this time send a repo link");
+		const urls = await (await centra(`https://api.github.com/repos/${name}`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.gist}`).send()).json();
+		if (urls.message == "Not Found") return message.reply("Please try the command again but this time send a repo link");
+		if (urls.documentation_url) return message.reply("I have been api limited");
+		let version: string;
+		if (data[0]?.tag_name) version = data[0].tag_name;
+		else version = "none";
+
+		const url = data.html_url ? data.html_url : urls.html_url;
+
+		const input = url.split("/");
+		const output = input[3] + "/" + input[4] + "|" + version;
+		message.reply(`Added: <${url}> to watch list.`);
+		this.client.releases.push("all", output);
+		this.client.releases.push(message.guild.id, name, "repos");
+	}
+	async get(message: CommandInteraction) {
+		const repos = this.client.releases.ensure(message.guild.id, [], "repos");
+		if (!repos) return message.reply("Currently not watching anything");
+		const embed = this.client.util
+			.embed()
+			.addField("**currently watching:**", repos /** .join("\n")*/ || "nothing")
+			.setColor(this.client.colors.green)
+			.setFooter(this.client.user.username, this.client.user.avatarURL());
+		message.reply(embed);
 	}
 }

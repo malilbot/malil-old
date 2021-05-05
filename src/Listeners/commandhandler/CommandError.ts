@@ -1,7 +1,7 @@
-import { MessageEmbed, Message, TextChannel } from "discord.js";
+import { MessageEmbed, Message, TextChannel, Interaction } from "discord.js";
 import { Listener } from "discord-akairo";
 import { stripIndents } from "common-tags";
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import { hst, Format, a1, sLog } from "../../Lib/Utils";
 
 export default class CommandErrorListener extends Listener {

@@ -1,4 +1,4 @@
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import { GetMember } from "../../Lib/Utils";
 import { GuildMember, Message } from "discord.js";
 

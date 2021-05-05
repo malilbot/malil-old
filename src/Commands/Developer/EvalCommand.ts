@@ -1,4 +1,4 @@
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message, MessageAttachment } from "discord.js";
 import { inspect } from "util";
 import centra from "centra";

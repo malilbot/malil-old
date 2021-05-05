@@ -1,5 +1,6 @@
-import { Command } from "discord-akairo";
-import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
+//import Command from "../../Classes/malilCommand";
+import Command from "../../Classes/malilCommand";
+import type { Message, GuildMember, ImageSize, AllowedImageFormat, CommandInteraction } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 export default class AvatarCommand extends Command {
@@ -40,6 +41,14 @@ export default class AvatarCommand extends Command {
 					flag: "format=",
 				},
 			],
+			options: [
+				{
+					type: 6,
+					name: "user",
+					description: "User you want the avatar of",
+					required: false,
+				},
+			],
 			clientPermissions: ["SEND_MESSAGES"],
 			channel: "guild",
 		});
@@ -64,6 +73,17 @@ export default class AvatarCommand extends Command {
 						dynamic: true,
 					})
 				)
+		);
+	}
+	async execSlash(message: CommandInteraction) {
+		const member = message.options[0]?.user ?? message.user;
+		return message.reply(
+			this.client.util
+				.embed()
+				.setTitle(`${member.username}'s Avatar`)
+				.setURL(member.displayAvatarURL({ format: "png", size: 512, dynamic: true }))
+				.setColor(this.client.colors.green)
+				.setImage(member.displayAvatarURL({ format: "png", size: 512, dynamic: true }))
 		);
 	}
 }

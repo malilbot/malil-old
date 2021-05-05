@@ -1,5 +1,5 @@
-import { Command } from "discord-akairo";
-import { Message, MessageEmbed } from "discord.js";
+import Command from "../../Classes/malilCommand";
+import { Message, MessageEmbed, CommandInteraction } from "discord.js";
 export default class HelpCommand extends Command {
 	public constructor() {
 		super("help", {
@@ -63,5 +63,27 @@ export default class HelpCommand extends Command {
 			embed: embed,
 			allowedMentions: { repliedUser: false },
 		});
+	}
+	async execSlash(message: CommandInteraction) {
+		const embed = this.client.util
+			.embed()
+			.setAuthor(`Help | ${this.client.user.tag}`, this.client.user.displayAvatarURL())
+			.setColor(this.client.colors.orange)
+			.setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" }))
+			.setDescription("For help and bugs visit the [support server](https://discord.gg/mY8zTARu4g).");
+
+		for (const category of this.client.commandHandler.categories.values()) {
+			if (["default"].includes(category.id)) continue;
+			if (category.id !== "Developer" && category.id !== "Custom") {
+				embed.addField(
+					category.id,
+					category //@ts-ignore
+						.filter((cmd) => cmd.aliases.length > 0)
+						.map((cmd) => `**\`${cmd}\`**`)
+						.join(" | " || "No Commands in this category.")
+				);
+			}
+		}
+		return message.reply(embed);
 	}
 }

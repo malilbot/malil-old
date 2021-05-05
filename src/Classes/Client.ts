@@ -1,7 +1,6 @@
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
 import { Settings, credentials, consts } from "../settings";
 import { superUsers } from "../Lib/config";
-import SlashHandler from "./SlashHandler";
 import TaskHandler from "./TaskHandler";
 import { logger } from "../Lib/Utils";
 import BotLists from "./BotLists";
@@ -15,10 +14,6 @@ interface Option {
 }
 
 export default class Client extends AkairoClient {
-	public slashHandler: SlashHandler = new SlashHandler(this, {
-		directory: join(__dirname, "..", "Slash"),
-	});
-
 	public commandHandler: CommandHandler = new CommandHandler(this, {
 		directory: join(__dirname, "..", "Commands"),
 		prefix: async (message) => {
@@ -63,13 +58,6 @@ export default class Client extends AkairoClient {
 	});
 	public config: Option;
 
-	async loadCommands() {
-		for (const file of CommandHandler.readdirRecursive(this.slashHandler.directory)) {
-			const { default: command } = await import(`${file}`);
-			this.slashHandler.load(command);
-		}
-	}
-
 	public constructor(config: Option) {
 		super({
 			ownerID: config.owners,
@@ -108,10 +96,10 @@ export default class Client extends AkairoClient {
 		this.listenerHandler.setEmitters({
 			commandHandler: this.commandHandler,
 			listenerHandler: this.listenerHandler,
-			slashHandler: this.slashHandler,
+
 			process,
 		});
-		this.loadCommands();
+
 		this.inhibitorHandler.loadAll();
 		this.taskHandler.loadall();
 		this.commandHandler.loadAll();

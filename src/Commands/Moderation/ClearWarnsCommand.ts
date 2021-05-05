@@ -1,4 +1,4 @@
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message, GuildMember } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 export default class ClearWarnsCommand extends Command {

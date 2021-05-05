@@ -1,12 +1,12 @@
-import { Command } from "discord-akairo";
-import type { Message, GuildMember, Guild } from "discord.js";
+import Command from "../../Classes/malilCommand";
+import type { Message, GuildMember, CommandInteraction } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 
 export default class IqCommand extends Command {
 	public constructor() {
-		super("iq", {
-			aliases: ["iq", "smart"],
+		super("iqtest", {
+			aliases: ["iq", "smart", "iqtest"],
 			category: "Fun",
 			args: [
 				{
@@ -37,5 +37,15 @@ export default class IqCommand extends Command {
 			iEmbed.setFooter(`You can vote to get increased iq ${(await this.client.prefixes.get(message.guild.id, "prefix")) || this.client.settings.prefix}vote`);
 
 		return message.util.send(iEmbed);
+	}
+	async execAsync(message: CommandInteraction) {
+		const member = message.options[0]?.user ?? message.user;
+		const embed = this.client.util
+			.embed()
+			.setColor(this.client.colors.default)
+			.setTitle("IQ Test")
+			.setDescription(`${message.options[0]?.user ?? message.user}'s IQ is: \`${this.client.userdata.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq")}\`!`);
+		if (Math.floor(Math.random() * 10 + 1) == 5) embed.setFooter(`You can vote to get increased iq /vote`);
+		message.reply(embed);
 	}
 }

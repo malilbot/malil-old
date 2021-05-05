@@ -1,5 +1,5 @@
 //https://raw.githubusercontent.com/SkyBlockDev/malil-akairo/main/credits.markdown
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import centra from "centra";
 import { MessageEmbed, Message } from "discord.js";
 

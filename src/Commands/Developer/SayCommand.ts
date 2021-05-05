@@ -1,4 +1,4 @@
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 
 import { Message } from "discord.js";
 import { fixword } from "../../Lib/Utils";

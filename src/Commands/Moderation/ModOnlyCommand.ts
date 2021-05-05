@@ -1,4 +1,4 @@
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import { TextChannel } from "discord.js";
 import { MessageEmbed, Message, GuildChannel } from "discord.js";
 

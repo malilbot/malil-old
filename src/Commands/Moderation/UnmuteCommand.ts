@@ -1,4 +1,4 @@
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message, Role, Guild, GuildManager, GuildMember } from "discord.js";
 import { GetMember, Infract, main, sec, third } from "../../Lib/Utils";
 export default class UnmuteCommand extends Command {

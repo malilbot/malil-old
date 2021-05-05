@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Command } from "discord-akairo";
+import Command from "../../Classes/malilCommand";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import { GetMember } from "../../Lib/Utils";

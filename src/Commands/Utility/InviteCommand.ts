@@ -1,5 +1,5 @@
-import { Command } from "discord-akairo";
-import { MessageEmbed, Message } from "discord.js";
+import Command from "../../Classes/malilCommand";
+import { MessageEmbed, Message, CommandInteraction } from "discord.js";
 
 export default class InviteCommand extends Command {
 	public constructor() {
@@ -25,5 +25,8 @@ export default class InviteCommand extends Command {
 			.setColor(this.client.colors.default);
 
 		return message.util.send({ embed: embed, allowedMentions: { repliedUser: false } });
+	}
+	async execSlash(message: CommandInteraction) {
+		message.reply("https://malilbot.github.io/invite");
 	}
 }
