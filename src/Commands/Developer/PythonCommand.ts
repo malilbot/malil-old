@@ -9,7 +9,7 @@ const exec = util.promisify(require("child_process").exec);
 export default class PyCommand extends Command {
 	public constructor() {
 		super("py", {
-			aliases: ["python", "py"],
+			aliases: ["py"],
 			category: "Developer",
 			description: {
 				content: "Some super javascript code",
