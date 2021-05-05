@@ -4,7 +4,6 @@ import Client from "../../Classes/Client";
 import skytils from "../../Lib/skytils";
 import tricked from "../../Lib/tricked";
 import drm from "../../Lib/dungeonroom";
-import shitpost from "../../Lib/shitpost";
 export default class message extends Listener {
 	public constructor(client: Client) {
 		super("message", {
