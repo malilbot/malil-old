@@ -24,8 +24,6 @@ export default class message extends Listener {
 			return;
 		} else if (message?.guild?.id == "807302538558308352") {
 			skytils(message);
-		} else if (this.client.gp.ensure("shitpost", []).includes(message?.channel?.id)) {
-			shitpost(message);
 		}
 	}
 }
