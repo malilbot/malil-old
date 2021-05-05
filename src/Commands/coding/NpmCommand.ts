@@ -56,11 +56,11 @@ export default class NpmCommand extends Command {
 		const query = interaction?.options[0]?.value;
 		const pkg = await (await c(`https://api.npms.io/v2/search`, "GET").query("q", query).query("size", 1).send()).json();
 
-		if (!pkg?.data?.results[0])
+		if (!pkg?.results[0])
 			return interaction.reply({
 				content: "<:no:838017092216946748> Package not found",
 			});
-		const result = pkg.data.results[0].package;
+		const result = pkg.results[0].package;
 		const embed = this.client.util
 			.embed()
 			.setColor("#FF0000")
@@ -72,6 +72,6 @@ export default class NpmCommand extends Command {
 			.setFooter(` Tags: ${result.keywords[0] || "none"}, ${result.keywords[1] || "none"}, ${result.keywords[3] || "none"}`)
 			.setTitle(`<:npm:838350149725061169> ${result.name}`)
 			.setURL(result.links.npm);
-		interaction.reply({ content: "npm", embeds: [embed] });
+		interaction.reply({ embeds: [embed] });
 	}
 }
