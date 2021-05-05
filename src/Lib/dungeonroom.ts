@@ -15,6 +15,35 @@ export = async (message: Message) => {
 			}
 	if (message.author.bot) return;
 	if (!talkedRecently.has(message.author.id)) {
+		if (message.content == "!math") {
+			function makeid(length) {
+				var result = [];
+				var characters = "ABCDEFGHI^JKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+				var charactersLength = characters.length;
+				for (var i = 0; i < length; i++) {
+					result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+				}
+				return result.join("");
+			}
+
+			const str = makeid(10);
+			message.reply("Please repeat " + str.split("").join("​"));
+			const filter = (m) => message.author.id === m.author.id;
+
+			message.channel
+				.awaitMessages(filter, { time: 10000, max: 1, errors: ["time"] })
+				.then((messages) => {
+					if (messages.first().content == str) {
+						if (message.member.roles.cache.has("838949553020993557")) message.member.roles.remove("838949553020993557");
+						return message.reply("Correct your role has been removed");
+					} else {
+						message.channel.send(`${messages.first().content} !== ` + str);
+					}
+				})
+				.catch(() => {
+					message.channel.send("You werent fast enough try again!");
+				});
+		}
 		if (message.channel.id == "807702096064937990") return;
 
 		const check = (i: string | string[]) => {
