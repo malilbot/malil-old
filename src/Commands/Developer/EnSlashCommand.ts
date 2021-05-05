@@ -1,5 +1,6 @@
 import Command from "../../Classes/malilCommand";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
+import DeleteTagCommand from "../Utility/DeleteTagCommand";
 export default class EnSlashCommand extends Command {
 	public constructor() {
 		super("EnSlash", {
@@ -36,47 +37,76 @@ export default class EnSlashCommand extends Command {
 		const del = args.del;
 		const global = args.global;
 		try {
-			//@ts-ignore
-			if (global == true) {
-				if (del == true) {
-					//@ts-ignore so many fucking errors
-					const res = this.client.api //@ts-ignore so many fucking errors
-						.applications(this.client.user.id)
-
-						.commands.get();
-					for (let cmd of await res) {
-						console.log(cmd.id);
-						//@ts-ignore
-						this.client.api //@ts-ignore so many fucking errors
-							.applications(this.client.user.id)
-							.commands(cmd.id)
-							.delete();
+			if (del) {
+				if (global) {
+					const enabled = await this.client.application.commands.fetch();
+					for (const command of enabled) {
+						await this.client.application.commands.delete(command[1].id);
 					}
 				} else {
-					//@ts-expect-error
-					for (let cmd of this.client.slashHandler.modules) {
-						this.client.application.commands.create(cmd[1].data);
+					const enabled = await message.guild.commands.fetch();
+					for (const command of enabled) {
+						await message.guild.commands.delete(command[1].id);
 					}
 				}
 			} else {
-				if (del == true) {
-					//@ts-ignore so many fucking errors
-					const res = this.client.api //@ts-ignore so many fucking errors
-						.applications(this.client.user.id)
-						.guilds(message.guild.id)
-						.commands.get();
-					for (let cmd of await res) {
-						//@ts-ignore
-						this.client.api //@ts-ignore so many fucking errors
-							.applications(this.client.user.id)
-							.guilds(message.guild.id)
-							.commands(cmd.id)
-							.delete();
+				if (global) {
+					const enabled = await this.client.application.commands.fetch();
+					for (const command of enabled) {
+						if (!this.handler.modules.find((cmd) => cmd.id == command[1].name)) {
+							await this.client.application.commands.delete(command[1].id);
+							console.log("deleted", command[1].name);
+						}
+					}
+
+					for (let cmd of this.handler.modules) {
+						if (cmd[1].execSlash) {
+							const found = enabled.find((i) => i.name == cmd[1].id);
+
+							const slashdata = {
+								name: cmd[1].id,
+								description: cmd[1].description.content,
+								options: cmd[1].options.options,
+							};
+
+							if (found?.id) {
+								if (slashdata.description !== found.description) {
+									this.client.application.commands.edit(found.id, slashdata);
+								}
+							} else {
+								console.log("enabled", cmd[1].id);
+								this.client.application.commands.create(slashdata);
+							}
+						}
 					}
 				} else {
-					//@ts-expect-error
-					for (let cmd of this.client.slashHandler.modules) {
-						message.guild.commands.create(cmd[1].data);
+					const enabled = await message.guild.commands.fetch();
+					for (const command of enabled) {
+						if (!this.handler.modules.find((cmd) => cmd.id == command[1].name)) {
+							await message.guild.commands.delete(command[1].id);
+							console.log("deleted", command[1].name);
+						}
+					}
+
+					for (let cmd of this.handler.modules) {
+						if (cmd[1].execSlash) {
+							const found = enabled.find((i) => i.name == cmd[1].id);
+
+							const slashdata = {
+								name: cmd[1].id,
+								description: cmd[1].description.content,
+								options: cmd[1].options.options,
+							};
+
+							if (found?.id) {
+								if (slashdata.description !== found.description) {
+									message.guild.commands.edit(found.id, slashdata);
+								}
+							} else {
+								console.log("enabled", cmd[1].id);
+								message.guild.commands.create(slashdata);
+							}
+						}
 					}
 				}
 			}
