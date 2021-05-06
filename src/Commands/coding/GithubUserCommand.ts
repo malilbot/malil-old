@@ -31,7 +31,7 @@ export default class GithubUserCommand extends Command {
 		});
 	}
 	async exec(message: Message, { args }) {
-		const user = await (await c(`https://api.github.com/users/${args}`, "GET").header("Authorization", `token ${this.client.credentials.gist}`).send()).json();
+		const user = await (await c(`https://api.github.com/users/${args}`, "GET").header("Authorization", `token ${this.client.credentials.github}`).send()).json();
 
 		if (user?.message) return message.reply("User not found");
 
@@ -53,7 +53,7 @@ export default class GithubUserCommand extends Command {
 	}
 	async execSlash(interaction: CommandInteraction) {
 		if (!interaction?.options[0]?.value) return interaction.reply({ content: "Please provide a user" });
-		const user = await (await c(`https://api.github.com/users/${interaction.options[0].value}`, "GET").header("Authorization", `token ${this.client.credentials.gist}`).send()).json();
+		const user = await (await c(`https://api.github.com/users/${interaction.options[0].value}`, "GET").header("Authorization", `token ${this.client.credentials.github}`).send()).json();
 
 		if (user?.message) return interaction.reply({ content: "User not found" });
 

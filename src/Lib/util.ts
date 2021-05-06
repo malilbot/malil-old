@@ -6,6 +6,7 @@ export { consts } from "../settings";
 import centra from "centra";
 import Enmap from "enmap";
 import moment from "moment";
+import { settings } from "cluster";
 /** Pre defining */
 const num = Math.floor(Math.random() * 2 + 1);
 
@@ -35,12 +36,34 @@ export const logger = new (class Logger {
 		this.orange = hex("#FF4F00");
 		this.yellow = hex("ccf914");
 		this.dash = this.lightBlue(" - ");
-		this.console = (content, { colors, level }: { colors: string[]; level?: number }) => {
+		this.console = async (content, { colors, level }: { colors: string[]; level?: number }) => {
 			const time = moment().format("HH:mm:ss");
 			let message = `${this[colors[0]](time)}`;
 			if (level) message += `${this[colors[1]](`level: ${this[colors[0]](level)}`)} `;
 			message += `${this.dash}${this[colors[2]](content)}`;
-			console.log(message);
+			if (!Settings.dev) {
+				const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+				let logged = "";
+				for (let i = 0; i < message.length; i++) {
+					logged += message[i];
+					process.stdout.write(logged);
+
+					await delay(40);
+					if (i !== message.length - 1) {
+						process.stdout.clearLine(1);
+
+						process.stdout.cursorTo(0);
+					} else {
+						process.stdout.clearLine(1);
+
+						process.stdout.cursorTo(0);
+						console.log(message);
+					}
+				}
+			} else {
+				console.log(message);
+			}
 		};
 	}
 	warn(content: string | number | Command | string[], level?: number): void {
@@ -503,7 +526,7 @@ export async function CreateGist(name: string, content: string, client: Interfac
 		files,
 	};
 	const gist = await (
-		await centra("https://api.github.com/gists", "POST").header("User-Agent", "Malil").header("Authorization", `token ${client.credentials.gist}`).body(body, "json").send()
+		await centra("https://api.github.com/gists", "POST").header("User-Agent", "Malil").header("Authorization", `token ${client.credentials.github}`).body(body, "json").send()
 	).json();
 	const out = `${gist.id}`;
 	return out;
@@ -522,7 +545,7 @@ export async function EditGist(name: string, content: string, GistId: string, cl
 	const gist = await (
 		await centra("https://api.github.com/gists/" + GistId, "POST")
 			.header("User-Agent", "Malil")
-			.header("Authorization", `token ${client.credentials.gist}`)
+			.header("Authorization", `token ${client.credentials.github}`)
 			.body(body, "json")
 			.send()
 	).json();
@@ -533,7 +556,7 @@ export const GetGist = async function (GistId: string, client: InterfaceClient):
 	const gist = await (
 		await centra("https://api.github.com/gists/" + GistId, "GET")
 			.header("User-Agent", "Malil")
-			.header("Authorization", `token ${client.credentials.gist}`)
+			.header("Authorization", `token ${client.credentials.github}`)
 			.send()
 	).json();
 	return gist;

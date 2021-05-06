@@ -77,7 +77,7 @@ export default class HelpCommand extends Command {
 			if (category.id !== "Developer" && category.id !== "Custom") {
 				embed.addField(
 					category.id,
-					category //@ts-ignore
+					category
 						.filter((cmd) => cmd.aliases.length > 0)
 						.map((cmd) => `**\`${cmd}\`**`)
 						.join(" | " || "No Commands in this category.")

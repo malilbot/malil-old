@@ -18,6 +18,14 @@ export default class IqCommand extends Command {
 					match: "content",
 				},
 			],
+			options: [
+				{
+					type: 6,
+					name: "user",
+					description: "Iq of the user to test from",
+					required: false,
+				},
+			],
 			description: {
 				content: "Uses math to calculate your iq",
 				example: ["iq", "iq @user", "iq rick"],
@@ -38,14 +46,14 @@ export default class IqCommand extends Command {
 
 		return message.util.send(iEmbed);
 	}
-	async execAsync(message: CommandInteraction) {
-		const member = message.options[0]?.user ?? message.user;
+	async execSlash(interaction: CommandInteraction) {
+		const member = interaction.options[0]?.user ?? interaction.user;
 		const embed = this.client.util
 			.embed()
 			.setColor(this.client.colors.default)
 			.setTitle("IQ Test")
-			.setDescription(`${message.options[0]?.user ?? message.user}'s IQ is: \`${this.client.userdata.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq")}\`!`);
+			.setDescription(`${interaction.options[0]?.user ?? interaction.user}'s IQ is: \`${this.client.userdata.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq")}\`!`);
 		if (Math.floor(Math.random() * 10 + 1) == 5) embed.setFooter(`You can vote to get increased iq /vote`);
-		message.reply(embed);
+		interaction.reply(embed);
 	}
 }

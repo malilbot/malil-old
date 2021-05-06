@@ -68,8 +68,8 @@ export default class Client extends AkairoClient {
 			presence: {
 				activities: [
 					{
-						name: `${Settings.prefix}help`,
-						type: "LISTENING",
+						name: `guilds | /invite`,
+						type: "COMPETING",
 					},
 				],
 			},

@@ -33,9 +33,9 @@ export default class CommandErrorListener extends Listener {
 		this.client.logger.info(a1(`[ CONTENT ] ${message.content}`));
 		this.client.logger.info(a1(error.stack));
 		this.client.logger.info(a1("──────────────────────────────────────────────────────────────────────"));
-		const errorNo = Math.floor(Math.random() * 6969696969) + 69; // hehe funy number
+
 		const errorEmbed: MessageEmbed = new MessageEmbed()
-			.setTitle(`Error # \`${errorNo}\`: An error occurred`)
+
 			.setDescription(
 				`**User:** ${message.author} (${message.author.tag})\n` +
 					`**Command:** ${command}\n` +
@@ -59,7 +59,7 @@ export default class CommandErrorListener extends Listener {
 				.setColor(this.client.colors.orange);
 		}
 
-		const channel = await this.client.channels.fetch(this.client.consts.errChannel);
+		const channel = await this.client.channels.fetch(this.client.consts.channels.errChannel);
 		await (channel as TextChannel).send(errorEmbed);
 		message.util.send(errorUserEmbed);
 	}

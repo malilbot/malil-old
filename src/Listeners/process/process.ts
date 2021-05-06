@@ -22,7 +22,7 @@ export default class process extends Listener {
 	public async exec(error: Error, promise: Promise<unknown>): Promise<void> {
 		this.client.logger.info(error.stack);
 		try {
-			const channel = await this.client.channels.fetch(this.client.consts.errChannel);
+			const channel = await this.client.channels.fetch(this.client.consts.channels.errChannel);
 			await (channel as TextChannel).send(
 				new MessageEmbed({
 					title: "Unhandled promise rejection",
