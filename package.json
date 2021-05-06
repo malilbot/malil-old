@@ -63,8 +63,7 @@
 		"discord-api-types": "^0.18.0",
 		"discord.js": "vaporox/discord.js#feat-interactions",
 		"enmap": "^5.8.5",
-		"moment": "^2.29.1",
-		"pet-pet-gif": "^1.0.8"
+		"moment": "^2.29.1"
 	},
 	"engines": {
 		"node": ">=14.15.1"

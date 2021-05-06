@@ -2,7 +2,6 @@ import Command from "../../Classes/malilCommand";
 import type { Message, GuildMember, CommandInteraction } from "discord.js";
 import { fixword, GetMember } from "../../Lib/Utils";
 import c from "centra";
-import petPetGif from "pet-pet-gif";
 export default class PatCommand extends Command {
 	public constructor() {
 		super("pat", {
@@ -58,6 +57,7 @@ export default class PatCommand extends Command {
 	}
 
 	public async exec(message: Message, { member, color }: { member: string | GuildMember; color: string }): Promise<Message> {
+		return message.reply("WILL BE BACK SOON");
 		let image: string;
 		if (!member) image = message.author.avatarURL({ dynamic: false, format: "png" });
 		else if (typeof member == "string") {
@@ -74,9 +74,11 @@ export default class PatCommand extends Command {
 				return message.reply("User not found");
 			}
 		}
-		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image, color || null), name: `patted.gif` }] });
+		const gif = await await (await c("https://pet.skyblockdev.repl.co/", "GET").query("url", image).send()).json();
+		return message.reply({ content: "patting", files: [{ attachment: gif.image, name: `patted.gif` }] });
 	}
 	async execSlash(message: CommandInteraction) {
+		return message.reply("WILL BE BACK SOON");
 		let image: string;
 		let speed: number = (message.options.find((i) => i.name == "speed")?.value as number) || 20;
 		const ign = message.options.find((i) => i.name == "ign")?.value;
@@ -94,6 +96,6 @@ export default class PatCommand extends Command {
 			user = user || message.user;
 			image = user.displayAvatarURL({ dynamic: false, format: "png" });
 		}
-		return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image, { delay: speed | 20 }), name: `patted.gif` }] });
+		//return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image, { delay: speed | 20 }), name: `patted.gif` }] });
 	}
 }

@@ -41,7 +41,7 @@ export const logger = new (class Logger {
 			let message = `${this[colors[0]](time)}`;
 			if (level) message += `${this[colors[1]](`level: ${this[colors[0]](level)}`)} `;
 			message += `${this.dash}${this[colors[2]](content)}`;
-			if (!Settings.dev) {
+			if (Settings.dev) {
 				const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 				let logged = "";
