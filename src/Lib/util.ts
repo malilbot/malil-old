@@ -503,7 +503,7 @@ export async function CreateGist(name: string, content: string, client: Interfac
 		files,
 	};
 	const gist = await (
-		await centra("https://api.github.com/gists", "POST").header("User-Agent", "Malil").header("Authorization", `token ${client.credentials.gist}`).body(body, "json").send()
+		await centra("https://api.github.com/gists", "POST").header("User-Agent", "Malil").header("Authorization", `token ${client.credentials.github}`).body(body, "json").send()
 	).json();
 	const out = `${gist.id}`;
 	return out;
@@ -522,7 +522,7 @@ export async function EditGist(name: string, content: string, GistId: string, cl
 	const gist = await (
 		await centra("https://api.github.com/gists/" + GistId, "POST")
 			.header("User-Agent", "Malil")
-			.header("Authorization", `token ${client.credentials.gist}`)
+			.header("Authorization", `token ${client.credentials.github}`)
 			.body(body, "json")
 			.send()
 	).json();
@@ -533,7 +533,7 @@ export const GetGist = async function (GistId: string, client: InterfaceClient):
 	const gist = await (
 		await centra("https://api.github.com/gists/" + GistId, "GET")
 			.header("User-Agent", "Malil")
-			.header("Authorization", `token ${client.credentials.gist}`)
+			.header("Authorization", `token ${client.credentials.github}`)
 			.send()
 	).json();
 	return gist;

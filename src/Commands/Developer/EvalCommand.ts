@@ -124,7 +124,7 @@ export default class EvalCommand extends Command {
 				.replace(new RegExp(client.credentials.devtoken, "g"), "[HIDDEN]")
 				.replace(new RegExp(client.credentials.TestServer, "g"), "[HIDDEN]")
 				.replace(new RegExp("\\" + client.settings.prefix, "g"), "[HIDDEN]")
-				.replace(new RegExp(client.credentials.gist, "g"), "[HIDDEN]")
+				.replace(new RegExp(client.credentials.github, "g"), "[HIDDEN]")
 				.replace(new RegExp(client.credentials.genius.toString(), "g"), "[HIDDEN]")
 				.replace(new RegExp(client.credentials.bottokens.discordbotlist.toString(), "g"), "[HIDDEN]")
 				.replace(new RegExp(client.credentials.dagpi.toString(), "g"), "[HIDDEN]")

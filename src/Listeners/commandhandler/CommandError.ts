@@ -59,7 +59,7 @@ export default class CommandErrorListener extends Listener {
 				.setColor(this.client.colors.orange);
 		}
 
-		const channel = await this.client.channels.fetch(this.client.consts.errChannel);
+		const channel = await this.client.channels.fetch(this.client.consts.channels.errChannel);
 		await (channel as TextChannel).send(errorEmbed);
 		message.util.send(errorUserEmbed);
 	}
