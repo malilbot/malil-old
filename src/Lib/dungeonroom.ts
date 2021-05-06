@@ -18,7 +18,7 @@ export = async (message: Message) => {
 		if (message.content == "!math") {
 			function makeid(length) {
 				var result = [];
-				var characters = "ABCDEFGHI^JKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+				var characters = "ABCDEFGH^JKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 				var charactersLength = characters.length;
 				for (var i = 0; i < length; i++) {
 					result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
@@ -35,7 +35,25 @@ export = async (message: Message) => {
 				.then((messages) => {
 					if (messages.first().content == str) {
 						if (message.member.roles.cache.has("838949553020993557")) message.member.roles.remove("838949553020993557");
-						return message.reply("Correct your role has been removed");
+						else {
+							const c = Number((Math.random() * 10).toFixed(3)),
+								d = Number((Math.random() * 10).toFixed(3)),
+								a = c + d;
+							message.reply(`Now answer the real math question ${c} * ${d}`.split("").join("​"));
+							message.channel
+								.awaitMessages(filter, { time: 10000, max: 1, errors: ["time"] })
+								.then((messages) => {
+									if (messages.first().content == a.toString()) {
+										if (message.member.roles.cache.has("838949553020993557")) message.member.roles.remove("838949553020993557");
+										return message.reply("Correct your role has been removed");
+									} else {
+										message.channel.send(`${messages.first().content} !== ` + a);
+									}
+								})
+								.catch(() => {
+									message.channel.send("You werent fast enough try again!");
+								});
+						}
 					} else {
 						message.channel.send(`${messages.first().content} !== ` + str);
 					}
