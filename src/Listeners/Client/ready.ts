@@ -11,6 +11,40 @@ export default class Ready extends Listener {
 		this.client = client;
 	}
 	public async exec(): Promise<void> {
+		if (this.client.settings.dev) {
+			const guild = this.client.guilds.cache.get(this.client.consts.testserver) || (await this.client.guilds.fetch(this.client.consts.testserver));
+			const enabled = await guild.commands.fetch();
+			for (const command of enabled) {
+				if (!this.client.commandHandler.modules.find((cmd) => cmd.id == command[1].name)) {
+					await guild.commands.delete(command[1].id);
+					console.log("deleted", command[1].name);
+				}
+			}
+
+			for (let cmd of this.client.commandHandler.modules) {
+				if (cmd[1].execSlash) {
+					const found = enabled.find((i) => i.name == cmd[1].id);
+
+					const slashdata = {
+						name: cmd[1].id,
+						description: cmd[1].description.content,
+						options: cmd[1].options.options,
+					};
+
+					if (found?.id) {
+						if (slashdata.description !== found.description) {
+							await guild.commands.edit(found.id, slashdata);
+						} else {
+							continue;
+						}
+					} else {
+						console.log("enabled", cmd[1].id);
+						await guild.commands.create(slashdata);
+					}
+				}
+			}
+		}
+
 		if (this.client?.shard?.ids[0] == this.client.options.shardCount - 1 && this.client.shard.ids[0] !== 0) {
 			this.client.logger.info("[ MAXSHARDS ]");
 			return;

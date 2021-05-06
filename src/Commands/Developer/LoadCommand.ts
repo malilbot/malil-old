@@ -45,7 +45,7 @@ export default class LoadCommand extends Command {
 					const sysStats = "```\n" + `Uptime ${ms(os.uptime() * 1000, { long: true })}, processes ${processes}` + `CPU Heat ${temps / 1000} C\n` + `Ram used: ${memory} MB\n` + "```\n";
 					const botStats =
 						"```\n" +
-						`Bot Uptime: ${ms(process.uptime() * 1000, { long: true })}` +
+						`Bot Uptime: ${ms(process.uptime() * 1000, { long: true })}\n	` +
 						`Memory Used: ${ut.formatBytes(process.memoryUsage().heapUsed)}\n` +
 						`Guilds: ${totalGuilds}, Members: ${totalMembers}\n` +
 						`Commands Used: ${this.client.gp.get("commands")}\n` +
