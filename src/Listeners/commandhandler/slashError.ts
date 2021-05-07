@@ -1,8 +1,6 @@
-import { MessageEmbed, Message, TextChannel, Interaction } from "discord.js";
+import { Interaction } from "discord.js";
 import { Listener } from "discord-akairo";
-import { stripIndents } from "common-tags";
 import Command from "../../Classes/malilCommand";
-import { hst, Format, a1, sLog } from "../../Lib/Utils";
 
 export default class CommandErrorListener extends Listener {
 	public constructor() {
@@ -13,7 +11,8 @@ export default class CommandErrorListener extends Listener {
 		});
 	}
 
-	public async exec(error: Error, message: Message, command: Command | null | undefined): Promise<void> {
+	public async exec(error: Error, message: Interaction, command: Command | null | undefined): Promise<void> {
 		console.log(error);
+		this.client.logger.command(message, command, "Missing perms");
 	}
 }

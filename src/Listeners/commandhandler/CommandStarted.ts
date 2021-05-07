@@ -17,9 +17,6 @@ export default class CommandStarted extends Listener {
 		const cur = this.client.gp.ensure("run", 1, `${command}`);
 		this.client.gp.set("run", cur + 1, `${command}`);
 		this.client.gp.math("commands", "+", 1);
-		const cmd = main(command);
-		const usr = sec(message.author.tag) + " " + fourth(message.author.id);
-		const gld = sec(message.guild.name) + " " + fourth(message.guild.id);
-		this.client.logger.info(a1("[ COMMAND RAN ] ") + cmd + a1(" [ USER ] ") + usr + a1(" [ GUILD ] ") + gld);
+		this.client.logger.command(message, command, "Started");
 	}
 }

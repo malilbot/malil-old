@@ -1,8 +1,6 @@
 import { Listener, Command } from "discord-akairo";
-import { sLog } from "../../Lib/util";
 import Client from "../../Classes/Client";
 import { Message } from "discord.js";
-import {} from "../../Lib/Utils";
 export default class commandBlocked extends Listener {
 	public constructor(client: Client) {
 		super("commandBlocked", {
@@ -14,9 +12,10 @@ export default class commandBlocked extends Listener {
 	}
 
 	exec(message: Message, command: Command, reason: string): void {
-		sLog({ msg: message, command, type: reason });
+		this.client.logger.command(message, command, "Blocked");
+
 		if (reason == "owner") {
-			message.react("812398880515817472").catch((e) => {});
+			message.react("812398880515817472").catch(() => {});
 		}
 	}
 }

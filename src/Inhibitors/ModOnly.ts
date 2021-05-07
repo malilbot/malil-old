@@ -1,7 +1,6 @@
 import { Inhibitor, Command } from "discord-akairo";
 import { Message } from "discord.js";
 import { superUsers } from "../Lib/config";
-import { Format, a1 } from "../Lib/Utils";
 export default class extends Inhibitor {
 	constructor() {
 		super("ModOnly", {
@@ -25,8 +24,7 @@ export default class extends Inhibitor {
 					else this.client.userdata.set(message.member.id, cur - 50, "iq");
 				}
 			}
-			const { GStr, UStr } = Format(message, null, null, null);
-			this.client.logger.info(a1(`[ USER ] ${UStr} [ GUILD ] ${GStr} [ MODONLY ]`));
+			this.client.logger.command(message, command, "ModOnly");
 			return true;
 		} else return false;
 	}

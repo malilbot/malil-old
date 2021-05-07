@@ -1,6 +1,6 @@
-import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, Guild } from "discord.js";
+import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, Guild, Interaction } from "discord.js";
 import { Command, CommandHandler, InhibitorHandler, ListenerHandler } from "discord-akairo";
-import { red, blue, gray, yellow, green, magenta, cyan, hex } from "chalk";
+import { red, blue, gray, yellow, green, magenta, cyan, hex, bgBlueBright, bgHex, bgGreen, bgCyan, black } from "chalk";
 import { credentials, Settings, consts } from "../settings";
 export { consts } from "../settings";
 import centra from "centra";
@@ -27,7 +27,7 @@ export const logger = new (class Logger {
 	darkBlue: (string: string | Command | number | string[]) => string;
 	orange: (string: string | Command | number | string[]) => string;
 	yellow: (string: string | Command | number | string[]) => string;
-	console: (content, { colors, level }: { colors: string[]; level?: number }) => void;
+	konsole: (content, { colors, level }: { colors: string[]; level?: number }) => void;
 	constructor(verbose: boolean) {
 		this.Verbose = verbose;
 		this.lightBlue = hex("#72bcd4");
@@ -36,73 +36,44 @@ export const logger = new (class Logger {
 		this.orange = hex("#FF4F00");
 		this.yellow = hex("ccf914");
 		this.dash = this.lightBlue(" - ");
-		this.console = async (content, { colors, level }: { colors: string[]; level?: number }) => {
+		this.konsole = async (content, { colors, level }: { colors: string[]; level?: number }) => {
 			const time = moment().format("HH:mm:ss");
 			let message = `${this[colors[0]](time)}`;
 			if (level) message += `${this[colors[1]](`level: ${this[colors[0]](level)}`)} `;
 			message += `${this.dash}${this[colors[2]](content)}`;
-			if (Settings.dev) {
-				const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-				let logged = "";
-				for (let i = 0; i < message.length; i++) {
-					logged += message[i];
-					process.stdout.write(logged);
-
-					await delay(40);
-					if (i !== message.length - 1) {
-						process.stdout.clearLine(1);
-
-						process.stdout.cursorTo(0);
-					} else {
-						process.stdout.clearLine(1);
-
-						process.stdout.cursorTo(0);
-						console.log(message);
-					}
-				}
-			} else {
-				console.log(message);
-			}
+			console.log(message);
 		};
 	}
 	warn(content: string | number | Command | string[], level?: number): void {
-		this.console(content, { level, colors: ["orange", "red", "yellow"] });
+		this.konsole(content, { level, colors: ["orange", "red", "yellow"] });
 	}
 	verbose(content: string | number | Command | string[], level?: number): void {
 		if (!this.Verbose) return;
-		this.console(content, { level, colors: ["orange", "darkBlue", "yellow"] });
+		this.konsole(content, { level, colors: ["orange", "darkBlue", "yellow"] });
 	}
 	info(content: string | number | Command | string[]): void {
-		this.console(content, { colors: ["darkBlue", "yellow", "yellow"] });
+		this.konsole(content, { colors: ["darkBlue", "yellow", "yellow"] });
 	}
 	log(content: string | number | Command | string[]): void {
-		this.console(content, { colors: ["darkBlue", "yellow", "yellow"] });
+		this.konsole(content, { colors: ["darkBlue", "yellow", "yellow"] });
+	}
+	command(message: Message | Interaction, command: Command, trigger: string) {
+		if (trigger == "trigger") {
+			trigger = trigger;
+		} else if (trigger == "Success") {
+			trigger = green(trigger);
+		} else if (trigger == "blocked") {
+			trigger = red(trigger);
+		}
+		console.log(
+			bgBlueBright(`${black(moment().format("HH:mm"))}`) +
+				` => [Command: ${black(bgHex("#929e2c")(`${command}`))} - ${trigger}]` + //@ts-ignore
+				` by ${black(bgGreen(`${((message as Interaction).user || (message as Message).author).tag}(${((message as Interaction).id || (message as Message).author).id})`))}` +
+				` in ${black(bgCyan(`${message.guild.name}(${message.guild.id})`))}`
+		);
 	}
 })(Settings.verbose);
-
-export function Format(msg: Message, Cmd?: Command, missing?: string[], reason?: string): FormatIF {
-	let mis: string;
-	let cmd = main(Cmd);
-	let usr = sec(msg?.author.tag) + " " + fourth(msg.author.id);
-	let gld = sec(msg?.guild.name) + " " + fourth(msg.guild.id);
-	if (missing && missing[0]) {
-		mis = main(missing[0]?.toLowerCase().replace(/_/g, " "));
-	}
-	let rsn = third(reason);
-	if (cmd == undefined) cmd = null;
-	if (usr == undefined) usr = null;
-	if (gld == undefined) gld = null;
-	if (mis == undefined) mis = null;
-	if (rsn == undefined) rsn = null;
-	return {
-		CStr: cmd,
-		UStr: usr,
-		GStr: gld,
-		MStr: mis,
-		RStr: rsn,
-	};
-}
 
 /** code taken from ms https://github.com/vercel/ms */
 
@@ -345,55 +316,6 @@ export const GetMember = async function (msg: Message, args?: string): Promise<G
 	return user;
 };
 
-export function sLog({
-	msg = null,
-	type = null,
-	guild = null,
-	member = null,
-	command = null,
-	mod = false,
-}: {
-	msg?: Message;
-	type?: string;
-	guild?: Guild;
-	member?: GuildMember;
-	command?: Command;
-	mod?: boolean;
-}): void {
-	if (guild) {
-		if (type == "GUILDADD") {
-			logger.info(`${sec("[ SERVER ADD ]")} ${main(guild.name)}`);
-		} else if (type == "GUILDDELETE") {
-			logger.info(`${sec("[ SERVER KICK ]")} ${main(guild.name)} Fuck this guy removing me from his server`);
-		} else if (type == "MEMBERADD") {
-			logger.info(a1(`[ USER ] ${main(member.user.tag)} [ GUILD ] ${sec(member.guild.name)} [ USER JOINED ]`));
-		}
-	}
-	if (type.includes("MUTE")) {
-		if (type == "MUTE") {
-			logger.info(main(`[ MUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`));
-		} else if (type == "UNMUTE") {
-			logger.info(main(`[ UNMUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`));
-		} else if (type == "REMUTE") {
-			logger.info(main(`[ REMUTED ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`));
-		}
-	} else if (mod == true) {
-		const actions = {
-			KICK: "KICKED",
-			WARN: "WARNED",
-			BAN: "BANNED",
-		};
-		logger.info(main(`[ ${actions[type]} ] ${sec(member.user.tag)} ${third(member.user.id)} [ IN ] ${sec(member.guild.name)} ${third(member.guild.id)}`));
-	}
-	if (command) {
-		const { GStr, UStr, RStr, CStr } = Format(msg, command, null, type);
-
-		if (RStr) {
-			logger.info(a1(`[ CMD ] ${CStr} [ USER ] ${UStr} [ GUILD ] ${GStr} [ BLOCKED FOR ] ${RStr}`));
-		}
-	}
-}
-
 // Code "borrowed" from :https://github.com/farshed/genius-lyrics-api
 
 const getTitle = (title: string | number | boolean, artist: string | number | boolean): string => {
@@ -610,7 +532,7 @@ export async function Infract(message?: Message, reason?: string, member?: Guild
 	client.infractions.ensure(message.guild.id, {});
 	logger.info(sec("[ GIVING OUT A INFRACTION ] ") + main(`[ TO ] ${member.user.tag || "noone? huh what"} `) + third(`[ TYPE ] ${type || "no type? wtf"}`));
 	if (type !== "UNMUTE") {
-		sLog({ type: "UNMUTE", member });
+		logger.info("UNMUTED " + member.user.tag);
 		const usID = member.id;
 		client.infractions.ensure(message.guild.id, { [usID]: {} });
 		const infraction = client.infractions.get(message.guild.id, usID);
@@ -626,7 +548,7 @@ export async function Infract(message?: Message, reason?: string, member?: Guild
 	if (client.logchannel.get(member.guild.id)) {
 		if (((await client.channels.fetch(client.logchannel.get(member.guild.id))) as GuildChannel).deleted == false) {
 			const embed = new MessageEmbed().setTimestamp();
-			sLog({ member, type, mod: true });
+
 			if (type == "KICK") {
 				embed.setAuthor(`User Kicked by ${message.author.tag}`, message.author.avatarURL());
 				embed.setDescription(`Member: ${member.user.tag}\nReason ${reason || "No reason provided."}`);
@@ -643,7 +565,6 @@ export async function Infract(message?: Message, reason?: string, member?: Guild
 				embed.setColor(client.colors.red);
 				embed.setFooter(`User id: ${member.user.id}`);
 			} else if (type == "MUTE") {
-				sLog({ member, type: "MUTE" });
 				embed.setAuthor(`User Muted by ${message.author.tag}`, message.author.avatarURL());
 				embed.setDescription(`Member: ${member.user.tag}\nTime ${ms(ms(reason || "No reason provided."), { long: true }) || "Perma"}`);
 				embed.setColor(client.colors.red);

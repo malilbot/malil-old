@@ -1,7 +1,6 @@
 import { Inhibitor, Command } from "discord-akairo";
 import { Message } from "discord.js";
 import { superUsers } from "../Lib/config";
-import { Format, a1 } from "../Lib/Utils";
 export default class extends Inhibitor {
 	constructor() {
 		super("disabledCommands", {
@@ -28,8 +27,7 @@ export default class extends Inhibitor {
 			message.guild.id
 		)) as string[];
 		if (disabledCategory.includes(command?.categoryID)) {
-			const { GStr, UStr, CStr } = Format(message, command, null, null);
-			this.client.logger.info(a1(`[ CMD ] ${CStr} [ USER ] ${UStr} [ GUILD ] ${GStr} [ COMMAND STOPPED ] reason: disabled in server`));
+				this.client.logger.command(message, command, "Disabled Command");
 			message.util.send(
 				`**${command?.categoryID}** Commands are disabled in this server`
 			);
@@ -46,8 +44,7 @@ export default class extends Inhibitor {
 			message.guild.id
 		)) as string[];
 		if (disabledCommands.includes(command?.id)) {
-			const { GStr, UStr, CStr } = Format(message, command, null, null);
-			this.client.logger.info(a1(`[ CMD ] ${CStr} [ USER ] ${UStr} [ GUILD ] ${GStr} [ COMMAND STOPPED ] reason: disabled in server`));
+				this.client.logger.command(message, command, "Disabled Command");
 			message.util.send(`**${command?.id}** command is disabled in this server`);
 			return true;
 		}

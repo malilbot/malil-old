@@ -1,6 +1,5 @@
-import { Inhibitor } from "discord-akairo";
+import { Inhibitor, Command } from "discord-akairo";
 import { Message } from "discord.js";
-import { a1, Format } from "../Lib/Utils";
 export default class extends Inhibitor {
 	constructor() {
 		super("blacklist", {
@@ -9,10 +8,9 @@ export default class extends Inhibitor {
 		});
 	}
 
-	exec(message: Message): boolean {
+	exec(message: Message, command: Command): boolean {
 		if (this.client.blacklist.get("blacklisted", "list").includes(message.author.id) == true) {
-			const { GStr, UStr } = Format(message, null, null, null);
-			this.client.logger.info(a1(`[ USER ] ${UStr} [ GUILD ] ${GStr} [ REJECTED FOR BEING BLACKLISTED ]`));
+			this.client.logger.command(message, command, "Stopped");
 			return true;
 		}
 	}

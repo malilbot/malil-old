@@ -1,7 +1,6 @@
 import { Listener } from "discord-akairo";
 import { GuildMember, TextChannel, Message } from "discord.js";
 import Client from "../../Classes/Client";
-import { fourth, sLog } from "../../Lib/Utils";
 let lastJoin: Message;
 export default class WelcomeEmbed extends Listener {
 	public constructor(client: Client) {
@@ -19,7 +18,7 @@ export default class WelcomeEmbed extends Listener {
 			if (mutes[member.id]) {
 				if (Date.now() < mutes[member.id]) {
 					const role = member.guild.roles.cache.get(this.client.mutes.get(member.guild.id, "role")) || (await member.guild.roles.fetch(this.client.mutes.get(member.guild.id, "role")));
-					sLog({ type: "REMUTE", member });
+
 					member.roles.add(role, "Left and rejoined while muted");
 				}
 			}

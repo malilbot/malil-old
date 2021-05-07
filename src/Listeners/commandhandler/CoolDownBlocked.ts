@@ -1,5 +1,4 @@
-import { Listener } from "discord-akairo";
-import { main, sec } from "../../Lib/Utils";
+import { Listener, Command } from "discord-akairo";
 import Client from "../../Classes/Client";
 import { MessageEmbed, Message } from "discord.js";
 const talkedRecently = new Set();
@@ -14,7 +13,7 @@ export default class CoolDown extends Listener {
 		this.client = client;
 	}
 
-	exec(message: Message): void {
+	exec(message: Message, command: Command): void {
 		if (!talkedRecently.has(message.author.id)) {
 			if (!Talk.has(message.author.id)) {
 				message.util.send(new MessageEmbed().setTitle("You are using commands too fast please slow down").setImage("https://http.cat/429").setColor(this.client.colors.red));
@@ -28,6 +27,6 @@ export default class CoolDown extends Listener {
 				talkedRecently.delete(message.author.id);
 			}, 60000);
 		}
-		this.client.logger.info(`${main("[ RATE LIMIT ]")} (${sec(message.author.tag)}) ${sec(message.author.id)}`);
+		this.client.logger.command(message, command, "Missing perms");
 	}
 }

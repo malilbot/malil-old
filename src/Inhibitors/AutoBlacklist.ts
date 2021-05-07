@@ -1,6 +1,5 @@
-import { Inhibitor } from "discord-akairo";
+import { Inhibitor, Command } from "discord-akairo";
 import { Message, MessageEmbed } from "discord.js";
-import { sec, third, a1, Format } from "../Lib/Utils";
 import { superUsers } from "../Lib/config";
 const timeoutObject = {};
 const blacklist = {};
@@ -13,7 +12,7 @@ export default class extends Inhibitor {
 		});
 	}
 
-	public async exec(message: Message): Promise<boolean> {
+	public async exec(message: Message, command: Command): Promise<boolean> {
 		if (superUsers.includes(message.author.id)) return false;
 		if (blacklist[message.author.id] == true) return true;
 
@@ -27,8 +26,7 @@ export default class extends Inhibitor {
 			timeoutObject[message.author.id] = num - 1;
 		}, 1200000);
 		if (num == 30) {
-			const { GStr, UStr } = Format(message, null, null, null);
-			this.client.logger.info(a1(`[ USER ] ${UStr} [ GUILD ] ${GStr} [ BLACKLISTED ]`));
+			this.client.logger.command(message, command, "Blacklisted");
 			timeoutObject[message.author.id] = 0;
 			blacklist[message.author.id] = true;
 			message.util.send(
@@ -38,7 +36,7 @@ export default class extends Inhibitor {
 					.setColor(this.client.colors.purple)
 			);
 			setTimeout(function () {
-				this.client.logger.info(third("[ UN-BLACKLISTED USER ] " + sec(`[ ${message.author.tag} ] [ ${message.author.id}]`)));
+				this.client.logger.command(message, command, "Unblacklisted");
 				blacklist[message.author.id] = false;
 			}, 86400000);
 		}
