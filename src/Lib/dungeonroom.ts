@@ -46,7 +46,7 @@ export = async (message: Message) => {
 								if (messages.first().content == a.toString()) {
 									if (message.member.roles.cache.has("838949553020993557")) message.member.roles.remove("838949553020993557");
 									message.reply("Correct your role has been removed");
-									if (message.member.roles.cache.has("835035147824136202")) message.member.roles.remove("835035147824136202");
+									if (!message.member.roles.cache.has("835035147824136202")) message.member.roles.add("835035147824136202");
 									return;
 								} else {
 									message.channel.send(`\`${messages.first().content}\` !== ` + a);
