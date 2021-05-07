@@ -35,7 +35,7 @@ export = async (message: Message) => {
 				.then((messages) => {
 					if (messages.first().content == str) {
 						if (message.member.roles.cache.has("838949553020993557")) message.member.roles.remove("838949553020993557");
-
+						//835035147824136202
 						const c = Number((Math.random() * 10).toFixed(3)),
 							d = Number((Math.random() * 10).toFixed(3)),
 							a = c + d;
@@ -45,7 +45,9 @@ export = async (message: Message) => {
 							.then((messages) => {
 								if (messages.first().content == a.toString()) {
 									if (message.member.roles.cache.has("838949553020993557")) message.member.roles.remove("838949553020993557");
-									return message.reply("Correct your role has been removed");
+									message.reply("Correct your role has been removed");
+									if (message.member.roles.cache.has("835035147824136202")) message.member.roles.remove("835035147824136202");
+									return;
 								} else {
 									message.channel.send(`${messages.first().content} !== ` + a);
 								}
