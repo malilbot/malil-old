@@ -49,7 +49,7 @@ export = async (message: Message) => {
 									if (message.member.roles.cache.has("835035147824136202")) message.member.roles.remove("835035147824136202");
 									return;
 								} else {
-									message.channel.send(`${messages.first().content} !== ` + a);
+									message.channel.send(`\`${messages.first().content}\` !== ` + a);
 								}
 							})
 							.catch(() => {
