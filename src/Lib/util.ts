@@ -607,7 +607,7 @@ export async function hst(body: string, check: boolean = false): Promise<string>
 	return await post(body);
 }
 export async function Infract(message?: Message, reason?: string, member?: GuildMember, type?: string, client?: InterfaceClient): Promise<void> {
-	this.client.infractions.ensure(message.guild.id, {});
+	client.infractions.ensure(message.guild.id, {});
 	logger.info(sec("[ GIVING OUT A INFRACTION ] ") + main(`[ TO ] ${member.user.tag || "noone? huh what"} `) + third(`[ TYPE ] ${type || "no type? wtf"}`));
 	if (type !== "UNMUTE") {
 		sLog({ type: "UNMUTE", member });

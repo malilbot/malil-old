@@ -12,9 +12,20 @@ export default class WarnCommand extends Command {
 			quoted: true,
 			args: [
 				{
+					id: "member",
+					type: async (message, content) => {
+						let member = await GetMember(message, content);
+						if (member) return member;
+						else return content.split(" ")[0];
+					},
+					match: "content",
+				},
+				{
 					id: "reason",
-					type: "string",
-					match: "rest",
+					type: async (_, content) => {
+						return content.split(" ").slice(1).join(" ");
+					},
+					match: "content",
 				},
 			],
 			description: {
@@ -28,15 +39,11 @@ export default class WarnCommand extends Command {
 			channel: "guild",
 		});
 	}
-	public async exec(message: Message, { reason }): Promise<Message> {
-		const split = reason.split(" ");
-		reason = split.slice(1).join(" ");
-
-		const user = await GetMember(message, reason);
-		if (!user) return message.util.send("please mention a user");
-
-		await user.send(`You has been Warned in **${message.guild.name}** for : \`${reason}\``).catch((e) => message.util.send("Couldnt send a message to this usser but he has been warned"));
+	public async exec(message: Message, { member, reason }: { member: GuildMember; reason: string }): Promise<Message> {
+		if (!member) return message.reply("Member not found");
+		message.channel.send(`**${member.user.tag}** has been warned`);
+		await member.send(`You has been Warned in **${message.guild.name}** for : \`${reason}\``).catch((e) => message.util.send("Couldnt send a message to this usser but he has been warned"));
 		//* ------------------------------------ infraction code */
-		Infract(message, reason, user, "WARN", this.client);
+		Infract(message, reason, member, "WARN", this.client);
 	}
 }
