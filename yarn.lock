@@ -1292,9 +1292,9 @@ discord-rpc@^3.2.0:
     node-fetch "^2.6.1"
     ws "^7.3.1"
 
-discord.js@vaporox/discord.js#feat-interactions:
+discord.js@discordjs/discord.js:
   version "12.5.0"
-  resolved "https://codeload.github.com/vaporox/discord.js/tar.gz/0c0749e680aa64215d34653515a78fb2201120a7"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/b456ff1090ad9c0acf27ad96ecaedb03101de556"
   dependencies:
     "@discordjs/collection" "^0.1.6"
     "@discordjs/form-data" "^3.0.1"

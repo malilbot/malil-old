@@ -72,6 +72,6 @@ export default class NpmCommand extends Command {
 			.setFooter(` Tags: ${result.keywords[0] || "none"}, ${result.keywords[1] || "none"}, ${result.keywords[3] || "none"}`)
 			.setTitle(`<:npm:838350149725061169> ${result.name}`)
 			.setURL(result.links.npm);
-		interaction.reply({ embeds: [embed] });
+		interaction.reply({ embed: embed });
 	}
 }

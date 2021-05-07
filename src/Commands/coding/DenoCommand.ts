@@ -77,6 +77,6 @@ export default class DenoCommand extends Command {
 			.setDescription(result.description || "No description provided")
 			.setTitle(`🦕 ${result.name}`)
 			.setURL(`https://deno.land/x/${result.name}`);
-		interaction.reply({ content: "deno", embeds: [embed] });
+		interaction.reply({ embed: embed });
 	}
 }
