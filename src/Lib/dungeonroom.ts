@@ -56,7 +56,7 @@ export = async (message: Message) => {
 								message.channel.send("You werent fast enough try again!");
 							});
 					} else {
-						message.channel.send(`${messages.first().content} !== ` + str);
+						message.channel.send(`\`${messages.first().content}\` !== ` + str);
 					}
 				})
 				.catch(() => {
