@@ -71,6 +71,6 @@ export default class GithubUserCommand extends Command {
 		stats += `**[Followers](${user.followers_url})** ${user.followers}\n`;
 		stats += `**[following](${user.following_url})** ${user.following}`;
 		const embed = this.client.util.embed().setTitle(user.login).setURL(user.html_url).addField("➥ Info", info).addField("➥ Stats", stats).setThumbnail(user.avatar_url);
-		interaction.reply({ embed: embed });
+		interaction.reply(embed);
 	}
 }
