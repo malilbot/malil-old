@@ -69,7 +69,7 @@ export const logger = new (class Logger {
 		console.log(
 			bgBlueBright(`${black(moment().format("HH:mm"))}`) +
 				` => [Command: ${black(bgHex("#929e2c")(`${command}`))} - ${trigger}]` + //@ts-ignore
-				` by ${black(bgGreen(`${((message as Interaction).user || (message as Message).author).tag}(${((message as Interaction).id || (message as Message).author).id})`))}` +
+				` by ${black(bgGreen(`${((message as Interaction).user || (message as Message).author).tag}(${message.author.id})`))}` +
 				` in ${black(bgCyan(`${message.guild.name}(${message.guild.id})`))}`
 		);
 	}
