@@ -1,8 +1,8 @@
 import Command from "../../Classes/malilCommand";
-import { MessageEmbed, GuildChannel, TextChannel, Message, Role } from "discord.js";
+import { CommandInteraction, Message, Role, Interaction } from "discord.js";
 export default class RemoveRankCommand extends Command {
 	public constructor() {
-		super("removeRank", {
+		super("removerank", {
 			aliases: ["rmrank", "removeRank", "delrank", "rrank"],
 			category: "Moderation",
 			quoted: true,
@@ -22,6 +22,14 @@ export default class RemoveRankCommand extends Command {
 				content: "Used to remove roles for users to join",
 				example: ["removerank @member", "rmrank 788408438421061642"],
 			},
+			options: [
+				{
+					type: 8,
+					name: "role",
+					description: "the role you want to remove from the ranks",
+					required: true,
+				},
+			],
 			ratelimit: 3,
 			channel: "guild",
 			clientPermissions: ["MANAGE_ROLES", "SEND_MESSAGES"],
@@ -39,6 +47,18 @@ export default class RemoveRankCommand extends Command {
 			}
 		}
 		this.client.guilddata.set(message.guild.id, ranks, "ranks");
-		message.reply(`Removed ${role} to available ranks`);
+		message.reply(`Removed ${role} from available ranks`);
+	}
+	execSlash(interaction: CommandInteraction) {
+		const role = interaction.options[0].role;
+		const ranks = this.client.guilddata.ensure(interaction.guild.id, [], "ranks");
+
+		for (let i = 0; i < ranks.length; i++) {
+			if (ranks[i] === role.id) {
+				ranks.splice(i, 1);
+			}
+		}
+		this.client.guilddata.set(interaction.guild.id, ranks, "ranks");
+		interaction.reply(`Removed ${role} from available ranks`);
 	}
 }

@@ -1,8 +1,8 @@
 import Command from "../../Classes/malilCommand";
-import { MessageEmbed, GuildChannel, TextChannel, Message, Role } from "discord.js";
+import { MessageEmbed, GuildChannel, TextChannel, Message, Role, CommandInteraction } from "discord.js";
 export default class AddRankCommand extends Command {
 	public constructor() {
-		super("addRank", {
+		super("addrank", {
 			aliases: ["addRank", "addr", "arank", "rankadd"],
 			category: "Moderation",
 			quoted: true,
@@ -16,6 +16,14 @@ export default class AddRankCommand extends Command {
 						else return message.guild.roles.cache.get(id) || message.guild.roles.cache.find((r) => r.name == content);
 					},
 					match: "content",
+				},
+			],
+			options: [
+				{
+					type: 8,
+					name: "role",
+					description: "Role to add as available ranks",
+					required: true,
 				},
 			],
 			description: {
@@ -34,5 +42,11 @@ export default class AddRankCommand extends Command {
 		this.client.guilddata.ensure(message.guild.id, [], "ranks");
 		this.client.guilddata.push(message.guild.id, role.id, "ranks");
 		message.reply(`Added ${role} to available ranks`);
+	}
+	async execSlash(interaction: CommandInteraction) {
+		const role = interaction.options[0].role;
+		this.client.guilddata.ensure(interaction.guild.id, [], "ranks");
+		this.client.guilddata.push(interaction.guild.id, role.id, "ranks");
+		interaction.reply(`Added ${role} to available ranks`);
 	}
 }
