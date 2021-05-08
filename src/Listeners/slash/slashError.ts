@@ -12,7 +12,7 @@ export default class CommandErrorListener extends Listener {
 	}
 
 	public async exec(error: Error, message: Interaction, command: Command | null | undefined): Promise<void> {
+		console.log(Interaction);
 		console.log(error);
-		//this.client.logger.command(message, command, "Missing perms");
 	}
 }
