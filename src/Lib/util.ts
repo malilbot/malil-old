@@ -528,25 +528,25 @@ export async function hst(body: string, check: boolean = false): Promise<string>
 
 	return await post(body);
 }
-export async function Infract(message?: Message, reason?: string, member?: GuildMember, type?: string, client?: InterfaceClient): Promise<void> {
-	client.infractions.ensure(message.guild.id, {});
+export async function Infract(message?: Message, reason?: string, member?: GuildMember, type?: string, client?: InterfaceClient, dm?: boolean): Promise<void> {
 	logger.info(sec("[ GIVING OUT A INFRACTION ] ") + main(`[ TO ] ${member.user.tag || "noone? huh what"} `) + third(`[ TYPE ] ${type || "no type? wtf"}`));
-	if (type !== "UNMUTE") {
-		logger.info("UNMUTED " + member.user.tag);
-		const usID = member.id;
-		client.infractions.ensure(message.guild.id, { [usID]: {} });
-		const infraction = client.infractions.get(message.guild.id, usID);
-		const _log = {
-			who: message.author.tag,
-			reason: reason,
-			type: type,
-		};
-		infraction[Date.now()] = _log;
-		client.infractions.set(message.guild.id, infraction, usID);
+
+	let cur = client.infractions.ensure(message.guild.id, [], member.user.id);
+
+	const data = {
+		when: Date.now(),
+		who: message.author.tag,
+		reason: reason || "No reason",
+		type: type || "No type",
+	};
+	if (!Array.isArray(cur)) {
+		client.infractions.set(message.guild.id, [data], member.user.id);
+	} else {
+		client.infractions.push(message.guild.id, data, member.id);
 	}
 
 	if (client.logchannel.get(member.guild.id)) {
-		if (((await client.channels.fetch(client.logchannel.get(member.guild.id))) as GuildChannel).deleted == false) {
+		if ((client.channels.cache.get(client.logchannel.get(member.guild.id)) as GuildChannel).deleted == false) {
 			const embed = new MessageEmbed().setTimestamp();
 
 			if (type == "KICK") {

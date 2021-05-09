@@ -30,16 +30,20 @@ export default class InfractionsCommand extends Command {
 		});
 	}
 	public async exec(message: Message, { user }: { user: GuildMember }): Promise<Message> {
-		if (!user) return message.util.send("user not found");
-		const usID = user.id;
-		this.client.infractions.ensure(message.guild.id, { [usID]: {} });
-		const infractions = this.client.infractions.get(message.guild.id, usID);
+		if (!user?.user?.tag) return message.util.send("user not found");
+
+		let infractions = this.client.infractions.ensure(message.guild.id, [], user.id);
+		if (!Array.isArray(infractions)) {
+			this.client.infractions.set(message.guild.id, [], user.id);
+		}
+
 		let mesg = "";
-		Object.keys(infractions).forEach((key) => {
-			mesg += "**Reason:** " + infractions[key].reason + "\n**Type:** " + `${infractions[key].type.toLowerCase()}\n` + "**Mod:** ";
-			+infractions[key].who + "\n";
-			+"----------------------------\n";
-		});
+		for (const infraction of infractions) {
+			mesg += "------------------------\n";
+			mesg += `**Who** ${infraction.who}\n`;
+			mesg += `**Reason** ${infraction.reason}\n`;
+			mesg += `**type** ${infraction.type.toLowerCase()}\n`;
+		}
 		if (mesg.length < 6) {
 			return message.util.send("user doesnt have any infractions");
 		}

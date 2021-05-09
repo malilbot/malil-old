@@ -40,10 +40,12 @@ export default class WarnCommand extends Command {
 		});
 	}
 	public async exec(message: Message, { member, reason }: { member: GuildMember; reason: string }): Promise<Message> {
+		let dm = true;
 		if (!member) return message.reply("Member not found");
 		message.channel.send(`**${member.user.tag}** has been warned`);
-		await member.send(`You has been Warned in **${message.guild.name}** for : \`${reason}\``).catch((e) => message.util.send("Couldnt send a message to this usser but he has been warned"));
+
+		await member.send(`You has been Warned in **${message.guild.name}** for : \`${reason}\``).catch((e) => (dm = false));
 		//* ------------------------------------ infraction code */
-		Infract(message, reason, member, "WARN", this.client);
+		Infract(message, reason, member, "WARN", this.client, dm);
 	}
 }
