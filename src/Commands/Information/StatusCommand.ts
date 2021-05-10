@@ -120,7 +120,7 @@ export default class StatsCommand extends Command {
 					`\u3000 Total: ${ut.formatBytes(process.memoryUsage().heapTotal)}`,
 					`\u3000 Used: ${ut.formatBytes(process.memoryUsage().heapUsed)}`,
 					"\u200b",
-					`[website](https://malilbot.github.io/) | [credits](https://github.com/SkyBlockDev/malil-akairo/blob/main/CREDITS.md) | [Support server](https://discord.gg/mY8zTARu4g)`,
+					`[website](https://malilbot.github.io/) | [Support server](https://discord.gg/mY8zTARu4g)`,
 				])
 		);
 	}
