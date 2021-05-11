@@ -1,19 +1,21 @@
 import { TextChannel, GuildMember, Message } from "discord.js";
 import Client from "./Client";
+import { malilStartGiveaway } from "../Lib/Utils";
 export default class giveawayManager {
 	client: Client;
 	constructor(client: Client) {
 		this.client = client;
 	}
-	getGiveaways() {
+	getGiveaways(): malilStartGiveaway[] {
 		return this.client.gp.ensure("givaways", []);
 	}
 	create(i: malilStartGiveaway) {
 		this.client.gp.ensure("givaways", []);
 		this.client.gp.push("giveaways", i);
+		this.rungiveaway(i);
 	}
-	find(i: string) {
-		return this.client.gp.find((i) => i.id == i);
+	find(name: string) {
+		return this.client.gp.find((i) => i.id == name);
 	}
 	time(time: number) {
 		return time + Date.now();
@@ -25,7 +27,10 @@ export default class giveawayManager {
 	}
 	async end(giveaway: malilStartGiveaway, users: string[]) {
 		const channel = (this.client.channels.cache.get(giveaway.channel) || (await this.client.channels.fetch(giveaway.channel))) as TextChannel;
+
 		const message = channel.messages.cache.get(giveaway.message) || (await channel.messages.fetch(giveaway.message));
+
+		if (!channel || !message) return;
 		const oldEmbed = message.embeds;
 		message.edit(this.client.util.embed(oldEmbed).setDescription("This giveaway has ended"));
 		message.channel.send(`the giveaway for **${giveaway.prize}** has ended and the winner is ${users.map((i) => `${i}, `)}`);
@@ -34,6 +39,9 @@ export default class giveawayManager {
 	async getWinners(giveaway: malilStartGiveaway) {
 		const channel = (this.client.channels.cache.get(giveaway.channel) || (await this.client.channels.fetch(giveaway.channel))) as TextChannel;
 		const message = channel.messages.cache.get(giveaway.message) || (await channel.messages.fetch(giveaway.message));
+
+		if (!channel || !message) return;
+
 		const winners: string[] = [];
 
 		for (let i = 0; i < giveaway.winners; i++) {
@@ -61,7 +69,7 @@ export default class giveawayManager {
 			else continue;
 		}
 	}
-	load() {
+	loadAll() {
 		for (const giveaway of this.getGiveaways()) {
 			this.rungiveaway(giveaway);
 		}
@@ -71,16 +79,7 @@ export default class giveawayManager {
 			this.end(giveaway, await this.getWinners(giveaway));
 		}, giveaway.time - Date.now());
 	}
-}
-interface malilStartGiveaway {
-	winners: number;
-	time: number;
-	prize: string;
-	options?: {
-		roles?: string[];
-		messages?: number;
-		joindate?: number;
-	};
-	channel: string;
-	message: string;
+	deleteGiveaway(id: string) {
+		const newGiveaway = this.getGiveaways().filter((i) => i.message !== id);
+	}
 }

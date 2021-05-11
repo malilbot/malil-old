@@ -699,3 +699,18 @@ interface FormatIF {
 interface hastebinRes {
 	key: string;
 }
+
+
+export interface malilStartGiveaway {
+	winners: number;
+	time: number;
+	prize: string;
+	options?: {
+		roles?: string[];
+		messages?: number;
+		joindate?: number;
+	};
+	channel: string;
+	message: string;
+	guildId: string;
+}

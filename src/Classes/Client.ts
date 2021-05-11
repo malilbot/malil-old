@@ -4,6 +4,7 @@ import { superUsers } from "../Lib/config";
 import TaskHandler from "./TaskHandler";
 import { logger } from "../Lib/Utils";
 import BotLists from "./BotLists";
+import giveawayManager from "./giveawayManager";
 import { join } from "path";
 import Enmap from "enmap";
 
@@ -83,6 +84,7 @@ export default class Client extends AkairoClient {
 		this.credentials = credentials;
 		this.config = config;
 		this.logger = logger;
+		this.giveawayManager = new giveawayManager(this);
 		const databases = ["gp", "logchannel", "tags", "prefixes", "blacklist", "guilddata", "mutes", "releases", "infractions", "userdata"];
 		for (const item in databases) {
 			const name = databases[item];
@@ -103,6 +105,7 @@ export default class Client extends AkairoClient {
 		this.taskHandler.loadall();
 		this.commandHandler.loadAll();
 		this.listenerHandler.loadAll();
+		this.giveawayManager.loadAll();
 	}
 
 	public async goo(): Promise<unknown> {
@@ -113,6 +116,7 @@ export default class Client extends AkairoClient {
 
 declare module "discord-akairo" {
 	interface AkairoClient {
+		giveawayManager: giveawayManager;
 		commandHandler: CommandHandler;
 		settings: typeof Settings;
 		credentials: typeof credentials;

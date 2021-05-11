@@ -1,5 +1,4 @@
 import { Command as AkairoCommand } from "discord-akairo";
-import Client from "./Client";
 import type { CommandOptions as AkairoModuleOptions } from "discord-akairo";
 import type { ApplicationCommandOptionChoice } from "discord.js";
 
