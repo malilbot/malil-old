@@ -74,7 +74,7 @@ export default class PatCommand extends Command {
 				return message.reply("User not found");
 			}
 		}
-		const gif = await await await c("https://pet.skyblockdev.repl.co/api/pet/", "GET").query("url", image).send();
+		const gif = await c("https://pet.skyblockdev.repl.co/api/pet/", "GET").query("url", image).send();
 		const patted = Buffer.from(gif.body.toString(), "base64");
 		return message.reply({ content: "patting", files: [{ attachment: patted, name: `patted.gif` }] });
 	}
@@ -97,7 +97,7 @@ export default class PatCommand extends Command {
 			user = user || message.user;
 			image = user.displayAvatarURL({ dynamic: false, format: "png" });
 		}
-		const gif = await await await c("https://pet.skyblockdev.repl.co/api/pet/", "GET").query("url", image).send();
+		const gif = await c("https://pet.skyblockdev.repl.co/api/pet/", "GET").query("url", image).send();
 		const patted = Buffer.from(gif.body.toString(), "base64");
 		return message.reply({ content: "patting", files: [{ attachment: patted, name: `patted.gif` }] });
 	}
