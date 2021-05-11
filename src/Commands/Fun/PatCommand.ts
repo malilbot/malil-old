@@ -79,7 +79,7 @@ export default class PatCommand extends Command {
 		return message.reply({ content: "patting", files: [{ attachment: patted, name: `patted.gif` }] });
 	}
 	async execSlash(message: CommandInteraction) {
-		return message.reply("WILL BE BACK SOON");
+		
 		let image: string;
 		let speed: number = (message.options.find((i) => i.name == "speed")?.value as number) || 20;
 		const ign = message.options.find((i) => i.name == "ign")?.value;
