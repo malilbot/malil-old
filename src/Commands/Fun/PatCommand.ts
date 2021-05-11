@@ -57,7 +57,7 @@ export default class PatCommand extends Command {
 	}
 
 	public async exec(message: Message, { member, color }: { member: string | GuildMember; color: string }): Promise<Message> {
-		return message.reply("WILL BE BACK SOON");
+		//return message.reply("WILL BE BACK SOON");
 		let image: string;
 		if (!member) image = message.author.avatarURL({ dynamic: false, format: "png" });
 		else if (typeof member == "string") {
@@ -74,8 +74,9 @@ export default class PatCommand extends Command {
 				return message.reply("User not found");
 			}
 		}
-		const gif = await await (await c("https://pet.skyblockdev.repl.co/", "GET").query("url", image).send()).json();
-		return message.reply({ content: "patting", files: [{ attachment: gif.image, name: `patted.gif` }] });
+		const gif = await await await c("https://pet.skyblockdev.repl.co/api/pet/", "GET").query("url", image).send();
+		const patted = Buffer.from(gif.body.toString(), "base64");
+		return message.reply({ content: "patting", files: [{ attachment: patted, name: `patted.gif` }] });
 	}
 	async execSlash(message: CommandInteraction) {
 		return message.reply("WILL BE BACK SOON");
@@ -96,6 +97,8 @@ export default class PatCommand extends Command {
 			user = user || message.user;
 			image = user.displayAvatarURL({ dynamic: false, format: "png" });
 		}
-		//return message.reply({ content: "patting", files: [{ attachment: await petPetGif(image, { delay: speed | 20 }), name: `patted.gif` }] });
+		const gif = await await await c("https://pet.skyblockdev.repl.co/api/pet/", "GET").query("url", image).send();
+		const patted = Buffer.from(gif.body.toString(), "base64");
+		return message.reply({ content: "patting", files: [{ attachment: patted, name: `patted.gif` }] });
 	}
 }
