@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: '14.15.x'
       - name: Add config file
-        run: cp src/example-settings.ts
+        run: cp src/example-settings.ts src/settings.ts
       - name: Install dependencies
         run: |
           yarn
@@ -40,7 +40,7 @@ jobs:
         with:
           node-version: '14.15.x'
       - name: Add config file
-        run: cp src/example-settings.ts
+        run: cp src/example-settings.ts src/settings.ts
       - name: Install dependencies
         run: |
           yarn
