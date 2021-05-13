@@ -681,10 +681,10 @@ export class InterfaceClient extends Client {
 	public consts = consts;
 	public colors = consts.colors;
 	public settings = Settings;
-	public gp: Enmap;
-	public userdata: Enmap;
-	public logchannel: Enmap;
-	public infractions: Enmap;
+	public gp?: Enmap;
+	public userdata?: Enmap;
+	public logchannel?: Enmap;
+	public infractions?: Enmap;
 	public logger: typeof logger;
 	public commandHandler?: CommandHandler;
 	public listenerHandler?: ListenerHandler;

@@ -127,7 +127,6 @@ declare module "discord-akairo" {
 		colors: typeof consts.colors;
 		logger: typeof logger;
 		tags: Enmap;
-		prefixes: Enmap;
 		blacklist: Enmap;
 		releases: Enmap;
 		logchannel: Enmap;
@@ -136,6 +135,5 @@ declare module "discord-akairo" {
 		gp: Enmap;
 		guilddata: Enmap;
 		mutes: Enmap;
-		userdata: Enmap;
 	}
 }

@@ -63,6 +63,9 @@ export default class db {
 			table.string("prefix");
 		});
 	}
+	public query(input: any): any {
+		return this.knex.raw(input);
+	}
 	public connect() {
 		/* this.guilds.sync();
 		this.users.sync();
