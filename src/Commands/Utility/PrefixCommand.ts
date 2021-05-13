@@ -1,5 +1,6 @@
 import Command from "../../Classes/malilCommand";
 import type { Message } from "discord.js";
+import { threadId } from "worker_threads";
 export default class PrefixCommand extends Command {
 	public constructor() {
 		super("prefix", {
@@ -26,15 +27,15 @@ export default class PrefixCommand extends Command {
 
 	public async exec(message: Message, { args }: { args: string }): Promise<Message> {
 		if (!args || args.length == 0) {
-			if (this.client.prefixes.get(message.guild.id, "prefix")) {
-				const item = this.client.prefixes.get(message.guild.id, "prefix");
-				if (item) return message.util.send("my prefix is " + item);
+			const prefix = await this.client.db.getPrefix(message.guild.id);
+			if (prefix) {
+				return message.util.send(`my prefix is \`${prefix}\``);
 			} else return message.util.send("my prefix is *");
 		} else {
 			if (!message.member.permissions.has("ADMINISTRATOR")) return message.util.send("you need to be a 'ADMINISTRATOR' to use this command");
 			else if (args.includes("@")) return message.util.send("Sorry you cant use @'s in prefixes");
-			this.client.prefixes.set(message.guild.id, args, "prefix");
-			message.util.send("Updated the prefix to " + args);
+			this.client.db.setPrefix(message.guild.id, args);
+			message.util.send(`Updated the prefix to \`${args}\``);
 		}
 	}
 }

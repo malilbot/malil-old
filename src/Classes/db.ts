@@ -48,10 +48,17 @@ export default class db {
 		return this.knex.destroy();
 	}
 	public CreateTables() {
-		return this.knex.schema.createTable("users", (table) => {
+		this.knex.schema.createTable("users", (table) => {
 			table.bigInteger("id").primary();
 			table.integer("iq");
 			table.bigInteger("messages");
+		});
+		this.knex.schema.createTable("guilds", (table) => {
+			table.bigInteger("id").primary();
+			table.bigInteger("muterole");
+			table.bigInteger("github");
+			table.bigInteger("modlogs");
+			table.string("prefix");
 		});
 	}
 	public connect() {
@@ -76,6 +83,29 @@ export default class db {
 			return userData.iq;
 		}
 		return user.iq;
+	}
+	async getPrefix(i: string) {
+		const id = BigInt(i);
+		let [guild] = await this.findBy("guilds", { id });
+		return guild?.prefix || this.client.settings.prefix;
+	}
+	async setPrefix(guildID: string, prefix: string) {
+		const id = BigInt(guildID);
+		let [guild] = await this.findBy("guilds", { id });
+		if (guild) {
+			await this.knex("guilds").where({ id }).update({ prefix });
+		} else if (!guild) {
+			const userData = {
+				id: id,
+				muterole: null,
+				github: null,
+				modlogs: null,
+				prefix: prefix,
+			};
+			await this.knex("guilds").insert(userData);
+		}
+
+		return prefix;
 	}
 }
 

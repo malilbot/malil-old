@@ -19,7 +19,7 @@ export default class Client extends AkairoClient {
 		directory: join(__dirname, "..", "Commands"),
 		prefix: async (message) => {
 			if (message?.guild == null) return [Settings.prefix, "malil"];
-			else return [this.prefixes.ensure(message.guild.id, Settings.prefix, "prefix"), "malil"];
+			else return [await this.db.getPrefix(message.guild.id), "malil"];
 		},
 		aliasReplacement: /-g/,
 		allowMention: true,
