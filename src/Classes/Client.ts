@@ -7,7 +7,7 @@ import BotLists from "./BotLists";
 import giveawayManager from "./giveawayManager";
 import { join } from "path";
 import Enmap from "enmap";
-
+import db from "./db";
 interface Option {
 	owners?: string | string[];
 	superUsers?: string | string[];
@@ -85,6 +85,7 @@ export default class Client extends AkairoClient {
 		this.config = config;
 		this.logger = logger;
 		this.giveawayManager = new giveawayManager(this);
+		this.db = new db(this);
 		const databases = ["gp", "logchannel", "tags", "prefixes", "blacklist", "guilddata", "mutes", "releases", "infractions", "userdata"];
 		for (const item in databases) {
 			const name = databases[item];
@@ -106,6 +107,7 @@ export default class Client extends AkairoClient {
 		this.commandHandler.loadAll();
 		this.listenerHandler.loadAll();
 		this.giveawayManager.loadAll();
+		this.db.connect();
 	}
 
 	public async goo(): Promise<unknown> {
@@ -118,6 +120,7 @@ declare module "discord-akairo" {
 	interface AkairoClient {
 		giveawayManager: giveawayManager;
 		commandHandler: CommandHandler;
+		db: db;
 		settings: typeof Settings;
 		credentials: typeof credentials;
 		consts: typeof consts;

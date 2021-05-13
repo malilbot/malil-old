@@ -36,8 +36,7 @@ export default class IqCommand extends Command {
 	}
 
 	public async exec(message: Message, { member }: { member: GuildMember }): Promise<Message> {
-		const iq: number = this.client.userdata.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq");
-
+		const iq = await this.client.db.getIq(member.id);
 		const iEmbed = new MessageEmbed().setColor(this.client.colors.default).setTitle("IQ Test").setDescription(`${member}'s IQ is: \`${iq}\`!`);
 
 		if (Math.floor(Math.random() * 40 + 1) == 5) iEmbed.setImage("https://i.imgur.com/skuWtMT.png");
@@ -52,7 +51,7 @@ export default class IqCommand extends Command {
 			.embed()
 			.setColor(this.client.colors.default)
 			.setTitle("IQ Test")
-			.setDescription(`${interaction.options[0]?.user ?? interaction.user}'s IQ is: \`${this.client.userdata.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq")}\`!`);
+			.setDescription(`${interaction.options[0]?.user ?? interaction.user}'s IQ is: \`${await this.client.db.getIq(member.id)}\`!`);
 		if (Math.floor(Math.random() * 10 + 1) == 5) embed.setFooter(`You can vote to get increased iq /vote`);
 		interaction.reply(embed);
 	}
