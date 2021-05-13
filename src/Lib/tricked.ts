@@ -32,7 +32,7 @@ export = async (message: Message) => {
 				(message.client as any).util
 					.embed()
 					.setAuthor(`vote from ${member.tag}`, member.avatarURL())
-					.setDescription(`**iq**: ${iq}\n**votes**: ${votes}`)
+					.setDescription(`**iq**: ${await iq}\n**votes**: ${await votes}`)
 					.setTimestamp()
 					.setColor((message.client as InterfaceClient).colors.blue)
 			);
