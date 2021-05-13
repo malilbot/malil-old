@@ -54,3 +54,9 @@ export const Settings = {
 		password: "",
 	},
 };
+export const connection = {
+	host: "---",
+	user: "---",
+	password: "---",
+	database: "---",
+};
