@@ -1,5 +1,5 @@
 import Command from "../../Classes/malilCommand";
-import { Message } from "discord.js";
+import { CommandInteraction, Message } from "discord.js";
 export default class PingCommand extends Command {
 	public constructor() {
 		super("ping", {
@@ -9,13 +9,15 @@ export default class PingCommand extends Command {
 				content: "Sends the latency between discord and the bot",
 				example: ["ping"],
 			},
-			clientPermissions: ["SEND_MESSAGES"],
+			clientPermissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY"],
 			ownerOnly: false,
 			ratelimit: 3,
 		});
 	}
 
 	public exec(message: Message): void {
-		message.util.send(`\`${this.client.ws.ping}\`ms`);
+		message.channel.send("pinging").then((m) => {
+			m.edit(`🏓Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(this.client.ws.ping)}ms`);
+		});
 	}
 }
