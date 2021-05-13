@@ -60,8 +60,40 @@ export default class db {
 			table.bigInteger("muterole");
 			table.bigInteger("github");
 			table.bigInteger("modlogs");
+			table.bigInteger("emoji");
+			table.bigInteger("starboard");
+			table.integer("emojicount");
+			table.boolean("stickers");
 			table.string("prefix");
 		});
+
+		this.knex.schema.createTable("infractions", (table) => {
+			table.bigInteger("when");
+			table.bigInteger("user");
+			table.bigInteger("infraction");
+			table.bigInteger("guild");
+			table.bigInteger("reason");
+			table.bigInteger("type");
+		});
+	}
+	/**
+	 *
+	 * @param user id of the user you want to infraction
+	 * @param infraction message id as a unique identifier
+	 * @param guild  Guild ID these are store globally and not per guild
+	 * @param reason
+	 * @param type ban, kick, mute, unmute, warn
+	 */
+	public async createInfraction(user: string, infraction: string, guild: string, reason: string, type: string): Promise<any> {
+		const data = {
+			when: Date.now(),
+			user: BigInt(user),
+			infraction: BigInt(infraction),
+			guild: BigInt(guild),
+			reason,
+			type,
+		};
+		await this.knex("infractions").insert(data);
 	}
 	public query(input: any): any {
 		return this.knex.raw(input);
@@ -120,14 +152,18 @@ export default class db {
 		if (guild) {
 			await this.knex("guilds").where({ id }).update({ prefix });
 		} else if (!guild) {
-			const userData = {
+			const guildData = {
 				id: id,
 				muterole: null,
 				github: null,
 				modlogs: null,
+				emoji: null,
+				starboard: null,
+				emojicount: 3,
+				stickers: true,
 				prefix: prefix,
 			};
-			await this.knex("guilds").insert(userData);
+			await this.knex("guilds").insert(guildData);
 		}
 
 		return prefix;

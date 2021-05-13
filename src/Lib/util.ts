@@ -691,13 +691,7 @@ export class InterfaceClient extends Client {
 	public inhibitorHandler?: InhibitorHandler;
 	public db?: db;
 }
-interface FormatIF {
-	GStr: string;
-	UStr: string;
-	CStr: string;
-	MStr: string;
-	RStr: string;
-}
+
 interface hastebinRes {
 	key: string;
 }

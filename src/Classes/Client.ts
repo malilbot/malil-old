@@ -131,7 +131,6 @@ declare module "discord-akairo" {
 		releases: Enmap;
 		logchannel: Enmap;
 		infractions: Enmap;
-		ColorNames: Enmap;
 		gp: Enmap;
 		guilddata: Enmap;
 		mutes: Enmap;

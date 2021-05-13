@@ -31,7 +31,12 @@ export default class GithubUserCommand extends Command {
 		});
 	}
 	async exec(message: Message, { args }) {
-		const user = await (await c(`https://api.github.com/users/${args}`, "GET").header("Authorization", `token ${this.client.credentials.github}`).send()).json();
+		const user = await (
+			await c(`https://api.github.com/users/${args}`, "GET")
+				.header("Authorization", `token ${this.client.credentials.github}`)
+				.header("User-Agent", "Mozilla/5.0 (Windows NT 5.1; rv:7.0.1) Gecko/20100101 Firefox/7.0.1")
+				.send()
+		).json();
 
 		if (user?.message) return message.reply("User not found");
 
@@ -53,7 +58,12 @@ export default class GithubUserCommand extends Command {
 	}
 	async execSlash(interaction: CommandInteraction) {
 		if (!interaction?.options[0]?.value) return interaction.reply({ content: "Please provide a user" });
-		const user = await (await c(`https://api.github.com/users/${interaction.options[0].value}`, "GET").header("Authorization", `token ${this.client.credentials.github}`).send()).json();
+		const user = await (
+			await c(`https://api.github.com/users/${interaction.options[0].value}`, "GET")
+				.header("User-Agent", "Mozilla/5.0 (Windows NT 5.1; rv:7.0.1) Gecko/20100101 Firefox/7.0.1")
+				.header("Authorization", `token ${this.client.credentials.github}`)
+				.send()
+		).json();
 
 		if (user?.message) return interaction.reply({ content: "User not found" });
 
