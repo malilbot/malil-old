@@ -1,5 +1,6 @@
 import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, Guild, Interaction } from "discord.js";
 import { Command, CommandHandler, InhibitorHandler, ListenerHandler } from "discord-akairo";
+import db from "../Classes/db";
 import { red, blue, gray, yellow, green, magenta, cyan, hex, bgBlueBright, bgHex, bgGreen, bgCyan, black } from "chalk";
 import { credentials, Settings, consts } from "../settings";
 export { consts } from "../settings";
@@ -688,6 +689,7 @@ export class InterfaceClient extends Client {
 	public commandHandler?: CommandHandler;
 	public listenerHandler?: ListenerHandler;
 	public inhibitorHandler?: InhibitorHandler;
+	public db?: db;
 }
 interface FormatIF {
 	GStr: string;
@@ -699,7 +701,6 @@ interface FormatIF {
 interface hastebinRes {
 	key: string;
 }
-
 
 export interface malilStartGiveaway {
 	winners: number;

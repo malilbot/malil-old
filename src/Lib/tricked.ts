@@ -22,25 +22,17 @@ export = async (message: Message) => {
 
 			const res = JSON.parse(message.content);
 			const member = await (message.client as InterfaceClient).users.fetch(res.user);
-
-			const cur = Number((message.client as InterfaceClient).userdata.ensure(member.id, Math.floor(Math.random() * 150) + 1, "iq"));
-			const votes = Number((message.client as InterfaceClient).userdata.ensure(member.id, 1, "votes"));
-			(message.client as InterfaceClient).userdata.set(member.id, votes + 1, "votes");
 			if (!member) return (message.client as InterfaceClient).logger.info("WHATTT?");
-
 			(message.client as InterfaceClient).logger.info(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
 
-			const wknd = res.isWeekend;
-
-			const amount = wknd ? 2 : 1;
-
-			(message.client as InterfaceClient).userdata.set(member.id, cur + amount, "iq");
+			const votes = (message.client as InterfaceClient).db.increaseVotes(member.id, 1);
+			const iq = (message.client as InterfaceClient).db.increaseIq(member.id, res.isWeekend ? 2 : 1);
 
 			message.channel.send(
 				(message.client as any).util
 					.embed()
 					.setAuthor(`vote from ${member.tag}`, member.avatarURL())
-					.setDescription(`**${member} had ${cur || "Nothing"} iq now has ${cur + amount || "Nothing"} iq**`)
+					.setDescription(`**iq**: ${iq}\n**votes**: ${votes}`)
 					.setTimestamp()
 					.setColor((message.client as InterfaceClient).colors.blue)
 			);

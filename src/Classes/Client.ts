@@ -86,7 +86,7 @@ export default class Client extends AkairoClient {
 		this.logger = logger;
 		this.giveawayManager = new giveawayManager(this);
 		this.db = new db(this);
-		const databases = ["gp", "logchannel", "tags", "prefixes", "blacklist", "guilddata", "mutes", "releases", "infractions", "userdata"];
+		const databases = ["gp", "logchannel", "tags", "blacklist", "guilddata", "mutes", "releases", "infractions", "userdata"];
 		for (const item in databases) {
 			const name = databases[item];
 			this[name] = new Enmap({ name, dataDir: join(__dirname, "..", "..", "data", name), polling: Settings.polling });

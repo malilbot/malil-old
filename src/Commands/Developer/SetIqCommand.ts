@@ -41,7 +41,6 @@ export default class setiqCommand extends Command {
 		const iq = parseInt(_args[1]);
 		if (!iq) return message.util.send("Thats not a number.");
 		if (iq < 0 || iq > 150) return message.util.send("You cant have a number more than 150 and less than 0 use eval to bypass this limit.");
-		this.client.userdata.set(member.user.id, iq, "iq");
 		message.util.send(`Succesfully changed ${member.user.tag}'s iq.`);
 	}
 }

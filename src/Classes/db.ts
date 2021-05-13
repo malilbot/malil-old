@@ -51,8 +51,10 @@ export default class db {
 		this.knex.schema.createTable("users", (table) => {
 			table.bigInteger("id").primary();
 			table.integer("iq");
+			table.integer("votes");
 			table.bigInteger("messages");
 		});
+
 		this.knex.schema.createTable("guilds", (table) => {
 			table.bigInteger("id").primary();
 			table.bigInteger("muterole");
@@ -66,10 +68,10 @@ export default class db {
 		this.users.sync();
 		this.gp.sync(); */
 	}
-	async kill() {
+	public async kill() {
 		return await this.knex.destroy();
 	}
-	async getIq(i: string): Promise<number> {
+	public async getUser(i: string | bigint): Promise<{ id: bigint; iq: number; votes: number; messages: bigint }> {
 		const id = BigInt(i);
 		let [user] = await this.findBy("users", { id });
 
@@ -77,19 +79,39 @@ export default class db {
 			const userData = {
 				id: id,
 				iq: Math.floor(Math.random() * 150) + 1,
+				votes: 0,
 				messages: 1n,
 			};
 			await this.knex("users").insert(userData);
-			return userData.iq;
+			return userData;
 		}
-		return user.iq;
+		return user;
 	}
-	async getPrefix(i: string) {
+
+	public async increaseVotes(user: string | bigint, amount: number) {
+		const id = BigInt(user);
+		const votes = Number((await this.getUser(user)).votes);
+		const newvotes = votes + Number(amount);
+
+		await this.knex("users").where({ id }).update({ votes: newvotes });
+
+		return newvotes;
+	}
+	public async increaseIq(user: string | bigint, amount: number) {
+		const id = BigInt(user);
+		const iq = Number((await this.getUser(user)).iq);
+		const newiq = iq + Number(amount);
+
+		await this.knex("users").where({ id }).update({ votes: newiq });
+
+		return newiq;
+	}
+	public async getPrefix(i: string) {
 		const id = BigInt(i);
 		let [guild] = await this.findBy("guilds", { id });
 		return guild?.prefix || this.client.settings.prefix;
 	}
-	async setPrefix(guildID: string, prefix: string) {
+	public async setPrefix(guildID: string, prefix: string) {
 		const id = BigInt(guildID);
 		let [guild] = await this.findBy("guilds", { id });
 		if (guild) {
