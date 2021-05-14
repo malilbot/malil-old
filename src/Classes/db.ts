@@ -49,36 +49,41 @@ export default class db {
 		return this.knex.destroy();
 	}
 	public async CreateTables() {
-		await this.knex.schema.createTable("users", (table) => {
-			table.bigInteger("id").primary();
-			table.integer("iq");
-			table.integer("votes");
-			table.bigInteger("messages");
-		});
+		try {
+			await this.knex.schema.createTable("users", (table) => {
+				table.bigInteger("id").primary();
+				table.integer("iq");
+				table.integer("votes");
+				table.bigInteger("messages");
+			});
+		} catch {}
 
-		await this.knex.schema.createTable("guilds", (table) => {
-			table.bigInteger("id").primary();
-			table.bigInteger("muterole");
-			table.bigInteger("modrole");
-			table.bigInteger("github");
-			table.bigInteger("githubchannel");
-			table.bigInteger("modlogs");
-			table.bigInteger("emoji");
-			table.bigInteger("starboard");
-			table.integer("emojicount");
-			table.boolean("stickers");
-			table.string("prefix");
-		});
-
-		await this.knex.schema.createTable("infractions", (table) => {
-			table.bigInteger("when");
-			table.bigInteger("user");
-			table.bigInteger("id").primary();
-			table.bigInteger("guild");
-			table.bigInteger("moderator");
-			table.string("reason");
-			table.string("type");
-		});
+		try {
+			await this.knex.schema.createTable("guilds", (table) => {
+				table.bigInteger("id").primary();
+				table.bigInteger("muterole");
+				table.bigInteger("modrole");
+				table.bigInteger("github");
+				table.bigInteger("githubchannel");
+				table.bigInteger("modlogs");
+				table.bigInteger("emoji");
+				table.bigInteger("starboard");
+				table.integer("emojicount");
+				table.boolean("stickers");
+				table.string("prefix");
+			});
+		} catch {}
+		try {
+			await this.knex.schema.createTable("infractions", (table) => {
+				table.bigInteger("when");
+				table.bigInteger("user");
+				table.bigInteger("id").primary();
+				table.bigInteger("guild");
+				table.bigInteger("moderator");
+				table.string("reason");
+				table.string("type");
+			});
+		} catch {}
 	}
 	/**
 	 *

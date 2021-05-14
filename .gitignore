@@ -6,6 +6,7 @@ rpc.ts
 data
 wiki/
 #FINISH FILE
+fix.js
 backups/*
 finish
 dist

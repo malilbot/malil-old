@@ -108,6 +108,7 @@ export default class Client extends AkairoClient {
 		this.commandHandler.loadAll();
 		this.listenerHandler.loadAll();
 		this.giveawayManager.loadAll();
+		//this.db.CreateTables();
 	}
 
 	public async goo(): Promise<unknown> {
