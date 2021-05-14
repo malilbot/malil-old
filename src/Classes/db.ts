@@ -113,7 +113,7 @@ export default class db {
 		const infractions = await this.knex("infractions").where({ user, guild });
 		return infractions;
 	}
-	public async getModActions(modId: string, guildId: string) {
+	public async getModActions(modId: string, guildId: string): Promise<infraction[]> {
 		const moderator = BigInt(modId);
 		const guild = BigInt(guildId);
 		const infractions = await this.knex("infractions").where({ moderator, guild });
