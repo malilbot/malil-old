@@ -4,7 +4,7 @@ import { threadId } from "worker_threads";
 export default class PrefixCommand extends Command {
 	public constructor() {
 		super("prefix", {
-			aliases: ["prefix"],
+			aliases: ["prefix", "setprefix"],
 			category: "Utility",
 			quoted: true,
 			args: [

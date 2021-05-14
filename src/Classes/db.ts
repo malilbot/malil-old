@@ -17,7 +17,6 @@ export default class db {
 		client: "pg",
 		connection,
 	});
-
 	public find(table, limit, order_by, sort_order = "desc") {
 		if (!limit) {
 			return this.knex(table);
@@ -46,19 +45,18 @@ export default class db {
 		await this.knex(table).where(filter).update(data);
 		return await this.knex(table).where(filter);
 	}
-
 	public closeConnection() {
 		return this.knex.destroy();
 	}
-	public CreateTables() {
-		this.knex.schema.createTable("users", (table) => {
+	public async CreateTables() {
+		await this.knex.schema.createTable("users", (table) => {
 			table.bigInteger("id").primary();
 			table.integer("iq");
 			table.integer("votes");
 			table.bigInteger("messages");
 		});
 
-		this.knex.schema.createTable("guilds", (table) => {
+		await this.knex.schema.createTable("guilds", (table) => {
 			table.bigInteger("id").primary();
 			table.bigInteger("muterole");
 			table.bigInteger("modrole");
@@ -72,7 +70,7 @@ export default class db {
 			table.string("prefix");
 		});
 
-		this.knex.schema.createTable("infractions", (table) => {
+		await this.knex.schema.createTable("infractions", (table) => {
 			table.bigInteger("when");
 			table.bigInteger("user");
 			table.bigInteger("id").primary();
@@ -104,13 +102,18 @@ export default class db {
 	}
 	public async getGuildSettings(guildId: string): Promise<guildSettingsInterface> {
 		const id = BigInt(guildId);
-		let [guild] = await this.findBy("guilds", { id });
-		if (!guild) {
+		try {
+			let [guild] = await this.findBy("guilds", { id });
+			if (!guild) {
+				const guildData = this.guildData(id);
+				await this.knex("guilds").insert(guildData);
+				return guildData;
+			}
+			return guild;
+		} catch {
 			const guildData = this.guildData(id);
-			await this.knex("users").insert(guildData);
 			return guildData;
 		}
-		return guild;
 	}
 	public async deleteInfraction(infractionId: string): Promise<void> {
 		const id = BigInt(infractionId);
