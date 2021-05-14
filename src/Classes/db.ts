@@ -1,4 +1,7 @@
 /* eslint-disable */
+import { types } from "pg";
+types.setTypeParser(20, BigInt);
+
 import Client from "./Client";
 import Knex from "knex";
 import { connection } from "../settings";
