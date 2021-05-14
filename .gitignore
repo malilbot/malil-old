@@ -13,6 +13,7 @@ code/*
 code.py
 svelte/*
 website/*
+rpc.js
 src/tasks/rpc.ts
 #LOGS FILE
 Logs

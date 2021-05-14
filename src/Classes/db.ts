@@ -181,7 +181,7 @@ export default class db {
 		const iq = Number((await this.getUser(user)).iq);
 		const newiq = iq + Number(amount);
 
-		await this.knex("users").where({ id }).update({ votes: newiq });
+		await this.knex("users").where({ id }).update({ iq: newiq });
 
 		return newiq;
 	}
