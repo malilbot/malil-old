@@ -44,7 +44,7 @@ export default class modonlyCommand extends Command {
 					channels += `<#${channel}>\n`;
 				}
 				const embed = new MessageEmbed()
-					.addField("ModOnly Channels", `${channels || `No mod only channels set you can set them by using ${this.client.prefixes.get(message.guild.id, "prefix") || "*"}modonly <channel>`}`)
+					.addField("ModOnly Channels", `${channels || `No mod only channels set you can set them by using ${this.client.db.getPrefix(message.guild.id) || "*"}modonly <channel>`}`)
 					.setColor(this.client.colors.default);
 				message.util.send(embed);
 			} else {
