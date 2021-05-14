@@ -60,6 +60,7 @@ export default class db {
 			table.bigInteger("muterole");
 			table.bigInteger("modrole");
 			table.bigInteger("github");
+			table.bigInteger("githubchannel");
 			table.bigInteger("modlogs");
 			table.bigInteger("emoji");
 			table.bigInteger("starboard");
@@ -98,6 +99,16 @@ export default class db {
 		};
 		await this.knex("infractions").insert(data);
 	}
+	public async getGuildSettings(guildId: string): Promise<guildSettingsInterface> {
+		const id = BigInt(guildId);
+		let [guild] = await this.findBy("guilds", { id });
+		if (!guild) {
+			const guildData = this.guildData(id);
+			await this.knex("users").insert(guildData);
+			return guildData;
+		}
+		return guild;
+	}
 	public async deleteInfraction(infractionId: string): Promise<void> {
 		const id = BigInt(infractionId);
 		this.remove("infractions", { id });
@@ -122,11 +133,6 @@ export default class db {
 	public query(input: any): any {
 		return this.knex.raw(input);
 	}
-	public connect() {
-		/* this.guilds.sync();
-		this.users.sync();
-		this.gp.sync(); */
-	}
 	public async kill() {
 		return await this.knex.destroy();
 	}
@@ -146,7 +152,6 @@ export default class db {
 		}
 		return user;
 	}
-
 	public async increaseVotes(user: string | bigint, amount: number) {
 		const id = BigInt(user);
 		const votes = Number((await this.getUser(user)).votes);
@@ -155,6 +160,21 @@ export default class db {
 		await this.knex("users").where({ id }).update({ votes: newvotes });
 
 		return newvotes;
+	}
+	public guildData(id: bigint) {
+		return {
+			id: id,
+			muterole: null,
+			modrole: null,
+			github: null,
+			modlogs: null,
+			emoji: null,
+			starboard: null,
+			emojicount: null,
+			stickers: null,
+			prefix: null,
+			githubchannel: null,
+		};
 	}
 	public async increaseIq(user: string | bigint, amount: number) {
 		const id = BigInt(user);
@@ -166,8 +186,7 @@ export default class db {
 		return newiq;
 	}
 	public async getPrefix(i: string) {
-		const id = BigInt(i);
-		let [guild] = await this.findBy("guilds", { id });
+		const guild = await this.getGuildSettings(i);
 		return guild?.prefix || this.client.settings.prefix;
 	}
 	public async setPrefix(guildID: string, prefix: string) {
@@ -176,18 +195,7 @@ export default class db {
 		if (guild) {
 			await this.knex("guilds").where({ id }).update({ prefix });
 		} else if (!guild) {
-			const guildData = {
-				id: id,
-				muterole: null,
-				github: null,
-				modlogs: null,
-				emoji: null,
-				starboard: null,
-				emojicount: 3,
-				stickers: true,
-				prefix: prefix,
-			};
-			await this.knex("guilds").insert(guildData);
+			await this.knex("guilds").insert(this.guildData(id));
 		}
 
 		return prefix;
@@ -200,6 +208,19 @@ export interface infraction {
 	guild: BigInt;
 	reason: string;
 	type: string;
+}
+export interface guildSettingsInterface {
+	id: bigint;
+	muterole: bigint;
+	modrole: bigint;
+	github: bigint;
+	modlogs: bigint;
+	emoji: bigint;
+	starboard: bigint;
+	emojicount: number;
+	stickers: boolean;
+	prefix: any;
+	githubchannel: bigint;
 }
 /*
 abstract class giveaway {

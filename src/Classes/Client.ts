@@ -108,7 +108,6 @@ export default class Client extends AkairoClient {
 		this.commandHandler.loadAll();
 		this.listenerHandler.loadAll();
 		this.giveawayManager.loadAll();
-		this.db.connect();
 	}
 
 	public async goo(): Promise<unknown> {
@@ -122,7 +121,7 @@ declare module "discord-akairo" {
 		giveawayManager: giveawayManager;
 		commandHandler: CommandHandler;
 		db: db;
-		random: (number) => number;
+		random: (number: number) => number;
 		settings: typeof Settings;
 		credentials: typeof credentials;
 		consts: typeof consts;
