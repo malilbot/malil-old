@@ -40,8 +40,8 @@ export default class IqCommand extends Command {
 
 		const iEmbed = new MessageEmbed().setColor(this.client.colors.default).setTitle("IQ Test").setDescription(`${member}'s IQ is: \`${iq}\`!`);
 
-		if (Math.floor(Math.random() * 40 + 1) == 5) iEmbed.setImage("https://i.imgur.com/skuWtMT.png");
-		if (Math.floor(Math.random() * 10 + 1) == 5) iEmbed.setFooter(`You can vote to get increased iq ${(await this.client.db.getPrefix(message.guild.id)) || this.client.settings.prefix}vote`);
+		if (this.client.random(50) == 5) iEmbed.setImage("https://i.imgur.com/skuWtMT.png");
+		if (this.client.random(10) == 5) iEmbed.setFooter(`You can vote to get increased iq ${(await this.client.db.getPrefix(message.guild.id)) || this.client.settings.prefix}vote`);
 
 		return message.util.send(iEmbed);
 	}
@@ -52,7 +52,7 @@ export default class IqCommand extends Command {
 			.setColor(this.client.colors.default)
 			.setTitle("IQ Test")
 			.setDescription(`${interaction.options[0]?.user ?? interaction.user}'s IQ is: \`${(await this.client.db.getUser(member.id)).iq}\`!`);
-		if (Math.floor(Math.random() * 10 + 1) == 5) embed.setFooter(`You can vote to get increased iq /vote`);
+		if (this.client.random(10) == 5) embed.setFooter(`You can vote to get increased iq /vote`);
 		interaction.reply(embed);
 	}
 }

@@ -85,6 +85,7 @@ export default class Client extends AkairoClient {
 		this.config = config;
 		this.logger = logger;
 		this.giveawayManager = new giveawayManager(this);
+		this.random = (i: number) => Math.floor(Math.random() * i);
 		this.db = new db(this);
 		const databases = ["gp", "logchannel", "tags", "blacklist", "guilddata", "mutes", "releases", "infractions", "userdata"];
 		for (const item in databases) {
@@ -121,6 +122,7 @@ declare module "discord-akairo" {
 		giveawayManager: giveawayManager;
 		commandHandler: CommandHandler;
 		db: db;
+		random: (number) => number;
 		settings: typeof Settings;
 		credentials: typeof credentials;
 		consts: typeof consts;

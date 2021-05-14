@@ -58,6 +58,7 @@ export default class db {
 		this.knex.schema.createTable("guilds", (table) => {
 			table.bigInteger("id").primary();
 			table.bigInteger("muterole");
+			table.bigInteger("modrole");
 			table.bigInteger("github");
 			table.bigInteger("modlogs");
 			table.bigInteger("emoji");
@@ -70,10 +71,11 @@ export default class db {
 		this.knex.schema.createTable("infractions", (table) => {
 			table.bigInteger("when");
 			table.bigInteger("user");
-			table.bigInteger("infraction");
+			table.bigInteger("id").primary();
 			table.bigInteger("guild");
-			table.bigInteger("reason");
-			table.bigInteger("type");
+			table.bigInteger("moderator");
+			table.string("reason");
+			table.string("type");
 		});
 	}
 	/**
@@ -84,16 +86,38 @@ export default class db {
 	 * @param reason
 	 * @param type ban, kick, mute, unmute, warn
 	 */
-	public async createInfraction(user: string, infraction: string, guild: string, reason: string, type: string): Promise<any> {
+	public async createInfraction(user: string, infraction: string, guild: string, moderator: string, reason: string, type: string): Promise<any> {
 		const data = {
 			when: Date.now(),
 			user: BigInt(user),
-			infraction: BigInt(infraction),
+			id: BigInt(infraction + this.client.random(99)),
 			guild: BigInt(guild),
+			moderator: BigInt(moderator),
 			reason,
 			type,
 		};
 		await this.knex("infractions").insert(data);
+	}
+	public async deleteInfraction(infractionId: string): Promise<void> {
+		const id = BigInt(infractionId);
+		this.remove("infractions", { id });
+	}
+	public async deleteInfractions(userId: string, guildId: string): Promise<void> {
+		const guild = BigInt(guildId);
+		const user = BigInt(userId);
+		this.remove("infractions", { user, guild });
+	}
+	public async getInfractions(userId: string, guildId: string): Promise<infraction[]> {
+		const user = BigInt(userId);
+		const guild = BigInt(guildId);
+		const infractions = await this.knex("infractions").where({ user, guild });
+		return infractions;
+	}
+	public async getModActions(modId: string, guildId: string) {
+		const moderator = BigInt(modId);
+		const guild = BigInt(guildId);
+		const infractions = await this.knex("infractions").where({ moderator, guild });
+		return infractions;
 	}
 	public query(input: any): any {
 		return this.knex.raw(input);
@@ -169,7 +193,14 @@ export default class db {
 		return prefix;
 	}
 }
-
+export interface infraction {
+	when: number;
+	user: BigInt;
+	id: BigInt;
+	guild: BigInt;
+	reason: string;
+	type: string;
+}
 /*
 abstract class giveaway {
 	public winners: 0;
