@@ -15,18 +15,19 @@ export default class modstatsCommand extends Command {
 					type: async (message, content) => {
 						let member = await GetMember(message, content);
 						if (member) return member;
+						else return message.member;
 					},
 					match: "content",
 				},
 			],
 			description: {
-				content: "Make a channel modeonly aka only people with manage messages can use commands there",
-				usage: "modonly",
-				example: ["modonly", "modonly #channel", "modonly <channel id>", "modonly get"],
+				content: "See your moderation stats 🕶️",
+
+				example: ["modstats @rick"],
 			},
 			ratelimit: 3,
 			clientPermissions: ["SEND_MESSAGES"],
-			userPermissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES"],
+			userPermissions: ["MANAGE_MESSAGES"],
 			channel: "guild",
 		});
 	}
