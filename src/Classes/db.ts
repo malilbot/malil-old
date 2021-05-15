@@ -148,7 +148,7 @@ export default class db {
 		return await this.knex.destroy();
 	}
 	public async getUser(i: string | bigint): Promise<{ id: bigint; iq: number; votes: number; messages: bigint }> {
-		const id = BigInt(i);
+		const id = typeof i == "bigint" ? i : BigInt(i);
 		let [user] = await this.findBy("users", { id });
 
 		if (!user) {
@@ -189,8 +189,8 @@ export default class db {
 	}
 	public async increaseIq(user: string | bigint, amount: number) {
 		const id = BigInt(user);
-		const iq = Number((await this.getUser(user)).iq);
-		const newiq = iq + Number(amount);
+		const iq = (await this.getUser(user)).iq;
+		const newiq = Number(iq) + Number(amount);
 
 		await this.knex("users").where({ id }).update({ iq: newiq });
 

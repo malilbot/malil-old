@@ -1,7 +1,6 @@
 import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message, MessageAttachment } from "discord.js";
 import { inspect } from "util";
-import centra from "centra";
 import { hst, InterfaceClient } from "../../Lib/Utils";
 let EvalCode = "";
 export default class EvalCommand extends Command {
@@ -72,16 +71,14 @@ export default class EvalCommand extends Command {
 		const embed = new MessageEmbed().setColor(this.client.colors.red).addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``);
 		let output: string;
 		let msg: Message;
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 		const { member, guild, channel, author, util } = message;
-		const { db, commandHandler } = this.client;
-		const { knex, query, increaseIq } = db;
 		if (noreturn == true) msg = await message.author.send(embed);
 		else msg = await message.util.send({ embed });
 		msg.react("🗑️");
 		try {
 			if (!reset) EvalCode = "";
-			output = await eval('const { MessageEmbed } = require("discord.js");' + EvalCode + code);
+			output = await eval(code);
 			EvalCode += code + ";";
 			if (typeof output !== "string") output = replace(inspect(output, { depth: deph || 0 }), this.client);
 
