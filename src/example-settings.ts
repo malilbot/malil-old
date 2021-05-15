@@ -28,6 +28,9 @@ export const consts = {
 		orange: "#ff7c00",
 		blue: "#0f00ff",
 	},
+	channels: {
+		errChannel: "",
+	},
 	testserver: "",
 	errChannel: "815328569051971595",
 };
