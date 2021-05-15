@@ -13,6 +13,7 @@ finish
 dist
 code/*
 code.py
+.pnp.js
 svelte/*
 website/*
 rpc.js
@@ -408,3 +409,4 @@ src/Tasks/rpc.ts
 src/Tasks/rpc.ts
 src/Tasks/rpc.ts
 malil-akairo.wiki
+.gitignore
