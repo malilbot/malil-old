@@ -74,6 +74,8 @@ export default class EvalCommand extends Command {
 		let msg: Message;
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const { member, guild, channel, author, util } = message;
+		const { db, commandHandler } = this.client;
+		const { knex, query, increaseIq } = db;
 		if (noreturn == true) msg = await message.author.send(embed);
 		else msg = await message.util.send({ embed });
 		msg.react("🗑️");
