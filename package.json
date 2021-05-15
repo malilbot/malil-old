@@ -75,12 +75,13 @@
 	},
 	"eslintConfig": {
 		"extends": "eslint:recommended",
-		"sourceType": "module",
+		
 		"env": {
 			"node": true,
 			"es6": true
 		},
 		"parserOptions": {
+			"sourceType": "module",
 			"ecmaVersion": 2019
 		},
 		"rules": {
