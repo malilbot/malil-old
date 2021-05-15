@@ -1,5 +1,8 @@
 # MALIL
-
+ </a>
+  <a href="https://github.com/malilbot/malil/">
+    <img alt="lines" src="https://img.shields.io/tokei/lines/github/malilbot/malil?color=00FFFF&style=for-the-badge">
+ </a>
 Malil is a must have **all in one** bot with tons of commands to enjoy!  
 To view the list of commands in discord you can use \*help.
 So, what are you waiting for? Give Malil a try!
