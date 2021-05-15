@@ -13,9 +13,6 @@ export default class db {
 	constructor(client: Client) {
 		this.client = client;
 	}
-	/**
-	 * @type {Knex}
-	 */
 	public knex = Knex({
 		client: "pg",
 		connection,

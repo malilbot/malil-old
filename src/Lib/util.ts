@@ -290,28 +290,29 @@ export class Util {
  * @param args - args used to be more precise
  * @returns - returns a GuildMember object
  */
-export const GetMember = async function (msg: Message, args?: string): Promise<GuildMember> {
+export const GetMember = async function (msg: Message, args: string): Promise<GuildMember> {
 	/**Defining what to search for */
 	const item = args.trim().split(" ")[0];
-	const id = args
-		.trim()
-		.replace(/[^0-9]+/gim, "")
-		.split(" ")[0];
-	/**Slicing stuff */
+
+	const reg = /<@!?(\d{17,19})>/;
+	const id = args.match(reg);
+
 	if (!item && !id) return null;
 	else if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
 	else if (item == "^") return null;
-	else if (item == "me") return msg.member;
 
-	let user = msg.guild.members.cache.find((member) => member.displayName.toLowerCase().includes(item) || member.user.tag.toLowerCase().includes(item));
-
-	if (id && !user) {
-		user = msg.guild.members.cache.get(id);
-		if (!user)
-			try {
-				logger.info(a1("[ FETCHING USER ] ") + main(`[ BY ] ${msg.author.tag}`) + +main(`[ TEXT ] ${id}`));
-				user = await msg.guild.members.fetch(id);
-			} catch (e) {}
+	let user = msg.guild.members.cache.find((member) => {
+		if (member.id == item) return true;
+		if (id && member.id == id[1]) return true;
+		if (member.displayName.toLowerCase().includes(item)) return true;
+		if (member.user.tag.toLowerCase().includes(item)) return true;
+	});
+	if (user) return user;
+	if (id && id[1]) {
+		try {
+			logger.info(a1("[ FETCHING USER ] ") + main(`[ BY ] ${msg.author.tag}`) + main(` [ TEXT ] ${id}`));
+			user = await msg.guild.members.fetch(id[1]);
+		} catch (e) {}
 	}
 
 	return user;
@@ -531,8 +532,9 @@ export async function hst(body: string, check: boolean = false): Promise<string>
 }
 export async function Infract(message?: Message, reason?: string, member?: GuildMember, type?: string, client?: InterfaceClient, dm?: boolean): Promise<void> {
 	logger.info(sec("[ GIVING OUT A INFRACTION ] ") + main(`[ TO ] ${member.user.tag || "noone? huh what"} `) + third(`[ TYPE ] ${type || "no type? wtf"}`));
-
-	client.db.createInfraction(member.id, message.id, message.guild.id, message.author.id, reason || "No reason provided", type || "No type");
+	if (type.toLowerCase() !== "unmute" && member && message && type) {
+		client.db.createInfraction(member.id, message.id, member.guild.id, message.author.id, reason || "No reason provided", type || "No type");
+	}
 
 	if (client.logchannel.get(member.guild.id)) {
 		if ((client.channels.cache.get(client.logchannel.get(member.guild.id)) as GuildChannel).deleted == false) {
