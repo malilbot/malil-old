@@ -62,20 +62,21 @@
 		"centra": "^2.4.2",
 		"chalk": "^4.1.0",
 		"cheerio": "^1.0.0-rc.9",
+		"common-tags": "^1.8.0",
 		"discord-akairo": "SkyBlockDev/discord-akairo",
 		"discord-api-types": "^0.18.0",
 		"discord.js": "discordjs/discord.js",
 		"enmap": "^5.8.5",
 		"knex": "^0.95.5",
 		"moment": "^2.29.1",
-		"pg": "^8.6.0"
+		"pg": "^8.6.0",
+		"tslib": "^2.2.0"
 	},
 	"engines": {
 		"node": ">=14.15.1"
 	},
 	"eslintConfig": {
 		"extends": "eslint:recommended",
-		
 		"env": {
 			"node": true,
 			"es6": true

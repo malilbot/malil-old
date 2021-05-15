@@ -1,7 +1,6 @@
 import Command from "../../Classes/malilCommand";
 import { Message, MessageCollector, TextChannel } from "discord.js";
 import { EditGist, GetGist } from "../../Lib/Utils";
-import fetch from "node-fetch";
 export default class ColorCommand extends Command {
 	public constructor() {
 		super("color", {
@@ -27,7 +26,7 @@ export default class ColorCommand extends Command {
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message, { args }) {
+	public async exec(message: Message, { args }: { args: string }) {
 		/** some checks */
 		if (message.guild.id !== "807302538558308352" && message.guild.id !== "755166643927122091") return;
 		if (message.member.roles.cache.some((role) => role.name === "Server Booster")) {
@@ -37,10 +36,10 @@ export default class ColorCommand extends Command {
 			const list = colors.toString().replace(/,/g, ", ").replace(/_/g, " ");
 
 			if (args.toLowerCase()) args = args.toLowerCase();
-			args = args.split(" ");
+			let args2 = args.split(" ");
 
 			/** Checking if the args are a valid color */
-			if (!colors.includes(args[0])) return message.util.send("you can only choose one of the following colors: " + list, { allowedMentions: { repliedUser: false } });
+			if (!colors.includes(args2[0])) return message.util.send("you can only choose one of the following colors: " + list, { allowedMentions: { repliedUser: false } });
 
 			/** getting the gist with my epic function */
 			const res = await GetGist("6993d1f641ddcdb6ab2761a6ff8eb317", this.client);
