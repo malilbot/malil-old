@@ -1,6 +1,5 @@
 import Command from "../../Classes/malilCommand";
-import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
-import DeleteTagCommand from "../Utility/DeleteTagCommand";
+import type { Message } from "discord.js";
 export default class EnSlashCommand extends Command {
 	public constructor() {
 		super("EnSlash", {

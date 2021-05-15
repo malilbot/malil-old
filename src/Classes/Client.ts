@@ -87,7 +87,7 @@ export default class Client extends AkairoClient {
 		this.giveawayManager = new giveawayManager(this);
 		this.random = (i: number) => Math.floor(Math.random() * i);
 		this.db = new db(this);
-		const databases = ["gp", "logchannel", "tags", "blacklist", "guilddata", "mutes", "releases", "userdata"];
+		const databases = ["gp", "logchannel", "blacklist", "guilddata", "mutes", "releases", "userdata"];
 		for (const item in databases) {
 			const name = databases[item];
 			this[name] = new Enmap({ name, dataDir: join(__dirname, "..", "..", "data", name), polling: Settings.polling });
@@ -128,7 +128,6 @@ declare module "discord-akairo" {
 		consts: typeof consts;
 		colors: typeof consts.colors;
 		logger: typeof logger;
-		tags: Enmap;
 		blacklist: Enmap;
 		releases: Enmap;
 		logchannel: Enmap;
