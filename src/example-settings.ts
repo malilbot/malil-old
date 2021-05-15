@@ -15,7 +15,8 @@ export const credentials = {
 		botsgg: "..",
 	},
 	TestServer: "755166643927122091",
-
+	mongoPath: "",
+	github: "",
 	gist: "",
 };
 export const consts = {
@@ -27,6 +28,7 @@ export const consts = {
 		orange: "#ff7c00",
 		blue: "#0f00ff",
 	},
+	testserver: "",
 	errChannel: "815328569051971595",
 };
 export const Settings = {
