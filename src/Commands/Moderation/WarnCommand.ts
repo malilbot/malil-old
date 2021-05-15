@@ -16,7 +16,6 @@ export default class WarnCommand extends Command {
 					type: async (message, content) => {
 						let member = await GetMember(message, content);
 						if (member) return member;
-						else return content.split(" ")[0];
 					},
 					match: "content",
 				},

@@ -98,9 +98,9 @@ export default class db {
 	 */
 	public async createInfraction(user: string, infraction: string, guild: string, moderator: string, reason: string, type: string): Promise<any> {
 		const data = {
-			when: Date.now(),
+			when: BigInt(Date.now()),
 			user: BigInt(user),
-			id: BigInt(infraction + this.client.random(99)),
+			id: BigInt(Number(infraction) + this.client.random(99)),
 			guild: BigInt(guild),
 			moderator: BigInt(moderator),
 			reason,
