@@ -8,6 +8,7 @@ import giveawayManager from "./giveawayManager";
 import { join } from "path";
 import Enmap from "enmap";
 import db from "./db";
+import Api from "./api";
 interface Option {
 	owners?: string | string[];
 	superUsers?: string | string[];
@@ -108,12 +109,11 @@ export default class Client extends AkairoClient {
 		this.commandHandler.loadAll();
 		this.listenerHandler.loadAll();
 		this.giveawayManager.loadAll();
-		//this.db.CreateTables();
 	}
 
 	public async goo(): Promise<unknown> {
-		this._init();
-		return await this.login(this.config.token);
+		await this._init();
+		return this.login(this.config.token);
 	}
 }
 

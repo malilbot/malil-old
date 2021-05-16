@@ -1,6 +1,7 @@
 import { Listener } from "discord-akairo";
 import Client from "../../Classes/Client";
 import { readyLog } from "../../Lib/Utils";
+import api from "../../Classes/api";
 export default class Ready extends Listener {
 	public constructor(client: Client) {
 		super("ready", {
@@ -11,6 +12,7 @@ export default class Ready extends Listener {
 		this.client = client;
 	}
 	public async exec(): Promise<void> {
+		api(this.client as any);
 		if (this.client.settings.dev) {
 			const guild = this.client.guilds.cache.get(this.client.consts.testserver) || (await this.client.guilds.fetch(this.client.consts.testserver));
 			const enabled = await guild.commands.fetch();
