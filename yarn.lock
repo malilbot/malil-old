@@ -23,25 +23,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/generator@npm:^7.14.0":
-  version: 7.14.1
-  resolution: "@babel/generator@npm:7.14.1"
+"@babel/generator@npm:^7.14.2":
+  version: 7.14.2
+  resolution: "@babel/generator@npm:7.14.2"
   dependencies:
-    "@babel/types": ^7.14.1
+    "@babel/types": ^7.14.2
     jsesc: ^2.5.1
     source-map: ^0.5.0
-  checksum: 28a56cbd4688c3c6020ac53f3ec607613f135bfaf52717ddbca02ee146b1ed4ea2a4490b6e4d3bc1fd0f0515031242183211438d7502ddaacdcf3a7713414d9a
+  checksum: eacc93d3446dec6fac064cd884ac6e2ecbcfed65f8de069da72855a8124d33004a9dc9f06833e18fae2e352929c493b46035785f948549d2e9d503af0bef8a79
   languageName: node
   linkType: hard
 
-"@babel/helper-function-name@npm:^7.12.13":
-  version: 7.12.13
-  resolution: "@babel/helper-function-name@npm:7.12.13"
+"@babel/helper-function-name@npm:^7.14.2":
+  version: 7.14.2
+  resolution: "@babel/helper-function-name@npm:7.14.2"
   dependencies:
     "@babel/helper-get-function-arity": ^7.12.13
     "@babel/template": ^7.12.13
-    "@babel/types": ^7.12.13
-  checksum: 25f03f303be790618437dc49c6df758d362112a564361d2eae66b58fda4f5ec09e62875473b18090b939c8d3d60b36aa7c9f688768b7fade511512d02ac9d3d0
+    "@babel/types": ^7.14.2
+  checksum: 36bf5e4126b5bdf7c7e686ca487f9a91857d723d457a2608645d10ed7b0ba3da0c0e0cd0b31efe71091ea80656bf98578e3bad50c6c7fab771fd5de439aeebad
   languageName: node
   linkType: hard
 
@@ -81,12 +81,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.12.13, @babel/parser@npm:^7.14.0, @babel/parser@npm:^7.7.0":
-  version: 7.14.1
-  resolution: "@babel/parser@npm:7.14.1"
+"@babel/parser@npm:^7.12.13, @babel/parser@npm:^7.14.2, @babel/parser@npm:^7.7.0":
+  version: 7.14.2
+  resolution: "@babel/parser@npm:7.14.2"
   bin:
     parser: ./bin/babel-parser.js
-  checksum: 64db8689201b9607c2952604fc8e87af219befeec519ca80191daaeafa7373c483dd00dcb0540e29cb8564d998f241c3fcd7ef4aec115930f7874d85f48621a8
+  checksum: 18dffc18a2c15f8877988c9b5a46c87f1763e8a383c3210c9b5b651955b1ac46dc54da27acc09acd7fb917f37e0bd92b8985dc4c9d7f1e750dfccbcea730aa0e
   languageName: node
   linkType: hard
 
@@ -102,32 +102,22 @@ __metadata:
   linkType: hard
 
 "@babel/traverse@npm:^7.7.0":
-  version: 7.14.0
-  resolution: "@babel/traverse@npm:7.14.0"
+  version: 7.14.2
+  resolution: "@babel/traverse@npm:7.14.2"
   dependencies:
     "@babel/code-frame": ^7.12.13
-    "@babel/generator": ^7.14.0
-    "@babel/helper-function-name": ^7.12.13
+    "@babel/generator": ^7.14.2
+    "@babel/helper-function-name": ^7.14.2
     "@babel/helper-split-export-declaration": ^7.12.13
-    "@babel/parser": ^7.14.0
-    "@babel/types": ^7.14.0
+    "@babel/parser": ^7.14.2
+    "@babel/types": ^7.14.2
     debug: ^4.1.0
     globals: ^11.1.0
-  checksum: f2fb957d616c242d8ccd25fbebadebc25aa2df8ea82d7cacb2b09285743a682f72beb6fb2acef01a7a98f141c3e36d19300ebde2dd78c780c5e3dc7692c5f6f2
+  checksum: 76f57f7a718c5ac17f72eb729e68d6135e37ee6201642d25c92d8add7b87eb492c7af40bd5193c27cca83cb60a649c9ccbe0f500e37569609e044b0560602cb7
   languageName: node
   linkType: hard
 
-"@babel/types@npm:^7.12.13, @babel/types@npm:^7.14.0, @babel/types@npm:^7.14.1, @babel/types@npm:^7.7.0":
-  version: 7.14.1
-  resolution: "@babel/types@npm:7.14.1"
-  dependencies:
-    "@babel/helper-validator-identifier": ^7.14.0
-    to-fast-properties: ^2.0.0
-  checksum: 27965ef192ded329d8ae28ccd5e5addd02dc477ec46e54145e5cf0d054ad65b2fc760736865295c1819d502ec9598883c17f25efdbe896ad77b400136a1aa971
-  languageName: node
-  linkType: hard
-
-"@babel/types@npm:^7.8.3":
+"@babel/types@npm:^7.12.13, @babel/types@npm:^7.14.2, @babel/types@npm:^7.7.0, @babel/types@npm:^7.8.3":
   version: 7.14.2
   resolution: "@babel/types@npm:7.14.2"
   dependencies:
@@ -282,9 +272,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:^15.0.1":
-  version: 15.0.2
-  resolution: "@types/node@npm:15.0.2"
-  checksum: ea8dd741bf16ad3318cca505783b7c211a5c8bea49202f99ba88d2ce8a804e994e1fd1b575b994e434e8b8ead810da966d588ea112998f8fe8d95cd74c396f8a
+  version: 15.3.0
+  resolution: "@types/node@npm:15.3.0"
+  checksum: 44039665ab71a6ec12e6637a9db4ec3123fdfaf52952ca8028a6f1b37c41c2d380e88d28a41e02693bf9d4815307e0ad938815bf8ffedc5f4d045855fa28db06
   languageName: node
   linkType: hard
 
@@ -554,14 +544,14 @@ __metadata:
   linkType: hard
 
 "ajv@npm:^8.0.1":
-  version: 8.3.0
-  resolution: "ajv@npm:8.3.0"
+  version: 8.4.0
+  resolution: "ajv@npm:8.4.0"
   dependencies:
     fast-deep-equal: ^3.1.1
     json-schema-traverse: ^1.0.0
     require-from-string: ^2.0.2
     uri-js: ^4.2.2
-  checksum: 95a98cc9cb0223f05530dd9e0d43e958d3a2e555a15f40bdcaafebe63254f6c53f88afcb4bec22344ae0f5fc0a87889ce3826973fc63e25ae159afadf1887c74
+  checksum: 0dcdfe0ecaafca2de60d01601c041853a1057f26bcb24de79484a3f6947486cad7b84d2779f93a9a315345451248aca14ed4996213905b42fac4ec11c7a76a6c
   languageName: node
   linkType: hard
 
@@ -769,14 +759,14 @@ __metadata:
   linkType: hard
 
 "better-sqlite3@npm:^7.1.0":
-  version: 7.3.1
-  resolution: "better-sqlite3@npm:7.3.1"
+  version: 7.4.0
+  resolution: "better-sqlite3@npm:7.4.0"
   dependencies:
     bindings: ^1.5.0
     node-gyp: latest
     prebuild-install: ^6.0.1
     tar: ^6.1.0
-  checksum: fe44902eb5a4dac28d7f9b5fddc56e91da21dc5fff061362bd62b878e868ac8feeda74bf2f0c2d3033dd076ace1a1284ed4b30e27332bbb445fe7414a03e9ac2
+  checksum: 6a244fda79a3f45c5bc57d6aeb706d0fa82dadd004af13732de166b0445ff93f3a813e99a93ab500a95c7de37e71c6f1e677bf7c6d43b089aa0e5b694e8a40f1
   languageName: node
   linkType: hard
 
@@ -1293,7 +1283,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:^4.0.0":
+"debug@npm:4, debug@npm:^4.0.0, debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1":
   version: 4.3.2
   resolution: "debug@npm:4.3.2"
   dependencies:
@@ -1305,7 +1295,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4.3.1, debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1":
+"debug@npm:4.3.1":
   version: 4.3.1
   resolution: "debug@npm:4.3.1"
   dependencies:
@@ -1455,7 +1445,7 @@ discord-akairo@SkyBlockDev/discord-akairo:
 
 discord.js@discordjs/discord.js:
   version: 12.5.0
-  resolution: "discord.js@https://github.com/discordjs/discord.js.git#commit=2eac84296b448907213680690ec766bb5fbe5990"
+  resolution: "discord.js@https://github.com/discordjs/discord.js.git#commit=ab82cafcde0ee259a32ef14303c1b4a64dea8fae"
   dependencies:
     "@discordjs/collection": ^0.1.6
     "@discordjs/form-data": ^3.0.1
@@ -1464,7 +1454,7 @@ discord.js@discordjs/discord.js:
     prism-media: ^1.2.2
     tweetnacl: ^1.0.3
     ws: ^7.3.1
-  checksum: 7e136f252d24d0d528dfe33fa6cf54d43eaf0f866a8a8f3196b3d679c530ae9aa605854d8ff775bc61b259a2f82b0f2bdd12f96496ed71b6313797c3da4c6b15
+  checksum: 229e071795100a828d452c54261abb5b6cd2dc6182404ad15fbc5485a717635c10401e500bb5d4a9ddac186a674a282745ce4cf0039784bb9f15df63bd21220a
   languageName: node
   linkType: hard
 
@@ -3117,6 +3107,7 @@ fsevents@~2.3.1:
     tslib: ^2.2.0
     typescript: ^4.2.4
     utf-8-validate: ^5.0.4
+    yarn: ^1.22.10
     zlib-sync: ^0.1.7
   dependenciesMeta:
     bufferutil:
@@ -4803,8 +4794,8 @@ fsevents@~2.3.1:
   linkType: hard
 
 "table@npm:^6.0.4":
-  version: 6.7.0
-  resolution: "table@npm:6.7.0"
+  version: 6.7.1
+  resolution: "table@npm:6.7.1"
   dependencies:
     ajv: ^8.0.1
     lodash.clonedeep: ^4.5.0
@@ -4812,7 +4803,7 @@ fsevents@~2.3.1:
     slice-ansi: ^4.0.0
     string-width: ^4.2.0
     strip-ansi: ^6.0.0
-  checksum: 87ab315355fb76e42be583c0e6cfbf4a0359e2a3360125f50292e3a063e7e4b382c0a51107a227d9549680d5008abdb900dfe6b79d20312cab950c2f9d327d98
+  checksum: 66107046b7226051552d53c1260facfed03f4050373d3888620af7b1353f6a5429d9a4a5fb796c56c29b9dd5ffca7b661a815f42ec392cb5956432585578772a
   languageName: node
   linkType: hard
 
@@ -5338,6 +5329,16 @@ typescript@^4.2.4:
     y18n: ^4.0.0
     yargs-parser: ^13.1.2
   checksum: 92c612cd14a9217d7421ae4f42bc7c460472633bfc2e45f7f86cd614a61a845670d3bac7c2228c39df7fcecce0b8c12b2af65c785b1f757de974dcf84b5074f9
+  languageName: node
+  linkType: hard
+
+"yarn@npm:^1.22.10":
+  version: 1.22.10
+  resolution: "yarn@npm:1.22.10"
+  bin:
+    yarn: bin/yarn.js
+    yarnpkg: bin/yarn.js
+  checksum: e43c2102576ac3d79f58f6cddc36726e39d54357bbdd2b9af8ad94d8368e63170555acb4652af08a04354e1a92555d5b293936f9d9b3c8b066872ac11f32cb29
   languageName: node
   linkType: hard
 

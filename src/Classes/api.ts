@@ -23,7 +23,7 @@ export = (client: Client): void => {
 			return { guilds, channels, members, commands, listeners, inhibitors, messages };
 		});
 		try {
-			await fastify.listen(3000);
+			await fastify.listen(6969, "0.0.0.0");
 		} catch (err) {
 			fastify.log.error(err);
 			process.exit(1);
