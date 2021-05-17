@@ -2,8 +2,18 @@ import type { Message, MessageOptions } from "discord.js";
 const talkedRecently = new Set();
 import { consts, InterfaceClient } from "./Utils";
 import { MessageEmbed } from "discord.js";
+import { TextChannel } from "discord.js";
 export = async (message: Message) => {
 	if (!talkedRecently.has(message.author.id)) {
+		if (message.channel.id == "843599498394468393") {
+			message
+				.crosspost()
+				.then(() => console.log("Crossposted message"))
+				.catch((e) => {
+					(message.guild.channels.cache.get("807328920935858214") as TextChannel).send("Couldnt publish the message in <#843599498394468393> e: \
+					n" + e);
+				});
+		}
 		if (message.channel.id == "807702096064937990") return;
 
 		const check = (i: string | string[]) => {
@@ -30,6 +40,7 @@ export = async (message: Message) => {
 			return (await message.reply(i as MessageOptions)) as Message;
 		};
 
+		if (message.author.bot) return;
 		let smh: Message;
 		if (check("bann")) {
 			smh = await sendm({

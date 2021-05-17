@@ -19,8 +19,6 @@ export default class message extends Listener {
 			tricked(message);
 		} else if (message?.guild?.id == "804143990869590066") {
 			drm(message);
-		} else if (message?.author.bot) {
-			return;
 		} else if (message?.guild?.id == "807302538558308352") {
 			skytils(message);
 		}
