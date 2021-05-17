@@ -1,5 +1,6 @@
 import Command from "../../Classes/malilCommand";
 import { MessageEmbed, GuildChannel, TextChannel, Message, Role, CommandInteraction } from "discord.js";
+import { GuildMember } from "discord.js";
 export default class AddRankCommand extends Command {
 	public constructor() {
 		super("addrank", {
@@ -43,10 +44,13 @@ export default class AddRankCommand extends Command {
 		this.client.guilddata.push(message.guild.id, role.id, "ranks");
 		message.reply(`Added ${role} to available ranks`);
 	}
-	async execSlash(interaction: CommandInteraction) {
+	async execSlash(interaction: CommandInteraction): Promise<void> {
+		const perms = (interaction.channel as TextChannel).permissionsFor(interaction.member as GuildMember).toArray();
+		if (!perms.includes("MANAGE_ROLES") && !perms.includes("MANAGE_GUILD")) return interaction.reply("You dont have enough permissions to run this command");
+
 		const role = interaction.options[0].role;
 		this.client.guilddata.ensure(interaction.guild.id, [], "ranks");
 		this.client.guilddata.push(interaction.guild.id, role.id, "ranks");
-		interaction.reply(`Added ${role} to available ranks`);
+		await interaction.reply(`Added ${role} to available ranks`);
 	}
 }

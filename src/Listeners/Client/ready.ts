@@ -1,6 +1,7 @@
 import { Listener } from "discord-akairo";
 import Client from "../../Classes/Client";
 import { readyLog } from "../../Lib/Utils";
+//import cron from "node-cron";
 import api from "../../Classes/api";
 export default class Ready extends Listener {
 	public constructor(client: Client) {
@@ -12,6 +13,7 @@ export default class Ready extends Listener {
 		this.client = client;
 	}
 	public async exec(): Promise<void> {
+		//new cron("0 0 0 * * *", async () => {});
 		api(this.client as any);
 		if (this.client.settings.dev) {
 			const guild = this.client.guilds.cache.get(this.client.consts.testserver) || (await this.client.guilds.fetch(this.client.consts.testserver));
