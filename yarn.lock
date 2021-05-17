@@ -3107,7 +3107,6 @@ fsevents@~2.3.1:
     tslib: ^2.2.0
     typescript: ^4.2.4
     utf-8-validate: ^5.0.4
-    yarn: ^1.22.10
     zlib-sync: ^0.1.7
   dependenciesMeta:
     bufferutil:
@@ -5329,16 +5328,6 @@ typescript@^4.2.4:
     y18n: ^4.0.0
     yargs-parser: ^13.1.2
   checksum: 92c612cd14a9217d7421ae4f42bc7c460472633bfc2e45f7f86cd614a61a845670d3bac7c2228c39df7fcecce0b8c12b2af65c785b1f757de974dcf84b5074f9
-  languageName: node
-  linkType: hard
-
-"yarn@npm:^1.22.10":
-  version: 1.22.10
-  resolution: "yarn@npm:1.22.10"
-  bin:
-    yarn: bin/yarn.js
-    yarnpkg: bin/yarn.js
-  checksum: e43c2102576ac3d79f58f6cddc36726e39d54357bbdd2b9af8ad94d8368e63170555acb4652af08a04354e1a92555d5b293936f9d9b3c8b066872ac11f32cb29
   languageName: node
   linkType: hard
 
