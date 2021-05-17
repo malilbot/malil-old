@@ -248,6 +248,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/cron@npm:^1":
+  version: 1.7.2
+  resolution: "@types/cron@npm:1.7.2"
+  dependencies:
+    "@types/node": "*"
+    moment: ">=2.14.0"
+  checksum: 24628218d0645cfa82167451de1d38103bdc2e6ddb447a447ba2021b4c9da0d88cb51b39695ba51ddf31499ba4fd295694d702b5418871a255ef503c6eddc4be
+  languageName: node
+  linkType: hard
+
 "@types/eslint-visitor-keys@npm:^1.0.0":
   version: 1.0.0
   resolution: "@types/eslint-visitor-keys@npm:1.0.0"
@@ -1229,6 +1239,15 @@ __metadata:
   version: 1.0.2
   resolution: "core-util-is@npm:1.0.2"
   checksum: 089015ee3c462dfceba70faa1df83b42a7bb35db26dae6af283247b06fe3216c65fccd9f00eebcaf98300dc31e981d56aae9f90b624f8f6ff1153e235ff88b65
+  languageName: node
+  linkType: hard
+
+"cron@npm:^1.8.2":
+  version: 1.8.2
+  resolution: "cron@npm:1.8.2"
+  dependencies:
+    moment-timezone: ^0.5.x
+  checksum: 58189a955b6f504eb7a6d17a47f3b01806331477ac8f905278c44c18e9dcf76abd754177c5c82c87d5a846acd9cdaec5dc458a97213314172350bbdc08b7391e
   languageName: node
   linkType: hard
 
@@ -3079,6 +3098,7 @@ fsevents@~2.3.1:
   resolution: "malil@workspace:."
   dependencies:
     "@types/centra": ^2.2.0
+    "@types/cron": ^1
     "@types/node": ^15.0.1
     "@typescript-eslint/eslint-plugin": ^4.23.0
     "@typescript-eslint/parser": ^4.23.0
@@ -3088,6 +3108,7 @@ fsevents@~2.3.1:
     chalk: ^4.1.0
     cheerio: ^1.0.0-rc.9
     common-tags: ^1.8.0
+    cron: ^1.8.2
     discord-akairo: SkyBlockDev/discord-akairo
     discord-api-types: ^0.18.0
     discord-rpc: ^3.2.0
@@ -3100,7 +3121,6 @@ fsevents@~2.3.1:
     fastify-helmet: ^5.3.1
     knex: ^0.95.5
     moment: ^2.29.1
-    node-cron: ^3.0.0
     nodemon: ^2.0.7
     pg: ^8.6.0
     prettier: ^2.3.0
@@ -3318,7 +3338,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"moment-timezone@npm:^0.5.31":
+"moment-timezone@npm:^0.5.x":
   version: 0.5.33
   resolution: "moment-timezone@npm:0.5.33"
   dependencies:
@@ -3327,7 +3347,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"moment@npm:>= 2.9.0, moment@npm:^2.29.1":
+"moment@npm:>= 2.9.0, moment@npm:>=2.14.0, moment@npm:^2.29.1":
   version: 2.29.1
   resolution: "moment@npm:2.29.1"
   checksum: 86729013febf7160de5b93da69273dd304d674b0224f9544b3abd09a87671ddd2cdd57598261ce57588910d63747ffd5590965e83c790d8bf327083c0e0a06e0
@@ -3398,15 +3418,6 @@ fsevents@~2.3.1:
   dependencies:
     semver: ^5.4.1
   checksum: 29c7ee7486635ab6f49227a74e37cf07560fbc2bed14b8a64a91f831a76da3ed8e7a3b80ebfa07f0e3a3b53287f1b30b736e01809799d71239c47c5249c407bd
-  languageName: node
-  linkType: hard
-
-"node-cron@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "node-cron@npm:3.0.0"
-  dependencies:
-    moment-timezone: ^0.5.31
-  checksum: a2fe998eeddec6e5c3f9e7af8b2169f9994842f7f86c8af756a6cfcf9025abca3a39bf6cc76a42922eb55eadb5345eace12fee68dde065e23211a857667e9561
   languageName: node
   linkType: hard
 

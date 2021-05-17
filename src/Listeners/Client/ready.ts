@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Listener } from "discord-akairo";
 import Client from "../../Classes/Client";
 import { readyLog } from "../../Lib/Utils";
-//import cron from "node-cron";
+import { join } from "path";
+import { TextChannel } from "discord.js";
+import { CronJob } from "cron";
+import { readFileSync, writeFileSync } from "fs";
 import api from "../../Classes/api";
 export default class Ready extends Listener {
 	public constructor(client: Client) {
@@ -13,8 +17,45 @@ export default class Ready extends Listener {
 		this.client = client;
 	}
 	public async exec(): Promise<void> {
-		//new cron("0 0 0 * * *", async () => {});
-		api(this.client as any);
+		api();
+		new CronJob("0 0 0 * * *", async () => {
+			const jsonString = readFileSync(join(__dirname, "..", "..", "..", "data", "stats.json"), "utf8");
+			const regusers = (await this.client.db.knex("users")).length;
+			const regguilds = (await this.client.db.knex("guilds")).length;
+			const infractions = (await this.client.db.knex("infractions")).length;
+
+			const customer = JSON.parse(jsonString);
+
+			const guilds = this.client.guilds.cache.size;
+			const channels = this.client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0);
+			const members = this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0);
+			const commands = this.client.commandHandler.modules.size;
+			//@ts-ignore
+			const listeners = this.client.listenerHandler.modules.size;
+			//@ts-ignore
+			const inhibitors = this.client.inhibitorHandler.modules.size;
+			const rawmessages = this.client.channels.cache.map((c) => {
+				if (c.type == "text") return (c as TextChannel).messages.cache.map(() => 1);
+				else return [0];
+			});
+			const messagesRaw = [].concat([], ...rawmessages);
+			let messages = 0;
+			for (let index = 0; index < messagesRaw.length; index++) {
+				messages = messages + messagesRaw[index];
+			}
+			customer.guilds.push(guilds);
+			customer.channels.push(channels);
+			customer.users.push(members);
+			customer.commands.push(commands);
+			customer.listeners.push(listeners);
+			customer.inhibitors.push(inhibitors);
+			customer.messages.push(messages);
+			customer.regusers.push(regusers);
+			customer.regguilds.push(regguilds);
+			customer.infractions.push(infractions);
+			writeFileSync(join(__dirname, "..", "..", "..", "data", "stats.json"), JSON.stringify(customer));
+		});
+
 		if (this.client.settings.dev) {
 			const guild = this.client.guilds.cache.get(this.client.consts.testserver) || (await this.client.guilds.fetch(this.client.consts.testserver));
 			const enabled = await guild.commands.fetch();
