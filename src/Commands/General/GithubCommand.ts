@@ -1,13 +1,53 @@
 import Command from "../../Classes/malilCommand";
 import type { Message, TextChannel, CommandInteraction } from "discord.js";
 import centra from "centra";
-import { MessageEmbed } from "discord.js";
+import { MessageEmbed, GuildMember } from "discord.js";
 export default class GithubCommand extends Command {
 	public constructor() {
 		super("github", {
 			aliases: ["github", "stalk"],
 			category: "General",
 			quoted: true,
+			options: [
+				{
+					type: 1,
+					name: "delete",
+					description: "Delete the repos malil is watching.",
+				},
+				{
+					type: 1,
+					name: "get",
+					description: "View the repos that are currently being watched by malil.",
+				},
+				{
+					type: 1,
+					name: "add",
+					description: "Add a repo for malil to watch.",
+					//@ts-expect-error this work but no
+					options: [
+						{
+							type: 3,
+							name: "repo",
+							description: "link of the repository you want to add",
+							required: true,
+						},
+					],
+				},
+				{
+					type: 1,
+					name: "set",
+					description: "set the channel where the updates will be sent to",
+					//@ts-expect-error hello
+					options: [
+						{
+							type: 7,
+							name: "channel",
+							description: "The channel.",
+							required: true,
+						},
+					],
+				},
+			],
 			args: [
 				{
 					id: "action",
@@ -103,12 +143,14 @@ export default class GithubCommand extends Command {
 			message.util.send(embed);
 		} else message.util.send("Check `*help github` for info about this command");
 	}
-	async execSlash(message: CommandInteraction) {
-		this.client.releases.ensure(message.guild.id, [], "repos");
-		if (message.options[0].name == "delete") this.delete(message);
-		else if (message.options[0].name == "set") this.set(message);
-		else if (message.options[0].name == "add") this.add(message);
-		else if (message.options[0].name == "get") this.get(message);
+	async execSlash(interaction: CommandInteraction) {
+		const perms = (interaction.channel as TextChannel).permissionsFor(interaction.member as GuildMember).toArray();
+		if (!perms.includes("MANAGE_ROLES") && !perms.includes("MANAGE_GUILD")) return interaction.reply("You dont have enough permissions to run this command");
+		this.client.releases.ensure(interaction.guild.id, [], "repos");
+		if (interaction.options[0].name == "delete") this.delete(interaction);
+		else if (interaction.options[0].name == "set") this.set(interaction);
+		else if (interaction.options[0].name == "add") this.add(interaction);
+		else if (interaction.options[0].name == "get") this.get(interaction);
 	}
 	async delete(message: CommandInteraction) {
 		this.client.releases.set(message.guild.id, [], "repos");
