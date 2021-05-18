@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { Message } from "discord.js";
 
 export default class DisableCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("disable", {
 			aliases: ["disable", "enable"],
 			category: "Utility",
@@ -26,7 +26,7 @@ export default class DisableCommand extends Command {
 			userPermissions: ["MANAGE_GUILD"],
 		});
 	}
-	public async exec(message: Message, { cmd, catagory }: { cmd: Command; catagory: string }): Promise<Message> {
+	async exec(message: Message, { cmd, catagory }: { cmd: Command; catagory: string }): Promise<Message> {
 		if (!cmd && !catagory) return message.reply("No command or category specified");
 		// typos are intentionally
 		const catagoryList: string[] = [];

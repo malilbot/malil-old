@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import type { CommandInteraction, Message } from "discord.js";
 import c from "centra";
 export default class DenoCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("deno", {
 			aliases: ["deno"],
 			category: "coding",

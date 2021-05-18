@@ -4,7 +4,7 @@ import { utc } from "moment";
 import { GetMember, Infract } from "../../Lib/Utils";
 
 export default class KickCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("kick", {
 			aliases: ["kick"],
 			category: "Moderation",
@@ -36,7 +36,7 @@ export default class KickCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { reason, user }: { user: GuildMember; reason: string }): Promise<Message> {
+	async exec(message: Message, { reason, user }: { user: GuildMember; reason: string }): Promise<Message> {
 		if (!user) return message.util.send("user not found");
 		if (!user.kickable) return message.util.send(`Sorry, i can't kick this user`);
 

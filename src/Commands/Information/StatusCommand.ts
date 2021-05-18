@@ -6,7 +6,7 @@ import os from "os";
 import { Util, ms } from "../../Lib/Utils";
 
 export default class StatsCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("stats", {
 			aliases: ["stats", "st", "info"],
 			category: "Info",
@@ -29,7 +29,7 @@ export default class StatsCommand extends Command {
 		});
 	}
 
-	public exec(message: Message, { stats }: { stats: string }): Promise<Message> {
+	exec(message: Message, { stats }: { stats: string }): Promise<Message> {
 		const ut = new Util();
 		const core = os.cpus()[0];
 		const djsversion = require("discord.js").version;

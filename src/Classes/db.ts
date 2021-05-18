@@ -13,11 +13,11 @@ export default class db {
 	constructor(client: Client) {
 		this.client = client;
 	}
-	public knex = Knex({
+	knex = Knex({
 		client: "pg",
 		connection,
 	});
-	public find(table, limit, order_by, sort_order = "desc") {
+	find(table, limit, order_by, sort_order = "desc") {
 		if (!limit) {
 			return this.knex(table);
 		} else if (limit && !order_by) {
@@ -27,28 +27,28 @@ export default class db {
 		}
 	}
 
-	public findBy(table, filter) {
+	findBy(table, filter) {
 		return this.knex(table).where(filter);
 	}
 
-	public async insert(table, data) {
+	async insert(table, data) {
 		const [id] = await this.knex(table).insert(data);
 
 		return await this.findBy(table, { id });
 	}
 
-	public remove(table, filter) {
+	remove(table, filter) {
 		return this.knex(table).where(filter).delete();
 	}
 
-	public async update(table, data, filter) {
+	async update(table, data, filter) {
 		await this.knex(table).where(filter).update(data);
 		return await this.knex(table).where(filter);
 	}
-	public closeConnection() {
+	closeConnection() {
 		return this.knex.destroy();
 	}
-	public async CreateTables() {
+	async CreateTables() {
 		try {
 			await this.knex.schema.createTable("users", (table) => {
 				table.bigInteger("id").primary();
@@ -93,7 +93,7 @@ export default class db {
 	 * @param reason
 	 * @param type ban, kick, mute, unmute, warn
 	 */
-	public async createInfraction(user: string, infraction: string, guild: string, moderator: string, reason: string, type: string): Promise<any> {
+	async createInfraction(user: string, infraction: string, guild: string, moderator: string, reason: string, type: string): Promise<any> {
 		const data = {
 			when: BigInt(Date.now()),
 			user: BigInt(user),
@@ -105,7 +105,7 @@ export default class db {
 		};
 		await this.knex("infractions").insert(data);
 	}
-	public async getGuildSettings(guildId: string): Promise<guildSettingsInterface> {
+	async getGuildSettings(guildId: string): Promise<guildSettingsInterface> {
 		const id = BigInt(guildId);
 		try {
 			let [guild] = await this.findBy("guilds", { id });
@@ -120,34 +120,34 @@ export default class db {
 			return guildData;
 		}
 	}
-	public async deleteInfraction(infractionId: string): Promise<void> {
+	async deleteInfraction(infractionId: string): Promise<void> {
 		const id = BigInt(infractionId);
 		this.remove("infractions", { id });
 	}
-	public async deleteInfractions(userId: string, guildId: string): Promise<void> {
+	async deleteInfractions(userId: string, guildId: string): Promise<void> {
 		const guild = BigInt(guildId);
 		const user = BigInt(userId);
 		this.remove("infractions", { user, guild });
 	}
-	public async getInfractions(userId: string, guildId: string): Promise<infraction[]> {
+	async getInfractions(userId: string, guildId: string): Promise<infraction[]> {
 		const user = BigInt(userId);
 		const guild = BigInt(guildId);
 		const infractions = await this.knex("infractions").where({ user, guild });
 		return infractions;
 	}
-	public async getModActions(modId: string, guildId: string): Promise<infraction[]> {
+	async getModActions(modId: string, guildId: string): Promise<infraction[]> {
 		const moderator = BigInt(modId);
 		const guild = BigInt(guildId);
 		const infractions = await this.knex("infractions").where({ moderator, guild });
 		return infractions;
 	}
-	public query(input: any): any {
+	query(input: any): any {
 		return this.knex.raw(input);
 	}
-	public async kill() {
+	async kill() {
 		return await this.knex.destroy();
 	}
-	public async getUser(i: string | bigint): Promise<{ id: bigint; iq: number; votes: number; messages: bigint }> {
+	async getUser(i: string | bigint): Promise<{ id: bigint; iq: number; votes: number; messages: bigint }> {
 		const id = typeof i == "bigint" ? i : BigInt(i);
 		let [user] = await this.findBy("users", { id });
 
@@ -163,7 +163,7 @@ export default class db {
 		}
 		return user;
 	}
-	public async increaseVotes(user: string | bigint, amount: number) {
+	async increaseVotes(user: string | bigint, amount: number) {
 		const id = BigInt(user);
 		const votes = Number((await this.getUser(user)).votes);
 		const newvotes = votes + Number(amount);
@@ -172,7 +172,7 @@ export default class db {
 
 		return newvotes;
 	}
-	public guildData(id: bigint) {
+	guildData(id: bigint) {
 		return {
 			id: id,
 			muterole: null,
@@ -187,7 +187,7 @@ export default class db {
 			githubchannel: null,
 		};
 	}
-	public async increaseIq(user: string | bigint, amount: number) {
+	async increaseIq(user: string | bigint, amount: number) {
 		const id = BigInt(user);
 		const iq = (await this.getUser(user)).iq;
 		const newiq = Number(iq) + Number(amount);
@@ -196,11 +196,11 @@ export default class db {
 
 		return newiq;
 	}
-	public async getPrefix(i: string) {
+	async getPrefix(i: string) {
 		const guild = await this.getGuildSettings(i);
 		return guild?.prefix || this.client.settings.prefix;
 	}
-	public async setPrefix(guildID: string, prefix: string) {
+	async setPrefix(guildID: string, prefix: string) {
 		const id = BigInt(guildID);
 		let [guild] = await this.findBy("guilds", { id });
 		if (guild) {
@@ -235,26 +235,26 @@ export interface guildSettingsInterface {
 }
 /*
 abstract class giveaway {
-	public winners: 0;
-	public time: 0;
-	public prize: "string";
-	public options: {
+	winners: 0;
+	time: 0;
+	prize: "string";
+	options: {
 		roles: ["string"];
 		messages: 0;
 		joindate: 0;
 	};
-	public channel: "string";
-	public message: "string";
-	public guildId: "string";
+	channel: "string";
+	message: "string";
+	guildId: "string";
 }
 abstract class mute {
-	public id: "string";
-	public time: 0;
+	id: "string";
+	time: 0;
 }
 abstract class infraction {
-	public when: 0;
-	public who: "string";
-	public reason: "string";
-	public type: "string";
+	when: 0;
+	who: "string";
+	reason: "string";
+	type: "string";
 }
 */

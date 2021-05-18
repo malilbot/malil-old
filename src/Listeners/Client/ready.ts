@@ -8,7 +8,7 @@ import { CronJob } from "cron";
 import { readFileSync, writeFileSync } from "fs";
 import api from "../../Classes/api";
 export default class Ready extends Listener {
-	public constructor(client: Client) {
+	constructor(client: Client) {
 		super("ready", {
 			emitter: "client",
 			event: "ready",
@@ -16,7 +16,7 @@ export default class Ready extends Listener {
 		});
 		this.client = client;
 	}
-	public async exec(): Promise<void> {
+	async exec(): Promise<void> {
 		api();
 		new CronJob("0 0 0 * * *", async () => {
 			const jsonString = readFileSync(join(__dirname, "..", "..", "..", "data", "stats.json"), "utf8");

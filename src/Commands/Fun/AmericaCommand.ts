@@ -3,7 +3,7 @@ import { GuildMember, Message } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 import centra from "centra";
 export default class AmeticaCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("america", {
 			aliases: ["america", "ame"],
 			category: "Fun",
@@ -29,7 +29,7 @@ export default class AmeticaCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { member }: { member: GuildMember }): Promise<void> {
+	async exec(message: Message, { member }: { member: GuildMember }): Promise<void> {
 		const msg = await message.util.send("<a:loading:820592866685485076>");
 
 		const url = member.user.displayAvatarURL({

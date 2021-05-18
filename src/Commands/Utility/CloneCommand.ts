@@ -3,7 +3,7 @@ import type { Message } from "discord.js";
 import { GuildEmoji } from "discord.js";
 const EMOJI_REGEX = /<(?:a)?:(?:\w{2,32}):(\d{17,19})>?/;
 export default class CloneCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("clone", {
 			aliases: ["clone", "yoink", "steal", "emo"],
 			category: "Utility",
@@ -20,7 +20,7 @@ export default class CloneCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message): Promise<void | Message> {
+	async exec(message: Message): Promise<void | Message> {
 		const msg = await message.channel.send("react to this message with your emojis within 10 seconds and ill steal them");
 
 		const collector = msg.createReactionCollector((reaction, user) => user.id == message.author.id, { max: 4, time: 60000 });

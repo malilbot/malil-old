@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message, GuildMember } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 export default class ClearWarnsCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("clearwarns", {
 			aliases: ["clearwarns"],
 			category: "Moderation",
@@ -29,7 +29,7 @@ export default class ClearWarnsCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args, user }: { args: string; user: GuildMember }): Promise<Message> {
+	async exec(message: Message, { args, user }: { args: string; user: GuildMember }): Promise<Message> {
 		if (!user) message.util.send("user not found");
 		this.client.db.deleteInfractions(user.id, message.guild.id);
 		return message.util.send("infractions cleared", { allowedMentions: { repliedUser: false } });

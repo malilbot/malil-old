@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import type { Message } from "discord.js";
 import { hst } from "../../Lib/Utils";
 export default class RawCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("raw", {
 			aliases: ["raw"],
 			category: "Utility",
@@ -26,7 +26,7 @@ export default class RawCommand extends Command {
 		});
 	}
 
-	public exec(message: Message, { args }: { args: string }): void {
+	exec(message: Message, { args }: { args: string }): void {
 		if (!args) {
 			message.reply("Cant really display nothing");
 		} else {

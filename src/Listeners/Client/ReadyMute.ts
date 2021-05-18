@@ -3,7 +3,7 @@ import Client from "../../Classes/Client";
 import { Infract } from "../../Lib/Utils";
 import { GuildMember, Role } from "discord.js";
 export default class MuteReady extends Listener {
-	public constructor(client: Client) {
+	constructor(client: Client) {
 		super("MuteReady", {
 			emitter: "client",
 			event: "ready",
@@ -11,7 +11,7 @@ export default class MuteReady extends Listener {
 		});
 		this.client = client;
 	}
-	public async exec(): Promise<void> {
+	async exec(): Promise<void> {
 		//const res = this.client.mutes.fetchEverything();
 		const keys = this.client.mutes.keyArray();
 		keys.forEach((Allmutes) => {

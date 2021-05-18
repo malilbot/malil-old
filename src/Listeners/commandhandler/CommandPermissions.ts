@@ -2,7 +2,7 @@ import { Listener, Command } from "discord-akairo";
 import { Message } from "discord.js";
 import Client from "../../Classes/Client";
 export default class missingPermissions extends Listener {
-	public constructor(client: Client) {
+	constructor(client: Client) {
 		super("missingPermissions", {
 			emitter: "commandHandler",
 			event: "missingPermissions",

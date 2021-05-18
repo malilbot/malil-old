@@ -4,7 +4,7 @@ import { MessageEmbed, Message } from "discord.js";
 import { hst } from "../../Lib/Utils";
 import { exec } from "child_process";
 export default class ReloadCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("reload", {
 			aliases: ["reload", "update", "refresh", "pull", "updat", "restart"],
 			category: "Developer",
@@ -20,7 +20,7 @@ export default class ReloadCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message) {
+	async exec(message: Message) {
 		let rs: string;
 		if (message.util.parsed.alias == "restart") rs = "restarting";
 

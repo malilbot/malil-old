@@ -4,7 +4,7 @@ import { inspect } from "util";
 import { hst, InterfaceClient } from "../../Lib/Utils";
 let EvalCode = "";
 export default class EvalCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("eval", {
 			aliases: ["eval", "ev"],
 			category: "Developer",
@@ -49,7 +49,7 @@ export default class EvalCommand extends Command {
 			channel: "guild",
 		});
 	}
-	public async exec(
+	async exec(
 		message: Message,
 		{
 			code,

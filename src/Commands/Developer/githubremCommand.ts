@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message } from "discord.js";
 
 export default class GithubremCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("githubrem", {
 			aliases: ["githubrem"],
 			category: "Developer",
@@ -30,7 +30,7 @@ export default class GithubremCommand extends Command {
 		});
 	}
 
-	public exec(message: Message, { args, user }): void {
+	exec(message: Message, { args, user }): void {
 		const repos = this.client.releases.get("all");
 
 		for (let l = 0; l < repos.length; l++) {

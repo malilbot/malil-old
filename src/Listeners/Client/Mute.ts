@@ -3,7 +3,7 @@ import type Client from "../../Classes/Client";
 import { Infract } from "../../Lib/Utils";
 import { GuildMember, Message } from "discord.js";
 export default class Raw extends Listener {
-	public constructor(client: Client) {
+	constructor(client: Client) {
 		super("mute", {
 			emitter: "client",
 			event: "mute",
@@ -12,7 +12,7 @@ export default class Raw extends Listener {
 		this.client = client;
 	}
 
-	public async exec(member: GuildMember, time: number | string, message: Message): Promise<void> {
+	async exec(member: GuildMember, time: number | string, message: Message): Promise<void> {
 		const role = member.guild.roles.cache.get(this.client.mutes.get(member.guild.id, "role"));
 		member.roles.add(role, "User muted").catch((e) => this.client.mutes.delete(member.guild.id, "role"));
 		if (time == "PERM") return;

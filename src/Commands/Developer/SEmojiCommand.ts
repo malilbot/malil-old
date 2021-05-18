@@ -3,7 +3,7 @@ import Command from "../../Classes/malilCommand";
 import { Message } from "discord.js";
 import { fixword } from "../../Lib/Utils";
 export default class semojiCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("semoji", {
 			aliases: ["semoji"],
 			category: "Developer",
@@ -25,7 +25,7 @@ export default class semojiCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { emoji }: { emoji: string }): Promise<void> {
+	async exec(message: Message, { emoji }: { emoji: string }): Promise<void> {
 		try {
 			message.delete().catch(() => {});
 		} catch (e) {}

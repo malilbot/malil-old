@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import type { Message } from "discord.js";
 import { threadId } from "worker_threads";
 export default class PrefixCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("prefix", {
 			aliases: ["prefix", "setprefix"],
 			category: "Utility",
@@ -25,7 +25,7 @@ export default class PrefixCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }: { args: string }): Promise<Message> {
+	async exec(message: Message, { args }: { args: string }): Promise<Message> {
 		if (!args || args.length == 0) {
 			const prefix = await this.client.db.getPrefix(message.guild.id);
 			if (prefix) {

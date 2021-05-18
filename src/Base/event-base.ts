@@ -6,7 +6,7 @@ import Client from '../../classes/Client';
 
 export default class replaceme extends Listener {
     client: Client
-    public constructor(client: Client) {
+    constructor(client: Client) {
         super("replaceme", {
             emitter: "client",
             event: "ready",

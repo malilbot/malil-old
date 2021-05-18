@@ -4,7 +4,7 @@ import { MessageEmbed, Message } from "discord.js";
 const talkedRecently = new Set();
 const Talk = new Set();
 export default class CoolDown extends Listener {
-	public constructor(client: Client) {
+	constructor(client: Client) {
 		super("CoolDown", {
 			emitter: "commandHandler",
 			event: "cooldown",

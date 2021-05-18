@@ -4,7 +4,7 @@ import { MessageEmbed } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 
 export default class IqCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("iqtest", {
 			aliases: ["iq", "smart", "iqtest"],
 			category: "Fun",
@@ -35,7 +35,7 @@ export default class IqCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { member }: { member: GuildMember }): Promise<Message> {
+	async exec(message: Message, { member }: { member: GuildMember }): Promise<Message> {
 		const iq = (await this.client.db.getUser(member.id)).iq;
 
 		const iEmbed = new MessageEmbed().setColor(this.client.colors.default).setTitle("IQ Test").setDescription(`${member}'s IQ is: \`${iq}\`!`);

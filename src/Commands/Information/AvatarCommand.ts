@@ -4,7 +4,7 @@ import type { Message, GuildMember, ImageSize, AllowedImageFormat, CommandIntera
 import { MessageEmbed } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 export default class AvatarCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("avatar", {
 			aliases: ["avatar", "av"],
 			category: "Info",
@@ -54,7 +54,7 @@ export default class AvatarCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { size, format, member }: { member: GuildMember; size: number; format: string }): Promise<Message> {
+	async exec(message: Message, { size, format, member }: { member: GuildMember; size: number; format: string }): Promise<Message> {
 		return message.util.send(
 			new MessageEmbed()
 				.setTitle(`${member.user.username}'s Avatar`)

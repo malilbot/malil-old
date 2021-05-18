@@ -3,7 +3,7 @@ import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discor
 import { MessageEmbed } from "discord.js";
 
 export default class ServerCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("server", {
 			aliases: ["server"],
 			category: "Info",
@@ -18,7 +18,7 @@ export default class ServerCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message): Promise<Message> {
+	async exec(message: Message): Promise<Message> {
 		const embed = new MessageEmbed()
 			.setColor(this.client.colors.orange)
 			.setTitle("Server Info")

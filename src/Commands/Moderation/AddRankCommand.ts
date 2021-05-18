@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, GuildChannel, TextChannel, Message, Role, CommandInteraction } from "discord.js";
 import { GuildMember } from "discord.js";
 export default class AddRankCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("addrank", {
 			aliases: ["addRank", "addr", "arank", "rankadd"],
 			category: "Moderation",
@@ -38,7 +38,7 @@ export default class AddRankCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { role }: { role: Role }): Promise<Message | void> {
+	async exec(message: Message, { role }: { role: Role }): Promise<Message | void> {
 		if (!role) return message.reply("No role specified / thats not a role");
 		this.client.guilddata.ensure(message.guild.id, [], "ranks");
 		this.client.guilddata.push(message.guild.id, role.id, "ranks");

@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { Message } from "discord.js";
 
 export default class StickerCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("Sticker", {
 			aliases: ["Sticker", "removesticker", "nosticker", "sticcker", "blackliststicker", "sweepsticker", "byesticker", "fucksticker", "nomoresticker", "quitstickers"],
 			category: "Moderation",
@@ -26,7 +26,7 @@ export default class StickerCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { Args }: { Args: string }): Promise<Message> {
+	async exec(message: Message, { Args }: { Args: string }): Promise<Message> {
 		return message.util.send("This command is not quite done but expect it at some point");
 		if (Args.toLowerCase() == "on") {
 			message.util.send("Malil will now delete every sticker it sees :smile:");

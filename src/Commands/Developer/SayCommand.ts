@@ -3,7 +3,7 @@ import Command from "../../Classes/malilCommand";
 import { Message } from "discord.js";
 import { fixword } from "../../Lib/Utils";
 export default class SayCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("say", {
 			aliases: ["say", "tell"],
 			category: "Developer",
@@ -26,7 +26,7 @@ export default class SayCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { code }): Promise<void> {
+	async exec(message: Message, { code }): Promise<void> {
 		try {
 			message.delete().catch((e) => {
 				message.author.send("Me  can no delete your message");

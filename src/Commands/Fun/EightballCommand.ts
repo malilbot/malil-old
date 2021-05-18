@@ -4,7 +4,7 @@ import { MessageEmbed } from "discord.js";
 import { fixword } from "../../Lib/Utils";
 
 export default class EightballCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("8ball", {
 			aliases: ["eightball", "8ball", "ask"],
 			category: "Fun",
@@ -33,7 +33,7 @@ export default class EightballCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<void | Message> {
+	async exec(message: Message, { args }): Promise<void | Message> {
 		if (!args)
 			return message.util.send({
 				embed: {

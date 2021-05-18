@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import type { GuildMember, Message } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 export default class setiqCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("setiq", {
 			aliases: ["setiq"],
 			category: "Developer",
@@ -33,7 +33,7 @@ export default class setiqCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args, member }: { args: string; member: GuildMember }): Promise<Message> {
+	async exec(message: Message, { args, member }: { args: string; member: GuildMember }): Promise<Message> {
 		if (!args) return message.util.send("No args provided.");
 		const _args = args.split(" ");
 		if (!args[1]) return message.util.send("No iq provided.");

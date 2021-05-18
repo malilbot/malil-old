@@ -667,19 +667,19 @@ interface gistif {
 	files: string;
 }
 export class InterfaceClient extends Client {
-	public credentials = credentials;
-	public consts = consts;
-	public colors = consts.colors;
-	public settings = Settings;
-	public gp?: Enmap;
-	public userdata?: Enmap;
-	public logchannel?: Enmap;
-	public infractions?: Enmap;
-	public logger: typeof logger;
-	public commandHandler?: CommandHandler;
-	public listenerHandler?: ListenerHandler;
-	public inhibitorHandler?: InhibitorHandler;
-	public db?: db;
+	credentials = credentials;
+	consts = consts;
+	colors = consts.colors;
+	settings = Settings;
+	gp?: Enmap;
+	userdata?: Enmap;
+	logchannel?: Enmap;
+	infractions?: Enmap;
+	logger: typeof logger;
+	commandHandler?: CommandHandler;
+	listenerHandler?: ListenerHandler;
+	inhibitorHandler?: InhibitorHandler;
+	db?: db;
 }
 
 interface hastebinRes {

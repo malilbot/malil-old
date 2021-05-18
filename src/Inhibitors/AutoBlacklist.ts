@@ -12,7 +12,7 @@ export default class extends Inhibitor {
 		});
 	}
 
-	public async exec(message: Message, command: Command): Promise<boolean> {
+	async exec(message: Message, command: Command): Promise<boolean> {
 		if (superUsers.includes(message.author.id)) return false;
 		if (blacklist[message.author.id] == true) return true;
 

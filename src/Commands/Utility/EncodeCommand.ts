@@ -3,7 +3,7 @@ import { MessageManager, Message } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import { hst } from "../../Lib/Utils";
 export default class EncodeCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("encode", {
 			aliases: ["encode"],
 			category: "Utility",
@@ -27,7 +27,7 @@ export default class EncodeCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<Message> {
+	async exec(message: Message, { args }): Promise<Message> {
 		const embed = new MessageEmbed()
 			.setTitle("Encode things")
 			.setDescription("input: " + (await hst(args, true)) || "none")

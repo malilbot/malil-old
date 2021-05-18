@@ -1,7 +1,7 @@
 import Command from "../../Classes/malilCommand";
 import type { Message } from "discord.js";
 export default class EnSlashCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("EnSlash", {
 			aliases: ["EnSlash"],
 			category: "Developer",
@@ -32,7 +32,7 @@ export default class EnSlashCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, args) {
+	async exec(message: Message, args) {
 		const del = args.del;
 		const global = args.global;
 		try {

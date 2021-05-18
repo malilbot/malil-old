@@ -3,7 +3,7 @@ import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discor
 import { MessageEmbed } from "discord.js";
 import { fixword } from "../../Lib/Utils";
 export default class ClapCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("clap", {
 			aliases: ["clap"],
 			category: "Fun",
@@ -26,7 +26,7 @@ export default class ClapCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<void> {
+	async exec(message: Message, { args }): Promise<void> {
 		message.util.send("👏" + (await fixword(args.replace("/s+/g", "👏").replace(/@/g, "@​").split(" ").join("👏"))) + "👏");
 	}
 }

@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message } from "discord.js";
 
 export default class leaveguildCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("leaveguild", {
 			aliases: ["leaveguild"],
 			category: "Developer",
@@ -24,7 +24,7 @@ export default class leaveguildCommand extends Command {
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message, { args }): Promise<void> {
+	async exec(message: Message, { args }): Promise<void> {
 		const guild = this.client.guilds.cache.get(args);
 		await guild.leave().catch((e) => message.util.send("a error occured trying to leave that guild"));
 		message.util.send({

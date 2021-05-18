@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import type { CommandInteraction, Message } from "discord.js";
 import c from "centra";
 export default class GithubUserCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("githubuser", {
 			aliases: ["githubuser", "ghu", "githubu"],
 			category: "coding",

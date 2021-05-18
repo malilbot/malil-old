@@ -2,7 +2,7 @@ import { Listener } from "discord-akairo";
 import { Guild } from "discord.js";
 import Client from "../../Classes/Client";
 export default class guildDelete extends Listener {
-	public constructor(client: Client) {
+	constructor(client: Client) {
 		super("guildDelete", {
 			emitter: "client",
 			event: "guildDelete",

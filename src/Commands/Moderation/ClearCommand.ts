@@ -1,7 +1,7 @@
 import Command from "../../Classes/malilCommand";
 import { MessageEmbed, GuildChannel, TextChannel, Message } from "discord.js";
 export default class ClearCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("clear", {
 			aliases: ["clear", "clean", "purge"],
 			category: "Moderation",
@@ -25,7 +25,7 @@ export default class ClearCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<Message | void> {
+	async exec(message: Message, { args }): Promise<Message | void> {
 		const num = args;
 		const deleteCount = parseInt(args, 10) + 1;
 		if (!deleteCount || deleteCount < 1 || deleteCount > 100) return message.util.send("Please provide a number between 1 and 99 for the number of messages to delete");

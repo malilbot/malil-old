@@ -1,7 +1,7 @@
 import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message, TextChannel } from "discord.js";
 export default class LockCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("lock", {
 			aliases: ["lock", "unlock", "close", "lockchannel", "unlockchannel"],
 			category: "Moderation",
@@ -24,7 +24,7 @@ export default class LockCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { selectedChannel }: { selectedChannel: string }): Promise<void> {
+	async exec(message: Message, { selectedChannel }: { selectedChannel: string }): Promise<void> {
 		selectedChannel = selectedChannel?.replace(/(<|>|#)/g, "");
 		const chnl = message.guild.channels.cache.find((channel) => channel.name.toLowerCase() == selectedChannel) || message.guild.channels.cache.get(selectedChannel);
 

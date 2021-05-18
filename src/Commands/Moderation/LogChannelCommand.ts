@@ -3,7 +3,7 @@ import { TextChannel } from "discord.js";
 import { MessageEmbed, Message, GuildChannel } from "discord.js";
 
 export default class LogChannelCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("logchannel", {
 			aliases: ["logchannel", "modlogs"],
 			category: "Moderation",
@@ -27,7 +27,7 @@ export default class LogChannelCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<void> {
+	async exec(message: Message, { args }): Promise<void> {
 		let split: string;
 		if (args) args = args.replace(/<|#|>/g, "");
 

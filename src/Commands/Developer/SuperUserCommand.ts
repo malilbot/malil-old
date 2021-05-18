@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message, TextChannel, User, GuildMember } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 export default class SuperUserCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("superUser", {
 			aliases: ["sudo", "su", "superUsers"],
 			category: "Developer",
@@ -33,7 +33,7 @@ export default class SuperUserCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args, member }: { args: string; member: GuildMember }): Promise<Message> {
+	async exec(message: Message, { args, member }: { args: string; member: GuildMember }): Promise<Message> {
 		if (!args) {
 			let list = "";
 			const arr = this.client.gp.get("superUsers");

@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message, TextChannel } from "discord.js";
 
 export default class starboardCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("starboard", {
 			aliases: ["starboard"],
 			category: "Utility",
@@ -46,7 +46,7 @@ export default class starboardCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { action, args, channel }: { action: string; args: string; channel: TextChannel }): Promise<Message | void> {
+	async exec(message: Message, { action, args, channel }: { action: string; args: string; channel: TextChannel }): Promise<Message | void> {
 		const starboard = {
 			emoji: "⭐",
 			count: 3,

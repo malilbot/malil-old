@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { Message } from "discord.js";
 
 export default class SecretCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("secret", {
 			aliases: ["secret"],
 			category: "Developer",
@@ -18,7 +18,7 @@ export default class SecretCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { code }) {
+	async exec(message: Message, { code }) {
 		message.util.send("woah you found my  secret command", { allowedMentions: { repliedUser: false } });
 	}
 }

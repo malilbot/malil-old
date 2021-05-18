@@ -4,7 +4,7 @@ import centra from "centra";
 import { MessageEmbed, Message } from "discord.js";
 
 export default class CreditsCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("credits", {
 			aliases: ["credits", "credit"],
 			category: "Info",
@@ -18,7 +18,7 @@ export default class CreditsCommand extends Command {
 			channel: "guild",
 		});
 	}
-	public async exec(message: Message): Promise<void> {
+	async exec(message: Message): Promise<void> {
 		const res = await (await centra("https://raw.githubusercontent.com/SkyBlockDev/malil-akairo/main/CREDITS.md", "GET").header("User-Agent", "Malil").send()).text();
 		const body = res.replace(/### credits/g, "").replace(/###/g, "");
 

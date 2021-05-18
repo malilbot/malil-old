@@ -3,7 +3,7 @@ import { MessageEmbed, Message } from "discord.js";
 import { hst } from "../../Lib/Utils";
 import { exec } from "child_process";
 export default class ExecCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("exec", {
 			aliases: ["exec"],
 			category: "Developer",
@@ -25,7 +25,7 @@ export default class ExecCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { code }): Promise<void> {
+	async exec(message: Message, { code }): Promise<void> {
 		exec(code, async (error, stdout, stderr) => {
 			const embed = new MessageEmbed().setTitle(`Exec`).setColor(this.client.colors.default).addField("🍞 Input", `\`\`\`bash\n${code}\`\`\``).addField("Type", "bash");
 			let output = "";

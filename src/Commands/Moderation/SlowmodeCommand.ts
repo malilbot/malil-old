@@ -3,7 +3,7 @@ import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discor
 import { MessageEmbed } from "discord.js";
 import { ms } from "../../Lib/Utils";
 export default class SlowmodeCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("slowmode", {
 			aliases: ["slowmode", "sm"],
 			category: "Moderation",
@@ -27,7 +27,7 @@ export default class SlowmodeCommand extends Command {
 		});
 	}
 
-	public async exec(message, { args }): Promise<Message> {
+	async exec(message, { args }): Promise<Message> {
 		return message.util.send("Sorry this command is currently disabled due to djs issues");
 		const Embed = new MessageEmbed().setColor(this.client.colors.purple).setTimestamp();
 

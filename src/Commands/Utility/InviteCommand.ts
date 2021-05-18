@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message, CommandInteraction } from "discord.js";
 
 export default class InviteCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("invite", {
 			aliases: ["invite"],
 			category: "Utility",
@@ -18,7 +18,7 @@ export default class InviteCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message): Promise<Message> {
+	async exec(message: Message): Promise<Message> {
 		const embed = new MessageEmbed()
 			.setTitle(`click here to invite ${this.client.user.username} to your server`)
 			.setURL(`https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&permissions=117824&scope=bot%20applications.commands`)

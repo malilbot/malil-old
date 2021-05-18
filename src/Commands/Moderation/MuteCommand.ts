@@ -4,7 +4,7 @@ import { utc } from "moment";
 import { GetMember, ms, Infract } from "../../Lib/Utils";
 
 export default class MuteCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("mute", {
 			aliases: ["mute", "tempmute", "muterole", "mutedrole"],
 			category: "Moderation",
@@ -53,7 +53,7 @@ export default class MuteCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args, user, args2, time = "PERM" }: { args: string; user: GuildMember; args2: string; time: number | "PERM" }): Promise<Message> {
+	async exec(message: Message, { args, user, args2, time = "PERM" }: { args: string; user: GuildMember; args2: string; time: number | "PERM" }): Promise<Message> {
 		const alias = message.util.parsed.alias;
 		if (alias == "muterole" || alias == "mutedrole") {
 			const role = message.guild.roles.cache.find((role) => role.name.toLowerCase() == args2.toLowerCase()) || (await message.guild.roles.cache.get(args2));

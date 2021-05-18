@@ -5,7 +5,7 @@ import skytils from "../../Lib/skytils";
 import tricked from "../../Lib/tricked";
 import drm from "../../Lib/dungeonroom";
 export default class message extends Listener {
-	public constructor(client: Client) {
+	constructor(client: Client) {
 		super("message", {
 			emitter: "client",
 			event: "message",

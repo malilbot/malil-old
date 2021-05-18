@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message } from "discord.js";
 import { hst } from "../../Lib/Utils";
 export default class DecodeCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("decode", {
 			aliases: ["decode"],
 			category: "Utility",
@@ -26,7 +26,7 @@ export default class DecodeCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }) {
+	async exec(message: Message, { args }) {
 		const embed = new MessageEmbed()
 			.setTitle("Decode things")
 			.setDescription("input: " + (await hst(args, true)) || "none")

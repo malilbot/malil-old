@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { Message, MessageCollector, TextChannel } from "discord.js";
 import { EditGist, GetGist } from "../../Lib/Utils";
 export default class ColorCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("color", {
 			aliases: ["color"],
 			category: "Custom",
@@ -26,7 +26,7 @@ export default class ColorCommand extends Command {
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message, { args }: { args: string }) {
+	async exec(message: Message, { args }: { args: string }) {
 		/** some checks */
 		if (message.guild.id !== "807302538558308352" && message.guild.id !== "755166643927122091") return;
 		if (message.member.roles.cache.some((role) => role.name === "Server Booster")) {

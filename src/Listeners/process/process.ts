@@ -4,7 +4,7 @@ import Client from "../../Classes/Client";
 import { hst } from "../../Lib/Utils";
 export default class process extends Listener {
 	client: Client;
-	public constructor(client: Client) {
+	constructor(client: Client) {
 		super("process", {
 			emitter: "process",
 			event: "unhandledRejection",
@@ -19,7 +19,7 @@ export default class process extends Listener {
         (channel as TextChannel).send(error.stack)
     }
     */
-	public async exec(error: Error, promise: Promise<unknown>): Promise<void> {
+	async exec(error: Error, promise: Promise<unknown>): Promise<void> {
 		this.client.logger.info(error.stack);
 		try {
 			const channel = await this.client.channels.fetch(this.client.consts.channels.errChannel);

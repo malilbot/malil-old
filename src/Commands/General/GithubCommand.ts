@@ -3,7 +3,7 @@ import type { Message, TextChannel, CommandInteraction } from "discord.js";
 import centra from "centra";
 import { MessageEmbed, GuildMember } from "discord.js";
 export default class GithubCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("github", {
 			aliases: ["github", "stalk"],
 			category: "General",
@@ -93,7 +93,7 @@ export default class GithubCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { action, channel, repo }: { action: string; channel: TextChannel; repo: string[] }): Promise<Message> {
+	async exec(message: Message, { action, channel, repo }: { action: string; channel: TextChannel; repo: string[] }): Promise<Message> {
 		console.log(repo);
 		if (!action) return message.util.send("use  *github set <#channel> to get started use *help github for more info");
 

@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message, GuildMember, User } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 export default class BlacklistCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("blacklist", {
 			aliases: ["blacklist"],
 			category: "Developer",
@@ -25,7 +25,7 @@ export default class BlacklistCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<Message> {
+	async exec(message: Message, { args }): Promise<Message> {
 		if (!args) {
 			let list = "";
 			const arr = this.client.blacklist.get("blacklisted", "list");

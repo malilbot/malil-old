@@ -10,7 +10,7 @@ export default class extends Inhibitor {
 		});
 	}
 	// prettier-ignore
-	public async exec(message: Message, command: Command | null | undefined ): Promise<boolean> {
+	async exec(message: Message, command: Command | null | undefined ): Promise<boolean> {
 		if (message.author.bot) return false;
 		if(command.id == "disable") return false
 		if (superUsers.includes(message.author.id)) return false;

@@ -7,7 +7,7 @@ import { hst, InterfaceClient } from "../../Lib/Utils";
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 export default class PyCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("py", {
 			aliases: ["py"],
 			category: "Developer",
@@ -52,7 +52,7 @@ export default class PyCommand extends Command {
 			channel: "guild",
 		});
 	}
-	public async exec(
+	async exec(
 		message: Message,
 		{
 			code,

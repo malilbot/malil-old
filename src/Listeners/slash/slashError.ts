@@ -3,7 +3,7 @@ import { Listener } from "discord-akairo";
 import Command from "../../Classes/malilCommand";
 
 export default class CommandErrorListener extends Listener {
-	public constructor() {
+	constructor() {
 		super("slashError", {
 			emitter: "commandHandler",
 			event: "slashError",
@@ -11,7 +11,7 @@ export default class CommandErrorListener extends Listener {
 		});
 	}
 
-	public async exec(error: Error, message: Interaction, command: Command | null | undefined): Promise<void> {
+	async exec(error: Error, message: Interaction, command: Command | null | undefined): Promise<void> {
 		console.log(Interaction);
 		console.log(error);
 	}

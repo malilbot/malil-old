@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import type { Message } from "discord.js";
 import { fixword } from "../../Lib/Utils";
 export default class PollCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("poll", {
 			aliases: ["poll"],
 			category: "Utility",
@@ -27,7 +27,7 @@ export default class PollCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }: { args: string }): Promise<Message> {
+	async exec(message: Message, { args }: { args: string }): Promise<Message> {
 		const input = await fixword(args);
 		if (!input) return message.util.send("pelase ask a question");
 

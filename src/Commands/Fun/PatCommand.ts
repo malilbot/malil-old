@@ -3,7 +3,7 @@ import type { Message, GuildMember, CommandInteraction } from "discord.js";
 import { fixword, GetMember } from "../../Lib/Utils";
 import c from "centra";
 export default class PatCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("pat", {
 			aliases: ["pat", "patpat", "pet"],
 			category: "Fun",
@@ -56,7 +56,7 @@ export default class PatCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { member, color }: { member: string | GuildMember; color: string }): Promise<Message> {
+	async exec(message: Message, { member, color }: { member: string | GuildMember; color: string }): Promise<Message> {
 		//return message.reply("WILL BE BACK SOON");
 		let image: string;
 		if (!member) image = message.author.avatarURL({ dynamic: false, format: "png" });
@@ -79,7 +79,6 @@ export default class PatCommand extends Command {
 		return message.reply({ content: "patting", files: [{ attachment: patted, name: `patted.gif` }] });
 	}
 	async execSlash(message: CommandInteraction) {
-		
 		let image: string;
 		let speed: number = (message.options.find((i) => i.name == "speed")?.value as number) || 20;
 		const ign = message.options.find((i) => i.name == "ign")?.value;

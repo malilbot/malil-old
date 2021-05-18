@@ -3,7 +3,7 @@ import { Message } from "discord.js";
 import centra from "centra";
 import { MessageEmbed } from "discord.js";
 export default class shortenCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("shorten", {
 			aliases: ["short", "shorten"],
 			category: "General",
@@ -25,7 +25,7 @@ export default class shortenCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<Message> {
+	async exec(message: Message, { args }): Promise<Message> {
 		//full_short_link
 		if (!args) return message.util.send("Please provide a link");
 		if (!args.startsWith("https://")) return message.util.send("Thats not a link");

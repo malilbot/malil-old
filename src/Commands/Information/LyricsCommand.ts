@@ -3,7 +3,7 @@ import { MessageEmbed, Message, CommandInteraction } from "discord.js";
 import { GetSong } from "../../Lib/Utils";
 
 export default class lyricsCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("lyrics", {
 			aliases: ["lyrics", "lyc"],
 			category: "Info",
@@ -39,7 +39,7 @@ export default class lyricsCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<void> {
+	async exec(message: Message, { args }): Promise<void> {
 		function cutString(s, n) {
 			/* ----------------------- */
 			const cut = s.indexOf(" ", n);

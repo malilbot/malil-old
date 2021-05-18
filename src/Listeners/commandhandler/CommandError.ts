@@ -4,7 +4,7 @@ import Command from "../../Classes/malilCommand";
 import { hst, a1 } from "../../Lib/Utils";
 
 export default class CommandErrorListener extends Listener {
-	public constructor() {
+	constructor() {
 		super("commandError", {
 			emitter: "commandHandler",
 			event: "error",
@@ -12,7 +12,7 @@ export default class CommandErrorListener extends Listener {
 		});
 	}
 
-	public async exec(error: Error, message: Message, command: Command | null | undefined): Promise<void> {
+	async exec(error: Error, message: Message, command: Command | null | undefined): Promise<void> {
 		if (error.stack.includes("DiscordAPIError: Cannot channel.send without permission to read message history")) {
 			message.util.send("I cannot work properly without seeing message history");
 			return;

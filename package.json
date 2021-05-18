@@ -6,7 +6,7 @@
 	"scripts": {
 		"lintfix": "eslint . --ext .ts --fix",
 		"parsemd": "node dist/Lib/parseMd.js",
-		"format": "prettier-eslint --write \"{,!(node_modules)/**/}*.{ts,jsx}\"",
+		"format": "prettier-eslint --write \"{,!(node_modules)/**/}*.{js,jsx}\"",
 		"start": "tsc && node ./dist/index.js",
 		"build": "tsc",
 		"enmap": "sh ./resources/fixEnmap.sh",

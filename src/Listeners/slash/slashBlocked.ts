@@ -3,7 +3,7 @@ import { Listener } from "discord-akairo";
 import Command from "../../Classes/malilCommand";
 
 export default class slashBlockedListener extends Listener {
-	public constructor() {
+	constructor() {
 		super("slashBlocked", {
 			emitter: "commandHandler",
 			event: "slashBlocked",
@@ -11,7 +11,7 @@ export default class slashBlockedListener extends Listener {
 		});
 	}
 
-	public async exec(interaction: CommandInteraction): Promise<void> {
+	async exec(interaction: CommandInteraction): Promise<void> {
 		return interaction.reply(`**${interaction.commandName}** Is owner only`, {
 			ephemeral: true,
 		});

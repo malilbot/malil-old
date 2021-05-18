@@ -4,7 +4,7 @@ import centra from "centra";
 import type { Message, CommandInteraction } from "discord.js";
 
 export default class VoteCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("vote", {
 			aliases: ["vote", "votes"],
 			category: "Info",
@@ -18,7 +18,7 @@ export default class VoteCommand extends Command {
 			channel: "guild",
 		});
 	}
-	public async exec(message: Message): Promise<Message> {
+	async exec(message: Message): Promise<Message> {
 		const embed = this.client.util
 			.embed()
 			.setTitle("Vote lists")

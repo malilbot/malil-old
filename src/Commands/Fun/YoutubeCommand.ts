@@ -1,7 +1,7 @@
 import Command from "../../Classes/malilCommand";
 import type { Message, CommandInteraction, VoiceChannel } from "discord.js";
 export default class YoutubeCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("youtube", {
 			aliases: ["youtube", "yt"],
 			category: "Fun",
@@ -28,7 +28,7 @@ export default class YoutubeCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { channel }): Promise<Message | void> {
+	async exec(message: Message, { channel }): Promise<Message | void> {
 		if (!channel) return message.reply("Thats not a voice channel or a channel.");
 		else return await message.reply((await this.createInvite(channel as VoiceChannel)) + " Clieck on the link to join the youtube together session");
 	}

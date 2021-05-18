@@ -3,7 +3,7 @@ import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discor
 import { MessageEmbed } from "discord.js";
 import { fixword } from "../../Lib/Utils";
 export default class UwuCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("uwu", {
 			aliases: ["uwu", "owo"],
 			category: "Fun",
@@ -26,7 +26,7 @@ export default class UwuCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<Message> {
+	async exec(message: Message, { args }): Promise<Message> {
 		const faces = [`(・'ω'・)`, ";;w;;", "owo", "UwU", ">w<", "^w^", "0w0", "*w*"];
 		function Owoify(str) {
 			return str

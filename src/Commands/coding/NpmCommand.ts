@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { CommandInteraction, Message, MessageCollector, TextChannel } from "discord.js";
 import c from "centra";
 export default class NpmCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("npm", {
 			aliases: ["npm", "node", "nodejs"],
 			category: "coding",

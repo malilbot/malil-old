@@ -4,7 +4,7 @@ import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discor
 import { MessageEmbed } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 export default class UserinfoCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("userinfo", {
 			aliases: ["userinfo", "u", "user"],
 			category: "General",
@@ -29,7 +29,7 @@ export default class UserinfoCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { member }: { member: GuildMember }): Promise<Message> {
+	async exec(message: Message, { member }: { member: GuildMember }): Promise<Message> {
 		const flags = {
 			DISCORD_EMPLOYEE: "Discord Employee",
 			DISCORD_PARTNER: "Discord Partner",

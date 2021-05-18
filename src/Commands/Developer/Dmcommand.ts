@@ -3,7 +3,7 @@ import type { Message, GuildMember } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 export default class DmCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("dm", {
 			aliases: ["dm"],
 			category: "Developer",
@@ -34,7 +34,7 @@ export default class DmCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args, member }: { args: string; member: GuildMember }) {
+	async exec(message: Message, { args, member }: { args: string; member: GuildMember }) {
 		if (!member) return message.util.reply("User not found");
 		member.send(args.split(" ").slice(1).join(" ") || "e").catch((e) => message.util.send(e, { allowedMentions: { repliedUser: false } }));
 		message.util.send(`Dmed ${member.user.tag}`, { allowedMentions: { repliedUser: false } });

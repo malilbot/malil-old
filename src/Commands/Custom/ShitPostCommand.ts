@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { Message, TextChannel } from "discord.js";
 
 export default class ShitPostCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("shitPost", {
 			aliases: ["shitPost"],
 			category: "Custom",
@@ -26,7 +26,7 @@ export default class ShitPostCommand extends Command {
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message, { args }) {
+	async exec(message: Message, { args }) {
 		if (!args) {
 			let list = "";
 			const arr = this.client.gp.get("shitpost");

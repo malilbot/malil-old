@@ -3,7 +3,7 @@ import { Guild } from "discord.js";
 import Client from "../../Classes/Client";
 import { main } from "../../Lib/Utils";
 export default class guildCreate extends Listener {
-	public constructor(client: Client) {
+	constructor(client: Client) {
 		super("guildCreate", {
 			emitter: "client",
 			event: "guildCreate",

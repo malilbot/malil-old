@@ -3,7 +3,7 @@ import { MessageManager, Message, CommandInteraction } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import { malilStartGiveaway } from "../../Lib/Utils";
 export default class giveawayCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("giveaway", {
 			aliases: ["giveaway"],
 			category: "Utility",

@@ -3,7 +3,7 @@ import { GuildMember, Message, MessageAttachment } from "discord.js";
 import { hst, GetMember } from "../../Lib/Utils";
 import c from "centra";
 export default class AsciifyCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("asciify", {
 			aliases: ["asciify", "ascii", "assci", "asccii", "asci", "aci"],
 			args: [
@@ -28,7 +28,7 @@ export default class AsciifyCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { member }: { member: GuildMember }): Promise<Message> {
+	async exec(message: Message, { member }: { member: GuildMember }): Promise<Message> {
 		let url: string | MessageAttachment;
 
 		message.attachments.forEach((attachment) => {

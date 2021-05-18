@@ -16,7 +16,7 @@ interface Option {
 }
 
 export default class Client extends AkairoClient {
-	public commandHandler: CommandHandler = new CommandHandler(this, {
+	commandHandler: CommandHandler = new CommandHandler(this, {
 		directory: join(__dirname, "..", "Commands"),
 		prefix: async (message) => {
 			if (message?.guild == null) return [Settings.prefix, "malil"];
@@ -42,25 +42,25 @@ export default class Client extends AkairoClient {
 			otherwise: "",
 		},
 	});
-	public listenerHandler: ListenerHandler = new ListenerHandler(this, {
+	listenerHandler: ListenerHandler = new ListenerHandler(this, {
 		directory: join(__dirname, "..", "Listeners"),
 	});
 
-	public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, {
+	inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, {
 		directory: join(__dirname, "..", "Inhibitors"),
 	});
 
-	public taskHandler: TaskHandler = new TaskHandler(this, {
+	taskHandler: TaskHandler = new TaskHandler(this, {
 		directory: join(),
 	});
 
-	public botLists: BotLists = new BotLists(this, {
+	botLists: BotLists = new BotLists(this, {
 		topgg: credentials.bottokens.topgg,
 		discordbotlist: credentials.bottokens.discordbotlist,
 	});
-	public config: Option;
+	config: Option;
 
-	public constructor(config: Option) {
+	constructor(config: Option) {
 		super({
 			ownerID: config.owners,
 			superUserID: config.superUsers,
@@ -95,7 +95,7 @@ export default class Client extends AkairoClient {
 		}
 	}
 
-	public _init(): void {
+	_init(): void {
 		this.commandHandler.useListenerHandler(this.listenerHandler);
 		this.commandHandler.useInhibitorHandler(this.inhibitorHandler);
 		this.listenerHandler.setEmitters({
@@ -111,7 +111,7 @@ export default class Client extends AkairoClient {
 		this.giveawayManager.loadAll();
 	}
 
-	public async goo(): Promise<unknown> {
+	async goo(): Promise<unknown> {
 		await this._init();
 		return this.login(this.config.token);
 	}

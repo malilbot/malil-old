@@ -3,7 +3,7 @@ import { GetMember } from "../../Lib/Utils";
 import { MessageEmbed, Message, GuildChannel, TextChannel, GuildMember } from "discord.js";
 import { hst } from "../../Lib/Utils";
 export default class InfractionsCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("infractions", {
 			aliases: ["infractions", "warns", "warnings"],
 			category: "Moderation",
@@ -29,7 +29,7 @@ export default class InfractionsCommand extends Command {
 			channel: "guild",
 		});
 	}
-	public async exec(message: Message, { user }: { user: GuildMember }): Promise<Message> {
+	async exec(message: Message, { user }: { user: GuildMember }): Promise<Message> {
 		if (!user?.user?.tag) return message.util.send("user not found");
 
 		let infractions = await this.client.db.getInfractions(user.id, message.guild.id);

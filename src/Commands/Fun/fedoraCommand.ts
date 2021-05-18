@@ -3,7 +3,7 @@ import type { GuildMember, Message, CommandInteraction } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 import centra from "centra";
 export default class FedoraCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("fedora", {
 			aliases: ["fedora"],
 			category: "Fun",
@@ -37,7 +37,7 @@ export default class FedoraCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { member }: { member: GuildMember }): Promise<void> {
+	async exec(message: Message, { member }: { member: GuildMember }): Promise<void> {
 		const msg = await message.util.send("<a:loading:820592866685485076>");
 		const url = member.user.displayAvatarURL({
 			size: 512,

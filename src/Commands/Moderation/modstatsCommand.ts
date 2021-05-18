@@ -4,7 +4,7 @@ import { GuildMember, TextChannel } from "discord.js";
 import { MessageEmbed, Message, GuildChannel } from "discord.js";
 
 export default class modstatsCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("modstats", {
 			aliases: ["modstats"],
 			category: "Moderation",
@@ -33,7 +33,7 @@ export default class modstatsCommand extends Command {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message, { user }: { user: GuildMember }): Promise<Message> {
+	async exec(message: Message, { user }: { user: GuildMember }): Promise<Message> {
 		if (!user) return message.reply("User not found");
 		const infractions = await this.client.db.getModActions(user.id, message.guild.id);
 		const warns = infractions.filter((i) => i.type.toLowerCase() == "warn");

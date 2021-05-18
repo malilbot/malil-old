@@ -2,7 +2,7 @@ import { Listener, Command } from "discord-akairo";
 import Client from "../../Classes/Client";
 import { Message } from "discord.js";
 export default class commandBlocked extends Listener {
-	public constructor(client: Client) {
+	constructor(client: Client) {
 		super("commandBlocked", {
 			emitter: "commandHandler",
 			event: "commandBlocked",

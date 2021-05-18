@@ -9,7 +9,7 @@ export default class extends Inhibitor {
 			type: "post",
 		});
 	}
-	public async exec(message: Message, command: Command): Promise<boolean> {
+	async exec(message: Message, command: Command): Promise<boolean> {
 		if (superUsers.includes(message.author.id)) return false;
 		if (message.member.permissions.has("MANAGE_MESSAGES")) return false;
 

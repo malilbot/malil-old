@@ -1,7 +1,7 @@
 import Command from "../../Classes/malilCommand";
 import { CommandInteraction, Message, Role, Interaction } from "discord.js";
 export default class RemoveRankCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("removerank", {
 			aliases: ["rmrank", "removeRank", "delrank", "rrank"],
 			category: "Moderation",
@@ -37,7 +37,7 @@ export default class RemoveRankCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { role }: { role: Role }): Promise<Message | void> {
+	async exec(message: Message, { role }: { role: Role }): Promise<Message | void> {
 		if (!role) return message.reply("No role specified / thats not a role");
 		const ranks = this.client.guilddata.ensure(message.guild.id, [], "ranks");
 

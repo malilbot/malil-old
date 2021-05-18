@@ -4,7 +4,7 @@ import { main, sec, fourth, a1 } from "../../Lib/Utils";
 import Client from "../../Classes/Client";
 
 export default class CommandStarted extends Listener {
-	public constructor(client: Client) {
+	constructor(client: Client) {
 		super("commandStarted", {
 			emitter: "commandHandler",
 			event: "commandStarted",

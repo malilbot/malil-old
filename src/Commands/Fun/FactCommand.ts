@@ -3,7 +3,7 @@ import { Message } from "discord.js";
 import {} from "../../Lib/Utils";
 import centra from "centra";
 export default class FactCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("fact", {
 			aliases: ["fact"],
 			category: "Fun",
@@ -25,7 +25,7 @@ export default class FactCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message): Promise<void> {
+	async exec(message: Message): Promise<void> {
 		const res = await (await centra(`https://api.dagpi.xyz/data/fact`, "get").header("Authorization", this.client.credentials.dagpi).send()).json();
 		message.util.send(res.fact, { allowedMentions: { repliedUser: false } });
 	}

@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message } from "discord.js";
 import { fixword } from "../../Lib/Utils";
 export default class MockCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("mock", {
 			aliases: ["mock", "itriedmybest", "mok"],
 			category: "Fun",
@@ -25,7 +25,7 @@ export default class MockCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<void> {
+	async exec(message: Message, { args }): Promise<void> {
 		// -- split the args
 		const array = args.split("");
 		// -- defining text

@@ -1,7 +1,7 @@
 import Command from "../../Classes/malilCommand";
 import { Message, MessageEmbed, CommandInteraction } from "discord.js";
 export default class HelpCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("help", {
 			aliases: ["help", "h", "ls", "commands"],
 			category: "General",
@@ -22,7 +22,7 @@ export default class HelpCommand extends Command {
 		});
 	}
 
-	public exec(message: Message, { command }: { command: Command }): Promise<Message> {
+	exec(message: Message, { command }: { command: Command }): Promise<Message> {
 		if (command) {
 			return message.util.send(
 				new MessageEmbed()

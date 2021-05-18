@@ -3,7 +3,7 @@ import { GetMember } from "../../Lib/Utils";
 import { GuildMember, Message } from "discord.js";
 
 export default class NickCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("nick", {
 			aliases: ["nick", "changenick"],
 			category: "Moderation",
@@ -34,7 +34,7 @@ export default class NickCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { name, user }: { name: string; user: GuildMember }): Promise<Message> {
+	async exec(message: Message, { name, user }: { name: string; user: GuildMember }): Promise<Message> {
 		const NewName = name.split(" ").splice(1).join(" ");
 		if (!user) return message.util.send("user not found");
 		try {

@@ -5,7 +5,7 @@ import moment from "moment";
 import { utc } from "moment";
 
 export default class WarnCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("warn", {
 			aliases: ["warn"],
 			category: "Moderation",
@@ -38,7 +38,7 @@ export default class WarnCommand extends Command {
 			channel: "guild",
 		});
 	}
-	public async exec(message: Message, { member, reason }: { member: GuildMember; reason: string }): Promise<Message> {
+	async exec(message: Message, { member, reason }: { member: GuildMember; reason: string }): Promise<Message> {
 		let dm = true;
 		if (!member) return message.reply("Member not found");
 		message.channel.send(`**${member.user.tag}** has been warned`);

@@ -4,7 +4,7 @@ import { exec } from "child_process";
 import { ms, Util } from "../../Lib/Utils";
 import os from "os";
 export default class LoadCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("load", {
 			aliases: ["load"],
 			category: "Developer",
@@ -28,7 +28,7 @@ export default class LoadCommand extends Command {
 		});
 	}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message): Promise<void> {
+	async exec(message: Message): Promise<void> {
 		const ut = new Util();
 
 		const totalGuilds = await this.client.shard.fetchClientValues("guilds.cache.size").then((serv) => serv.reduce((acc, guildCount) => acc + guildCount, 0));

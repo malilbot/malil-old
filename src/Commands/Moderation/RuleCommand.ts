@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message } from "discord.js";
 
 export default class RulesCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("rules", {
 			aliases: ["rules"],
 			category: "Moderation",
@@ -26,7 +26,7 @@ export default class RulesCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args }): Promise<Message> {
+	async exec(message: Message, { args }): Promise<Message> {
 		if (args == "1") {
 			const embed = new MessageEmbed()
 				.setDescription(

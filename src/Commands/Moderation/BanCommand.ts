@@ -4,7 +4,7 @@ import { Message, GuildMember, MessageEmbed, GuildChannel, TextChannel } from "d
 import { utc } from "moment";
 import { GetMember, Infract } from "../../Lib/Utils";
 export default class BanCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("ban", {
 			aliases: ["ban", "bang"],
 			category: "Moderation",
@@ -34,7 +34,7 @@ export default class BanCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { reason, user }: { user: GuildMember; reason: string }): Promise<Message> {
+	async exec(message: Message, { reason, user }: { user: GuildMember; reason: string }): Promise<Message> {
 		if (!user) return message.util.send("user not found");
 		if (!user.bannable) return message.util.send(`Sorry, i can't ban this user`);
 

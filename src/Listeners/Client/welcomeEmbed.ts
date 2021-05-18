@@ -3,7 +3,7 @@ import { GuildMember, TextChannel, Message } from "discord.js";
 import Client from "../../Classes/Client";
 let lastJoin: Message;
 export default class WelcomeEmbed extends Listener {
-	public constructor(client: Client) {
+	constructor(client: Client) {
 		super("welcomeEmbed", {
 			emitter: "client",
 			event: "guildMemberAdd",

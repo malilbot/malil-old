@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, TextChannel, Message, MessageAttachment } from "discord.js";
 
 export default class QuoteCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("quote", {
 			aliases: ["quote", "qt"],
 			category: "Utility",
@@ -31,7 +31,7 @@ export default class QuoteCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { args, force }: { args: string; force: boolean }): Promise<Message> {
+	async exec(message: Message, { args, force }: { args: string; force: boolean }): Promise<Message> {
 		//todo fancy quotes
 		if (!args) return message.util.send("please add a message link");
 		if (!message.content.includes("/")) return message.util.send("Please add a message link");

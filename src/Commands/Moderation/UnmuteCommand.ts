@@ -2,7 +2,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message, Role, Guild, GuildManager, GuildMember } from "discord.js";
 import { GetMember, Infract, main, sec, third } from "../../Lib/Utils";
 export default class UnmuteCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("unmute", {
 			aliases: ["unmute"],
 			category: "Moderation",
@@ -32,7 +32,7 @@ export default class UnmuteCommand extends Command {
 			channel: "guild",
 		});
 	}
-	public async exec(message: Message, { args, user }: { args: string; user: GuildMember }): Promise<Message> {
+	async exec(message: Message, { args, user }: { args: string; user: GuildMember }): Promise<Message> {
 		if (!args) return message.util.send("No user provided");
 
 		const reason = args.split(" ").slice(1).join(" ");

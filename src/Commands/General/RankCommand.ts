@@ -1,7 +1,7 @@
 import Command from "../../Classes/malilCommand";
 import { CommandInteraction, Message, Role } from "discord.js";
 export default class RankCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("rank", {
 			aliases: ["rank", "joinrank", "ranks", "quitrank"],
 			category: "General",
@@ -35,7 +35,7 @@ export default class RankCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { role }: { role: Role }): Promise<void | Message> {
+	async exec(message: Message, { role }: { role: Role }): Promise<void | Message> {
 		if (role) {
 			const ranks = this.client.guilddata.ensure(message.guild.id, [], "ranks");
 			if (ranks.includes(role.id)) {
@@ -58,7 +58,7 @@ export default class RankCommand extends Command {
 		const embed = this.client.util.embed().setAuthor(message.guild.name, message.guild.iconURL()).addField("Available ranks", roles).setColor(this.client.colors.default);
 		return message.reply(embed);
 	}
-	public async execSlash(interaction: CommandInteraction): Promise<void | Message> {
+	async execSlash(interaction: CommandInteraction): Promise<void | Message> {
 		const role = interaction.options[0]?.role;
 		if (role) {
 			const ranks = this.client.guilddata.ensure(interaction.guild.id, [], "ranks");

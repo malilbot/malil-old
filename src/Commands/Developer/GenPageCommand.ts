@@ -3,7 +3,7 @@ import { Message } from "discord.js";
 import { hst } from "../../Lib/Utils";
 const prettier = require("prettier");
 export default class GenPageCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("genpage", {
 			aliases: ["genpage"],
 			category: "Developer",
@@ -25,7 +25,7 @@ export default class GenPageCommand extends Command {
 		});
 	}
 
-	public async exec(message: Message, { code }): Promise<void> {
+	async exec(message: Message, { code }): Promise<void> {
 		let file = "";
 		if (code == "big") {
 			for (const category of this.handler.categories.values()) {

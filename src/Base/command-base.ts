@@ -5,7 +5,7 @@ import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message } from "discord.js";
 
 export default class replacemeCommand extends Command {
-    public constructor() {
+    constructor() {
         super("replaceme", {
             aliases: ["replaceme"],
             category: "Utility",
@@ -30,7 +30,7 @@ export default class replacemeCommand extends Command {
         });
     }
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    public async exec(message: Message, { args }) {
+    async exec(message: Message, { args }) {
 
 
     }

@@ -3,7 +3,7 @@ import { TextChannel } from "discord.js";
 import { MessageEmbed, Message, GuildChannel } from "discord.js";
 
 export default class modonlyCommand extends Command {
-	public constructor() {
+	constructor() {
 		super("modonly", {
 			aliases: ["modonly"],
 			category: "Moderation",
@@ -28,7 +28,7 @@ export default class modonlyCommand extends Command {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public async exec(message: Message, { args }: { args: string }): Promise<Message> {
+	async exec(message: Message, { args }: { args: string }): Promise<Message> {
 		let split: string[];
 		if (args) args = args.replace(/<#|>/gi, "");
 
