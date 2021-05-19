@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="black" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0)">
+        <rect width="512" height="512" />
+        <rect x="61.7352" y="405.955" width="227" height="50" fill="#4EDB1C" />
+        <rect x="73.3263" y="107.009" width="50" height="270.348" transform="rotate(-46 73.3263 107.009)"
+            fill="#4EDB1C" />
+        <rect x="61.7352" y="26.9545" width="50" height="415" fill="#4EDB1C" />
+        <rect x="400.227" y="77.6045" width="50" height="270.582" transform="rotate(46 400.227 77.6045)"
+            fill="#4EDB1C" />
+        <rect x="399.735" y="30.9545" width="50" height="411" fill="#4EDB1C" />
+        <path d="M111.735 74.9545H140.735V172.955H111.735V74.9545Z" fill="black" />
+        <rect x="30" y="114.39" width="35.2959" height="309.763" transform="rotate(-46 30 114.39)" fill="black" />
+        <rect x="374.679" y="171.872" width="35.2959" height="258.124" transform="rotate(46 374.679 171.872)"
+            fill="black" />
+        <rect x="421.52" y="1.2464" width="40.0797" height="69.2301" transform="rotate(46 421.52 1.2464)"
+            fill="black" />
+        <rect x="62.1305" y="27.1971" width="37.8085" height="71.0564" transform="rotate(-46 62.1305 27.1971)"
+            fill="black" />
+    </g>
+</svg>
