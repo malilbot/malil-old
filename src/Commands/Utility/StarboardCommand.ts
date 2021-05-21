@@ -81,7 +81,7 @@ export default class starboardCommand extends Command {
 			data.count = count;
 			this.client.guilddata.set(message.guild.id, data, "starboard");
 			return message.reply(`Succesfully changed the minimum ${"stars"} needed to ${count}`);
-		} else if (action == "channel") {
+		} else if (action == "channel" || action == "set") {
 			if (!channel) return message.reply("Channel not found");
 			data.channel = channel.id;
 			this.client.guilddata.set(message.guild.id, data, "starboard");
@@ -91,7 +91,7 @@ export default class starboardCommand extends Command {
 				this.client.util
 					.embed()
 					.setColor("GREEN")
-					.addField("Starboard", `**Channel**: ${data.channel || "not set"}\n` + `**emoji**: ${data.emoji || "not set"}\n` + `**Count**: ${data.count || "not set"}`)
+					.addField("Starboard", `**Channel**: ${data.channel ? `<#${data.channel}>` : "Not set"}\n` + `**emoji**: ${data.emoji || "not set"}\n` + `**Count**: ${data.count || "not set"}`)
 					.setFooter("Use help starboard to get started")
 			);
 		}

@@ -1,6 +1,9 @@
 import Command from "../../Classes/malilCommand";
 import { Message } from "discord.js";
 import { hst } from "../../Lib/Utils";
+import { join } from "path";
+import { writeFileSync } from "fs";
+import { exec } from "child_process";
 const prettier = require("prettier");
 export default class GenPageCommand extends Command {
 	constructor() {
@@ -26,11 +29,12 @@ export default class GenPageCommand extends Command {
 	}
 
 	async exec(message: Message, { code }): Promise<void> {
-		let file = "";
 		if (code == "big") {
 			for (const category of this.handler.categories.values()) {
 				if (["default"].includes(category.id)) continue;
+
 				if (category.id !== "Developer" && category.id !== "Custom") {
+					let file = "";
 					file += "\n";
 					file += `## ${category.id}\n`;
 					category
@@ -38,12 +42,17 @@ export default class GenPageCommand extends Command {
 						.map((cmd) => {
 							file += `### ${cmd}\n${cmd.description.content}\n`;
 							file += `#### Aliasses\n * ${cmd.aliases.join("\n * ")} \n`;
-
 							file += `#### Examples\n * ${cmd.description.example.join("\n * ").replace(/</gi, "〈").replace(/>/gi, "〉")}\n`;
 						});
+					writeFileSync(join(__dirname, "..", "..", "..", "docs", "commands", `${category.id}.md`), file);
 				}
 			}
+			console.log(`tar -czvf  backups/pages.tar.gz ${join(__dirname, "..", "..", "..", "docs", "commands")}`);
+			exec(`tar -czvf  backups/pages.tar.gz docs/commands`, async () => {
+				message.channel.send({ content: `Some cool files :sunglasses:`, files: [`backups/pages.tar.gz`] });
+			});
 		} else {
+			let file = "";
 			for (const category of this.handler.categories.values()) {
 				if (["default"].includes(category.id)) continue;
 				if (category.id !== "Developer" && category.id !== "Custom") {
@@ -58,16 +67,7 @@ export default class GenPageCommand extends Command {
 						});
 				}
 			}
-			file += "\n<!--This is a auto generated page to change the contents of this edit the command files themself-->";
-			file += "\n";
-			file += `| Slash | description |\n`;
-			file += "|:--------|:-------|\n";
-			//@ts-ignore
-			for (const module of this.client.slashHandler.modules) {
-				file += `| ${module[0]} | ${module[1].data.description} |\n`;
-			}
+			message.channel.send((await hst(prettier.format(file, { semi: false, parser: "markdown" }))) + ".md");
 		}
-
-		message.channel.send((await hst(prettier.format(file, { semi: false, parser: "markdown" }))) + ".md");
 	}
 }
