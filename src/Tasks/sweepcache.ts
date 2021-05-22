@@ -3,7 +3,7 @@ import { Task } from "../Classes/TaskHandler";
 export default class extends Task {
 	constructor() {
 		super("sweep", {
-			delay: 200,
+			delay: 1800000,
 			runOnStart: false,
 		});
 	}
