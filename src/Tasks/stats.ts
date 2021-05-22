@@ -1,12 +1,15 @@
 import { main, sec } from "../Lib/Utils";
 let curStats = [];
 const CurStats = [];
-module.exports = {
-	name: "stats",
-	delay: "30m",
-	runOnStart: false,
-	awaitReady: false,
-	async execute(client) {
+import { Task } from "../Classes/TaskHandler";
+export default class extends Task {
+	constructor() {
+		super("stats", {
+			delay: 1800000,
+			runOnStart: false,
+		});
+	}
+	async exec(client) {
 		const clientGuilds = client.guilds.cache.size;
 		const clientChannels = client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0);
 		const clientMembers = client.guilds.cache.reduce((a, b) => a + b.memberCount, 0);
@@ -34,5 +37,5 @@ module.exports = {
 			client.logger.verbose(main(`[ MEMBERS  ] ${sec(clientMembers)}`));
 			client.logger.verbose(main(`[ GUILDS   ] ${sec(clientGuilds)}`));
 		}
-	},
-};
+	}
+}

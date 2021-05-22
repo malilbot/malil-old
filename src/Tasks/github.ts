@@ -2,13 +2,17 @@ import { MessageEmbed, TextChannel, Guild } from "discord.js";
 import { sleep } from "../Lib/Utils";
 import centra from "centra";
 import { main, sec } from "../Lib/Utils";
+
 let log = 0;
-module.exports = {
-	name: "github",
-	delay: "30m",
-	runOnStart: true,
-	awaitReady: true,
-	async execute(client) {
+import { Task } from "../Classes/TaskHandler";
+export default class extends Task {
+	constructor() {
+		super("github", {
+			delay: 1800000,
+			runOnStart: true,
+		});
+	}
+	async exec(client) {
 		const repos = client.releases.get("all");
 		let repoList = "";
 		for (let i = 0; i < repos.length; i++) {
@@ -86,8 +90,8 @@ module.exports = {
 				}
 			}
 		}
-	},
-};
+	}
+}
 function cutString(s: string, n: number): string {
 	const cut = s.indexOf(" ", n);
 	if (cut == -1) return s;

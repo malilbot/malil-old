@@ -1,7 +1,7 @@
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
 import { Settings, credentials, consts } from "../settings";
 import { superUsers } from "../Lib/config";
-import TaskHandler from "./TaskHandler";
+import { TaskHandler } from "./TaskHandler";
 import { logger } from "../Lib/Utils";
 import BotLists from "./BotLists";
 import giveawayManager from "./giveawayManager";
@@ -51,7 +51,7 @@ export default class Client extends AkairoClient {
 	});
 
 	taskHandler: TaskHandler = new TaskHandler(this, {
-		directory: join(),
+		directory: join(__dirname, "..", "Tasks"),
 	});
 
 	botLists: BotLists = new BotLists(this, {
@@ -105,10 +105,11 @@ export default class Client extends AkairoClient {
 		});
 
 		this.inhibitorHandler.loadAll();
-		this.taskHandler.loadall();
+		this.taskHandler.loadAll();
 		this.commandHandler.loadAll();
 		this.listenerHandler.loadAll();
 		this.giveawayManager.loadAll();
+		this.taskHandler.startAll();
 	}
 
 	async goo(): Promise<unknown> {
