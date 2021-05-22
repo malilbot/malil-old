@@ -6,9 +6,10 @@ export default class extends Task {
 			runOnStart: false,
 		});
 	}
-	async exec(client) {
+	exec(): Promise<void> {
 		console.log("task ran");
-		if (client.user.id !== "749020331187896410") return;
-		client.botLists.post();
+		if (this.client.user.id !== "749020331187896410") return;
+		/*@ts-ignore - reeeeee*/
+		this.client.botLists.post();
 	}
 }
