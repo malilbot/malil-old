@@ -1,65 +1,67 @@
-import { AkairoModule, AkairoHandler, LoadPredicate, AkairoClient } from "discord-akairo";
+import { AkairoModule, AkairoHandler, LoadPredicate, AkairoClient, Task, TaskHandler } from "discord-akairo";
 
-import { Collection } from "discord.js";
-export class Task extends AkairoModule {
-	delay: number | bigint;
-	runOnStart: boolean;
-	constructor(id: string, { category, delay, runOnStart }: { category?: string; delay?: number | bigint; runOnStart?: boolean }) {
-		super(id, { category });
+export { Task, TaskHandler };
 
-		this.delay = delay;
+// import { Collection } from "discord.js";
+// export class Task extends AkairoModule {
+// 	delay: number | bigint;
+// 	runOnStart: boolean;
+// 	constructor(id: string, { category, delay, runOnStart }: { category?: string; delay?: number | bigint; runOnStart?: boolean }) {
+// 		super(id, { category });
 
-		this.runOnStart = runOnStart;
-	}
-	/*
-		name: "sweep",
-	delay: "30m",
-	runOnStart: false,
-	awaitReady: false*/
+// 		this.delay = delay;
 
-	exec(client: AkairoClient): void {
-		throw new Error("NOT_IMPLEMENTED");
-	}
-}
+// 		this.runOnStart = runOnStart;
+// 	}
+// 	/*
+// 		name: "sweep",
+// 	delay: "30m",
+// 	runOnStart: false,
+// 	awaitReady: false*/
 
-export class TaskHandler extends AkairoHandler {
-	modules: Collection<string, Task>;
-	constructor(
-		client: AkairoClient,
-		{
-			directory,
-			classToHandle = Task,
-			extensions = [".js", ".ts"],
-			automateCategories,
-			loadFilter,
-		}: { directory: string; classToHandle?; extensions?: string[]; automateCategories?: boolean; loadFilter?: LoadPredicate }
-	) {
-		if (!(classToHandle.prototype instanceof Task || classToHandle === Task)) {
-			throw new Error("INVALID_CLASS_TO_HANDLE");
-		}
+// 	exec(client: AkairoClient): void {
+// 		throw new Error("NOT_IMPLEMENTED");
+// 	}
+// }
 
-		super(client, {
-			directory,
-			classToHandle,
-			extensions,
-			automateCategories,
-			loadFilter,
-		});
-	}
+// export class TaskHandler extends AkairoHandler {
+// 	modules: Collection<string, Task>;
+// 	constructor(
+// 		client: AkairoClient,
+// 		{
+// 			directory,
+// 			classToHandle = Task,
+// 			extensions = [".js", ".ts"],
+// 			automateCategories,
+// 			loadFilter,
+// 		}: { directory: string; classToHandle?; extensions?: string[]; automateCategories?: boolean; loadFilter?: LoadPredicate }
+// 	) {
+// 		if (!(classToHandle.prototype instanceof Task || classToHandle === Task)) {
+// 			throw new Error("INVALID_CLASS_TO_HANDLE");
+// 		}
 
-	startAll(): void {
-		this.client.on("ready", () => {
-			this.modules.forEach((task) => {
-				if (task.runOnStart) task.exec(this.client);
-				if (task.delay) {
-					setInterval(() => {
-						task.exec(this.client);
-					}, Number(task.delay));
-				}
-			});
-		});
-	}
-	/*
+// 		super(client, {
+// 			directory,
+// 			classToHandle,
+// 			extensions,
+// 			automateCategories,
+// 			loadFilter,
+// 		});
+// 	}
+
+// 	startAll(): void {
+// 		this.client.on("ready", () => {
+// 			this.modules.forEach((task) => {
+// 				if (task.runOnStart) task.exec(this.client);
+// 				if (task.delay) {
+// 					setInterval(() => {
+// 						task.exec(this.client);
+// 					}, Number(task.delay));
+// 				}
+// 			});
+// 		});
+// 	}
+/*
 for (const file of taskfiles) {
 // 			const task = require(join(__dirname, "..", "Tasks/" + file));
 // 			if (task?.awaitReady == true) {
@@ -75,7 +77,7 @@ for (const file of taskfiles) {
 // 			}
 // 		}
 	*/
-}
+//}
 
 // export default class TaskHandler {
 // 	directory: string;
