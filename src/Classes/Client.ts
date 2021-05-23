@@ -8,7 +8,7 @@ import giveawayManager from "./giveawayManager";
 import { join } from "path";
 import Enmap from "enmap";
 import db from "./db";
-import Api from "./api";
+import t from "./translation";
 interface Option {
 	owners?: string | string[];
 	superUsers?: string | string[];
@@ -79,6 +79,7 @@ export default class Client extends AkairoClient {
 				parse: ["users"],
 			},
 		});
+		this.t = new t(this);
 		this.settings = Settings;
 		this.consts = consts;
 		this.colors = consts.colors;
@@ -120,6 +121,7 @@ export default class Client extends AkairoClient {
 
 declare module "discord-akairo" {
 	interface AkairoClient {
+		t: t;
 		giveawayManager: giveawayManager;
 		commandHandler: CommandHandler;
 		db: db;

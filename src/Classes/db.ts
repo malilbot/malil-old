@@ -185,6 +185,7 @@ export default class db {
 			stickers: null,
 			prefix: null,
 			githubchannel: null,
+			language: null,
 		};
 	}
 	async increaseIq(user: string | bigint, amount: number) {
@@ -232,6 +233,7 @@ export interface guildSettingsInterface {
 	stickers: boolean;
 	prefix: any;
 	githubchannel: bigint;
+	language: number;
 }
 /*
 abstract class giveaway {

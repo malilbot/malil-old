@@ -38,7 +38,7 @@ export default class GithubUserCommand extends Command {
 				.send()
 		).json();
 
-		if (user?.message) return message.reply("User not found");
+		if (user?.message) return this.client.t.get(message, "NOT_FOUND", "User");
 
 		let info = "";
 		if (user.email) info += `**email:** ${user.email}\n`;
@@ -65,7 +65,7 @@ export default class GithubUserCommand extends Command {
 				.send()
 		).json();
 
-		if (user?.message) return interaction.reply({ content: "User not found" });
+		if (user?.message) return this.client.t.iget(interaction, "NOT_FOUND", "User");
 
 		let info = "";
 		if (user.email) info += `**email:** ${user.email}\n`;
