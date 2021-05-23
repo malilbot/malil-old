@@ -8,9 +8,10 @@ export = async (message: Message) => {
 				(message.client as InterfaceClient).logger.verbose("[ PULLING NEW COMMIT ]");
 				message.react("824673035499733022");
 				exec("yarn rm", () => {
-					exec("npx tsc", async () => {
-						(message.client as InterfaceClient).logger.verbose("[ RESTARTING ]");
-						(message.client as InterfaceClient).shard.respawnAll();
+					exec("yarn tsc", async () => {
+						exec("pm2 restart all", async () => {
+							(message.client as InterfaceClient).logger.verbose("[ RESTARTING ]");
+						});
 					});
 				});
 			}
