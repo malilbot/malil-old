@@ -24,7 +24,7 @@ export default class RankCommand extends Command {
 						if (!content) return;
 						const id = content.replace(/<|@|!|>|&|/gi, "");
 						if (!id) return;
-						else return message.guild.roles.cache.get(id) || message.guild.roles.cache.find((r) => r.name == content);
+						else return message.guild.roles.cache.get(id) || message.guild.roles.cache.find((r) => r.name.toLowerCase() == content);
 					},
 					match: "content",
 				},
