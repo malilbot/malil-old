@@ -8,6 +8,7 @@ const c = {
 export default {
 	MEMBER_KICK: (user: string, reason: string): string => `${user} was kicked for: ${reason}`,
 	NO_MODULE_DENO: `${c.no} Please provide a valid deno package`,
+	NO_MODULE_NODE: `${c.no} Please provide a valid node package`,
 	NO_DESCRIPTION: `${c.no} No description provided`,
 	NOT_FOUND: (thing: string): string => `${c.no} ${thing} not found`,
 };

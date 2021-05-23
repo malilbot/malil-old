@@ -41,6 +41,7 @@ export = async (message: Message) => {
 		};
 
 		if (message.author.bot) return;
+		if (message.member.roles.cache.has("846102256738631691")) return console.log(`${message.author.tag} [TRIGGERED] AWAS STOPPED`);
 		let smh: Message;
 		if (check("bann")) {
 			smh = await sendm({

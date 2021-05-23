@@ -33,16 +33,13 @@ export default class NpmCommand extends Command {
 	async exec(message: Message, { args }) {
 		const pkg = await (await c(`https://api.npms.io/v2/search`, "GET").query("q", args).query("size", 1).send()).json();
 
-		if (!pkg?.results[0])
-			return message.reply({
-				content: "<:no:838017092216946748> Please provide a message",
-			});
+		if (!pkg?.results[0]) return this.client.t.get(message, "NO_MODULE_NODE");
 		const result = pkg.results[0].package;
 		message.channel?.send({
 			embed: this.client.util
 				.embed()
 				.setColor("#FF0000")
-				.setDescription(result.description || "No description provided")
+				.setDescription(result.description || this.client.t.sget(message, "NO_DESCRIPTION"))
 				.addField("❯ Author", result.author.name)
 				.addField("❯ Created", result.date)
 				.addField("❯ Scoped", `${result.scoped || "No"}`)
