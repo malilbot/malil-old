@@ -68,7 +68,7 @@ export const logger = new (class Logger {
 		}
 		console.log(
 			bgBlueBright(`${black(moment().format("HH:mm"))}`) +
-				` => [Command: ${black(bgHex("#929e2c")(`${command}`))} - ${trigger}]` + //@ts-ignore
+				` => [Command: ${black(green(`${command}`))} - ${trigger}]` + //@ts-ignore
 				` by ${black(bgGreen(`${((message as Interaction).user || (message as Message).author).tag}(${message.author.id})`))}` +
 				` in ${black(bgCyan(`${message.guild.name}(${message.guild.id})`))}`
 		);
@@ -215,7 +215,7 @@ if (dev == true) {
 		split = gray(" - ");
 	} else {
 		a1 = red;
-		main = hex("#205d77");
+		main = blue;
 		sec = magenta;
 		third = blue;
 		fourth = gray;
