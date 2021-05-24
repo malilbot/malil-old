@@ -9,9 +9,8 @@ export default class MuteCommand extends Command {
 			aliases: ["mute", "tempmute", "muterole", "mutedrole"],
 			category: "Moderation",
 			description: {
-				content: "Use to mute members",
-				usage: "mute < member > ",
-				example: ["mute @member", "mute @member 1d", "mute 2d @member"],
+				content: "MUTE_DESCRIPTION_CONTENT",
+				example: "MUTE_DESCRIPTION_EXAMPLE",
 			},
 			ratelimit: 3,
 

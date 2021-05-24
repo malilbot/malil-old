@@ -10,9 +10,8 @@ export default class ReloadCommand extends Command {
 			category: "Developer",
 			quoted: true,
 			description: {
-				content: "reload the bot",
-				usage: "reload",
-				example: ["reload"],
+				content: "NO",
+				example: "NO",
 			},
 			ratelimit: 3,
 			channel: "guild",

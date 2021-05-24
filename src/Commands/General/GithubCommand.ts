@@ -76,6 +76,9 @@ export default class GithubCommand extends Command {
 				},
 			],
 			description: {
+				content: "GITHUB_DESCRIPTION_CONTENT",
+				example: "GITHUB_DESCRIPTION_EXAMPLE",
+				/*
 				content: "Watches github releases from a github repo",
 				example: [
 					"github add < github repo >",
@@ -85,6 +88,7 @@ export default class GithubCommand extends Command {
 					"github add https://github.com/malilbot/malilbot.github.io",
 					"github set #general",
 				],
+				*/
 			},
 			ratelimit: 1,
 			channel: "guild",

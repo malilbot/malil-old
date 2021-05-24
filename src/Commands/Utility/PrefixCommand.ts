@@ -15,9 +15,8 @@ export default class PrefixCommand extends Command {
 				},
 			],
 			description: {
-				content: "Set the prefix of malil in your server",
-				usage: "prefix",
-				example: ["prefix"],
+				content: "PREFIX_DESCRIPTION_CONTENT",
+				example: "PREFIX_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

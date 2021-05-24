@@ -9,8 +9,8 @@ export default class ServerCommand extends Command {
 			category: "Info",
 			quoted: true,
 			description: {
-				content: "Sends some general info about the discord server",
-				example: ["server"],
+				content: "SERVER_DESCRIPTION_CONTENT",
+				example: "SERVER_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 1,

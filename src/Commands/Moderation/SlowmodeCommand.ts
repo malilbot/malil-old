@@ -16,9 +16,8 @@ export default class SlowmodeCommand extends Command {
 				},
 			],
 			description: {
-				content: "To change the slowmode of a channel",
-				usage: "slowmode",
-				example: ["slowmode"],
+				content: "SLOWMODE_DESCRIPTION_CONTENT",
+				example: "SLOWMODE_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["MANAGE_CHANNELS", "SEND_MESSAGES"],
 			userPermissions: ["MANAGE_CHANNELS"],
@@ -28,7 +27,6 @@ export default class SlowmodeCommand extends Command {
 	}
 
 	async exec(message, { args }): Promise<Message> {
-		return message.util.send("Sorry this command is currently disabled due to djs issues");
 		const Embed = new MessageEmbed().setColor(this.client.colors.purple).setTimestamp();
 
 		if (args == "none" || args == "off") {

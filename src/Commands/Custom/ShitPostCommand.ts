@@ -15,9 +15,8 @@ export default class ShitPostCommand extends Command {
 				},
 			],
 			description: {
-				content: "Set shitpost channel",
-				usage: "shitPost",
-				example: ["shitPost"],
+				content: "NO",
+				example: "NO",
 			},
 			superUserOnly: true,
 			clientPermissions: ["SEND_MESSAGES"],

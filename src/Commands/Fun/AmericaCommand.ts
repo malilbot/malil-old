@@ -19,8 +19,8 @@ export default class AmeticaCommand extends Command {
 				},
 			],
 			description: {
-				content: "america something or yourself doesnt work on attachment links only real attachments sorry",
-				example: ["america @user", "ame"],
+				content: "AMERICA_DESCRIPTION_CONTENT",
+				example: "AMERICA_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

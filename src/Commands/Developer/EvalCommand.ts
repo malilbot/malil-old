@@ -9,9 +9,8 @@ export default class EvalCommand extends Command {
 			aliases: ["eval", "ev"],
 			category: "Developer",
 			description: {
-				content: "Some super javascript code",
-				usage: "eval < javascript >",
-				example: ["eval message.guild.id"],
+				content: "NO",
+				example: "NO",
 			},
 			ratelimit: 1,
 			args: [

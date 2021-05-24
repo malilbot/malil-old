@@ -10,8 +10,8 @@ export default class VoteCommand extends Command {
 			category: "Info",
 			quoted: true,
 			description: {
-				content: "Sends the links you can use to vote for malil",
-				example: ["vote"],
+				content: "VOTE_DESCRIPTION_CONTENT",
+				example: "VOTE_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

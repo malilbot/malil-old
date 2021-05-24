@@ -8,9 +8,8 @@ export default class semojiCommand extends Command {
 			aliases: ["semoji"],
 			category: "Developer",
 			description: {
-				content: "force the bot to semoji stuff",
-				usage: "semoji",
-				example: ["semoji pog"],
+				content: "NO",
+				example: "NO",
 			},
 			ratelimit: 3,
 			args: [

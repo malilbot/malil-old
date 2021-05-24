@@ -19,8 +19,8 @@ export default class AsciifyCommand extends Command {
 			category: "General",
 			quoted: true,
 			description: {
-				content: "Turn a image into a ascii",
-				example: ["asciify then a attachment"],
+				content: "ACI_DESCRIPTION_CONTENT",
+				example: "ACI_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 1,

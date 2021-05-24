@@ -6,8 +6,8 @@ export default class HelpCommand extends Command {
 			aliases: ["help", "h", "ls", "commands"],
 			category: "General",
 			description: {
-				content: "Show available commands on the bot",
-				example: ["help ping", "h ping"],
+				content: "HELP_DESCRIPTION_CONTENT",
+				example: "HELP_DESCRIPTION_EXAMPLE",
 			},
 			ratelimit: 3,
 			args: [
@@ -22,20 +22,28 @@ export default class HelpCommand extends Command {
 		});
 	}
 
-	exec(message: Message, { command }: { command: Command }): Promise<Message> {
+	async exec(message: Message, { command }: { command: Command }): Promise<Message> {
 		if (command) {
+			const { ALIAS, DESCRIPTION, EXAMPLES } = await this.client.t.getObject(message, {
+				ALIAS: "",
+				DESCRIPTION: "",
+				EXAMPLES: "",
+			});
+			const content = await this.client.t.sget(message, command.description.content);
+			const examples = await (<any>this.client.t.sget(message, command.description.example));
+
 			return message.util.send(
 				new MessageEmbed()
 					.setAuthor(`Help | ${this.client.user.tag}`, this.client.user.displayAvatarURL())
 					.setColor(this.client.colors.orange)
 					.setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" }))
 					.setDescription(
-						`**Aliases**\n` +
+						`**${ALIAS}**\n` +
 							`${command.aliases.map((x) => `\`${x}\``).join(" | ")}\n\n` +
-							`**Description**\n` +
-							`${command.description.content || "No Content"}\n\n` +
-							`**Usage**\n` +
-							`${command.description.example ? command.description.example.map((e) => `\`${e}\``).join("\n") : "No Example Provided"}`
+							`**${DESCRIPTION}**\n` +
+							`${content || "No Content"}\n\n` +
+							`**${EXAMPLES}**\n` +
+							`${Array.isArray(examples) ? examples.map((e) => `\`${e}\``).join("\n") : "No Example Provided"}`
 					)
 			);
 		}

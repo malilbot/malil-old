@@ -8,9 +8,8 @@ export default class SayCommand extends Command {
 			aliases: ["say", "tell"],
 			category: "Developer",
 			description: {
-				content: "force the bot to say stuff",
-				usage: "say",
-				example: ["say pog"],
+				content: "NO",
+				example: "NO",
 			},
 			ratelimit: 3,
 			args: [

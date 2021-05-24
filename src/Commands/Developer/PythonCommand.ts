@@ -12,8 +12,8 @@ export default class PyCommand extends Command {
 			aliases: ["py"],
 			category: "Developer",
 			description: {
-				content: "Some super javascript code",
-				usage: "python < code >",
+				content: "NO",
+				usage: "NO",
 				example: ["eval message.guild.id"],
 			},
 			ratelimit: 1,

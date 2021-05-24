@@ -28,9 +28,8 @@ export default class WarnCommand extends Command {
 				},
 			],
 			description: {
-				content: "To warn a user",
-				usage: "warn",
-				example: ["warn"],
+				content: "WARN_DESCRIPTION_CONTENT",
+				example: "WARN_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			userPermissions: ["MANAGE_MESSAGES"],

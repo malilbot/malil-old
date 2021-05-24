@@ -8,9 +8,8 @@ export default class starboardCommand extends Command {
 			category: "Utility",
 			quoted: true,
 			description: {
-				content: "Create a starboard for the server",
-				usage: "starboard",
-				example: ["starboard channel", "starboard count", "starboard emoji"],
+				content: "STARBOARD_DESCRIPTION_CONTENT",
+				example: "STARBOARD_DESCRIPTION_EXAMPLE",
 			},
 			args: [
 				{

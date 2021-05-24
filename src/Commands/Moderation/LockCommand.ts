@@ -14,9 +14,8 @@ export default class LockCommand extends Command {
 				},
 			],
 			description: {
-				content: "To lock a channel",
-				usage: "lock #channel",
-				example: ["lock #general"],
+				content: "LOCK_DESCRIPTION_CONTENT",
+				example: "LOCK_DESCRIPTION_EXAMPLE",
 			},
 			channel: "guild",
 			clientPermissions: ["MANAGE_CHANNELS"],

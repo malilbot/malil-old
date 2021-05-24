@@ -7,9 +7,8 @@ export default class StickerCommand extends Command {
 			aliases: ["Sticker", "removesticker", "nosticker", "sticcker", "blackliststicker", "sweepsticker", "byesticker", "fucksticker", "nomoresticker", "quitstickers"],
 			category: "Moderation",
 			description: {
-				content: "Should remove all stickers once finished",
-				usage: "nosticker on",
-				example: ["nosticker on"],
+				content: "STICKER_DESCRIPTION_CONTENT",
+				example: "STICKER_DESCRIPTION_EXAMPLE",
 			},
 			ratelimit: 3,
 

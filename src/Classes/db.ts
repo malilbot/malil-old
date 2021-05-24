@@ -201,6 +201,17 @@ export default class db {
 		const guild = await this.getGuildSettings(i);
 		return guild?.prefix || this.client.settings.prefix;
 	}
+	async setLang(guildID: string, language: number) {
+		const id = BigInt(guildID);
+		let [guild] = await this.findBy("guilds", { id });
+		if (guild) {
+			await this.knex("guilds").where({ id }).update({ language });
+		} else if (!guild) {
+			await this.knex("guilds").insert(this.guildData(id));
+		}
+
+		return language;
+	}
 	async setPrefix(guildID: string, prefix: string) {
 		const id = BigInt(guildID);
 		let [guild] = await this.findBy("guilds", { id });

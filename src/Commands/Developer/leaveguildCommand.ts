@@ -15,9 +15,8 @@ export default class leaveguildCommand extends Command {
 				},
 			],
 			description: {
-				content: "leave a guild",
-				usage: "leaveguild",
-				example: ["leaveguild"],
+				content: "NO",
+				example: "NO",
 			},
 			ratelimit: 3,
 			channel: "guild",

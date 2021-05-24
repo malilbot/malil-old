@@ -19,8 +19,8 @@ export default class YoutubeCommand extends Command {
 				},
 			],
 			description: {
-				content: "Honestly dont know what this is",
-				example: ["youtube #vc"],
+				content: "YOUTUBE_DESCRIPTION_CONTENT",
+				example: "YOUTUBE_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES", "CREATE_INSTANT_INVITE"],
 			ratelimit: 3,

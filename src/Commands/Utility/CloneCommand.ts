@@ -9,9 +9,8 @@ export default class CloneCommand extends Command {
 			category: "Utility",
 			quoted: true,
 			description: {
-				content: "Yoinks a emoji from a server",
-				usage: "clone",
-				example: ["clone"],
+				content: "CLONE_DESCRIPTION_CONTENT",
+				example: "CLONE_DESCRIPTION_EXAMPLE",
 			},
 			ratelimit: 1,
 			channel: "guild",

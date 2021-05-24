@@ -20,9 +20,8 @@ export default class GithubremCommand extends Command {
 				},
 			],
 			description: {
-				content: "githubrem's a user",
-				usage: "githubrem",
-				example: ["githubrem"],
+				content: "NO",
+				example: "NO",
 			},
 			ratelimit: 3,
 			channel: "guild",

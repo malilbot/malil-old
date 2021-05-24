@@ -21,9 +21,8 @@ export default class QuoteCommand extends Command {
 				},
 			],
 			description: {
-				content: "Quotes a message",
-				usage: "quote",
-				example: ["!quote https://canary.discord.com/channels/748956745409232945/777886689300709406/777889131829264384"],
+				content: "QUOTE_DESCRIPTION_CONTENT",
+				example: "QUOTE_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

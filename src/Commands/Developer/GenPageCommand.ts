@@ -11,9 +11,8 @@ export default class GenPageCommand extends Command {
 			aliases: ["genpage"],
 			category: "Developer",
 			description: {
-				content: "",
-				usage: "",
-				example: [""],
+				content: "NO",
+				example: "NO",
 			},
 			ratelimit: 3,
 			args: [

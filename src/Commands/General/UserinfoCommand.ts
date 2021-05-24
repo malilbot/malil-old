@@ -20,8 +20,8 @@ export default class UserinfoCommand extends Command {
 				},
 			],
 			description: {
-				content: "Get some inf about a user",
-				example: ["userinfo", "u @user", "user 336465356304678913"],
+				content: "USER_DESCRIPTION_CONTENT",
+				example: "USER_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

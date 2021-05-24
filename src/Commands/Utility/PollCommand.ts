@@ -16,9 +16,8 @@ export default class PollCommand extends Command {
 				},
 			],
 			description: {
-				content: "Share your questions",
-				usage: "poll",
-				example: ["poll"],
+				content: "POLL_DESCRIPTION_CONTENT",
+				example: "POLL_DESCRIPTION_EXAMPLE",
 			},
 			ratelimit: 3,
 			channel: "guild",

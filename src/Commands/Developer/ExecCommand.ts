@@ -8,9 +8,8 @@ export default class ExecCommand extends Command {
 			aliases: ["exec"],
 			category: "Developer",
 			description: {
-				content: "Do some bash code",
-				usage: "exec bash",
-				example: ["exec ls"],
+				content: "NO",
+				example: "NO",
 			},
 			ratelimit: 3,
 			args: [

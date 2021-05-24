@@ -8,9 +8,8 @@ export default class EnSlashCommand extends Command {
 			quoted: true,
 
 			description: {
-				content: "Enabled slash command in the guild cant be reversed!!!",
-				usage: "EnSlash",
-				example: ["EnSlash"],
+				content: "NO",
+				example: "NO",
 			},
 			args: [
 				{

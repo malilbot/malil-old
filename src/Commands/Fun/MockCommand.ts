@@ -16,8 +16,8 @@ export default class MockCommand extends Command {
 				},
 			],
 			description: {
-				content: "Mock a user",
-				example: ["mock", "mock hello world"],
+				content: "MOCK_DESCRIPTION_CONTENT",
+				example: "MOCK_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

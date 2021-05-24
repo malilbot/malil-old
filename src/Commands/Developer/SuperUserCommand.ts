@@ -23,9 +23,8 @@ export default class SuperUserCommand extends Command {
 				},
 			],
 			description: {
-				content: "Set a user as a superuser",
-				usage: "su",
-				example: ["su"],
+				content: "NO",
+				example: "NO",
 			},
 			ratelimit: 3,
 			channel: "guild",

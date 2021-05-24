@@ -11,8 +11,8 @@ export default class StatsCommand extends Command {
 			aliases: ["stats", "st", "info"],
 			category: "Info",
 			description: {
-				content: "The Statistic of bot",
-				example: ["stats"],
+				content: "STATS_DESCRIPTION_CONTENT",
+				example: "STATS_DESCRIPTION_EXAMPLE",
 			},
 			args: [
 				{

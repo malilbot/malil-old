@@ -1,4 +1,3 @@
-import { Listener } from "discord-akairo";
 import Command from "../../Classes/malilCommand";
 import { Message, GuildMember, MessageEmbed, GuildChannel, TextChannel } from "discord.js";
 import { utc } from "moment";
@@ -9,8 +8,8 @@ export default class BanCommand extends Command {
 			aliases: ["ban", "bang"],
 			category: "Moderation",
 			description: {
-				content: "To ban members on this guild",
-				example: ["ban @member", "ban @member"],
+				content: "BAN_DESCRIPTION_CONTENT",
+				example: "BAN_DESCRIPTION_EXAMPLE",
 			},
 			channel: "guild",
 			ratelimit: 3,

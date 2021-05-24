@@ -9,8 +9,8 @@ export default class AvatarCommand extends Command {
 			aliases: ["avatar", "av"],
 			category: "Info",
 			description: {
-				content: "Display your discord avatar otr other user.",
-				example: ["avatar @example#1111", "avatar @example", "avatar @example size=512", "avatar @example format=png", "avatar @example size=512 format=jpg"],
+				content: "AVATAR_DESCRIPTION_CONTENT",
+				example: "AVATAR_DESCRIPTION_EXAMPLE",
 			},
 			ratelimit: 3,
 			args: [

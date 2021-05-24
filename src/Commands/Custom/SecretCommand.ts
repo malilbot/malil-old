@@ -7,9 +7,8 @@ export default class SecretCommand extends Command {
 			aliases: ["secret"],
 			category: "Developer",
 			description: {
-				content: "why Would you care",
-				usage: "E",
-				example: ["R"],
+				content: "NO",
+				example: "NO",
 			},
 			ratelimit: 3,
 			clientPermissions: ["SEND_MESSAGES"],
@@ -18,7 +17,7 @@ export default class SecretCommand extends Command {
 		});
 	}
 
-	async exec(message: Message, { code }) {
-		message.util.send("woah you found my  secret command", { allowedMentions: { repliedUser: false } });
+	exec(message: Message): Promise<Message> {
+		return message.util.send("woah you found my  secret command", { allowedMentions: { repliedUser: false } });
 	}
 }

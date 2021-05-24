@@ -8,9 +8,8 @@ export default class InviteCommand extends Command {
 			category: "Utility",
 			quoted: true,
 			description: {
-				content: "Invite malil to your server as well",
-				usage: "invite",
-				example: ["invite"],
+				content: "INVITE_DESCRIPTION_CONTENT",
+				example: "INVITE_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

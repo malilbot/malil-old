@@ -17,8 +17,8 @@ export default class ClapCommand extends Command {
 				},
 			],
 			description: {
-				content: "👏Clap👏on👏the👏text.👏",
-				example: ["clap hello world", "clap how are you today?"],
+				content: "CLAP_DESCRIPTION_CONTENT",
+				example: "CLAP_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

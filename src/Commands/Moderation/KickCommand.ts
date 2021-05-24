@@ -9,9 +9,8 @@ export default class KickCommand extends Command {
 			aliases: ["kick"],
 			category: "Moderation",
 			description: {
-				content: "To kick member on this guild",
-				usage: "kick < member > ",
-				example: ["kick @member"],
+				content: "KICK_DESCRIPTION_CONTENT",
+				example: "KICK_DESCRIPTION_EXAMPLE",
 			},
 			ratelimit: 3,
 

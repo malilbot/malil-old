@@ -23,8 +23,8 @@ export default class GithubUserCommand extends Command {
 				},
 			],
 			description: {
-				content: "Gives information about a github user",
-				example: ["github skyblockdev"],
+				content: "GITHUB_USER_CONTENT",
+				example: "GITHUB_USER_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

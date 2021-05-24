@@ -16,9 +16,8 @@ export default class DecodeCommand extends Command {
 				},
 			],
 			description: {
-				content: "Decode some stuff",
-				usage: "decode",
-				example: ["decode"],
+				content: "CLONE_DESCRIPTION_CONTENT",
+				example: "CLONE_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 1,

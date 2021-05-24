@@ -18,9 +18,8 @@ export default class giveawayCommand extends Command {
 				},
 			],
 			description: {
-				content: "Encode your message",
-				usage: "encode",
-				example: ["encode"],
+				content: "GIVEAWAY_DESCRIPTION_CONTENT",
+				example: "GIVEAWAY_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 1,

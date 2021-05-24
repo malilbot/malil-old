@@ -23,9 +23,8 @@ export default class setiqCommand extends Command {
 				},
 			],
 			description: {
-				content: "Set the iq of a user",
-				usage: "setiq",
-				example: ["setiq"],
+				content: "NO",
+				example: "NO",
 			},
 			ratelimit: 3,
 			channel: "guild",

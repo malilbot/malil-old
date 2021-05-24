@@ -15,9 +15,8 @@ export default class BlacklistCommand extends Command {
 				},
 			],
 			description: {
-				content: "blacklist's a user",
-				usage: "blacklist",
-				example: ["blacklist"],
+				content: "NO",
+				example: "NO",
 			},
 			ratelimit: 3,
 			channel: "guild",

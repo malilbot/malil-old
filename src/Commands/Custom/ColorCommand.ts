@@ -16,9 +16,8 @@ export default class ColorCommand extends Command {
 				},
 			],
 			description: {
-				content: "custom command",
-				usage: "color",
-				example: ["color"],
+				content: "NO",
+				example: "NO",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

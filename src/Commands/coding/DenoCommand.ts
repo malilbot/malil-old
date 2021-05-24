@@ -23,8 +23,8 @@ export default class DenoCommand extends Command {
 				},
 			],
 			description: {
-				content: "Searches the deno package repository for your deno package",
-				example: ["deno discorddeno"],
+				content: "DENO_CONTENT",
+				example: "DENO_EXAMPLES",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

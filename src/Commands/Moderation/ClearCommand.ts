@@ -14,9 +14,8 @@ export default class ClearCommand extends Command {
 				},
 			],
 			description: {
-				content: "Clears messages from chat",
-				usage: "clear",
-				example: ["clear"],
+				content: "CLEAR_DESCRIPTION_CONTENT",
+				example: "CLEAR_DESCRIPTION_EXAMPLE",
 			},
 			ratelimit: 3,
 			channel: "guild",

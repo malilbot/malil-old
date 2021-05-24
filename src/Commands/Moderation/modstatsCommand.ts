@@ -21,9 +21,8 @@ export default class modstatsCommand extends Command {
 				},
 			],
 			description: {
-				content: "See your moderation stats 🕶️",
-
-				example: ["modstats @rick"],
+				content: "MODSTATS_ESCRIPTION_CONTENT",
+				example: "MODSTATS_DESCRIPTION_EXAMPLE",
 			},
 			ratelimit: 3,
 			clientPermissions: ["SEND_MESSAGES"],

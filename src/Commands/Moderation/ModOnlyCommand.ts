@@ -16,9 +16,8 @@ export default class modonlyCommand extends Command {
 				},
 			],
 			description: {
-				content: "Make a channel modeonly aka only people with manage messages can use commands there",
-				usage: "modonly",
-				example: ["modonly", "modonly #channel", "modonly <channel id>", "modonly get"],
+				content: "MODONLY_ESCRIPTION_CONTENT",
+				example: "MODONLY_DESCRIPTION_EXAMPLE",
 			},
 			ratelimit: 3,
 			clientPermissions: ["SEND_MESSAGES"],

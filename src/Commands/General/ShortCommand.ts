@@ -15,8 +15,8 @@ export default class shortenCommand extends Command {
 				},
 			],
 			description: {
-				content: "Makes your link shorter",
-				example: ["short https://google.com", "short https://discord.gg/skytils"],
+				content: "SHORT_DESCRIPTION_CONTENT",
+				example: "SHORT_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ownerOnly: false,

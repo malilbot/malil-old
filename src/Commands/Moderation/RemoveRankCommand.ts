@@ -19,8 +19,8 @@ export default class RemoveRankCommand extends Command {
 				},
 			],
 			description: {
-				content: "Used to remove roles for users to join",
-				example: ["removerank @member", "rmrank 788408438421061642"],
+				content: "DELRANK_DESCRIPTION_CONTENT",
+				example: "DELRANK_DESCRIPTION_EXAMPLE",
 			},
 			options: [
 				{

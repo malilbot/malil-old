@@ -24,9 +24,8 @@ export default class DmCommand extends Command {
 				},
 			],
 			description: {
-				content: "dm's a user",
-				usage: "dm",
-				example: ["dm"],
+				content: "NO",
+				example: "NO",
 			},
 			ratelimit: 3,
 			channel: "guild",

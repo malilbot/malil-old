@@ -15,9 +15,8 @@ export default class RawCommand extends Command {
 				},
 			],
 			description: {
-				content: "Share your questions",
-				usage: "raw",
-				example: ["raw"],
+				content: "RAW_DESCRIPTION_CONTENT",
+				example: "RAW_DESCRIPTION_EXAMPLE",
 			},
 			ratelimit: 3,
 			channel: "guild",

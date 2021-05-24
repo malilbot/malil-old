@@ -8,9 +8,8 @@ export default class ClearWarnsCommand extends Command {
 			category: "Moderation",
 			quoted: true,
 			description: {
-				content: "clear a user's warning",
-				usage: "clearwarns",
-				example: ["clearwarns"],
+				content: "CLEARWARNS_DESCRIPTION_CONTENT",
+				example: "CLEARWARNS_DESCRIPTION_EXAMPLE",
 			},
 			args: [
 				{

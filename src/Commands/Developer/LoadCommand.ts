@@ -17,9 +17,8 @@ export default class LoadCommand extends Command {
 				},
 			],
 			description: {
-				content: "load the bot",
-				usage: "no",
-				example: ["haha"],
+				content: "NO",
+				example: "NO",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

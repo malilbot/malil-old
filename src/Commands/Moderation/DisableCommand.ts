@@ -7,8 +7,8 @@ export default class DisableCommand extends Command {
 			aliases: ["disable", "enable"],
 			category: "Utility",
 			description: {
-				content: "A command to disable/enable commands.",
-				example: ["disable ban", "enable ban"],
+				content: "DISABLE_DESCRIPTION_CONTENT",
+				example: "DISABLE_DESCRIPTION_EXAMPLE",
 			},
 			args: [
 				{

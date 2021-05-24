@@ -23,8 +23,8 @@ export default class NpmCommand extends Command {
 				},
 			],
 			description: {
-				content: "Searches the npm repositorys for the requested npm package",
-				example: ["npm discord.js"],
+				content: "NPM_DESCRIPTION_CONTENT",
+				example: "NPM_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,

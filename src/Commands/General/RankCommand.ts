@@ -6,8 +6,8 @@ export default class RankCommand extends Command {
 			aliases: ["rank", "joinrank", "ranks", "quitrank"],
 			category: "General",
 			description: {
-				content: "Join a rank use the command without arguments to see all the available ranks",
-				example: ["ranks", "joinrank admin"],
+				content: "RANK_DESCRIPTION_CONTENT",
+				example: "RANK_DESCRIPTION_EXAMPLE",
 			},
 			options: [
 				{

@@ -23,9 +23,8 @@ export default class NickCommand extends Command {
 				},
 			],
 			description: {
-				content: "Change the nickname of a user",
-				usage: "nick",
-				example: ["nick"],
+				content: "NICK_DESCRIPTION_CONTENT",
+				example: "NICK_DESCRIPTION_EXAMPLE",
 			},
 			clientPermissions: ["MANAGE_NICKNAMES", "SEND_MESSAGES"],
 			userPermissions: ["MANAGE_NICKNAMES"],

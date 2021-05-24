@@ -28,8 +28,8 @@ export default class AddRankCommand extends Command {
 				},
 			],
 			description: {
-				content: "Allows you to set roles a user can join",
-				example: ["addrank @member", "arank 788408438421061642"],
+				content: "ADDRANK_DESCRIPTION_CONTENT",
+				example: "ADDRANK_DESCRIPTION_EXAMPLE",
 			},
 			ratelimit: 3,
 			channel: "guild",
