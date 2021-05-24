@@ -59,8 +59,6 @@ export = async (message: Message) => {
 			smh = await sendm("https://streamable.com/1rauw6");
 		} else if (check(["open", "close", "skytils"]) && check(["menu", "settings", "start"])) {
 			smh = await sendm("/st");
-		} else if (check(["how", "waypoint", "burrow"]) && check(["install", "location", "move", "work", "edit", "broken", "slow", "not"])) {
-			smh = await sendm({ files: ["https://media.discordapp.net/attachments/807302538558308355/831174229277016094/eeeeeeee.png?width=300&height=300"] });
 		} else if (check(["apply", "work"]) && check(["griffin", "burrow"])) {
 			smh = await sendm(
 				new MessageEmbed()
