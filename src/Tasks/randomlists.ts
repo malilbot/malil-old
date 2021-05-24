@@ -9,7 +9,7 @@ export default class extends Task {
 	exec(): Promise<void> {
 		console.log("task ran");
 		if (this.client.user.id !== "749020331187896410") return;
-		/*@ts-ignore - reeeeee*/
-		this.client.botLists.post();
+		//@ts-ignore
+		this.client.post();
 	}
 }

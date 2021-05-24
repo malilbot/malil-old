@@ -30,10 +30,10 @@ export default class languageCommand extends Command {
 	}
 
 	async exec(message: Message, { args }): Promise<Message> {
-		const settings = await this.client.db.getGuildSettings(message.guild.id);
+		const settings = await this.client.getGuildSettings(message.guild.id);
 
 		if (["en", "owo"].includes(args)) {
-			this.client.db.setLang(message.guild.id, <number>langfromnum(args));
+			this.client.setLang(message.guild.id, <number>langfromnum(args));
 			message.reply(`Changed my language to ${args}`);
 		} else return message.reply(`My current language is **${langfromnum(settings.language)}**, you can choose from \`owo\` and \`en\``);
 	}

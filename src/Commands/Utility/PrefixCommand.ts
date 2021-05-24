@@ -26,14 +26,14 @@ export default class PrefixCommand extends Command {
 
 	async exec(message: Message, { args }: { args: string }): Promise<Message> {
 		if (!args || args.length == 0) {
-			const prefix = await this.client.db.getPrefix(message.guild.id);
+			const prefix = await this.client.getPrefix(message.guild.id);
 			if (prefix) {
 				return message.util.send(`my prefix is \`${prefix}\``);
 			} else return message.util.send("my prefix is *");
 		} else {
 			if (!message.member.permissions.has("ADMINISTRATOR")) return message.util.send("you need to be a 'ADMINISTRATOR' to use this command");
 			else if (args.includes("@")) return message.util.send("Sorry you cant use @'s in prefixes");
-			this.client.db.setPrefix(message.guild.id, args);
+			this.client.setPrefix(message.guild.id, args);
 			message.util.send(`Updated the prefix to \`${args}\``);
 		}
 	}

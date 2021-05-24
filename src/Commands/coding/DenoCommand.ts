@@ -33,7 +33,7 @@ export default class DenoCommand extends Command {
 	async exec(message: Message, { args }) {
 		const pkg = await (await c(`https://api.deno.land/modules`, "GET").query("query", args).query("limit", 1).send()).json();
 
-		if (!pkg.success || !pkg?.data?.results[0]) return this.client.t.get(message, "NO_MODULE_DENO");
+		if (!pkg.success || !pkg?.data?.results[0]) return this.client.get(message, "NO_MODULE_DENO");
 
 		const result = pkg.data.results[0];
 
@@ -41,7 +41,7 @@ export default class DenoCommand extends Command {
 			embed: this.client.util
 				.embed()
 				.setColor("#FF0000")
-				.setDescription(result.description || this.client.t.sget(message, "NO_DESCRIPTION"))
+				.setDescription(result.description || this.client.sget(message, "NO_DESCRIPTION"))
 				.setTitle(`🦕 ${result.name}`)
 				.setURL(`https://deno.land/x/${result.name}`),
 		});
@@ -52,14 +52,14 @@ export default class DenoCommand extends Command {
 
 		const pkg = await (await c(`https://api.deno.land/modules`, "GET").query("query", query).query("limit", 1).send()).json();
 
-		if (!pkg.success || !pkg?.data?.results[0]) return this.client.t.iget(interaction, "NO_MODULE_DENO");
+		if (!pkg.success || !pkg?.data?.results[0]) return this.client.iget(interaction, "NO_MODULE_DENO");
 
 		const result = pkg.data.results[0];
 
 		const embed = this.client.util
 			.embed()
 			.setColor("#FF0000")
-			.setDescription(result.description || this.client.t.sget(interaction, "NO_DESCRIPTION"))
+			.setDescription(result.description || this.client.sget(interaction, "NO_DESCRIPTION"))
 			.setTitle(`🦕 ${result.name}`)
 			.setURL(`https://deno.land/x/${result.name}`);
 		interaction.reply(embed);

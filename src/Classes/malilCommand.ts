@@ -1,6 +1,7 @@
 import { Command as AkairoCommand } from "discord-akairo";
 import type { CommandOptions as AkairoModuleOptions } from "discord-akairo";
 import type { ApplicationCommandOptionChoice } from "discord.js";
+import BotClient from "./Client";
 interface ApplicationCommandOption {
 	type: number;
 	name: string;
@@ -17,6 +18,7 @@ interface CommandOptions extends AkairoModuleOptions {
 }
 
 export default abstract class Command extends AkairoCommand {
+	public client = super.client as BotClient;
 	constructor(id: string, options: CommandOptions) {
 		super(id, options);
 		this.options = {

@@ -1,16 +1,16 @@
 import type { Message } from "discord.js";
-import { InterfaceClient, sec, fourth } from "./Utils";
+import { sec, fourth } from "./Utils";
 import { exec } from "child_process";
 export = async (message: Message) => {
 	if (message?.channel?.id == "818158216156413973") {
 		exec("git pull", async (e, stdout) => {
 			if (!stdout.includes("Already up to date.")) {
-				(message.client as InterfaceClient).logger.verbose("[ PULLING NEW COMMIT ]");
+				(message.client as any).logger.verbose("[ PULLING NEW COMMIT ]");
 				message.react("824673035499733022");
 				exec("yarn rm", () => {
 					exec("yarn tsc", async () => {
 						exec("pm2 restart all", async () => {
-							(message.client as InterfaceClient).logger.verbose("[ RESTARTING ]");
+							(message.client as any).logger.verbose("[ RESTARTING ]");
 						});
 					});
 				});
@@ -18,16 +18,18 @@ export = async (message: Message) => {
 		});
 	} else if (message?.channel?.id == "823935750168117312") {
 		if (message.webhookID) {
-			(message.client as InterfaceClient).gp.math("commands", "+", 1);
+			(message.client as any).gp.math("commands", "+", 1);
 			if (!message.content.startsWith("{")) return;
 
 			const res = JSON.parse(message.content);
-			const member = await (message.client as InterfaceClient).users.fetch(res.user);
-			if (!member) return (message.client as InterfaceClient).logger.info("WHATTT?");
-			(message.client as InterfaceClient).logger.info(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
+			const member = await (message.client as any).users.fetch(res.user);
+			if (!member) return (message.client as any).logger.info("WHATTT?");
+			(message.client as any).logger.info(fourth("[ VOTE ] ") + sec(`${member.tag} (${member.id})`));
+			//@ts-ignore
+			const votes = message.client.increaseVotes(member.id, 1);
+			//@ts-ignore
 
-			const votes = (message.client as InterfaceClient).db.increaseVotes(member.id, 1);
-			const iq = (message.client as InterfaceClient).db.increaseIq(member.id, res.isWeekend ? 2 : 1);
+			const iq = message.client.increaseIq(member.id, res.isWeekend ? 2 : 1);
 
 			message.channel.send(
 				(message.client as any).util
@@ -35,7 +37,7 @@ export = async (message: Message) => {
 					.setAuthor(`vote from ${member.tag}`, member.avatarURL())
 					.setDescription(`**iq**: ${await iq}\n**votes**: ${await votes}`)
 					.setTimestamp()
-					.setColor((message.client as InterfaceClient).colors.blue)
+					.setColor((message.client as any).colors.blue)
 			);
 		}
 	}

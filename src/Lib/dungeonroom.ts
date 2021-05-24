@@ -1,5 +1,4 @@
 import type { Message, MessageOptions, TextChannel } from "discord.js";
-import { InterfaceClient } from "./Utils";
 const talkedRecently = new Set();
 export = async (message: Message) => {
 	if (message.author.id == "510016054391734273")
@@ -85,7 +84,7 @@ export = async (message: Message) => {
 		};
 		let smh: Message;
 		const sendm = async (i: MessageOptions): Promise<Message> => {
-			(message.client as InterfaceClient).logger.verbose(`${message.author.tag} [TRIGGERED] A AUTORESPONDER`);
+			(message.client as any).logger.verbose(`${message.author.tag} [TRIGGERED] A AUTORESPONDER`);
 			talkedRecently.add(message.author.id);
 			return (await message.reply(i)) as Message;
 		};

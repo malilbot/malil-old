@@ -1,4 +1,4 @@
-import { AkairoModule, AkairoHandler, LoadPredicate, AkairoClient, Task, TaskHandler } from "discord-akairo";
+import { Task, TaskHandler } from "discord-akairo";
 
 export { Task, TaskHandler };
 

@@ -1,7 +1,7 @@
 import Command from "../../Classes/malilCommand";
 import { MessageEmbed, Message, MessageAttachment } from "discord.js";
 import { inspect } from "util";
-import { hst, InterfaceClient } from "../../Lib/Utils";
+import { hst } from "../../Lib/Utils";
 let EvalCode = "";
 export default class EvalCommand extends Command {
 	constructor() {
@@ -114,7 +114,7 @@ export default class EvalCommand extends Command {
 			}
 		});
 
-		function replace(content: string, client: InterfaceClient) {
+		function replace(content: string, client: any) {
 			return content
 				.replace(new RegExp(client.credentials.token, "g"), "[HIDDEN]")
 				.replace(new RegExp([...client.credentials.token].reverse().join(""), "g"), "[HIDDEN]")

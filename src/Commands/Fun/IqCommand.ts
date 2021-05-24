@@ -36,12 +36,12 @@ export default class IqCommand extends Command {
 	}
 
 	async exec(message: Message, { member }: { member: GuildMember }): Promise<Message> {
-		const iq = (await this.client.db.getUser(member.id)).iq;
+		const iq = (await this.client.getUser(member.id)).iq;
 
 		const iEmbed = new MessageEmbed().setColor(this.client.colors.default).setTitle("IQ Test").setDescription(`${member}'s IQ is: \`${iq}\`!`);
 
 		if (this.client.random(50) == 5) iEmbed.setImage("https://i.imgur.com/skuWtMT.png");
-		if (this.client.random(10) == 5) iEmbed.setFooter(`You can vote to get increased iq ${(await this.client.db.getPrefix(message.guild.id)) || this.client.settings.prefix}vote`);
+		if (this.client.random(10) == 5) iEmbed.setFooter(`You can vote to get increased iq ${(await this.client.getPrefix(message.guild.id)) || this.client.settings.prefix}vote`);
 
 		return message.util.send(iEmbed);
 	}
@@ -51,7 +51,7 @@ export default class IqCommand extends Command {
 			.embed()
 			.setColor(this.client.colors.default)
 			.setTitle("IQ Test")
-			.setDescription(`${interaction.options[0]?.user ?? interaction.user}'s IQ is: \`${(await this.client.db.getUser(member.id)).iq}\`!`);
+			.setDescription(`${interaction.options[0]?.user ?? interaction.user}'s IQ is: \`${(await this.client.getUser(member.id)).iq}\`!`);
 		if (this.client.random(10) == 5) embed.setFooter(`You can vote to get increased iq /vote`);
 		interaction.reply(embed);
 	}

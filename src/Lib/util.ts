@@ -1,13 +1,12 @@
 import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, Guild, Interaction } from "discord.js";
 import { Command, CommandHandler, InhibitorHandler, ListenerHandler } from "discord-akairo";
-import db from "../Classes/db";
 import { red, blue, gray, yellow, green, magenta, cyan, hex, bgBlueBright, bgHex, bgGreen, bgCyan, black } from "chalk";
 import { credentials, Settings, consts } from "../settings";
 export { consts } from "../settings";
+import InterfaceClient from "../Classes/Client";
 import centra from "centra";
 import Enmap from "enmap";
 import moment from "moment";
-import { settings } from "cluster";
 /** Pre defining */
 const num = Math.floor(Math.random() * 2 + 1);
 
@@ -533,7 +532,9 @@ export async function hst(body: string, check: boolean = false): Promise<string>
 export async function Infract(message?: Message, reason?: string, member?: GuildMember, type?: string, client?: InterfaceClient, dm?: boolean): Promise<void> {
 	logger.info(sec("[ GIVING OUT A INFRACTION ] ") + main(`[ TO ] ${member.user.tag || "noone? huh what"} `) + third(`[ TYPE ] ${type || "no type? wtf"}`));
 	if (type.toLowerCase() !== "unmute" && member && message && type) {
-		client.db.createInfraction(member.id, message.id, member.guild.id, message.author.id, reason || "No reason provided", type || "No type");
+		//@ts-ignore
+
+		client.createInfraction(member.id, message.id, member.guild.id, message.author.id, reason || "No reason provided", type || "No type");
 	}
 
 	if (client.logchannel.get(member.guild.id)) {
@@ -665,21 +666,6 @@ interface gistif {
 	git_push_url: string;
 	html_url: string;
 	files: string;
-}
-export class InterfaceClient extends Client {
-	credentials = credentials;
-	consts = consts;
-	colors = consts.colors;
-	settings = Settings;
-	gp?: Enmap;
-	userdata?: Enmap;
-	logchannel?: Enmap;
-	infractions?: Enmap;
-	logger: typeof logger;
-	commandHandler?: CommandHandler;
-	listenerHandler?: ListenerHandler;
-	inhibitorHandler?: InhibitorHandler;
-	db?: db;
 }
 
 interface hastebinRes {

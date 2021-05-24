@@ -24,13 +24,13 @@ export default class HelpCommand extends Command {
 
 	async exec(message: Message, { command }: { command: Command }): Promise<Message> {
 		if (command) {
-			const { ALIAS, DESCRIPTION, EXAMPLES } = await this.client.t.getObject(message, {
+			const { ALIAS, DESCRIPTION, EXAMPLES } = await this.client.getObject(message, {
 				ALIAS: "",
 				DESCRIPTION: "",
 				EXAMPLES: "",
 			});
-			const content = await this.client.t.sget(message, command.description.content);
-			const examples = await (<any>this.client.t.sget(message, command.description.example));
+			const content = await this.client.sget(message, command.description.content);
+			const examples = await (<any>this.client.sget(message, command.description.example));
 
 			return message.util.send(
 				new MessageEmbed()

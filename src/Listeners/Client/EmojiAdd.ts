@@ -1,8 +1,8 @@
-import { Listener } from "discord-akairo";
+import { MalilListener } from "../../Classes/MalilListener";
 import { Message, MessageReaction, TextChannel } from "discord.js";
 import Client from "../../Classes/Client";
 import { main, sec, third } from "../../Lib/Utils";
-export default class messageReactionAdd extends Listener {
+export default class messageReactionAdd extends MalilListener {
 	constructor(client: Client) {
 		super("messageReactionAdd", {
 			emitter: "client",

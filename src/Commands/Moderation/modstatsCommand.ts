@@ -34,7 +34,7 @@ export default class modstatsCommand extends Command {
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	async exec(message: Message, { user }: { user: GuildMember }): Promise<Message> {
 		if (!user) return message.reply("User not found");
-		const infractions = await this.client.db.getModActions(user.id, message.guild.id);
+		const infractions = await this.client.getModActions(user.id, message.guild.id);
 		const warns = infractions.filter((i) => i.type.toLowerCase() == "warn");
 		const bans = infractions.filter((i) => i.type.toLowerCase() == "ban");
 		const kicks = infractions.filter((i) => i.type.toLowerCase() == "kick");

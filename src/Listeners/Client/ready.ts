@@ -1,28 +1,24 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Listener } from "discord-akairo";
-import Client from "../../Classes/Client";
+import { MalilListener } from "../../Classes/MalilListener";
 import { readyLog } from "../../Lib/Utils";
 import { join } from "path";
 import { TextChannel } from "discord.js";
 import { CronJob } from "cron";
 import { readFileSync, writeFileSync } from "fs";
-import api from "../../Classes/api";
-export default class Ready extends Listener {
-	constructor(client: Client) {
+export default class Ready extends MalilListener {
+	constructor() {
 		super("ready", {
 			emitter: "client",
 			event: "ready",
 			category: "client",
 		});
-		this.client = client;
 	}
 	async exec(): Promise<void> {
-		api();
 		new CronJob("0 0 0 * * *", async () => {
 			const jsonString = readFileSync(join(__dirname, "..", "..", "..", "data", "stats.json"), "utf8");
-			const regusers = (await this.client.db.knex("users")).length;
-			const regguilds = (await this.client.db.knex("guilds")).length;
-			const infractions = (await this.client.db.knex("infractions")).length;
+			const regusers = (await this.client.knex("users")).length;
+			const regguilds = (await this.client.knex("guilds")).length;
+			const infractions = (await this.client.knex("infractions")).length;
 
 			const customer = JSON.parse(jsonString);
 

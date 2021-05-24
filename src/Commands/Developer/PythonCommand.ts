@@ -3,7 +3,7 @@ import { MessageEmbed, Message, MessageAttachment } from "discord.js";
 import { inspect } from "util";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { join } from "path";
-import { hst, InterfaceClient } from "../../Lib/Utils";
+import { hst } from "../../Lib/Utils";
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 export default class PyCommand extends Command {
@@ -119,7 +119,7 @@ export default class PyCommand extends Command {
 			}
 		});
 
-		function replace(content: string, client: InterfaceClient) {
+		function replace(content: string, client: any) {
 			return content
 				.replace(new RegExp(client.credentials.token, "g"), "[HIDDEN]")
 				.replace(new RegExp([...client.credentials.token].reverse().join(""), "g"), "[HIDDEN]")
