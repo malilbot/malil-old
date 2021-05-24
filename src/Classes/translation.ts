@@ -66,7 +66,6 @@ export default class translation {
 	}
 	async getObject(message: Message, things): Promise<any> {
 		const language = (await this.client.db.getGuildSettings(message.guild.id)).language || lan.en;
-		console.log(language);
 
 		const returnData = {};
 		if (language == 1) {
@@ -78,10 +77,9 @@ export default class translation {
 				returnData[key] = translation;
 			}
 		} else if (language == 2) {
-			console.log("OWO");
 			for (const key in things) {
 				let translation = owo[key];
-				console.log(translation);
+
 				if (typeof translation == "function") {
 					translation = translation(...things[key]);
 				}

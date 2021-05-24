@@ -2,6 +2,7 @@ import { MessageEmbed, Message, TextChannel, Interaction } from "discord.js";
 import { Listener } from "discord-akairo";
 import Command from "../../Classes/malilCommand";
 import { hst, a1 } from "../../Lib/Utils";
+import { WebhookClient } from "discord.js";
 
 export default class CommandErrorListener extends Listener {
 	constructor() {
@@ -12,7 +13,7 @@ export default class CommandErrorListener extends Listener {
 		});
 	}
 
-	async exec(error: Error, message: Message, command: Command | null | undefined): Promise<void> {
+	async exec(error: Error, message: Message, command: Command | null | undefined): Promise<Message> {
 		if (error.stack.includes("DiscordAPIError: Cannot channel.send without permission to read message history")) {
 			message.util.send("I cannot work properly without seeing message history");
 			return;
@@ -27,7 +28,7 @@ export default class CommandErrorListener extends Listener {
 		this.client.logger.info(a1(`[ CONTENT ] ${message.content}`));
 		this.client.logger.info(a1(error.stack));
 		this.client.logger.info(a1("──────────────────────────────────────────────────────────────────────"));
-
+		const webhookCLient = new WebhookClient(this.client.credentials.webhook.id, this.client.credentials.webhook.token);
 		const errorEmbed: MessageEmbed = new MessageEmbed()
 
 			.setDescription(
@@ -38,23 +39,18 @@ export default class CommandErrorListener extends Listener {
 			)
 			.addField("Error", `${await hst(error.stack)}`)
 			.setTimestamp();
-		let errorUserEmbed: MessageEmbed;
-		if (message.guild.id == "748956745409232945") {
-			errorUserEmbed = new MessageEmbed()
-				.setTitle("An error occurred and has been reported to the devs")
-				.setDescription("haha errors go brrrrr")
-				.setTimestamp()
-				.setColor(this.client.colors.orange);
-		} else {
-			errorUserEmbed = new MessageEmbed()
-				.setTitle("An error occurred and has been reported to the devs")
-				.setDescription("To get an update on if the issue has been fixed go to the [support discord](https://discord.gg/TAp9Kt2)")
-				.setTimestamp()
-				.setColor(this.client.colors.orange);
-		}
+		const errrorr: MessageEmbed = this.client.util
+			.embed()
+			.setColor("RED")
+			.addField("ERROR", "```js\n" + `${error.stack.slice(0, 1000)}` + "```");
 
-		const channel = await this.client.channels.fetch(this.client.consts.channels.errChannel);
-		await (channel as TextChannel).send(errorEmbed);
-		message.util.send(errorUserEmbed);
+		const errorUser = this.client.util.embed().setTitle("An error occurred and has been reported to the devs").setTimestamp().setColor(this.client.colors.orange);
+		if (message.guild.id == "748956745409232945") {
+			errorUser.setDescription("haha errors go brrrrr");
+		} else {
+			errorUser.setDescription("To get an update on if the issue has been fixed go to the [support discord](https://discord.gg/TAp9Kt2)");
+		}
+		webhookCLient.send({ embeds: [errorEmbed, errrorr] });
+		return message.util.send(errorUser);
 	}
 }
