@@ -49,6 +49,8 @@ export = async (message: Message) => {
 				content: "The mod is not bannable and doesnt trigger watchdog.",
 			});
 		} else if (check("location")) {
+			if (message.guild.id == "781913473872560189") return;
+
 			smh = await sendm("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/skytils/guipositions.json ) ");
 		} else if (check(["send"]) && check(["crash"])) {
 			smh = await sendm({
@@ -56,10 +58,15 @@ export = async (message: Message) => {
 				files: ["https://cdn.discordapp.com/attachments/472601031839055873/837321036907282432/2021-04-29T13-29-47.mp4"],
 			});
 		} else if (check(["how", "where"]) && check(["download", "mod"])) {
+			if (message.guild.id == "781913473872560189") return;
+
 			smh = await sendm("https://streamable.com/1rauw6");
 		} else if (check(["open", "close", "skytils"]) && check(["menu", "settings", "start"])) {
+			if (message.guild.id == "781913473872560189") return;
+
 			smh = await sendm("/st");
 		} else if (check(["apply", "work"]) && check(["griffin", "burrow"])) {
+			if (message.guild.id == "781913473872560189") return;
 			smh = await sendm(
 				new MessageEmbed()
 					.addField(
