@@ -30,14 +30,14 @@ export const logger = new (class Logger {
 	konsole: (content, { colors, level }: { colors: string[]; level?: number }) => void;
 	constructor(verbose: boolean) {
 		this.Verbose = verbose;
-		this.lightBlue = hex("#72bcd4");
-		this.red = hex("#B20000");
-		this.darkBlue = hex("#14eff9");
-		this.orange = hex("#FF4F00");
-		this.yellow = hex("ccf914");
+		this.lightBlue = green; //hex("#72bcd4");
+		this.red = red; //hex("#B20000");
+		this.darkBlue = green; //hex("#14eff9");
+		this.orange = gray; //hex("#FF4F00");
+		this.yellow = yellow; //hex("ccf914");
 		this.dash = this.lightBlue(" - ");
 		this.konsole = async (content, { colors, level }: { colors: string[]; level?: number }) => {
-			const time = moment().format("HH:mm:ss");
+			const time = moment().format("HH:mm");
 			let message = `${this[colors[0]](time)}`;
 			if (level) message += `${this[colors[1]](`level: ${this[colors[0]](level)}`)} `;
 			message += `${this.dash}${this[colors[2]](content)}`;

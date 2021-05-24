@@ -6,10 +6,9 @@
 	"scripts": {
 		"lintfix": "eslint . --ext .ts --fix",
 		"format": "prettier-eslint --write \"{,!(node_modules)/**/}*.{js,jsx}\"",
-		"start": "tsc && node ./dist/index.js",
+		"start": "yarn estsc && node ./dist/index.js",
 		"build": "tsc",
-		"enmap": "sh ./resources/fixEnmap.sh",
-		"test": "jest",
+		"estsc": "yarn esbuild --outdir=dist --platform=node --target=es2020 --format=cjs src/**/*.ts",
 		"lint": "eslint . --ext .ts",
 		"dir": "sh resources/mkdir.sh",
 		"dev": "nodemon -e ts --exec \"yarn start\"",
@@ -27,7 +26,7 @@
 		"tricked"
 	],
 	"author": "tricked#3777",
-	"license": "UNLICENSED",
+	"license": "ARR",
 	"private": true,
 	"bugs": {
 		"url": "https://github.com/SkyBlockDev/malil-akairo/issues"
@@ -68,6 +67,7 @@
 		"discord-api-types": "^0.18.1",
 		"discord.js": "discordjs/discord.js",
 		"enmap": "^5.8.5",
+		"esbuild": "^0.12.1",
 		"fastify": "^3.15.1",
 		"fastify-helmet": "^5.3.1",
 		"knex": "^0.95.6",
