@@ -14,7 +14,7 @@ export default class message extends Listener {
 		this.client = client;
 	}
 
-	async exec(message: Message) {
+	async exec(message: Message): Promise<void> {
 		if (!talkedRecently.has(message.author.id)) {
 			const isDrm = message.guild.id == "804143990869590066";
 			const isST = message.guild.id == "807302538558308352";
@@ -60,7 +60,7 @@ export default class message extends Listener {
 			};
 
 			const sendm = async (i: MessageOptions | string): Promise<Message> => {
-				(message.client as any).logger.verbose(`${message.author.tag} [TRIGGERED] A AUTORESPONDER`);
+				this.client.logger.verbose(`${message.author.tag} [TRIGGERED] A AUTORESPONDER`);
 				talkedRecently.add(message.author.id);
 				return (await message.reply(i as MessageOptions)) as Message;
 			};
@@ -68,12 +68,12 @@ export default class message extends Listener {
 			if (message.member.roles?.cache?.has("846102256738631691")) return console.log(`${message.author.tag} [TRIGGERED] AWAS STOPPED`);
 
 			let smh: Message;
-			if (check("bann") && (isST || isDrm)) {
+			if (check(["bann"]) && (isST || isDrm)) {
 				smh = await sendm({
 					files: ["http://pays.host/uploads/add4657d-af3a-4f66-a67f-605109f80024/bzxrcnWt.png"],
 					content: "The mod is not bannable and doesnt trigger watchdog.",
 				});
-			} else if (check("bann") && isDG) {
+			} else if (check(["bann"]) && isDG) {
 				smh = await sendm({
 					content:
 						"This mod, like all others is use at your own risk. Even though it is *use at your own risk*, there have no reports of users being banned from the mod, and it should follow all of the current hypixel mod rules.",
@@ -91,7 +91,7 @@ export default class message extends Listener {
 						"Skyblock plus, this mod is Dungeon Rooms Mod.\n" +
 						"Again, in addition to the Dungeon Rooms Mod you downloaded from this server, you need to download **SkyBlockPlus** from Skyblock Personalized Discord server",
 				});
-			} else if (check("location") && isST) {
+			} else if (check(["location"]) && isST) {
 				if (message.guild.id == "781913473872560189") return;
 
 				smh = await sendm("Locations are a bit wack atm will be fixed\n" + "delete your gui scales file to fix it ( .minecraft/config/skytils/guipositions.json ) ");
@@ -127,6 +127,7 @@ export default class message extends Listener {
 						.setTimestamp()
 				);
 			} else return;
+
 			await smh.react("❌");
 			smh.awaitReactions((reaction) => reaction.emoji.name === "❌", { max: 1, time: 60000 /** 60 seconds */ }).then((collected) => {
 				if (!collected.first()) return;
