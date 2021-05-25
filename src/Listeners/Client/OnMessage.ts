@@ -15,12 +15,12 @@ export default class message extends Listener {
 	}
 
 	exec(message: Message): void {
-		if (message?.guild?.id == "748956745409232945") {
-			tricked(message);
-		} else if (message?.guild?.id == "804143990869590066") {
-			drm(message);
-		} else if (message?.guild?.id == "807302538558308352" || message?.guild?.id == "781913473872560189") {
-			skytils(message);
-		}
+		// if (message?.guild?.id == "748956745409232945") {
+		// 	tricked(message);
+		// } else if (message?.guild?.id == "804143990869590066") {
+		// 	drm(message);
+		// } else if (message?.guild?.id == "807302538558308352" || message?.guild?.id == "781913473872560189") {
+		// 	skytils(message);
+		// }
 	}
 }
