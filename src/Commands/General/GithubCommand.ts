@@ -1,6 +1,6 @@
 import Command from "../../Classes/malilCommand";
 import type { Message, TextChannel, CommandInteraction } from "discord.js";
-import centra from "centra";
+import petitio from "petitio";
 import { MessageEmbed, GuildMember } from "discord.js";
 export default class GithubCommand extends Command {
 	constructor() {
@@ -118,11 +118,11 @@ export default class GithubCommand extends Command {
 			const name = repo[3] + "/" + repo[4];
 			if (!repo) return message.util.send("Please try the command again but this time send a repo link");
 			const data = await (
-				await centra(`https://api.github.com/repos/${name}/releases`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()
+				await petitio(`https://api.github.com/repos/${name}/releases`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()
 			).json();
 			if (data.message == "Not Found") return message.util.send("Please try the command again but this time send a repo link");
 			const urls = await (
-				await centra(`https://api.github.com/repos/${name}`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()
+				await petitio(`https://api.github.com/repos/${name}`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()
 			).json();
 			if (urls.message == "Not Found") return message.util.send("Please try the command again but this time send a repo link");
 			if (urls.documentation_url) return message.util.send("I have been api limited");
@@ -174,10 +174,12 @@ export default class GithubCommand extends Command {
 		const name = repo[3] + "/" + repo[4];
 
 		const data = await (
-			await centra(`https://api.github.com/repos/${name}/releases`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()
+			await petitio(`https://api.github.com/repos/${name}/releases`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()
 		).json();
 		if (data.message == "Not Found") return message.reply("Please try the command again but this time send a repo link");
-		const urls = await (await centra(`https://api.github.com/repos/${name}`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()).json();
+		const urls = await (
+			await petitio(`https://api.github.com/repos/${name}`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()
+		).json();
 		if (urls.message == "Not Found") return message.reply("Please try the command again but this time send a repo link");
 		if (urls.documentation_url) return message.reply("I have been api limited");
 		let version: string;

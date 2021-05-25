@@ -1,7 +1,7 @@
 import Command from "../../Classes/malilCommand";
 import { GuildMember, Message } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
-import centra from "centra";
+import petitio from "petitio";
 export default class AmeticaCommand extends Command {
 	constructor() {
 		super("america", {
@@ -38,7 +38,7 @@ export default class AmeticaCommand extends Command {
 			dynamic: false,
 		});
 
-		const res = await centra(`https://api.dagpi.xyz/image/america/?url=${url}`, "get").header("Authorization", this.client.credentials.dagpi).send();
+		const res = await petitio(`https://api.dagpi.xyz/image/america/?url=${url}`, "get").header("Authorization", this.client.credentials.dagpi).send();
 		const meme = res.body;
 
 		await message.util.send("", {

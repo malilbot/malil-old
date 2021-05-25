@@ -1,6 +1,6 @@
 import Command from "../../Classes/malilCommand";
 import type { CommandInteraction, Message } from "discord.js";
-import c from "centra";
+import c from "petitio";
 export default class DenoCommand extends Command {
 	constructor() {
 		super("deno", {

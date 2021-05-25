@@ -1,7 +1,7 @@
 import Command from "../../Classes/malilCommand";
 import type { GuildMember, Message, CommandInteraction } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
-import centra from "centra";
+import petitio from "petitio";
 export default class FedoraCommand extends Command {
 	constructor() {
 		super("fedora", {
@@ -45,7 +45,7 @@ export default class FedoraCommand extends Command {
 			dynamic: false,
 		});
 
-		const res = await centra(`https://api.dagpi.xyz/image/fedora/?url=${url}`, "get").header("Authorization", this.client.credentials.dagpi).send();
+		const res = await petitio(`https://api.dagpi.xyz/image/fedora/?url=${url}`, "get").header("Authorization", this.client.credentials.dagpi).send();
 		await message.util.send("", {
 			files: [{ attachment: res.body, name: `fedoraed.png` }],
 		});
@@ -53,7 +53,7 @@ export default class FedoraCommand extends Command {
 	}
 	async execSlash(message: CommandInteraction) {
 		const member = message.options[0]?.user ?? message.user;
-		const res = await centra(`https://api.dagpi.xyz/image/fedora/?url=${member.avatarURL({ dynamic: false, format: "png" })}`, "get")
+		const res = await petitio(`https://api.dagpi.xyz/image/fedora/?url=${member.avatarURL({ dynamic: false, format: "png" })}`, "get")
 			.header("Authorization", this.client.credentials.dagpi)
 			.send();
 		return message.reply({ content: "here ya go", files: [{ attachment: res.body, name: `Fedora'd.png` }] });

@@ -1,7 +1,7 @@
 import Command from "../../Classes/malilCommand";
 import type { Message, GuildMember, CommandInteraction } from "discord.js";
 import { fixword, GetMember } from "../../Lib/Utils";
-import c from "centra";
+import c from "petitio";
 export default class PatCommand extends Command {
 	constructor() {
 		super("pat", {

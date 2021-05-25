@@ -5,12 +5,12 @@ import { TaskHandler } from "./TaskHandler";
 import { logger } from "../Lib/Utils";
 import { join } from "path";
 import Enmap from "enmap";
-import centra from "centra";
+import petitio from "petitio";
 import { types } from "pg";
 import Knex from "knex";
 import { connection } from "../settings";
 import { TextChannel, GuildMember, Message } from "discord.js";
-import { malilStartGiveaway } from "../Lib/Utils";
+import { malilStartGiveaway, fn, infraction, guildSettingsInterface } from "../Lib/Utils";
 import { CommandInteraction } from "discord.js";
 import en from "../translation/en";
 import owo from "../translation/owo";
@@ -126,7 +126,7 @@ export default class Client extends AkairoClient {
 	// DATABSE STUFF ///////////////
 	////////////////////////////////
 
-	find(table, limit, order_by, sort_order = "desc") {
+	find(table, limit, order_by, sort_order = "desc"): Promise<any> {
 		if (!limit) {
 			return this.knex(table);
 		} else if (limit && !order_by) {
@@ -136,7 +136,7 @@ export default class Client extends AkairoClient {
 		}
 	}
 
-	findBy(table, filter) {
+	findBy(table, filter): Promise<any> {
 		return this.knex(table).where(filter);
 	}
 
@@ -194,14 +194,7 @@ export default class Client extends AkairoClient {
 			});
 		} catch {}
 	}
-	/**
-	 *
-	 * @param user id of the user you want to infraction
-	 * @param infraction message id as a unique identifier
-	 * @param guild  Guild ID these are store globally and not per guild
-	 * @param reason
-	 * @param type ban, kick, mute, unmute, warn
-	 */
+
 	async createInfraction(user: string, infraction: string, guild: string, moderator: string, reason: string, type: string): Promise<any> {
 		const data = {
 			when: BigInt(Date.now()),
@@ -332,6 +325,9 @@ export default class Client extends AkairoClient {
 
 		return prefix;
 	}
+	////////////////////////////////
+	// Language STUFF //////////////
+	////////////////////////////////
 	async get(message: Message, thing: string, ...args: string[]): Promise<Message> {
 		const language = (await this.getGuildSettings(message.guild.id)).language || lan.en;
 		let translation: string | fn;
@@ -409,7 +405,9 @@ export default class Client extends AkairoClient {
 		}
 		return returnData;
 	}
-
+	////////////////////////////////
+	// GIVEAWAYS STUFF /////////////
+	////////////////////////////////
 	getGiveaways(): malilStartGiveaway[] {
 		return this.gp.ensure("givaways", []);
 	}
@@ -491,7 +489,7 @@ export default class Client extends AkairoClient {
 			shard_id: this.shard.ids[0],
 		};
 		try {
-			await centra(`https://top.gg/api/bots/${this.user.id}/stats`, "post").header("Authorization", credentials.bottokens.topgg).body(topgg).send();
+			await petitio(`https://top.gg/api/bots/${this.user.id}/stats`, "POST").header("Authorization", credentials.bottokens.topgg).body(topgg).send();
 		} catch (err) {
 			console.warn("[ COULD NOT POST TO TOPGG ]");
 		}
@@ -502,37 +500,13 @@ export default class Client extends AkairoClient {
 			shard_id: this.shard.ids[0],
 		};
 		try {
-			await centra(`https://discordbotlist.com/api/v1/bots/${this.user.id}/stats`, "post").header("Authorization", credentials.bottokens.discordbotlist).body(discordbotlist).send();
+			await petitio(`https://discordbotlist.com/api/v1/bots/${this.user.id}/stats`, "POST").header("Authorization", credentials.bottokens.discordbotlist).body(discordbotlist).send();
 		} catch (err) {
 			console.warn("[ COULD NOT POST TO discordbotlist ]");
 		}
 	}
 }
-interface fn {
-	(...args: string[]): string;
-}
-export interface infraction {
-	when: number;
-	user: BigInt;
-	id: BigInt;
-	guild: BigInt;
-	reason: string;
-	type: string;
-}
-export interface guildSettingsInterface {
-	id: bigint;
-	muterole: bigint;
-	modrole: bigint;
-	github: bigint;
-	modlogs: bigint;
-	emoji: bigint;
-	starboard: bigint;
-	emojicount: number;
-	stickers: boolean;
-	prefix: any;
-	githubchannel: bigint;
-	language: number;
-}
+
 declare module "discord-akairo" {
 	interface AkairoClient {
 		knex: any;

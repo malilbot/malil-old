@@ -49,7 +49,7 @@ export default class message extends Listener {
 				}
 			};
 
-			const check = (e: string[] | string, w?: string[]) => {
+			const check = (e: string[], w?: string[]) => {
 				if (!w) {
 					return Check(e);
 				}

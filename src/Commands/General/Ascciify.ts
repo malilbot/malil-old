@@ -1,7 +1,7 @@
 import Command from "../../Classes/malilCommand";
 import { GuildMember, Message, MessageAttachment } from "discord.js";
 import { hst, GetMember } from "../../Lib/Utils";
-import c from "centra";
+import c from "petitio";
 export default class AsciifyCommand extends Command {
 	constructor() {
 		super("asciify", {

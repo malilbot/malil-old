@@ -1,11 +1,12 @@
-import { Message, Client, GuildMember, GuildChannel, TextChannel, MessageEmbed, Guild, Interaction } from "discord.js";
-import { Command, CommandHandler, InhibitorHandler, ListenerHandler } from "discord-akairo";
-import { red, blue, gray, yellow, green, magenta, cyan, hex, bgBlueBright, bgHex, bgGreen, bgCyan, black } from "chalk";
-import { credentials, Settings, consts } from "../settings";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Message, GuildMember, GuildChannel, TextChannel, MessageEmbed, Interaction } from "discord.js";
+import { Command } from "discord-akairo";
+import { red, blue, gray, yellow, green, magenta, cyan, bgBlueBright, bgGreen, bgCyan, black } from "chalk";
+import { Settings } from "../settings";
 export { consts } from "../settings";
+import cio from "cheerio";
 import InterfaceClient from "../Classes/Client";
-import centra from "centra";
-import Enmap from "enmap";
+import petitio from "petitio";
 import moment from "moment";
 /** Pre defining */
 const num = Math.floor(Math.random() * 2 + 1);
@@ -36,7 +37,7 @@ export const logger = new (class Logger {
 		this.orange = gray; //hex("#FF4F00");
 		this.yellow = yellow; //hex("ccf914");
 		this.dash = this.lightBlue(" - ");
-		this.konsole = async (content, { colors, level }: { colors: string[]; level?: number }) => {
+		this.konsole = (content, { colors, level }: { colors: string[]; level?: number }) => {
 			const time = moment().format("HH:mm");
 			let message = `${this[colors[0]](time)}`;
 			if (level) message += `${this[colors[1]](`level: ${this[colors[0]](level)}`)} `;
@@ -59,17 +60,15 @@ export const logger = new (class Logger {
 		this.konsole(content, { colors: ["darkBlue", "yellow", "yellow"] });
 	}
 	command(message: Message | Interaction, command: Command, trigger: string) {
-		if (trigger == "trigger") {
-			trigger = trigger;
-		} else if (trigger == "Success") {
+		if (trigger == "Success") {
 			trigger = green(trigger);
 		} else if (trigger == "blocked") {
 			trigger = red(trigger);
 		}
 		console.log(
 			bgBlueBright(`${black(moment().format("HH:mm"))}`) +
-				` => [Command: ${black(green(`${command}`))} - ${trigger}]` + //@ts-ignore
-				` by ${black(bgGreen(`${((message as Interaction).user || (message as Message).author).tag}(${message.author.id})`))}` +
+				` => [Command: ${black(green(`${command}`))} - ${trigger}]` +
+				` by ${black(bgGreen(`${((message as Interaction).user || (message as Message).author).tag}(${(message as Message).author.id})`))}` +
 				` in ${black(bgCyan(`${message.guild.name}(${message.guild.id})`))}`
 		);
 	}
@@ -84,7 +83,7 @@ const d = h * 24;
 const w = d * 7;
 const y = d * 365.25;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const ms = function (val: string | number, options?: any): any {
 	options = options || {};
 	const type = typeof val;
@@ -194,7 +193,7 @@ function plural(ms, msAbs, n, name) {
  * @param input string to fix
  * @returns returns "cleanised" text
  */
-export async function fixword(input: string): Promise<string> {
+export function fixword(input: string): string {
 	input = input
 		.replace(/nig+ger/gi, "")
 		.replace(/nig+ga/gi, "")
@@ -329,33 +328,27 @@ const getTitle = (title: string | number | boolean, artist: string | number | bo
 		.trim();
 };
 
-const cio = require("cheerio");
-
 /**
  * @param {string} url - Genius URL
  */
 async function extractLyrics(url: string): Promise<string> {
-	try {
-		let { body } = await await centra(url).send();
-		const $ = cio.load(body);
-		let lyrics = $('div[class="lyrics"]').text().trim();
-		if (!lyrics) {
-			lyrics = "";
-			$('div[class^="Lyrics__Container"]').each((i, elem) => {
-				if ($(elem).text().length !== 0) {
-					let snippet = $(elem)
-						.html()
-						.replace(/<br>/g, "\n")
-						.replace(/<(?!\s*br\s*\/?)[^>]+>/gi, "");
-					lyrics += $("<textarea/>").html(snippet).text().trim() + "\n\n";
-				}
-			});
-		}
-		if (!lyrics) return null;
-		return lyrics.trim();
-	} catch (e) {
-		throw e;
+	const { body } = await petitio(url).send();
+	const $ = cio.load(body);
+	let lyrics = $('div[class="lyrics"]').text().trim();
+	if (!lyrics) {
+		lyrics = "";
+		$('div[class^="Lyrics__Container"]').each((i, elem) => {
+			if ($(elem).text().length !== 0) {
+				const snippet = $(elem)
+					.html()
+					.replace(/<br>/g, "\n")
+					.replace(/<(?!\s*br\s*\/?)[^>]+>/gi, "");
+				lyrics += $("<textarea/>").html(snippet).text().trim() + "\n\n";
+			}
+		});
 	}
+	if (!lyrics) return null;
+	return lyrics.trim();
 }
 
 /**
@@ -367,19 +360,15 @@ export async function GetSong(options: {
 	artist: string | number | true;
 	optimizeQuery: boolean;
 }): Promise<{ id: string; url: string; lyrics: string; albumArt: string }> {
-	try {
-		let results = await searchSong(options);
-		if (!results) return null;
-		let lyrics = await extractLyrics(results[0].url);
-		return {
-			id: results[0].id,
-			url: results[0].url,
-			lyrics,
-			albumArt: results[0].albumArt,
-		};
-	} catch (e) {
-		throw e;
-	}
+	const results = await searchSong(options);
+	if (!results) return null;
+	const lyrics = await extractLyrics(results[0].url);
+	return {
+		id: results[0].id,
+		url: results[0].url,
+		lyrics,
+		albumArt: results[0].albumArt,
+	};
 }
 
 const searchUrl = "https://api.genius.com/search?q=";
@@ -393,25 +382,21 @@ async function searchSong(options: {
 	artist: string | number | true;
 	optimizeQuery: boolean;
 }): Promise<{ apiKey: string; title: string; artist: string; optimizeQuery: boolean }> {
-	try {
-		let { apiKey, title, artist, optimizeQuery = false } = options;
-		const song = optimizeQuery ? getTitle(title, artist) : `${title} ${artist}`;
-		const reqUrl = `${searchUrl}${encodeURIComponent(song)}`;
+	const { apiKey, title, artist, optimizeQuery = false } = options;
+	const song = optimizeQuery ? getTitle(title, artist) : `${title} ${artist}`;
+	const reqUrl = `${searchUrl}${encodeURIComponent(song)}`;
 
-		let res = await (
-			await centra(reqUrl, "GET")
-				.header("Authorization", "Bearer " + apiKey)
-				.send()
-		).json();
-		if (res.response.hits.length === 0) return null;
-		const results = res.response.hits.map((val) => {
-			const { full_title, song_art_image_url, id, url } = val.result;
-			return { id, title: full_title, albumArt: song_art_image_url, url };
-		});
-		return results;
-	} catch (e) {
-		throw e;
-	}
+	const res = await (
+		await petitio(reqUrl, "GET")
+			.header("Authorization", "Bearer " + apiKey)
+			.send()
+	).json();
+	if (res.response.hits.length === 0) return null;
+	const results = res.response.hits.map((val) => {
+		const { full_title, song_art_image_url, id, url } = val.result;
+		return { id, title: full_title, albumArt: song_art_image_url, url };
+	});
+	return results;
 }
 
 /*
@@ -449,7 +434,7 @@ export async function CreateGist(name: string, content: string, client: Interfac
 		files,
 	};
 	const gist = await (
-		await centra("https://api.github.com/gists", "POST").header("User-Agent", "Malil").header("Authorization", `token ${client.credentials.github}`).body(body, "json").send()
+		await petitio("https://api.github.com/gists", "POST").header("User-Agent", "Malil").header("Authorization", `token ${client.credentials.github}`).body(body, "json").send()
 	).json();
 	const out = `${gist.id}`;
 	return out;
@@ -466,7 +451,7 @@ export async function EditGist(name: string, content: string, GistId: string, cl
 		files,
 	};
 	const gist = await (
-		await centra("https://api.github.com/gists/" + GistId, "POST")
+		await petitio("https://api.github.com/gists/" + GistId, "POST")
 			.header("User-Agent", "Malil")
 			.header("Authorization", `token ${client.credentials.github}`)
 			.body(body, "json")
@@ -477,7 +462,7 @@ export async function EditGist(name: string, content: string, GistId: string, cl
 export const GetGist = async function (GistId: string, client: InterfaceClient): Promise<gistif> {
 	logger.info(a1("[ GETTING GIST ] ") + main(`NAME ${name}`));
 	const gist = await (
-		await centra("https://api.github.com/gists/" + GistId, "GET")
+		await petitio("https://api.github.com/gists/" + GistId, "GET")
 			.header("User-Agent", "Malil")
 			.header("Authorization", `token ${client.credentials.github}`)
 			.send()
@@ -498,7 +483,7 @@ const post = async (contents: string) => {
 	for (const url of urls) {
 		try {
 			const res: hastebinRes = await (
-				await centra(site + "documents", "POST")
+				await petitio(site + "documents", "POST")
 					.body(contents)
 					.send()
 			).json();
@@ -511,29 +496,27 @@ const post = async (contents: string) => {
 /*
 const post = async (contents: string) => {
 	return await (
-		await centra(site + "documents", "POST")
+		await petitio(site + "documents", "POST")
 			.body(contents)
 			.send()
 	).json();
 };
 */
-export async function hst(body: string, check: boolean = false): Promise<string> {
+export function hst(body: string, check = false): Promise<string> | string {
 	logger.info(a1("[ POSTING ON hst.sh ] "));
 	if (check) {
 		if (body.length > 1024) {
-			return await post(body);
+			return post(body);
 		} else {
 			return body;
 		}
 	}
 
-	return await post(body);
+	return post(body);
 }
-export async function Infract(message?: Message, reason?: string, member?: GuildMember, type?: string, client?: InterfaceClient, dm?: boolean): Promise<void> {
+export async function Infract(message?: Message, reason?: string, member?: GuildMember, type?: string, client?: InterfaceClient): Promise<void> {
 	logger.info(sec("[ GIVING OUT A INFRACTION ] ") + main(`[ TO ] ${member.user.tag || "noone? huh what"} `) + third(`[ TYPE ] ${type || "no type? wtf"}`));
 	if (type.toLowerCase() !== "unmute" && member && message && type) {
-		//@ts-ignore
-
 		client.createInfraction(member.id, message.id, member.guild.id, message.author.id, reason || "No reason provided", type || "No type");
 	}
 
@@ -642,7 +625,7 @@ export function readyLog(client: InterfaceClient): void {
  * @param ms - time to wait in micro seconds
  * @returns
  */
-export const sleep = async function (ms: number | string): Promise<string | number> {
+export const sleep = function (ms: number | string): Promise<string | number> {
 	let mis: number;
 	if (typeof ms !== "number") {
 		mis = Number(ms);
@@ -684,4 +667,29 @@ export interface malilStartGiveaway {
 	channel: string;
 	message: string;
 	guildId: string;
+}
+export interface fn {
+	(...args: string[]): string;
+}
+export interface infraction {
+	when: number;
+	user: BigInt;
+	id: BigInt;
+	guild: BigInt;
+	reason: string;
+	type: string;
+}
+export interface guildSettingsInterface {
+	id: bigint;
+	muterole: bigint;
+	modrole: bigint;
+	github: bigint;
+	modlogs: bigint;
+	emoji: bigint;
+	starboard: bigint;
+	emojicount: number;
+	stickers: boolean;
+	prefix: any;
+	githubchannel: bigint;
+	language: number;
 }

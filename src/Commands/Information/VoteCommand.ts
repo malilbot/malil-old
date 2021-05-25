@@ -1,6 +1,6 @@
 //https://raw.githubusercontent.com/SkyBlockDev/malil-akairo/main/vote.markdown
 import Command from "../../Classes/malilCommand";
-import centra from "centra";
+import petitio from "petitio";
 import type { Message, CommandInteraction } from "discord.js";
 
 export default class VoteCommand extends Command {

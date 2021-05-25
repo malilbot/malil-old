@@ -1,6 +1,6 @@
 import Command from "../../Classes/malilCommand";
 import { Message } from "discord.js";
-import centra from "centra";
+import petitio from "petitio";
 import { MessageEmbed } from "discord.js";
 export default class shortenCommand extends Command {
 	constructor() {
@@ -30,7 +30,7 @@ export default class shortenCommand extends Command {
 		if (!args) return message.util.send("Please provide a link");
 		if (!args.startsWith("https://")) return message.util.send("Thats not a link");
 		const msg = await message.util.send(new MessageEmbed().setFooter("FETCHING"));
-		const res = await (await centra(`https://api.shrtco.de/v2/shorten?url=${args}`, "GET").send()).json();
+		const res = await (await petitio(`https://api.shrtco.de/v2/shorten?url=${args}`, "GET").send()).json();
 		if (res.ok !== true) return message.util.send("This link is unsupported or blacklisted");
 		const embed = new MessageEmbed()
 			.setFooter("Powered by app.shrtco.de <3")

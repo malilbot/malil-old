@@ -1,6 +1,6 @@
 import Command from "../../Classes/malilCommand";
 import { CommandInteraction, Message, MessageCollector, TextChannel } from "discord.js";
-import c from "centra";
+import c from "petitio";
 export default class NpmCommand extends Command {
 	constructor() {
 		super("npm", {

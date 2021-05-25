@@ -1,7 +1,7 @@
 import Command from "../../Classes/malilCommand";
 import { Message } from "discord.js";
 import {} from "../../Lib/Utils";
-import centra from "centra";
+import petitio from "petitio";
 export default class FactCommand extends Command {
 	constructor() {
 		super("fact", {
@@ -26,7 +26,7 @@ export default class FactCommand extends Command {
 	}
 
 	async exec(message: Message): Promise<void> {
-		const res = await (await centra(`https://api.dagpi.xyz/data/fact`, "get").header("Authorization", this.client.credentials.dagpi).send()).json();
+		const res = await (await petitio(`https://api.dagpi.xyz/data/fact`, "get").header("Authorization", this.client.credentials.dagpi).send()).json();
 		message.util.send(res.fact, { allowedMentions: { repliedUser: false } });
 	}
 }

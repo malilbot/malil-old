@@ -1,6 +1,6 @@
 import { MessageEmbed, TextChannel, Guild } from "discord.js";
 import { sleep } from "../Lib/Utils";
-import centra from "centra";
+import petitio from "petitio";
 import { main, sec } from "../Lib/Utils";
 
 let log = 0;
@@ -18,7 +18,7 @@ export default class extends Task {
 		for (let i = 0; i < repos.length; i++) {
 			const split = repos[i].split("|");
 			const data = await (
-				await centra(`https://api.github.com/repos/${split[0]}/releases`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()
+				await petitio(`https://api.github.com/repos/${split[0]}/releases`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()
 			).json();
 			await sleep(2000);
 			if (!data.documentation_url) {
@@ -34,7 +34,7 @@ export default class extends Task {
 						this.client.releases.push("all", split[0] + "|" + data[0].tag_name);
 						const url = data[0].html_url.split("/");
 						const servers = this.client.releases.keyArray();
-						const fetchs = await (await centra(data[0].url, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()).json();
+						const fetchs = await (await petitio(data[0].url, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()).json();
 						SendMessage(servers, split, this.client, url, data, fetchs);
 					}
 				}
