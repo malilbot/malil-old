@@ -28,7 +28,7 @@ export default class Ready extends MalilListener {
 			)
 			.setColor("GREEN");
 		const embed = this.client.util.embed().addField("Logged in ᗙ", `**guilds:** ${totalGuilds}\n**Members:** ${totalMembers}`).setColor(this.client.colors.blue);
-		this.client.webhook.send({ embeds: [userEmbed, embed] });
+		if (this.client.user.id !== "826480286169956413") this.client.webhook.send({ embeds: [userEmbed, embed] });
 		return readyLog(this.client);
 	}
 }
