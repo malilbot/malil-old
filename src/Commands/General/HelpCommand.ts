@@ -5,11 +5,7 @@ export default class HelpCommand extends Command {
 		super("help", {
 			aliases: ["help", "h", "ls", "commands"],
 			category: "General",
-			description: {
-				content: "HELP_DESCRIPTION_CONTENT",
-				example: "HELP_DESCRIPTION_EXAMPLE",
-			},
-			ratelimit: 3,
+			description: "",
 			args: [
 				{
 					id: "command",
@@ -29,8 +25,8 @@ export default class HelpCommand extends Command {
 				DESCRIPTION: "",
 				EXAMPLES: "",
 			});
-			const content = await this.client.sget(message, command.description.content);
-			const examples = await (<any>this.client.sget(message, command.description.example));
+			const content = await this.client.sget(message, `${command.id.toUpperCase()}_DESCRIPTION_CONTENT`);
+			const examples = await this.client.sget(message, `${command.id.toUpperCase()}_DESCRIPTION_EXAMPLE`);
 
 			return message.util.send(
 				new MessageEmbed()

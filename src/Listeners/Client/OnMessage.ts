@@ -15,6 +15,8 @@ export default class message extends Listener {
 	}
 
 	async exec(message: Message): Promise<void> {
+		if (message.webhookID) return;
+		if (message.system) return;
 		if (message.author.id == "510016054391734273")
 			if (message.channel.id == "831744864001064971")
 				if (message.content.includes("RUINED IT AT")) {

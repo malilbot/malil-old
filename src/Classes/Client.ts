@@ -480,9 +480,6 @@ export default class Client extends AkairoClient {
 			this.end(giveaway, await this.getWinners(giveaway));
 		}, giveaway.time - Date.now());
 	}
-	deleteGiveaway(id: string) {
-		const newGiveaway = this.getGiveaways().filter((i) => i.message !== id);
-	}
 	async post(): Promise<void> {
 		const topgg = {
 			server_count: this.guilds.cache.size,
