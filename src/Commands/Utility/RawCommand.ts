@@ -25,14 +25,13 @@ export default class RawCommand extends Command {
 		});
 	}
 
-	exec(message: Message, { args }: { args: string }): void {
+	async exec(message: Message, { args }: { args: string }): void {
 		if (!args) {
 			message.reply("Cant really display nothing");
 		} else {
 			if (args.length > 2048) {
-				hst(args).then((r) => {
-					message.reply(r);
-				});
+				const res = await hst(args);
+				message.reply(res);
 			} else {
 				message.channel.send("```" + args + "```");
 			}

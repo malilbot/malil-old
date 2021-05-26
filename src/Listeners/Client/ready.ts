@@ -1,10 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { MalilListener } from "../../Classes/MalilListener";
 import { readyLog } from "../../Lib/Utils";
-import { join } from "path";
-import { TextChannel } from "discord.js";
-import { CronJob } from "cron";
-import { readFileSync, writeFileSync } from "fs";
 export default class Ready extends MalilListener {
 	constructor() {
 		super("ready", {
@@ -20,11 +16,19 @@ export default class Ready extends MalilListener {
 		}
 		if (this.client?.shard?.ids[0] !== 0) return;
 		const totalGuilds = await this.client.shard.fetchClientValues("guilds.cache.size").then((serv) => serv.reduce((acc, guildCount) => acc + guildCount, 0));
-		// prettier-ignore
-		const totalMembers = await this.client.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)').then(member => member.reduce((acc, memberCount) => acc + memberCount, 0))
 
-		this.client.emit("startServer", totalGuilds, totalMembers);
-
+		const totalMembers = await this.client.shard
+			.broadcastEval("this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)")
+			.then((member) => member.reduce((acc, memberCount) => acc + memberCount, 0));
+		const userEmbed = this.client.util
+			.embed()
+			.addField(
+				"Logged in as ᗙ",
+				`**UserName:** ${this.client.user.username}\n**Id:** ${this.client.user.id}\n**FullName:** ${this.client.user.tag}\n**Invite:** [https://discord.com/oath2 etc etc](https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&permissions=117824&scope=bot%20applications.commands)\n**website:** https://malilbot.github.io`
+			)
+			.setColor("GREEN");
+		const embed = this.client.util.embed().addField("Logged in ᗙ", `**guilds:** ${totalGuilds}\n**Members:** ${totalMembers}`).setColor(this.client.colors.blue);
+		this.client.webhook.send({ embeds: [userEmbed, embed] });
 		return readyLog(this.client);
 	}
 }

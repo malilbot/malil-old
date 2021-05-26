@@ -9,7 +9,7 @@ import petitio from "petitio";
 import { types } from "pg";
 import Knex from "knex";
 import { connection } from "../settings";
-import { TextChannel, GuildMember, Message } from "discord.js";
+import { TextChannel, GuildMember, Message, WebhookClient } from "discord.js";
 import { malilStartGiveaway, fn, infraction, guildSettingsInterface } from "../Lib/Utils";
 import { CommandInteraction } from "discord.js";
 import en from "../translation/en";
@@ -83,6 +83,7 @@ export default class Client extends AkairoClient {
 				parse: ["users"],
 			},
 		});
+		this.webhook = new WebhookClient(credentials.webhook.id, credentials.webhook.token);
 		this.settings = Settings;
 		this.consts = consts;
 		this.colors = consts.colors;
@@ -509,6 +510,7 @@ export default class Client extends AkairoClient {
 
 declare module "discord-akairo" {
 	interface AkairoClient {
+		webhook: WebhookClient;
 		knex: any;
 		commandHandler: CommandHandler;
 		random: (number: number) => number;

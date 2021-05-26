@@ -8,7 +8,7 @@
 		"format": "prettier-eslint --write \"{,!(node_modules)/**/}*.{js,jsx}\"",
 		"start": "yarn estsc && node ./dist/index.js",
 		"build": "tsc",
-		"estsc": "yarn esbuild --outdir=dist --platform=node --target=es2020 --format=cjs src/**/*.ts",
+		"estsc": "yarn esbuild --outdir=dist --platform=node --minify-whitespace --minify-syntax --target=es2020 --format=cjs src/**/*.ts",
 		"lint": "eslint . --ext .ts",
 		"dir": "sh resources/mkdir.sh",
 		"dev": "nodemon -e ts --exec \"yarn start\"",

@@ -43,17 +43,8 @@ export default class WelcomeEmbed extends Listener {
 				let e: string;
 				if (lastJoin) lastJoin.delete();
 				if (amount == 1) e = "User";
-				lastJoin = await ((await this.client.channels.fetch("748957504666599507")) as TextChannel).send(
-					`Welcome ${member}! This discord server is for <@749020331187896410> support and general chatting\n\n` + `${amount} ${e ?? "Users"} joined today`
-				);
+				lastJoin = await ((await this.client.channels.fetch("748957504666599507")) as TextChannel).send(`Welcome ${member}!\n\n` + `${amount} ${e ?? "Users"} joined today`);
 			}
 		}
 	}
-}
-function shuffle(a: string[]) {
-	for (let i = a.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[a[i], a[j]] = [a[j], a[i]];
-	}
-	return a;
 }
