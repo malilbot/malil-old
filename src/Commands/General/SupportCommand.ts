@@ -1,4 +1,3 @@
-//https://discord.gg/mY8zTARu4g
 import Command from "../../Classes/malilCommand";
 import { Message, CommandInteraction } from "discord.js";
 export default class SupportCommand extends Command {
