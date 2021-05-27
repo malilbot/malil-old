@@ -28,7 +28,7 @@ export default class CommandErrorListener extends Listener {
 		this.client.logger.info(a1(`[ CONTENT ] ${message.content}`));
 		this.client.logger.info(a1(error.stack));
 		this.client.logger.info(a1("──────────────────────────────────────────────────────────────────────"));
-		const webhookCLient = new WebhookClient(this.client.credentials.webhook.id, this.client.credentials.webhook.token);
+
 		const errorEmbed: MessageEmbed = new MessageEmbed()
 
 			.setDescription(
@@ -50,7 +50,7 @@ export default class CommandErrorListener extends Listener {
 		} else {
 			errorUser.setDescription("To get an update on if the issue has been fixed go to the [support discord](https://discord.gg/TAp9Kt2)");
 		}
-		webhookCLient.send({ embeds: [errorEmbed, errrorr] });
+		this.client.webhook.send({ embeds: [errorEmbed, errrorr] });
 		return message.util.send(errorUser);
 	}
 }
