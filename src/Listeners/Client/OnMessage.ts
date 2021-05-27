@@ -128,8 +128,8 @@ export default class message extends Listener {
 						if (!talkedRecently.has(message.author.id)) {
 							this.client.logger.verbose(`${message.author.tag} [TRIGGERED] A AUTORESPONDER`);
 							talkedRecently.add(message.author.id);
-							const msg = await await message.reply(h.message, { allowedMentions: { repliedUser: true } }).catch();
-							msg.react("❌");
+							const msg = await message.reply({ content: h.message.content, files: h.message.files, allowedMentions: { repliedUser: true } }).catch();
+							await msg.react("❌");
 							msg.awaitReactions((reaction) => reaction.emoji.name === "❌", { max: 1, time: 60000 /** 60 seconds */ }).then((collected) => {
 								if (!collected.first()) return;
 								if (collected.first()) {
