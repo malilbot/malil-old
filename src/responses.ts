@@ -50,7 +50,7 @@ export default [
 		triggers: [[`location`]],
 	},
 	{
-		guilds: [`${skytils}`, `${drm}`, `${dg}`],
+		guilds: [`${skytils}`],
 		message: {
 			content: `https://streamable.com/1rauw6`,
 		},
