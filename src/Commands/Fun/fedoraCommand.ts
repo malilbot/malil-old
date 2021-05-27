@@ -45,7 +45,10 @@ export default class FedoraCommand extends Command {
 			dynamic: false,
 		});
 
-		const res = await petitio(`https://api.dagpi.xyz/image/fedora/?url=${url}`, "get").header("Authorization", this.client.credentials.dagpi).send();
+		const res = await petitio(`https://api.dagpi.xyz/image/fedora/?url=${url}`, "GET")
+			.header("Authorization", this.client.credentials.dagpi)
+			.header("user-agent", "Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0")
+			.send();
 		await message.util.send("", {
 			files: [{ attachment: res.body, name: `fedoraed.png` }],
 		});
@@ -53,8 +56,9 @@ export default class FedoraCommand extends Command {
 	}
 	async execSlash(message: CommandInteraction) {
 		const member = message.options[0]?.user ?? message.user;
-		const res = await petitio(`https://api.dagpi.xyz/image/fedora/?url=${member.avatarURL({ dynamic: false, format: "png" })}`, "get")
+		const res = await petitio(`https://api.dagpi.xyz/image/fedora/?url=${member.avatarURL({ dynamic: false, format: "png" })}`, "GET")
 			.header("Authorization", this.client.credentials.dagpi)
+			.header("user-agent", "Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0")
 			.send();
 		return message.reply({ content: "here ya go", files: [{ attachment: res.body, name: `Fedora'd.png` }] });
 	}

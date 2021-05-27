@@ -38,7 +38,10 @@ export default class AmeticaCommand extends Command {
 			dynamic: false,
 		});
 
-		const res = await petitio(`https://api.dagpi.xyz/image/america/?url=${url}`, "get").header("Authorization", this.client.credentials.dagpi).send();
+		const res = await petitio(`https://api.dagpi.xyz/image/america/?url=${url}`, "GET")
+			.header("Authorization", this.client.credentials.dagpi)
+			.header("user-agent", "Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0")
+			.send();
 		const meme = res.body;
 
 		await message.util.send("", {

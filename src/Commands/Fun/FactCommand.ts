@@ -26,7 +26,12 @@ export default class FactCommand extends Command {
 	}
 
 	async exec(message: Message): Promise<void> {
-		const res = await (await petitio(`https://api.dagpi.xyz/data/fact`, "get").header("Authorization", this.client.credentials.dagpi).send()).json();
+		const res = await (
+			await petitio(`https://api.dagpi.xyz/data/fact`, "GET")
+				.header("Authorization", this.client.credentials.dagpi)
+				.header("user-agent", "Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0")
+				.send()
+		).json();
 		message.util.send(res.fact, { allowedMentions: { repliedUser: false } });
 	}
 }
