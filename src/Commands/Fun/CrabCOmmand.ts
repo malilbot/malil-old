@@ -4,7 +4,7 @@ import { Message } from "discord.js";
 export default class CrabCommand extends Command {
 	constructor() {
 		super("crab", {
-			aliases: ["clap"],
+			aliases: ["crab"],
 			category: "Fun",
 			quoted: true,
 			args: [
