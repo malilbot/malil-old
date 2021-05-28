@@ -26,7 +26,7 @@ export default class PingCommand extends Command {
 				.addField("Discord latency", `${m.createdTimestamp - message.createdTimestamp || "UNLIMITED POWER!"} ms`)
 				.addField("Api latency", `${Math.round(this.client.ws.ping) || "UNLIMITED POWER!"} ms`)
 				.addField("Database latency", `${afterQueryTime - beforeQueryTime || "UNLIMITED POWER!"} ms`);
-			m.edit(embed);
+			m.edit({ embed: embed, content: "" });
 		});
 	}
 }
