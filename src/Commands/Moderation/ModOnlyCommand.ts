@@ -37,17 +37,17 @@ export default class modonlyCommand extends Command {
 		const modonly = (await this.client.guilddata.get(message.guild.id, "modonly")) ? await this.client.guilddata.get(message.guild.id, "modonly") : "none";
 
 		if (!split || !split[0] || split[0] == "get") {
-			if (modonly !== []) {
+			if (modonly.length !== 0) {
 				let channels = "";
 				for (const channel of modonly) {
 					channels += `<#${channel}>\n`;
 				}
 				const embed = new MessageEmbed()
-					.addField("ModOnly Channels", `${channels || `No mod only channels set you can set them by using ${await this.client.getPrefix(message.guild.id) || "*"}modonly <channel>`}`)
+					.addField("ModOnly Channels", `${channels || `No mod only channels set you can set them by using ${(await this.client.getPrefix(message.guild.id)) || "*"}modonly <channel>`}`)
 					.setColor(this.client.colors.default);
 				message.util.send(embed);
 			} else {
-				message.util.send("Theres no modonly channels");
+				message.util.send("Theres are no modonly channels");
 			}
 		} else {
 			const channel = (await message.guild.channels.cache.find((channel) => channel.name.toLowerCase() == args)) || (await message.guild.channels.cache.get(split[0]));

@@ -17,6 +17,7 @@ export default class message extends Listener {
 	}
 
 	async exec(message: Message): Promise<void> {
+		if (!message?.guild?.id) return;
 		if (message.channel.id == "843599498394468393") {
 			message
 				.crosspost()
@@ -85,10 +86,10 @@ export default class message extends Listener {
 				});
 		}
 		if (!talkedRecently.has(message.author.id)) {
-			const isDrm = message.guild.id == "804143990869590066";
-			const isST = message.guild.id == "807302538558308352";
-			const isDG = message.guild.id == "781913473872560189";
-			const isTS = message.guild.id == "748956745409232945";
+			const isDrm = message?.guild?.id == "804143990869590066";
+			const isST = message?.guild?.id == "807302538558308352";
+			const isDG = message?.guild?.id == "781913473872560189";
+			const isTS = message?.guild?.id == "748956745409232945";
 			if (!isDrm && !isST && !isDG && !isTS) return;
 
 			if (message.author.bot) return;
