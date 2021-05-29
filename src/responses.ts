@@ -35,11 +35,11 @@ export default [
 	{
 		guilds: [`${drm}`],
 		message: {
-			content: `https://discord.gg/2UjaFqfPwJ\n\n**Download sbp from this server**\nSkyblock plus, this mod is Dungeon Rooms Mod.\nAgain, in addition to the Dungeon Rooms Mod you downloaded from this server, you need to download **SkyBlockPlus** from Skyblock Personalized Discord server`,
+			content: `https://discord.gg/2UjaFqfPwJ\n\n**Download sbp from this server**\nSkyblock personalized, this mod is Dungeon Rooms Mod.\nAgain, in addition to the Dungeon Rooms Mod you downloaded from this server, you need to download **SkyBlockPlus** from Skyblock Personalized Discord server`,
 		},
 		triggers: [
 			[`how`, `get`, `where`],
-			[`sbp`, `skyblockplus`],
+			[`sbp`, `skyblockplus`, `personalized`],
 		],
 	},
 	{
