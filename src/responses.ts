@@ -50,7 +50,7 @@ export default [
 		triggers: [[`location`]],
 	},
 	{
-		guilds: [`${skytils}`],
+		guilds: [`${skytils}`, drm, dg],
 		message: {
 			content:
 				`Win key + R and then type %appdata%\\.minecraft\\crash-reports\n` +
