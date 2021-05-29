@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Message, GuildMember, GuildChannel, TextChannel, MessageEmbed, Interaction } from "discord.js";
-import { Command } from "discord-akairo";
 import { red, blue, gray, yellow, green, magenta, cyan, bgBlueBright, bgGreen, bgCyan, black } from "chalk";
+import { Message, GuildMember, GuildChannel, TextChannel, MessageEmbed, Interaction } from "discord.js";
+import InterfaceClient from "../Classes/Client";
+import { Command } from "discord-akairo";
 import { Settings } from "../settings";
 export { consts } from "../settings";
-import cio from "cheerio";
-import InterfaceClient from "../Classes/Client";
 import petitio from "petitio";
 import moment from "moment";
+import cio from "cheerio";
 /** Pre defining */
 const num = Math.floor(Math.random() * 2 + 1);
 
