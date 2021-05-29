@@ -1237,8 +1237,8 @@ __metadata:
 
 discord-akairo@SkyBlockDev/discord-akairo:
   version: 8.2.2
-  resolution: "discord-akairo@https://github.com/SkyBlockDev/discord-akairo.git#commit=f6068977cc493884be781020d37109f15c8f7848"
-  checksum: c34efa6e13f4f460f8e6f3169e9bce71234d7a271b1f987828fe74dc094964a92cf51aa55375584dc57f32bf0b2d95923fc333e30da7f88028befbae33bbadcf
+  resolution: "discord-akairo@https://github.com/SkyBlockDev/discord-akairo.git#commit=9652e68763d843f57b9ef5c7471f290916fcf459"
+  checksum: 13eff21be8cdab9c7c82fe28811812ae70fbbb72523aec3f791ba2ff4590640a982e4d69e7e46d9f44e3075820fa59e2c506cfb0a77468e53920919835e5d72a
   languageName: node
   linkType: hard
 
@@ -2787,7 +2787,6 @@ fsevents@~2.3.1:
     tslib: ^2.2.0
     typescript: ^4.2.4
     utf-8-validate: ^5.0.5
-    uwuify: ^1.0.1
     zlib-sync: ^0.1.7
   dependenciesMeta:
     bufferutil:
@@ -4717,22 +4716,6 @@ typescript@^4.2.4:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 73c2b1cf0210ccac300645384d8443cabbd93194117b2dc1b3bae8d8279ad39aedac857e020c4ea505e96a1045059c7359db3df6a9df0be6b8584166c9d61dc9
-  languageName: node
-  linkType: hard
-
-"uwuifier@npm:^2.0.2":
-  version: 2.0.4
-  resolution: "uwuifier@npm:2.0.4"
-  checksum: 85755928fac68f8ca1785b5097f88f21a181652833f20d13bd521bb0f6cb6d5a62cb8bd6026c92e4bdda5d1b36622062f284e06f6f85ab18cd8387a667e1c177
-  languageName: node
-  linkType: hard
-
-"uwuify@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "uwuify@npm:1.0.1"
-  dependencies:
-    uwuifier: ^2.0.2
-  checksum: b914593e85b7d3c3532cb006a0216ef9067b970e8b27aef98e81bff105c478489b0a3024bbf3d8e3984af0a31b8ed44c260b1b0484d9443f26a4e892430fc178
   languageName: node
   linkType: hard
 
