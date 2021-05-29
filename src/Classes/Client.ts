@@ -1,8 +1,9 @@
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
+import { Message, WebhookClient, Collection, ApplicationCommand } from "discord.js";
 import { fn, infraction, guildSettingsInterface } from "../Lib/Utils";
 import { Settings, credentials, consts } from "../settings";
-import { Message, WebhookClient } from "discord.js";
 import { CommandInteraction } from "discord.js";
+import { inspect } from "util";
 import { TaskHandler } from "./TaskHandler";
 import { superUsers } from "../Lib/config";
 import { connection } from "../settings";
@@ -74,7 +75,7 @@ export default class Client extends AkairoClient {
 			presence: {
 				activities: [
 					{
-						name: `guilds | /invite`,
+						name: `*help`,
 						type: "COMPETING",
 					},
 				],
@@ -122,6 +123,28 @@ export default class Client extends AkairoClient {
 		await this._init();
 		return this.login(this.config.token);
 	}
+	////////////////////////////////
+	// Slash STUFF /////////////////
+	////////////////////////////////
+
+	regSlash({ guild, language }: { guild?: string; language?: number }): Promise<Collection<string, ApplicationCommand>> {
+		const commands = [];
+		for (const [, data] of this.commandHandler.modules) {
+			if (data.execSlash) {
+				commands.push({
+					name: data.id.toLowerCase() || data.aliases[0],
+					description: this.s(language || 1, `${data.id.toUpperCase()}_DESCRIPTION_CONTENT`),
+					options: data.options.options,
+				});
+			}
+		}
+		if (guild) {
+			const g = this.guilds.cache.get(guild);
+			return g.commands.set(commands);
+		}
+		return this.application.commands.set(commands);
+	}
+
 	////////////////////////////////
 	// DATABSE STUFF ///////////////
 	////////////////////////////////

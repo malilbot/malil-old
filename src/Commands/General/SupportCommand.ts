@@ -3,6 +3,7 @@ import { Message, CommandInteraction } from "discord.js";
 export default class SupportCommand extends Command {
 	constructor() {
 		super("support", {
+			name: "support",
 			aliases: ["support"],
 			category: "General",
 			description: "",

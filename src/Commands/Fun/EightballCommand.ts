@@ -18,7 +18,7 @@ export default class EightballCommand extends Command {
 			options: [
 				{
 					type: 3,
-					name: "Question",
+					name: "question",
 					description: "question you want to ask the magic 8ball",
 					required: true,
 				},
