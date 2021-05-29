@@ -25,8 +25,8 @@ export default class leaveguildCommand extends Command {
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	async exec(message: Message, { args }): Promise<void> {
 		const guild = this.client.guilds.cache.get(args);
-		await guild.leave().catch((e) => message.util.send("a error occured trying to leave that guild"));
-		message.util.send({
+		await guild.leave().catch((e) => message.reply("a error occured trying to leave that guild"));
+		message.reply({
 			embed: new MessageEmbed()
 				.setTitle("guild left")
 				.setDescription("left the guild named " + guild.name)

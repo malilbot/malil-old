@@ -18,6 +18,6 @@ export default class SecretCommand extends Command {
 	}
 
 	exec(message: Message): Promise<Message> {
-		return message.util.send("woah you found my  secret command", { allowedMentions: { repliedUser: false } });
+		return message.reply("woah you found my  secret command", { allowedMentions: { repliedUser: false } });
 	}
 }

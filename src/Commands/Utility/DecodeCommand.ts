@@ -36,7 +36,7 @@ export default class DecodeCommand extends Command {
 				{ name: "utf16le/ucs2", value: (await hst(Buffer.from(args, "ucs2").toString(), true)) || "none", inline: true },
 				{ name: "base64", value: (await hst(Buffer.from(args, "base64").toString(), true)) || "none", inline: true }
 			);
-		message.util.send(embed);
+		message.reply(embed);
 		//Buffer.from.alloc(args, 'hex').toString()
 	}
 }

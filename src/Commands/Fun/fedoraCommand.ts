@@ -8,9 +8,10 @@ export default class FedoraCommand extends Command {
 			aliases: ["fedora"],
 			category: "Fun",
 			quoted: true,
+			slash: true,
 			args: [
 				{
-					id: "member",
+					id: "user",
 					type: async (message, content) => {
 						let member = await GetMember(message, content);
 						return member || message.member;
@@ -37,10 +38,9 @@ export default class FedoraCommand extends Command {
 		});
 	}
 
-	async exec(message: Message, { member }: { member: GuildMember }): Promise<void> {
-		const msg = await message.util.send("<a:loading:820592866685485076>");
-		const url = member.user.displayAvatarURL({
-			size: 512,
+	async exec(message: Message, { user }: { user: GuildMember }): Promise<void> {
+		const url = user.user.displayAvatarURL({
+			size: 1024,
 			format: "png",
 			dynamic: false,
 		});
@@ -49,17 +49,8 @@ export default class FedoraCommand extends Command {
 			.header("Authorization", this.client.credentials.dagpi)
 			.header("user-agent", "Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0")
 			.send();
-		await message.util.send("", {
+		await message.reply({
 			files: [{ attachment: res.body, name: `fedoraed.png` }],
 		});
-		msg.delete();
-	}
-	async execSlash(message: CommandInteraction) {
-		const member = message.options[0]?.user ?? message.user;
-		const res = await petitio(`https://api.dagpi.xyz/image/fedora/?url=${member.avatarURL({ dynamic: false, format: "png" })}`, "GET")
-			.header("Authorization", this.client.credentials.dagpi)
-			.header("user-agent", "Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0")
-			.send();
-		return message.reply({ content: "here ya go", files: [{ attachment: res.body, name: `Fedora'd.png` }] });
 	}
 }

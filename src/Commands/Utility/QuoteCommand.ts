@@ -32,13 +32,13 @@ export default class QuoteCommand extends Command {
 
 	async exec(message: Message, { args, force }: { args: string; force: boolean }): Promise<Message> {
 		//todo fancy quotes
-		if (!args) return message.util.send("please add a message link");
-		if (!message.content.includes("/")) return message.util.send("Please add a message link");
+		if (!args) return message.reply("please add a message link");
+		if (!message.content.includes("/")) return message.reply("Please add a message link");
 
 		const split = args.split(/\/| /);
 
 		if (!split[5] || !split[6]) {
-			return message.util.send("message not found");
+			return message.reply("message not found");
 		}
 		let fetched: TextChannel;
 		let msg: Message;
@@ -47,7 +47,7 @@ export default class QuoteCommand extends Command {
 			fetched = (await this.client.channels.fetch(split[5])) as TextChannel;
 			msg = await fetched.messages.fetch(split[6]);
 		} catch (error) {
-			return message.util.send("message not found");
+			return message.reply("message not found");
 		}
 
 		let url = [];
@@ -58,9 +58,9 @@ export default class QuoteCommand extends Command {
 		}
 		if (fetched.nsfw == true) {
 			if (!force) {
-				return message.util.send("nsfw");
+				return message.reply("nsfw");
 			} else if (!this.client.gp.get("superUsers").includes(message.author.id) && !this.client.settings.owners.includes(message.author.id)) {
-				return message.util.send("nsfw");
+				return message.reply("nsfw");
 			}
 		}
 
@@ -83,6 +83,6 @@ export default class QuoteCommand extends Command {
 		webhook
 			.send(msg.content || msg.embeds, attachment)
 			.then(() => webhook.delete())
-			.catch(() => message.util.send("Something went wrong"));
+			.catch(() => message.reply("Something went wrong"));
 	}
 }

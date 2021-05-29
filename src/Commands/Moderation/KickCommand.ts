@@ -36,12 +36,12 @@ export default class KickCommand extends Command {
 	}
 
 	async exec(message: Message, { reason, user }: { user: GuildMember; reason: string }): Promise<Message> {
-		if (!user) return message.util.send("user not found");
-		if (!user.kickable) return message.util.send(`Sorry, i can't kick this user`);
+		if (!user) return message.reply("user not found");
+		if (!user.kickable) return message.reply(`Sorry, i can't kick this user`);
 
 		user.kick().then((x) => {
 			x.send(`You have been kicked from **${message.guild.name}** for reason \`${reason}\``);
-			message.util.send(
+			message.reply(
 				new MessageEmbed()
 					.setAuthor(`User kicked by ${message.author.tag}`, message.author.avatarURL())
 					.setDescription(`Name: ${x.user.tag}\n` + `Time Kicked: ${utc(Date.now())}\n` + `Reason: ${reason}`)

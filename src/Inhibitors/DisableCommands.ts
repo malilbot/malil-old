@@ -28,7 +28,7 @@ export default class extends Inhibitor {
 		)) as string[];
 		if (disabledCategory.includes(command?.categoryID)) {
 				this.client.logger.command(message, command, "Disabled Command");
-			message.util.send(
+			message.reply(
 				`**${command?.categoryID}** Commands are disabled in this server`
 			);
 			return true;
@@ -45,7 +45,7 @@ export default class extends Inhibitor {
 		)) as string[];
 		if (disabledCommands.includes(command?.id)) {
 				this.client.logger.command(message, command, "Disabled Command");
-			message.util.send(`**${command?.id}** command is disabled in this server`);
+			message.reply(`**${command?.id}** command is disabled in this server`);
 			return true;
 		}
 		return false;

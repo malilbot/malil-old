@@ -66,6 +66,6 @@ export default class UserinfoCommand extends Command {
 				`**❯ Hoist Role:** ${member.roles.hoist ? member.roles.hoist.name : "None"}`,
 				`\u200b`,
 			]);
-		return message.util.send(embed);
+		return message.reply(embed);
 	}
 }

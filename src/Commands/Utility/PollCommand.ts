@@ -28,7 +28,7 @@ export default class PollCommand extends Command {
 
 	async exec(message: Message, { args }: { args: string }): Promise<Message> {
 		const input = await fixword(args);
-		if (!input) return message.util.send("pelase ask a question");
+		if (!input) return message.reply("pelase ask a question");
 
 		const dataEmbed = {
 			title: input,

@@ -45,20 +45,20 @@ export default class modonlyCommand extends Command {
 				const embed = new MessageEmbed()
 					.addField("ModOnly Channels", `${channels || `No mod only channels set you can set them by using ${(await this.client.getPrefix(message.guild.id)) || "*"}modonly <channel>`}`)
 					.setColor(this.client.colors.default);
-				message.util.send(embed);
+				message.reply(embed);
 			} else {
-				message.util.send("Theres are no modonly channels");
+				message.reply("Theres are no modonly channels");
 			}
 		} else {
 			const channel = (await message.guild.channels.cache.find((channel) => channel.name.toLowerCase() == args)) || (await message.guild.channels.cache.get(split[0]));
-			if (!channel) return message.util.send(new MessageEmbed().addField("not found", "the channel was not found please enter a valid channel").setColor(this.client.colors.default));
+			if (!channel) return message.reply(new MessageEmbed().addField("not found", "the channel was not found please enter a valid channel").setColor(this.client.colors.default));
 			else {
 				if (ch.includes(channel.id)) {
 					this.client.delModChannel(message.guild.id, channel.id);
-					return message.util.send(`${channel} is no longer modonly`);
+					return message.reply(`${channel} is no longer modonly`);
 				}
 				const embed = new MessageEmbed().addField("modonly", `Added ${channel} to the modonly channels`).setColor(this.client.colors.default);
-				message.util.send(embed);
+				message.reply(embed);
 				this.client.addModChannel(message.guild.id, channel.id);
 			}
 		}

@@ -64,7 +64,7 @@ export default class EvalCommand extends Command {
 			reset: boolean;
 		}
 	): Promise<Message> {
-		if (!code) return message.util.send("You cant eval air");
+		if (!code) return message.reply("You cant eval air");
 
 		if (del == true) message.delete();
 		const embed = new MessageEmbed().setColor(this.client.colors.red).addField("🍞 Input", `\`\`\`ts\n${code}\`\`\``);
@@ -73,7 +73,7 @@ export default class EvalCommand extends Command {
 
 		const { member, guild, channel, author, util } = message;
 		if (noreturn == true) msg = await message.author.send(embed);
-		else msg = await message.util.send({ embed });
+		else msg = await message.reply({ embed });
 		msg.react("🗑️");
 		try {
 			if (!reset) EvalCode = "";

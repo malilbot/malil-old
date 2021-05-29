@@ -28,13 +28,13 @@ export default class PrefixCommand extends Command {
 		if (!args || args.length == 0) {
 			const prefix = await this.client.getPrefix(message.guild.id);
 			if (prefix) {
-				return message.util.send(`my prefix is \`${prefix}\``);
-			} else return message.util.send("my prefix is *");
+				return message.reply(`my prefix is \`${prefix}\``);
+			} else return message.reply("my prefix is *");
 		} else {
-			if (!message.member.permissions.has("ADMINISTRATOR")) return message.util.send("you need to be a 'ADMINISTRATOR' to use this command");
-			else if (args.includes("@")) return message.util.send("Sorry you cant use @'s in prefixes");
+			if (!message.member.permissions.has("ADMINISTRATOR")) return message.reply("you need to be a 'ADMINISTRATOR' to use this command");
+			else if (args.includes("@")) return message.reply("Sorry you cant use @'s in prefixes");
 			this.client.setPrefix(message.guild.id, args);
-			message.util.send(`Updated the prefix to \`${args}\``);
+			message.reply(`Updated the prefix to \`${args}\``);
 		}
 	}
 }

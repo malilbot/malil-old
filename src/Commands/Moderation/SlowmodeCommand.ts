@@ -40,14 +40,14 @@ export default class SlowmodeCommand extends Command {
 			} else {
 				time = ms(args);
 			}
-			if (!time) return message.util.send("Invalid syntax please use slowmode 1m || slowmode off");
-			message.channel.setRateLimitPerUser(time / 1000).catch(() => message.util.send("Sorry something went wrong"));
+			if (!time) return message.reply("Invalid syntax please use slowmode 1m || slowmode off");
+			message.channel.setRateLimitPerUser(time / 1000).catch(() => message.reply("Sorry something went wrong"));
 			const longtime = ms(ms(args), { long: true });
 
 			Embed.setAuthor(`slowmode has been set to ${longtime} per message`);
 		}
 
-		return message.util.send({
+		return message.reply({
 			embed: Embed,
 			allowedMentions: { repliedUser: false },
 		});

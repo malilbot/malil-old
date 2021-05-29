@@ -34,11 +34,11 @@ export default class BlacklistCommand extends Command {
 				list += `${name.tag}: ${name.id}\n`;
 			});
 
-			return message.util.send(list || "Laughs in noone blacklisted");
+			return message.reply(list || "Laughs in noone blacklisted");
 		}
 		let Member: User = (await GetMember(message, args)).user;
 		if (!Member) {
-			return message.util.send("User not found");
+			return message.reply("User not found");
 		}
 		const userID = Member.id;
 
@@ -51,9 +51,9 @@ export default class BlacklistCommand extends Command {
 			}
 
 			this.client.blacklist.set("blacklisted", arr, "list");
-			return message.util.send(`Removed ${Member.tag} from blacklist`);
+			return message.reply(`Removed ${Member.tag} from blacklist`);
 		}
 		this.client.blacklist.push("blacklisted", userID, "list");
-		message.util.send(`Added ${Member.tag} to blacklist`);
+		message.reply(`Added ${Member.tag} to blacklist`);
 	}
 }

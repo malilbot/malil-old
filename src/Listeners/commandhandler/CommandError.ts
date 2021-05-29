@@ -15,11 +15,11 @@ export default class CommandErrorListener extends Listener {
 
 	async exec(error: Error, message: Message, command: Command | null | undefined): Promise<Message> {
 		if (error.stack.includes("DiscordAPIError: Cannot channel.send without permission to read message history")) {
-			message.util.send("I cannot work properly without seeing message history");
+			message.reply("I cannot work properly without seeing message history");
 			return;
 		}
 		if (error.stack.includes("DiscordAPIError: Cannot reply without permission to read message history")) {
-			message.util.send("I cannot work properly without seeing message history");
+			message.reply("I cannot work properly without seeing message history");
 			return;
 		}
 
@@ -51,6 +51,6 @@ export default class CommandErrorListener extends Listener {
 			errorUser.setDescription("To get an update on if the issue has been fixed go to the [support discord](https://discord.gg/TAp9Kt2)");
 		}
 		this.client.webhook.send({ embeds: [errorEmbed, errrorr] });
-		return message.util.send(errorUser);
+		return message.reply(errorUser);
 	}
 }

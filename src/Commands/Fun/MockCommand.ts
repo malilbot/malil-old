@@ -35,7 +35,7 @@ export default class MockCommand extends Command {
 			text += tried(item);
 		});
 		// -- send the output
-		message.util.send((await fixword(text.replace(/@/g, "@​"))) || "try actually sending nice text");
+		message.reply((await fixword(text.replace(/@/g, "@​"))) || "try actually sending nice text");
 
 		// -- my amazing function
 		function tried(item: string): string {

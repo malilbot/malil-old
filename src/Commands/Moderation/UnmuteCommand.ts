@@ -32,10 +32,10 @@ export default class UnmuteCommand extends Command {
 		});
 	}
 	async exec(message: Message, { args, user }: { args: string; user: GuildMember }): Promise<Message> {
-		if (!args) return message.util.send("No user provided");
+		if (!args) return message.reply("No user provided");
 
 		const reason = args.split(" ").slice(1).join(" ");
-		if (!user) return message.util.send("User not found");
+		if (!user) return message.reply("User not found");
 
 		const MRole = this.client.mutes.get(message.guild.id, `role`);
 		const role: Role = message.guild.roles.cache.get(MRole) || (await message.guild.roles.fetch(MRole));
@@ -44,6 +44,6 @@ export default class UnmuteCommand extends Command {
 
 		user.roles.remove(role, "User was unmuted by a staff member");
 		Infract(message, reason, user, "STAFFUNMUTE", this.client);
-		return await message.util.send(`Unmuted ${user.user.username} 👍`);
+		return await message.reply(`Unmuted ${user.user.username} 👍`);
 	}
 }

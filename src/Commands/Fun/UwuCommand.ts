@@ -42,10 +42,10 @@ export default class UwuCommand extends Command {
 		// Get question to answer
 		const text = await fixword(args || "haha censor go brrrr");
 		if (!text) {
-			return message.util.send(`**You need to specify a message..**`);
+			return message.reply(`**You need to specify a message..**`);
 		}
 
 		// Send message
-		message.util.send(`${Owoify(text)}`);
+		message.reply(`${Owoify(text)}`);
 	}
 }

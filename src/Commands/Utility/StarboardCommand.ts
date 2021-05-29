@@ -95,6 +95,6 @@ export default class starboardCommand extends Command {
 			);
 		}
 
-		//return message.util.send({ embed: embed, allowedMentions: { repliedUser: false } });
+		//return message.reply({ embed: embed, allowedMentions: { repliedUser: false } });
 	}
 }

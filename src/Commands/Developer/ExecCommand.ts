@@ -39,7 +39,7 @@ export default class ExecCommand extends Command {
 				embed.addField("Type", "shell");
 			}
 
-			return message.util.send({
+			return message.reply({
 				embed: embed,
 				allowedMentions: { repliedUser: false },
 			});

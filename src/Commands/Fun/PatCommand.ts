@@ -8,20 +8,14 @@ export default class PatCommand extends Command {
 			aliases: ["pat", "patpat", "pet"],
 			category: "Fun",
 			quoted: true,
+			slash: true,
 			args: [
 				{
-					id: "member",
+					id: "user",
 					type: async (message, content) => {
 						let member = await GetMember(message, content);
 						if (member) return member;
 						else return content.split(" ")[0];
-					},
-					match: "content",
-				},
-				{
-					id: "color",
-					type: async (_, content) => {
-						return content.split(" ")[1];
 					},
 					match: "content",
 				},
@@ -39,12 +33,6 @@ export default class PatCommand extends Command {
 					description: "in game name of th euser you want to have patted",
 					required: false,
 				},
-				{
-					type: 4,
-					name: "speed",
-					description: "The pat speed between 1 and 200",
-					required: false,
-				},
 			],
 			description: {
 				content: "MOCK_DESCRIPTION_CONTENT",
@@ -56,45 +44,23 @@ export default class PatCommand extends Command {
 		});
 	}
 
-	async exec(message: Message, { member, color }: { member: string | GuildMember; color: string }): Promise<Message> {
-		//return message.reply("WILL BE BACK SOON");
+	async exec(message: Message, { user, ign }: { user: string | GuildMember; ign: string }): Promise<Message> {
+		if (!user) user = ign;
 		let image: string;
-		if (!member) image = message.author.avatarURL({ dynamic: false, format: "png" });
-		else if (typeof member == "string") {
-			const res = await (await c("https://api.mojang.com/users/profiles/minecraft/" + member, "GET").send()).json();
+		if (!user) image = message.author.avatarURL({ dynamic: false, format: "png" });
+		else if (typeof user == "string") {
+			const res = await (await c("https://api.mojang.com/users/profiles/minecraft/" + user, "GET").send()).json();
 			if (res !== null) {
 				image = `https://mc-heads.net/head/${res.id}`;
 			} else {
 				return message.reply("User not found");
 			}
 		} else {
-			if (member) {
-				image = (member as GuildMember)?.user?.displayAvatarURL({ dynamic: false, format: "png" });
+			if (user) {
+				image = (user as GuildMember)?.user?.displayAvatarURL({ dynamic: false, format: "png" });
 			} else {
 				return message.reply("User not found");
 			}
-		}
-		const gif = await c("https://pet.skyblockdev.repl.co/api/pet/", "GET").query("url", image).send();
-		const patted = Buffer.from(gif.body.toString(), "base64");
-		return message.reply({ content: "patting", files: [{ attachment: patted, name: `patted.gif` }] });
-	}
-	async execSlash(message: CommandInteraction) {
-		let image: string;
-		let speed: number = (message.options.find((i) => i.name == "speed")?.value as number) || 20;
-		const ign = message.options.find((i) => i.name == "ign")?.value;
-		let user = message.options.find((i) => i.name == "user")?.user;
-		if (ign && user) {
-			message.reply("You must only give an ign or a user, not both");
-		} else if (ign) {
-			const res = await (await c("https://api.mojang.com/users/profiles/minecraft/" + ign, "GET").send()).json();
-			if (res !== null) {
-				image = `https://mc-heads.net/head/${res.id}`;
-			} else {
-				message.reply("User not found");
-			}
-		} else {
-			user = user || message.user;
-			image = user.displayAvatarURL({ dynamic: false, format: "png" });
 		}
 		const gif = await c("https://pet.skyblockdev.repl.co/api/pet/", "GET").query("url", image).send();
 		const patted = Buffer.from(gif.body.toString(), "base64");

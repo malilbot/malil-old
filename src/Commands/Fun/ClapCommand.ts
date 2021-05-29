@@ -27,6 +27,6 @@ export default class ClapCommand extends Command {
 	}
 
 	async exec(message: Message, { args }): Promise<void> {
-		message.util.send("👏" + (await fixword(args.replace("/s+/g", "👏").replace(/@/g, "@​").split(" ").join("👏"))) + "👏");
+		message.reply("👏" + (await fixword(args.replace("/s+/g", "👏").replace(/@/g, "@​").split(" ").join("👏"))) + "👏");
 	}
 }

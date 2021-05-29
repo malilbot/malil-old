@@ -37,24 +37,24 @@ export default class LogChannelCommand extends Command {
 
 		if (split[0] == "set") {
 			const channel = (await message.guild.channels.cache.find((channel) => channel.name.toLowerCase() == split[1])) || message.guild.channels.cache.get(split[1]);
-			if (!channel) message.util.send(new MessageEmbed().addField("not found", "the channel was not found please enter a valid channel").setColor(this.client.colors.default));
+			if (!channel) message.reply(new MessageEmbed().addField("not found", "the channel was not found please enter a valid channel").setColor(this.client.colors.default));
 			else {
 				const embed = new MessageEmbed().addField("logs", "alright set the log channel to " + (await channel.name)).setColor(this.client.colors.default);
-				message.util.send(embed);
+				message.reply(embed);
 				this.client.logchannel.set(message.guild.id, channel.id);
 			}
 		} else if (!split || !split[0] || split[0] == "get") {
 			if (logchannel !== "none") {
-				const cnl = await this.client.channels.fetch(logchannel).catch((e) => message.util.send("channel not found"));
+				const cnl = await this.client.channels.fetch(logchannel).catch((e) => message.reply("channel not found"));
 				const embed = new MessageEmbed().addField("logs", "The current log channel is " + (cnl as GuildChannel).name || "`Channel missing or deleted`").setColor(this.client.colors.default);
-				message.util.send(embed);
-			} else message.util.send("no log channel set yet use @malil set < channel id >");
+				message.reply(embed);
+			} else message.reply("no log channel set yet use @malil set < channel id >");
 		} else {
 			const channel = (await message.guild.channels.cache.find((channel) => channel.name.toLowerCase() == args)) || (await message.guild.channels.cache.get(split[0]));
-			if (!channel) message.util.send(new MessageEmbed().addField("not found", "the channel was not found please enter a valid channel").setColor(this.client.colors.default));
+			if (!channel) message.reply(new MessageEmbed().addField("not found", "the channel was not found please enter a valid channel").setColor(this.client.colors.default));
 			else {
 				const embed = new MessageEmbed().addField("logs", "alright set the log channel to " + (await channel.name)).setColor(this.client.colors.default);
-				message.util.send(embed);
+				message.reply(embed);
 				this.client.logchannel.set(message.guild.id, channel.id);
 			}
 		}

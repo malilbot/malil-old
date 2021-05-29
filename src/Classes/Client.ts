@@ -416,7 +416,7 @@ export default class Client extends AkairoClient {
 	async get(message: Message, thing: string, ...args: string[]): Promise<Message> {
 		const language = (await this.getGuildSettings(message.guild.id)).language || lan.en;
 		const translation = this.s(language, thing, ...args);
-		return message.channel.send({ content: translation });
+		return message.reply({ content: translation });
 	}
 	async iget(interaction: CommandInteraction, thing: string, ...args: string[]): Promise<void> {
 		const language = (await this.getGuildSettings(interaction.guild.id)).language || lan.en;

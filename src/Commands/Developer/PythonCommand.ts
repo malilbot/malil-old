@@ -68,7 +68,7 @@ export default class PyCommand extends Command {
 			reset: boolean;
 		}
 	): Promise<Message> {
-		if (!code) return message.util.send("You cant eval air");
+		if (!code) return message.reply("You cant eval air");
 		code = code.replace(/```py/g, "").replace(/```/g, "").trim();
 		if (del == true) message.delete();
 		const embed = new MessageEmbed().setColor(this.client.colors.red).addField("🍞 Input", `\`\`\`py\n${code}\`\`\``);
@@ -76,7 +76,7 @@ export default class PyCommand extends Command {
 		let msg: Message;
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		if (noreturn == true) msg = await message.author.send(embed);
-		else msg = await message.util.send({ embed });
+		else msg = await message.reply({ embed });
 		msg.react("🗑️");
 		try {
 			const dir = join(__dirname, "..", "..", "..", "python");

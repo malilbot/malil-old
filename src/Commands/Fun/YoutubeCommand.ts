@@ -6,6 +6,7 @@ export default class YoutubeCommand extends Command {
 			aliases: ["youtube", "yt"],
 			category: "Fun",
 			quoted: true,
+			slash: true,
 			args: [
 				{
 					id: "channel",
@@ -16,6 +17,14 @@ export default class YoutubeCommand extends Command {
 						else if (["voice"].includes(channel?.type)) return channel;
 					},
 					match: "content",
+				},
+			],
+			options: [
+				{
+					type: 7,
+					name: "channel",
+					description: "the channel you want to start the youtube together session in",
+					required: true,
 				},
 			],
 			description: {
@@ -29,19 +38,14 @@ export default class YoutubeCommand extends Command {
 	}
 
 	async exec(message: Message, { channel }): Promise<Message | void> {
+		if (!["voice"].includes(channel?.type)) return message.reply("Thats not a voice channel or a channel.");
 		if (!channel) return message.reply("Thats not a voice channel or a channel.");
-		else return await message.reply((await this.createInvite(channel as VoiceChannel)) + " Clieck on the link to join the youtube together session");
+		else return message.reply((await this.createInvite(channel as VoiceChannel)) + " Clieck on the link to join the youtube together session");
 	}
-	async execSlash(interaction: CommandInteraction) {
-		const channel = interaction.options[0]?.channel;
-		if (channel.type !== "voice") return interaction.reply("This command can only be used on a VoiceChannel");
-		if (!channel.guild.me.permissions.has("CREATE_INSTANT_INVITE")) return interaction.reply("I need the **create invite** permission for this command to work");
 
-		return interaction.reply((await this.createInvite(channel as VoiceChannel)) + " Clieck on the link to join the youtube together session");
-	}
 	async createInvite(channel: VoiceChannel): Promise<string> {
 		//@ts-expect-error
-		return await this.client.api //@ts-expect-error
+		return this.client.api //@ts-expect-error
 			.channels(channel.id)
 			.invites.post({
 				data: {

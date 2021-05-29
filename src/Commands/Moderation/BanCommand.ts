@@ -34,8 +34,8 @@ export default class BanCommand extends Command {
 	}
 
 	async exec(message: Message, { reason, user }: { user: GuildMember; reason: string }): Promise<Message> {
-		if (!user) return message.util.send("user not found");
-		if (!user.bannable) return message.util.send(`Sorry, i can't ban this user`);
+		if (!user) return message.reply("user not found");
+		if (!user.bannable) return message.reply(`Sorry, i can't ban this user`);
 
 		try {
 			await user.send(`You has been banned from **${message.guild.name} for reason: \`${reason}\``);
@@ -45,7 +45,7 @@ export default class BanCommand extends Command {
 
 		await message.guild.members.ban(user, { reason });
 
-		message.util.send(
+		message.reply(
 			new MessageEmbed()
 				.setAuthor(`User Banned by ${message.author.tag}`, message.author.avatarURL())
 				.setThumbnail(user.user.avatarURL())

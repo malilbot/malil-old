@@ -34,8 +34,8 @@ export default class DmCommand extends Command {
 	}
 
 	async exec(message: Message, { args, member }: { args: string; member: GuildMember }) {
-		if (!member) return message.util.reply("User not found");
-		member.send(args.split(" ").slice(1).join(" ") || "e").catch((e) => message.util.send(e, { allowedMentions: { repliedUser: false } }));
-		message.util.send(`Dmed ${member.user.tag}`, { allowedMentions: { repliedUser: false } });
+		if (!member) return message.reply("User not found");
+		member.send(args.split(" ").slice(1).join(" ") || "e").catch((e) => message.reply(e, { allowedMentions: { repliedUser: false } }));
+		message.reply(`Dmed ${member.user.tag}`, { allowedMentions: { repliedUser: false } });
 	}
 }

@@ -29,7 +29,7 @@ export default class extends Inhibitor {
 			this.client.logger.command(message, command, "Blacklisted");
 			timeoutObject[message.author.id] = 0;
 			blacklist[message.author.id] = true;
-			message.util.send(
+			message.reply(
 				new MessageEmbed()
 					.setImage("https://http.cat/423")
 					.addField("You have been blacklisted from using this bot for 24 hours", "If you believe this is a mistake visit the support [server](https://discord.gg/mY8zTARu4g)")

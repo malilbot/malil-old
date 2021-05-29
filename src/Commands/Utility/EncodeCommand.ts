@@ -53,6 +53,6 @@ export default class EncodeCommand extends Command {
 					inline: true,
 				}
 			);
-		return message.util.send(embed);
+		return message.reply(embed);
 	}
 }

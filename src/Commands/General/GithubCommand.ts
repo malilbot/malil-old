@@ -99,33 +99,33 @@ export default class GithubCommand extends Command {
 
 	async exec(message: Message, { action, channel, repo }: { action: string; channel: TextChannel; repo: string[] }): Promise<Message> {
 		console.log(repo);
-		if (!action) return message.util.send("use  *github set <#channel> to get started use *help github for more info");
+		if (!action) return message.reply("use  *github set <#channel> to get started use *help github for more info");
 
 		this.client.releases.ensure(message.guild.id, { channel: "", repos: [] });
 
 		if (action == "set") {
 			if (!channel) return message.reply("Channel not found / thats not a text channel");
-			message.util.send(`Succesfully set the channel to: ${channel}\nmake sure that i have permission to that channel`);
+			message.reply(`Succesfully set the channel to: ${channel}\nmake sure that i have permission to that channel`);
 
 			this.client.releases.set(message.guild.id, channel.id, "channel");
 		} else if (action == "delete") {
 			this.client.releases.delete(message.guild.id, "repos");
 			this.client.releases.set(message.guild.id, [], "repos");
-			return message.util.send("oke deleted the github list");
+			return message.reply("oke deleted the github list");
 		} else if (action == "add") {
-			if (!this.client.releases.get(message.guild.id, "channel")) return message.util.send("no channel set please set one with: `github set <#channel> `");
-			if (this.client.releases.get(message.guild.id, "repos").length > 5) return message.util.send("Sorry you can only have a maximum of 5 repos");
+			if (!this.client.releases.get(message.guild.id, "channel")) return message.reply("no channel set please set one with: `github set <#channel> `");
+			if (this.client.releases.get(message.guild.id, "repos").length > 5) return message.reply("Sorry you can only have a maximum of 5 repos");
 			const name = repo[3] + "/" + repo[4];
-			if (!repo) return message.util.send("Please try the command again but this time send a repo link");
+			if (!repo) return message.reply("Please try the command again but this time send a repo link");
 			const data = await (
 				await petitio(`https://api.github.com/repos/${name}/releases`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()
 			).json();
-			if (data.message == "Not Found") return message.util.send("Please try the command again but this time send a repo link");
+			if (data.message == "Not Found") return message.reply("Please try the command again but this time send a repo link");
 			const urls = await (
 				await petitio(`https://api.github.com/repos/${name}`, "GET").header("User-Agent", "Malil").header("Authorization", `token ${this.client.credentials.github}`).send()
 			).json();
-			if (urls.message == "Not Found") return message.util.send("Please try the command again but this time send a repo link");
-			if (urls.documentation_url) return message.util.send("I have been api limited");
+			if (urls.message == "Not Found") return message.reply("Please try the command again but this time send a repo link");
+			if (urls.documentation_url) return message.reply("I have been api limited");
 			let version;
 			if (data[0]?.tag_name) version = data[0].tag_name;
 			else version = "none";
@@ -134,18 +134,18 @@ export default class GithubCommand extends Command {
 
 			const input = url.split("/");
 			const output = input[3] + "/" + input[4] + "|" + version;
-			message.util.send("Added: <" + url + "> to watch list.");
+			message.reply("Added: <" + url + "> to watch list.");
 			this.client.releases.push("all", output);
 			this.client.releases.push(message.guild.id, name, "repos");
 		} else if (action == "list") {
 			const thing = this.client.releases.get(message.guild.id, "repos");
-			if (!thing) return message.util.send("Currently not watching anything");
+			if (!thing) return message.reply("Currently not watching anything");
 			const embed = new MessageEmbed()
 				.addField("**currently watching:**", thing.join("\n") || "nothing")
 				.setColor(this.client.colors.green)
 				.setFooter(this.client.user.username, this.client.user.avatarURL());
-			message.util.send(embed);
-		} else message.util.send("Check `*help github` for info about this command");
+			message.reply(embed);
+		} else message.reply("Check `*help github` for info about this command");
 	}
 	async execSlash(interaction: CommandInteraction) {
 		const perms = (interaction.channel as TextChannel).permissionsFor(interaction.member as GuildMember).toArray();

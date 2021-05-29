@@ -28,7 +28,7 @@ export default class HelpCommand extends Command {
 			const content = await this.client.sget(message, `${command.id.toUpperCase()}_DESCRIPTION_CONTENT`);
 			const examples = await this.client.sget(message, `${command.id.toUpperCase()}_DESCRIPTION_EXAMPLE`);
 
-			return message.util.send(
+			return message.reply(
 				new MessageEmbed()
 					.setAuthor(`Help | ${this.client.user.tag}`, this.client.user.displayAvatarURL())
 					.setColor(this.client.colors.orange)
@@ -49,7 +49,7 @@ export default class HelpCommand extends Command {
 			.setColor(this.client.colors.orange)
 			.setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" }))
 			.setDescription("For help and bugs visit the [support server](https://discord.gg/mY8zTARu4g) or [website](https://malilbot.github.io/docs/intro).")
-			.setFooter(`@malil help [ command ] for more information on a command.`);
+			.setFooter(`\@malil help [ command ] for more information on a command.`);
 
 		for (const category of this.handler.categories.values()) {
 			if (["default"].includes(category.id)) continue;
@@ -63,7 +63,7 @@ export default class HelpCommand extends Command {
 				);
 			}
 		}
-		return message.util.send({
+		return message.reply({
 			embed: embed,
 			allowedMentions: { repliedUser: false },
 		});

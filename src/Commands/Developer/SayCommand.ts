@@ -32,6 +32,6 @@ export default class SayCommand extends Command {
 			});
 		} catch (e) {}
 
-		message.util.send((await fixword(code.replace(/@/, "@​"))) || "Sorry i just prevented weird stuff");
+		message.reply((await fixword(code.replace(/@/, "@​"))) || "Sorry i just prevented weird stuff");
 	}
 }

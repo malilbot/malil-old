@@ -41,10 +41,10 @@ export default class AsciifyCommand extends Command {
 				dynamic: false,
 			});
 		}
-		if (!url) return message.util.send("please add a image attachment");
+		if (!url) return message.reply("please add a image attachment");
 
 		const gif = await (await c("https://pet.skyblockdev.repl.co/api/asciify/", "GET").query("url", url).send()).json();
 		const link = await hst(gif.out);
-		message.util.send("Success " + link, { allowedMentions: { repliedUser: false } });
+		message.reply("Success " + link, { allowedMentions: { repliedUser: false } });
 	}
 }

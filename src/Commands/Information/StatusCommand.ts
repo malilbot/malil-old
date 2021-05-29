@@ -44,7 +44,7 @@ export default class StatsCommand extends Command {
 					.addField("Guild cached users", message.guild.members.cache.size)
 			);
 		} else {
-			return message.util.send(
+			return message.reply(
 				this.client.util
 					.embed()
 					.setAuthor(this.client.user.tag, this.client.user.avatarURL())

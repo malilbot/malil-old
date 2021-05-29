@@ -8,6 +8,7 @@ export default class AvatarCommand extends Command {
 		super("avatar", {
 			aliases: ["avatar", "av"],
 			category: "Info",
+			slash: true,
 			description: {
 				content: "AVATAR_DESCRIPTION_CONTENT",
 				example: "AVATAR_DESCRIPTION_EXAMPLE",
@@ -15,7 +16,7 @@ export default class AvatarCommand extends Command {
 			ratelimit: 3,
 			args: [
 				{
-					id: "member",
+					id: "user",
 					type: async (message, content) => {
 						let member = await GetMember(message, content);
 						return member || message.member;
@@ -54,12 +55,12 @@ export default class AvatarCommand extends Command {
 		});
 	}
 
-	async exec(message: Message, { size, format, member }: { member: GuildMember; size: number; format: string }): Promise<Message> {
-		return message.util.send(
+	async exec(message: Message, { size, format, user }: { user: GuildMember; size: number; format: string }): Promise<Message> {
+		return message.reply(
 			new MessageEmbed()
-				.setTitle(`${member.user.username}'s Avatar`)
+				.setTitle(`${user.user.username}'s Avatar`)
 				.setURL(
-					member.user.displayAvatarURL({
+					user.user.displayAvatarURL({
 						format: format as AllowedImageFormat,
 						size: size as ImageSize,
 						dynamic: true,
@@ -67,23 +68,12 @@ export default class AvatarCommand extends Command {
 				)
 				.setColor(this.client.colors.blue)
 				.setImage(
-					member.user.displayAvatarURL({
+					user.user.displayAvatarURL({
 						format: format as AllowedImageFormat,
 						size: size as ImageSize,
 						dynamic: true,
 					})
 				)
-		);
-	}
-	async execSlash(message: CommandInteraction) {
-		const member = message.options[0]?.user ?? message.user;
-		return message.reply(
-			this.client.util
-				.embed()
-				.setTitle(`${member.username}'s Avatar`)
-				.setURL(member.displayAvatarURL({ format: "png", size: 512, dynamic: true }))
-				.setColor(this.client.colors.green)
-				.setImage(member.displayAvatarURL({ format: "png", size: 512, dynamic: true }))
 		);
 	}
 }

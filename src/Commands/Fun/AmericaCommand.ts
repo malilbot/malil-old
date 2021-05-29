@@ -30,7 +30,7 @@ export default class AmeticaCommand extends Command {
 	}
 
 	async exec(message: Message, { member }: { member: GuildMember }): Promise<void> {
-		const msg = await message.util.send("<a:loading:820592866685485076>");
+		const msg = await message.reply("<a:loading:820592866685485076>");
 
 		const url = member.user.displayAvatarURL({
 			size: 512,
@@ -44,7 +44,7 @@ export default class AmeticaCommand extends Command {
 			.send();
 		const meme = res.body;
 
-		await message.util.send("", {
+		await message.reply("", {
 			files: [{ attachment: meme, name: `America.png` }],
 		});
 		msg.delete();

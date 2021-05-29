@@ -42,10 +42,10 @@ export default class SuperUserCommand extends Command {
 				list += `${name.tag}: ${name.id}\n`;
 			});
 
-			return message.util.send(list || "Noone f......");
+			return message.reply(list || "Noone f......");
 		}
 		if (!member) {
-			return message.util.send("User not found");
+			return message.reply("User not found");
 		}
 		if (this.client.gp.get("superUsers").includes(member.id)) {
 			const arr = this.client.gp.get("superUsers");
@@ -56,9 +56,9 @@ export default class SuperUserCommand extends Command {
 			}
 
 			this.client.gp.set("superUsers", arr);
-			return message.util.send(`Removed ${member.user.tag} from SuperUser list`);
+			return message.reply(`Removed ${member.user.tag} from SuperUser list`);
 		}
 		this.client.gp.push("superUsers", member.id);
-		message.util.send(`Added ${member.user.tag} to SuperUser list`);
+		message.reply(`Added ${member.user.tag} to SuperUser list`);
 	}
 }

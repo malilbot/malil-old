@@ -39,8 +39,8 @@ export default class DisableCommand extends Command {
 			[message.guild.id]: [],
 		});
 		catagory = catagory[0].toUpperCase() + catagory.substring(1);
-		if (!cmd && !catagory) return message.util.send("Please mention a command");
-		if (cmd?.id == "disable") return await message.util.send(`You cannot disable ${cmd?.aliases[0]}.`);
+		if (!cmd && !catagory) return message.reply("Please mention a command");
+		if (cmd?.id == "disable") return await message.reply(`You cannot disable ${cmd?.aliases[0]}.`);
 		let action: string;
 		const disabledCommands: string[] = (await db.get("disabledCommands", message.guild.id)) as string[];
 		const disabledCatagorys: string[] = (await db.get("disabledCategory", message.guild.id)) as string[];
@@ -67,11 +67,11 @@ export default class DisableCommand extends Command {
 			action = "disabled";
 			type = "catagory";
 		} else {
-			return message.util.send("Thats not a **category** or a **command**");
+			return message.reply("Thats not a **category** or a **command**");
 		}
 		if (type == "catagory") {
-			return await message.util.send(`${action} category **${catagory}**`);
+			return await message.reply(`${action} category **${catagory}**`);
 		}
-		return await message.util.send(`${action} command **${cmd?.aliases[0]}**`);
+		return await message.reply(`${action} command **${cmd?.aliases[0]}**`);
 	}
 }

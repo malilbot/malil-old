@@ -30,6 +30,6 @@ export default class ServerCommand extends Command {
 			.addField("Roles Count", `This server has ${message.guild.roles.cache.size} roles`)
 			.addField("Chanel Count", `This server has ${message.guild.channels.cache.size} channels`);
 
-		return message.util.send(embed);
+		return message.reply(embed);
 	}
 }

@@ -38,7 +38,7 @@ export default class ColorCommand extends Command {
 			let args2 = args.split(" ");
 
 			/** Checking if the args are a valid color */
-			if (!colors.includes(args2[0])) return message.util.send("you can only choose one of the following colors: " + list, { allowedMentions: { repliedUser: false } });
+			if (!colors.includes(args2[0])) return message.reply("you can only choose one of the following colors: " + list, { allowedMentions: { repliedUser: false } });
 
 			/** getting the gist with my epic function */
 			const res = await GetGist("6993d1f641ddcdb6ab2761a6ff8eb317", this.client);
@@ -47,7 +47,7 @@ export default class ColorCommand extends Command {
 			let uuid;
 			const channel = message.channel;
 			/** asking for the ign */
-			message.util.send("Whats your ign?");
+			message.reply("Whats your ign?");
 			const filter = (m) => m.author.id === message.author.id;
 			/**
 			 * collector stuff starts here
@@ -61,14 +61,14 @@ export default class ColorCommand extends Command {
 					/** requesting sloth pixel cuz hypixel api sucks */
 					const response = await fetch(`https://api.slothpixel.me/api/players/${value.content}`).then((resp) => resp.json());
 					/** making sure the user exists */
-					if (response.error || response.username == null) return message.util.send("user does not exist");
+					if (response.error || response.username == null) return message.reply("user does not exist");
 					/** defining stuff */
 					const name = response.username;
 					uuid = response.uuid;
 					const discord = response.links.DISCORD;
 					/** comparing the user's discord tag */
-					if (message.author.tag !== discord) return message.util.send("Discord acount and minecraft acount a renot linked");
-					message.util.send("Aight got it " + name);
+					if (message.author.tag !== discord) return message.reply("Discord acount and minecraft acount a renot linked");
+					message.reply("Aight got it " + name);
 					input[uuid] = args[0];
 					const txt = JSON.stringify(input);
 					/**
@@ -78,8 +78,8 @@ export default class ColorCommand extends Command {
 				});
 			});
 		} else if (message.member.roles.cache.some((role) => role.name === "DEV") || message.member.roles.cache.some((role) => role.name === "MOD")) {
-			message.util.send("please note that you ar using this command as staff and no checks apply");
-			if (!args) return message.util.send("not args provided");
+			message.reply("please note that you ar using this command as staff and no checks apply");
+			if (!args) return message.reply("not args provided");
 			try {
 				args = args.toLowerCase();
 			} catch (e) {
@@ -95,7 +95,7 @@ export default class ColorCommand extends Command {
 			let uuid;
 			const channel = message.channel;
 			/** asking for the ign */
-			message.util.send("Whats your ign?");
+			message.reply("Whats your ign?");
 			const filter = (m) => m.author.id === message.author.id;
 			/**
 			 *
@@ -111,12 +111,12 @@ export default class ColorCommand extends Command {
 					/** requesting sloth pixel cuz hypixel api sucks */
 					const response = await fetch(`https://api.mojang.com/users/profiles/minecraft/${value.content}`).then((resp) => resp.json());
 					/** making sure the user exists */
-					if (response.name == null) return message.util.send("user does not exist");
+					if (response.name == null) return message.reply("user does not exist");
 					/** defining stuff */
 					const name = response.name;
 					uuid = response.id;
 					/** comparing the user's discord tag */
-					message.util.send("Aight got it gave " + name + " color " + args);
+					message.reply("Aight got it gave " + name + " color " + args);
 					input[uuid] = args;
 					const txt = JSON.stringify(input);
 					/**
@@ -126,7 +126,7 @@ export default class ColorCommand extends Command {
 				});
 			});
 		} else {
-			message.util.send("You need to be a booster to use this command in this server");
+			message.reply("You need to be a booster to use this command in this server");
 		}
 	}
 }

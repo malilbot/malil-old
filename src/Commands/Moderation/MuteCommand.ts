@@ -58,9 +58,9 @@ export default class MuteCommand extends Command {
 			const role = message.guild.roles.cache.find((role) => role.name.toLowerCase() == args2.toLowerCase()) || (await message.guild.roles.cache.get(args2));
 			if (role?.id) {
 				this.client.mutes.set(message.guild.id, role.id, "role");
-				return message.util.send("New muted role set to " + role.name);
+				return message.reply("New muted role set to " + role.name);
 			} else {
-				return message.util.send("Role not found please provide a valid role id");
+				return message.reply("Role not found please provide a valid role id");
 			}
 		}
 
@@ -68,9 +68,9 @@ export default class MuteCommand extends Command {
 			const role = message.guild.roles.cache.find((role) => role.name.toLowerCase() == args.toLowerCase()) || (await message.guild.roles.cache.get(args));
 			if (role?.id) {
 				this.client.mutes.set(message.guild.id, role.id, "role");
-				return message.util.send("Muted role updated");
+				return message.reply("Muted role updated");
 			} else {
-				return message.util.send("Role not found please provide a valid role id");
+				return message.reply("Role not found please provide a valid role id");
 			}
 		}
 
@@ -78,15 +78,15 @@ export default class MuteCommand extends Command {
 			role: null,
 			mutes: {},
 		});
-		if (!user) return message.util.send("No user provided.");
+		if (!user) return message.reply("No user provided.");
 		const role = this.client.mutes.get(message.guild.id, "role");
-		if (!role) return message.util.send("No role setup use @malil muterole <your mute role>, to setup mutes");
+		if (!role) return message.reply("No role setup use @malil muterole <your mute role>, to setup mutes");
 
-		if (time !== "PERM" && time > 604800001) return message.util.send("Cant mute longer than 7 days");
-		if (time !== "PERM" && time < 59090) return message.util.send("Sorry cant mute for less than one minute");
+		if (time !== "PERM" && time > 604800001) return message.reply("Cant mute longer than 7 days");
+		if (time !== "PERM" && time < 59090) return message.reply("Sorry cant mute for less than one minute");
 
-		if (user.user.id == this.client.user.id) return message.util.send("HAHA you cant fool me into muting myself this easy");
-		if (user.user.id == message.author.id) return message.util.send("You cant mute yourself Dummy.");
+		if (user.user.id == this.client.user.id) return message.reply("HAHA you cant fool me into muting myself this easy");
+		if (user.user.id == message.author.id) return message.reply("You cant mute yourself Dummy.");
 
 		let ends: number, endtime: number, _time: string;
 
@@ -100,7 +100,7 @@ export default class MuteCommand extends Command {
 		}
 
 		this.client.emit("mute", user, ends || time, message);
-		message.util.send(`**Muted ${user.user.tag}**`);
+		message.reply(`**Muted ${user.user.tag}**`);
 
 		Infract(message, (_time as any) || time, user, "MUTE", this.client);
 	}

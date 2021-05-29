@@ -24,6 +24,6 @@ export default class CrabCommand extends Command {
 
 	async exec(message: Message, { args }: { args: string }): Promise<void> {
 		//🦀
-		message.util.send("🦀" + (await fixword(args.replace("/s+/g", "🦀").split(" ").join("🦀"))) + "🦀");
+		message.reply("🦀" + (await fixword(args.replace("/s+/g", "🦀").split(" ").join("🦀"))) + "🦀");
 	}
 }

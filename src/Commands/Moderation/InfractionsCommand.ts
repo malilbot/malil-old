@@ -29,7 +29,7 @@ export default class InfractionsCommand extends Command {
 		});
 	}
 	async exec(message: Message, { user }: { user: GuildMember }): Promise<Message> {
-		if (!user?.user?.tag) return message.util.send("user not found");
+		if (!user?.user?.tag) return message.reply("user not found");
 
 		let infractions = await this.client.getInfractions(user.id, message.guild.id);
 		if (!infractions) {
@@ -43,13 +43,13 @@ export default class InfractionsCommand extends Command {
 			mesg += `**type** ${infraction.type.toLowerCase()}\n`;
 		}
 		if (mesg.length < 6) {
-			return message.util.send("user doesnt have any infractions");
+			return message.reply("user doesnt have any infractions");
 		}
 		const embed = new MessageEmbed().setColor(this.client.colors.default);
 		if (mesg.length > 1024) {
 			embed.addField("warns of " + user.user.tag, await hst(mesg));
 		} else embed.addField("warns of " + user.user.tag, mesg);
 
-		return message.util.send({ embed: embed, allowedMentions: { repliedUser: false } });
+		return message.reply({ embed: embed, allowedMentions: { repliedUser: false } });
 	}
 }

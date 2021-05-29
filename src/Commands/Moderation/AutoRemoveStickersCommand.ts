@@ -26,20 +26,20 @@ export default class StickerCommand extends Command {
 	}
 
 	async exec(message: Message, { Args }: { Args: string }): Promise<Message> {
-		return message.util.send("This command is not quite done but expect it at some point");
+		return message.reply("This command is not quite done but expect it at some point");
 		if (Args.toLowerCase() == "on") {
-			message.util.send("Malil will now delete every sticker it sees :smile:");
+			message.reply("Malil will now delete every sticker it sees :smile:");
 			this.client.guilddata.set(message.guild.id, true, "stickers");
 		} else if (Args.toLowerCase() == "off") {
-			message.util.send("Malil has stopped deleting stickers");
+			message.reply("Malil has stopped deleting stickers");
 			this.client.guilddata.delete(message.guild.id, "stickers");
 		} else {
 			const item = this.client.guilddata.get(message.guild.id, "stickers");
 			if (!item || item == false) {
-				message.util.send("Malil will now delete every sticker it sees :smile:");
+				message.reply("Malil will now delete every sticker it sees :smile:");
 				this.client.guilddata.set(message.guild.id, true, "stickers");
 			} else {
-				message.util.send("Malil has stopped deleting stickers");
+				message.reply("Malil has stopped deleting stickers");
 				this.client.guilddata.delete(message.guild.id, "stickers");
 			}
 		}

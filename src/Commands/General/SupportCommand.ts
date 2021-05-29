@@ -4,6 +4,7 @@ export default class SupportCommand extends Command {
 	constructor() {
 		super("support", {
 			name: "support",
+			slash: true,
 			aliases: ["support"],
 			category: "General",
 			description: "",

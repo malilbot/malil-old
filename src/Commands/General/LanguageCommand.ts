@@ -11,6 +11,7 @@ export default class languageCommand extends Command {
 		super("language", {
 			aliases: ["language", "lang"],
 			category: "General",
+			slash: true,
 			description: {
 				content: "LANGUAGE_DESCRIPTION_CONTENT",
 				example: "LANGUAGE_DESCRIPTION_EXAMPLE",

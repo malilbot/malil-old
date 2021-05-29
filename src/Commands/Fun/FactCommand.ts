@@ -32,6 +32,6 @@ export default class FactCommand extends Command {
 				.header("user-agent", "Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0")
 				.send()
 		).json();
-		message.util.send(res.fact, { allowedMentions: { repliedUser: false } });
+		message.reply(res.fact, { allowedMentions: { repliedUser: false } });
 	}
 }

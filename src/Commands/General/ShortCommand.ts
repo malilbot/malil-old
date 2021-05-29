@@ -27,11 +27,11 @@ export default class shortenCommand extends Command {
 
 	async exec(message: Message, { args }): Promise<Message> {
 		//full_short_link
-		if (!args) return message.util.send("Please provide a link");
-		if (!args.startsWith("https://")) return message.util.send("Thats not a link");
-		const msg = await message.util.send(new MessageEmbed().setFooter("FETCHING"));
+		if (!args) return message.reply("Please provide a link");
+		if (!args.startsWith("https://")) return message.reply("Thats not a link");
+		const msg = await message.reply(new MessageEmbed().setFooter("FETCHING"));
 		const res = await (await petitio(`https://api.shrtco.de/v2/shorten?url=${args}`, "GET").send()).json();
-		if (res.ok !== true) return message.util.send("This link is unsupported or blacklisted");
+		if (res.ok !== true) return message.reply("This link is unsupported or blacklisted");
 		const embed = new MessageEmbed()
 			.setFooter("Powered by app.shrtco.de <3")
 			.setTitle("Sucessfully shorten the url.")

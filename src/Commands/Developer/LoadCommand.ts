@@ -55,7 +55,7 @@ export default class LoadCommand extends Command {
 						.setColor(this.client.colors.default)
 						.addField(`☆ Bot Stats ${this.client.user.username}`, botStats)
 						.addField(`☆ System stats`, sysStats);
-					message.util.send(embed);
+					message.reply(embed);
 				});
 			});
 		});
@@ -91,6 +91,6 @@ export default class LoadCommand extends Command {
 					list = list.replace("                      ", " ".repeat(lsblk[2]?.length) + "  ");
 				}
 			exec('ps -e | wc -l', async (error, stdout) => {
-				message.util.send('```' + `${lsblk}` + '```');
+				message.reply('```' + `${lsblk}` + '```');
 			});
             */
