@@ -1,19 +1,19 @@
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
+import { fn, infraction, guildSettingsInterface } from "../Lib/Utils";
 import { Settings, credentials, consts } from "../settings";
-import { superUsers } from "../Lib/config";
-import { TaskHandler } from "./TaskHandler";
-import { logger } from "../Lib/Utils";
-import { join } from "path";
-import Enmap from "enmap";
-import petitio from "petitio";
-import { types } from "pg";
-import Knex from "knex";
-import { connection } from "../settings";
-import { TextChannel, GuildMember, Message, WebhookClient } from "discord.js";
-import { malilStartGiveaway, fn, infraction, guildSettingsInterface } from "../Lib/Utils";
+import { Message, WebhookClient } from "discord.js";
 import { CommandInteraction } from "discord.js";
-import en from "../translation/en";
+import { TaskHandler } from "./TaskHandler";
+import { superUsers } from "../Lib/config";
+import { connection } from "../settings";
+import { logger } from "../Lib/Utils";
 import owo from "../translation/owo";
+import en from "../translation/en";
+import petitio from "petitio";
+import { join } from "path";
+import { types } from "pg";
+import Enmap from "enmap";
+import Knex from "knex";
 types.setTypeParser(20, BigInt);
 const lan = { en: 1, owo: 2 };
 
@@ -361,81 +361,60 @@ export default class Client extends AkairoClient {
 	////////////////////////////////
 	// Language STUFF //////////////
 	////////////////////////////////
+	l(i: string | number): string | number {
+		if (i == 1) return "en";
+		if (i == 2) return "owo";
+		if (i == "en") return 1;
+		if (i == "owo") return 2;
+	}
+	s(language: number, thing: string, ...args: string[]): string {
+		const langs = {
+			1: en,
+			2: owo,
+		};
+		let translation: string | fn;
+
+		translation = langs[language][thing];
+		if (!translation) {
+			const embed = this.util
+				.embed()
+				.addField(`NO_LANG_FOR_${(this.l(language) as string).toUpperCase()}`, `${thing}\n${args?.join(" ^ ") || "NO args"}`)
+				.setColor(this.colors.green);
+			this.webhook.send(embed);
+			return thing;
+		}
+		if (typeof translation == "function") {
+			translation = translation(...args);
+		}
+
+		return <string>translation;
+	}
+
 	async get(message: Message, thing: string, ...args: string[]): Promise<Message> {
 		const language = (await this.getGuildSettings(message.guild.id)).language || lan.en;
-		let translation: string | fn;
-		if (language == 1) {
-			translation = en[thing];
-			if (!translation) throw new Error("NO TRANSLATION FOR " + thing);
-			if (typeof translation == "function") {
-				translation = translation(...args);
-			}
-		} else if (language == 2) {
-			translation = owo[thing];
-			if (!translation) throw new Error("NO TRANSLATION FOR " + thing);
-			if (typeof translation == "function") {
-				translation = translation(...args);
-			}
-		}
+		const translation = this.s(language, thing, ...args);
 		return message.channel.send({ content: translation });
 	}
 	async iget(interaction: CommandInteraction, thing: string, ...args: string[]): Promise<void> {
 		const language = (await this.getGuildSettings(interaction.guild.id)).language || lan.en;
-		let translation: string | fn;
-		if (language == 1) {
-			translation = en[thing];
-			if (typeof translation == "function") {
-				translation = translation(...args);
-			}
-		} else if (language == 2) {
-			translation = owo[thing];
-			if (!translation) throw new Error("NO TRANSLATION FOR " + thing);
-			if (typeof translation == "function") {
-				translation = translation(...args);
-			}
-		}
+		const translation = this.s(language, thing, ...args);
 		return interaction.reply({ content: translation });
 	}
 	async sget(interaction: CommandInteraction | Message, thing: string, ...args: string[]): Promise<string> {
 		const language = (await this.getGuildSettings(interaction.guild.id)).language || lan.en;
-		let translation: string | fn;
-		if (language == 1) {
-			translation = en[thing];
-			if (!translation) throw new Error("NO TRANSLATION FOR " + thing);
-			if (typeof translation == "function") {
-				translation = translation(...args);
-			}
-		} else if (language == 2) {
-			translation = owo[thing];
-			if (!translation) throw new Error("NO TRANSLATION FOR " + thing);
-			if (typeof translation == "function") {
-				translation = translation(...args);
-			}
-		}
+		const translation = this.s(language, thing, ...args);
 		return <string>translation;
 	}
 	async getObject(message: Message, things): Promise<any> {
 		const language = (await this.getGuildSettings(message.guild.id)).language || lan.en;
 
 		const returnData = {};
-		if (language == 1) {
-			for (const key in things) {
-				let translation = en[key];
-				if (typeof translation == "function") {
-					translation = translation(...things[key]);
-				}
-				returnData[key] = translation;
-			}
-		} else if (language == 2) {
-			for (const key in things) {
-				let translation = owo[key];
 
-				if (typeof translation == "function") {
-					translation = translation(...things[key]);
-				}
-				returnData[key] = translation;
-			}
+		for (const key in things) {
+			const translation = this.s(language, key, ...things[key]);
+			returnData[key] = translation;
 		}
+
 		return returnData;
 	}
 	////////////////////////////////

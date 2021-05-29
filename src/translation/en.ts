@@ -125,4 +125,6 @@ export default {
 	NPM_DESCRIPTION_EXAMPLE: ["npm discord.js"],
 	LANGUAGE_DESCRIPTION_CONTENT: "Change the language of malil",
 	LANGUAGE_DESCRIPTION_EXAMPLE: "lang en",
+	IQTEST_DESCRIPTION_CONTENT: "Uses advanced math to decide your iq",
+	IQTEST_DESCRIPTION_EXAMPLE: ["iq @user"],
 };
