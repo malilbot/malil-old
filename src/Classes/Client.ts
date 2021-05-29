@@ -115,7 +115,6 @@ export default class Client extends AkairoClient {
 		this.taskHandler.loadAll();
 		this.commandHandler.loadAll();
 		this.listenerHandler.loadAll();
-		this.loadAll();
 		this.taskHandler.startAll();
 	}
 
@@ -442,77 +441,77 @@ export default class Client extends AkairoClient {
 	////////////////////////////////
 	// GIVEAWAYS STUFF /////////////
 	////////////////////////////////
-	getGiveaways(): malilStartGiveaway[] {
-		return this.gp.ensure("givaways", []);
-	}
-	create(i: malilStartGiveaway) {
-		this.gp.ensure("givaways", []);
-		this.gp.push("giveaways", i);
-		this.rungiveaway(i);
-	}
+	// getGiveaways(): malilStartGiveaway[] {
+	// 	return this.gp.ensure("givaways", []);
+	// }
+	// create(i: malilStartGiveaway) {
+	// 	this.gp.ensure("givaways", []);
+	// 	this.gp.push("giveaways", i);
+	// 	this.rungiveaway(i);
+	// }
 
-	time(time: number) {
-		return time + Date.now();
-	}
-	start(giveaway: malilStartGiveaway) {
-		if (!giveaway.time) throw new console.error("THERE MUST BE A END TIME");
+	// time(time: number) {
+	// 	return time + Date.now();
+	// }
+	// start(giveaway: malilStartGiveaway) {
+	// 	if (!giveaway.time) throw new console.error("THERE MUST BE A END TIME");
 
-		return this.create(giveaway);
-	}
-	async end(giveaway: malilStartGiveaway, users: string[]) {
-		const channel = (this.channels.cache.get(giveaway.channel) || (await this.channels.fetch(giveaway.channel))) as TextChannel;
+	// 	return this.create(giveaway);
+	// }
+	// async end(giveaway: malilStartGiveaway, users: string[]) {
+	// 	const channel = (this.channels.cache.get(giveaway.channel) || (await this.channels.fetch(giveaway.channel))) as TextChannel;
 
-		const message = channel.messages.cache.get(giveaway.message) || (await channel.messages.fetch(giveaway.message));
+	// 	const message = channel.messages.cache.get(giveaway.message) || (await channel.messages.fetch(giveaway.message));
 
-		if (!channel || !message) return;
-		const oldEmbed = message.embeds;
-		message.edit(this.util.embed(oldEmbed).setDescription("This giveaway has ended"));
-		message.channel.send(`the giveaway for **${giveaway.prize}** has ended and the winner is ${users.map((i) => `${i}, `)}`);
-		return true;
-	}
-	async getWinners(giveaway: malilStartGiveaway) {
-		const channel = (this.channels.cache.get(giveaway.channel) || (await this.channels.fetch(giveaway.channel))) as TextChannel;
-		const message = channel.messages.cache.get(giveaway.message) || (await channel.messages.fetch(giveaway.message));
+	// 	if (!channel || !message) return;
+	// 	const oldEmbed = message.embeds;
+	// 	message.edit(this.util.embed(oldEmbed).setDescription("This giveaway has ended"));
+	// 	message.channel.send(`the giveaway for **${giveaway.prize}** has ended and the winner is ${users.map((i) => `${i}, `)}`);
+	// 	return true;
+	// }
+	// async getWinners(giveaway: malilStartGiveaway) {
+	// 	const channel = (this.channels.cache.get(giveaway.channel) || (await this.channels.fetch(giveaway.channel))) as TextChannel;
+	// 	const message = channel.messages.cache.get(giveaway.message) || (await channel.messages.fetch(giveaway.message));
 
-		if (!channel || !message) return;
+	// 	if (!channel || !message) return;
 
-		const winners: string[] = [];
+	// 	const winners: string[] = [];
 
-		for (let i = 0; i < giveaway.winners; i++) {
-			winners.push(this.getWinner(message, giveaway));
-		}
-		return winners;
-	}
-	getWinner(message: Message, giveaway: malilStartGiveaway) {
-		const reaction = message.reactions.cache[Math.floor(Math.random() * message.reactions.cache.size)];
-		if (this.checkUser(reaction.member, giveaway)) {
-			return reaction.member;
-		} else {
-			this.getWinner(message, giveaway);
-		}
-	}
-	checkUser(member: GuildMember, giveaway: malilStartGiveaway) {
-		for (const role of giveaway.options.roles) {
-			if (!member.roles.cache.has(role)) return false;
-		}
-		return true;
-	}
-	userChecks(giveaway: malilStartGiveaway, member: GuildMember) {
-		for (const role of giveaway.options.roles) {
-			if (!member.roles.cache.has(role)) return false;
-			else continue;
-		}
-	}
-	loadAll() {
-		for (const giveaway of this.getGiveaways()) {
-			this.rungiveaway(giveaway);
-		}
-	}
-	rungiveaway(giveaway: malilStartGiveaway) {
-		setTimeout(async () => {
-			this.end(giveaway, await this.getWinners(giveaway));
-		}, giveaway.time - Date.now());
-	}
+	// 	for (let i = 0; i < giveaway.winners; i++) {
+	// 		winners.push(this.getWinner(message, giveaway));
+	// 	}
+	// 	return winners;
+	// }
+	// getWinner(message: Message, giveaway: malilStartGiveaway) {
+	// 	const reaction = message.reactions.cache[Math.floor(Math.random() * message.reactions.cache.size)];
+	// 	if (this.checkUser(reaction.member, giveaway)) {
+	// 		return reaction.member;
+	// 	} else {
+	// 		this.getWinner(message, giveaway);
+	// 	}
+	// }
+	// checkUser(member: GuildMember, giveaway: malilStartGiveaway) {
+	// 	for (const role of giveaway.options.roles) {
+	// 		if (!member.roles.cache.has(role)) return false;
+	// 	}
+	// 	return true;
+	// }
+	// userChecks(giveaway: malilStartGiveaway, member: GuildMember) {
+	// 	for (const role of giveaway.options.roles) {
+	// 		if (!member.roles.cache.has(role)) return false;
+	// 		else continue;
+	// 	}
+	// }
+	// loadAll() {
+	// 	for (const giveaway of this.getGiveaways()) {
+	// 		this.rungiveaway(giveaway);
+	// 	}
+	// }
+	// rungiveaway(giveaway: malilStartGiveaway) {
+	// 	setTimeout(async () => {
+	// 		this.end(giveaway, await this.getWinners(giveaway));
+	// 	}, giveaway.time - Date.now());
+	// }
 	async post(): Promise<void> {
 		const topgg = {
 			server_count: this.guilds.cache.size,

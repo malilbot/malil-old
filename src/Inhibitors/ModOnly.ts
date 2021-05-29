@@ -1,6 +1,5 @@
 import { Command } from "discord-akairo";
 import { Message } from "discord.js";
-import { superUsers } from "../Lib/config";
 import { MalilInhibitor } from "../Classes/MalilInhibitor";
 export default class extends MalilInhibitor {
 	constructor() {
@@ -12,7 +11,7 @@ export default class extends MalilInhibitor {
 	}
 	async exec(message: Message, command: Command): Promise<boolean> {
 		if (!message.guild) return;
-		if (superUsers.includes(message.author.id)) return false;
+		if (this.client.isSuperUser(message.author.id)) return false;
 		if (message.member.permissions.has("MANAGE_MESSAGES")) return false;
 
 		const channels = await this.client.getModChannels(message.guild.id);
