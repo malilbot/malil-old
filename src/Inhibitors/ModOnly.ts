@@ -1,7 +1,8 @@
-import { Inhibitor, Command } from "discord-akairo";
+import { Command } from "discord-akairo";
 import { Message } from "discord.js";
 import { superUsers } from "../Lib/config";
-export default class extends Inhibitor {
+import { MalilInhibitor } from "../Classes/MalilInhibitor";
+export default class extends MalilInhibitor {
 	constructor() {
 		super("ModOnly", {
 			reason: "ModOnly",
@@ -10,10 +11,11 @@ export default class extends Inhibitor {
 		});
 	}
 	async exec(message: Message, command: Command): Promise<boolean> {
+		if (!message.guild) return;
 		if (superUsers.includes(message.author.id)) return false;
 		if (message.member.permissions.has("MANAGE_MESSAGES")) return false;
 
-		const channels = this.client.guilddata.ensure(message.guild.id, [], "modonly");
+		const channels = await this.client.getModChannels(message.guild.id);
 
 		if (channels?.includes(message.channel.id)) {
 			this.client.logger.command(message, command, "ModOnly");

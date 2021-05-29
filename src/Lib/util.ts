@@ -692,4 +692,5 @@ export interface guildSettingsInterface {
 	prefix: any;
 	githubchannel: bigint;
 	language: number;
+	modonlychannels: string;
 }

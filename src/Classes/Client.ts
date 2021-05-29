@@ -266,6 +266,38 @@ export default class Client extends AkairoClient {
 		}
 		return user;
 	}
+	async getModChannels(guilId: string): Promise<string[]> {
+		const data = await this.getGuildSettings(guilId);
+		if (!data.modonlychannels) return [];
+		return JSON.parse(data.modonlychannels);
+	}
+	async addModChannel(guilId: string, channel: string): Promise<string[]> {
+		const data = await this.getGuildSettings(guilId);
+		const thing = data.modonlychannels ? data.modonlychannels : "[]";
+		const channels = Array.from(new Set(JSON.parse(thing)).add(channel));
+
+		const id = BigInt(guilId);
+		await this.knex("guilds")
+			.where({ id })
+			.update({ modonlychannels: JSON.stringify(channels) });
+
+		return <string[]>channels;
+	}
+	async delModChannel(guilId: string, channel: string): Promise<string[]> {
+		const data = await this.getGuildSettings(guilId);
+		const thing = data.modonlychannels ? data.modonlychannels : "[]";
+		const set = new Set(JSON.parse(thing));
+		set.delete(channel);
+		const channels = Array.from(set);
+
+		const id = BigInt(guilId);
+		await this.knex("guilds")
+			.where({ id })
+			.update({ modonlychannels: JSON.stringify(channels) });
+
+		return <string[]>channels;
+	}
+
 	async increaseVotes(user: string | bigint, amount: number) {
 		const id = BigInt(user);
 		const votes = Number((await this.getUser(user)).votes);
@@ -277,6 +309,7 @@ export default class Client extends AkairoClient {
 	}
 	guildData(id: bigint) {
 		return {
+			modonlychannels: "[]",
 			id: id,
 			muterole: null,
 			modrole: null,

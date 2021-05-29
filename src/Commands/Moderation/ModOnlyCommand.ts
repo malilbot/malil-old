@@ -32,9 +32,9 @@ export default class modonlyCommand extends Command {
 		if (args) args = args.replace(/<#|>/gi, "");
 
 		if (args) split = args.split(" ");
-		console.log(args);
-		this.client.guilddata.ensure(message.guild.id, { modonly: [] });
-		const modonly = (await this.client.guilddata.get(message.guild.id, "modonly")) ? await this.client.guilddata.get(message.guild.id, "modonly") : "none";
+
+		const ch = await this.client.getModChannels(message.guild.id);
+		const modonly = ch ? ch : "none";
 
 		if (!split || !split[0] || split[0] == "get") {
 			if (modonly.length !== 0) {
@@ -53,19 +53,13 @@ export default class modonlyCommand extends Command {
 			const channel = (await message.guild.channels.cache.find((channel) => channel.name.toLowerCase() == args)) || (await message.guild.channels.cache.get(split[0]));
 			if (!channel) return message.util.send(new MessageEmbed().addField("not found", "the channel was not found please enter a valid channel").setColor(this.client.colors.default));
 			else {
-				if (this.client.guilddata.get(message.guild.id, "modonly").includes(channel.id)) {
-					const arr = this.client.blacklist.get("blacklisted", "list");
-					for (let i = 0; i < arr.length; i++) {
-						if (arr[i] == channel.id) {
-							arr.splice(i, 1);
-						}
-					}
-					this.client.guilddata.set(message.guild.id, arr, "modonly");
+				if (ch.includes(channel.id)) {
+					this.client.delModChannel(message.guild.id, channel.id);
 					return message.util.send(`${channel} is no longer modonly`);
 				}
 				const embed = new MessageEmbed().addField("modonly", `Added ${channel} to the modonly channels`).setColor(this.client.colors.default);
 				message.util.send(embed);
-				this.client.guilddata.push(message.guild.id, channel.id, "modonly");
+				this.client.addModChannel(message.guild.id, channel.id);
 			}
 		}
 	}
