@@ -2,7 +2,6 @@ import { Listener } from "discord-akairo";
 import { Message } from "discord.js";
 import Client from "../../Classes/Client";
 const talkedRecently = new Set();
-import { MessageEmbed, MessageOptions, Collection } from "discord.js";
 import { TextChannel } from "discord.js";
 import responses from "../../responses";
 

@@ -11,7 +11,7 @@ export default class CommandErrorListener extends Listener {
 		});
 	}
 
-	async exec(error: Error, message: Interaction, command: Command | null | undefined): Promise<void> {
+	exec(error: Error): void {
 		console.log(Interaction);
 		console.log(error);
 	}

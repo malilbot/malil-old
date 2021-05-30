@@ -13,7 +13,7 @@ export default class modstatsCommand extends Command {
 				{
 					id: "user",
 					type: async (message, content) => {
-						let member = await GetMember(message, content);
+						const member = await GetMember(message, content);
 						if (member) return member;
 						else return message.member;
 					},

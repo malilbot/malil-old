@@ -13,7 +13,7 @@ export default class IqCommand extends Command {
 				{
 					id: "user",
 					type: async (message, content) => {
-						let member = await GetMember(message, content);
+						const member = await GetMember(message, content);
 						return member || message.member;
 					},
 					match: "content",

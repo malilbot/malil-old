@@ -35,7 +35,7 @@ export default class ColorCommand extends Command {
 			const list = colors.toString().replace(/,/g, ", ").replace(/_/g, " ");
 
 			if (args.toLowerCase()) args = args.toLowerCase();
-			let args2 = args.split(" ");
+			const args2 = args.split(" ");
 
 			/** Checking if the args are a valid color */
 			if (!colors.includes(args2[0])) return message.reply("you can only choose one of the following colors: " + list, { allowedMentions: { repliedUser: false } });

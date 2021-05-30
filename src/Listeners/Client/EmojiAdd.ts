@@ -1,7 +1,6 @@
 import { MalilListener } from "../../Classes/MalilListener";
-import { Message, MessageReaction, TextChannel } from "discord.js";
+import { MessageReaction, TextChannel, Message } from "discord.js";
 import Client from "../../Classes/Client";
-import { main, sec, third } from "../../Lib/Utils";
 export default class messageReactionAdd extends MalilListener {
 	constructor(client: Client) {
 		super("messageReactionAdd", {
@@ -12,7 +11,7 @@ export default class messageReactionAdd extends MalilListener {
 		this.client = client;
 	}
 
-	async exec(messageReaction: MessageReaction): Promise<void> {
+	exec(messageReaction: MessageReaction): Promise<Message> {
 		const message = messageReaction.message;
 
 		const starboard = {
@@ -28,7 +27,7 @@ export default class messageReactionAdd extends MalilListener {
 			}
 		}
 		if (i == data.count) {
-			(this.client.channels.cache.get(data.channel) as TextChannel).send(
+			return (this.client.channels.cache.get(data.channel) as TextChannel).send(
 				this.client.util
 					.embed()
 					.setAuthor(message.author.tag, message.author.avatarURL())

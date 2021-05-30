@@ -11,13 +11,13 @@ export default class MuteReady extends Listener {
 		});
 		this.client = client;
 	}
-	async exec(): Promise<void> {
+	exec(): void {
 		//const res = this.client.mutes.fetchEverything();
 		const keys = this.client.mutes.keyArray();
 		keys.forEach((Allmutes) => {
 			const mutes = this.client.mutes.get(Allmutes, "mutes");
 			if (mutes == "{}") return;
-			Object.keys(mutes).forEach(async (key) => {
+			Object.keys(mutes).forEach((key) => {
 				if (Date.now() > mutes[key]) {
 					const obj = this.client.mutes.get(Allmutes, "mutes");
 					this.client.mutes.set(Allmutes, obj, "mutes");

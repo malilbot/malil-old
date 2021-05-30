@@ -57,7 +57,7 @@ export default class EnSlashCommand extends Command {
 						}
 					}
 
-					for (let cmd of this.handler.modules) {
+					for (const cmd of this.handler.modules) {
 						if (cmd[1].execSlash) {
 							const found = enabled.find((i) => i.name == cmd[1].id);
 
@@ -86,7 +86,7 @@ export default class EnSlashCommand extends Command {
 						}
 					}
 
-					for (let cmd of this.handler.modules) {
+					for (const cmd of this.handler.modules) {
 						if (cmd[1].execSlash) {
 							const found = enabled.find((i) => i.name == cmd[1].id);
 

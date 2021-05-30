@@ -36,7 +36,7 @@ export default class BlacklistCommand extends Command {
 
 			return message.reply(list || "Laughs in noone blacklisted");
 		}
-		let Member: User = (await GetMember(message, args)).user;
+		const Member: User = (await GetMember(message, args)).user;
 		if (!Member) {
 			return message.reply("User not found");
 		}

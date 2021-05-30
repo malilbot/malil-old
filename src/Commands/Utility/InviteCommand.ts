@@ -1,5 +1,5 @@
 import Command from "../../Classes/malilCommand";
-import { MessageEmbed, Message, CommandInteraction } from "discord.js";
+import { Message } from "discord.js";
 
 export default class InviteCommand extends Command {
 	constructor() {

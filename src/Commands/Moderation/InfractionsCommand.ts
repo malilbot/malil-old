@@ -16,7 +16,7 @@ export default class InfractionsCommand extends Command {
 				{
 					id: "user",
 					type: async (message, content) => {
-						let member = await GetMember(message, content);
+						const member = await GetMember(message, content);
 						if (member) return member;
 					},
 					match: "content",
@@ -31,7 +31,7 @@ export default class InfractionsCommand extends Command {
 	async exec(message: Message, { user }: { user: GuildMember }): Promise<Message> {
 		if (!user?.user?.tag) return message.reply("user not found");
 
-		let infractions = await this.client.getInfractions(user.id, message.guild.id);
+		const infractions = await this.client.getInfractions(user.id, message.guild.id);
 		if (!infractions) {
 			return message.reply("User doesnt have any infractions");
 		}

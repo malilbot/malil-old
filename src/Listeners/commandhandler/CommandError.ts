@@ -1,8 +1,7 @@
-import { MessageEmbed, Message, TextChannel, Interaction } from "discord.js";
+import { MessageEmbed, Message } from "discord.js";
 import { Listener } from "discord-akairo";
 import Command from "../../Classes/malilCommand";
 import { hst, a1 } from "../../Lib/Utils";
-import { WebhookClient } from "discord.js";
 
 export default class CommandErrorListener extends Listener {
 	constructor() {

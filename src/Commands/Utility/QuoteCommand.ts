@@ -50,7 +50,7 @@ export default class QuoteCommand extends Command {
 			return message.reply("message not found");
 		}
 
-		let url = [];
+		const url = [];
 		if (msg.attachments) {
 			msg.attachments.forEach((attachment) => {
 				url.push(attachment.url);
