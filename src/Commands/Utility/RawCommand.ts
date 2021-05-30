@@ -25,7 +25,7 @@ export default class RawCommand extends Command {
 		});
 	}
 
-	async exec(message: Message, { args }: { args: string }): void {
+	async exec(message: Message, { args }: { args: string }): Promise<void> {
 		if (!args) {
 			message.reply("Cant really display nothing");
 		} else {

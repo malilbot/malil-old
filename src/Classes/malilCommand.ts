@@ -11,8 +11,9 @@ interface ApplicationCommandOption {
 }
 
 interface CommandOptions extends AkairoModuleOptions {
+	slash?: boolean;
 	name?: string;
-	description: string | any;
+	description?: string | any | undefined;
 	options?: ApplicationCommandOption[];
 	ownerOnly?: boolean;
 }

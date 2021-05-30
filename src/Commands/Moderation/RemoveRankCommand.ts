@@ -40,7 +40,7 @@ export default class RemoveRankCommand extends Command {
 
 	async exec(message: Message, { role }: { role: Role | string }): Promise<Message | void> {
 		if (!role) return message.reply("No role specified / thats not a role");
-		if (!role?.id) role = message.guild.roles.cache.get(<string>role);
+		if (typeof role == "string") role = message.guild.roles.cache.get(<string>role);
 		const ranks = this.client.guilddata.ensure(message.guild.id, [], "ranks");
 
 		for (let i = 0; i < ranks.length; i++) {
