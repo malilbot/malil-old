@@ -83,50 +83,59 @@ export default class message extends Listener {
 					message.channel.send("You werent fast enough try again!");
 				});
 		}
-		if (!talkedRecently.has(message.author.id)) {
-			const isDrm = message?.guild?.id == "804143990869590066";
-			const isST = message?.guild?.id == "807302538558308352";
-			const isDG = message?.guild?.id == "781913473872560189";
-			const isTS = message?.guild?.id == "748956745409232945";
-			if (!isDrm && !isST && !isDG && !isTS) return;
 
-			if (message.author.bot) return;
-			const Check = (i: string | string[]) => {
-				const ls = (m: string) =>
-					message.content
-						.toLowerCase()
-						.replace(/[^a-z0-9]+|\s+/gim, "")
-						.includes(m);
-				if (typeof i == "string") {
-					return ls(i);
-				} else if (typeof i == "object") {
-					for (const str of i) {
-						if (ls(str)) {
-							return true;
-						} else {
-							continue;
-						}
+		const isDrm = message?.guild?.id == "804143990869590066";
+		const isST = message?.guild?.id == "807302538558308352";
+		const isDG = message?.guild?.id == "781913473872560189";
+		const isTS = message?.guild?.id == "748956745409232945";
+		if (!isDrm && !isST && !isDG && !isTS) return;
+
+		if (message.author.bot) return;
+		const Check = (i: string | string[]) => {
+			const ls = (m: string) =>
+				message.content
+					.toLowerCase()
+					.replace(/[^a-z0-9]+|\s+/gim, "")
+					.includes(m);
+			if (typeof i == "string") {
+				return ls(i);
+			} else if (typeof i == "object") {
+				for (const str of i) {
+					if (ls(str)) {
+						return true;
+					} else {
+						continue;
 					}
 				}
-			};
+			}
+		};
 
-			const check = (e?: string[], w?: string[]) => {
-				if (!w) {
-					return Check(e);
-				}
-				const i = Check(e);
-				const k = Check(w);
-				if (i && k) return true;
-				else return false;
-			};
+		const check = (e?: string[], w?: string[]) => {
+			if (!w) {
+				return Check(e);
+			}
+			const i = Check(e);
+			const k = Check(w);
+			if (i && k) return true;
+			else return false;
+		};
 
-			if (message.member.roles?.cache?.has("846102256738631691")) return console.log(`${message.author.tag} [TRIGGERED] AWAS STOPPED`);
-			responses.forEach(async (h) => {
-				if (h.guilds.includes(message.guild.id)) {
-					if (check(...h.triggers)) {
-						if (!talkedRecently.has(message.author.id)) {
-							this.client.logger.verbose(`${message.author.tag} [TRIGGERED] A AUTORESPONDER`);
-							talkedRecently.add(message.author.id);
+		if (message.member.roles?.cache?.has("846102256738631691")) return console.log(`${message.author.tag} [TRIGGERED] AWAS STOPPED`);
+		responses.forEach(async (h) => {
+			if (h.guilds.includes(message.guild.id)) {
+				if (check(...h.triggers)) {
+					if (h.delete) {
+						message.delete();
+						message.author.send('You were warned in **skytils** for: "Please dont advertise your actions"').catch((e) => {
+							(message.guild.channels.cache.get("807328920935858214") as TextChannel).send(
+								`${message.member} Didnt like to be dmed by me about them selling their stupid items on ah\n` + e
+							);
+						});
+					}
+					if (!talkedRecently.has(message.author.id)) {
+						this.client.logger.verbose(`${message.author.tag} [TRIGGERED] A AUTORESPONDER`);
+						talkedRecently.add(message.author.id);
+						if (h.message) {
 							const msg = await message.reply({ content: h.message.content, files: h.message.files, allowedMentions: { repliedUser: true } }).catch();
 							await msg.react("❌");
 							msg.awaitReactions((reaction) => reaction.emoji.name === "❌", { max: 1, time: 60000 /** 60 seconds */ }).then((collected) => {
@@ -135,14 +144,13 @@ export default class message extends Listener {
 									msg.delete();
 								}
 							});
-
 							setTimeout(() => {
 								talkedRecently.delete(message.author.id);
 							}, 60000); //60 seconds
 						}
 					}
 				}
-			});
-		}
+			}
+		});
 	}
 }
