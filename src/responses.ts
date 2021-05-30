@@ -52,7 +52,7 @@ export default [
 	{
 		guilds: [`${skytils}`],
 		message: {
-			content: `Locations are a bit wack atm will be fixed\ndelete your gui scales file to fix it ( .minecraft/config/skytils/guipositions.json ) `,
+			content: `Locations are a bit wack atm will be fixed\nYou can use your scroll wheel to change the size and if that doesnt work delete your gui scales file to fix it ( .minecraft/config/skytils/guipositions.json ) `,
 		},
 		triggers: [[`location`]],
 	},
