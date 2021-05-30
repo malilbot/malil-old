@@ -7,6 +7,7 @@ export default class InviteCommand extends Command {
 			aliases: ["invite"],
 			category: "Utility",
 			quoted: true,
+			slash: true,
 			description: {
 				content: "INVITE_DESCRIPTION_CONTENT",
 				example: "INVITE_DESCRIPTION_EXAMPLE",
@@ -17,15 +18,9 @@ export default class InviteCommand extends Command {
 		});
 	}
 
-	async exec(message: Message): Promise<Message> {
-		const embed = new MessageEmbed()
-			.setTitle(`click here to invite ${this.client.user.username} to your server`)
-			.setURL(`https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&permissions=117824&scope=bot%20applications.commands`)
-			.setColor(this.client.colors.default);
-
-		return message.reply({ embed: embed, allowedMentions: { repliedUser: false } });
-	}
-	async execSlash(message: CommandInteraction) {
-		message.reply("https://malilbot.github.io/invite");
+	exec(message: Message): Promise<Message> {
+		return message.reply(
+			`Invite ${this.client.user.username} to your server\n<https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&permissions=117824&scope=bot%20applications.commands>`
+		);
 	}
 }

@@ -130,7 +130,7 @@ export default class Client extends AkairoClient {
 	regSlash({ guild, language }: { guild?: string; language?: number }): Promise<Collection<string, ApplicationCommand>> {
 		const commands = [];
 		for (const [, data] of this.commandHandler.modules) {
-			if (data.execSlash) {
+			if (data.slash) {
 				commands.push({
 					name: data.id.toLowerCase() || data.aliases[0],
 					description: this.s(language || 1, `${data.id.toUpperCase()}_DESCRIPTION_CONTENT`),
@@ -143,6 +143,16 @@ export default class Client extends AkairoClient {
 			return g.commands.set(commands);
 		}
 		return this.application.commands.set(commands);
+	}
+	async regSlashGlobal(): Promise<void> {
+		for (const [, guild] of this.guilds.cache) {
+			try {
+				const language = (await this.getGuildSettings(guild.id)).language;
+				this.regSlash({ guild: guild.id, language });
+			} catch (e) {
+				console.error(`No permissions for ${guild.id}, ${guild.name}`);
+			}
+		}
 	}
 
 	////////////////////////////////

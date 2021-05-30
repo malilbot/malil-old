@@ -1,13 +1,14 @@
 import Command from "../../Classes/malilCommand";
 import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
 import { MessageEmbed } from "discord.js";
-
+import moment from "moment";
 export default class ServerCommand extends Command {
 	constructor() {
 		super("server", {
-			aliases: ["server"],
+			aliases: ["server", "guild"],
 			category: "Info",
 			quoted: true,
+			slash: true,
 			description: {
 				content: "SERVER_DESCRIPTION_CONTENT",
 				example: "SERVER_DESCRIPTION_EXAMPLE",
@@ -18,17 +19,28 @@ export default class ServerCommand extends Command {
 		});
 	}
 
-	async exec(message: Message): Promise<Message> {
+	exec(message: Message): Promise<Message> {
 		const embed = new MessageEmbed()
-			.setColor(this.client.colors.orange)
-			.setTitle("Server Info")
-			.setDescription(`${message.guild}'s information`)
-			//@ts-expect-error
-			.addField("Owner", `The owner of this server is ${message.guild.owner}`)
-			.addField("Member Count", `This server has ${message.guild.memberCount} members`)
-			.addField("Emoji Count", `This server has ${message.guild.emojis.cache.size} emojis`)
-			.addField("Roles Count", `This server has ${message.guild.roles.cache.size} roles`)
-			.addField("Chanel Count", `This server has ${message.guild.channels.cache.size} channels`);
+			.setAuthor(message.guild.name, message.guild.iconURL())
+			.addField(
+				"**Stats »**",
+				`⮩ **Owner:**    <@${message.guild.ownerID}>\n` +
+					`⮩ **Members:**  ${message.guild.memberCount}\n` +
+					`⮩ **Emojis:**   ${message.guild.emojis.cache.size}\n` +
+					`⮩ **Roles:**    ${message.guild.roles.cache.size}\n` +
+					`⮩ **Channels:** ${message.guild.channels.cache.size}\n` +
+					`⮩ **Created:**  ${moment(message.guild.createdTimestamp).fromNow()}\n`
+			)
+			.addField(
+				`Roles [${message.guild.roles.cache.array().length}] »`,
+				message.guild.roles.cache
+					.sort((one, two) => (two.position > one.position ? 1 : -1))
+					.filter((role) => message.guild.id != role.id)
+					.map((role) => (message.guild == message.guild ? role.toString() : role.name))
+					.join(", ")
+					.slice(0, 1000)
+			)
+			.setColor(this.client.colors.default);
 
 		return message.reply(embed);
 	}

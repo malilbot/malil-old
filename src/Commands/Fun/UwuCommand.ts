@@ -1,6 +1,5 @@
 import Command from "../../Classes/malilCommand";
-import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
-import { MessageEmbed } from "discord.js";
+import type { Message } from "discord.js";
 import { fixword } from "../../Lib/Utils";
 export default class UwuCommand extends Command {
 	constructor() {

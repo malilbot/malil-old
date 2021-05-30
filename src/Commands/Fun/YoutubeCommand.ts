@@ -40,7 +40,7 @@ export default class YoutubeCommand extends Command {
 	async exec(message: Message, { channel }): Promise<Message | void> {
 		if (!["voice"].includes(channel?.type)) return message.reply("Thats not a voice channel or a channel.");
 		if (!channel) return message.reply("Thats not a voice channel or a channel.");
-		else return message.reply((await this.createInvite(channel as VoiceChannel)) + " Clieck on the link to join the youtube together session");
+		else return message.reply((await this.createInvite(channel as VoiceChannel)) + " Click on the link to join the youtube together session");
 	}
 
 	async createInvite(channel: VoiceChannel): Promise<string> {
