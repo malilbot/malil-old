@@ -22,8 +22,7 @@ export default class message extends Listener {
 				.crosspost()
 				.then(() => console.log("Crossposted message"))
 				.catch((e) => {
-					(message.guild.channels.cache.get("807328920935858214") as TextChannel).send("Couldnt publish the message in <#843599498394468393> e: \
-					n" + e);
+					(message.guild.channels.cache.get("807328920935858214") as TextChannel).send("Couldnt publish the message in <#843599498394468393> e: \n" + e);
 				});
 		}
 		if (message.webhookID) return;
