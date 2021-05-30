@@ -126,7 +126,7 @@ export default class message extends Listener {
 				if (check(...h.triggers)) {
 					if (h.delete) {
 						message.delete();
-						message.author.send('You were warned in **skytils** for: "Please dont advertise your actions"').catch((e) => {
+						message.author.send('You were warned in **skytils** for: "Please dont advertise your auctions"').catch((e) => {
 							(message.guild.channels.cache.get("807328920935858214") as TextChannel).send(
 								`${message.member} Didnt like to be dmed by me about them selling their stupid items on ah\n` + e
 							);
