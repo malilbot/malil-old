@@ -25,7 +25,7 @@ export default [
 	{
 		guilds: [skytils],
 		delete: true,
-		triggers: [["selling"], ["offers", "ah", "auc"]],
+		triggers: [["sell"], ["offers", "ah", "auc"]],
 	},
 	{
 		guilds: [`${dg}`],
