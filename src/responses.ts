@@ -38,7 +38,7 @@ export default [
 		},
 		triggers: [
 			["how", "where"],
-			["download", "skyclient"],
+			["download", "skyclient", "skyblock client", "skyblockclient", " sky block client", '"client"'],
 		],
 	},
 	{
