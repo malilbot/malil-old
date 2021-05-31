@@ -7,36 +7,40 @@ export default class DecodeCommand extends Command {
 			aliases: ["decode"],
 			category: "Utility",
 			quoted: true,
+			slash: true,
 			args: [
 				{
-					id: "args",
+					id: "text",
 					type: "array",
 					match: "rest",
 					default: "none",
 				},
 			],
-			description: {
-				content: "CLONE_DESCRIPTION_CONTENT",
-				example: "CLONE_DESCRIPTION_EXAMPLE",
-			},
+			options: [
+				{
+					type: 3,
+					name: "text",
+					description: "Text you want to decode",
+					required: false,
+				},
+			],
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 1,
 			channel: "guild",
 		});
 	}
 
-	async exec(message: Message, { args }) {
+	async exec(message: Message, { text }: { text: string }): Promise<Message> {
 		const embed = new MessageEmbed()
 			.setTitle("Decode things")
-			.setDescription("input: " + (await hst(args, true)) || "none")
+			.setDescription("input: " + (await hst(text, true)) || "none")
 			.addFields(
-				{ name: "hex", value: (await hst(Buffer.from(args, "hex").toString(), true)) || "none", inline: true },
-				{ name: "utf8", value: (await hst(Buffer.from(args, "utf8").toString(), true)) || "none", inline: true },
+				{ name: "hex", value: (await hst(Buffer.from(text, "hex").toString(), true)) || "none", inline: true },
+				{ name: "utf8", value: (await hst(Buffer.from(text, "utf8").toString(), true)) || "none", inline: true },
 				{ name: "\u200B", value: "\u200B" },
-				{ name: "utf16le/ucs2", value: (await hst(Buffer.from(args, "ucs2").toString(), true)) || "none", inline: true },
-				{ name: "base64", value: (await hst(Buffer.from(args, "base64").toString(), true)) || "none", inline: true }
+				{ name: "utf16le/ucs2", value: (await hst(Buffer.from(text, "ucs2").toString(), true)) || "none", inline: true },
+				{ name: "base64", value: (await hst(Buffer.from(text, "base64").toString(), true)) || "none", inline: true }
 			);
-		message.reply(embed);
-		//Buffer.from.alloc(args, 'hex').toString()
+		return message.reply(embed);
 	}
 }

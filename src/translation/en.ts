@@ -133,4 +133,8 @@ export default {
 	SUPPORT_DESCRIPTION_EXAMPLE: ["support"],
 	PAT_DESCRIPTION_CONTENT: "Pat a user",
 	PAT_DESCRIPTION_EXAMPLE: ["pat @user"],
+	DECODE_DESCRIPTION_CONTENT: "decode some text",
+	DECODE_DESCRIPTION_EXAMPLE: ["decode some base64 stuff"],
+	ENCODE_DESCRIPTION_CONTENT: "encode some text",
+	ENCODE_DESCRIPTION_EXAMPLE: ["encode some base64 stuff"],
 };

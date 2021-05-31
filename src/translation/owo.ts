@@ -132,4 +132,8 @@ export default {
 	SUPPORT_DESCRIPTION_EXAMPLE: ["suppowt"],
 	PAT_DESCRIPTION_CONTENT: "Pat a usew",
 	PAT_DESCRIPTION_EXAMPLE: ["pat @usew"],
+	DECODE_DESCRIPTION_CONTENT: "decode some text",
+	DECODE_DESCRIPTION_EXAMPLE: ["decode some base64 stuff"],
+	ENCODE_DESCRIPTION_CONTENT: "encode some text",
+	ENCODE_DESCRIPTION_EXAMPLE: ["encode some base64 stuff"],
 };
