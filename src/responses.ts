@@ -1,7 +1,6 @@
 const skytils = `807302538558308352`,
 	drm = `804143990869590066`,
-	dg = `781913473872560189`,
-	sc = "780181693100982273";
+	dg = `781913473872560189`;
 //	tricked = `748956745409232945`;
 
 ///////////////////////////////
@@ -22,24 +21,6 @@ export default [
 			content: `You cant have a / infront of the alias or it wont work\nhttps://cdn.discordapp.com/attachments/807302538558308355/848490813657841694/unknown.png`,
 		},
 		triggers: [["aliases"]],
-	},
-	{
-		guilds: [sc],
-		message: {
-			content:
-				"if your game is crashing, please go to ``%appdata%.minecraftskyclientcrash-reports`` and upload the latest file\nif you are on mac, this can be found by opening finder (shift + command + g) and entering ``~/Library/Application Support/minecraft/skyclient/crash-reports``",
-		},
-		triggers: [["why"], ["crash"]],
-	},
-	{
-		guilds: [sc],
-		message: {
-			content: "<#780940408175853609> for windows\n<#782998702289059860> for mac and linux",
-		},
-		triggers: [
-			["how", "where"],
-			["download", "skyclient", "skyblock client", "skyblockclient", " sky block client", '"client"'],
-		],
 	},
 	{
 		guilds: [skytils],
