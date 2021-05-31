@@ -75,7 +75,7 @@ export default [
 	{
 		guilds: [`${skytils}`],
 		message: {
-			content: `https://streamable.com/1rauw6`,
+			content: `https://cdn.discordapp.com/attachments/807328920935858214/848967113607217192/u0wPZhuu.mp4`,
 		},
 		triggers: [
 			[`how`, `where`],
