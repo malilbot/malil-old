@@ -139,4 +139,7 @@ export default {
 	ENCODE_DESCRIPTION_EXAMPLE: ["encode some base64 stuff"],
 	CHANGED_LANGUAGE: (botName: string, language: string): string => `Succesfully changed ${botName} language to **${language}**`,
 	CURRENT_LANGUAGE: (current: string, languages: string[]): string => `My current language is ${current}, you can choose between ${languages.map((a) => `\`${a}\``)}`,
+	NO_PERMS_CLIENT: (perm: string): string => `Sorry i dont have **${perm}** permissions needed to run this command`,
+	NO_PERMS_USER: (perm: string): string => `Sorry you dont have **${perm}** permissions needed to run this command`,
+	MALIL_HELP_FOOTER: "@malil help [ command ] for more information on a command.",
 };

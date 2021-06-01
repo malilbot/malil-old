@@ -56,13 +56,15 @@ export default class HelpCommand extends Command {
 				);
 			}
 		}
-
+		const { MALIL_HELP_FOOTER } = await this.client.getObject(message, {
+			MALIL_HELP_FOOTER: "",
+		});
 		const embed = new MessageEmbed()
 			.setAuthor(`Help | ${this.client.user.tag}`, this.client.user.displayAvatarURL())
 			.setColor(this.client.colors.orange)
 			.setThumbnail(this.client.user.displayAvatarURL({ size: 2048, format: "png" }))
 			.setDescription("For help and bugs visit the [support server](https://discord.gg/mY8zTARu4g) or [website](https://malilbot.github.io/docs/intro).")
-			.setFooter(`@malil help [ command ] for more information on a command.`);
+			.setFooter(MALIL_HELP_FOOTER);
 
 		for (const category of this.handler.categories.values()) {
 			if (["default"].includes(category.id)) continue;

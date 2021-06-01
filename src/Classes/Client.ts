@@ -401,7 +401,7 @@ export default class Client extends AkairoClient {
 	s(language: number, thing: string, ...args: string[]): string | string[] {
 		const langs = { 1: en };
 		let translation: string | fn;
-		translation = language == 2 ? en : langs[language][thing];
+		translation = language == 2 ? en[thing] : langs[language][thing];
 		if (!translation) {
 			const embed = this.util
 				.embed()
@@ -413,7 +413,6 @@ export default class Client extends AkairoClient {
 		if (typeof translation == "function") {
 			translation = translation(...args);
 		}
-
 		return language == 2 ? owofy(translation) : translation;
 	}
 
