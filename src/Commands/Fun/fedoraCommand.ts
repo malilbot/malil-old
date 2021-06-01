@@ -39,6 +39,7 @@ export default class FedoraCommand extends Command {
 	}
 
 	async exec(message: Message, { user }: { user: GuildMember }): Promise<void> {
+user = user || message.member
 		const url = user.user.displayAvatarURL({
 			size: 1024,
 			format: "png",
