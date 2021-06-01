@@ -137,4 +137,6 @@ export default {
 	DECODE_DESCRIPTION_EXAMPLE: ["decode some base64 stuff"],
 	ENCODE_DESCRIPTION_CONTENT: "encode some text",
 	ENCODE_DESCRIPTION_EXAMPLE: ["encode some base64 stuff"],
+	CHANGED_LANGUAGE: (botName: string, language: string): string => `Succesfully changed ${botName} language to **${language}**`,
+	CURRENT_LANGUAGE: (current: string, languages: string[]): string => `My current language is ${current}, you can choose between ${languages.map((a) => `\`${a}\``)}`,
 };

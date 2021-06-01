@@ -1,14 +1,12 @@
 import { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } from "discord-akairo";
 import { Message, WebhookClient, Collection, ApplicationCommand } from "discord.js";
-import { fn, infraction, guildSettingsInterface } from "../Lib/Utils";
+import { fn, infraction, guildSettingsInterface, owofy } from "../Lib/Utils";
 import { Settings, credentials, consts } from "../settings";
 import { CommandInteraction } from "discord.js";
-import { inspect } from "util";
 import { TaskHandler } from "./TaskHandler";
 import { superUsers } from "../Lib/config";
 import { connection } from "../settings";
 import { logger } from "../Lib/Utils";
-import owo from "../translation/owo";
 import en from "../translation/en";
 import petitio from "petitio";
 import { join } from "path";
@@ -400,14 +398,10 @@ export default class Client extends AkairoClient {
 		if (i == "en") return 1;
 		if (i == "owo") return 2;
 	}
-	s(language: number, thing: string, ...args: string[]): string {
-		const langs = {
-			1: en,
-			2: owo,
-		};
+	s(language: number, thing: string, ...args: string[]): string | string[] {
+		const langs = { 1: en };
 		let translation: string | fn;
-
-		translation = langs[language][thing];
+		translation = language == 2 ? en : langs[language][thing];
 		if (!translation) {
 			const embed = this.util
 				.embed()
@@ -420,7 +414,7 @@ export default class Client extends AkairoClient {
 			translation = translation(...args);
 		}
 
-		return <string>translation;
+		return language == 2 ? owofy(translation) : translation;
 	}
 
 	async get(message: Message, thing: string, ...args: string[]): Promise<Message> {

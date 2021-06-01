@@ -1,5 +1,5 @@
 import Command from "../../Classes/malilCommand";
-import { CommandInteraction, Message } from "discord.js";
+import { Message } from "discord.js";
 const langfromnum = (num: number | string) => {
 	if (num == 1) return "en";
 	if (num == 2) return "owo";
@@ -36,12 +36,11 @@ export default class languageCommand extends Command {
 			],
 			args: [
 				{
-					id: "args",
+					id: "language",
 					type: "string",
 					match: "rest",
 				},
 			],
-			userPermissions: ["MANAGE_ROLES"],
 			clientPermissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY"],
 			ownerOnly: false,
 			ratelimit: 2,
@@ -49,18 +48,14 @@ export default class languageCommand extends Command {
 		});
 	}
 
-	async exec(message: Message, { args }: { args: string }): Promise<Message> {
+	async exec(message: Message, { language }: { language: string }): Promise<Message | boolean> {
 		const settings = await this.client.getGuildSettings(message.guild.id);
 
-		if (["en", "owo"].includes(args)) {
-			await this.client.setLang(message.guild.id, <number>langfromnum(args));
-			await this.client.regSlash({ guild: message.guild.id, language: langfromnum(args) as number });
-			message.reply(`Changed my language to ${args}`);
-		} else return message.reply(`My current language is **${langfromnum(settings.language)}**, you can choose from \`owo\` and \`en\``);
-	}
-	async execSlash(interaction: CommandInteraction, { language }): Promise<void> {
-		await this.client.setLang(interaction.guild.id, <number>langfromnum(language.value));
-		await this.client.regSlash({ guild: interaction.guild.id, language: langfromnum(language.value) as number });
-		return interaction.reply(`Changed my language to ${language.value}`);
+		if (["en", "owo"].includes(language)) {
+			if (!message.member.permissions.has("MANAGE_ROLES")) return this.handler.emit("missingPermissions", message, this, "client", ["MANAGE_ROLES"]);
+			await this.client.setLang(message.guild.id, <number>langfromnum(language));
+			await this.client.regSlash({ guild: message.guild.id, language: langfromnum(language) as number });
+			return this.client.get(message, "CHANGED_LANGUAGE", this.client.user.username, language);
+		} else return this.client.get(message, "CURRENT_LANGUAGE", langfromnum(settings.language) as string, ["en", "owo"]);
 	}
 }

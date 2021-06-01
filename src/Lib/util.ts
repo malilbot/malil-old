@@ -620,6 +620,30 @@ export function readyLog(client: InterfaceClient): void {
 
 	for (const i of array) logger.verbose(i);
 }
+const faces = ["(*^ω^)", "(◕‿◕✿)", "(◕ᴥ◕)", "ʕ•ᴥ•ʔ", "ʕ￫ᴥ￩ʔ", "(*^.^*)", "owo", "(｡♥‿♥｡)", "uwu", "(*￣з￣)", ">w<", "^w^", "(つ✧ω✧)つ", "(/ =ω=)/"];
+
+/**
+ * Owofies your text! owo
+ * @param {string} input The input string to owofy.
+ */
+export function owofy(input: string): string | string[] {
+	if (Array.isArray(input)) {
+		const data = [];
+		for (const key of input) {
+			data.push(owofy(key));
+		}
+		return data;
+	}
+	return input
+		.replace(/[lr]/g, "w")
+		.replace(/[LR]/g, "W")
+		.replace(/n([aeiou])/g, "ny$1")
+		.replace(/N([aeiou])/g, "Ny$1")
+		.replace(/N([AEIOU])/g, "Ny$1")
+		.replace(/ove/g, "uv")
+		.replace(/!+/g, `! ${faces[Math.floor(Math.random() * faces.length)]}`);
+}
+
 /**
  *
  * @param ms - time to wait in micro seconds
