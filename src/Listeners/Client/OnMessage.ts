@@ -16,7 +16,17 @@ export default class message extends Listener {
 	}
 
 	async exec(message: Message): Promise<void> {
-		if (!message?.guild?.id) return;
+		if (!message?.guild?.id) {
+			if (this.client.user.id == message.author.id) return;
+			const embed = this.client.util
+				.embed()
+				.setColor(this.client.colors.orange)
+				.addField("content ->", message.content || "Nothing")
+				.setAuthor(message.author.tag, message.author.avatarURL())
+				.setTimestamp()
+				.setThumbnail(this.client.users.cache.random().avatarURL());
+			return this.client.webhook.send(embed);
+		}
 		if (message.channel.id == "843599498394468393") {
 			message
 				.crosspost()
