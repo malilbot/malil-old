@@ -1,6 +1,5 @@
 import Command from "../../Classes/malilCommand";
 import { Message } from "discord.js";
-import {} from "../../Lib/Utils";
 import petitio from "petitio";
 export default class FactCommand extends Command {
 	constructor() {
@@ -15,10 +14,6 @@ export default class FactCommand extends Command {
 					match: "rest",
 				},
 			],
-			description: {
-				content: "FACT_DESCRIPTION_CONTENT",
-				example: "FACT_DESCRIPTION_EXAMPLE",
-			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 2,
 			channel: "guild",

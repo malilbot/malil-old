@@ -1,7 +1,6 @@
 import Command from "../../Classes/malilCommand";
 import { Message } from "discord.js";
 import petitio from "petitio";
-import { MessageEmbed } from "discord.js";
 export default class shortenCommand extends Command {
 	constructor() {
 		super("shorten", {
@@ -9,35 +8,31 @@ export default class shortenCommand extends Command {
 			category: "General",
 			args: [
 				{
-					id: "args",
+					id: "link",
 					type: "string",
 					match: "rest",
 				},
 			],
-			description: {
-				content: "SHORT_DESCRIPTION_CONTENT",
-				example: "SHORT_DESCRIPTION_EXAMPLE",
-			},
+			options: [
+				{
+					type: 3,
+					name: "link",
+					description: "The link you want to shorten",
+					required: false,
+				},
+			],
+
 			clientPermissions: ["SEND_MESSAGES"],
-			ownerOnly: false,
-			typing: true,
+			slash: true,
 			ratelimit: 1,
 		});
 	}
 
-	async exec(message: Message, { args }): Promise<Message> {
-		//full_short_link
-		if (!args) return message.reply("Please provide a link");
-		if (!args.startsWith("https://")) return message.reply("Thats not a link");
-		const msg = await message.reply(new MessageEmbed().setFooter("FETCHING"));
-		const res = await (await petitio(`https://api.shrtco.de/v2/shorten?url=${args}`, "GET").send()).json();
-		if (res.ok !== true) return message.reply("This link is unsupported or blacklisted");
-		const embed = new MessageEmbed()
-			.setFooter("Powered by app.shrtco.de <3")
-			.setTitle("Sucessfully shorten the url.")
-			.addField("app.shrtco.de", `https://${res.result.short_link}`)
-			.addField("9qr.de", `https://${res.result.short_link2}`)
-			.addField("shiny.link", `https://${res.result.short_link3}`);
-		msg.edit(embed);
+	async exec(message: Message, { link }: { link: string }): Promise<Message> {
+		if (!link) return message.reply("Please provide a link");
+		if (!link.startsWith("https://")) return message.reply("Thats not a link");
+		const res = await petitio(`https://api.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com/a?url=${encodeURIComponent(link)}`, "GET").send();
+		const embed = this.client.util.embed().setDescription(res.body.toString("utf8")).setAuthor(message.author.tag, message.author.avatarURL()).setColor(this.client.colors.red);
+		message.reply(embed);
 	}
 }

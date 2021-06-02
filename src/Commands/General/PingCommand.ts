@@ -5,13 +5,10 @@ export default class PingCommand extends Command {
 		super("ping", {
 			aliases: ["ping"],
 			category: "General",
-			description: {
-				content: "PING_DESCRIPTION_CONTENT",
-				example: "PING_DESCRIPTION_EXAMPLE",
-			},
 			clientPermissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY"],
 			ownerOnly: false,
 			ratelimit: 3,
+			slash: true,
 		});
 	}
 
@@ -19,7 +16,11 @@ export default class PingCommand extends Command {
 		const beforeQueryTime = Date.now();
 		await this.client.query(`SELECT 2 + 2 as result`);
 		const afterQueryTime = Date.now();
-		message.channel.send("pinging").then((m) => {
+
+		message.reply("pinging").then((m) => {
+			console.log(message);
+			console.log(message.createdTimestamp);
+			console.log(m.createdTimestamp);
 			const embed = this.client.util
 				.embed()
 				.setColor("GREEN")

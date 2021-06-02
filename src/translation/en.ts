@@ -142,4 +142,6 @@ export default {
 	NO_PERMS_CLIENT: (perm: string): string => `Sorry i dont have **${perm}** permissions needed to run this command`,
 	NO_PERMS_USER: (perm: string): string => `Sorry you dont have **${perm}** permissions needed to run this command`,
 	MALIL_HELP_FOOTER: "@malil help [ command ] for more information on a command.",
+	SHORTEN_DESCRIPTION_CONTENT: "Shorten a url",
+	SHORTEN_DESCRIPTION_EXAMPLE: "short https://google.com",
 };

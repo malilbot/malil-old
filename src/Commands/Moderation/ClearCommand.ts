@@ -13,10 +13,6 @@ export default class ClearCommand extends Command {
 					match: "rest",
 				},
 			],
-			description: {
-				content: "CLEAR_DESCRIPTION_CONTENT",
-				example: "CLEAR_DESCRIPTION_EXAMPLE",
-			},
 			ratelimit: 3,
 			channel: "guild",
 			clientPermissions: ["MANAGE_MESSAGES", "SEND_MESSAGES"],
