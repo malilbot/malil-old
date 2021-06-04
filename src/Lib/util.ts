@@ -293,8 +293,12 @@ export const GetMember = async function (msg: Message, args: string): Promise<Gu
 	const reg = /<@!?(\d{17,19})>/;
 	const id = args.match(reg);
 
-	if (!item && !id) return null;
-	else if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
+	if (!item && !id) {
+		const replied = await msg.fetchReference();
+		if (replied) return (await msg.channel.messages.fetch(replied.id)).member;
+
+		return null;
+	} else if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
 	else if (item == "^") return null;
 
 	let user = msg.guild.members.cache.find((member) => {
@@ -304,6 +308,7 @@ export const GetMember = async function (msg: Message, args: string): Promise<Gu
 		if (member.user.tag.toLowerCase().includes(item)) return true;
 	});
 	if (user) return user;
+
 	if (id && id[1]) {
 		try {
 			user = await msg.guild.members.fetch(id[1]);
