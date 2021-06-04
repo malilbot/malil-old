@@ -6,7 +6,7 @@ import { CommandInteraction } from "discord.js";
 import { TaskHandler } from "./TaskHandler";
 import { superUsers } from "../Lib/config";
 import { connection } from "../settings";
-import { logger } from "../Lib/Utils";
+import { Logger } from "../Lib/Utils";
 import en from "../translation/en";
 import petitio from "petitio";
 import { join } from "path";
@@ -88,7 +88,7 @@ export default class Client extends AkairoClient {
 		this.colors = consts.colors;
 		this.credentials = credentials;
 		this.config = config;
-		this.logger = logger;
+		this.logger = new Logger(true);
 		this.random = (i: number) => Math.floor(Math.random() * i);
 		this.knex = Knex({
 			client: "pg",
@@ -552,7 +552,7 @@ declare module "discord-akairo" {
 		credentials: typeof credentials;
 		consts: typeof consts;
 		colors: typeof consts.colors;
-		logger: typeof logger;
+		logger: Logger;
 		blacklist: Enmap;
 		releases: Enmap;
 		logchannel: Enmap;

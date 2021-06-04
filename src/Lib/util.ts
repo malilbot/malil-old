@@ -5,6 +5,7 @@ import InterfaceClient from "../Classes/Client";
 import { Command } from "discord-akairo";
 import { Settings } from "../settings";
 export { consts } from "../settings";
+import { Logger as lgr } from "tslog";
 import petitio from "petitio";
 import moment from "moment";
 import cio from "cheerio";
@@ -20,7 +21,7 @@ export let main: (string: string | Command | number) => string,
 const site = "https://hst.sh/";
 const { dev } = Settings;
 
-export const logger = new (class Logger {
+export class Logger extends lgr {
 	dash: string;
 	Verbose: boolean;
 	lightBlue: (string: string | Command | number | string[]) => string;
@@ -30,6 +31,7 @@ export const logger = new (class Logger {
 	yellow: (string: string | Command | number | string[]) => string;
 	konsole: (content, { colors, level }: { colors: string[]; level?: number }) => void;
 	constructor(verbose: boolean) {
+		super();
 		this.Verbose = verbose;
 		this.lightBlue = green; //hex("#72bcd4");
 		this.red = red; //hex("#B20000");
@@ -46,20 +48,16 @@ export const logger = new (class Logger {
 			console.log(message);
 		};
 	}
-	warn(content: string | number | Command | string[], level?: number): void {
-		this.konsole(content, { level, colors: ["orange", "red", "yellow"] });
-	}
+
 	verbose(content: string | number | Command | string[], level?: number): void {
 		if (!this.Verbose) return;
 		this.konsole(content, { level, colors: ["orange", "darkBlue", "yellow"] });
 	}
-	info(content: string | number | Command | string[]): void {
-		this.konsole(content, { colors: ["darkBlue", "yellow", "yellow"] });
-	}
+
 	log(content: string | number | Command | string[]): void {
 		this.konsole(content, { colors: ["darkBlue", "yellow", "yellow"] });
 	}
-	command(message: Message | Interaction, command: Command, trigger: string) {
+	command(message: Message | Interaction, command: Command, trigger: string): void {
 		if (trigger == "Success") {
 			trigger = green(trigger);
 		} else if (trigger == "blocked") {
@@ -72,7 +70,7 @@ export const logger = new (class Logger {
 				` in ${black(bgCyan(`${message.guild.name}(${message.guild.id})`))}`
 		);
 	}
-})(Settings.verbose);
+}
 
 /** code taken from ms https://github.com/vercel/ms */
 

@@ -701,6 +701,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"buffer-from@npm:^1.0.0":
+  version: 1.1.1
+  resolution: "buffer-from@npm:1.1.1"
+  checksum: 540ceb79c4f5bfcadaabbc18324fa84c50dc52905084be7c03596a339cf5a88513bee6831ce9b36ddd046fab09257a7c80686e129d0559a0cfd141da196ad956
+  languageName: node
+  linkType: hard
+
 "buffer-writer@npm:2.0.0":
   version: 2.0.0
   resolution: "buffer-writer@npm:2.0.0"
@@ -1253,8 +1260,8 @@ __metadata:
 
 discord-akairo@SkyBlockDev/discord-akairo:
   version: 8.2.2
-  resolution: "discord-akairo@https://github.com/SkyBlockDev/discord-akairo.git#commit=05d9ddc3baf013fe29dfac316c93bad046a6b327"
-  checksum: 57d686b09bde0180367670d96f9a969707330ea1d992a505b31c45119a07a13aefcfd62dd7441b8200e6304aa17eab2819cb8b1289a1ec15bbac020e0979ba70
+  resolution: "discord-akairo@https://github.com/SkyBlockDev/discord-akairo.git#commit=5c5554c4cee0cc08586a2935a69a3e25856a93be"
+  checksum: c02412578ff531e003921546aa21e8c720301986e092addc9d61769cb92c2144eea27117766495356e40d941c86b6b4aa466ed8baa04a18364a313e3f32820ec
   languageName: node
   linkType: hard
 
@@ -1267,7 +1274,7 @@ discord-akairo@SkyBlockDev/discord-akairo:
 
 discord.js@discordjs/discord.js:
   version: 13.0.0-dev
-  resolution: "discord.js@https://github.com/discordjs/discord.js.git#commit=5141ea4f0694a60375d8bc0801b1225928bb3bd1"
+  resolution: "discord.js@https://github.com/discordjs/discord.js.git#commit=cbd7f2b9aa44a9240947ed716d0e72257ac499f7"
   dependencies:
     "@discordjs/collection": ^0.1.6
     "@discordjs/form-data": ^3.0.1
@@ -1279,7 +1286,7 @@ discord.js@discordjs/discord.js:
     prism-media: ^1.2.9
     tweetnacl: ^1.0.3
     ws: ^7.4.6
-  checksum: 28002c5eb03ca58f935d34b2ee3a9738d2e66027c28028bb0044bc58c21c5180104a21f51e08d2415503fab34be5fd04803adaf0d515e7db57324f1a50ea523d
+  checksum: b6b38c6b600fe74215dddda14d3738755edd268bcc680f1d03dcf2044d20596da39bcd5974970afb79be4e83d398d0808495d151232f42ecc1f54dac025c13a0
   languageName: node
   linkType: hard
 
@@ -2811,6 +2818,7 @@ fsevents@~2.3.1:
     prettier: ^2.3.0
     prettier-eslint-cli: ^5.0.1
     tslib: ^2.2.0
+    tslog: ^3.2.0
     typescript: next
     utf-8-validate: ^5.0.5
     zlib-sync: ^0.1.7
@@ -4234,6 +4242,23 @@ resolve@^1.9.0:
   languageName: node
   linkType: hard
 
+"source-map-support@npm:^0.5.19":
+  version: 0.5.19
+  resolution: "source-map-support@npm:0.5.19"
+  dependencies:
+    buffer-from: ^1.0.0
+    source-map: ^0.6.0
+  checksum: 59d4efaae97755155b078413ecba63517e3ef054cc7ab767bbd30e6f3054be2ae8e8f5cce7eef53b7eb93e98fe27a58dd8f5e7abfb13144ba420ddaf5267bbb2
+  languageName: node
+  linkType: hard
+
+"source-map@npm:^0.6.0":
+  version: 0.6.1
+  resolution: "source-map@npm:0.6.1"
+  checksum: 8647829a0611724114022be455ca1c8a2c8ae61df81c5b3667d9b398207226a1e21174fb7bbf0b4dbeb27ac358222afb5a14f1c74a62a62b8883b012e5eb1270
+  languageName: node
+  linkType: hard
+
 "split2@npm:^3.1.1":
   version: 3.2.2
   resolution: "split2@npm:3.2.2"
@@ -4542,6 +4567,15 @@ resolve@^1.9.0:
   version: 2.2.0
   resolution: "tslib@npm:2.2.0"
   checksum: 2d35468c470410871c5246e43f12dcb6d0fc363b617c176f26443b9530e5c5ee8448966892a42956168d8f495da7865bda33dfe82c26c91991e28999974a618f
+  languageName: node
+  linkType: hard
+
+"tslog@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "tslog@npm:3.2.0"
+  dependencies:
+    source-map-support: ^0.5.19
+  checksum: 304b2b904341ed2f1bad78b775ef30339c258d9799b71acfb784fd84d50687adc75006ed620951f7badd853635daa7444bf78bee813480f6dbc15ef0cee17a66
   languageName: node
   linkType: hard
 
