@@ -1,6 +1,6 @@
 //https://raw.githubusercontent.com/SkyBlockDev/malil-akairo/main/vote.markdown
 import Command from "../../Classes/malilCommand";
-import type { Message, CommandInteraction } from "discord.js";
+import type { Message } from "discord.js";
 
 export default class VoteCommand extends Command {
 	constructor() {
@@ -9,10 +9,6 @@ export default class VoteCommand extends Command {
 			aliases: ["vote", "votes"],
 			category: "Info",
 			quoted: true,
-			description: {
-				content: "VOTE_DESCRIPTION_CONTENT",
-				example: "VOTE_DESCRIPTION_EXAMPLE",
-			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
 			channel: "guild",
@@ -26,7 +22,7 @@ export default class VoteCommand extends Command {
 			.setTimestamp()
 			.setColor(this.client.colors.default)
 			.setDescription(
-				"[topgg](https://top.gg/bot/749020331187896410/vote), (increases iq)\n" +
+				"[topgg](https://top.gg/bot/749020331187896410/vote)\n" +
 					"[discordbotlist.com](https://discordbotlist.com/bots/malil/upvote),\n" +
 					"[BladeBots](https://bladebotlist.xyz/bot/749020331187896410/vote),\n" +
 					"[fateList](https://fateslist.xyz/bot/749020331187896410/vote)"

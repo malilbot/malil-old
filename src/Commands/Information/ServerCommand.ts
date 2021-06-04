@@ -1,5 +1,5 @@
 import Command from "../../Classes/malilCommand";
-import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
+import type { Message } from "discord.js";
 import { MessageEmbed } from "discord.js";
 import moment from "moment";
 export default class ServerCommand extends Command {
@@ -9,10 +9,7 @@ export default class ServerCommand extends Command {
 			category: "Info",
 			quoted: true,
 			slash: true,
-			description: {
-				content: "SERVER_DESCRIPTION_CONTENT",
-				example: "SERVER_DESCRIPTION_EXAMPLE",
-			},
+
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 1,
 			channel: "guild",

@@ -1,12 +1,12 @@
 import Command from "../../Classes/malilCommand";
-import type { Message, CommandInteraction, VoiceChannel } from "discord.js";
+import type { Message, VoiceChannel } from "discord.js";
 export default class YoutubeCommand extends Command {
 	constructor() {
 		super("youtube", {
 			aliases: ["youtube", "yt"],
 			category: "Fun",
 			quoted: true,
-			slash: true,
+			slash: false,
 			args: [
 				{
 					id: "channel",
@@ -27,10 +27,6 @@ export default class YoutubeCommand extends Command {
 					required: true,
 				},
 			],
-			description: {
-				content: "YOUTUBE_DESCRIPTION_CONTENT",
-				example: "YOUTUBE_DESCRIPTION_EXAMPLE",
-			},
 			clientPermissions: ["SEND_MESSAGES", "CREATE_INSTANT_INVITE"],
 			ratelimit: 3,
 			channel: "guild",
