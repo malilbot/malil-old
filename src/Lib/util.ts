@@ -306,7 +306,6 @@ export const GetMember = async function (msg: Message, args: string): Promise<Gu
 	if (user) return user;
 	if (id && id[1]) {
 		try {
-			logger.info(a1("[ FETCHING USER ] ") + main(`[ BY ] ${msg.author.tag}`) + main(` [ TEXT ] ${id}`));
 			user = await msg.guild.members.fetch(id[1]);
 		} catch (e) {}
 	}
@@ -421,7 +420,6 @@ export const getCommitHash = (): string => {
 };
 */
 export async function CreateGist(name: string, content: string, client: InterfaceClient): Promise<string> {
-	logger.info(a1("[ CREATING GIST ] ") + main(`NAME ${name}`));
 	const files: { [key: string]: { content: string } } = {};
 	files[name] = {
 		content: content || "oops something went wrong :(",
@@ -438,7 +436,6 @@ export async function CreateGist(name: string, content: string, client: Interfac
 	return out;
 }
 export async function EditGist(name: string, content: string, GistId: string, client: InterfaceClient): Promise<gistif> {
-	logger.info(a1("[ EDITING GIST ] ") + main(`NAME ${name}`));
 	const files: { [key: string]: { content: string } } = {};
 	files[name] = {
 		content: content || "oops something went wrong :(",
@@ -458,7 +455,6 @@ export async function EditGist(name: string, content: string, GistId: string, cl
 	return gist;
 }
 export const GetGist = async function (GistId: string, client: InterfaceClient): Promise<gistif> {
-	logger.info(a1("[ GETTING GIST ] ") + main(`NAME ${name}`));
 	const gist = await (
 		await petitio("https://api.github.com/gists/" + GistId, "GET")
 			.header("User-Agent", "Malil")
@@ -501,7 +497,6 @@ const post = async (contents: string) => {
 };
 */
 export function hst(body: string, check = false): Promise<string> | string {
-	logger.info(a1("[ POSTING ON hst.sh ] "));
 	if (check) {
 		if (body.length > 1024) {
 			return post(body);
@@ -513,7 +508,6 @@ export function hst(body: string, check = false): Promise<string> | string {
 	return post(body);
 }
 export async function Infract(message?: Message, reason?: string, member?: GuildMember, type?: string, client?: InterfaceClient): Promise<void> {
-	logger.info(sec("[ GIVING OUT A INFRACTION ] ") + main(`[ TO ] ${member.user.tag || "noone? huh what"} `) + third(`[ TYPE ] ${type || "no type? wtf"}`));
 	if (type.toLowerCase() !== "unmute" && member && message && type) {
 		client.createInfraction(member.id, message.id, member.guild.id, message.author.id, reason || "No reason provided", type || "No type");
 	}
@@ -616,7 +610,7 @@ export function readyLog(client: InterfaceClient): void {
 		fixspace(third("polling"), spaces) + split + main(fixspace(`${Settings.polling ? "" : ""}`, spaces)),
 	];
 
-	for (const i of array) logger.verbose(i);
+	for (const i of array) console.log(i);
 }
 const faces = ["(*^ω^)", "(◕‿◕✿)", "(◕ᴥ◕)", "ʕ•ᴥ•ʔ", "ʕ￫ᴥ￩ʔ", "(*^.^*)", "owo", "(｡♥‿♥｡)", "uwu", "(*￣з￣)", ">w<", "^w^", "(つ✧ω✧)つ", "(/ =ω=)/"];
 

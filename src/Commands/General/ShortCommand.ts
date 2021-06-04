@@ -4,7 +4,7 @@ import petitio from "petitio";
 export default class shortenCommand extends Command {
 	constructor() {
 		super("shorten", {
-			aliases: ["short", "shorten"],
+			aliases: ["short", "shorten", "lengthen"],
 			category: "General",
 			args: [
 				{
@@ -30,7 +30,6 @@ export default class shortenCommand extends Command {
 
 	async exec(message: Message, { link }: { link: string }): Promise<Message> {
 		if (!link) return message.reply("Please provide a link");
-		if (!link.startsWith("https://")) return message.reply("Thats not a link");
 		const res = await petitio(`https://api.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com/a?url=${encodeURIComponent(link)}`, "GET").send();
 		const embed = this.client.util.embed().setDescription(res.body.toString("utf8")).setAuthor(message.author.tag, message.author.avatarURL()).setColor(this.client.colors.red);
 		message.reply(embed);
