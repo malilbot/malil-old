@@ -20,10 +20,6 @@ export default class QuoteCommand extends Command {
 					flag: ["--force", "-f"],
 				},
 			],
-			description: {
-				content: "QUOTE_DESCRIPTION_CONTENT",
-				example: "QUOTE_DESCRIPTION_EXAMPLE",
-			},
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
 			channel: "guild",

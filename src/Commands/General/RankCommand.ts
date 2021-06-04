@@ -55,7 +55,11 @@ export default class RankCommand extends Command {
 		const rankA = this.client.guilddata.ensure(message.guild.id, [], "ranks");
 		const ranks = rankA.map((r) => `${message.guild.roles.cache.get(r)}`);
 		const roles = ranks.length ? ranks : "No ranks yet go make some";
-		const embed = this.client.util.embed().setAuthor(message.guild.name, message.guild.iconURL()).addField("Available ranks", roles).setColor(this.client.colors.default);
+		const embed = this.client.util
+			.embed()
+			.setAuthor(message.guild.name, message.guild.iconURL())
+			.addField("Available ranks", roles || "No ranks yet go make some")
+			.setColor(this.client.colors.default);
 		return message.reply(embed);
 	}
 	async execSlash(interaction: CommandInteraction): Promise<void | Message> {
