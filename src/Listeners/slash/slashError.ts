@@ -12,7 +12,7 @@ export default class CommandErrorListener extends Listener {
 	}
 
 	exec(error: Error): void {
-		console.log(Interaction);
-		console.log(error);
+		this.client.logger.fatal(Interaction);
+		this.client.logger.fatal(error);
 	}
 }

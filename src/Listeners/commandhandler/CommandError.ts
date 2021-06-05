@@ -25,7 +25,7 @@ export default class CommandErrorListener extends Listener {
 		this.client.logger.error(a1("──────────────────────────────────────────────────────────────────────"));
 		this.client.logger.command(message, command, "Error");
 		this.client.logger.error(a1(`[ CONTENT ] ${message.content}`));
-		this.client.logger.error(a1(error.stack));
+		this.client.logger.fatal(error.stack);
 		this.client.logger.error(a1("──────────────────────────────────────────────────────────────────────"));
 
 		const errorEmbed: MessageEmbed = new MessageEmbed()
