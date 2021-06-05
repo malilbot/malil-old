@@ -22,11 +22,11 @@ export default class CommandErrorListener extends Listener {
 			return;
 		}
 
-		this.client.logger.info(a1("──────────────────────────────────────────────────────────────────────"));
+		this.client.logger.error(a1("──────────────────────────────────────────────────────────────────────"));
 		this.client.logger.command(message, command, "Error");
-		this.client.logger.info(a1(`[ CONTENT ] ${message.content}`));
-		this.client.logger.info(a1(error.stack));
-		this.client.logger.info(a1("──────────────────────────────────────────────────────────────────────"));
+		this.client.logger.error(a1(`[ CONTENT ] ${message.content}`));
+		this.client.logger.error(a1(error.stack));
+		this.client.logger.error(a1("──────────────────────────────────────────────────────────────────────"));
 
 		const errorEmbed: MessageEmbed = new MessageEmbed()
 

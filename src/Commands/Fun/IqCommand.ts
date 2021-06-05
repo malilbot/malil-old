@@ -1,6 +1,5 @@
 import Command from "../../Classes/malilCommand";
-import type { Message, GuildMember, CommandInteraction } from "discord.js";
-import { MessageEmbed } from "discord.js";
+import type { Message, GuildMember } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 
 export default class IqCommand extends Command {
@@ -36,13 +35,10 @@ export default class IqCommand extends Command {
 		});
 	}
 
-	async exec(message: Message, { user }: { user: GuildMember }): Promise<Message> {
-		const iq = (await this.client.getUser(user.id || message.member.id)).iq;
+	async exec(message: Message, { user = message.member }: { user: GuildMember }): Promise<Message> {
+		const iq = (await this.client.getUser(user.id)).iq;
 
-		const iEmbed = new MessageEmbed()
-			.setColor(this.client.colors.default)
-			.setTitle("IQ Test")
-			.setDescription(`${user || message.member}'s IQ is: \`${iq}\`!`);
+		const iEmbed = this.client.util.embed().setColor(this.client.colors.default).setTitle("IQ Test").setDescription(`${user}'s IQ is: \`${iq}\`!`);
 
 		if (this.client.random(50) == 5) iEmbed.setImage("https://i.imgur.com/skuWtMT.png");
 		//if (this.client.random(10) == 5) iEmbed.setFooter(`You can vote to get increased iq ${(await this.client.getPrefix(message.guild.id)) || this.client.settings.prefix}vote`);

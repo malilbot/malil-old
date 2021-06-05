@@ -1,5 +1,5 @@
 import Command from "../../Classes/malilCommand";
-import { Message, CommandInteraction } from "discord.js";
+import { Message } from "discord.js";
 export default class SupportCommand extends Command {
 	constructor() {
 		super("support", {
@@ -14,9 +14,6 @@ export default class SupportCommand extends Command {
 	}
 
 	exec(message: Message): Promise<Message> {
-		return message.reply("https://discord.gg/mY8zTARu4g");
-	}
-	execSlash(message: CommandInteraction): Promise<void> {
 		return message.reply("https://discord.gg/mY8zTARu4g");
 	}
 }

@@ -293,12 +293,11 @@ export const GetMember = async function (msg: Message, args: string): Promise<Gu
 	const reg = /<@!?(\d{17,19})>/;
 	const id = args.match(reg);
 
-	if (!item && !id) {
+	if (msg.reference) {
 		const replied = await msg.fetchReference();
 		if (replied) return (await msg.channel.messages.fetch(replied.id)).member;
-
-		return null;
-	} else if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
+	}
+	if (item == "^" && msg.channel.messages.cache.size >= 4) return msg.channel.messages.cache.filter((m) => m.id < msg.id && m.author?.id != msg.author?.id).last().member;
 	else if (item == "^") return null;
 
 	let user = msg.guild.members.cache.find((member) => {

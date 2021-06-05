@@ -1260,8 +1260,8 @@ __metadata:
 
 discord-akairo@SkyBlockDev/discord-akairo:
   version: 8.2.2
-  resolution: "discord-akairo@https://github.com/SkyBlockDev/discord-akairo.git#commit=5c5554c4cee0cc08586a2935a69a3e25856a93be"
-  checksum: c02412578ff531e003921546aa21e8c720301986e092addc9d61769cb92c2144eea27117766495356e40d941c86b6b4aa466ed8baa04a18364a313e3f32820ec
+  resolution: "discord-akairo@https://github.com/SkyBlockDev/discord-akairo.git#commit=0d705bf03ef6146a28e5d0605c3fe8401691cbdf"
+  checksum: c9959216b28187986fd091d0802515de55e5ae59eb758beab7401c55abf8064975d78f148809382d5bde779b111f07c760fbc1d8227133fd28ced14f70556626
   languageName: node
   linkType: hard
 
