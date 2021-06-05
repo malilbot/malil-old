@@ -288,7 +288,7 @@ export class Util {
  */
 export const GetMember = async function (msg: Message, args: string): Promise<GuildMember> {
 	/**Defining what to search for */
-	const item = args.trim().split(" ")[0];
+	const item = args.trim().split(" ")[0].replace(/ /gi, "");
 
 	const reg = /<@!?(\d{17,19})>/;
 	const id = args.match(reg);
@@ -303,6 +303,7 @@ export const GetMember = async function (msg: Message, args: string): Promise<Gu
 	let user = msg.guild.members.cache.find((member) => {
 		if (member.id == item) return true;
 		if (id && member.id == id[1]) return true;
+		if (!item.length) return false;
 		if (member.displayName.toLowerCase().includes(item)) return true;
 		if (member.user.tag.toLowerCase().includes(item)) return true;
 	});

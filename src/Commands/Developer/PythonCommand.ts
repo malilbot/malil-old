@@ -1,5 +1,5 @@
 import Command from "../../Classes/malilCommand";
-import { MessageEmbed, Message, MessageAttachment } from "discord.js";
+import { MessageEmbed, Message } from "discord.js";
 import { inspect } from "util";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { join } from "path";

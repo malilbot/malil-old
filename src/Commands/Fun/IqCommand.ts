@@ -26,10 +26,7 @@ export default class IqCommand extends Command {
 					required: false,
 				},
 			],
-			description: {
-				content: "IQ_DESCRIPTION_CONTENT",
-				example: "IQ_DESCRIPTION_EXAMPLE",
-			},
+
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
 		});

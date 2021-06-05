@@ -1,6 +1,5 @@
 import Command from "../../Classes/malilCommand";
 import type { Message, GuildMember } from "discord.js";
-import { MessageEmbed } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 export default class DmCommand extends Command {
 	constructor() {

@@ -1,7 +1,6 @@
 import moment from "moment";
 import Command from "../../Classes/malilCommand";
-import type { Message, GuildMember, ImageSize, AllowedImageFormat } from "discord.js";
-import { MessageEmbed } from "discord.js";
+import type { Message, GuildMember } from "discord.js";
 import { GetMember } from "../../Lib/Utils";
 export default class UserinfoCommand extends Command {
 	constructor() {
@@ -9,27 +8,29 @@ export default class UserinfoCommand extends Command {
 			aliases: ["userinfo", "u", "user"],
 			category: "General",
 			quoted: true,
+			slash: true,
 			args: [
 				{
-					id: "member",
-					type: async (message, content) => {
-						const member = await GetMember(message, content);
-						return member || message.member;
-					},
+					id: "user",
+					type: GetMember,
 					match: "content",
 				},
 			],
-			description: {
-				content: "USER_DESCRIPTION_CONTENT",
-				example: "USER_DESCRIPTION_EXAMPLE",
-			},
+			options: [
+				{
+					type: 6,
+					name: "user",
+					description: "The user you need info about",
+					required: false,
+				},
+			],
 			clientPermissions: ["SEND_MESSAGES"],
 			ratelimit: 3,
 			channel: "guild",
 		});
 	}
 
-	async exec(message: Message, { member }: { member: GuildMember }): Promise<Message> {
+	exec(message: Message, { member = message.member }: { member: GuildMember }): Promise<Message> {
 		const flags = {
 			DISCORD_EMPLOYEE: "Discord Employee",
 			DISCORD_PARTNER: "Discord Partner",
@@ -46,26 +47,33 @@ export default class UserinfoCommand extends Command {
 			VERIFIED_DEVELOPER: "Verified Bot Developer",
 		};
 
-		const userFlags = member.user.flags.toArray();
-		const embed = new MessageEmbed()
+		const userFlags = member.user.flags?.toArray();
+		const embed = this.client.util
+			.embed()
 			.setThumbnail(member.user.displayAvatarURL({ dynamic: true, size: 512 }))
 			.setColor(member.displayHexColor || "BLUE")
-			.addField("User", [
-				`**❯ Username:** ${member.user.username}`,
-				`**❯ Discriminator:** ${member.user.discriminator}`,
-				`**❯ ID:** ${member.id}`,
-				`**❯ Flags:** ${userFlags.length ? userFlags.map((flag) => flags[flag]).join(", ") : "None"}`,
-				`**❯ Avatar:** [Link to avatar](${member.user.displayAvatarURL({ dynamic: true })})`,
-				`**❯ Time Created:** ${moment(member.user.createdTimestamp).format("LT")} ${moment(member.user.createdTimestamp).format("LL")} ${moment(member.user.createdTimestamp).fromNow()}`,
-				//`**❯ Game:** ${member.user.presence || 'Not playing a game.'}`,
-				`\u200b`,
-			])
-			.addField("Member", [
-				`**❯ Highest Role:** ${member.roles.highest.id === message.guild.id ? "None" : member.roles.highest.name}`,
-				`**❯ Server Join Date:** ${moment(member.joinedAt).format("LL LTS")}`,
-				`**❯ Hoist Role:** ${member.roles.hoist ? member.roles.hoist.name : "None"}`,
-				`\u200b`,
-			]);
+			.addField(
+				"User",
+				[
+					`**❯ Username:** ${member.user.username}`,
+					`**❯ Discriminator:** ${member.user.discriminator}`,
+					`**❯ ID:** ${member.id}`,
+					`**❯ Flags:** ${userFlags?.length ? userFlags.map((flag) => flags[flag]).join(", ") : "None"}`,
+					`**❯ Avatar:** [Link to avatar](${member.user.displayAvatarURL({ dynamic: true })})`,
+					`**❯ Time Created:** ${moment(member.user.createdTimestamp).format("LT")} ${moment(member.user.createdTimestamp).format("LL")} ${moment(member.user.createdTimestamp).fromNow()}`,
+					//`**❯ Game:** ${member.user.presence || 'Not playing a game.'}`,
+					`\u200b`,
+				].join("\n")
+			)
+			.addField(
+				"Member",
+				[
+					`**❯ Highest Role:** ${member.roles.highest.id === message.guild.id ? "None" : member.roles.highest.name}`,
+					`**❯ Server Join Date:** ${moment(member.joinedAt).format("LL LTS")}`,
+					`**❯ Hoist Role:** ${member.roles.hoist ? member.roles.hoist.name : "None"}`,
+					`\u200b`,
+				].join("\n")
+			);
 		return message.reply(embed);
 	}
 }

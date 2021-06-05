@@ -8,12 +8,7 @@ export default class MuteCommand extends Command {
 		super("mute", {
 			aliases: ["mute", "tempmute", "muterole", "mutedrole"],
 			category: "Moderation",
-			description: {
-				content: "MUTE_DESCRIPTION_CONTENT",
-				example: "MUTE_DESCRIPTION_EXAMPLE",
-			},
 			ratelimit: 3,
-
 			clientPermissions: ["MANAGE_MESSAGES", "SEND_MESSAGES"],
 			userPermissions: ["MANAGE_MESSAGES", "MANAGE_ROLES"],
 			channel: "guild",
@@ -29,8 +24,8 @@ export default class MuteCommand extends Command {
 				},
 				{
 					id: "time",
-					type: async (_, content) => {
-						return ms(content.split(" ")[1]) || "PERM";
+					type: (_, content) => {
+						ms(content.split(" ")[1]) || "PERM";
 					},
 					match: "content",
 				},

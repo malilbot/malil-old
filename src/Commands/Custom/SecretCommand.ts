@@ -6,10 +6,6 @@ export default class SecretCommand extends Command {
 		super("secret", {
 			aliases: ["secret"],
 			category: "Developer",
-			description: {
-				content: "NO",
-				example: "NO",
-			},
 			ratelimit: 3,
 			clientPermissions: ["SEND_MESSAGES"],
 			ownerOnly: false,
