@@ -59,47 +59,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "@eslint/eslintrc@npm:0.4.1"
+"@eslint/eslintrc@npm:^0.4.2":
+  version: 0.4.2
+  resolution: "@eslint/eslintrc@npm:0.4.2"
   dependencies:
     ajv: ^6.12.4
     debug: ^4.1.1
     espree: ^7.3.0
-    globals: ^12.1.0
+    globals: ^13.9.0
     ignore: ^4.0.6
     import-fresh: ^3.2.1
     js-yaml: ^3.13.1
     minimatch: ^3.0.4
     strip-json-comments: ^3.1.1
-  checksum: 418f5810c8dd9897d2457ceef098197d0e5f1ad345fbe4cd9256fd4223d7ea83d5e350f9091b3ab3483b6b1c367fa560df3ba1fccc7eb8ca6e1aae5a5b126d60
+  checksum: 60b66ce4257bf5c36a920dea83a056102fef746e7afd7100a6fe245a126ff455f67f4948e75d28ed73090bff8f8556b6a996e74a124911ca703440bc245dbc23
   languageName: node
   linkType: hard
 
-"@nodelib/fs.scandir@npm:2.1.4":
-  version: 2.1.4
-  resolution: "@nodelib/fs.scandir@npm:2.1.4"
+"@nodelib/fs.scandir@npm:2.1.5":
+  version: 2.1.5
+  resolution: "@nodelib/fs.scandir@npm:2.1.5"
   dependencies:
-    "@nodelib/fs.stat": 2.0.4
+    "@nodelib/fs.stat": 2.0.5
     run-parallel: ^1.1.9
-  checksum: 30b3102ee37e1c1a0cb939a8e93f9a58b1637e2b4b546bb9143b3fb5efacd2abde3237a5313d5329bf1bc4231c418a77c3cb7f5434ce410e61a91ff4051cf215
+  checksum: 91b3de88d9ba843b74057ebec53d97bb1ca006fcb794f1eb2becfe6faf114cb575c90b10fc20f7390358106ffa5e6bbc493506c24f2263a33aa69f90c1e77f74
   languageName: node
   linkType: hard
 
-"@nodelib/fs.stat@npm:2.0.4, @nodelib/fs.stat@npm:^2.0.2":
-  version: 2.0.4
-  resolution: "@nodelib/fs.stat@npm:2.0.4"
-  checksum: 6454a79e945dd55102b5c2e158813804ed349f9c1cc806f8754fca4587688a5d8e4115fc3eedbdf3d8a6b343169a6b664ecd8a7a42289eed210c686a4d0897c4
+"@nodelib/fs.stat@npm:2.0.5, @nodelib/fs.stat@npm:^2.0.2":
+  version: 2.0.5
+  resolution: "@nodelib/fs.stat@npm:2.0.5"
+  checksum: a4fcf7408f2a1e11737856629b1259fb9ed658c464fabb17f77db1069fea5dd47abd5e92325b217617dbc116138d82ea6d33ffc07a426de940c5f6e08603da88
   languageName: node
   linkType: hard
 
 "@nodelib/fs.walk@npm:^1.2.3":
-  version: 1.2.6
-  resolution: "@nodelib/fs.walk@npm:1.2.6"
+  version: 1.2.7
+  resolution: "@nodelib/fs.walk@npm:1.2.7"
   dependencies:
-    "@nodelib/fs.scandir": 2.1.4
+    "@nodelib/fs.scandir": 2.1.5
     fastq: ^1.6.0
-  checksum: d0503ffd0bb4172d5ac5d23993b14665f5f6d42a460a719ad97743ce71e60588d134cc60df12ca76be0e5e3a93c9a3156904d9296b78a8cdf19425c3423c0b58
+  checksum: ac8e2d9ca000b9f7fca2a7b005b9e476ba7b2f416d2873f64b94b207ed1854bd30f63ced4c221969c5e470ec82fbeb353c97504a86c3838cda11f98660fac284
   languageName: node
   linkType: hard
 
@@ -167,9 +167,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:^15.3.0":
-  version: 15.6.2
-  resolution: "@types/node@npm:15.6.2"
-  checksum: e65d6d4750c8bff0d7ecaba1b552118f17b163f3dae8007f6112c54bd591b7087b506c20bb03ce802dc895ef1c2565a750c5246bddab6ffa7d308c2d5f301571
+  version: 15.12.1
+  resolution: "@types/node@npm:15.12.1"
+  checksum: 8a111dc99281e07b1a6408437a09eafb081760aa8bd73d481793345b302a565772c45f2be7fdd7386a8a7ce589a999ccfb513dba15a0b3320dba03c94308253f
   languageName: node
   linkType: hard
 
@@ -614,14 +614,14 @@ __metadata:
   linkType: hard
 
 "better-sqlite3@npm:^7.1.0":
-  version: 7.4.0
-  resolution: "better-sqlite3@npm:7.4.0"
+  version: 7.4.1
+  resolution: "better-sqlite3@npm:7.4.1"
   dependencies:
     bindings: ^1.5.0
     node-gyp: latest
     prebuild-install: ^6.0.1
     tar: ^6.1.0
-  checksum: 6a244fda79a3f45c5bc57d6aeb706d0fa82dadd004af13732de166b0445ff93f3a813e99a93ab500a95c7de37e71c6f1e677bf7c6d43b089aa0e5b694e8a40f1
+  checksum: 06a26e7645ff0475836e30d0cd135ab72317c27350cc53124bcbc457f15d2199ab650adedb1118836b5b9862d349e385c3fc6e7839e24e7062192eb1cd47457d
   languageName: node
   linkType: hard
 
@@ -1067,9 +1067,9 @@ __metadata:
   linkType: hard
 
 "core-js@npm:^3.1.4":
-  version: 3.13.1
-  resolution: "core-js@npm:3.13.1"
-  checksum: 9138463ed7e6489a0b7f7e8a13cb345fde22866ab23d35f0e0e0ddc13e0374dfc7542d7316762a7dc2a5074efe22f8ff692e26ccc22860d8179de5eedf922e98
+  version: 3.14.0
+  resolution: "core-js@npm:3.14.0"
+  checksum: fc830e61146f50241f431c711674a6af0a3633269a2a2afada3da1054f0c3b3a8b571fb4ca4c87d53193def47a4f56a18c32e832e6587b363ff0ff153508f300
   languageName: node
   linkType: hard
 
@@ -1274,7 +1274,7 @@ discord-akairo@SkyBlockDev/discord-akairo:
 
 discord.js@discordjs/discord.js:
   version: 13.0.0-dev
-  resolution: "discord.js@https://github.com/discordjs/discord.js.git#commit=cbd7f2b9aa44a9240947ed716d0e72257ac499f7"
+  resolution: "discord.js@https://github.com/discordjs/discord.js.git#commit=dec191aa1e4f22690285ca06c6eee7e6086b2930"
   dependencies:
     "@discordjs/collection": ^0.1.6
     "@discordjs/form-data": ^3.0.1
@@ -1286,7 +1286,7 @@ discord.js@discordjs/discord.js:
     prism-media: ^1.2.9
     tweetnacl: ^1.0.3
     ws: ^7.4.6
-  checksum: b6b38c6b600fe74215dddda14d3738755edd268bcc680f1d03dcf2044d20596da39bcd5974970afb79be4e83d398d0808495d151232f42ecc1f54dac025c13a0
+  checksum: 21422ea53a5835865eff805b14e27fe4e0a570baaeb561346463700395f065b762df6da377c32e5a601fc8339b8f1f106144223742bf2679b64c57d9e5c73be6
   languageName: node
   linkType: hard
 
@@ -1435,11 +1435,11 @@ discord.js@discordjs/discord.js:
   linkType: hard
 
 "esbuild@npm:^0.12.2":
-  version: 0.12.5
-  resolution: "esbuild@npm:0.12.5"
+  version: 0.12.6
+  resolution: "esbuild@npm:0.12.6"
   bin:
     esbuild: bin/esbuild
-  checksum: bbfa2a083f39b89ee76bf99e615ce221d8951cda44d6c081497048bacfa469e318c3b3a2160f237f870907483b7836972ed52fdc560d29d0f65ac395c0a6ea4c
+  checksum: 5303e77b84575ab4c71b381d797723f57208dd314c2d85e12b7f23fcd9edebf9e2be4bf2a7a23384205cd953990a4694b07dec00bbab55a6a729b5ca5bf8f0dd
   languageName: node
   linkType: hard
 
@@ -1617,11 +1617,11 @@ discord.js@discordjs/discord.js:
   linkType: hard
 
 "eslint@npm:^7.26.0":
-  version: 7.27.0
-  resolution: "eslint@npm:7.27.0"
+  version: 7.28.0
+  resolution: "eslint@npm:7.28.0"
   dependencies:
     "@babel/code-frame": 7.12.11
-    "@eslint/eslintrc": ^0.4.1
+    "@eslint/eslintrc": ^0.4.2
     ajv: ^6.10.0
     chalk: ^4.0.0
     cross-spawn: ^7.0.2
@@ -1638,7 +1638,7 @@ discord.js@discordjs/discord.js:
     fast-deep-equal: ^3.1.3
     file-entry-cache: ^6.0.1
     functional-red-black-tree: ^1.0.1
-    glob-parent: ^5.0.0
+    glob-parent: ^5.1.2
     globals: ^13.6.0
     ignore: ^4.0.6
     import-fresh: ^3.0.0
@@ -1661,7 +1661,7 @@ discord.js@discordjs/discord.js:
     v8-compile-cache: ^2.0.3
   bin:
     eslint: bin/eslint.js
-  checksum: c91a9a88091fb2654ec599b452f6d8aff22daa4a21761e762536877ec8b65cd6386c29ea2e0fec2668125a07c62973bc23922f924c999e140c1042b8cffca030
+  checksum: 9d49d53ed56a1f1ccba9c71482722a91f2423432df70a3694d36ea478f0e3bb058034f170219f34f3d6b5cd5d47510b269b75e2b4117f88a3241b1db9cb95828
   languageName: node
   linkType: hard
 
@@ -2043,7 +2043,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"glob-parent@npm:^5.0.0, glob-parent@npm:^5.1.0, glob-parent@npm:~5.1.0":
+"glob-parent@npm:^5.1.0, glob-parent@npm:^5.1.2, glob-parent@npm:~5.1.0":
   version: 5.1.2
   resolution: "glob-parent@npm:5.1.2"
   dependencies:
@@ -2082,16 +2082,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"globals@npm:^12.1.0":
-  version: 12.4.0
-  resolution: "globals@npm:12.4.0"
-  dependencies:
-    type-fest: ^0.8.1
-  checksum: 0b9764bdeab0bc9762dea8954a0d4c5db029420bd8bf693df9098ce7e045ccaf9b2d259185396fd048b051d42fdc8dc7ab02af62e3dbeb2324a78a05aac8d33c
-  languageName: node
-  linkType: hard
-
-"globals@npm:^13.6.0":
+"globals@npm:^13.6.0, globals@npm:^13.9.0":
   version: 13.9.0
   resolution: "globals@npm:13.9.0"
   dependencies:
@@ -3163,13 +3154,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"noop-logger@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "noop-logger@npm:0.1.1"
-  checksum: 353d31cd08698c797af21069df593772a081b694d0edbb3f1d9aca526ddc414bb0992e3deb9aaf69ad197ddee3a5e3be6dd09043023d3abe385d2872a863829c
-  languageName: node
-  linkType: hard
-
 "nopt@npm:^5.0.0":
   version: 5.0.0
   resolution: "nopt@npm:5.0.0"
@@ -3575,8 +3559,8 @@ fsevents@~2.3.1:
   linkType: hard
 
 "prebuild-install@npm:^6.0.1":
-  version: 6.1.2
-  resolution: "prebuild-install@npm:6.1.2"
+  version: 6.1.3
+  resolution: "prebuild-install@npm:6.1.3"
   dependencies:
     detect-libc: ^1.0.3
     expand-template: ^2.0.3
@@ -3585,7 +3569,6 @@ fsevents@~2.3.1:
     mkdirp-classic: ^0.5.3
     napi-build-utils: ^1.0.1
     node-abi: ^2.21.0
-    noop-logger: ^0.1.1
     npmlog: ^4.0.1
     pump: ^3.0.0
     rc: ^1.2.7
@@ -3593,8 +3576,8 @@ fsevents@~2.3.1:
     tar-fs: ^2.0.0
     tunnel-agent: ^0.6.0
   bin:
-    prebuild-install: ./bin.js
-  checksum: 680fe93dc913134022a355da3181dc7e65ea1df16f15d0c956f3fb5327c9ae3d307de9a715bc4c3d9f5fd8044d4b02d368b7ba57e5197baca8f10acf0532f403
+    prebuild-install: bin.js
+  checksum: 4b9a6f4b9000648a3e38b96938b22bfa1fa4ced1f14fb290891d5ad182c621ccbfb14eb7e7d588448536c02a08c4727a19e42197d56308c3ff2ed1f18b4f1605
   languageName: node
   linkType: hard
 
@@ -3686,11 +3669,11 @@ fsevents@~2.3.1:
   linkType: hard
 
 "prettier@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "prettier@npm:2.3.0"
+  version: 2.3.1
+  resolution: "prettier@npm:2.3.1"
   bin:
     prettier: bin-prettier.js
-  checksum: 652640cc8b71bc5277cfb8bf6f161783ca588efcf683c3d630837b39da8d57fef35c9e00ae5855a8e3c75136c42274046c913cc2b2d2968558315f31c6a26981
+  checksum: 9b4a695b87ce5f510fc20feec01cce7371f0fa0b92ffe79d543f6be52e2004c532861629de4d7ab1c577e1f649dce3cfccd62cb2ca6526b1da8d9c63eb84bf36
   languageName: node
   linkType: hard
 
