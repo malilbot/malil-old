@@ -88,7 +88,7 @@ export default class Client extends AkairoClient {
 		this.colors = consts.colors;
 		this.credentials = credentials;
 		this.config = config;
-		this.logger = new Logger(true);
+		this.logger = new Logger({ settings: { webhook: this.webhook } });
 		this.random = (i: number) => Math.floor(Math.random() * i);
 		this.knex = Knex({
 			client: "pg",

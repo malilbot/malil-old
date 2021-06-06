@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { red, blue, gray, yellow, green, magenta, cyan, bgBlueBright, bgGreen, bgCyan, black } from "chalk";
-import { Message, GuildMember, GuildChannel, TextChannel, MessageEmbed, Interaction } from "discord.js";
+import { Message, GuildMember, GuildChannel, TextChannel, MessageEmbed, WebhookClient } from "discord.js";
 import InterfaceClient from "../Classes/Client";
-import { Command } from "discord-akairo";
+import { Command, AkairoMessage } from "discord-akairo";
 import { Settings } from "../settings";
 export { consts } from "../settings";
-import { Logger as lgr } from "tslog";
+import { Logger as lgr, ISettingsParam, ISettings, ILogObject } from "tslog";
 import petitio from "petitio";
 import moment from "moment";
 import cio from "cheerio";
@@ -20,8 +20,13 @@ export let main: (string: string | Command | number) => string,
 	split: string;
 const site = "https://hst.sh/";
 const { dev } = Settings;
-
+const logr = new lgr();
+interface mISettingsParam extends ISettingsParam {
+	webhook: WebhookClient;
+}
 export class Logger extends lgr {
+	embeds: MessageEmbed[];
+	webhook: WebhookClient;
 	dash: string;
 	Verbose: boolean;
 	lightBlue: (string: string | Command | number | string[]) => string;
@@ -30,14 +35,15 @@ export class Logger extends lgr {
 	orange: (string: string | Command | number | string[]) => string;
 	yellow: (string: string | Command | number | string[]) => string;
 	konsole: (content, { colors, level }: { colors: string[]; level?: number }) => void;
-	constructor(verbose: boolean) {
-		super();
-		this.Verbose = verbose;
+	constructor({ settings, parentSettings }: { settings?: mISettingsParam; parentSettings?: ISettings }) {
+		super(settings, parentSettings);
+		this.webhook = settings.webhook;
 		this.lightBlue = green; //hex("#72bcd4");
 		this.red = red; //hex("#B20000");
 		this.darkBlue = green; //hex("#14eff9");
 		this.orange = gray; //hex("#FF4F00");
 		this.yellow = yellow; //hex("ccf914");
+		this.embeds = [];
 		this.dash = this.lightBlue(" - ");
 		this.konsole = (content, { colors, level }: { colors: string[]; level?: number }) => {
 			const time = moment().format("HH:mm");
@@ -48,8 +54,20 @@ export class Logger extends lgr {
 			console.log(message);
 		};
 	}
-
+	info(...args: unknown[]): ILogObject {
+		this.addEmbed(new MessageEmbed().setDescription(...args));
+		return super.info(...args);
+	}
+	error(...args: unknown[]): ILogObject {
+		this.addEmbed(new MessageEmbed().setDescription(...args));
+		return super.error(...args);
+	}
+	fatal(...args: unknown[]): ILogObject {
+		this.addEmbed(new MessageEmbed().setDescription(...args));
+		return super.fatal(...args);
+	}
 	verbose(content: string | number | Command | string[], level?: number): void {
+		this.addEmbed(new MessageEmbed().setDescription(content.toString()));
 		if (!this.Verbose) return;
 		this.konsole(content, { level, colors: ["orange", "darkBlue", "yellow"] });
 	}
@@ -57,16 +75,30 @@ export class Logger extends lgr {
 	log(content: string | number | Command | string[]): void {
 		this.konsole(content, { colors: ["darkBlue", "yellow", "yellow"] });
 	}
-	command(message: Message | Interaction, command: Command, trigger: string): void {
+	addEmbed(embed: MessageEmbed): void {
+		this.embeds.push(embed);
+		if (this.embeds.length == 10) {
+			this.webhook.send(this.embeds);
+			this.embeds = [];
+		}
+	}
+	command(message: Message | AkairoMessage, command: Command, trigger: string): void {
 		if (trigger == "Success") {
 			trigger = green(trigger);
 		} else if (trigger == "blocked") {
 			trigger = red(trigger);
 		}
+		const embed = new MessageEmbed()
+			.setAuthor(`${message.member.user.tag} ${message.member.user.id}`, message.member.user.avatarURL())
+			.addField(`❯ Guild ${message.guild.name} ${message.guild.id}`, "\u200B")
+			.addField(`❯ Content ${message.guild.name} ${message.guild.id}`, message.content.slice(0, 1000) || "No message content")
+			.setColor("GREEN");
+		this.addEmbed(embed);
+
 		console.log(
 			bgBlueBright(`${black(moment().format("HH:mm"))}`) +
 				` => [Command: ${black(green(`${command}`))} - ${trigger}]` +
-				` by ${black(bgGreen(`${((message as Interaction).user || (message as Message).author).tag}(${(message as Message).author.id})`))}` +
+				` by ${black(bgGreen(`${((message as AkairoMessage).user || (message as Message).author).tag}(${(message as Message).author.id})`))}` +
 				` in ${black(bgCyan(`${message.guild.name}(${message.guild.id})`))}`
 		);
 	}
