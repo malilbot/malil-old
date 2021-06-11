@@ -41,7 +41,7 @@ export default class message extends Listener {
 			if (message.channel.id == "831744864001064971")
 				if (message.content.includes("RUINED IT AT")) {
 					await message.mentions.members.first().roles.add("838949553020993557");
-					message.channel.send("bald");
+					message.channel.send("bald, use !math in bot commands to get rid of cannot math");
 					const channel = await message.client.channels.fetch("832315100274622495");
 					(channel as TextChannel).send(message.content);
 				}

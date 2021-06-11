@@ -18,7 +18,7 @@ export default class LockCommand extends Command {
 				example: "LOCK_DESCRIPTION_EXAMPLE",
 			},
 			channel: "guild",
-			clientPermissions: ["MANAGE_CHANNELS"],
+			clientPermissions: ["MANAGE_CHANNELS", "SEND_MESSAGES","MANAGE_MESSAGES"],
 			userPermissions: ["MANAGE_CHANNELS"],
 		});
 	}
