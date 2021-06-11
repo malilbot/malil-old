@@ -10,8 +10,7 @@ export default [
 	{
 		guilds: [`${drm}`],
 		message: {
-			files: [`http://pays.host/uploads/add4657d-af3a-4f66-a67f-605109f80024/bzxrcnWt.png`],
-			content: `The mod is not bannable and doesnt trigger watchdog.`,
+			content: `https://quantizr.github.io/posts/is-it-bannable/`,
 		},
 		triggers: [[`bann`]],
 	},
