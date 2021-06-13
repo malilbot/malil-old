@@ -1258,10 +1258,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-discord-akairo@SkyBlockDev/discord-akairo:
+"discord-akairo@SkyBlockDev/discord-akairo#1150c4ce65989a4f06da5244d1fa2907450abfa5":
   version: 8.2.2
-  resolution: "discord-akairo@https://github.com/SkyBlockDev/discord-akairo.git#commit=c632c7684be6392dce8b5a0c4b27a0acbb3f6016"
-  checksum: 101ff7b850415f15b04f77997fa0e0f5abb507ec5c46e0769ea627c61f6944c73b73d1158d967ba7ecdab9e6bdb23f385471e7b8ef816b2dcddd40e2a6c91619
+  resolution: "discord-akairo@https://github.com/SkyBlockDev/discord-akairo.git#commit=1150c4ce65989a4f06da5244d1fa2907450abfa5"
+  checksum: aa487936c06187b8f069cde368327c89c4999ad7c12bede268806660563cf658131a6228bd67b44a76f5772a96e1a2dbedc72df48a492087e19ce60695536222
   languageName: node
   linkType: hard
 
@@ -1272,9 +1272,9 @@ discord-akairo@SkyBlockDev/discord-akairo:
   languageName: node
   linkType: hard
 
-discord.js@discordjs/discord.js:
+"discord.js@discordjs/discord.js#ff4d6dded52771788619df395df016279909ba3c":
   version: 13.0.0-dev
-  resolution: "discord.js@https://github.com/discordjs/discord.js.git#commit=f5f3f772865ee98bbb44df938e0e71f9f8865c10"
+  resolution: "discord.js@https://github.com/discordjs/discord.js.git#commit=ff4d6dded52771788619df395df016279909ba3c"
   dependencies:
     "@discordjs/collection": ^0.1.6
     "@discordjs/form-data": ^3.0.1
@@ -1283,8 +1283,10 @@ discord.js@discordjs/discord.js:
     abort-controller: ^3.0.0
     discord-api-types: ^0.18.1
     node-fetch: ^2.6.1
+    prism-media: ^1.2.9
+    tweetnacl: ^1.0.3
     ws: ^7.4.6
-  checksum: 8fe47597f33a2fb2e1a6ede7f2b7174046fbacb92043f72b3a395797cf410077e731155c1e12dea4e169c3b0cd0947d756d68408ccfe6e7ab56ec0247f50fda9
+  checksum: 003f7a74cdb59a1737c9a5368dbc899d6f142d46c8b00b2a148c26ebe4d7d6b6410914fdb7554c3d977e20babc970c7492113fdabd5733cc832ee9061652bce5
   languageName: node
   linkType: hard
 
@@ -2791,9 +2793,9 @@ fsevents@~2.3.1:
     bufferutil: ^4.0.3
     chalk: ^4.1.1
     cheerio: ^1.0.0-rc.9
-    discord-akairo: SkyBlockDev/discord-akairo
+    discord-akairo: "SkyBlockDev/discord-akairo#1150c4ce65989a4f06da5244d1fa2907450abfa5"
     discord-api-types: ^0.18.1
-    discord.js: discordjs/discord.js
+    discord.js: "discordjs/discord.js#ff4d6dded52771788619df395df016279909ba3c"
     enmap: ^5.8.5
     esbuild: ^0.12.2
     eslint: ^7.26.0
@@ -3685,6 +3687,27 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"prism-media@npm:^1.2.9":
+  version: 1.3.1
+  resolution: "prism-media@npm:1.3.1"
+  peerDependencies:
+    "@discordjs/opus": ^0.5.0
+    ffmpeg-static: ^4.2.7 || ^3.0.0 || ^2.4.0
+    node-opus: ^0.3.3
+    opusscript: ^0.0.8
+  peerDependenciesMeta:
+    "@discordjs/opus":
+      optional: true
+    ffmpeg-static:
+      optional: true
+    node-opus:
+      optional: true
+    opusscript:
+      optional: true
+  checksum: 5d20527179c413b1b8ac8e5036f37641272855ba0d4d49cdd1f9260acb39705cd6dec0dabee0a9c0781919dbf1a301f76e0230ac4913e3a95ca67ae05456b293
+  languageName: node
+  linkType: hard
+
 "process-nextick-args@npm:~2.0.0":
   version: 2.0.1
   resolution: "process-nextick-args@npm:2.0.1"
@@ -4556,6 +4579,13 @@ resolve@^1.9.0:
   dependencies:
     safe-buffer: ^5.0.1
   checksum: 03db75a4f994fee610d3485c492e95105ed265a9fecd49d14c98e9982f973ecc0220d0c1bc264e37802e423a1274bb63788a873e4e07009408ae3ac517347fd7
+  languageName: node
+  linkType: hard
+
+"tweetnacl@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "tweetnacl@npm:1.0.3"
+  checksum: 1188f3ef85db04d6dba632d211e481ae0a5805974491633ff60bd56ae3362312dfea1515e0d200685867b69ff212e8778e26923f8203e3c335064b07f620a6c7
   languageName: node
   linkType: hard
 

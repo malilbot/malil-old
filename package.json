@@ -64,8 +64,8 @@
 	"dependencies": {
 		"chalk": "^4.1.1",
 		"cheerio": "^1.0.0-rc.9",
-		"discord-akairo": "SkyBlockDev/discord-akairo",
-		"discord.js": "discordjs/discord.js",
+		"discord-akairo": "SkyBlockDev/discord-akairo#1150c4ce65989a4f06da5244d1fa2907450abfa5",
+		"discord.js": "discordjs/discord.js#ff4d6dded52771788619df395df016279909ba3c",
 		"enmap": "^5.8.5",
 		"knex": "^0.95.6",
 		"moment": "^2.29.1",
