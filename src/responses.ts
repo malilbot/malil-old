@@ -22,11 +22,6 @@ export default [
 		triggers: [["aliases"]],
 	},
 	{
-		guilds: [skytils],
-		delete: true,
-		triggers: [["sel"], ["offers", "ah", "auc"]],
-	},
-	{
 		guilds: [`${dg}`],
 		message: {
 			content: `This mod, like all others is use at your own risk. Even though it is *use at your own risk*, there have no reports of users being banned from the mod, and it should follow all of the current hypixel mod rules.`,
