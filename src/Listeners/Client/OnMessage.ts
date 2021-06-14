@@ -134,14 +134,6 @@ export default class message extends Listener {
 		responses.forEach(async (h) => {
 			if (h.guilds.includes(message.guild.id)) {
 				if (check(...h.triggers)) {
-					if (h.delete) {
-						message.delete();
-						message.author.send('You were warned in **skytils** for: "Please dont advertise your auctions"').catch((e) => {
-							(message.guild.channels.cache.get("807328920935858214") as TextChannel).send(
-								`${message.member} Didnt like to be dmed by me about them selling their stupid items on ah\n` + e
-							);
-						});
-					}
 					if (!talkedRecently.has(message.author.id)) {
 						this.client.logger.verbose(`${message.author.tag} [TRIGGERED] A AUTORESPONDER`);
 						talkedRecently.add(message.author.id);
