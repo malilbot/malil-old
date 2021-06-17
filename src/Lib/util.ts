@@ -55,19 +55,19 @@ export class Logger extends lgr {
 		};
 	}
 	info(...args: unknown[]): ILogObject {
-		this.addEmbed(new MessageEmbed().setDescription(...args));
+		//this.addEmbed(new MessageEmbed().setDescription(...args));
 		return super.info(...args);
 	}
 	error(...args: unknown[]): ILogObject {
-		this.addEmbed(new MessageEmbed().setDescription(...args));
+		//this.addEmbed(new MessageEmbed().setDescription(...args));
 		return super.error(...args);
 	}
 	fatal(...args: unknown[]): ILogObject {
-		this.addEmbed(new MessageEmbed().setDescription(...args));
+		//this.addEmbed(new MessageEmbed().setDescription(...args));
 		return super.fatal(...args);
 	}
 	verbose(content: string | number | Command | string[], level?: number): void {
-		this.addEmbed(new MessageEmbed().setDescription(content.toString()));
+		//this.addEmbed(new MessageEmbed().setDescription(content.toString()));
 		if (!this.Verbose) return;
 		this.konsole(content, { level, colors: ["orange", "darkBlue", "yellow"] });
 	}
@@ -76,7 +76,7 @@ export class Logger extends lgr {
 		this.konsole(content, { colors: ["darkBlue", "yellow", "yellow"] });
 	}
 	addEmbed(embed: MessageEmbed): void {
-		this.embeds.push(embed);
+		//this.embeds.push(embed);
 		if (this.embeds.length == 10) {
 			this.webhook.send(this.embeds);
 			this.embeds = [];

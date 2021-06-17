@@ -1258,10 +1258,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-akairo@SkyBlockDev/discord-akairo#1150c4ce65989a4f06da5244d1fa2907450abfa5":
+discord-akairo@SkyBlockDev/discord-akairo:
   version: 8.2.2
-  resolution: "discord-akairo@https://github.com/SkyBlockDev/discord-akairo.git#commit=1150c4ce65989a4f06da5244d1fa2907450abfa5"
-  checksum: aa487936c06187b8f069cde368327c89c4999ad7c12bede268806660563cf658131a6228bd67b44a76f5772a96e1a2dbedc72df48a492087e19ce60695536222
+  resolution: "discord-akairo@https://github.com/SkyBlockDev/discord-akairo.git#commit=0a8e52bdd28e4f0ccaa36f1422fe74eb191aafe1"
+  checksum: 0a8e52bdd28e4f0ccaa36f1422fe74eb191aafe1
   languageName: node
   linkType: hard
 
@@ -2793,7 +2793,7 @@ fsevents@~2.3.1:
     bufferutil: ^4.0.3
     chalk: ^4.1.1
     cheerio: ^1.0.0-rc.9
-    discord-akairo: "SkyBlockDev/discord-akairo#1150c4ce65989a4f06da5244d1fa2907450abfa5"
+    discord-akairo: SkyBlockDev/discord-akairo
     discord-api-types: ^0.18.1
     discord.js: "discordjs/discord.js#ff4d6dded52771788619df395df016279909ba3c"
     enmap: ^5.8.5
