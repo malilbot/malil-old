@@ -45,25 +45,29 @@ export default class PatCommand extends Command {
 	}
 
 	async exec(message: Message, { user, ign }: { user: string | GuildMember; ign: string }): Promise<Message> {
-		if (!user) user = ign;
-		let image: string;
-		if (!user) image = message.author.avatarURL({ dynamic: false, format: "png" });
-		else if (typeof user == "string") {
-			const res = await (await c("https://api.mojang.com/users/profiles/minecraft/" + user, "GET").send()).json();
-			if (res !== null) {
-				image = `https://mc-heads.net/head/${res.id}`;
+		try {
+			if (!user) user = ign;
+			let image: string;
+			if (!user) image = message.author.avatarURL({ dynamic: false, format: "png" });
+			else if (typeof user == "string") {
+				const res = await (await c("https://api.mojang.com/users/profiles/minecraft/" + user, "GET").send()).json();
+				if (res !== null) {
+					image = `https://mc-heads.net/head/${res.id}`;
+				} else {
+					return message.reply("User not found");
+				}
 			} else {
-				return message.reply("User not found");
+				if (user) {
+					image = (user as GuildMember)?.user?.displayAvatarURL({ dynamic: false, format: "png" });
+				} else {
+					return message.reply("User not found");
+				}
 			}
-		} else {
-			if (user) {
-				image = (user as GuildMember)?.user?.displayAvatarURL({ dynamic: false, format: "png" });
-			} else {
-				return message.reply("User not found");
-			}
+			const gif = await c("https://pet.skyblockdev.repl.co/api/pet/", "GET").query("url", image).send();
+			const patted = Buffer.from(gif.body.toString(), "base64");
+			return message.reply({ content: "patting", files: [{ attachment: patted, name: `patted.gif` }] });
+		} catch (e) {
+			return message.reply("The pat command is very unstable and something went wrong please try again :)");
 		}
-		const gif = await c("https://pet.skyblockdev.repl.co/api/pet/", "GET").query("url", image).send();
-		const patted = Buffer.from(gif.body.toString(), "base64");
-		return message.reply({ content: "patting", files: [{ attachment: patted, name: `patted.gif` }] });
 	}
 }
