@@ -94,7 +94,7 @@ export default class Client extends AkairoClient {
 			client: "pg",
 			connection,
 		});
-		const databases = ["gp", "logchannel", "blacklist", "guilddata", "mutes", "releases", "userdata"];
+		const databases = ["gp", "logchannel", "blacklist", "guilddata", "mutes", "releases", "userdata", "tags"];
 		for (const item in databases) {
 			const name = databases[item];
 			this[name] = new Enmap({ name, dataDir: join(__dirname, "..", "..", "data", name), polling: Settings.polling });
@@ -485,5 +485,6 @@ declare module "discord-akairo" {
 		gp: Enmap;
 		guilddata: Enmap;
 		mutes: Enmap;
+		tags: Enmap;
 	}
 }

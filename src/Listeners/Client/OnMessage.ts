@@ -27,6 +27,15 @@ export default class message extends Listener {
 				.setThumbnail(this.client.users.cache.random().avatarURL());
 			return this.client.webhook.send(embed);
 		}
+
+		if (message.guild.id == "807302538558308352") {
+			if (message.content.startsWith("*")) {
+				const tag = this.client.tags.get(message.guild.id, message.content.slice(1).trim().split(" ")[0]);
+				if (tag) {
+					message.reply(tag);
+				}
+			}
+		}
 		if (message.channel.id == "843599498394468393") {
 			message
 				.crosspost()
